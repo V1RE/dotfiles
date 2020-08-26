@@ -1,0 +1,16 @@
+[user]
+	name = Niels Mentink
+	email = niels@ment.ink
+
+[merge]
+	tool = vimdiff
+
+[mergetool]
+	keepBackup = false
+	path = nvim
+
+[mergetool "vimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	path = nvim
+[diff]
+	tool = vimdiff
