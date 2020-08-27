@@ -112,7 +112,8 @@ alias cbts='cd $(git rev-parse --show-toplevel)/build/themes/socialbrothers'
 alias cbs='cd $(git rev-parse --show-toplevel)/system'
 alias sb='cd ~/Code/Socialbrothers'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias gssh='gcloud beta compute ssh --zone "europe-west4-a" "instance-1" --project "niels-dashboard" -- -L 3000:localhost:3000 -L 8080:localhost:8080'
+alias gssh='gcloud beta compute ssh --zone "europe-west4-a" "instance-1" --project "niels-dashboard"'
+alias gports='gcloud beta compute ssh --zone "europe-west4-a" "instance-1" --project "niels-dashboard" -- -f -N -L 3000:localhost:3000 -L 8080:localhost:8080'
 
 export VISUAL=nvim
 export EDITOR=$VISUAL
