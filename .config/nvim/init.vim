@@ -20,10 +20,7 @@ syntax on
 set t_Co=256
 set guifont=FuraCode\ Nerd\ Font:h14
 set background=dark
-"colorscheme base16-default-dark
-"colorscheme monokai_pro
 colorscheme onedark
-"colorscheme seoul256
 set number
 set ignorecase
 set smartcase
@@ -258,7 +255,8 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> p
   \ defx#do_action('paste')
   nnoremap <silent><buffer><expr> l
-  \ defx#do_action('open')
+  \ defx#is_directory() ?
+  \ defx#do_action('open') : defx#do_action('drop',)
   nnoremap <silent><buffer><expr> E
   \ defx#do_action('open', 'vsplit')
   nnoremap <silent><buffer><expr> P
