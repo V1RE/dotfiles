@@ -55,3 +55,6 @@ if [ -f '/Users/nielsmentink/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ni
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/nielsmentink/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nielsmentink/google-cloud-sdk/completion.zsh.inc'; fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
