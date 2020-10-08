@@ -7,7 +7,8 @@ if exists('g:vscode')
   source ~/.config/nvim/vscode/settings.vim
 else
   source ~/.config/nvim/nvim.vim
-  source ~/.config/nvim/defx.vim
+  source ~/.config/nvim/plugins/Defx/config.vim
+  source ~/.config/nvim/plugins/fzf/config.vim
 endif
 
 set nocompatible
@@ -48,47 +49,6 @@ let g:floaterm_autoclose = 1
 let g:neovide_cursor_vfx_mode = "railgun"
 
 let php_htmlInStrings = 1
-
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --hidden --glob "!{.git,node_modules}"'
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob "!{.git,node_modules}" '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-
-function! s:list_buffers()
-  redir => list
-  silent ls
-  redir END
-  return split(list, "\n")
-endfunction
-
-function! s:delete_buffers(lines)
-  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
-endfunction
-
-command! BD call fzf#run(fzf#wrap({
-  \ 'source': s:list_buffers(),
-  \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
-\ }))
 
 " Create map to add keys to
 let g:which_key_map =  {}

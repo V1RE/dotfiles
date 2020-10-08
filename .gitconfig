@@ -14,3 +14,5 @@
 	path = nvim
 [diff]
 	tool = vimdiff
+[core]
+	excludesfile = /Users/nielsmentink/.gitignore-system

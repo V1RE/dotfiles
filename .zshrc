@@ -58,3 +58,5 @@ if [ -f '/Users/nielsmentink/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
