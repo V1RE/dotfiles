@@ -37,8 +37,8 @@ set smartcase
 set encoding=utf-8
 set splitbelow
 set splitright
-set mouse=a
 set autoread
+set virtualedit=onemore
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'molokai'
@@ -126,6 +126,7 @@ if has("autocmd")
         \   exe "normal g`\"" |
         \ endif "}}}2
   autocmd BufWritePre * :%s/\s\+$//e
+  autocmd BufWritePre *.svelte :Prettier
   autocmd BufRead,BufNewFile COMMIT_EDITMSG set textwidth=0
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc set ft=json
