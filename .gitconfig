@@ -1,6 +1,8 @@
 [user]
 	name = Niels Mentink
-	email = niels@ment.ink
+	email = niels.mentink@gmail.com
+[includeIf "gitdir:~/Code/Socialbrothers/"]
+	path = .sb.gitconfig
 
 [merge]
 	tool = vimdiff
