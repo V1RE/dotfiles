@@ -15,7 +15,6 @@ else
   nnoremap <leader>l <C-w>l
   nnoremap \ :set hlsearch!<CR>
   inoremap jj <ESC>
-  tnoremap jj <C-\><C-n>
   nnoremap <leader>u :UndotreeShow<CR>
   nnoremap <leader>t :terminal<CR>
   nnoremap <leader>T :FloatermToggle<CR>

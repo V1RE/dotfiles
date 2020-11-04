@@ -1,3 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/nielsmentink/Code/nextjs-fauna/pages/[username]'
+let g:netrw_dirhist_2='/Users/nielsmentink/Code/Socialbrothers/regiowbo-sftp/wp-content/themes/sbtheme/assets/styles'
 let g:netrw_dirhist_1='/Users/nielsmentink/.config/nvim'
