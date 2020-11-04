@@ -6,7 +6,8 @@
       "phtml": "php",
       "scss": "css",
       "scss.css": "css",
-      "sass": "css"
+      "sass": "css",
+      "typescript.tsx": "typescriptreact"
     }
   },
   "prettier.disableSuccessMessage": true,
@@ -22,6 +23,7 @@
     "json",
     "svelte"
   ],
+  "codeLens.enable": true,
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
   "css.validate": false,
