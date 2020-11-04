@@ -22,5 +22,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'ntk148v/vim-horizon'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
+Plug 'hugolgst/vimsence'
+Plug 'semanser/vim-outdated-plugins'
+Plug 'kdheepak/lazygit.nvim'
 
 call plug#end()

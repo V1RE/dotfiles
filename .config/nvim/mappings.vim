@@ -15,9 +15,6 @@ else
   nnoremap <leader>l <C-w>l
   nnoremap \ :set hlsearch!<CR>
   inoremap jj <ESC>
-  nnoremap <leader>u :UndotreeShow<CR>
-  nnoremap <leader>t :terminal<CR>
-  nnoremap <leader>T :FloatermToggle<CR>
   nnoremap <leader>n :call DefxTree()<CR>
   nnoremap <leader>N :Defx -toggle=0 -resume -search=`expand('%:p')`<CR>zz
   nnoremap <leader>i :so ~/.config/nvim/init.vim<CR>
@@ -30,14 +27,21 @@ else
   nnoremap <leader>e :bn<CR>
   nnoremap <leader>d :bp<cr>:bd #<cr>
   nnoremap <leader>D :BD<cr>
-  nnoremap <leader>gs :G<CR>
-  nnoremap <leader>gc :Gcommit<CR>
   nnoremap <leader>/ :Commentary<CR>
   vnoremap <leader>/ :Commentary<CR>
   nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
   vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
   nnoremap <leader><leader> :call <SID>show_documentation()<CR>
+  nnoremap <silent> <leader>g :LazyGit<CR>
 endif
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 
 "Select lines after indent
