@@ -19,20 +19,21 @@ else
   nnoremap <leader>N :Defx -toggle=0 -resume -search=`expand('%:p')`<CR>zz
   nnoremap <leader>i :so ~/.config/nvim/init.vim<CR>
   nnoremap <leader>o :e ~/.config/nvim/init.vim<CR>
-  nnoremap <leader>b :Buffers<CR>
+  nnoremap <leader>b :BufferPick<CR>
   nnoremap <leader>f :Files<CR>
   nnoremap <leader>F :Rg<CR>
   nnoremap <leader>w :w<CR>
-  nnoremap <leader>q :bp<CR>
-  nnoremap <leader>e :bn<CR>
-  nnoremap <leader>d :bp<cr>:bd #<cr>
-  nnoremap <leader>D :BD<cr>
+  nnoremap <leader>q :BufferPrevious<CR>
+  nnoremap <leader>e :BufferNext<CR>
+  nnoremap <leader>d :BufferClose<CR>
+  nnoremap <leader>D :BD<CR>
   nnoremap <leader>/ :Commentary<CR>
   vnoremap <leader>/ :Commentary<CR>
   nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
   vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
   nnoremap <leader><leader> :call <SID>show_documentation()<CR>
   nnoremap <silent> <leader>g :LazyGit<CR>
+  tnoremap <C-J><C-J> <C-\><C-n>
 endif
 
 function! s:show_documentation()

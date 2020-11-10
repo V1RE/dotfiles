@@ -32,7 +32,7 @@ syntax on
 set t_Co=256
 set guifont=FuraCode\ Nerd\ Font:h14
 set background=dark
-colorscheme horizon
+colorscheme sonokai
 set number
 set ignorecase
 set smartcase
@@ -44,7 +44,6 @@ set virtualedit=onemore
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'molokai'
-let g:airline#extensions#tabline#enabled = 1
 
 let g:floaterm_autoclose = 1
 
