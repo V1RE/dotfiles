@@ -18,3 +18,5 @@
 	tool = vimdiff
 [core]
 	excludesfile = /Users/nielsmentink/.gitignore-system
+[pull]
+	rebase = false

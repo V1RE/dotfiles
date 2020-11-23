@@ -4,6 +4,9 @@ autocmd BufWrite * call defx#do_action('redraw')
 " Apply defx settings when in defx buffer
 autocmd FileType defx call s:defx_my_settings()
 
+" Open Defx when entering vim
+autocmd VimEnter * if &filetype !=# 'gitcommit' | call DefxTree() | wincmd w | endif
+
 " DefxTree function which sets up settings and calls Defx
 function! DefxTree() abort
   call s:defx_option_tree()

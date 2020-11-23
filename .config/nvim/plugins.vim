@@ -28,5 +28,6 @@ Plug 'sainnhe/sonokai'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'romgrk/doom-one.vim'
 
 call plug#end()

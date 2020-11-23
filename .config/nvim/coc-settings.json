@@ -1,14 +1,11 @@
 {
-  "explorer.icon.enableNerdfont": true,
-  "emmet": {
-    "includeLanguages": {
-      "php": "html",
-      "phtml": "php",
-      "scss": "css",
-      "scss.css": "css",
-      "sass": "css",
-      "typescript.tsx": "typescriptreact"
-    }
+  "emmet.includeLanguages": {
+    "php": "html",
+    "phtml": "php",
+    "scss": "css",
+    "scss.css": "css",
+    "sass": "css",
+    "typescript.tsx": "typescriptreact"
   },
   "prettier.disableSuccessMessage": true,
   "coc.preferences.formatOnSaveFiletypes": [
@@ -21,7 +18,8 @@
     "javascriptreact",
     "typescriptreact",
     "json",
-    "svelte"
+    "svelte",
+    "php"
   ],
   "codeLens.enable": true,
   "tsserver.formatOnType": true,
@@ -31,6 +29,7 @@
   "scss.validate": false,
   "wxss.validate": false,
   "stylelintplus.autoFixOnSave": true,
+  "intelephense.format.enable": true,
   "intelephense.stubs": [
     "apache",
     "bcmath",

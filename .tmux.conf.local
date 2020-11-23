@@ -293,7 +293,7 @@ set -g mouse on
 # bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+set -g status-position top
 
 set-option -s escape-time 10
 set -g default-terminal "xterm-256color"
