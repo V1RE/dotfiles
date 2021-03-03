@@ -35,9 +35,12 @@ alias cbts='cd $(git rev-parse --show-toplevel)/build/themes/socialbrothers'
 alias cbs='cd $(git rev-parse --show-toplevel)/system'
 alias sb='cd ~/Code/Socialbrothers'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias gssh='gcloud beta compute ssh --zone "europe-west4-a" "instance-1" --project "niels-dashboard"'
-alias gports='gcloud beta compute ssh --zone "europe-west4-a" "instance-1" --project "niels-dashboard" -- -f -N -L 3000:localhost:3000 -L 8080:localhost:8080'
+alias configlg='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias lg='lazygit'
+alias cbr='cd $(git rev-parse --show-toplevel)'
+alias cba='cd $(git rev-parse --show-toplevel)/app/public/wp-content/themes/socialbrothers'
+alias ta='tmux -CC attach -t'
+alias ts='tmux -CC new-session -s'
 
 export VISUAL=nvim
 export EDITOR=$VISUAL
@@ -57,6 +60,5 @@ if [ -f '/Users/nielsmentink/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ni
 if [ -f '/Users/nielsmentink/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nielsmentink/google-cloud-sdk/completion.zsh.inc'; fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
