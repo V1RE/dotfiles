@@ -7,6 +7,7 @@
     "sass": "css",
     "typescript.tsx": "typescriptreact"
   },
+  "prettier.disableLanguages": ["scss", "css"],
   "prettier.disableSuccessMessage": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
@@ -21,14 +22,20 @@
     "svelte",
     "php"
   ],
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "tsserver.formatOnType": true,
+  "tabnine.priority": 0,
   "coc.preferences.formatOnType": true,
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
   "wxss.validate": false,
   "stylelintplus.autoFixOnSave": true,
+  "stylelintplus.autoFixOnFormat": true,
+  "prettier.eslintIntegration": true,
+  "eslint.format.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.run": "onType",
   "intelephense.format.enable": true,
   "intelephense.stubs": [
     "apache",

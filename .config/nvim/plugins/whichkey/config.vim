@@ -20,9 +20,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Single mappings
 let g:which_key_map['w'] = [ ':w'       , 'save file' ]
-let g:which_key_map['q'] = [ ':BufferPrevious'       , 'previous tab' ]
-let g:which_key_map['e'] = [ ':BufferNext'       , 'next tab' ]
-let g:which_key_map['d'] = [ ':BufferClose'       , 'close tab' ]
+" let g:which_key_map['q'] = [ ':BufferPrevious'       , 'previous tab' ]
+" let g:which_key_map['e'] = [ ':BufferNext'       , 'next tab' ]
+" let g:which_key_map['d'] = [ ':BufferClose'       , 'close tab' ]
+let g:which_key_map['q'] = [ ':bp'       , 'previous tab' ]
+let g:which_key_map['e'] = [ ':bn'       , 'next tab' ]
+let g:which_key_map['d'] = [ ':bp<cr>:bd #'       , 'close tab' ]
 let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
 let g:which_key_map['k'] = [ '<C-w>k'  , 'move ↑' ]
 let g:which_key_map['j'] = [ '<C-w>j'  , 'move ↓' ]

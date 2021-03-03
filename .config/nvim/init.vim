@@ -44,8 +44,11 @@ set virtualedit=onemore
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'molokai'
+let g:airline#extensions#tabline#enabled = 1
 
 let g:floaterm_autoclose = 1
+
+let g:gitgutter_map_keys = 0
 
 let g:neovide_cursor_vfx_mode = "railgun"
 
