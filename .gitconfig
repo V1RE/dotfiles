@@ -20,3 +20,5 @@
 	excludesfile = /Users/nielsmentink/.gitignore-system
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
