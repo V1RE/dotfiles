@@ -24,3 +24,4 @@ vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = 300 -- By default timeoutlen is 1000 ms
 vim.o.smartcase = true -- re-enable case-sensitivity if uppercase used
 vim.o.ignorecase = true -- Ignore case-sensitivity for search
+vim.o.scrolloff = 5 -- Add scroll offset
