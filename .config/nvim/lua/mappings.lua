@@ -1,5 +1,5 @@
 -- Clear spacebar keybinds and set mapleader
-vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
 -- Quickly scrolling through file
@@ -11,6 +11,9 @@ vim.api.nvim_set_keymap('n', 'H', '^', {noremap = true})
 vim.api.nvim_set_keymap('v', 'H', '^', {noremap = true})
 vim.api.nvim_set_keymap('n', 'L', '$', {noremap = true})
 vim.api.nvim_set_keymap('v', 'L', '$', {noremap = true})
+
+-- Quickly hop to places
+vim.api.nvim_set_keymap('n', '<Tab>', ':HopWord<CR>', {noremap = true, silent = true})
 
 -- Easy homerow insertmode escape
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})

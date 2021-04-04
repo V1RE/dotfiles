@@ -15,21 +15,34 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself as an optional plugin
 	use 'wbthomason/packer.nvim'
 
+	-- LSP related plugins
+	use 'neovim/nvim-lspconfig'
+	use 'kabouzeid/nvim-lspinstall'
+
+	-- Autocompletion
+	use 'hrsh7th/nvim-compe'
+	use 'hrsh7th/vim-vsnip'
+	use 'rafamadriz/friendly-snippets'
+	use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+
 	-- Treesitter
 	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 	use 'nvim-treesitter/nvim-treesitter-refactor'
 	use 'p00f/nvim-ts-rainbow'
+	use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
 	-- File explorer
 	use 'kyazdani42/nvim-tree.lua'
 
 	-- Colors
 	use 'sainnhe/sonokai'
+	use 'christianchiarulli/nvcode-color-schemes.vim'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'sheerun/vim-polyglot'
 
 	-- Navigation
 	use 'phaazon/hop.nvim'
+	use 'andymass/vim-matchup'
 
 	-- Icons
 	use 'kyazdani42/nvim-web-devicons'
@@ -43,16 +56,17 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
+	use 'nvim-telescope/telescope-media-files.nvim'
 
 	-- Git
 	use 'kdheepak/lazygit.nvim'
 	use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+	use 'f-person/git-blame.nvim'
 
 	-- General Plugins
+	use 'liuchengxu/vim-which-key'
 	use 'psliwka/vim-smoothie'
-	use {
-    'AckslD/nvim-whichkey-setup.lua',
-    requires = {'liuchengxu/vim-which-key'},
-	}
+	use 'jiangmiao/auto-pairs'
+	use 'AckslD/nvim-whichkey-setup.lua'
 end)
 
