@@ -3,6 +3,8 @@ require('settings')
 require('mappings')
 require('colorscheme')
 require('autocmds')
+require('globals')
+require('lsp')
 
 require('plugins.telescope')
 require('plugins.treesitter')
@@ -13,8 +15,11 @@ require('plugins.indentline')
 require('plugins.gitsigns')
 require('plugins.compe')
 require('plugins.lspinstall')
+require('plugins.lightbulb')
+require('plugins.lspkind')
 
 require('lsp.typescript')
+require('lsp.html')
 
 -- Autocommands
 vim.cmd('source ~/.config/nvim/vimscript/autocmds.vim')

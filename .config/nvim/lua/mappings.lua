@@ -1,5 +1,5 @@
 -- Clear spacebar keybinds and set mapleader
--- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
 -- Quickly scrolling through file
