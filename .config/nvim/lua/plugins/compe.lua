@@ -19,6 +19,7 @@ require'compe'.setup {
         buffer = {kind = "  "},
         calc = {kind = "  "},
         vsnip = {kind = "  "},
+        ultisnips = {kind = "  "},
         tabnine = {kind = "  "},
         nvim_lsp = {kind = "  ", priority = 10},
         nvim_lua = {kind = "  "},

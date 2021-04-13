@@ -18,12 +18,19 @@ return require('packer').startup(function(use)
 	-- LSP related plugins
 	use 'neovim/nvim-lspconfig'
 	use 'kabouzeid/nvim-lspinstall'
+	use 'onsails/lspkind-nvim'
+  use 'kosayoda/nvim-lightbulb'
+	use 'glepnir/lspsaga.nvim'
 
 	-- Autocompletion
-	use 'hrsh7th/nvim-compe'
-	use 'hrsh7th/vim-vsnip'
-	use 'rafamadriz/friendly-snippets'
-	use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+	--use 'hrsh7th/nvim-compe'
+	--use 'hrsh7th/vim-vsnip'
+	--use 'rafamadriz/friendly-snippets'
+	--use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+	--use 'mattn/emmet-vim'
+	use {'neoclide/coc.nvim', branch = 'release'}
+	--use 'SirVer/ultisnips'
+	--use 'adriaanzon/vim-emmet-ultisnips'
 
 	-- Treesitter
 	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -68,5 +75,10 @@ return require('packer').startup(function(use)
 	use 'psliwka/vim-smoothie'
 	use 'jiangmiao/auto-pairs'
 	use 'AckslD/nvim-whichkey-setup.lua'
+	use 'voldikss/vim-floaterm'
+
+	-- PHP
+	use {'phpactor/phpactor', run = 'composer install --no-dev -o'}
+	use 'beanworks/vim-phpfmt'
 end)
 

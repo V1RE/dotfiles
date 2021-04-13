@@ -26,6 +26,8 @@ keymap.f = {
     name = ' Find',
     f = {':Telescope find_files<CR>', ' File'},
     b = {':Telescope buffers<CR>', '﬘ Buffer'},
+    j = {':Telescope oldfiles<CR>', ' Recent'},
+    k = {':Telescope builtin<CR>', ' Builtin'},
     t = {':Telescope grep_string<CR>', '縷 Text'},
     s = {':Telescope live_grep<CR>', '﬍ String'},
 }
@@ -51,6 +53,11 @@ keymap.w = {
     q = {':qa<CR>', '﫧 Close All'},
     v = {':vsp<CR>', ' Split Vertical'},
     h = {':sp<CR>', '漢 Split Horizontal'},
+}
+
+keymap.g = {
+    name = ' Git',
+    g = {':LazyGit<CR>', '礪 LazyGit'},
 }
 
 wk.register_keymap('leader', keymap)
