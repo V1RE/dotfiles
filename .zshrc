@@ -42,6 +42,7 @@ alias cbr='cd $(git rev-parse --show-toplevel)'
 alias cba='cd $(git rev-parse --show-toplevel)/app/public/wp-content/themes/socialbrothers'
 alias ta='tmux -CC attach -t'
 alias ts='tmux -CC new-session -s'
+alias vim='nvim -u ~/.config/nvim/init.vim.old'
 
 export VISUAL=nvim
 export EDITOR=$VISUAL
