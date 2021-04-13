@@ -19,6 +19,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle lukechilds/zsh-nvm
+antigen bundle jeffreytse/zsh-vi-mode
 
 # Load the theme
 antigen theme romkatv/powerlevel10k
@@ -47,6 +48,7 @@ export EDITOR=$VISUAL
 export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
