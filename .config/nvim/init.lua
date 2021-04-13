@@ -13,13 +13,15 @@ require('plugins.nvimtree')
 require('plugins.whichkey')
 require('plugins.indentline')
 require('plugins.gitsigns')
-require('plugins.compe')
+--require('plugins.compe')
 require('plugins.lspinstall')
 require('plugins.lightbulb')
 require('plugins.lspkind')
 
 require('lsp.typescript')
 require('lsp.html')
+require('lsp.php')
 
 -- Autocommands
 vim.cmd('source ~/.config/nvim/vimscript/autocmds.vim')
+vim.cmd('source ~/.config/nvim/vimscript/old.vim')
