@@ -23,10 +23,10 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 " Plug 'hugolgst/vimsence'
 " Plug 'semanser/vim-outdated-plugins'
-" Plug 'kdheepak/lazygit.nvim'
+Plug 'kdheepak/lazygit.nvim'
 Plug 'sainnhe/sonokai'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'romgrk/barbar.nvim'
+Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/doom-one.vim'
 Plug 'jreybert/vimagit'
 

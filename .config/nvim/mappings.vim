@@ -23,12 +23,12 @@ else
   nnoremap <leader>f :Files<CR>
   nnoremap <leader>F :Rg<CR>
   nnoremap <leader>w :w<CR>
-  nnoremap <leader>q :bp<CR>
-  " nnoremap <leader>q :BufferPrevious<CR>
-  nnoremap <leader>e :bn<CR>
-  " nnoremap <leader>e :BufferNext<CR>
-  nnoremap <leader>d :bp<cr>:bd #<CR>
-  " nnoremap <leader>d :BufferClose<CR>
+  " nnoremap <leader>q :bp<CR>
+  nnoremap <leader>q :BufferPrevious<CR>
+  " nnoremap <leader>e :bn<CR>
+  nnoremap <leader>e :BufferNext<CR>
+  " nnoremap <leader>d :bp<cr>:bd #<CR>
+  nnoremap <leader>d :BufferClose<CR>
   nnoremap <leader>D :BD<CR>
   nnoremap <leader>/ :Commentary<CR>
   vnoremap <leader>/ :Commentary<CR>
