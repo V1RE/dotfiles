@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
 	use 'jiangmiao/auto-pairs'
 	use 'AckslD/nvim-whichkey-setup.lua'
 	use 'voldikss/vim-floaterm'
+	use 'wakatime/vim-wakatime'
 
 	-- PHP
 	use {'phpactor/phpactor', run = 'composer install --no-dev -o'}
