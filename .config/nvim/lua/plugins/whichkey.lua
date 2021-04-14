@@ -35,7 +35,7 @@ keymap.f = {
 -- Sidebar
 keymap.n = {
     name = 'פּ Sidebar',
-    n = {':NvimTreeFindFile<CR>', ' Find current'},
+    n = {':NvimTreeFindFile<CR>', ' Find Current'},
     t = {':NvimTreeToggle<CR>', ' Toggle'},
 }
 
@@ -44,6 +44,7 @@ keymap.o = {
     name = '煉 Config',
     r = {':luafile ~/.config/nvim/init.lua<CR>', '勒 Reload'},
     o = {':e ~/.config/nvim/init.lua<CR>', ' Open'},
+		s = {':PackerSync<CR>', ' Sync Packages'},
 }
 
 -- Window commands
