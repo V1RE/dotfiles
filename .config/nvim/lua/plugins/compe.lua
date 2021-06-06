@@ -15,18 +15,22 @@ require'compe'.setup {
     documentation = true,
 
     source = {
-        path = {kind = "  "},
-        buffer = {kind = "  "},
-        calc = {kind = "  "},
-        vsnip = {kind = "  "},
-        ultisnips = {kind = "  "},
-        tabnine = {kind = "  "},
-        nvim_lsp = {kind = "  ", priority = 10},
-        nvim_lua = {kind = "  "},
-        spell = {kind = "  "},
+        nvim_lsp = {kind = "  ", priority = 100},
+        path = {kind = "  ", priority = 110},
+        buffer = {kind = "  ", priority = 10},
+        calc = {kind = "  ", priority = 120},
+        vsnip = {kind = "  ", priority = 150},
+        ultisnips = {kind = "  ", priority = 150},
+        tabnine = {
+					kind = " 歷 ",
+					sort = true,
+					priority = 90
+				},
+        nvim_lua = {kind = "  ", priority = 100},
+        spell = {kind = "  ", priority = 10},
         tags = false,
-        treesitter = {kind = "  "},
-        emoji = {kind = " ﲃ "}
+        treesitter = {kind = "  ", priority = 50},
+        emoji = {kind = " ﲃ ", priority = 50}
     }
 }
 

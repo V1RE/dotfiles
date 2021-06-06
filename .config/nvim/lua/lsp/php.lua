@@ -1,3 +1,4 @@
-require'lspconfig'.phpactor.setup{
-    cmd = {DATA_PATH .. "/site/pack/packer/start/phpactor/bin/phpactor", "language-server"},
+require'lspconfig'.php.setup {
+    cmd = { DATA_PATH .. "/lspinstall/php/node_modules/.bin/intelephense", "--stdio" },
+    on_attach = require'lsp'.common_on_attach
 }

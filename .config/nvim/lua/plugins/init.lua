@@ -9,7 +9,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute 'packadd packer.nvim'
 end
 
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+vim.cmd 'autocmd BufWritePost plugins/init.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup(function(use)
 	-- Packer can manage itself as an optional plugin
@@ -21,22 +21,20 @@ return require('packer').startup(function(use)
 	use 'onsails/lspkind-nvim'
   use 'kosayoda/nvim-lightbulb'
 	use 'glepnir/lspsaga.nvim'
+	use 'ray-x/lsp_signature.nvim'
 
 	-- Autocompletion
-	--use 'hrsh7th/nvim-compe'
-	--use 'hrsh7th/vim-vsnip'
-	--use 'rafamadriz/friendly-snippets'
-	--use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
-	--use 'mattn/emmet-vim'
+	-- use 'hrsh7th/nvim-compe'
+	-- use 'hrsh7th/vim-vsnip'
+	use 'rafamadriz/friendly-snippets'
+	-- use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+	use 'mattn/emmet-vim'
 	use {'neoclide/coc.nvim', branch = 'release'}
-	--use 'SirVer/ultisnips'
-	--use 'adriaanzon/vim-emmet-ultisnips'
 
 	-- Treesitter
 	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 	use 'nvim-treesitter/nvim-treesitter-refactor'
 	use 'p00f/nvim-ts-rainbow'
-	use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
 	-- File explorer
 	use 'kyazdani42/nvim-tree.lua'
@@ -46,6 +44,7 @@ return require('packer').startup(function(use)
 	use 'christianchiarulli/nvcode-color-schemes.vim'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'sheerun/vim-polyglot'
+	use 'romgrk/doom-one.vim'
 
 	-- Navigation
 	use 'phaazon/hop.nvim'
@@ -63,23 +62,28 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
-	use 'nvim-telescope/telescope-media-files.nvim'
 
 	-- Git
 	use 'kdheepak/lazygit.nvim'
-	use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+	use 'lewis6991/gitsigns.nvim'
 	use 'f-person/git-blame.nvim'
 
 	-- General Plugins
+	use 'christoomey/vim-tmux-navigator'
 	use 'liuchengxu/vim-which-key'
-	use 'psliwka/vim-smoothie'
 	use 'jiangmiao/auto-pairs'
 	use 'AckslD/nvim-whichkey-setup.lua'
 	use 'voldikss/vim-floaterm'
 	use 'wakatime/vim-wakatime'
+	use 'tpope/vim-surround'
+	use 'tpope/vim-commentary'
+	use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
 
 	-- PHP
 	use {'phpactor/phpactor', run = 'composer install --no-dev -o'}
 	use 'beanworks/vim-phpfmt'
+
+	-- TypeScript
+	use 'HerringtonDarkholme/yats.vim'
 end)
 

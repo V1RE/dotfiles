@@ -40,16 +40,17 @@ alias configlg='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias lg='lazygit'
 alias cbr='cd $(git rev-parse --show-toplevel)'
 alias cba='cd $(git rev-parse --show-toplevel)/app/public/wp-content/themes/socialbrothers'
-alias ta='tmux -CC attach -t'
-alias ts='tmux -CC new-session -s'
+# alias ta='tmux -CC attach -t'
+# alias ts='tmux -CC new-session -s'
 alias vim='nvim -u ~/.config/nvim/init.vim.old'
+alias v='nvim'
 
 export VISUAL=nvim
 export EDITOR=$VISUAL
 export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+export ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
