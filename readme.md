@@ -1,18 +1,22 @@
-# My dotfiles
+# Dotfiles ⚙️
 
-I've set up my dotfiles in such a way, that you can manage them using the `config` command. It's just an alias for git, but using another folder as the bare repository.
+![Dotfiles in action](./dots.png)
+
+## Requirements
+  - Git
+  - Stow
+  - 5 minutes of your time
 
 ## Installation
 
-To install my dotfiles, run the following command:
+Start by cloning this repository into your `$HOME` directory:
 
-```sh
-curl -Lks https://cutt.ly/Lfd0K8N | /bin/bash
+```bash
+git clone https://github.com/V1RE/dotfiles.git ~
 ```
 
-## Programs
+Now you can symlink these dotfiles to your `$HOME` using `stow`.
 
-- ZSH
-- Node (install with nvm)
-- Lazygit
-- Lsd
+```bash
+stow */ -d ~/dotfiles/
+```
