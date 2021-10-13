@@ -2,12 +2,12 @@
 
 ![Dotfiles in action](./dots.png)
 
-## Requirements
+## Requirements 📦
   - Git
   - Stow
   - 5 minutes of your time
 
-## Installation
+## Installation 🪄
 
 Start by cloning this repository into your `$HOME` directory:
 
