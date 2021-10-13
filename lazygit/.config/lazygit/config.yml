@@ -1,0 +1,18 @@
+startuppopupversion: 1
+gui:
+  mouseEvents: false
+  showFileTree: true
+  scrollHeight: 5
+  theme:
+    activeBorderColor:
+      - magenta
+      - bold
+    optionsTextColor:
+      - red
+    selectedLineBgColor:
+      - reverse
+    selectedRangeBgColor:
+      - reverse
+quitOnTopLevelReturn: false
+os:
+  openCommand: "lvim {{filename}}"
