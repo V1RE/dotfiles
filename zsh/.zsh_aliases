@@ -6,6 +6,9 @@ alias t="tmux"
 alias tl="tmux ls"
 alias ta="tmux a"
 
+# Dotfiles
+alias dots="cd ~/dotfiles/; lvim"
+
 # Listing files
 alias ls="exa --icons --classify --git --group-directories-first"
 alias l="ls --git-ignore"
