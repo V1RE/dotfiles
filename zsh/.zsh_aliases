@@ -1,0 +1,55 @@
+# General
+alias v="$EDITOR"
+
+# Tmux
+alias t="tmux"
+alias tl="tmux ls"
+alias ta="tmux a"
+
+# Listing files
+alias ls="exa --icons --classify --git --group-directories-first"
+alias l="ls --git-ignore"
+alias ll="ls --long"
+alias la="ll -a"
+alias tree="ll --tree --level=3"
+
+# Git
+alias lg="lazygit"
+alias gitroot="git rev-parse --show-toplevel"
+alias cdr='cd $(gitroot)'
+
+# Socialbrothers
+alias cdp='cd $(gitroot)/app/public/'
+alias cdt='cd $(gitroot)/app/public/wp-content/themes/socialbrothers/'
+
+# Nix
+alias hm='home-manager'
+
+function sb() {
+  local sbdir=~/Code/Socialbrothers/
+  if (( $# != 0 ))
+  then
+    z $sbdir $@
+  else
+    local dir
+    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf`
+    cd $sbdir$dir
+  fi
+
+  local parent=`dirname "$PWD"`
+  if [ $OLDPWD != $PWD ] && [ $parent -ef $sbdir ]
+  then
+    local dirname
+    dirname=`basename $(pwd) | sed 's/-\|_/ /g' | sed '/\b(\S)/g'`
+    figlet -f "big" -w 9999 $dirname | cut -c -$COLUMNS | lolcat
+  fi
+}
+
+ranger_cd() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
+}
