@@ -18,5 +18,14 @@ git clone https://github.com/V1RE/dotfiles.git ~
 Now you can symlink these dotfiles to your `$HOME` using `stow`.
 
 ```bash
-stow */ -d ~/dotfiles/
+cd ~/dotfiles
+stow */
+```
+
+If you're having problems with the `.git` directory getting symlinked to your
+`$HOME` directory, try the following command:
+
+```bash
+cd ~/dotfiles
+stow -D .git
 ```
