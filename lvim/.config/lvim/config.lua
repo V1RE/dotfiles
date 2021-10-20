@@ -69,7 +69,6 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 lvim.lang.yaml.formatters = { { exe = "prettier" } }
--- lvim.lang.typescript.formatters = { { exe = "eslint_d" } }
 lvim.lang.typescript.linters = { { exe = "eslint_d" } }
 lvim.lang.lua.formatters = { { exe = "stylua" } }
 lvim.lang.lua.linters = { { exe = "luacheck" } }
@@ -77,7 +76,8 @@ lvim.lang.sh.linters = { { exe = "shellcheck" } }
 lvim.lang.sh.formatters = { { exe = "shfmt" } }
 lvim.lang.rust.formatters = { { exe = "rustfmt" } }
 lvim.lang.php.linters = { { exe = "phpstan" } }
-
+lvim.lang.scss.linters = { { exe = "stylelint" } }
+lvim.lang.scss.formatters = { { exe = "stylelint" } }
 lvim.lsp.override = { "rust" }
 
 -- generic LSP settings
