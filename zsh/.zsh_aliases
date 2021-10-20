@@ -7,7 +7,7 @@ alias tl="tmux ls"
 alias ta="tmux a"
 
 # Dotfiles
-alias dots="cd ~/dotfiles/; lvim"
+alias dots="pushd ~/dotfiles/; lvim; popd"
 
 # Listing files
 alias ls="exa --icons --classify --git --group-directories-first"
