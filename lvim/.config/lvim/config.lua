@@ -59,6 +59,7 @@ lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.nvimtree.setup.hijack_netrw = 1
 lvim.builtin.nvimtree.setup.disable_netrw = 1
 lvim.builtin.nvimtree.setup.auto_open = 1
+lvim.builtin.nvimtree.setup.view.width = 40
 table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
 lvim.builtin.cmp.confirm_opts.select = false
@@ -67,15 +68,25 @@ lvim.builtin.cmp.confirm_opts.select = false
 lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.rainbow.enable = true
+lvim.builtin.treesitter.autotag.enable = true
 
 lvim.lang.yaml.formatters = { { exe = "prettier" } }
+lvim.lang.html.formatters = { { exe = "prettier" } }
 lvim.lang.typescript.linters = { { exe = "eslint_d" } }
+lvim.lang.typescript.formatters = { { exe = "eslint_d" } }
 lvim.lang.lua.formatters = { { exe = "stylua" } }
 lvim.lang.lua.linters = { { exe = "luacheck" } }
 lvim.lang.sh.linters = { { exe = "shellcheck" } }
 lvim.lang.sh.formatters = { { exe = "shfmt" } }
 lvim.lang.rust.formatters = { { exe = "rustfmt" } }
 lvim.lang.php.linters = { { exe = "phpstan" } }
+-- lvim.lang.php.formatters = {
+--   {
+--     exe = "phpcsfixer",
+--     args = { "--no-interaction", "--config=./app/public/.php-cs-fixer.php", "--quiet", "fix", "$FILENAME" },
+--   },
+-- }
 lvim.lang.scss.linters = { { exe = "stylelint" } }
 lvim.lang.scss.formatters = { { exe = "stylelint" } }
 lvim.lsp.override = { "rust" }
@@ -115,36 +126,6 @@ function Register_package_manager_keys()
 
   wk.register({ l = { v = bufkeys } }, { mode = "n", prefix = "<leader>", buffer = 0 })
 end
--- you can overwrite the null_ls setup table (useful for setting the root_dir function)
--- lvim.lsp.null_ls.setup = {
---   root_dir = require("lspconfig").util.root_pattern("Makefile", ".git", "node_modules"),
--- }
--- or if you need something more advanced
-
--- lvim.lsp.null_ls.setup.root_dir = function(fname)
---   if vim.bo.filetype == "javascript" then
---     return require("lspconfig/util").root_pattern("Makefile", ".git", "node_modules")(fname)
---       or require("lspconfig/util").path.dirname(fname)
---   elseif vim.bo.filetype == "php" then
---     return require("lspconfig/util").root_pattern("Makefile", ".git", "composer.json")(fname) or vim.fn.getcwd()
---   else
---     return require("lspconfig/util").root_pattern("Makefile", ".git")(fname)
---       or require("lspconfig/util").path.dirname(fname)
---   end
--- end
-
--- set a formatter if you want to override the default lsp one (if it exists)
--- lvim.lang.python.formatters = {
---   {
---     exe = "black",
---   }
--- }
--- set an additional linter
--- lvim.lang.python.linters = {
---   {
---     exe = "flake8",
---   }
--- }
 
 -- Additional Plugins
 lvim.plugins = {
@@ -160,6 +141,16 @@ lvim.plugins = {
   {
     "andymass/vim-matchup",
     event = "CursorMoved",
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
+    "p00f/nvim-ts-rainbow",
   },
   {
     "folke/trouble.nvim",
@@ -213,15 +204,25 @@ lvim.plugins = {
     ft = { "rust", "rs" },
   },
   {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("lsp_signature").on_attach()
-    end,
-    event = "BufRead",
-  },
-  {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
+  },
+  {
+    "folke/lua-dev.nvim",
+    config = function()
+      local luadev = require("lua-dev").setup {
+        lspconfig = lvim.lang.lua.lsp.setup,
+      }
+      lvim.lang.lua.lsp.setup = luadev
+    end,
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      vim.g.gitblame_enabled = 0
+    end,
   },
 }
 
@@ -229,4 +230,5 @@ lvim.plugins = {
 lvim.autocommands.custom_groups = {
   { "FileType", "man", "set showtabline=0" },
   { "BufWinEnter", "*", "lua Register_package_manager_keys()" },
+  { "BufNew,BufNewFile,BufRead", "*.astro", "set filetype=html" },
 }
