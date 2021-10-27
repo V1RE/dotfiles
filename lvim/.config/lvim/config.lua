@@ -62,8 +62,6 @@ lvim.builtin.nvimtree.setup.auto_open = 1
 lvim.builtin.nvimtree.setup.view.width = 40
 table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
-lvim.builtin.cmp.confirm_opts.select = false
-
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -89,7 +87,6 @@ lvim.lang.php.linters = { { exe = "phpstan" } }
 -- }
 lvim.lang.scss.linters = { { exe = "stylelint" } }
 lvim.lang.scss.formatters = { { exe = "stylelint" } }
-lvim.lsp.override = { "rust" }
 
 -- generic LSP settings
 -- you can set a custom on_attach function that will be used for all the language servers
@@ -182,26 +179,6 @@ lvim.plugins = {
     "vuki656/package-info.nvim",
     requires = "MunifTanjim/nui.nvim",
     event = { "BufRead package.json" },
-  },
-  {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      require("rust-tools").setup {
-        tools = {
-          autoSetHints = true,
-          hover_with_actions = true,
-          runnables = {
-            use_telescope = true,
-          },
-        },
-        server = {
-          cmd = { vim.fn.stdpath "data" .. "/lspinstall/rust/rust-analyzer" },
-          on_attach = require("lsp").common_on_attach,
-          on_init = require("lsp").common_on_init,
-        },
-      }
-    end,
-    ft = { "rust", "rs" },
   },
   {
     "tpope/vim-surround",
