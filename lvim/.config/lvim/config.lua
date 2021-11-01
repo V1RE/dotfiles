@@ -48,6 +48,8 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 }
 
+lvim.lsp.templates_dir = join_paths(get_config_dir(), "ftplugin")
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
@@ -55,12 +57,14 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.nvimtree.setup.auto_open = 1
-lvim.builtin.nvimtree.hide_dotfiles = 0
+lvim.builtin.nvimtree.setup.hide_dotfiles = 0
 lvim.builtin.nvimtree.setup.hijack_netrw = 1
 lvim.builtin.nvimtree.setup.disable_netrw = 1
 lvim.builtin.nvimtree.setup.auto_open = 1
 lvim.builtin.nvimtree.setup.view.width = 40
 table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
+
+lvim.builtin.dap.active = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
@@ -69,6 +73,11 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.autotag.enable = true
 
+lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
+  fallback()
+end
+
+lvim.lang.json.formatters = { { exe = "prettier" } }
 lvim.lang.yaml.formatters = { { exe = "prettier" } }
 lvim.lang.html.formatters = { { exe = "prettier" } }
 lvim.lang.typescript.linters = { { exe = "eslint_d" } }
@@ -140,6 +149,14 @@ lvim.plugins = {
     event = "CursorMoved",
   },
   {
+    "phaazon/hop.nvim",
+    event = "BufRead",
+    config = function()
+      require("hop").setup()
+      vim.api.nvim_set_keymap("n", "<Tab>", ":HopWord<cr>", { silent = true })
+    end,
+  },
+  {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
     config = function()
@@ -183,15 +200,6 @@ lvim.plugins = {
   {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
-  },
-  {
-    "folke/lua-dev.nvim",
-    config = function()
-      local luadev = require("lua-dev").setup {
-        lspconfig = lvim.lang.lua.lsp.setup,
-      }
-      lvim.lang.lua.lsp.setup = luadev
-    end,
   },
   {
     "f-person/git-blame.nvim",
