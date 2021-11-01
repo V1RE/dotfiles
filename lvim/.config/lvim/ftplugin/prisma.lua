@@ -1,1 +1,1 @@
-require("lvim.lsp.manager").setup "prismals"
+require("lvim.lsp.manager").setup("prismals")
