@@ -64,8 +64,6 @@ lvim.builtin.nvimtree.setup.auto_open = 1
 lvim.builtin.nvimtree.setup.view.width = 40
 table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
-lvim.builtin.dap.active = true
-
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
