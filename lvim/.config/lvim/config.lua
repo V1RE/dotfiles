@@ -50,18 +50,22 @@ lvim.builtin.which_key.mappings["t"] = {
 
 lvim.lsp.templates_dir = join_paths(get_config_dir(), "ftplugin")
 
+lvim.builtin.which_key.mappings.l["r"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
+-- lvim.lsp.buffer_mappings.normal_mode["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Show Hover" }
+lvim.lsp.buffer_mappings.normal_mode["J"] = { "<cmd>Lspsaga lsp_finder<cr>", "Show LSP Finder" }
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.nvimtree.setup.auto_open = 1
-lvim.builtin.nvimtree.setup.hide_dotfiles = 0
-lvim.builtin.nvimtree.setup.hijack_netrw = 1
 lvim.builtin.nvimtree.setup.disable_netrw = 1
-lvim.builtin.nvimtree.setup.auto_open = 1
+lvim.builtin.nvimtree.setup.hijack_netrw = 1
+lvim.builtin.nvimtree.setup.open_on_setup = true
+lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.view.width = 40
+lvim.builtin.nvimtree.show_icons.git = 1
 table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -70,6 +74,8 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.autotag.enable = true
+
+lvim.builtin.notify.active = true
 
 lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
   fallback()
@@ -133,6 +139,12 @@ end
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "tami5/lspsaga.nvim",
+    config = function()
+      require("lsp.saga").setup()
+    end,
+  },
   {
     "wakatime/vim-wakatime",
   },
