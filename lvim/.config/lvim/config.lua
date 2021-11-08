@@ -63,7 +63,7 @@ lvim.builtin.nvimtree.setup.auto_open = 1
 lvim.builtin.nvimtree.setup.disable_netrw = 1
 lvim.builtin.nvimtree.setup.hijack_netrw = 1
 lvim.builtin.nvimtree.setup.open_on_setup = true
-lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
 lvim.builtin.nvimtree.show_icons.git = 1
 table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
@@ -74,6 +74,7 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.autotag.enable = true
+lvim.lsp.automatic_servers_installation = false
 
 lvim.builtin.notify.active = true
 
