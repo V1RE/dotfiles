@@ -85,10 +85,6 @@ end
 lvim.lang.json.formatters = { { exe = "prettier" } }
 lvim.lang.yaml.formatters = { { exe = "prettier" } }
 lvim.lang.html.formatters = { { exe = "prettier" } }
-lvim.lang.typescript.linters = { { exe = "eslint_d" } }
-lvim.lang.typescript.formatters = { { exe = "eslint_d" } }
-lvim.lang.lua.formatters = { { exe = "stylua" } }
-lvim.lang.lua.linters = { { exe = "luacheck" } }
 lvim.lang.sh.linters = { { exe = "shellcheck" } }
 lvim.lang.sh.formatters = { { exe = "shfmt" } }
 lvim.lang.rust.formatters = { { exe = "rustfmt" } }
@@ -99,8 +95,6 @@ lvim.lang.php.linters = { { exe = "phpstan" } }
 --     args = { "--no-interaction", "--config=./app/public/.php-cs-fixer.php", "--quiet", "fix", "$FILENAME" },
 --   },
 -- }
-lvim.lang.scss.linters = { { exe = "stylelint" } }
-lvim.lang.scss.formatters = { { exe = "stylelint" } }
 
 -- generic LSP settings
 -- you can set a custom on_attach function that will be used for all the language servers
