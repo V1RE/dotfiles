@@ -9,7 +9,7 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
-lvim.log.level = "warn"
+lvim.log.level = "debug"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 vim.o.guifont = "FiraCode Nerd Font:h16"
@@ -68,7 +68,7 @@ table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
-lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.ignore_install = { "haskell", "elixir" }
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.autotag.enable = true
@@ -79,20 +79,6 @@ lvim.builtin.notify.active = true
 lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
   fallback()
 end
-
-lvim.lang.json.formatters = { { exe = "prettier" } }
-lvim.lang.yaml.formatters = { { exe = "prettier" } }
-lvim.lang.html.formatters = { { exe = "prettier" } }
-lvim.lang.sh.linters = { { exe = "shellcheck" } }
-lvim.lang.sh.formatters = { { exe = "shfmt" } }
-lvim.lang.rust.formatters = { { exe = "rustfmt" } }
-lvim.lang.php.linters = { { exe = "phpstan" } }
--- lvim.lang.php.formatters = {
---   {
---     exe = "phpcsfixer",
---     args = { "--no-interaction", "--config=./app/public/.php-cs-fixer.php", "--quiet", "fix", "$FILENAME" },
---   },
--- }
 
 -- generic LSP settings
 -- you can set a custom on_attach function that will be used for all the language servers
@@ -187,19 +173,19 @@ lvim.plugins = {
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   },
-  {
-    "Saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    requires = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("crates").setup()
-    end,
-  },
-  {
-    "vuki656/package-info.nvim",
-    requires = "MunifTanjim/nui.nvim",
-    event = { "BufRead package.json" },
-  },
+  -- {
+  --   "Saecki/crates.nvim",
+  --   event = { "BufRead Cargo.toml" },
+  --   requires = { { "nvim-lua/plenary.nvim" } },
+  --   config = function()
+  --     require("crates").setup()
+  --   end,
+  -- },
+  -- {
+  --   "vuki656/package-info.nvim",
+  --   requires = "MunifTanjim/nui.nvim",
+  --   event = { "BufRead package.json" },
+  -- },
   {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
