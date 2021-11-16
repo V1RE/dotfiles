@@ -9,9 +9,11 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
 lvim.log.level = "debug"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "tokyonight"
 vim.o.guifont = "FiraCode Nerd Font:h16"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -134,6 +136,19 @@ lvim.plugins = {
     "mattn/emmet-vim",
   },
   {
+    "folke/tokyonight.nvim",
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+        space_char_blankline = " ",
+        show_current_context = true,
+        show_current_context_start = true,
+      }
+    end,
+  },
+  {
     "andymass/vim-matchup",
     event = "CursorMoved",
   },
@@ -190,14 +205,14 @@ lvim.plugins = {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
   },
-  {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = function()
-      vim.cmd "highlight default link gitblame SpecialComment"
-      vim.g.gitblame_enabled = 0
-    end,
-  },
+  -- {
+  --   "f-person/git-blame.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     vim.cmd "highlight default link gitblame SpecialComment"
+  --     vim.g.gitblame_enabled = 0
+  --   end,
+  -- },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
