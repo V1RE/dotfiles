@@ -121,6 +121,27 @@ end
 -- Additional Plugins
 lvim.plugins = {
   {
+    "ThePrimeagen/harpoon",
+    requires = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      lvim.builtin.which_key.mappings["<leader>"] = {
+        "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>",
+        "Open Harpoon",
+      }
+      lvim.builtin.which_key.mappings["a"] = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Add to Harpoon" }
+      lvim.builtin.which_key.mappings["A"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1" }
+      lvim.builtin.which_key.mappings["S"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon 2" }
+      lvim.builtin.which_key.mappings["D"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon 3" }
+    end,
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+  },
+  {
     "tami5/lspsaga.nvim",
     config = function()
       require("lsp.saga").setup()
@@ -139,12 +160,16 @@ lvim.plugins = {
     "folke/tokyonight.nvim",
   },
   {
+    "norcalli/nvim-colorizer.lua",
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("indent_blankline").setup {
         space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
+        filetype_exclude = { "dashboard", "NvimTree" },
       }
     end,
   },
@@ -188,31 +213,31 @@ lvim.plugins = {
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   },
-  -- {
-  --   "Saecki/crates.nvim",
-  --   event = { "BufRead Cargo.toml" },
-  --   requires = { { "nvim-lua/plenary.nvim" } },
-  --   config = function()
-  --     require("crates").setup()
-  --   end,
-  -- },
-  -- {
-  --   "vuki656/package-info.nvim",
-  --   requires = "MunifTanjim/nui.nvim",
-  --   event = { "BufRead package.json" },
-  -- },
+  {
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    requires = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      require("crates").setup()
+    end,
+  },
+  {
+    "vuki656/package-info.nvim",
+    requires = "MunifTanjim/nui.nvim",
+    event = { "BufRead package.json" },
+  },
   {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
   },
-  -- {
-  --   "f-person/git-blame.nvim",
-  --   event = "BufRead",
-  --   config = function()
-  --     vim.cmd "highlight default link gitblame SpecialComment"
-  --     vim.g.gitblame_enabled = 0
-  --   end,
-  -- },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      vim.g.gitblame_enabled = 0
+    end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
