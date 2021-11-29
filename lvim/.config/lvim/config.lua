@@ -51,22 +51,21 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 lvim.builtin.which_key.mappings.l["r"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
--- lvim.lsp.buffer_mappings.normal_mode["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Show Hover" }
+-- lvim.lsp.buffer_mappings.normal_mode["L"] = { "<cmd>SymbolsOutline<cr>", "Show Hover" }
 lvim.lsp.buffer_mappings.normal_mode["J"] = { "<cmd>Lspsaga lsp_finder<cr>", "Show LSP Finder" }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.hide_dotfiles = 0
-lvim.builtin.nvimtree.setup.auto_open = 1
-lvim.builtin.nvimtree.setup.disable_netrw = 1
-lvim.builtin.nvimtree.setup.hijack_netrw = 1
+lvim.builtin.nvimtree.setup.filters.dotfiles = true
 lvim.builtin.nvimtree.setup.open_on_setup = true
+lvim.builtin.nvimtree.setup.disable_netrw = true
+lvim.builtin.nvimtree.setup.hijack_netrw = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
-lvim.builtin.nvimtree.show_icons.git = 1
-table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
+lvim.builtin.nvimtree.show_icons.git = true
+-- table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
@@ -80,42 +79,6 @@ lvim.builtin.notify.active = true
 
 lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
   fallback()
-end
-
--- generic LSP settings
--- you can set a custom on_attach function that will be used for all the language servers
--- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
-function Register_package_manager_keys()
-  local keys = {
-    ["Cargo.toml"] = {
-      t = { "<cmd>lua require('crates').toggle()<cr>", "Toggle visibility" },
-      r = { "<cmd>lua require('crates').reload()<cr>", "Reload" },
-      u = { "<cmd>lua require('crates').update_crate()<cr>", "Update package" },
-      a = { "<cmd>lua require('crates').update_all_crates()<cr>", "Update all packages" },
-      U = { "<cmd>lua require('crates').upgrade_crate()<cr>", "Upgrade package" },
-      A = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", "Upgrade all packages" },
-    },
-    ["package.json"] = {
-      s = { "<cmd>lua require('package-info').show()<CR>", "Show package versions" },
-      c = { "<cmd>lua require('package-info').hide()<CR>", "Hide package versions" },
-      u = { "<cmd>lua require('package-info').update()<CR>", "Update package on line" },
-      d = { "<cmd>lua require('package-info').delete()<CR>", "Delete package on line" },
-      i = { "<cmd>lua require('package-info').install()<CR>", "Install a new package" },
-      r = { "<cmd>lua require('package-info').reinstall()<CR>", "Reinstall dependencies" },
-      p = { "<cmd>lua require('package-info').change_version()<CR>", "Install a different package version" },
-    },
-  }
-  local filename = vim.fn.expand "%:t"
-  local bufkeys = keys[filename]
-
-  local status_ok, wk = pcall(require, "which-key")
-  if not status_ok or bufkeys == nil then
-    return
-  end
-
-  bufkeys["name"] = "Packages"
-
-  wk.register({ l = { v = bufkeys } }, { mode = "n", prefix = "<leader>", buffer = 0 })
 end
 
 -- Additional Plugins
@@ -214,21 +177,7 @@ lvim.plugins = {
     requires = "hrsh7th/nvim-cmp",
   },
   {
-    "Saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    requires = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("crates").setup()
-    end,
-  },
-  {
-    "vuki656/package-info.nvim",
-    requires = "MunifTanjim/nui.nvim",
-    event = { "BufRead package.json" },
-  },
-  {
     "tpope/vim-surround",
-    keys = { "c", "d", "y" },
   },
   {
     "f-person/git-blame.nvim",
@@ -243,6 +192,5 @@ lvim.plugins = {
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
   { "FileType", "man", "set showtabline=0" },
-  { "BufWinEnter", "*", "lua Register_package_manager_keys()" },
   { "BufNew,BufNewFile,BufRead", "*.astro", "set filetype=html" },
 }
