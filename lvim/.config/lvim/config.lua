@@ -11,13 +11,14 @@ an executable
 -- general
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
-lvim.log.level = "debug"
 lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
 vim.o.guifont = "FiraCode Nerd Font:h16"
+vim.opt.autoread = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
+lvim.keys.normal_mode[";"] = "<cmd>FineCmdline<CR>"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
@@ -58,7 +59,7 @@ lvim.lsp.buffer_mappings.normal_mode["J"] = { "<cmd>Lspsaga lsp_finder<cr>", "Sh
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.filters.dotfiles = true
+lvim.builtin.nvimtree.setup.filters.dotfiles = false
 lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.setup.disable_netrw = true
 lvim.builtin.nvimtree.setup.hijack_netrw = true
@@ -132,7 +133,7 @@ lvim.plugins = {
         space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
-        filetype_exclude = { "dashboard", "NvimTree" },
+        filetype_exclude = { "dashboard", "NvimTree", "lspinfo" },
       }
     end,
   },
@@ -185,6 +186,24 @@ lvim.plugins = {
     config = function()
       vim.cmd "highlight default link gitblame SpecialComment"
       vim.g.gitblame_enabled = 0
+    end,
+  },
+  {
+    "VonHeikemen/fine-cmdline.nvim",
+    requires = {
+      { "MunifTanjim/nui.nvim" },
+    },
+  },
+  {
+    "VonHeikemen/searchbox.nvim",
+    requires = {
+      { "MunifTanjim/nui.nvim" },
+    },
+  },
+  {
+    "luukvbaal/stabilize.nvim",
+    config = function()
+      require("stabilize").setup()
     end,
   },
 }
