@@ -32,7 +32,7 @@ zstyle ':z4h:fzf-complete' recurse-dirs 'yes'
 zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
 zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
 # The default value if none of the overrides above match the hostname.
-zstyle ':z4h:ssh:*'                   enable 'no'
+zstyle ':z4h:ssh:*'                   enable 'yes'
 
 # Send these files over to the remote host when connecting over ssh to the
 # enabled hosts.
@@ -83,11 +83,13 @@ zle -N _ranger
 z4h bindkey undo Ctrl+/  # undo the last command line change
 z4h bindkey redo Alt+/   # redo the last undone command line change
 
-z4h bindkey z4h-cd-back    Shift+Left   # cd into the previous directory
-z4h bindkey z4h-cd-forward Shift+Right  # cd into the next directory
-z4h bindkey z4h-cd-up      Shift+Up     # cd into the parent directory
-z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
-z4h bindkey _ranger        Ctrl+Space
+z4h bindkey z4h-cd-back          Shift+Left   # cd into the previous directory
+z4h bindkey z4h-cd-forward       Shift+Right  # cd into the next directory
+z4h bindkey z4h-cd-up            Shift+Up     # cd into the parent directory
+z4h bindkey z4h-cd-down          Shift+Down   # cd into a child directory
+z4h bindkey _ranger              Ctrl+Space
+z4h bindkey _atuin_search_widget Ctrl+R
+
 
 # Autoload functions.
 autoload -Uz zmv
@@ -117,6 +119,7 @@ export MANPAGER=$PAGER
 export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"
 export PATH="$(composer config -g home)/vendor/bin:$PATH"
+export ATUIN_NOBIND="true"
 
 source ~/.zsh_aliases
 
@@ -124,7 +127,16 @@ if [ -e /Users/nielsmentink/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/n
 
 eval "$(fnm env)"
 eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
 
 source /Users/nielsmentink/.config/broot/launcher/bash/br
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+
+# Bun completions
+[ -s "/Users/nielsmentink/.bun/_bun" ] && source "/Users/nielsmentink/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/Users/nielsmentink/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
