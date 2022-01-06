@@ -15,29 +15,18 @@ lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
 vim.o.guifont = "FiraCode Nerd Font:h16"
 vim.opt.autoread = true
+vim.o.foldmethod = "marker"
+vim.o.foldmarker = "#region,#endregion"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
-lvim.keys.normal_mode[";"] = "<cmd>FineCmdline<CR>"
+lvim.keys.normal_mode["?"] = "<cmd>SearchBoxMatchAll clear_matches=true<cr>"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = ""
 -- edit a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- lvim.builtin.telescope.on_config_done = function()
---   local actions = require "telescope.actions"
---   -- for input mode
---   lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = actions.move_selection_next
---   lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = actions.move_selection_previous
---   lvim.builtin.telescope.defaults.mappings.i["<C-n>"] = actions.cycle_history_next
---   lvim.builtin.telescope.defaults.mappings.i["<C-p>"] = actions.cycle_history_prev
---   -- for normal mode
---   lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = actions.move_selection_next
---   lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = actions.move_selection_previous
--- end
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
@@ -51,7 +40,9 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 }
 
+-- lvim.builtin.which_key.mappings.q = { "<cmd>FineCmdline<cr>", "Enter Command" }
 lvim.builtin.which_key.mappings.l["r"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
+lvim.builtin.which_key.mappings.s["s"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
 -- lvim.lsp.buffer_mappings.normal_mode["L"] = { "<cmd>SymbolsOutline<cr>", "Show Hover" }
 lvim.lsp.buffer_mappings.normal_mode["J"] = { "<cmd>Lspsaga lsp_finder<cr>", "Show LSP Finder" }
 
@@ -66,6 +57,7 @@ lvim.builtin.nvimtree.setup.hijack_netrw = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
 lvim.builtin.nvimtree.show_icons.git = true
+lvim.builtin.gitsigns.opts.current_line_blame = true
 -- table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -75,6 +67,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.autotag.enable = true
 lvim.lsp.automatic_servers_installation = false
+
+lvim.builtin.telescope.defaults.pickers.find_files.find_command = { "fd", "--type=file", "--hidden" }
 
 lvim.builtin.notify.active = true
 
@@ -179,14 +173,6 @@ lvim.plugins = {
   },
   {
     "tpope/vim-surround",
-  },
-  {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = function()
-      vim.cmd "highlight default link gitblame SpecialComment"
-      vim.g.gitblame_enabled = 0
-    end,
   },
   {
     "VonHeikemen/fine-cmdline.nvim",
