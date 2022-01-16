@@ -114,7 +114,7 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="lvim"
 export VISUAL=$EDITOR
-export PAGER="$EDITOR -c 'set ft=man' -"
+export PAGER="$EDITOR -"
 export MANPAGER=$PAGER
 export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"

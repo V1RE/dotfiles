@@ -66,7 +66,7 @@ lvim.builtin.treesitter.ignore_install = { "haskell", "elixir" }
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.autotag.enable = true
-lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = true
 
 lvim.builtin.telescope.defaults.pickers.find_files.find_command = { "fd", "--type=file", "--hidden" }
 
@@ -78,20 +78,6 @@ end
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "ThePrimeagen/harpoon",
-    requires = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      lvim.builtin.which_key.mappings["<leader>"] = {
-        "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>",
-        "Open Harpoon",
-      }
-      lvim.builtin.which_key.mappings["a"] = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Add to Harpoon" }
-      lvim.builtin.which_key.mappings["A"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1" }
-      lvim.builtin.which_key.mappings["S"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon 2" }
-      lvim.builtin.which_key.mappings["D"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon 3" }
-    end,
-  },
   {
     "ThePrimeagen/refactoring.nvim",
     requires = {
@@ -175,12 +161,6 @@ lvim.plugins = {
     "tpope/vim-surround",
   },
   {
-    "VonHeikemen/fine-cmdline.nvim",
-    requires = {
-      { "MunifTanjim/nui.nvim" },
-    },
-  },
-  {
     "VonHeikemen/searchbox.nvim",
     requires = {
       { "MunifTanjim/nui.nvim" },
@@ -191,6 +171,9 @@ lvim.plugins = {
     config = function()
       require("stabilize").setup()
     end,
+  },
+  {
+    "haringsrob/nvim_context_vt",
   },
 }
 
