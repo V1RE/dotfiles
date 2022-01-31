@@ -12,11 +12,9 @@ an executable
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
 lvim.format_on_save = true
-lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "onedarker"
 vim.o.guifont = "FiraCode Nerd Font:h16"
 vim.opt.autoread = true
-vim.o.foldmethod = "marker"
-vim.o.foldmarker = "#region,#endregion"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -40,6 +38,14 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 }
 
+lvim.builtin.which_key.mappings.g["f"] = {
+  "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+  "Switch WorkTree",
+}
+lvim.builtin.which_key.mappings.g["n"] = {
+  "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+  "Create WorkTree",
+}
 -- lvim.builtin.which_key.mappings.q = { "<cmd>FineCmdline<cr>", "Enter Command" }
 lvim.builtin.which_key.mappings.l["r"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
 lvim.builtin.which_key.mappings.s["s"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
@@ -76,8 +82,55 @@ lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
   fallback()
 end
 
+local lspconfig = require "lspconfig"
+local configs = require "lspconfig.configs"
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+if not configs.ls_emmet then
+  configs.ls_emmet = {
+    default_config = {
+      cmd = { "ls_emmet", "--stdio" },
+      filetypes = {
+        "html",
+        "css",
+        "scss",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "haml",
+        "xml",
+        "xsl",
+        "pug",
+        "slim",
+        "sass",
+        "stylus",
+        "less",
+        "sss",
+      },
+      root_dir = function(_)
+        return vim.loop.cwd()
+      end,
+      settings = {},
+    },
+  }
+end
+
+lspconfig.ls_emmet.setup { capabilities = capabilities }
+
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {}
+    end,
+  },
+  {
+    "vim-test/vim-test",
+  },
   {
     "ThePrimeagen/refactoring.nvim",
     requires = {
@@ -86,9 +139,21 @@ lvim.plugins = {
     },
   },
   {
+    "ThePrimeagen/git-worktree.nvim",
+    config = function()
+      require("git-worktree").setup {}
+    end,
+  },
+  {
     "tami5/lspsaga.nvim",
     config = function()
       require("lsp.saga").setup()
+    end,
+  },
+  {
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
     end,
   },
   {
@@ -105,6 +170,9 @@ lvim.plugins = {
   },
   {
     "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -175,10 +243,14 @@ lvim.plugins = {
   {
     "haringsrob/nvim_context_vt",
   },
+  {
+    "nelsyeung/twig.vim",
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
   { "FileType", "man", "set showtabline=0" },
   { "BufNew,BufNewFile,BufRead", "*.astro", "set filetype=html" },
+  { "BufNew,BufNewFile,BufRead", "*.snap", "set filetype=javascript" },
 }
