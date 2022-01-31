@@ -16,6 +16,7 @@ zstyle ':z4h:' start-tmux       'no'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
 zstyle ':z4h:' prompt-at-bottom 'no'
+zstyle ':z4h:' iterm2-integration 'yes'
 
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'mac'
@@ -114,7 +115,7 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="lvim"
 export VISUAL=$EDITOR
-export PAGER="$EDITOR -"
+export PAGER="$EDITOR -R -M +Man -"
 export MANPAGER=$PAGER
 export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"
@@ -132,6 +133,7 @@ eval "$(atuin init zsh)"
 source /Users/nielsmentink/.config/broot/launcher/bash/br
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$HOME/go/bin/:$PATH"
 
 
 # Bun completions
@@ -140,3 +142,10 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # Bun
 export BUN_INSTALL="/Users/nielsmentink/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+if test -n "$KITTY_INSTALLATION_DIR"; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
+fi
