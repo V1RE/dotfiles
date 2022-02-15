@@ -11,4 +11,26 @@ return {
 		top = 0,
 		bottom = 0,
 	},
+	keys = {
+		{
+			key = "[",
+			mods = "CMD",
+			action = {
+				Multiple = {
+					{ SendKey = { key = "b", mods = "CTRL" } },
+					{ SendKey = { key = "h", mods = "CTRL" } },
+				},
+			},
+		},
+		{
+			key = "]",
+			mods = "CMD",
+			action = {
+				Multiple = {
+					{ SendKey = { key = "b", mods = "CTRL" } },
+					{ SendKey = { key = "l", mods = "CTRL" } },
+				},
+			},
+		},
+	},
 }
