@@ -1,11 +1,11 @@
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { exe = "luacheck", filetypes = { "lua" } },
+  { exe = "luacheck" },
 }
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { exe = "stylua", filetypes = { "lua" } },
+  { exe = "stylua" },
 }
 
 require("lvim.lsp.manager").setup "sumneko_lua"

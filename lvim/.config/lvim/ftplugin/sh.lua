@@ -1,11 +1,11 @@
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { exe = "shellcheck", filetypes = { "sh" } },
+  { exe = "shellcheck" },
 }
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { exe = "shfmt", filetypes = { "sh" } },
+  { exe = "shfmt" },
 }
 
 require("lvim.lsp.manager").setup "bashls"
