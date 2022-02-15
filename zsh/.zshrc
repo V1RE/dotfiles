@@ -124,8 +124,6 @@ export ATUIN_NOBIND="true"
 
 source ~/.zsh_aliases
 
-if [ -e /Users/nielsmentink/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/nielsmentink/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
 eval "$(fnm env)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
@@ -135,6 +133,11 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/go/bin/:$PATH"
 
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # Bun completions
 [ -s "/Users/nielsmentink/.bun/_bun" ] && source "/Users/nielsmentink/.bun/_bun"
