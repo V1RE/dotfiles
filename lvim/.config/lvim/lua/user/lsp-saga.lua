@@ -13,14 +13,11 @@ function M.setup()
       enable = true,
       sign = true,
       sign_priority = 20,
-      virtual_text = false,
+      virtual_text = true,
     },
     -- finder_definition_icon = '  ',
     -- finder_reference_icon = '  ',
     -- max_preview_lines = 10, -- preview lines of lsp_finder and definition preview
-    -- finder_action_keys = {
-    --   open = 'o', vsplit = 's',split = 'i',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
-    -- },
     -- code_action_keys = {
     --   quit = 'q',exec = '<CR>'
     -- },
@@ -29,13 +26,14 @@ function M.setup()
       exec = "<CR>",
     },
     finder_action_keys = {
+      quit = { "<C-c>", "<Esc>" },
       open = "<CR>",
       vsplit = "<C-v>",
       split = "<C-x>",
     },
     -- definition_preview_icon = '  '
     border_style = "single",
-    rename_prompt_prefix = "➤",
+    rename_prompt_prefix = "🮥",
   }
 end
 

@@ -15,10 +15,10 @@ lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 vim.o.guifont = "FiraCode Nerd Font:h16"
 vim.opt.autoread = true
+vim.g.undotree_SplitWidth = 60
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
-lvim.keys.normal_mode["?"] = "<cmd>SearchBoxMatchAll clear_matches=true<cr>"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
@@ -28,28 +28,11 @@ lvim.keys.normal_mode["?"] = "<cmd>SearchBoxMatchAll clear_matches=true<cr>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
-}
 
-lvim.builtin.which_key.mappings.g["f"] = {
-  "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
-  "Switch WorkTree",
-}
-lvim.builtin.which_key.mappings.g["n"] = {
-  "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
-  "Create WorkTree",
-}
--- lvim.builtin.which_key.mappings.q = { "<cmd>FineCmdline<cr>", "Enter Command" }
+lvim.builtin.which_key.mappings.c = { "<cmd>Bdelete<cr>", "Close Buffer" }
+lvim.builtin.which_key.mappings.u = { "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", "Toggle Undotree" }
 lvim.builtin.which_key.mappings.l["r"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
 lvim.builtin.which_key.mappings.s["s"] = { "<cmd>Lspsaga rename<cr>", "Rename" }
--- lvim.lsp.buffer_mappings.normal_mode["L"] = { "<cmd>SymbolsOutline<cr>", "Show Hover" }
 lvim.lsp.buffer_mappings.normal_mode["J"] = { "<cmd>Lspsaga lsp_finder<cr>", "Show LSP Finder" }
 
 -- TODO: User Config for predefined plugins
@@ -64,6 +47,7 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
 lvim.builtin.nvimtree.show_icons.git = true
 lvim.builtin.gitsigns.opts.current_line_blame = true
+lvim.builtin.nvimtree.setup.auto_close = true
 -- table.insert(lvim.builtin.nvimtree.auto_ignore_ft, "man")
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -75,53 +59,31 @@ lvim.builtin.treesitter.autotag.enable = true
 lvim.lsp.automatic_servers_installation = true
 
 lvim.builtin.telescope.defaults.pickers.find_files.find_command = { "fd", "--type=file", "--hidden" }
+lvim.builtin.telescope.defaults.mappings.i["<esc>"] = require("telescope.actions").close
 
 lvim.builtin.notify.active = true
+
+lvim.builtin.bufferline.options.always_show_bufferline = true
 
 lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
   fallback()
 end
 
-local lspconfig = require "lspconfig"
-local configs = require "lspconfig.configs"
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-if not configs.ls_emmet then
-  configs.ls_emmet = {
-    default_config = {
-      cmd = { "ls_emmet", "--stdio" },
-      filetypes = {
-        "html",
-        "css",
-        "scss",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "haml",
-        "xml",
-        "xsl",
-        "pug",
-        "slim",
-        "sass",
-        "stylus",
-        "less",
-        "sss",
-      },
-      root_dir = function(_)
-        return vim.loop.cwd()
-      end,
-      settings = {},
-    },
-  }
-end
-
-lspconfig.ls_emmet.setup { capabilities = capabilities }
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "edluffy/specs.nvim",
+    config = function()
+      require("specs").setup {}
+    end,
+  },
   {
     "folke/twilight.nvim",
     config = function()
@@ -129,8 +91,18 @@ lvim.plugins = {
     end,
   },
   {
-    "vim-test/vim-test",
+    "mbbill/undotree",
   },
+  {
+    "moll/vim-bbye",
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require("lsp_signature").setup {}
+    end,
+  },
+  { "kevinhwang91/nvim-bqf", ft = "qf" },
   {
     "ThePrimeagen/refactoring.nvim",
     requires = {
@@ -139,26 +111,33 @@ lvim.plugins = {
     },
   },
   {
-    "ThePrimeagen/git-worktree.nvim",
+    "tami5/lspsaga.nvim",
     config = function()
-      require("git-worktree").setup {}
+      require("user.lsp-saga").setup()
     end,
   },
   {
-    "tami5/lspsaga.nvim",
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
     config = function()
-      require("lsp.saga").setup()
+      local gps = require "nvim-gps"
+      gps.setup {}
     end,
   },
   {
     "j-hui/fidget.nvim",
     config = function()
-      require("fidget").setup()
+      require("fidget").setup {
+        text = {
+          spinner = "dots_snake",
+        },
+      }
     end,
   },
   {
     "wakatime/vim-wakatime",
   },
+  { "kevinhwang91/nvim-hlslens" },
   {
     "christoomey/vim-tmux-navigator",
   },
@@ -171,7 +150,15 @@ lvim.plugins = {
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
-      require("colorizer").setup()
+      require("colorizer").setup({ "*" }, {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        rgb_fn = true, -- CSS rgb() and rgba() functions
+        hsl_fn = true, -- CSS hsl() and hsla() functions
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      })
     end,
   },
   {
@@ -181,7 +168,16 @@ lvim.plugins = {
         space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
-        filetype_exclude = { "dashboard", "NvimTree", "lspinfo" },
+        space_char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+          "IndentBlanklineIndent3",
+          "IndentBlanklineIndent4",
+          "IndentBlanklineIndent5",
+          "IndentBlanklineIndent6",
+        },
+        use_treesitter = true,
+        filetype_exclude = { "toggleterm", "dashboard", "NvimTree", "lspinfo" },
       }
     end,
   },
@@ -208,10 +204,6 @@ lvim.plugins = {
     "p00f/nvim-ts-rainbow",
   },
   {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  {
     "tzachar/cmp-tabnine",
     config = function()
       local tabnine = require "cmp_tabnine.config"
@@ -228,24 +220,6 @@ lvim.plugins = {
   {
     "tpope/vim-surround",
   },
-  {
-    "VonHeikemen/searchbox.nvim",
-    requires = {
-      { "MunifTanjim/nui.nvim" },
-    },
-  },
-  {
-    "luukvbaal/stabilize.nvim",
-    config = function()
-      require("stabilize").setup()
-    end,
-  },
-  {
-    "haringsrob/nvim_context_vt",
-  },
-  {
-    "nelsyeung/twig.vim",
-  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -253,4 +227,7 @@ lvim.autocommands.custom_groups = {
   { "FileType", "man", "set showtabline=0" },
   { "BufNew,BufNewFile,BufRead", "*.astro", "set filetype=html" },
   { "BufNew,BufNewFile,BufRead", "*.snap", "set filetype=javascript" },
+  { "BufNew,BufNewFile,BufRead", "Podfile", "set filetype=ruby" },
+  { "VimEnter,WinEnter,BufWinEnter", "*\\(^NvimTree\\)\\@<!", "setlocal cursorline" },
+  { "WinLeave", "*\\(^NvimTree\\)\\@<!", "setlocal nocursorline" },
 }
