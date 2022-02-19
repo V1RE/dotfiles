@@ -69,25 +69,25 @@ lvim.builtin.cmp.mapping["<C-y>"] = function(fallback)
   fallback()
 end
 
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
 
 -- Additional Plugins
 lvim.plugins = {
   {
     "edluffy/specs.nvim",
     config = function()
-      require("specs").setup {}
+      require("specs").setup({})
     end,
   },
   {
     "folke/twilight.nvim",
     config = function()
-      require("twilight").setup {}
+      require("twilight").setup({})
     end,
   },
   {
@@ -99,7 +99,7 @@ lvim.plugins = {
   {
     "ray-x/lsp_signature.nvim",
     config = function()
-      require("lsp_signature").setup {}
+      require("lsp_signature").setup({})
     end,
   },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
@@ -120,18 +120,18 @@ lvim.plugins = {
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter",
     config = function()
-      local gps = require "nvim-gps"
-      gps.setup {}
+      local gps = require("nvim-gps")
+      gps.setup({})
     end,
   },
   {
     "j-hui/fidget.nvim",
     config = function()
-      require("fidget").setup {
+      require("fidget").setup({
         text = {
           spinner = "dots_snake",
         },
-      }
+      })
     end,
   },
   {
@@ -164,7 +164,7 @@ lvim.plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup {
+      require("indent_blankline").setup({
         space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
@@ -178,7 +178,7 @@ lvim.plugins = {
         },
         use_treesitter = true,
         filetype_exclude = { "toggleterm", "dashboard", "NvimTree", "lspinfo" },
-      }
+      })
     end,
   },
   {
@@ -206,12 +206,12 @@ lvim.plugins = {
   {
     "tzachar/cmp-tabnine",
     config = function()
-      local tabnine = require "cmp_tabnine.config"
-      tabnine:setup {
+      local tabnine = require("cmp_tabnine.config")
+      tabnine:setup({
         max_lines = 1000,
         max_num_results = 20,
         sort = true,
-      }
+      })
     end,
 
     run = "./install.sh",

@@ -1,6 +1,6 @@
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
   { exe = "prettierd" },
-}
+})
 
-require("lvim.lsp.manager").setup "jsonls"
+require("lvim.lsp.manager").setup("jsonls")

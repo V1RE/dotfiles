@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  require("lspsaga").init_lsp_saga {
+  require("lspsaga").init_lsp_saga({
     use_saga_diagnostic_sign = true,
     -- error_sign = '',
     -- warn_sign = '',
@@ -34,7 +34,7 @@ function M.setup()
     -- definition_preview_icon = '  '
     border_style = "single",
     rename_prompt_prefix = "🮥",
-  }
+  })
 end
 
 return M
