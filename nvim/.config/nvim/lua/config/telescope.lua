@@ -3,9 +3,9 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 
-telescope.setup {
+telescope.setup({
   defaults = {
 
     prompt_prefix = " ",
@@ -42,6 +42,7 @@ telescope.setup {
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<C-l>"] = actions.complete_tag,
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+        ["<esc>"] = actions.close,
       },
 
       n = {
@@ -85,6 +86,9 @@ telescope.setup {
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    find_files = {
+      find_command = { "fd", "--type=file", "--hidden", "--exclude=.git" },
+    },
   },
   extensions = {
     -- Your extension configuration goes here:
@@ -93,4 +97,4 @@ telescope.setup {
     -- }
     -- please take a look at the readme of the extension you want to configure
   },
-}
+})

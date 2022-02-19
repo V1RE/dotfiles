@@ -1,6 +1,9 @@
 # General
 alias v="$EDITOR"
 
+# Impatient.nvim
+alias nvim="nvim --startuptime /tmp/nvim-startuptime"
+
 # Tmux
 alias t="tmux"
 alias tl="tmux ls"
