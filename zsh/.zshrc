@@ -113,13 +113,12 @@ setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export EDITOR="lvim"
+export EDITOR="nvim"
 export VISUAL=$EDITOR
-export PAGER="$EDITOR -R -M +Man -"
-export MANPAGER=$PAGER
+export MANPAGER='$EDITOR +Man!'
+export MANWIDTH=999
 export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"
-export PATH="$(composer config -g home)/vendor/bin:$PATH"
 export ATUIN_NOBIND="true"
 
 source ~/.zsh_aliases

@@ -10,7 +10,7 @@ alias tl="tmux ls"
 alias ta="tmux a"
 
 # Dotfiles
-alias dots="pushd ~/dotfiles/ > /dev/null; lvim; popd > /dev/null"
+alias dots="pushd ~/dotfiles/ > /dev/null; nvim; popd > /dev/null"
 
 # Listing files
 alias ls="exa --icons --classify --git --group-directories-first"
@@ -27,9 +27,6 @@ alias cdr='cd $(gitroot)'
 # Socialbrothers
 alias cdp='cd $(gitroot)/app/public/'
 alias cdt='cd $(gitroot)/app/public/wp-content/themes/socialbrothers/'
-
-# Nix
-alias hm='home-manager'
 
 function sb() {
   local sbdir=~/Code/Socialbrothers/
