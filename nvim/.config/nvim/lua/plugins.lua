@@ -133,7 +133,6 @@ return packer.startup(function(use)
     use("rafamadriz/friendly-snippets")
 
     -- LSP
-
     use({
     "neovim/nvim-lspconfig",
     config = require("config.lsp"),
@@ -180,14 +179,6 @@ return packer.startup(function(use)
     config = require("config.whichkey"),
     })
 
-    use({
-    "ray-x/navigator.lua",
-    requires = {
-      "ray-x/guihua.lua",
-      run = "cd lua/fzy && make",
-    },
-    config = require("config.navigator"),
-    })
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then

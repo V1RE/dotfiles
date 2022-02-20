@@ -1,7 +1,7 @@
-local default_schemas = nil
+local default_schemas = {}
 local status_ok, jsonls_settings = pcall(require, "nlspsettings.jsonls")
 if status_ok then
-  default_schemas = jsonls_settings.get_default_schemas()
+    default_schemas = jsonls_settings.get_default_schemas()
 end
 
 local schemas = {
@@ -169,10 +169,10 @@ local schemas = {
 }
 
 local function extend(tab1, tab2)
-  for _, value in ipairs(tab2) do
-    table.insert(tab1, value)
-  end
-  return tab1
+    for _, value in ipairs(tab2) do
+        table.insert(tab1, value)
+    end
+    return tab1
 end
 
 local extended_schemas = extend(schemas, default_schemas)
@@ -187,7 +187,7 @@ local opts = {
     commands = {
       Format = {
         function()
-          vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+            vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
         end,
       },
     },

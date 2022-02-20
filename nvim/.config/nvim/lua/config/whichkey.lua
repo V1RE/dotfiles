@@ -1,6 +1,6 @@
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
-  return
+    return
 end
 
 local M = {}
@@ -189,6 +189,10 @@ local mappings = {
   ["<C-Space>"] = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "ToggleTerm" },
 
   ["<Tab>"] = { "<cmd>HopWord<cr>", "Hop" },
+
+  g = {
+    d = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
+  },
 }
 
 which_key.setup(setup)
