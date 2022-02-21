@@ -1,4 +1,4 @@
-require("impatient")
+require("profiler")
 
 require("options")
 require("keymaps")

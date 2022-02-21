@@ -3,8 +3,6 @@ if not status_ok then
     return
 end
 
-local M = {}
-
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -37,8 +35,8 @@ local setup = {
   },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = "➜", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
+    separator = "⭬", -- symbol used between a key and it's label
+    group = "", -- symbol prepended to a group
   },
   popup_mappings = {
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -49,13 +47,13 @@ local setup = {
     position = "bottom", -- bottom, top
     margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0,
+    winblend = 25,
   },
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 3, -- spacing between columns
-    align = "left", -- align columns left, center or right
+    align = "center", -- align columns left, center or right
   },
   ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
@@ -82,25 +80,25 @@ local opts = {
 
 local mappings = {
   ["<leader>"] = {
-    a = { "<cmd>Alpha<cr>", "Alpha" },
+    a = { "<cmd>Alpha<cr>", " Alpha" },
     b = {
       "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-      "Buffers",
+      " Buffers",
     },
-    e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-    w = { "<cmd>w!<CR>", "Save" },
-    q = { "<cmd>q!<CR>", "Quit" },
-    c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-    h = { "<cmd>nohlsearch<CR>", "No Highlight" },
+    e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
+    w = { "<cmd>w!<CR>", " Save" },
+    q = { "<cmd>q!<CR>", " Quit" },
+    c = { "<cmd>Bdelete!<CR>", " Close Buffer" },
+    h = { "<cmd>nohlsearch<CR>", " No Highlight" },
     f = {
       "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-      "Find files",
+      " Find files",
     },
-    F = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-    P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+    F = { "<cmd>Telescope live_grep theme=ivy<cr>", " Find Text" },
+    P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", " Projects" },
 
     p = {
-      name = "Packer",
+      name = " Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
       s = { "<cmd>PackerSync<cr>", "Sync" },
@@ -109,7 +107,7 @@ local mappings = {
     },
 
     g = {
-      name = "Git",
+      name = " Git",
       g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
       j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
       k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -132,8 +130,8 @@ local mappings = {
     },
 
     l = {
-      name = "LSP",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+      name = " LSP",
+      a = { "<cmd>Telescope lsp_codeactions<cr>", "Code Action" },
       d = {
         "<cmd>Telescope lsp_document_diagnostics<cr>",
         "Document Diagnostics",
@@ -163,7 +161,7 @@ local mappings = {
       },
     },
     s = {
-      name = "Search",
+      name = " Search",
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
       h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
@@ -175,7 +173,7 @@ local mappings = {
     },
 
     t = {
-      name = "Terminal",
+      name = " Terminal",
       n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
       u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
       t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
@@ -188,10 +186,11 @@ local mappings = {
 
   ["<C-Space>"] = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "ToggleTerm" },
 
-  ["<Tab>"] = { "<cmd>HopWord<cr>", "Hop" },
+  ["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
 
   g = {
     d = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
+    a = { "<cmd>Telescope lsp_codeactions<cr>", "Code actions" },
   },
 }
 

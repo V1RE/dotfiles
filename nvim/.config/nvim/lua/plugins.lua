@@ -44,6 +44,8 @@ return packer.startup(function(use)
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
 
+    use("machakann/vim-sandwich")
+
     use("wakatime/vim-wakatime")
 
     use({
@@ -146,6 +148,11 @@ return packer.startup(function(use)
 
     use({
     "jose-elias-alvarez/null-ls.nvim",
+    })
+
+    use({
+    "b0o/schemastore.nvim",
+    config = require("config.schemastore"),
     })
 
     use({
