@@ -110,10 +110,24 @@ onedarker_active_tab_background="#1f2227"
 onedarker_inactive_tab_foreground="#5c6370"
 onedarker_inactive_tab_background="#282c34"
 
+thm_bg="#1e1e28"
+thm_fg="#dadae8"
+thm_cyan="#c2e7f0"
+thm_black="#15121c"
+thm_gray="#332e41"
+thm_magenta="#c6aae8"
+thm_pink="#e5b4e2"
+thm_red="#e38c8f"
+thm_green="#b1e3ad"
+thm_yellow="#ebddaa"
+thm_blue="#a4b9ef"
+thm_orange="#f9c096"
+thm_black4="#575268"
+
 
 # window style
-tmux_conf_theme_window_fg="$onedarker_foreground"
-tmux_conf_theme_window_bg="$onedarker_background"
+tmux_conf_theme_window_fg="$thm_fg"
+tmux_conf_theme_window_bg="$thm_bg"
 
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
@@ -121,7 +135,7 @@ tmux_conf_theme_window_bg="$onedarker_background"
 tmux_conf_theme_highlight_focused_pane=false
 
 # focused pane colours:
-tmux_conf_theme_focused_pane_bg="$onedarker_background"
+tmux_conf_theme_focused_pane_bg="$thm_bg"
 
 # pane border style, possible values are:
 #   - thin (default)
@@ -137,8 +151,8 @@ tmux_conf_theme_pane_indicator="$onedarker_color4"
 tmux_conf_theme_pane_active_indicator="$onedarker_color4"
 
 # status line style
-tmux_conf_theme_message_fg="$onedarker_color0"
-tmux_conf_theme_message_bg="$onedarker_color4"
+tmux_conf_theme_message_fg="$thm_fg"
+tmux_conf_theme_message_bg="$thm_bg"
 tmux_conf_theme_message_attr="bold"
 
 # status line command style (<prefix> : Escape)
@@ -152,8 +166,8 @@ tmux_conf_theme_mode_bg="$onedarker_active_tab_background"
 tmux_conf_theme_mode_attr="bold"
 
 # status line style
-tmux_conf_theme_status_fg="$onedarker_foreground"
-tmux_conf_theme_status_bg="$onedarker_background"
+tmux_conf_theme_status_fg="$thm_fg"
+tmux_conf_theme_status_bg="$thm_bg"
 tmux_conf_theme_status_attr="none"
 
 # terminal title
@@ -178,8 +192,8 @@ tmux_conf_theme_terminal_title="#h ❐ #S ● #I #W"
 #     - #{hostname_full_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_window_status_fg="$onedarker_inactive_tab_foreground"
-tmux_conf_theme_window_status_bg="$onedarker_inactive_tab_background"
+tmux_conf_theme_window_status_fg="$thm_fg"
+tmux_conf_theme_window_status_bg="$thm_bg"
 tmux_conf_theme_window_status_attr="none"
 tmux_conf_theme_window_status_format="#I #W"
 # tmux_conf_theme_window_status_format="#{circled_window_index} #W"
@@ -195,8 +209,8 @@ tmux_conf_theme_window_status_format="#I #W"
 #     - #{hostname_full_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_window_status_current_fg="$onedarker_active_tab_foreground"
-tmux_conf_theme_window_status_current_bg="$onedarker_active_tab_background"
+tmux_conf_theme_window_status_current_fg="$thm_fg"
+tmux_conf_theme_window_status_current_bg="$thm_bg"
 tmux_conf_theme_window_status_current_attr="bold"
 tmux_conf_theme_window_status_current_format="#I #W"
 #tmux_conf_theme_window_status_current_format="#{circled_window_index} #W"
@@ -267,8 +281,8 @@ tmux_conf_theme_status_left_bg="$onedarker_active_tab_foreground,$onedarker_colo
 tmux_conf_theme_status_left_attr="bold,none,none"
 
 # status right style
-tmux_conf_theme_status_right_fg="$onedarker_color15,$onedarker_color0,$onedarker_background"
-tmux_conf_theme_status_right_bg="$onedarker_color0,$onedarker_color1,$onedarker_foreground"
+tmux_conf_theme_status_right_fg="$onedarker_color15,$onedarker_color0,$thm_bg"
+tmux_conf_theme_status_right_bg="$onedarker_color0,$thm_red,$thm_fg"
 tmux_conf_theme_status_right_attr="none,none,bold"
 
 # pairing indicator
