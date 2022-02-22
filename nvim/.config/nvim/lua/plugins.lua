@@ -166,6 +166,11 @@ return packer.startup(function(use)
     config = require("config.telescope"),
     })
 
+    use({
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make",
+    })
+
     -- Treesitter
     use({
     "nvim-treesitter/nvim-treesitter",
