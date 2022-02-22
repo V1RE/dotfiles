@@ -64,9 +64,10 @@ z4h source ~/.env.zsh
 # Use additional Git repositories pulled in with `z4h install`.
 #
 # This is just an example that you should delete. It does nothing useful.
-z4h source $Z4H/ohmyzsh/ohmyzsh/lib/diagnostics.zsh
-z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/emoji-clock/emoji-clock.plugin.zsh
+# z4h source $Z4H/ohmyzsh/ohmyzsh/lib/diagnostics.zsh
+# z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/emoji-clock/emoji-clock.plugin.zsh
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/asdf/asdf.plugin.zsh
+z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/adb/_adb.plugin.zsh
 fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
 
 function _ranger() { 
