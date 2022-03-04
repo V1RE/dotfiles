@@ -1,6 +1,6 @@
 # bind-key -r i popup -E -h 80% -w 80% "zsh ~/bin/cm.zsh"
 set -g detach-on-destroy off
-# set -g default-terminal "xterm-kitty" # colors!
+# set -g default-terminal "wezterm" # colors!
 
 # : << EOF
 # https://github.com/gpakosz/.tmux

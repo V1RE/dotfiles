@@ -20,6 +20,7 @@ return {
   color_scheme = "catppuccin",
   colors = require("colors.catppuccin"),
   hide_tab_bar_if_only_one_tab = true,
+  term = "wezterm",
   window_padding = {
     left = 0,
     right = 0,
