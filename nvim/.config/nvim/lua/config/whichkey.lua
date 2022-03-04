@@ -85,13 +85,14 @@ local mappings = {
       "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
       " Buffers",
     },
+    -- e = { "<cmd>NeoTreeShowToggle<cr>", " Explorer" },
     e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
     w = { "<cmd>w!<CR>", " Save" },
     q = { "<cmd>q!<CR>", " Quit" },
     c = { "<cmd>Bdelete!<CR>", " Close Buffer" },
     h = { "<cmd>nohlsearch<CR>", " No Highlight" },
     f = {
-      "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<cr>",
       " Find files",
     },
     F = { "<cmd>Telescope live_grep theme=ivy<cr>", " Find Text" },
@@ -131,7 +132,7 @@ local mappings = {
 
     l = {
       name = " LSP",
-      a = { "<cmd>Telescope lsp_codeactions<cr>", "Code Action" },
+      a = { "<cmd>Telescope lsp_code_actions<cr>", "Code Action" },
       d = {
         "<cmd>Telescope lsp_document_diagnostics<cr>",
         "Document Diagnostics",
@@ -190,7 +191,7 @@ local mappings = {
 
   g = {
     d = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
-    a = { "<cmd>Telescope lsp_codeactions<cr>", "Code actions" },
+    a = { "<cmd>Telescope lsp_code_actions<cr>", "Code actions" },
   },
 }
 

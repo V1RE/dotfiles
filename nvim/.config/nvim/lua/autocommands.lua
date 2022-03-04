@@ -27,7 +27,6 @@ vim.cmd([[
   augroup _alpha
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-    " autocmd User AlphaReady autocmd! alpha_temp CursorMoved <buffer>
     autocmd User AlphaReady lua require"nvim-tree".toggle(false, true)
   augroup end
 

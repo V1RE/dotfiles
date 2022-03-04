@@ -97,6 +97,7 @@ telescope.setup({
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
+    file_browser = {},
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -106,3 +107,4 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
+telescope.load_extension("file_browser")

@@ -18,7 +18,7 @@ end
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost fplugins.lua source <afile> | PackerSync
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]])
 
@@ -43,6 +43,7 @@ return packer.startup(function(use)
     use("wbthomason/packer.nvim")
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
+    use("MunifTanjim/nui.nvim")
 
     use("machakann/vim-sandwich")
 
@@ -68,6 +69,12 @@ return packer.startup(function(use)
     use({
     "kyazdani42/nvim-tree.lua",
     config = require("config.nvim-tree"),
+    })
+
+    use({
+    "nvim-neo-tree/neo-tree.nvim",
+    config = require("config.neotree"),
+    disabled = 1,
     })
 
     use({
@@ -114,7 +121,7 @@ return packer.startup(function(use)
     use({
     "catppuccin/nvim",
     as = "catppuccin",
-    config = require("config.catppuccin"),
+    -- config = require("config.catppuccin"),
     })
 
     -- cmp plugins
@@ -170,6 +177,8 @@ return packer.startup(function(use)
     "nvim-telescope/telescope-fzf-native.nvim",
     run = "make",
     })
+
+    use({ "nvim-telescope/telescope-file-browser.nvim" })
 
     -- Treesitter
     use({

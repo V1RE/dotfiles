@@ -1,6 +1,6 @@
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
-  return
+    return
 end
 
 bufferline.setup({
@@ -55,7 +55,10 @@ bufferline.setup({
     --     return true
     --   end
     -- end,
-    offsets = { { filetype = "NvimTree", text = "Files", padding = 1 } },
+    offsets = {
+      { filetype = "NvimTree", text = "Files", padding = 1 },
+      { filetype = "neo-tree", text = "Neotree", padding = 1 },
+    },
     show_buffer_icons = true,
     show_buffer_close_icons = true,
     show_close_icon = true,

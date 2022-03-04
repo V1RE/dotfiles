@@ -22,7 +22,7 @@ vim.g.nvim_tree_icons = {
 }
 
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_indent_markers = 0
 vim.g.nvim_tree_git_hl = 1
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
