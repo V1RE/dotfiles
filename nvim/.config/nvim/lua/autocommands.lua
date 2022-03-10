@@ -21,17 +21,18 @@ vim.cmd([[
 
   augroup _auto_resize
     autocmd!
-    autocmd VimResized * tabdo wincmd = 
+    autocmd VimResized * tabdo wincmd =
   augroup end
 
   augroup _alpha
     autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
     autocmd User AlphaReady lua require"nvim-tree".toggle(false, true)
   augroup end
 
   augroup _lsp
     autocmd!
     autocmd BufWritePre * lua vim.lsp.buf.formatting_seq_sync()
+    autocmd FileType plist set ft=xml
+    autocmd BufReadPost Podfile set ft=ruby
   augroup end
 ]])

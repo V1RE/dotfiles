@@ -5,7 +5,7 @@ alias v="$EDITOR"
 alias nvim="nvim --startuptime /tmp/nvim-startuptime"
 
 # Tmux
-alias t="tmux"
+alias t='tmux attach -t $(tmux list-sessions -F "#{session_name}" | fzf) || tmux new-session'
 alias tl="tmux ls"
 alias ta="tmux a"
 

@@ -7,7 +7,7 @@ local actions = require("telescope.actions")
 
 telescope.setup({
   defaults = {
-
+    theme = "ivy",
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -97,7 +97,9 @@ telescope.setup({
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
-    file_browser = {},
+    file_browser = {
+      theme = "ivy",
+    },
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,

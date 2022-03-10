@@ -127,6 +127,7 @@ source ~/.zsh_aliases
 eval "$(fnm env)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
+eval "$(rbenv init - zsh)"
 
 source /Users/nielsmentink/.config/broot/launcher/bash/br
 export VOLTA_HOME="$HOME/.volta"
@@ -138,6 +139,8 @@ export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
 
 # Bun completions
 [ -s "/Users/nielsmentink/.bun/_bun" ] && source "/Users/nielsmentink/.bun/_bun"

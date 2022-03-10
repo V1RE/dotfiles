@@ -14,6 +14,9 @@ null_ls.setup({
     formatting.eslint_d,
     formatting.prettierd,
     formatting.stylua,
+    formatting.rubocop,
+    formatting.google_java_format,
     linters.luacheck,
+    linters.rubocop,
   },
 })
