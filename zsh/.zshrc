@@ -70,17 +70,6 @@ z4h source ~/.env.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/adb/_adb.plugin.zsh
 fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
 
-function _ranger() { 
-  local temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
-  tmux display-popup -E ranger --choosedir="$temp_file" -- "${@:-$PWD}"
-  if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
-      cd -- "$chosen_dir"
-  fi
-  rm -f -- "$temp_file"
-  zle accept-and-hold
-}
-zle -N _ranger
-
 # Define key bindings.
 z4h bindkey undo Ctrl+/  # undo the last command line change
 z4h bindkey redo Alt+/   # redo the last undone command line change
@@ -91,7 +80,6 @@ z4h bindkey z4h-cd-up            Shift+Up     # cd into the parent directory
 z4h bindkey z4h-cd-down          Shift+Down   # cd into a child directory
 z4h bindkey _ranger              Ctrl+Space
 z4h bindkey _atuin_search_widget Ctrl+R
-
 
 # Autoload functions.
 autoload -Uz zmv
@@ -124,14 +112,10 @@ export ATUIN_NOBIND="true"
 
 source ~/.zsh_aliases
 
-eval "$(fnm env)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
 
-source /Users/nielsmentink/.config/broot/launcher/bash/br
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/go/bin/:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -143,10 +127,10 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
 
 # Bun completions
-[ -s "/Users/nielsmentink/.bun/_bun" ] && source "/Users/nielsmentink/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # Bun
-export BUN_INSTALL="/Users/nielsmentink/.bun"
+export BUN_INSTALL="/Users/niels/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
