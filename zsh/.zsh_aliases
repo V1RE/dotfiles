@@ -28,6 +28,8 @@ alias cdr='cd $(gitroot)'
 alias cdp='cd $(gitroot)/app/public/'
 alias cdt='cd $(gitroot)/app/public/wp-content/themes/socialbrothers/'
 
+alias adbs="autoadb scrcpy -w -s '{}'"
+
 function sb() {
   local sbdir=~/Code/Socialbrothers/
   if (( $# != 0 ))
