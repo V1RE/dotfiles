@@ -457,7 +457,7 @@ set -g @plugin 'kristijanhusak/tmux-simple-git-status'
 # }
 #
 # everhour() {
-#   /Users/nielsmentink/Code/everhour/target/release/everhour status 2>/dev/null
+#   /Users/niels/Code/everhour/target/release/everhour status 2>/dev/null
 #   sleep 5
 # }
 #
