@@ -72,12 +72,6 @@ return packer.startup(function(use)
     })
 
     use({
-    "nvim-neo-tree/neo-tree.nvim",
-    config = require("config.neotree"),
-    disabled = 1,
-    })
-
-    use({
     "akinsho/bufferline.nvim",
     config = require("config.bufferline"),
     })
