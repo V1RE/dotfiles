@@ -24,12 +24,10 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
-# Socialbrothers
-alias cdp='cd $(gitroot)/app/public/'
-alias cdt='cd $(gitroot)/app/public/wp-content/themes/socialbrothers/'
-
+# Android screen mirroring
 alias adbs="autoadb scrcpy -Sw -s '{}'"
 
+# Socialbrothers
 function sb() {
   local sbdir=~/Code/Socialbrothers/
   if (( $# != 0 ))
