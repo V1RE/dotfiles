@@ -28,7 +28,7 @@ alias cdr='cd $(gitroot)'
 alias cdp='cd $(gitroot)/app/public/'
 alias cdt='cd $(gitroot)/app/public/wp-content/themes/socialbrothers/'
 
-alias adbs="autoadb scrcpy -w -s '{}'"
+alias adbs="autoadb scrcpy -Sw -s '{}'"
 
 function sb() {
   local sbdir=~/Code/Socialbrothers/
@@ -48,13 +48,4 @@ function sb() {
     dirname=`basename $(pwd) | sed 's/-\|_/ /g' | sed '/\b(\S)/g'`
     figlet -f "big" -w 9999 $dirname | cut -c -$COLUMNS | lolcat
   fi
-}
-
-ranger_cd() {
-    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
-    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
-    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
-        cd -- "$chosen_dir"
-    fi
-    rm -f -- "$temp_file"
 }
