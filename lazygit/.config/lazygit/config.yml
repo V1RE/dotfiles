@@ -17,6 +17,7 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+  overrideGpg: true
 quitOnTopLevelReturn: false
 os:
   openCommand: "lvim {{filename}}"
