@@ -25,7 +25,7 @@ alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
 # Android screen mirroring
-alias adbs="autoadb scrcpy -Sw -s '{}'"
+alias adbs="autoadb scrcpy -SKw -s '{}'"
 
 # Socialbrothers
 function sb() {
