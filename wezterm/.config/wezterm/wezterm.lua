@@ -2,16 +2,16 @@ local wezterm = require("wezterm")
 
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
-    local names = {
+  local names = {
     name,
-    "PragmataPro Mono Liga",
+    "PragmataPro Liga",
     "FiraCode Nerd Font",
     "codicon",
     "nonicons",
     "Noto Color Emoji",
     "JetBrains Mono",
-    }
-    return wezterm.font_with_fallback(names, params)
+  }
+  return wezterm.font_with_fallback(names, params)
 end
 
 return {
