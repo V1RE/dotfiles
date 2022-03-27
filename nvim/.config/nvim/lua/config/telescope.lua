@@ -1,6 +1,6 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
-    return
+  return
 end
 
 local actions = require("telescope.actions")
@@ -11,6 +11,17 @@ telescope.setup({
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
+
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
 
     mappings = {
       i = {
@@ -90,6 +101,7 @@ telescope.setup({
       find_command = { "fd", "--type=file", "--hidden", "--exclude=.git" },
     },
   },
+
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching
@@ -110,3 +122,4 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
+telescope.load_extension("refactoring")

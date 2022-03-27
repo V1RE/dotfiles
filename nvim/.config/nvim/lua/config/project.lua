@@ -2,6 +2,7 @@ local status_ok, project = pcall(require, "project_nvim")
 if not status_ok then
   return
 end
+
 project.setup({
   ---@usage set to false to disable project.nvim.
   --- This is on by default since it's currently the expected behavior.
@@ -23,7 +24,7 @@ project.setup({
   detection_methods = { "pattern" },
 
   ---@usage patterns used to detect root dir, when **"pattern"** is in detection_methods
-  patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+  patterns = { ".git", "package.json", "turbo.json" },
 
   ---@ Show hidden files in telescope when searching for files in a project
   show_hidden = false,

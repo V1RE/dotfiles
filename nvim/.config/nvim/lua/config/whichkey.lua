@@ -1,6 +1,6 @@
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
-    return
+  return
 end
 
 local setup = {
@@ -82,7 +82,7 @@ local mappings = {
   ["<leader>"] = {
     a = { "<cmd>Alpha<cr>", " Alpha" },
     b = {
-      "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_ivy{previewer = false})<cr>",
+      "<cmd>lua require('telescope').extensions.file_browser.file_browser(require('telescope.themes').get_ivy{previewer = false})<cr>",
       " Buffers",
     },
     -- e = { "<cmd>NeoTreeShowToggle<cr>", " Explorer" },
@@ -161,6 +161,12 @@ local mappings = {
       f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
       h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
       v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+    },
+
+    r = {
+      name = "Refactoring",
+      f = { "<cmd>lua require('telescope').extensions.refactoring.refactors()<cr>", "Open refactoring" },
+      d = { "<cmd>lua require('refactoring').debug.printf({below = true})<cr>", "Add debug printf" },
     },
   },
 

@@ -27,12 +27,12 @@ vim.g.nvim_tree_git_hl = 1
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
-    return
+  return
 end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
-    return
+  return
 end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
@@ -61,7 +61,7 @@ nvim_tree.setup({
   auto_close = true,
   open_on_tab = false,
   hijack_cursor = true,
-  update_cwd = true,
+  update_cwd = false,
   update_to_buf_dir = {
     enable = true,
     auto_open = true,
@@ -77,7 +77,7 @@ nvim_tree.setup({
   },
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
     ignore_list = {},
   },
   system_open = {
@@ -86,7 +86,7 @@ nvim_tree.setup({
   },
   filters = {
     dotfiles = false,
-    custom = {},
+    custom = { ".git" },
   },
   git = {
     enable = true,
