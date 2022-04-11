@@ -85,7 +85,6 @@ local mappings = {
       "<cmd>lua require('telescope').extensions.file_browser.file_browser(require('telescope.themes').get_ivy{previewer = false})<cr>",
       " Buffers",
     },
-    -- e = { "<cmd>NeoTreeShowToggle<cr>", " Explorer" },
     e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
     w = { "<cmd>w!<CR>", " Save" },
     q = { "<cmd>q<CR>", " Quit" },
