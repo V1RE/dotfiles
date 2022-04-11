@@ -4,13 +4,13 @@ vim.g.nvim_tree_icons = {
   default = "",
   symlink = "",
   git = {
-    unstaged = "",
-    staged = "S",
-    unmerged = "",
-    renamed = "➜",
+    unstaged = "",
+    staged = "⧆",
+    unmerged = "",
+    renamed = "",
     deleted = "",
-    untracked = "U",
-    ignored = "◌",
+    untracked = "",
+    ignored = "",
   },
   folder = {
     default = "",
@@ -19,10 +19,15 @@ vim.g.nvim_tree_icons = {
     empty_open = "",
     symlink = "",
   },
+  lsp = {
+    error = "",
+    warn = "",
+    hint = "",
+    info = "",
+  },
 }
 
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_indent_markers = 0
 vim.g.nvim_tree_git_hl = 1
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
@@ -58,7 +63,6 @@ nvim_tree.setup({
     "startify",
     "dashboard",
   },
-  auto_close = true,
   open_on_tab = false,
   hijack_cursor = true,
   update_cwd = false,
@@ -69,10 +73,10 @@ nvim_tree.setup({
   diagnostics = {
     enable = true,
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      error = "",
+      warn = "",
+      hint = "",
+      info = "",
     },
   },
   update_focused_file = {
@@ -111,6 +115,11 @@ nvim_tree.setup({
     number = false,
     relativenumber = false,
     signcolumn = "yes",
+  },
+  renderer = {
+    indent_markers = {
+      enable = false,
+    },
   },
   trash = {
     cmd = "trash",
