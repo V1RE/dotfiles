@@ -123,6 +123,12 @@ return packer.startup(function(use)
     config = require("config.catppuccin"),
   })
 
+  -- snippets
+  use({
+    "L3MON4D3/LuaSnip",
+    config = require("config.luasnippets"),
+  })
+
   -- cmp plugins
   use({
     "hrsh7th/nvim-cmp",
@@ -144,12 +150,6 @@ return packer.startup(function(use)
 
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
-  })
-
-  -- snippets
-  use({
-    "L3MON4D3/LuaSnip",
-    config = require("config.luasnip"),
   })
 
   use("rafamadriz/friendly-snippets")
