@@ -132,8 +132,18 @@ return packer.startup(function(use)
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-emoji",
     },
     config = require("config.cmp"),
+  })
+
+  use({
+    "tzachar/cmp-tabnine",
+    config = require("config.tabnine"),
+
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
   })
 
   -- snippets
@@ -164,6 +174,11 @@ return packer.startup(function(use)
   use({
     "ray-x/lsp_signature.nvim",
     config = require("config.signature"),
+  })
+
+  use({
+    "tami5/lspsaga.nvim",
+    config = require("config.lspsaga"),
   })
 
   -- Telescope
