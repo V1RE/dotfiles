@@ -16,7 +16,6 @@ zstyle ':z4h:' start-tmux       'no'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
 zstyle ':z4h:' prompt-at-bottom 'no'
-zstyle ':z4h:' iterm2-integration 'yes'
 
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'mac'
@@ -70,7 +69,7 @@ z4h source ~/.env.zsh
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/emoji-clock/emoji-clock.plugin.zsh
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/asdf/asdf.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/adb/_adb.plugin.zsh
-z4h source $Z4H/sobolevn/wakatime-zsh-plugin/wakatime.plugin.zsh
+# z4h source $Z4H/sobolevn/wakatime-zsh-plugin/wakatime.plugin.zsh
 fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
 
 # Define key bindings.
@@ -131,16 +130,6 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
 
-# Bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="/Users/niels/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-if test -n "$KITTY_INSTALLATION_DIR"; then
-    export KITTY_SHELL_INTEGRATION="enabled"
-    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-    kitty-integration
-    unfunction kitty-integration
-fi
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
