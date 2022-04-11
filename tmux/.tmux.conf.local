@@ -432,6 +432,9 @@ set -g @fzf-url-bind 'U'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'kristijanhusak/tmux-simple-git-status'
 
+set-option -g status-interval 1
+set-option -g automatic-rename on
+
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
