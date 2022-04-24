@@ -4,10 +4,11 @@ local wezterm = require("wezterm")
 local function font_with_fallback(name, params)
   local names = {
     name,
-    "PragmataPro Liga",
-    "FiraCode Nerd Font",
     "codicon",
     "nonicons",
+    "CaskaydiaCove Nerd Font",
+    "PragmataPro Liga",
+    "PragmataPro Mono Liga",
     "Noto Color Emoji",
     "JetBrains Mono",
   }
@@ -15,7 +16,7 @@ local function font_with_fallback(name, params)
 end
 
 return {
-  font = font_with_fallback("PragmataPro Mono Liga"),
+  font = font_with_fallback("Cascadia Code"),
   font_size = 18,
   color_scheme = "catppuccin",
   colors = require("colors.catppuccin"),
