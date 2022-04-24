@@ -44,7 +44,6 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 # up-to-date. Cloned files can be used after `z4h init`. This is just an
 # example. If you don't plan to use Oh My Zsh, delete this line.
 z4h install ohmyzsh/ohmyzsh || return
-z4h install sobolevn/wakatime-zsh-plugin || return
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
@@ -57,7 +56,6 @@ path=(~/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
-export ZSH_WAKATIME_BIN="$(which wakatime-cli)"
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
@@ -69,7 +67,6 @@ z4h source ~/.env.zsh
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/emoji-clock/emoji-clock.plugin.zsh
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/asdf/asdf.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/adb/_adb.plugin.zsh
-# z4h source $Z4H/sobolevn/wakatime-zsh-plugin/wakatime.plugin.zsh
 fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
 
 # Define key bindings.
@@ -82,6 +79,7 @@ z4h bindkey z4h-cd-up            Shift+Up     # cd into the parent directory
 z4h bindkey z4h-cd-down          Shift+Down   # cd into a child directory
 z4h bindkey _ranger              Ctrl+Space
 z4h bindkey _atuin_search_widget Ctrl+R
+bindkey -s '^e' 'redo^M'
 
 # Autoload functions.
 autoload -Uz zmv
@@ -111,12 +109,14 @@ export MANWIDTH=999
 export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"
 export ATUIN_NOBIND="true"
+export REDO_HISTORY_PATH="$HISTFILE"
 
 source ~/.zsh_aliases
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
+source "$(redo alias-file)"
 
 export PATH="$HOME/go/bin/:$PATH"
 

@@ -1,5 +1,6 @@
 # General
 alias v="$EDITOR"
+alias nv="~/Applications/Neovide.app/Contents/MacOS/neovide --multigrid -- --startuptime /tmp/nvim-startuptime"
 
 # Impatient.nvim
 alias nvim="nvim --startuptime /tmp/nvim-startuptime"
