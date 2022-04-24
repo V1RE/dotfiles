@@ -20,4 +20,4 @@ git:
   overrideGpg: true
 quitOnTopLevelReturn: false
 os:
-  openCommand: "lvim {{filename}}"
+  openCommand: "v {{filename}}"
