@@ -6,7 +6,16 @@ alias nv="~/Applications/Neovide.app/Contents/MacOS/neovide --multigrid -- --sta
 alias nvim="nvim --startuptime /tmp/nvim-startuptime"
 
 # Tmux
-alias t='tmux attach -t $(tmux list-sessions -F "#{session_name}" | fzf) || tmux new-session'
+function t() {
+  tmux has-session 2>/dev/null
+
+  if [ $? != 0 ]; then
+    tmux new-session
+  else
+    tmux attach -t $(tmux list-sessions -F "#{session_name}" | fzf --height 40% --reverse --border)
+  fi
+}
+
 alias tl="tmux ls"
 alias ta="tmux a"
 
