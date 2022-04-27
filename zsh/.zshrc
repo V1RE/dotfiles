@@ -110,6 +110,7 @@ export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"
 export ATUIN_NOBIND="true"
 export REDO_HISTORY_PATH="$HISTFILE"
+export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 
 source ~/.zsh_aliases
 
