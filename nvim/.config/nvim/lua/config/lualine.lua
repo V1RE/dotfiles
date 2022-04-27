@@ -59,7 +59,6 @@ local branch = {
 
 local location = {
   "location",
-  padding = 0,
 }
 
 local nvim_gps = function()
@@ -91,14 +90,14 @@ lualine.setup({
     theme = "auto",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha", "dashboard", "Outline", "neo-tree" },
+    disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = true,
   },
   sections = {
     lualine_a = { branch, diagnostics },
     lualine_b = { mode },
-    lualine_c = { nvim_gps },
+    lualine_c = { "filename", nvim_gps },
     -- lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_x = { diff, spaces, "encoding", filetype },
     lualine_y = { location },
@@ -113,5 +112,5 @@ lualine.setup({
     lualine_z = {},
   },
   tabline = {},
-  extensions = { "nvim-tree" },
+  extensions = { "nvim-tree", "quickfix", "toggleterm" },
 })
