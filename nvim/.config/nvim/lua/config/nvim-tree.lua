@@ -1,29 +1,31 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
+local i = require("config.icons")
+
 vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
+  default = i.documents.File,
+  symlink = i.documents.SymlinkFile,
   git = {
-    unstaged = "",
-    staged = "⧆",
-    unmerged = "",
-    renamed = "",
-    deleted = "",
-    untracked = "",
-    ignored = "",
+    unstaged = i.git.Mod,
+    staged = i.git.Add,
+    unmerged = i.git.Diff,
+    renamed = i.git.Rename,
+    deleted = i.git.Remove,
+    untracked = i.git.Untracked,
+    ignored = i.git.Ignore,
   },
   folder = {
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
+    arrow_open = i.arrows.ChevronDown,
+    arrow_closed = i.arrows.ChevronRight,
+    default = i.documents.Folder,
+    open = i.documents.OpenFolder,
+    empty = i.documents.Folder,
+    empty_open = i.documents.OpenFolder,
+    symlink = i.documents.SymlinkFolder,
   },
   lsp = {
-    error = "",
-    warn = "",
-    hint = "",
-    info = "",
+    error = i.diagnostics.Error,
+    warn = i.diagnostics.Warning,
+    hint = i.diagnostics.Hint,
+    info = i.diagnostics.Information,
   },
 }
 
@@ -73,10 +75,10 @@ nvim_tree.setup({
   diagnostics = {
     enable = true,
     icons = {
-      error = "",
-      warn = "",
-      hint = "",
-      info = "",
+      error = i.diagnostics.Error,
+      warn = i.diagnostics.Warning,
+      hint = i.diagnostics.Hint,
+      info = i.diagnostics.Information,
     },
   },
   update_focused_file = {
@@ -90,7 +92,7 @@ nvim_tree.setup({
   },
   filters = {
     dotfiles = false,
-    custom = { ".git" },
+    custom = { "\\.git$" },
   },
   git = {
     enable = true,

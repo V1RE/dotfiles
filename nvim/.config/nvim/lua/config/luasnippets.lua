@@ -1,9 +1,9 @@
 local ls = require("luasnip")
-
+--
 -- local s = ls.snippet
 -- local i = ls.insert_node
--- local fmt = require("luasnip.extras.fmt").fmt
-
+-- local fmt = require("luasnip.extras.fmt")
+--
 -- ls.add_snippets("all", {
 --   s("clg", {
 --     fmt("console.log({});", { i(1) }),

@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local i = require("config.icons")
+
 bufferline.setup({
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
@@ -14,23 +16,11 @@ bufferline.setup({
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator_icon = "▎",
-    buffer_close_icon = "",
-    -- buffer_close_icon = '',
-    modified_icon = "●",
-    close_icon = "",
-    -- close_icon = '',
+    buffer_close_icon = i.ui.Close,
+    modified_icon = i.ui.Circle,
+    close_icon = i.ui.CloseAll,
     left_trunc_marker = "",
     right_trunc_marker = "",
-    --- name_formatter can be used to change the buffer's label in the bufferline.
-    --- Please note some names can/will break the
-    --- bufferline so use this at your discretion knowing that it has
-    --- some limitations that will *NOT* be fixed.
-    -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-    --   -- remove extension from markdown files for example
-    --   if buf.name:match('%.md') then
-    --     return vim.fn.fnamemodify(buf.name, ':t:r')
-    --   end
-    -- end,
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
@@ -56,8 +46,7 @@ bufferline.setup({
     --   end
     -- end,
     offsets = {
-      { filetype = "NvimTree", text = "Files", padding = 1 },
-      { filetype = "neo-tree", text = "Neotree", padding = 1 },
+      { filetype = "NvimTree", text = " Files", padding = 1 },
     },
     show_buffer_icons = true,
     show_buffer_close_icons = true,

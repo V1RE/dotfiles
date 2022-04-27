@@ -56,7 +56,7 @@ return packer.startup(function(use)
 
   use({
     "phaazon/hop.nvim",
-    config = require("config.hop"),
+    config = require("config.hop-nvim"),
   })
 
   use({
@@ -69,7 +69,17 @@ return packer.startup(function(use)
     config = require("config.comment"),
   })
 
+  use({
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = require("config.gps"),
+  })
+
   use("kyazdani42/nvim-web-devicons")
+  --[[ use({
+    "yamatsum/nvim-nonicons",
+    requires = { "kyazdani42/nvim-web-devicons" },
+  }) ]]
 
   use({
     "kyazdani42/nvim-tree.lua",
@@ -112,6 +122,8 @@ return packer.startup(function(use)
     "goolord/alpha-nvim",
     config = require("config.alpha"),
   })
+
+  use({ "stevearc/dressing.nvim" })
 
   -- Colorschemes
   --use("lunarvim/darkplus.nvim")
@@ -160,20 +172,13 @@ return packer.startup(function(use)
     config = require("config.lsp"),
   })
 
-  use({
-    "williamboman/nvim-lsp-installer",
-  })
+  use("williamboman/nvim-lsp-installer")
 
   use("tamago324/nlsp-settings.nvim")
 
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-  })
+  use("jose-elias-alvarez/null-ls.nvim")
 
-  use({
-    "b0o/schemastore.nvim",
-    config = require("config.schemastore"),
-  })
+  use("b0o/schemastore.nvim")
 
   use({
     "ray-x/lsp_signature.nvim",

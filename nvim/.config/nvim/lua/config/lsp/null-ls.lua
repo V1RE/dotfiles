@@ -23,6 +23,7 @@ null_ls.setup({
     linters.luacheck,
     linters.rubocop,
     linters.eslint_d,
+    code_actions.refactoring,
     code_actions.eslint_d,
   },
 })

@@ -5,11 +5,13 @@ end
 
 local actions = require("telescope.actions")
 
+local i = require("config.icons")
+
 telescope.setup({
   defaults = {
     theme = "ivy",
-    prompt_prefix = " ",
-    selection_caret = " ",
+    prompt_prefix = i.ui.Telescope,
+    selection_caret = i.arrows.ChevronRight,
     path_display = { "smart" },
 
     vimgrep_arguments = {
@@ -110,7 +112,12 @@ telescope.setup({
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
     file_browser = {
-      theme = "ivy",
+      theme = "dropdown",
+      mappings = {
+        ["i"] = {
+          ["<esc>"] = nil,
+        },
+      },
     },
     -- Your extension configuration goes here:
     -- extension_name = {

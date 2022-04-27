@@ -80,25 +80,25 @@ local opts = {
 
 local mappings = {
   ["<leader>"] = {
-    a = { "<cmd>Alpha<cr>", " Alpha" },
+    a = { "<cmd>Alpha<cr>", " Alpha" },
     b = {
       "<cmd>lua require('telescope').extensions.file_browser.file_browser(require('telescope.themes').get_ivy{previewer = false})<cr>",
-      " Buffers",
+      " Buffers",
     },
-    e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
-    w = { "<cmd>w!<CR>", " Save" },
-    q = { "<cmd>q<CR>", " Quit" },
-    c = { "<cmd>Bdelete!<CR>", " Close Buffer" },
-    h = { "<cmd>nohlsearch<CR>", " No Highlight" },
+    e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
+    w = { "<cmd>w!<CR>", " Save" },
+    q = { "<cmd>q<CR>", " Quit" },
+    c = { "<cmd>Bdelete!<CR>", " Close Buffer" },
+    h = { "<cmd>nohlsearch<CR>", " No Highlight" },
     f = {
       "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_ivy())<cr>",
-      " Find files",
+      " Find files",
     },
-    F = { "<cmd>Telescope live_grep theme=ivy<cr>", " Find Text" },
-    P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", " Projects" },
+    F = { "<cmd>Telescope live_grep theme=ivy<cr>", " Find Text" },
+    P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", " Projects" },
 
     p = {
-      name = " Packer",
+      name = " Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
       s = { "<cmd>PackerSync<cr>", "Sync" },
@@ -107,7 +107,7 @@ local mappings = {
     },
 
     g = {
-      name = " Git",
+      name = " Git",
       g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
       j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
       k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -124,7 +124,7 @@ local mappings = {
     },
 
     l = {
-      name = " LSP",
+      name = " LSP",
       a = { "<cmd>Lspsaga range_code_action<cr>", "Code Action" },
       d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
       w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
@@ -140,7 +140,7 @@ local mappings = {
       S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     },
     s = {
-      name = " Search",
+      name = " Search",
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
       h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
@@ -152,7 +152,7 @@ local mappings = {
     },
 
     t = {
-      name = " Terminal",
+      name = " Terminal",
       n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
       u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
       t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
@@ -171,7 +171,7 @@ local mappings = {
 
   ["<C-Space>"] = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "ToggleTerm" },
 
-  ["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
+  ["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
 
   g = {
     d = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },

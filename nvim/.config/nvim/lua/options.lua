@@ -8,7 +8,7 @@ local options = {
   cursorline = true,
   expandtab = true,
   fileencoding = "utf-8",
-  guifont = "PragmataPro Mono Liga:h16",
+  guifont = "FiraCode Nerd Font:h16",
   hlsearch = true,
   ignorecase = true,
   mouse = "a",
@@ -34,6 +34,7 @@ local options = {
   updatetime = 300,
   wrap = false,
   writebackup = false,
+  laststatus = 3,
 }
 
 for k, v in pairs(options) do
