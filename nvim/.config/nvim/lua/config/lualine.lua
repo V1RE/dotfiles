@@ -41,7 +41,26 @@ local diff = {
 local mode = {
   "mode",
   fmt = function(str)
-    return "-- " .. str .. " --"
+    local modes = {
+      INSERT = "",
+      ["O-PENDING"] = "",
+      NORMAL = "",
+      VISUAL = "",
+      ["V-LINE"] = "",
+      ["V-BLOCK"] = "",
+      SELECT = "",
+      ["S-LINE"] = "",
+      ["S-BLOCK"] = "",
+      REPLACE = "",
+      ["V-REPLACE"] = "",
+      COMMAND = "",
+      EX = "",
+      MORE = "",
+      CONFIRM = "",
+      SHELL = "",
+      TERMINAL = "",
+    }
+    return "     " .. modes[str] .. " "
   end,
 }
 

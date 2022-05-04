@@ -23,7 +23,7 @@ alias ta="tmux a"
 alias dots="pushd ~/dotfiles/ > /dev/null; nvim; popd > /dev/null"
 
 # Listing files
-alias ls="exa --icons --classify --git --group-directories-first"
+alias ls="exa --icons --color=always --classify --git --group-directories-first"
 alias l="ls --git-ignore"
 alias ll="ls --long"
 alias la="ll -a"

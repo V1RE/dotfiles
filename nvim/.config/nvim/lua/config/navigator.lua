@@ -28,14 +28,14 @@ navigator.setup({
         "typescript.tsx",
       },
       on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
       end,
     },
     flow = { autostart = false },
 
     sqls = {
       on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false -- efm
+        client.server_capabilities.document_formatting = false -- efm
       end,
     },
     ccls = { filetypes = {} }, -- using clangd

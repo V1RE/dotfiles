@@ -55,6 +55,13 @@ return packer.startup(function(use)
   use("wakatime/vim-wakatime")
 
   use({
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup({})
+    end,
+  })
+
+  use({
     "phaazon/hop.nvim",
     config = require("config.hop-nvim"),
   })

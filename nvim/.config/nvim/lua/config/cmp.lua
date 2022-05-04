@@ -1,12 +1,6 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-  return
-end
+local cmp = require("cmp")
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
+local luasnip = require("luasnip")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -48,9 +42,9 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = "luasnip" },
-    { name = "cmp_tabnine" },
-    { name = "buffer" },
+    { name = "cmp_tabnine", max_item_count = 3 },
+    { name = "luasnip", max_item_count = 3 },
+    { name = "buffer", max_item_count = 5 },
     { name = "emoji" },
   },
   confirm_opts = {
@@ -58,6 +52,6 @@ cmp.setup({
     select = false,
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
   },
 })
