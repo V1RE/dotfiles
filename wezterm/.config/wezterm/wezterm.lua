@@ -4,8 +4,7 @@ local wezterm = require("wezterm")
 local function font_with_fallback(name, params)
   local names = {
     name,
-    "Untitled1",
-    "codicon",
+    "nielsicon",
     "CaskaydiaCove Nerd Font",
     "PragmataPro Liga",
     "PragmataPro Mono Liga",
