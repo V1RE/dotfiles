@@ -1,7 +1,4 @@
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
+local which_key = require("which-key")
 
 local setup = {
   plugins = {
@@ -17,7 +14,7 @@ local setup = {
       operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
       motions = true, -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
-      windows = true, -- default bindings on <c-w>
+      windows = false, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
       z = true, -- bindings for folds, spelling and others prefixed with z
       g = true, -- bindings for prefixed with g
@@ -128,7 +125,7 @@ local mappings = {
       a = { "<cmd>Lspsaga range_code_action<cr>", "Code Action" },
       d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
       w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
-      f = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format" },
+      f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
       j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
