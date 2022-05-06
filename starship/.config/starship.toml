@@ -3,14 +3,13 @@
 
 # Inserts a blank line between shell prompts
 add_newline = true
-format = "$all"
-right_format = "$username$localip$time"
+format = "$all$fill$username$localip$time$line_break$jobs$battery$status$shell$character"
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
-success_symbol = "[](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[](bold red)"
-vicmd_symbol = "[](bold green)"
+success_symbol = "[](bold #8fe8a8)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[](bold #ff7ea3)"
+vicmd_symbol = "[](bold #7bc8fc)"
 
 [git_branch]
 symbol = " "
@@ -18,7 +17,8 @@ symbol = " "
 [directory]
 home_symbol = " "
 repo_root_style = "cyan bold"
-repo_root_format = " [$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+repo_root_format = "[$before_root_path]($style) [$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+truncate_to_repo = false
 
 [package]
 display_private = true
@@ -40,7 +40,27 @@ disabled = false
 
 [localip]
 disabled = false
-ssh_only = false
 
 [username]
 show_always = true
+
+[fill]
+symbol = " "
+
+[lua]
+detect_files = [".lua-version", ".luarc.json", ".stylua.toml", ".luacheckrc"]
+symbol = " "
+
+[custom.next]
+command = "jq '.dependencies.next?' -r -e package.json | sed 's/[^0-9\\.]//g'"
+when = "jq '.dependencies.next?' -r -e package.json"
+symbol = " "
+format = "using [$symbol($output )]($style)"
+description = "The current version of Next.js defined in the package.json"
+
+[custom.react]
+command = "jq '.dependencies.react?' -r -e package.json | sed 's/[^0-9\\.]//g'"
+when = "jq '.dependencies.react?' -r -e package.json"
+symbol = " "
+format = "using [$symbol($output )]($style)"
+description = "The current version of React defined in the package.json"
