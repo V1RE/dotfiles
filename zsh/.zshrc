@@ -1,15 +1,12 @@
 source /opt/homebrew/share/antigen/antigen.zsh
 
-
 antigen use oh-my-zsh
 
 antigen bundle adb
 antigen bundle brew
 antigen bundle fzf
 antigen bundle zoxide
-# antigen bundle vi-mode
 
-# antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Aloxaf/fzf-tab
 
@@ -28,7 +25,7 @@ export GPG_TTY=$TTY
 
 # z4h bindkey _ranger              Ctrl+Space
 # z4h bindkey _atuin_search_widget Ctrl+R
-bindkey -s '^e' 'redo^M'
+bindkey -s '^ ' 'redo^M'
 
 # Autoload functions.
 autoload -Uz zmv
@@ -60,11 +57,10 @@ export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 
-source ~/.zsh_aliases
-
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
+eval "$(gh completion -s zsh)"
 source "$(redo alias-file)"
 
 export PATH="$HOME/go/bin/:$PATH"
@@ -88,3 +84,5 @@ antigen apply
 # Define functions and completions.
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
+
+source ~/.zsh_aliases
