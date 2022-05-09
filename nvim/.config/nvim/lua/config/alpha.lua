@@ -1,9 +1,7 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
-  return
-end
-
+local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
+local i = require("config.icons")
+
 dashboard.section.header.val = {
   [[                               __                ]],
   [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
@@ -14,18 +12,21 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
-  dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-  dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
-  dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-  dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-  dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-  dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+  dashboard.button("f", i.ui.Telescope .. " Find file", ":Telescope find_files <CR>"),
+  dashboard.button("e", i.ui.Create .. " New file", ":ene <BAR> startinsert <CR>"),
+  dashboard.button("p", i.ui.Project .. " Find project", ":Telescope projects <CR>"),
+  dashboard.button("r", i.ui.History .. " Recently used files", ":Telescope oldfiles <CR>"),
+  dashboard.button("t", i.ui.SearchCode .. " Find text", ":Telescope live_grep <CR>"),
+  dashboard.button("c", i.ui.Gear .. " Configuration", ":e ~/.config/nvim/init.lua <CR>"),
+  dashboard.button("q", i.ui.Close .. " Quit Neovim", ":qa<CR>"),
 }
 
 local function header()
   local lines = {}
   local handle = io.popen("figlet -f 'big' $(basename $PWD)")
+  if handle == nil then
+    return dashboard.section.header.val
+  end
   for line in handle:lines() do
     table.insert(lines, line)
   end
