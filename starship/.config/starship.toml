@@ -3,7 +3,7 @@
 
 # Inserts a blank line between shell prompts
 add_newline = true
-format = "$all$fill$username$localip$time$line_break$jobs$battery$status$shell$character"
+format = "$all$fill$time$line_break$jobs$battery$status$shell$character"
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
@@ -41,9 +41,6 @@ disabled = false
 [localip]
 disabled = false
 
-[username]
-show_always = true
-
 [fill]
 symbol = " "
 
@@ -55,12 +52,12 @@ symbol = " "
 command = "jq '.dependencies.next?' -r -e package.json | sed 's/[^0-9\\.]//g'"
 when = "jq '.dependencies.next?' -r -e package.json"
 symbol = " "
-format = "using [$symbol($output )]($style)"
+format = "using [$symbol(v$output )]($style)"
 description = "The current version of Next.js defined in the package.json"
 
 [custom.react]
 command = "jq '.dependencies.react?' -r -e package.json | sed 's/[^0-9\\.]//g'"
 when = "jq '.dependencies.react?' -r -e package.json"
 symbol = " "
-format = "using [$symbol($output )]($style)"
+format = "using [$symbol(v$output )]($style)"
 description = "The current version of React defined in the package.json"
