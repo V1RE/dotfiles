@@ -1,7 +1,4 @@
-local status_ok, schemastore = pcall(require, "schemastore")
-if not status_ok then
-  return
-end
+local schemastore = require("schemastore")
 
 return {
   init_options = {

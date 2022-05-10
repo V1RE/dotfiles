@@ -1,7 +1,4 @@
-local status_ok, catppuccin = pcall(require, "catppuccin")
-if not status_ok then
-    return
-end
+local catppuccin = require("catppuccin")
 
 catppuccin.setup({
   transparent_background = false,
@@ -18,10 +15,10 @@ catppuccin.setup({
     native_lsp = {
       enabled = true,
       virtual_text = {
-        errors = "italic",
-        hints = "italic",
-        warnings = "italic",
-        information = "italic",
+        errors = "NONE",
+        hints = "NONE",
+        warnings = "NONE",
+        information = "NONE",
       },
       underlines = {
         errors = "underline",
@@ -39,11 +36,6 @@ catppuccin.setup({
     nvimtree = {
       enabled = false,
       show_root = false,
-      transparent_panel = false,
-    },
-    neotree = {
-      enabled = true,
-      show_root = true,
       transparent_panel = false,
     },
     which_key = true,

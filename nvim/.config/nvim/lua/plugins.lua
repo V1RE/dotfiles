@@ -82,7 +82,10 @@ return packer.startup(function(use)
     config = require("config.gps"),
   })
 
-  use("kyazdani42/nvim-web-devicons")
+  use({
+    "kyazdani42/nvim-web-devicons",
+    config = require("config.webdevicons"),
+  })
 
   use({
     "kyazdani42/nvim-tree.lua",
