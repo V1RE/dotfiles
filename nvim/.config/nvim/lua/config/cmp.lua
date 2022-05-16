@@ -4,7 +4,7 @@ local luasnip = require("luasnip")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local kind_icons = require("config.icons").kind
+local icons = require("config.icons")
 
 cmp.setup({
   snippet = {
@@ -19,22 +19,20 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      -- Kind icons
-      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Lua]",
-        luasnip = "[Snippet]",
-        cmp_tabnine = "[TabNine]",
-        emoji = "[Emoji]",
-        buffer = "[Buffer]",
-        path = "[Path]",
-      })[entry.source.name]
+      vim_item.menu = vim_item.kind
+      vim_item.kind = icons.kind[vim_item.kind]
+
+      if entry.source.name == "cmp_tabnine" then
+        vim_item.kind = icons.misc.Robot
+        vim_item.menu = "Tabnine"
+      end
+
       return vim_item
     end,
   },
@@ -54,4 +52,20 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+})
+
+cmp.setup.cmdline("/", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
 })
