@@ -1,29 +1,27 @@
-local lsp_installer = require("nvim-lsp-installer")
+local lspinstaller = require("nvim-lsp-installer")
+local lspconfig = require("lspconfig")
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-  local opts = {
-    on_attach = require("config.lsp.handlers").on_attach,
-    capabilities = require("config.lsp.handlers").capabilities,
-  }
+lspinstaller.setup({
+  ui = {
+    icons = {
+      server_installed = "",
+      server_pending = "",
+      server_uninstalled = "",
+    },
+  },
+})
 
-  if server.name == "jsonls" then
-    local jsonls_opts = require("config.lsp.settings.jsonls")
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-  end
+local capabilities = require("config.lsp.handlers").capabilities
+local on_attach = require("config.lsp.handlers").on_attach
 
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require("config.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  end
+for _, server in ipairs(lspinstaller.get_installed_servers()) do
+  lspconfig[server.name].setup({
+    on_attach = on_attach,
 
-  if server.name == "emmet_ls" then
-    local emmet_ls_opts = require("config.lsp.settings.emmet_ls")
-    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
-  end
+    flags = {
+      debounce_text_changes = 150,
+    },
 
-  -- This setup() function is exactly the same as lspconfig's setup function.
-  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  server:setup(opts)
-end)
+    capabilities = capabilities,
+  })
+end

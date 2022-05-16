@@ -1,8 +1,6 @@
 local i = require("config.icons")
 
 vim.g.nvim_tree_icons = {
-  default = i.documents.File:sub(1, -2),
-  symlink = i.documents.SymlinkFile:sub(1, -2),
   git = {
     unstaged = i.git.Mod:sub(1, -2),
     staged = i.git.Add:sub(1, -2),
@@ -15,11 +13,6 @@ vim.g.nvim_tree_icons = {
   folder = {
     arrow_open = i.arrows.ChevronDown:sub(1, -2),
     arrow_closed = i.arrows.ChevronRight:sub(1, -2),
-    default = i.documents.Folder:sub(1, -2),
-    open = i.documents.OpenFolder:sub(1, -2),
-    empty = i.documents.Folder:sub(1, -2),
-    empty_open = i.documents.OpenFolder:sub(1, -2),
-    symlink = i.documents.SymlinkFolder:sub(1, -2),
   },
 }
 

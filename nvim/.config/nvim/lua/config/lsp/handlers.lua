@@ -60,10 +60,10 @@ end
 
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
