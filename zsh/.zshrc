@@ -13,7 +13,6 @@ antigen use oh-my-zsh
 antigen bundle adb
 antigen bundle brew
 antigen bundle fzf
-antigen bundle zoxide
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Aloxaf/fzf-tab
@@ -62,6 +61,9 @@ export BROWSER="open"
 export ATUIN_NOBIND="true"
 export REDO_HISTORY_PATH="$HISTFILE"
 export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 
@@ -97,3 +99,4 @@ source ~/.zsh_aliases
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(zoxide init zsh)"
