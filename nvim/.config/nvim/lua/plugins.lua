@@ -56,9 +56,7 @@ return packer.startup(function(use)
 
   use({
     "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup({})
-    end,
+    config = require("fidget").setup({}),
   })
 
   use({
@@ -80,6 +78,11 @@ return packer.startup(function(use)
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter",
     config = require("config.gps"),
+  })
+
+  use({
+    "norcalli/nvim-colorizer.lua",
+    config = require("config.colorizer"),
   })
 
   use({
