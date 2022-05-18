@@ -36,6 +36,9 @@ symbol = " "
 [rust]
 symbol = " "
 
+[python]
+symbol = " "
+
 [directory.substitutions]
 "/" = " "
 "Code" = " "
@@ -43,6 +46,7 @@ symbol = " "
 
 [time]
 disabled = false
+format = " [$time]($style)"
 
 [localip]
 disabled = false
