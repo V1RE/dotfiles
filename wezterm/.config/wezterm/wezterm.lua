@@ -15,6 +15,7 @@ local function font_with_fallback(name, params)
 end
 
 return {
+  font_dirs = { "fonts" },
   font = font_with_fallback("Cascadia Code"),
   font_size = 18,
   color_scheme = "catppuccin",
