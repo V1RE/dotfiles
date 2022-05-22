@@ -71,7 +71,7 @@ eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(gh completion -s zsh)"
-eval "$(emplace init zsh -c $HOME/.config/emplace.toml)"
+eval "$(emplace init zsh)"
 source "$(redo alias-file)"
 
 export PATH="$HOME/go/bin/:$PATH"
@@ -84,6 +84,7 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
+export EMPLACE_CONFIG="$HOME/.config/emplace.toml"
 
 # tabtab source for packages
 # uninstall by removing these lines
