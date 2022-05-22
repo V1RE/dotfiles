@@ -71,7 +71,6 @@ eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(gh completion -s zsh)"
-eval "$(emplace init zsh)"
 source "$(redo alias-file)"
 
 export PATH="$HOME/go/bin/:$PATH"
