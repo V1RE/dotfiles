@@ -1,0 +1,30 @@
+# Catppuccin -- https://github.com/catppuccin/wezterm
+[colors]
+foreground = "#d9e0ee"
+background = "#1e1e2e"
+cursor_bg = "#f5e0dc"
+cursor_border = "#f5e0dc"
+cursor_fg = "#1e1e2e"
+selection_bg = "#575268"
+selection_fg = "#d9e0ee"
+
+ansi = [
+  "#6e6c7e",
+  "#f28fad",
+  "#abe9b3",
+  "#fae3b0",
+  "#96cdfb",
+  "#f5c2e7",
+  "#89dceb",
+  "#c3bac6",
+]
+brights = [
+  "#988ba2",
+  "#f28fad",
+  "#abe9b3",
+  "#fae3b0",
+  "#96cdfb",
+  "#f5c2e7",
+  "#89dceb",
+  "#d9e0ee",
+]

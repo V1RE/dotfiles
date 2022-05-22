@@ -1,0 +1,56 @@
+# General
+alias v="$EDITOR"
+alias nv="~/Applications/Neovide.app/Contents/MacOS/neovide --multigrid -- --startuptime /tmp/nvim-startuptime"
+
+# Impatient.nvim
+alias nvim="nvim --startuptime /tmp/nvim-startuptime"
+
+# Tmux
+function t() {
+  tmux has-session 2>/dev/null
+
+  if [ $? != 0 ]; then
+    tmux new-session
+  else
+    tmux attach -t $(tmux list-sessions -F "#{session_name}" | fzf --height 40% --reverse --border)
+  fi
+}
+
+alias tl="tmux ls"
+alias ta="tmux a"
+
+# Dotfiles
+alias dots="pushd ~/dotfiles/ > /dev/null; nvim; popd > /dev/null"
+
+# Listing files
+alias ls="exa --icons --color=always --classify --git --group-directories-first"
+alias l="ls --git-ignore"
+alias ll="ls --long"
+alias la="ll -a"
+alias tree="ll --tree --level=3"
+
+# Git
+alias lg="lazygit"
+alias gitroot="git rev-parse --show-toplevel"
+alias cdr='cd $(gitroot)'
+
+# Socialbrothers
+function sb() {
+  local sbdir=~/Code/Socialbrothers/
+  if (( $# != 0 ))
+  then
+    z $sbdir $@
+  else
+    local dir
+    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf`
+    cd $sbdir$dir
+  fi
+
+  local parent=`dirname "$PWD"`
+  if [ $OLDPWD != $PWD ] && [ $parent -ef $sbdir ]
+  then
+    local dirname
+    dirname=`basename $(pwd) | sed 's/-\|_/ /g' | sed '/\b(\S)/g'`
+    figlet -f "big" -w 9999 $dirname | cut -c -$COLUMNS | lolcat
+  fi
+}

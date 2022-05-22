@@ -1,0 +1,78 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+format = "$all$fill$time$line_break$jobs$battery$status$shell$character"
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[](bold #8fe8a8)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[](bold #ff7ea3)"
+vicmd_symbol = "[](bold #7bc8fc)"
+
+[git_branch]
+symbol = " "
+
+[directory]
+home_symbol = " "
+repo_root_style = "cyan bold"
+repo_root_format = "[$before_root_path]($style) [$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+truncate_to_repo = true
+
+[package]
+display_private = true
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[php]
+symbol = " "
+
+[java]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[python]
+symbol = " "
+
+[directory.substitutions]
+"/" = " "
+"Code" = " "
+"Socialbrothers" = " "
+
+[time]
+disabled = false
+format = " [$time]($style)"
+
+[localip]
+disabled = false
+
+[fill]
+symbol = " "
+
+[lua]
+detect_files = [".lua-version", ".luarc.json", ".stylua.toml", ".luacheckrc"]
+symbol = " "
+
+[custom.next]
+command = "jq '.dependencies.next?' -r -e package.json | sed 's/[^0-9\\.]//g'"
+when = "jq '.dependencies.next?' -r -e package.json"
+symbol = " "
+format = "using [$symbol(v$output )]($style)"
+description = "The current version of Next.js defined in the package.json"
+style = "#ffffff bold"
+
+[custom.react]
+command = "jq '.dependencies.react?' -r -e package.json | sed 's/[^0-9\\.]//g'"
+when = "jq '.dependencies.react?' -r -e package.json"
+symbol = " "
+format = "using [$symbol(v$output )]($style)"
+description = "The current version of React defined in the package.json"
+style = "blue bold"
