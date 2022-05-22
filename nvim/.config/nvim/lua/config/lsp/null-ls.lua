@@ -30,6 +30,7 @@ null_ls.setup({
     formatting.stylua,
     formatting.rubocop,
     formatting.google_java_format,
+    formatting.phpcsfixer,
     linters.stylelint,
     linters.luacheck,
     linters.rubocop,
