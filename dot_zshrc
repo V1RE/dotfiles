@@ -71,7 +71,7 @@ eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(gh completion -s zsh)"
-eval "$(emplace init zsh -c path/to/my/config.toml)"
+eval "$(emplace init zsh -c $HOME/.config/emplace.toml)"
 source "$(redo alias-file)"
 
 export PATH="$HOME/go/bin/:$PATH"
