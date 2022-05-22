@@ -3,9 +3,10 @@
 ![Dotfiles in action](./dots.png)
 
 ## Requirements 📦
-  - Git
-  - Stow
-  - 5 minutes of your time
+
+- Git
+- Stow
+- 5 minutes of your time
 
 ## Installation 🪄
 
