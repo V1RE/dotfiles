@@ -55,6 +55,17 @@ return packer.startup(function(use)
 	use("wakatime/vim-wakatime")
 
 	use({
+		"ghillb/cybu.nvim",
+		config = function()
+			local ok, cybu = pcall(require, "cybu")
+			if not ok then
+				return
+			end
+			cybu.setup()
+		end,
+	})
+
+	use({
 		"j-hui/fidget.nvim",
 		config = require("fidget").setup({}),
 	})
