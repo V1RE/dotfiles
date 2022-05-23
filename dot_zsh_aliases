@@ -20,7 +20,7 @@ alias tl="tmux ls"
 alias ta="tmux a"
 
 # Dotfiles
-alias dots="pushd ~/dotfiles/ > /dev/null; nvim; popd > /dev/null"
+alias dots="chezmoi edit; chezmoi apply"
 
 # Listing files
 alias ls="exa --icons --color=always --classify --git --group-directories-first"
