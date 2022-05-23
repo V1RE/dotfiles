@@ -61,7 +61,9 @@ return packer.startup(function(use)
 			if not ok then
 				return
 			end
-			cybu.setup({})
+			cybu.setup({
+				fallback = function() end,
+			})
 		end,
 	})
 
