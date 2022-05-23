@@ -62,6 +62,10 @@ return packer.startup(function(use)
 				return
 			end
 			cybu.setup({
+				exclude = {
+					"NvimTree",
+					"qf",
+				},
 				fallback = function() end,
 			})
 		end,
