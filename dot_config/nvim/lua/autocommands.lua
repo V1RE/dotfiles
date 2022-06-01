@@ -40,9 +40,5 @@ vim.cmd([[
     autocmd FileType plist set ft=xml
     autocmd BufReadPost Podfile set ft=ruby
     autocmd BufReadPost *.ejs.t set ft=embedded_template
-    autocmd CursorHold * lua vim.lsp.buf.document_highlight()
-    autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()
-    autocmd CursorMoved * lua vim.lsp.buf.clear_references()
-    autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
   augroup end
 ]])

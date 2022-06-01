@@ -43,16 +43,13 @@ M.setup = function()
 end
 
 local function lsp_highlight_document()
-	vim.api.nvim_exec(
-		[[
+	vim.cmd([[
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-      ]],
-		false
-	)
+  ]])
 end
 
 local function lsp_keymaps(bufnr)
@@ -78,7 +75,10 @@ M.on_attach = function(client, bufnr)
 	end
 
 	lsp_keymaps(bufnr)
-	lsp_highlight_document()
+
+	if client.server_capabilities.document_highlight then
+		lsp_highlight_document()
+	end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

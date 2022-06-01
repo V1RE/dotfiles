@@ -44,7 +44,6 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					print("null_ls")
 					lsp_formatting(bufnr)
 				end,
 			})
