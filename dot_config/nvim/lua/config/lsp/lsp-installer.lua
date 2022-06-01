@@ -1,5 +1,6 @@
 local lspinstaller = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
+local schemastore = require("schemastore")
 
 lspinstaller.setup({
 	ui = {
@@ -16,6 +17,12 @@ local on_attach = require("config.lsp.handlers").on_attach
 
 for _, server in ipairs(lspinstaller.get_installed_servers()) do
 	lspconfig[server.name].setup({
+		settings = {
+			json = {
+				schemas = schemastore.json.schemas(),
+			},
+		},
+
 		on_attach = on_attach,
 
 		flags = {

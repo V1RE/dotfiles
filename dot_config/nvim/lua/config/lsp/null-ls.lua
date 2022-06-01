@@ -4,6 +4,7 @@ local lsp_formatting = function(bufnr)
 	vim.lsp.buf.format({
 		filter = function(clients)
 			-- filter out clients that you don't want to use
+			print(vim.pretty_print(clients))
 			return vim.tbl_filter(function(client)
 				return client.name ~= "tsserver"
 			end, clients)
@@ -44,6 +45,7 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
+					print("null_ls")
 					lsp_formatting(bufnr)
 				end,
 			})
