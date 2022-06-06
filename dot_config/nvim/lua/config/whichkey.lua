@@ -37,12 +37,12 @@ local opts = {
 
 local mappings = {
 	["<leader>"] = {
-		f = { "<cmd>Telescope find_files theme=ivy<cr>", i.ui.Telescope .. "Find files" },
-		F = { "<cmd>Telescope live_grep theme=ivy<cr>", i.ui.Search .. "Find Text" },
-		c = { "<cmd>Bdelete!<CR>", i.ui.Close .. "Close Buffer" },
+		f = { "<cmd>Telescope find_files theme=ivy<cr>", i.Telescope .. "Find files" },
+		F = { "<cmd>Telescope live_grep theme=ivy<cr>", i.Search .. "Find Text" },
+		c = { "<cmd>Bdelete!<CR>", i.Close .. "Close Buffer" },
 		e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
 		h = { "<cmd>nohlsearch<CR>", " No Highlight" },
-		q = { "<cmd>q<CR>", i.ui.CloseAll .. "Quit" },
+		q = { "<cmd>q<CR>", i.CloseAll .. "Quit" },
 		w = { "<cmd>w!<CR>", " Save" },
 
 		p = {

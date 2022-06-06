@@ -11,17 +11,17 @@ local i = require("config.icons")
 
 vim.g.nvim_tree_icons = {
 	git = {
-		unstaged = i.git.Mod:sub(1, -2),
-		staged = i.git.Add:sub(1, -2),
-		unmerged = i.git.Diff:sub(1, -2),
-		renamed = i.git.Rename:sub(1, -2),
-		deleted = i.git.Remove:sub(1, -2),
-		untracked = i.git.Untracked:sub(1, -2),
-		ignored = i.git.Ignore:sub(1, -2),
+		unstaged = i.Mod:sub(1, -2),
+		staged = i.Add:sub(1, -2),
+		unmerged = i.Diff:sub(1, -2),
+		renamed = i.Rename:sub(1, -2),
+		deleted = i.Remove:sub(1, -2),
+		untracked = i.Untracked:sub(1, -2),
+		ignored = i.Ignore:sub(1, -2),
 	},
 	folder = {
-		arrow_open = i.arrows.ChevronDown:sub(1, -2),
-		arrow_closed = i.arrows.ChevronRight:sub(1, -2),
+		arrow_open = i.ChevronDown:sub(1, -2),
+		arrow_closed = i.ChevronRight:sub(1, -2),
 	},
 }
 
@@ -36,9 +36,9 @@ nvim_tree.setup({
 		enable = true,
 		show_on_dirs = true,
 		icons = {
-			error = i.diagnostics.Error,
-			hint = i.diagnostics.Hint,
-			info = i.diagnostics.Information,
+			error = i.Error,
+			hint = i.Hint,
+			info = i.Information,
 		},
 	},
 	update_focused_file = {

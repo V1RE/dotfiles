@@ -10,8 +10,8 @@ local i = require("config.icons")
 telescope.setup({
 	defaults = {
 		theme = "ivy",
-		prompt_prefix = i.ui.Telescope,
-		selection_caret = i.arrows.ChevronRight,
+		prompt_prefix = i.Telescope,
+		selection_caret = i.ChevronRight,
 		path_display = { "smart" },
 
 		vimgrep_arguments = {

@@ -17,13 +17,13 @@ db.section.header.val = {
 }
 
 db.section.buttons.val = {
-	db.button("f", i.ui.Telescope .. " Find file", ":Telescope find_files <CR>"),
-	db.button("e", i.ui.Create .. " New file", ":ene <BAR> startinsert <CR>"),
-	db.button("p", i.ui.Project .. " Find project", ":Telescope projects <CR>"),
-	db.button("r", i.ui.History .. " Recently used files", ":Telescope oldfiles <CR>"),
-	db.button("t", i.ui.SearchCode .. " Find text", ":Telescope live_grep <CR>"),
-	db.button("c", i.ui.Gear .. " Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-	db.button("q", i.ui.Close .. " Quit Neovim", ":qa<CR>"),
+	db.button("f", i.Telescope .. " Find file", ":Telescope find_files <CR>"),
+	db.button("e", i.Create .. " New file", ":ene <BAR> startinsert <CR>"),
+	db.button("p", i.Project .. " Find project", ":Telescope projects <CR>"),
+	db.button("r", i.History .. " Recently used files", ":Telescope oldfiles <CR>"),
+	db.button("t", i.SearchCode .. " Find text", ":Telescope live_grep <CR>"),
+	db.button("c", i.Gear .. " Configuration", ":e ~/.config/nvim/init.lua <CR>"),
+	db.button("q", i.Close .. " Quit Neovim", ":qa<CR>"),
 }
 
 local function header()

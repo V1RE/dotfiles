@@ -8,27 +8,27 @@ local i = require("config.icons")
 gps.setup({
 	disable_icons = false, -- Setting it to true will disable all icons
 	icons = {
-		["class-name"] = i.kind.Class .. " ", -- Classes and class-like objects
-		["function-name"] = i.kind.Function .. " ", -- Functions
-		["method-name"] = i.kind.Method .. " ", -- Methods (functions inside class-like objects)
-		["container-name"] = i.type.Object .. " ", -- Containers (example: lua tables)
-		["tag-name"] = i.misc.Tag .. " ", -- Tags (example: html tags)
-		["mapping-name"] = i.type.Object .. " ",
-		["sequence-name"] = i.type.Array .. " ",
-		["null-name"] = i.kind.Field .. " ",
-		["boolean-name"] = i.type.Boolean .. " ",
-		["integer-name"] = i.type.Number .. " ",
-		["float-name"] = i.type.Number .. " ",
-		["string-name"] = i.type.String .. " ",
-		["array-name"] = i.type.Array .. " ",
-		["object-name"] = i.type.Object .. " ",
-		["number-name"] = i.type.Number .. " ",
-		["table-name"] = i.ui.Table .. " ",
-		["date-name"] = i.ui.Calendar .. " ",
-		["date-time-name"] = i.ui.Table .. " ",
-		["inline-table-name"] = i.ui.Calendar .. " ",
-		["time-name"] = i.misc.Watch .. " ",
-		["module-name"] = i.kind.Module .. " ",
+		["class-name"] = i.Class .. " ", -- Classes and class-like objects
+		["function-name"] = i.Function .. " ", -- Functions
+		["method-name"] = i.Method .. " ", -- Methods (functions inside class-like objects)
+		["container-name"] = i.Object .. " ", -- Containers (example: lua tables)
+		["tag-name"] = i.Tag .. " ", -- Tags (example: html tags)
+		["mapping-name"] = i.Object .. " ",
+		["sequence-name"] = i.Array .. " ",
+		["null-name"] = i.Field .. " ",
+		["boolean-name"] = i.Boolean .. " ",
+		["integer-name"] = i.Number .. " ",
+		["float-name"] = i.Number .. " ",
+		["string-name"] = i.String .. " ",
+		["array-name"] = i.Array .. " ",
+		["object-name"] = i.Object .. " ",
+		["number-name"] = i.Number .. " ",
+		["table-name"] = i.Table .. " ",
+		["date-name"] = i.Calendar .. " ",
+		["date-time-name"] = i.Table .. " ",
+		["inline-table-name"] = i.Calendar .. " ",
+		["time-name"] = i.Watch .. " ",
+		["module-name"] = i.Module .. " ",
 	},
 
 	-- Add custom configuration per language or
@@ -36,7 +36,7 @@ gps.setup({
 	-- Any language not disabled here is enabled by default
 	languages = {},
 
-	separator = " " .. i.ui.ChevronRight .. " ",
+	separator = " " .. i.ChevronRight .. " ",
 
 	-- limit for amount of context shown
 	-- 0 means no limit

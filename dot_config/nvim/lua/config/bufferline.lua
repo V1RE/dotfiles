@@ -16,9 +16,9 @@ bl.setup({
 		-- and so changing this is NOT recommended, this is intended
 		-- as an escape hatch for people who cannot bear it for whatever reason
 		indicator_icon = "▎",
-		buffer_close_icon = i.ui.Close,
-		modified_icon = i.ui.Circle,
-		close_icon = i.ui.CloseAll,
+		buffer_close_icon = i.Close,
+		modified_icon = i.Circle,
+		close_icon = i.CloseAll,
 		left_trunc_marker = "",
 		right_trunc_marker = "",
 		max_name_length = 30,
@@ -46,7 +46,7 @@ bl.setup({
 		--   end
 		-- end,
 		offsets = {
-			{ filetype = "NvimTree", text = i.documents.Files .. " Files", padding = 1 },
+			{ filetype = "NvimTree", text = i.NvimTree .. "Files", padding = 1 },
 		},
 		show_buffer_icons = true,
 		show_buffer_close_icons = true,

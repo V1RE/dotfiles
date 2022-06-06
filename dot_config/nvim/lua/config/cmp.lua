@@ -30,10 +30,10 @@ cmp.setup({
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.menu = vim_item.kind
-			vim_item.kind = i.kind[vim_item.kind]
+			vim_item.kind = i[vim_item.kind]
 
 			if entry.source.name == "cmp_tabnine" then
-				vim_item.kind = i.misc.Robot
+				vim_item.kind = i.Robot
 				vim_item.menu = "Tabnine"
 			end
 
