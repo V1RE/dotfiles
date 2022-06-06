@@ -199,8 +199,6 @@ return packer.startup(function(use)
 		run = "make",
 	})
 
-	use({ "nvim-telescope/telescope-file-browser.nvim" })
-
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
