@@ -37,7 +37,6 @@ local opts = {
 
 local mappings = {
 	["<leader>"] = {
-		a = { "<cmd>Alpha<cr>", i.ui.Dashboard .. "Alpha" },
 		b = {
 			function()
 				require("telescope").extensions.file_browser.file_browser(
