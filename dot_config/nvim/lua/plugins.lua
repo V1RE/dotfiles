@@ -223,7 +223,7 @@ return packer.startup(function(use)
 
 	use({
 		"mrjones2014/legendary.nvim",
-		config = require("config.legendary-nvim"),
+		-- config = require("config.legendary-nvim"),
 	})
 
 	use({
