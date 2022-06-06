@@ -42,11 +42,6 @@ return packer.startup(function(use)
 	use("wakatime/vim-wakatime")
 
 	use({
-		"j-hui/fidget.nvim",
-		config = require("fidget").setup({}),
-	})
-
-	use({
 		"phaazon/hop.nvim",
 		config = require("config.hop-nvim"),
 	})
@@ -207,6 +202,11 @@ return packer.startup(function(use)
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-ts-autotag")
+
+	use({
+		"j-hui/fidget.nvim",
+		config = require("config.fidget"),
+	})
 
 	-- Git
 	use({
