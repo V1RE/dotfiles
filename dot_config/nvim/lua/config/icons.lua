@@ -88,4 +88,12 @@ local M = {
 	Watch = " ",
 }
 
+local unspaced = {}
+
+for name, icon in pairs(M) do
+	unspaced[name] = icon:sub(1, -2)
+end
+
+M.unspaced = unspaced
+
 return M

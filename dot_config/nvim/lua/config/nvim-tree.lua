@@ -1,34 +1,15 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-local ok, tree_config = pcall(require, "nvim-tree.config")
+local ntree_ok, ntree = pcall(require, "nvim-tree")
+local ntreec_ok, ntreec = pcall(require, "nvim-tree.config")
 
-if not (status_ok and ok) then
+if not (ntree_ok and ntreec_ok) then
 	return
 end
 
-local tree_cb = tree_config.nvim_tree_callback
-
 local i = require("config.icons")
+local cb = ntreec.nvim_tree_callback
+local u = i.unspaced
 
-vim.g.nvim_tree_icons = {
-	git = {
-		unstaged = i.Mod:sub(1, -2),
-		staged = i.Add:sub(1, -2),
-		unmerged = i.Diff:sub(1, -2),
-		renamed = i.Rename:sub(1, -2),
-		deleted = i.Remove:sub(1, -2),
-		untracked = i.Untracked:sub(1, -2),
-		ignored = i.Ignore:sub(1, -2),
-	},
-	folder = {
-		arrow_open = i.ChevronDown:sub(1, -2),
-		arrow_closed = i.ChevronRight:sub(1, -2),
-	},
-}
-
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_git_hl = 1
-
-nvim_tree.setup({
+ntree.setup({
 	open_on_setup = true,
 	open_on_setup_file = true,
 	hijack_cursor = true,
@@ -54,9 +35,30 @@ nvim_tree.setup({
 		width = 40,
 		mappings = {
 			list = {
-				{ key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-				{ key = "h", cb = tree_cb("close_node") },
-				{ key = "v", cb = tree_cb("vsplit") },
+				{ key = { "l", "<CR>", "o" }, cb = cb("edit") },
+				{ key = "h", cb = cb("close_node") },
+				{ key = "v", cb = cb("vsplit") },
+			},
+		},
+	},
+	renderer = {
+		group_empty = true,
+		highlight_git = true,
+		icons = {
+			glyphs = {
+				git = {
+					unstaged = u.Mod,
+					staged = u.Add,
+					unmerged = u.Diff,
+					renamed = u.Rename,
+					deleted = u.Remove,
+					untracked = u.Untracked,
+					ignored = u.Ignore,
+				},
+				folder = {
+					arrow_open = u.ChevronDown,
+					arrow_closed = u.ChevronRight,
+				},
 			},
 		},
 	},
