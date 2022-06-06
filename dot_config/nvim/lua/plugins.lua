@@ -37,11 +37,6 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("MunifTanjim/nui.nvim")
 
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		config = require("config.refactoring"),
-	})
-
 	use("machakann/vim-sandwich")
 
 	use("wakatime/vim-wakatime")
@@ -135,7 +130,7 @@ return packer.startup(function(use)
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
-		config = require("config.catppuccin"),
+		config = require("config.catppuccin-nvim"),
 	})
 
 	-- snippets

@@ -1,4 +1,8 @@
-local which_key = require("which-key")
+local wk_ok, wk = pcall(require, "which-key")
+if not wk_ok then
+	return
+end
+
 local i = require("config.icons")
 
 local setup = {
@@ -120,12 +124,6 @@ local mappings = {
 			h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 			v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 		},
-
-		r = {
-			name = "Refactoring",
-			f = { "<cmd>lua require('telescope').extensions.refactoring.refactors()<cr>", "Open refactoring" },
-			d = { "<cmd>lua require('refactoring').debug.printf({below = true})<cr>", "Add debug printf" },
-		},
 	},
 
 	["<C-Space>"] = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "ToggleTerm" },
@@ -139,5 +137,5 @@ local mappings = {
 	},
 }
 
-which_key.setup(setup)
-which_key.register(mappings, opts)
+wk.setup(setup)
+wk.register(mappings, opts)

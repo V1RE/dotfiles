@@ -1,47 +1,47 @@
-local status_gps_ok, gps = pcall(require, "nvim-gps")
-if not status_gps_ok then
-  return
+local status_ok, gps = pcall(require, "nvim-gps")
+if not status_ok then
+	return
 end
 
-local icons = require("config.icons")
+local i = require("config.icons")
 
 gps.setup({
-  disable_icons = false, -- Setting it to true will disable all icons
-  icons = {
-    ["class-name"] = icons.kind.Class .. " ", -- Classes and class-like objects
-    ["function-name"] = icons.kind.Function .. " ", -- Functions
-    ["method-name"] = icons.kind.Method .. " ", -- Methods (functions inside class-like objects)
-    ["container-name"] = icons.type.Object .. " ", -- Containers (example: lua tables)
-    ["tag-name"] = icons.misc.Tag .. " ", -- Tags (example: html tags)
-    ["mapping-name"] = icons.type.Object .. " ",
-    ["sequence-name"] = icons.type.Array .. " ",
-    ["null-name"] = icons.kind.Field .. " ",
-    ["boolean-name"] = icons.type.Boolean .. " ",
-    ["integer-name"] = icons.type.Number .. " ",
-    ["float-name"] = icons.type.Number .. " ",
-    ["string-name"] = icons.type.String .. " ",
-    ["array-name"] = icons.type.Array .. " ",
-    ["object-name"] = icons.type.Object .. " ",
-    ["number-name"] = icons.type.Number .. " ",
-    ["table-name"] = icons.ui.Table .. " ",
-    ["date-name"] = icons.ui.Calendar .. " ",
-    ["date-time-name"] = icons.ui.Table .. " ",
-    ["inline-table-name"] = icons.ui.Calendar .. " ",
-    ["time-name"] = icons.misc.Watch .. " ",
-    ["module-name"] = icons.kind.Module .. " ",
-  },
+	disable_icons = false, -- Setting it to true will disable all icons
+	icons = {
+		["class-name"] = i.kind.Class .. " ", -- Classes and class-like objects
+		["function-name"] = i.kind.Function .. " ", -- Functions
+		["method-name"] = i.kind.Method .. " ", -- Methods (functions inside class-like objects)
+		["container-name"] = i.type.Object .. " ", -- Containers (example: lua tables)
+		["tag-name"] = i.misc.Tag .. " ", -- Tags (example: html tags)
+		["mapping-name"] = i.type.Object .. " ",
+		["sequence-name"] = i.type.Array .. " ",
+		["null-name"] = i.kind.Field .. " ",
+		["boolean-name"] = i.type.Boolean .. " ",
+		["integer-name"] = i.type.Number .. " ",
+		["float-name"] = i.type.Number .. " ",
+		["string-name"] = i.type.String .. " ",
+		["array-name"] = i.type.Array .. " ",
+		["object-name"] = i.type.Object .. " ",
+		["number-name"] = i.type.Number .. " ",
+		["table-name"] = i.ui.Table .. " ",
+		["date-name"] = i.ui.Calendar .. " ",
+		["date-time-name"] = i.ui.Table .. " ",
+		["inline-table-name"] = i.ui.Calendar .. " ",
+		["time-name"] = i.misc.Watch .. " ",
+		["module-name"] = i.kind.Module .. " ",
+	},
 
-  -- Add custom configuration per language or
-  -- Disable the plugin for a language
-  -- Any language not disabled here is enabled by default
-  languages = {},
+	-- Add custom configuration per language or
+	-- Disable the plugin for a language
+	-- Any language not disabled here is enabled by default
+	languages = {},
 
-  separator = " " .. icons.ui.ChevronRight .. " ",
+	separator = " " .. i.ui.ChevronRight .. " ",
 
-  -- limit for amount of context shown
-  -- 0 means no limit
-  depth = 0,
+	-- limit for amount of context shown
+	-- 0 means no limit
+	depth = 0,
 
-  -- indicator used when context hits depth limit
-  depth_limit_indicator = "..",
+	-- indicator used when context hits depth limit
+	depth_limit_indicator = "..",
 })
