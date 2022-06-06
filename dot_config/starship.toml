@@ -42,6 +42,10 @@ symbol = " "
 [python]
 symbol = " "
 
+[shlvl]
+disabled = false
+symbol = " "
+
 [directory.substitutions]
 "/" = " "
 "Code" = " "
