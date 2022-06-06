@@ -1,0 +1,18 @@
+name: Check
+on: push
+
+jobs:
+  trunk_check:
+    name: Trunk Check Upload
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@v1.0.3
+        with:
+          trunk-token: ${{ secrets.TRUNK_TOKEN }}
+          check-mode: all
+          arguments: --github-annotate-new-only=false
