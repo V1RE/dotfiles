@@ -24,13 +24,13 @@ xcode() {
 	open -a /Applications/Xcode.app ./ios/*.xcworkspace
 }
 
-# Generated on 2022-05-11T14:20:11+02:00.
-adbs() {
-	autoadb scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0
+# Generated on 2022-06-07T10:47:25+02:00.
+adbrs() {
+	adb reverse tcp:8081 tcp:8081
+	scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0
 }
 
-# Generated on 2022-06-07T10:47:25+02:00.
-adbrs() { 
-    adb reverse tcp:8081 tcp:8081
-    scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0
+# Generated on 2022-05-11T14:20:11+02:00.
+adbs() {
+	autoadb adbrs
 }
