@@ -42,7 +42,7 @@ function sb() {
     z $sbdir $@
   else
     local dir
-    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf`
+    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf --height 40% --reverse --border`
     cd $sbdir$dir
   fi
 
@@ -54,3 +54,9 @@ function sb() {
     figlet -f "big" -w 9999 $dirname | cut -c -$COLUMNS | lolcat
   fi
 }
+
+function adbrs() {
+	adb reverse tcp:8081 tcp:8081
+	scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0
+}
+
