@@ -26,10 +26,10 @@ xcode() {
 
 # Generated on 2022-05-11T14:20:11+02:00.
 adbs() {
-  autoadb scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0
+	autoadb scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0
 }
 
 # Generated on 2022-06-07T11:01:17+02:00.
-adbr() { 
-    autoadb adb reverse tcp:8081 tcp:8081
+adbr() {
+	autoadb adb reverse tcp:8081 tcp:8081
 }
