@@ -31,5 +31,5 @@ adbs() {
 
 # Generated on 2022-06-07T11:01:17+02:00.
 adbr() {
-	autoadb adb reverse tcp:8081 tcp:8081
+	autoadb adb -s '{}' reverse tcp:8081 tcp:8081
 }
