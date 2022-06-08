@@ -42,7 +42,7 @@ function sb() {
     z $sbdir $@
   else
     local dir
-    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf-tmux --height 40% --reverse --border --preview="exa $sbdir/{} --icons --color=always --classify --git --group-directories-first"`
+    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf-tmux --height 40% --reverse --border --preview="exa $sbdir/{} --icons --color=always -1 --classify --git --group-directories-first"`
     cd $sbdir$dir
   fi
 
