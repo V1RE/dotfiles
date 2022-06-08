@@ -177,6 +177,11 @@ return packer.startup(function(use)
 	use("b0o/schemastore.nvim")
 
 	use({
+		"b0o/incline.nvim",
+		config = require("config.incline"),
+	})
+
+	use({
 		"ray-x/lsp_signature.nvim",
 		config = require("config.signature"),
 	})

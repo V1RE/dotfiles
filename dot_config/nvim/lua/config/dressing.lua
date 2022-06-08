@@ -4,8 +4,4 @@ if not dressing_ok then
 	return
 end
 
-dressing.setup({
-	select = {
-		enabled = false,
-	},
-})
+dressing.setup({})
