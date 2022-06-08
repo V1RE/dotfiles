@@ -2,12 +2,12 @@
 	name = Niels Mentink
 	email = niels@ment.ink
 	signingkey = 48CE5B86599FB694
-
-[includeIf "gitdir:~/Code/Socialbrothers/"]
-  path = .gitconfig-sb
 [commit]
 	gpgsign = true
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /Users/niels/.gitignore
+	excludesfile = ~/.gitignore
+
+[includeIf "gitdir:~/Code/Socialbrothers/"]
+  path = .gitconfig-sb
