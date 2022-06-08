@@ -83,7 +83,7 @@ local mappings = {
 			k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
 			l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 			q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-			r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+			r = { vim.lsp.buf.rename, "Rename" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 			w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
 		},
