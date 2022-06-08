@@ -54,3 +54,12 @@ function sb() {
     figlet -f "big" -w 9999 $dirname | cut -c -$COLUMNS | lolcat
   fi
 }
+
+function adbw() { 
+  local wifion=`adb shell settings get global wifi_on`
+  if [[ $wifion == 1 ]]; then
+    adb shell svc wifi disable
+  else
+    adb shell svc wifi enable
+  fi
+}
