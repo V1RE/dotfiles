@@ -33,3 +33,8 @@ adbs() {
 adbr() {
 	autoadb adb -s '{}' reverse tcp:8081 tcp:8081
 }
+
+# Generated on 2022-06-08T13:18:04+02:00.
+adbw() { 
+    adb shell settings get global wifi_on
+}
