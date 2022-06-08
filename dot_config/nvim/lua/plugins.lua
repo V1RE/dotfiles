@@ -116,7 +116,10 @@ return packer.startup(function(use)
 		config = require("config.alpha"),
 	})
 
-	use({ "stevearc/dressing.nvim" })
+	use({
+		"stevearc/dressing.nvim",
+		config = require("config.dressing"),
+	})
 
 	-- Colorschemes
 	--use("lunarvim/darkplus.nvim")
