@@ -42,7 +42,7 @@ function sb() {
     z $sbdir $@
   else
     local dir
-    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf --height 40% --reverse --border`
+    dir=`find $sbdir/* -maxdepth 0 -type d -exec basename {} \; | fzf --height 40% --reverse --border --preview="exa {} --icons --color=always --classify --git --group-directories-first"`
     cd $sbdir$dir
   fi
 
