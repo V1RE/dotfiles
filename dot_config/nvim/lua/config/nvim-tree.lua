@@ -28,9 +28,6 @@ ntree.setup({
 	system_open = {
 		cmd = nil,
 	},
-	filters = {
-		custom = { "\\.git$" },
-	},
 	view = {
 		width = 40,
 		mappings = {
