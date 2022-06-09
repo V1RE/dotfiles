@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function sb() {
+	local sbdir
+	sbdir="$HOME/Code/Socialbrothers"
+
+	if (($# != 0)); then
+		local dir
+		dir=$(zoxide query "$sbdir" "$@")
+		cd "$dir" || return
+	else
+		local dir
+		dir=$(find "$sbdir" -depth 1 -maxdepth 1 -type d -exec basename {} \; | fzf-tmux --height 40% --reverse --border --preview="exa $sbdir/{} --icons --color=always -1 --classify --git --group-directories-first")
+		cd "$sbdir/$dir" || return
+	fi
+
+	local parent
+	parent=$(dirname "$PWD")
+	if [ "$OLDPWD" != "$PWD" ] && [ "$parent" -ef "$sbdir" ]; then
+		local dirname
+		dirname=$(basename "$(pwd)" | sed 's/-\|_/ /g' | sed '/\b(\S)/g')
+		figlet -f "big" -w 9999 "$dirname" | cut -c 1-$COLUMNS | lolcat
+	fi
+}
+
+sb "$@"
