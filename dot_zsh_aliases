@@ -19,6 +19,8 @@ function t() {
 alias tl="tmux ls"
 alias ta="tmux a"
 
+alias cm="chezmoi"
+
 # Dotfiles
 alias dots="chezmoi edit; chezmoi apply"
 
