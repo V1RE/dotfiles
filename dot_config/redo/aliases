@@ -35,7 +35,7 @@ adbr() {
 }
 
 # Generated on 2022-06-08T14:41:52+02:00.
-adbc() { 
-    adb shell pm clear com.iamsterdam.iamsterdam
-    adb shell monkey -p com.iamsterdam.iamsterdam 1
+adbc() {
+	adb shell pm clear com.iamsterdam.iamsterdam
+	adb shell monkey -p com.iamsterdam.iamsterdam 1
 }
