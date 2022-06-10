@@ -17,6 +17,8 @@ local formatting = null_ls.builtins.formatting
 local linters = null_ls.builtins.diagnostics
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#code-actions
 local code_actions = null_ls.builtins.code_actions
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#hover
+local hover = null_ls.builtins.hover
 
 null_ls.setup({
 	debug = false,
@@ -36,8 +38,10 @@ null_ls.setup({
 		linters.eslint_d,
 		linters.shellcheck,
 		linters.tidy,
+		linters.write_good,
 		code_actions.eslint_d,
 		code_actions.shellcheck,
+		hover.dictionary,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
