@@ -4,10 +4,10 @@ sbdir="${HOME}/Code/Socialbrothers"
 
 if (($# != 0)); then
 	dir=$(zoxide query "${sbdir}" "$@")
-	cd "${dir}" || return
+	cd "${dir}"
 else
 	dir=$(find "${sbdir}" -depth 1 -maxdepth 1 -type d -exec basename {} \; | fzf-tmux --height 40% --reverse --border --preview="exa ${sbdir}/{} --icons --color=always -1 --classify --git --group-directories-first")
-	cd "${sbdir}/${dir}" || return
+	cd "${sbdir}/${dir}"
 fi
 
 parent=$(dirname "${PWD}")
