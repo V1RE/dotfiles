@@ -46,8 +46,7 @@ local mappings = {
 		b = {
 			name = i.Buffer .. "Buffer",
 			s = { "<cmd>w!<CR>", i.Save .. "Save" },
-			d = { "<cmd>Bdelete this<CR>", i.Close .. "Close" },
-			a = { "<cmd>Bdelete other<CR>", i.CloseAll .. "Close all" },
+			d = { "<cmd>Bdelete<CR>", i.Close .. "Close" },
 			f = { telescope.buffers, i.Telescope .. "Find" },
 		},
 
