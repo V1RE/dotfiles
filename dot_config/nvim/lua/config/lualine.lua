@@ -26,7 +26,7 @@ local tree_spacing = function()
 		return ""
 	end
 
-	return a
+	return a .. "│"
 end
 
 local diagnostics = {
@@ -132,8 +132,10 @@ lualine.setup({
 		lualine_a = {
 			{
 				tree_spacing,
+				padding = 0,
 				color = {
-					bg = "#181825",
+					fg = "#181825",
+					bg = "#1e1e2e",
 				},
 			},
 			branch,
