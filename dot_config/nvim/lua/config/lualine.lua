@@ -125,8 +125,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = {
-      {branch,
-      },
+      branch,
 			diagnostics,
 			padding = { left = tree_spacing() },
 		},
