@@ -4,11 +4,12 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
+local themes = require("telescope.themes")
 
 local i = require("config.icons")
 
 telescope.setup({
-	defaults = {
+	defaults = themes.get_dropdown({
 		theme = "ivy",
 		prompt_prefix = i.Telescope,
 		selection_caret = i.ChevronRight,
@@ -90,7 +91,7 @@ telescope.setup({
 				["?"] = actions.which_key,
 			},
 		},
-	},
+	}),
 	pickers = {
 		find_files = {
 			find_command = { "fd", "--type=file", "--hidden", "--exclude=.git", "--strip-cwd-prefix" },
