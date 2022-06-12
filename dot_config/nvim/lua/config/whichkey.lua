@@ -46,13 +46,13 @@ local mappings = {
 			name = i.Buffer .. "Buffer",
 			s = { "<cmd>w!<CR>", i.Save .. "Save" },
 			d = { "<cmd>Bdelete this<CR>", i.Close .. "Close" },
-			q = { "<cmd>Bdelete other<CR>", i.CloseAll .. "Close all" },
+			a = { "<cmd>Bdelete other<CR>", i.CloseAll .. "Close all" },
 		},
 
-		w = {
+		j = {
 			name = i.Window .. "Window",
 			d = { "<cmd>q<CR>", i.Close .. "Close" },
-			q = { "<cmd>qa<CR>", i.CloseAll .. "Close all" },
+			a = { "<cmd>qa<CR>", i.CloseAll .. "Close all" },
 		},
 
 		p = {
