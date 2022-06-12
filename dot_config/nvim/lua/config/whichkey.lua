@@ -40,8 +40,8 @@ local mappings = {
 	["<leader>"] = {
 		f = { telescope.find_files, i.Telescope .. "Find files" },
 		F = { telescope.live_grep, i.Search .. "Find Text" },
-		e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
-		h = { "<cmd>nohlsearch<CR>", " No Highlight" },
+		e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
+		h = { "<cmd>nohlsearch<CR>", i.NoHighlight .. "Clear highlight" },
 
 		b = {
 			name = i.Buffer .. "Buffer",
@@ -84,10 +84,10 @@ local mappings = {
 		},
 
 		l = {
-			name = " LSP",
+			name = i.Field .. "LSP",
 			I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 			S = { telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
-			a = { "<cmd>Lspsaga range_code_action<cr>", "Code Action" },
+			a = { vim.lsp.buf.range_code_action, "Code Action" },
 			d = { telescope.lsp_document_diagnostics, "Document Diagnostics" },
 			f = { vim.lsp.buf.format, "Format" },
 			i = { "<cmd>LspInfo<cr>", "Info" },

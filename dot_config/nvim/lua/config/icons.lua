@@ -50,6 +50,7 @@ local M = {
 	Mod = " ",
 	Module = " ",
 	NewFile = " ",
+	NoHighlight = " ",
 	Note = " ",
 	Number = " ",
 	NvimTree = " ",
