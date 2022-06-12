@@ -103,6 +103,8 @@ return packer.startup(function(use)
 
 	use("lewis6991/impatient.nvim")
 
+	use("RRethy/vim-illuminate")
+
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = require("config.indentline"),

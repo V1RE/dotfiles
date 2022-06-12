@@ -80,6 +80,7 @@ local M = {
 	SymlinkFolder = " ",
 	Table = " ",
 	Tag = " ",
+	Goto = " ",
 	Telescope = " ",
 	Text = " ",
 	TypeParameter = " ",

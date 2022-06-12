@@ -123,9 +123,15 @@ local mappings = {
 	["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
 	[";"] = { telescope.commands, " Commands" },
 
+	K = { vim.lsp.buf.hover, i.Comment .. "Hover" },
+
 	g = {
-		a = { telescope.lsp_code_actions, "Code actions" },
-		d = { telescope.lsp_definitions, "Go to definition" },
+		name = i.Goto .. "Go to",
+		a = { vim.lsp.buf.range_code_action, i.Event .. "Code actions" },
+		d = { telescope.lsp_definitions, i.Constant .. "Definition" },
+		i = { telescope.lsp_implementations, i.Interface .. "Implementations" },
+		r = { telescope.lsp_references, i.Reference .. "References" },
+		l = { telescope.diagnostics, i.Warning .. "Diagnostics" },
 	},
 }
 
