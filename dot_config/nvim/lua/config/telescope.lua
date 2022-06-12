@@ -9,8 +9,7 @@ local themes = require("telescope.themes")
 local i = require("config.icons")
 
 telescope.setup({
-	defaults = themes.get_dropdown({
-		theme = "ivy",
+	defaults = themes.get_ivy({
 		prompt_prefix = i.Telescope,
 		selection_caret = i.ChevronRight,
 		path_display = { "smart" },
