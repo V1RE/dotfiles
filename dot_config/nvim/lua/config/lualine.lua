@@ -13,15 +13,15 @@ end
 local tree_spacing = function()
 	local tree_ok, tree = pcall(require, "nvim-tree.view")
 	if not tree_ok then
-		return 1
+		return ""
 	end
 
 	local is_visible = tree.is_visible()
 	if not is_visible then
-		return 1
+		return ""
 	end
 
-	return vim.api.nvim_win_get_width(tree.get_winnr()) + 1
+	return string.rep(" ", vim.api.nvim_win_get_width(tree.get_winnr()))
 end
 
 local diagnostics = {
@@ -126,6 +126,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = {
+			tree_spacing,
 			branch,
 			diagnostics,
 		},
