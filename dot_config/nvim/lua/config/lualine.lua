@@ -129,8 +129,10 @@ lualine.setup({
 		globalstatus = true,
 	},
 	sections = {
-		lualine_a = {
+		lualine_d = {
 			tree_spacing,
+		},
+		lualine_a = {
 			branch,
 			diagnostics,
 		},
