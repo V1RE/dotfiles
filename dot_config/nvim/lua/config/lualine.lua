@@ -89,7 +89,6 @@ local branch = {
 	"branch",
 	icons_enabled = true,
 	icon = i.Branch,
-	padding = { left = tree_spacing(), right = 1 },
 }
 
 local location = {
