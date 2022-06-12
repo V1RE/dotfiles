@@ -1,5 +1,5 @@
 local wk_ok, wk = pcall(require, "which-key")
-local telescope_ok, telescope = pcall(require, "telescope")
+local telescope_ok, telescope = pcall(require, "telescope.builtin")
 if not (wk_ok and telescope_ok) then
 	return
 end
@@ -48,7 +48,7 @@ local mappings = {
 			s = { "<cmd>w!<CR>", i.Save .. "Save" },
 			d = { "<cmd>Bdelete this<CR>", i.Close .. "Close" },
 			a = { "<cmd>Bdelete other<CR>", i.CloseAll .. "Close all" },
-			f = { telescope.builtin.buffers, i.Telescope .. "Find" },
+			f = { telescope.buffers, i.Telescope .. "Find" },
 		},
 
 		j = {
