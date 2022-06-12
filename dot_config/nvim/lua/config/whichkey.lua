@@ -123,8 +123,8 @@ local mappings = {
 	["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
 	[";"] = { telescope.commands, " Commands" },
 
-	["<S-l>"] = { "<cmd>bnext<cr>", i.ChevronRight .. "Next buffer" },
-	["<S-h>"] = { "<cmd>bprevious<cr>", i.ChevronLeft .. "Previouw buffer" },
+	L = { "<cmd>bnext<cr>", i.ChevronRight .. "Next buffer" },
+	H = { "<cmd>bprevious<cr>", i.ChevronLeft .. "Previouw buffer" },
 
 	K = { vim.lsp.buf.hover, i.Comment .. "Hover" },
 
