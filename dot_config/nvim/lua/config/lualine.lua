@@ -130,7 +130,10 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = {
-			tree_spacing,
+			{
+				tree_spacing,
+				color = {},
+			},
 		},
 		lualine_b = {
 			branch,
