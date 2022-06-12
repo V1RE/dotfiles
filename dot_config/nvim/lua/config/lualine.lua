@@ -21,7 +21,12 @@ local tree_spacing = function()
 		return ""
 	end
 
-	return string.rep(" ", tonumber(vim.api.nvim_win_get_width(tree.get_winnr())))
+	local a_ok, a = pcall(string.rep, " ", vim.api.nvim_win_get_width(tree.get_winnr()))
+	if not a_ok then
+		return ""
+	end
+
+	return a
 end
 
 local diagnostics = {
