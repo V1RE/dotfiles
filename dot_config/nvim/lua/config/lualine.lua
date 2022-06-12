@@ -10,6 +10,20 @@ local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
 
+local tree_spacing = function()
+	local tree_ok, tree = pcall(require, "nvim-tree.view")
+	if not tree_ok then
+		return 1
+	end
+
+	local is_visible = tree.is_visible()
+	if not is_visible then
+		return 1
+	end
+
+	return vim.api.nvim_win_get_width(tree.get_winnr()) + 1
+end
+
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -70,6 +84,7 @@ local branch = {
 	"branch",
 	icons_enabled = true,
 	icon = i.Branch,
+	padding = { left = tree_spacing(), right = 1 },
 }
 
 local location = {
@@ -99,20 +114,6 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-local tree_spacing = function()
-	local tree_ok, tree = pcall(require, "nvim-tree.view")
-	if not tree_ok then
-		return 1
-	end
-
-	local is_visible = tree.is_visible()
-	if not is_visible then
-		return 1
-	end
-
-	return vim.api.nvim_win_get_width(tree.get_winnr()) + 1
-end
-
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -125,9 +126,8 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = {
-      branch,
+			branch,
 			diagnostics,
-			padding = { left = tree_spacing() },
 		},
 		lualine_b = { mode },
 		lualine_c = { "filename", nvim_gps },
