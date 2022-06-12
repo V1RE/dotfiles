@@ -1,10 +1,6 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-	return
-end
-
-local status_gps_ok, gps = pcall(require, "nvim-gps")
-if not status_gps_ok then
+local lualine_ok, lualine = pcall(require, "lualine")
+local gps_ok, gps = pcall(require, "nvim-gps")
+if not (lualine_ok and gps_ok) then
 	return
 end
 
@@ -103,6 +99,20 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local tree_spacing = function()
+	local tree_ok, tree = pcall(require, "nvim-tree.view")
+	if not tree_ok then
+		return 1
+	end
+
+	local is_visible = tree.is_visible()
+	if not is_visible then
+		return 1
+	end
+
+	return vim.api.nvim_win_get_width(tree.get_winnr()) + 1
+end
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -114,7 +124,11 @@ lualine.setup({
 		globalstatus = true,
 	},
 	sections = {
-		lualine_a = { branch, diagnostics },
+		lualine_a = {
+			branch,
+			diagnostics,
+			padding = { left = tree_spacing() },
+		},
 		lualine_b = { mode },
 		lualine_c = { "filename", nvim_gps },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
