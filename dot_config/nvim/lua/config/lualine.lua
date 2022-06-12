@@ -134,7 +134,7 @@ lualine.setup({
 				tree_spacing,
 				padding = 0,
 				color = {
-					fg = "#181825",
+					fg = "#11111b",
 					bg = "#1e1e2e",
 				},
 			},
