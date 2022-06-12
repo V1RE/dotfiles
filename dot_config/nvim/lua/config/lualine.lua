@@ -132,15 +132,15 @@ lualine.setup({
 		lualine_a = {
 			{
 				tree_spacing,
-				color = {},
+				color = {
+					bg = "#181825",
+				},
 			},
-		},
-		lualine_b = {
 			branch,
 			diagnostics,
 		},
-		lualine_c = { mode },
-		lualine_d = { "filename", nvim_gps },
+		lualine_b = { mode },
+		lualine_c = { "filename", nvim_gps },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
