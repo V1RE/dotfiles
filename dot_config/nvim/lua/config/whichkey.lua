@@ -38,8 +38,8 @@ local opts = {
 
 local mappings = {
 	["<leader>"] = {
-		f = { "<cmd>Telescope find_files theme=ivy<cr>", i.Telescope .. "Find files" },
-		F = { "<cmd>Telescope live_grep theme=ivy<cr>", i.Search .. "Find Text" },
+		f = { telescope.find_files, i.Telescope .. "Find files" },
+		F = { telescope.live_grep, i.Search .. "Find Text" },
 		e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
 		h = { "<cmd>nohlsearch<CR>", " No Highlight" },
 
@@ -69,14 +69,14 @@ local mappings = {
 		g = {
 			name = " Git",
 			R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
-			b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-			c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+			b = { telescope.git_branches, "Checkout branch" },
+			c = { telescope.git_commits, "Checkout commit" },
 			d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 			g = { _LAZYGIT_TOGGLE, "Lazygit" },
 			j = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
 			k = { "<cmd>Gitsigns prev_hunk<cr>", "Prev Hunk" },
 			l = { "<cmd>Gitsigns blame_line<cr>", "Blame" },
-			o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+			o = { telescope.git_status, "Open changed file" },
 			p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
 			r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
 			s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
@@ -86,9 +86,9 @@ local mappings = {
 		l = {
 			name = " LSP",
 			I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
+			S = { telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
 			a = { "<cmd>Lspsaga range_code_action<cr>", "Code Action" },
-			d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
+			d = { telescope.lsp_document_diagnostics, "Document Diagnostics" },
 			f = { vim.lsp.buf.format, "Format" },
 			i = { "<cmd>LspInfo<cr>", "Info" },
 			j = { vim.lsp.diagnostic.goto_next, "Next Diagnostic" },
@@ -96,19 +96,19 @@ local mappings = {
 			l = { vim.lsp.codelens.run, "CodeLens Action" },
 			q = { vim.lsp.diagnostic.set_loclist, "Quickfix" },
 			r = { vim.lsp.buf.rename, "Rename" },
-			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-			w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+			s = { telescope.lsp_document_symbols, "Document Symbols" },
+			w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostics" },
 		},
 		s = {
 			name = " Search",
-			C = { "<cmd>Telescope commands<cr>", "Commands" },
-			M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-			R = { "<cmd>Telescope registers<cr>", "Registers" },
-			b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-			c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-			h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-			k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+			C = { telescope.commands, "Commands" },
+			M = { telescope.man_pages, "Man Pages" },
+			R = { telescope.registers, "Registers" },
+			b = { telescope.git_branches, "Checkout branch" },
+			c = { telescope.colorscheme, "Colorscheme" },
+			h = { telescope.help_tags, "Find Help" },
+			k = { telescope.keymaps, "Keymaps" },
+			r = { telescope.oldfiles, "Open Recent File" },
 		},
 
 		t = {
@@ -122,11 +122,11 @@ local mappings = {
 	["<C-Space>"] = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "ToggleTerm" },
 
 	["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
-	[";"] = { "<cmd>Telescope commands<cr>", " Commands" },
+	[";"] = { telescope.commands, " Commands" },
 
 	g = {
-		a = { "<cmd>Telescope lsp_code_actions<cr>", "Code actions" },
-		d = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
+		a = { telescope.lsp_code_actions, "Code actions" },
+		d = { telescope.lsp_definitions, "Go to definition" },
 	},
 }
 
