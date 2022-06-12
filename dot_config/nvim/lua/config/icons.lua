@@ -6,6 +6,7 @@ local M = {
 	BookMark = " ",
 	Boolean = " ",
 	Branch = " ",
+	Buffer = " ",
 	Bug = " ",
 	Calendar = " ",
 	Check = " ",
@@ -65,6 +66,7 @@ local M = {
 	Rename = " ",
 	Repo = " ",
 	Robot = " ",
+	Save = " ",
 	Search = " ",
 	SearchCode = " ",
 	SignIn = " ",
@@ -86,6 +88,7 @@ local M = {
 	Variable = " ",
 	Warning = " ",
 	Watch = " ",
+	Window = " ",
 }
 
 local unspaced = {}

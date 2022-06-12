@@ -39,11 +39,21 @@ local mappings = {
 	["<leader>"] = {
 		f = { "<cmd>Telescope find_files theme=ivy<cr>", i.Telescope .. "Find files" },
 		F = { "<cmd>Telescope live_grep theme=ivy<cr>", i.Search .. "Find Text" },
-		c = { "<cmd>Bdelete!<CR>", i.Close .. "Close Buffer" },
 		e = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
 		h = { "<cmd>nohlsearch<CR>", " No Highlight" },
-		q = { "<cmd>q<CR>", i.CloseAll .. "Quit" },
-		w = { "<cmd>w!<CR>", " Save" },
+
+		b = {
+			name = i.Buffer .. "Buffer",
+			s = { "<cmd>w!<CR>", i.Save .. "Save" },
+			d = { "<cmd>Bdelete this<CR>", i.Close .. "Close" },
+			q = { "<cmd>Bdelete other<CR>", i.CloseAll .. "Close all" },
+		},
+
+		w = {
+			name = i.Window .. "Window",
+			d = { "<cmd>q<CR>", i.Close .. "Close" },
+			q = { "<cmd>qa<CR>", i.CloseAll .. "Close all" },
+		},
 
 		p = {
 			name = " Packer",

@@ -230,6 +230,8 @@ return packer.startup(function(use)
 		config = require("config.legendary-nvim"),
 	})
 
+	use("Asheq/close-buffers.vim")
+
 	use({
 		"folke/which-key.nvim",
 		config = require("config.whichkey"),
