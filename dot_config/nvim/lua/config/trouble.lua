@@ -4,7 +4,6 @@ if not trouble_ok then
 end
 
 trouble.setup({
+	position = "right",
 	height = 4,
-	auto_open = true,
-	auto_close = true,
 })
