@@ -134,7 +134,7 @@ local mappings = {
 		d = { telescope.lsp_definitions, i.Constant .. "Definition" },
 		i = { telescope.lsp_implementations, i.Interface .. "Implementations" },
 		r = { telescope.lsp_references, i.Reference .. "References" },
-		l = { telescope.diagnostics, i.Warning .. "Diagnostics" },
+		l = { "<cmd>TroubleToggle document_diagnostics<cr>", i.Warning .. "Diagnostics" },
 	},
 }
 

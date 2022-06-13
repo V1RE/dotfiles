@@ -2,254 +2,254 @@ local fn = vim.fn
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
-  print("Installing packer close and reopen Neovim...")
-  vim.cmd([[packadd packer.nvim]])
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer close and reopen Neovim...")
+	vim.cmd([[packadd packer.nvim]])
 end
 
 -- Use a protected call so we don't error out on first use
 local packer_ok, packer = pcall(require, "packer")
 if not packer_ok then
-  return
+	return
 end
 
 -- Have packer use a popup window
 packer.init({
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-    end,
-  },
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "rounded" })
+		end,
+	},
 })
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
-  use("wbthomason/packer.nvim")
-  use("nvim-lua/popup.nvim")
-  use("nvim-lua/plenary.nvim")
-  use("MunifTanjim/nui.nvim")
+	-- My plugins here
+	use("wbthomason/packer.nvim")
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
+	use("MunifTanjim/nui.nvim")
 
-  use("machakann/vim-sandwich")
+	use("machakann/vim-sandwich")
 
-  use("wakatime/vim-wakatime")
+	use("wakatime/vim-wakatime")
 
-  use({
-    "phaazon/hop.nvim",
-    config = require("config.hop-nvim"),
-  })
+	use({
+		"phaazon/hop.nvim",
+		config = require("config.hop-nvim"),
+	})
 
-  use({
-    "windwp/nvim-autopairs",
-    config = require("config.autopairs"),
-  })
+	use({
+		"windwp/nvim-autopairs",
+		config = require("config.autopairs"),
+	})
 
-  use({
-    "numToStr/Comment.nvim",
-    config = require("config.comment"),
-  })
+	use({
+		"numToStr/Comment.nvim",
+		config = require("config.comment"),
+	})
 
-  use({
-    "SmiteshP/nvim-gps",
-    requires = "nvim-treesitter/nvim-treesitter",
-    config = require("config.gps"),
-  })
+	use({
+		"SmiteshP/nvim-gps",
+		requires = "nvim-treesitter/nvim-treesitter",
+		config = require("config.gps"),
+	})
 
-  use({
-    "norcalli/nvim-colorizer.lua",
-    config = require("config.colorizer"),
-  })
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = require("config.colorizer"),
+	})
 
-  use({
-    "kyazdani42/nvim-web-devicons",
-    config = require("config.webdevicons"),
-  })
+	use({
+		"kyazdani42/nvim-web-devicons",
+		config = require("config.webdevicons"),
+	})
 
-  use({
-    "kyazdani42/nvim-tree.lua",
-    config = require("config.nvim-tree"),
-  })
+	use({
+		"kyazdani42/nvim-tree.lua",
+		config = require("config.nvim-tree"),
+	})
 
-  use({
-    "akinsho/bufferline.nvim",
-    config = require("config.bufferline"),
-  })
+	use({
+		"akinsho/bufferline.nvim",
+		config = require("config.bufferline"),
+	})
 
-  use("alker0/chezmoi.vim")
+	use("alker0/chezmoi.vim")
 
-  use("moll/vim-bbye")
+	use("moll/vim-bbye")
 
-  use({
-    "nvim-lualine/lualine.nvim",
-    config = require("config.lualine"),
-  })
+	use({
+		"nvim-lualine/lualine.nvim",
+		config = require("config.lualine"),
+	})
 
-  use({
-    "akinsho/toggleterm.nvim",
-    config = require("config.toggleterm"),
-  })
+	use({
+		"akinsho/toggleterm.nvim",
+		config = require("config.toggleterm"),
+	})
 
-  use({
-    "ahmedkhalf/project.nvim",
-    config = require("config.project"),
-  })
+	use({
+		"ahmedkhalf/project.nvim",
+		config = require("config.project"),
+	})
 
-  use({
-    "ghillb/cybu.nvim",
-    config = require("config.cybu"),
-  })
+	use({
+		"ghillb/cybu.nvim",
+		config = require("config.cybu"),
+	})
 
-  use("lewis6991/impatient.nvim")
+	use("lewis6991/impatient.nvim")
 
-  use("RRethy/vim-illuminate")
+	use("RRethy/vim-illuminate")
 
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    config = require("config.indentline"),
-  })
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = require("config.indentline"),
+	})
 
-  use("antoinemadec/FixCursorHold.nvim")
-  use("christoomey/vim-tmux-navigator")
+	use("antoinemadec/FixCursorHold.nvim")
+	use("christoomey/vim-tmux-navigator")
 
-  use({
-    "goolord/alpha-nvim",
-    config = require("config.alpha"),
-  })
+	use({
+		"goolord/alpha-nvim",
+		config = require("config.alpha"),
+	})
 
-  use({
-    "stevearc/dressing.nvim",
-    config = require("config.dressing"),
-  })
+	use({
+		"stevearc/dressing.nvim",
+		config = require("config.dressing"),
+	})
 
-  -- Colorschemes
-  --use("lunarvim/darkplus.nvim")
-  --use("lunarvim/onedarker.nvim")
-  --use("EdenEast/nightfox.nvim")
-  use({
-    "catppuccin/nvim",
-    as = "catppuccin",
-    config = require("config.catppuccin-nvim"),
-  })
+	-- Colorschemes
+	--use("lunarvim/darkplus.nvim")
+	--use("lunarvim/onedarker.nvim")
+	--use("EdenEast/nightfox.nvim")
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = require("config.catppuccin-nvim"),
+	})
 
-  -- snippets
-  use({
-    "L3MON4D3/LuaSnip",
-    config = require("config.luasnippets"),
-  })
+	-- snippets
+	use({
+		"L3MON4D3/LuaSnip",
+		config = require("config.luasnippets"),
+	})
 
-  -- cmp plugins
-  use({
-    "hrsh7th/nvim-cmp",
-    requires = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-emoji",
-    },
-    config = require("config.cmp"),
-  })
+	-- cmp plugins
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-emoji",
+		},
+		config = require("config.cmp"),
+	})
 
-  use({
-    "tzachar/cmp-tabnine",
-    config = require("config.tabnine"),
+	use({
+		"tzachar/cmp-tabnine",
+		config = require("config.tabnine"),
 
-    run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp",
-  })
+		run = "./install.sh",
+		requires = "hrsh7th/nvim-cmp",
+	})
 
-  use("rafamadriz/friendly-snippets")
+	use("rafamadriz/friendly-snippets")
 
-  -- LSP
-  use({
-    "neovim/nvim-lspconfig",
-    config = require("config.lsp"),
-  })
+	-- LSP
+	use({
+		"neovim/nvim-lspconfig",
+		config = require("config.lsp"),
+	})
 
-  use("williamboman/nvim-lsp-installer")
+	use("williamboman/nvim-lsp-installer")
 
-  use("tamago324/nlsp-settings.nvim")
+	use("tamago324/nlsp-settings.nvim")
 
-  use("jose-elias-alvarez/null-ls.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
 
-  use("b0o/schemastore.nvim")
+	use("b0o/schemastore.nvim")
 
-  use({
-    "b0o/incline.nvim",
-    config = require("config.incline"),
-  })
+	use({
+		"b0o/incline.nvim",
+		config = require("config.incline"),
+	})
 
-  use({
-    "ray-x/lsp_signature.nvim",
-    config = require("config.signature"),
-  })
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = require("config.signature"),
+	})
 
-  use({
-    "tami5/lspsaga.nvim",
-    config = require("config.lspsaga"),
-  })
+	use({
+		"tami5/lspsaga.nvim",
+		config = require("config.lspsaga"),
+	})
 
-  -- Telescope
-  use({
-    "nvim-telescope/telescope.nvim",
-    config = require("config.telescope"),
-  })
+	-- Telescope
+	use({
+		"nvim-telescope/telescope.nvim",
+		config = require("config.telescope"),
+	})
 
-  use({
-    "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make",
-  })
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make",
+	})
 
-  use({ "nvim-telescope/telescope-ui-select.nvim" })
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
-  -- Treesitter
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    config = require("config.treesitter"),
-  })
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("windwp/nvim-ts-autotag")
-  use("mizlan/iswap.nvim")
+	-- Treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = require("config.treesitter"),
+	})
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("windwp/nvim-ts-autotag")
+	use("mizlan/iswap.nvim")
 
-  use({
-    "j-hui/fidget.nvim",
-    config = require("config.fidget"),
-  })
+	use({
+		"j-hui/fidget.nvim",
+		config = require("config.fidget"),
+	})
 
-  use({
-    "folke/trouble.nvim",
-    config = require("config.trouble"),
-  })
+	use({
+		"folke/trouble.nvim",
+		config = require("config.trouble"),
+	})
 
-  -- Git
-  use({
-    "lewis6991/gitsigns.nvim",
-    config = require("config.gitsigns"),
-  })
+	-- Git
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = require("config.gitsigns"),
+	})
 
-  use({
-    "mrjones2014/legendary.nvim",
-    config = require("config.legendary-nvim"),
-  })
+	use({
+		"mrjones2014/legendary.nvim",
+		config = require("config.legendary-nvim"),
+	})
 
-  use({
-    "folke/which-key.nvim",
-    config = require("config.whichkey"),
-  })
+	use({
+		"folke/which-key.nvim",
+		config = require("config.whichkey"),
+	})
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if PACKER_BOOTSTRAP then
+		require("packer").sync()
+	end
 end)

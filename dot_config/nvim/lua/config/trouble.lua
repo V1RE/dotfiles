@@ -1,6 +1,10 @@
 local trouble_ok, trouble = pcall(require, "trouble")
 if not trouble_ok then
-  return
+	return
 end
 
-trouble.setup({})
+trouble.setup({
+	height = 4,
+	auto_open = true,
+	auto_close = true,
+})
