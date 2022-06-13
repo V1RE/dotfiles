@@ -4,6 +4,9 @@ if not cybu_ok then
 end
 
 cybu.setup({
+	style = {
+		path = "tail",
+	},
 	exclude = {
 		"neo-tree",
 		"fugitive",
