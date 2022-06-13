@@ -226,6 +226,11 @@ return packer.startup(function(use)
     config = require("config.fidget"),
   })
 
+  use({
+    "folke/trouble.nvim",
+    config = require("config.trouble"),
+  })
+
   -- Git
   use({
     "lewis6991/gitsigns.nvim",
