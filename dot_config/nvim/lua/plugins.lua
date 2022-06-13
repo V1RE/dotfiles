@@ -101,6 +101,10 @@ return packer.startup(function(use)
 		config = require("config.project"),
 	})
 
+	use({
+		"ghillb/cybu.nvim",
+	})
+
 	use("lewis6991/impatient.nvim")
 
 	use("RRethy/vim-illuminate")
