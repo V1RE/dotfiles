@@ -4,6 +4,9 @@ if not cybu_ok then
 end
 
 cybu.setup({
+	position = {
+		relative_to = "editor",
+	},
 	style = {
 		path = "tail",
 	},
