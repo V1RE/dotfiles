@@ -10,6 +10,17 @@ dial.augends:register_group({
 		augend.integer.alias.decimal,
 		augend.integer.alias.hex,
 		augend.integer.alias.binary,
+		augend.constant.alias.bool,
+		augend.constant.new({
+			elements = { "public", "private" },
+			word = true,
+			cyclic = true,
+		}),
+		augend.constant.new({
+			elements = { "&&", "||" },
+			word = false,
+			cyclic = true,
+		}),
 		augend.date.alias["%Y/%m/%d"],
 		augend.date.alias["%Y-%m-%d"],
 		augend.date.alias["%H:%M:%S"],
