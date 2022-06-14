@@ -222,6 +222,11 @@ return packer.startup(function(use)
 	use("mizlan/iswap.nvim")
 
 	use({
+		"monaqa/dial.nvim",
+		config = require("config.dial"),
+	})
+
+	use({
 		"j-hui/fidget.nvim",
 		config = require("config.fidget"),
 	})
