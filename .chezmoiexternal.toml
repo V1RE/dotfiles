@@ -1,0 +1,4 @@
+[".hammerspoon/Spoons/ControlEscape.spoon"]
+type = "git-repo"
+url = "https://github.com/jasonrudolph/ControlEscape.spoon"
+refreshPeriod = "168h"
