@@ -40,8 +40,8 @@ local mappings = {
 	["<leader>"] = {
 		f = { telescope.find_files, i.Telescope .. "Find files" },
 		F = { telescope.live_grep, i.Search .. "Find Text" },
-		-- e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
-		e = { _LFPICKER_TOGGLE, i.NvimTree .. "Explorer" },
+		e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
+		k = { _LFPICKER_TOGGLE, i.Class .. "File Manager" },
 		h = { "<cmd>nohlsearch<CR>", i.NoHighlight .. "Clear highlight" },
 
 		b = {
