@@ -17,7 +17,7 @@ cmd broot_jump ${{
 }}
 
 cmd fzf_jump ${{
-  res="$(find . -maxdepth 3 | fzf-tmux --height 40% --reverse --header='Jump to location')"
+  res="$(find . -maxdepth 3 | fzf --height 40% --reverse --header='Jump to location')"
   if [ -f "$res" ]; then
     cmd="select"
   elif [ -d "$res" ]; then
