@@ -72,6 +72,7 @@ eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(gh completion -s zsh)"
 source "$(redo alias-file)"
+source "$HOME/.config/lf/lficons.zsh"
 
 export PATH="$HOME/go/bin/:$PATH"
 
