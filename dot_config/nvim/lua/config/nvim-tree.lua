@@ -12,6 +12,7 @@ local u = i.unspaced
 ntree.setup({
 	open_on_setup = false,
 	open_on_setup_file = false,
+	hijack_netrw = false,
 	hijack_cursor = true,
 	diagnostics = {
 		enable = true,
