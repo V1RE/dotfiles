@@ -28,4 +28,4 @@ cmd fzf_jump ${{
 
 cmd open $$EDITOR "$f"
 
-map f $vi $(fzf)
+map f fzf_jump
