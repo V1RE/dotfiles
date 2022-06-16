@@ -32,7 +32,7 @@ export GPG_TTY=$TTY
 
 # z4h bindkey _ranger              Ctrl+Space
 # z4h bindkey _atuin_search_widget Ctrl+R
-bindkey -s '^ ' 'redo^M'
+bindkey -s '^ ' 'lfcd^M'
 
 # Autoload functions.
 autoload -Uz zmv
