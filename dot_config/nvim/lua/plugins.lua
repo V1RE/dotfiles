@@ -41,6 +41,10 @@ return packer.startup(function(use)
 
 	use("wakatime/vim-wakatime")
 
+	use("ptzz/lf.vim")
+
+	use("voldikss/vim-floaterm")
+
 	use({
 		"phaazon/hop.nvim",
 		config = require("config.hop-nvim"),
