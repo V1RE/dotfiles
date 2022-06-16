@@ -7,6 +7,7 @@ update() {
 	brew upgrade
 	brew reinstall neovim
 	yarn global upgrade --latest
+	cargo install-update -a
 }
 
 # Generated on 2022-04-22T16:21:46+02:00.
