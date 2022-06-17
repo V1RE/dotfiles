@@ -44,7 +44,10 @@ return packer.startup(function(use)
 
 	use("wakatime/vim-wakatime")
 
-	use("ptzz/lf.vim")
+	use({
+		"ptzz/lf.vim",
+		config = require("config.lf"),
+	})
 
 	use("voldikss/vim-floaterm")
 
