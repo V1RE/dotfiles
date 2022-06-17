@@ -5,4 +5,5 @@ end
 
 trouble.setup({
 	height = 4,
+	auto_close = true,
 })
