@@ -15,8 +15,8 @@ end
 -- })
 
 local function jump(dir)
-		return function()
-	if ls.jumpable(dir) then
+	return function()
+		if ls.jumpable(dir) then
 			ls.jump(dir)
 		end
 	end

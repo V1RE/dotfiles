@@ -14,6 +14,7 @@ ntree.setup({
 	open_on_setup_file = false,
 	hijack_cursor = true,
 	hijack_netrw = false,
+	disable_netrw = true,
 	diagnostics = {
 		enable = true,
 		show_on_dirs = true,
