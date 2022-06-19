@@ -25,9 +25,9 @@ for _, server in ipairs(lspinstaller.get_installed_servers()) do
 		capabilities = capabilities,
 	}
 
-	-- if server.name == "sumneko_lua" then
-	-- 	opts = vim.tbl_deep_extend("force", require("lua-dev").setup(), opts)
-	-- end
+	if server.name == "sumneko_lua" then
+		opts = vim.tbl_deep_extend("force", require("lua-dev").setup(), opts)
+	end
 
 	lspconfig[server.name].setup(opts)
 end
