@@ -185,6 +185,8 @@ return packer.startup(function(use)
 		config = require("config.lsp"),
 	})
 
+	use("folke/lua-dev.nvim")
+
 	use("williamboman/nvim-lsp-installer")
 
 	use("tamago324/nlsp-settings.nvim")
