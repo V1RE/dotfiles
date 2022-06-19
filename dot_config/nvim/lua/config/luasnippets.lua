@@ -14,18 +14,13 @@ end
 --   }),
 -- })
 
--- <c-k> is my expansion key
--- this will expand the current item or jump to the next item within the snippet.
-vim.keymap.set({ "i", "s" }, "<c-k>", function()
-	if ls.expand_or_jumpable() then
-		ls.expand_or_jump()
+local function jump(dir)
+	if ls.jumpable(dir) then
+		return function()
+			ls.jump(dir)
+		end
 	end
-end, { silent = true })
+end
 
--- <c-j> is my jump backwards key.
--- this always moves to the previous item within the snippet
-vim.keymap.set({ "i", "s" }, "<c-j>", function()
-	if ls.jumpable(-1) then
-		ls.jump(-1)
-	end
-end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<c-k>", jump(1), { silent = true })
+vim.keymap.set({ "i", "s" }, "<c-j>", jump(-1), { silent = true })
