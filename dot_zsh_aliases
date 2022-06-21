@@ -31,6 +31,8 @@ alias ll="ls --long"
 alias la="ll -a"
 alias tree="ll --tree --level=3"
 
+alias dev="mprocs"
+
 # Git
 alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
