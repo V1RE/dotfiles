@@ -18,6 +18,7 @@ antigen bundle wfxr/forgit
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Aloxaf/fzf-tab
+antigen bundle djui/alias-tips
 
 antigen bundle zdharma-continuum/fast-syntax-highlighting
 
