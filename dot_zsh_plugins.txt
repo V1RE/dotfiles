@@ -1,1 +1,8 @@
+zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
+
+joshskidmore/zsh-fzf-history-search
+
+ohmyzsh/ohmyzsh   path:plugins/colored-man-pages
+
+zdharma-continuum/fast-syntax-highlighting kind:defer
