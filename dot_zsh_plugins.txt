@@ -3,7 +3,7 @@ jeffreytse/zsh-vi-mode
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-joshskidmore/zsh-fzf-history-search
+joshskidmore/zsh-fzf-history-search kind:defer
 
 Aloxaf/fzf-tab
 
