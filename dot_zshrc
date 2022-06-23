@@ -1,4 +1,3 @@
-zmodload zsh/zprof
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -105,4 +104,3 @@ source ~/.zsh_aliases
 # command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
 eval "$(zoxide init zsh)"
-zprof
