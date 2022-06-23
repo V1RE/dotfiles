@@ -1,3 +1,5 @@
+jeffreytse/zsh-vi-mode
+
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
@@ -9,4 +11,5 @@ ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
-jeffreytse/zsh-vi-mode
+wfxr/forgit kind:defer
+djui/alias-tips kind:defer
