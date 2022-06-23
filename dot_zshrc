@@ -49,6 +49,8 @@ export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 
+export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
+
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 
 eval "$(starship init zsh)"
