@@ -40,7 +40,6 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 export GPG_TTY=$TTY
 
 # z4h bindkey _ranger              Ctrl+Space
-# z4h bindkey _atuin_search_widget Ctrl+R
 bindkey -s '^ ' 'lfcd^M'
 
 # Autoload functions.
@@ -67,7 +66,6 @@ export MANPAGER='$EDITOR +Man!'
 export MANWIDTH=999
 export BAT_PAGER="/usr/bin/less"
 export BROWSER="open"
-export ATUIN_NOBIND="true"
 export REDO_HISTORY_PATH="$HISTFILE"
 export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 export HISTSIZE=1000000000
@@ -77,7 +75,6 @@ setopt EXTENDED_HISTORY
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 
 eval "$(starship init zsh)"
-eval "$(atuin init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(gh completion -s zsh)"
 source "$(redo alias-file)"
