@@ -8,3 +8,5 @@ Aloxaf/fzf-tab
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
 zdharma-continuum/fast-syntax-highlighting kind:defer
+
+jeffreytse/zsh-vi-mode
