@@ -5,6 +5,7 @@ then
   autoload -Uz compinit
   compinit
 fi
+zmodload zsh/zprof
 
 source /opt/homebrew/share/antigen/antigen.zsh
 
