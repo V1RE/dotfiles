@@ -47,7 +47,7 @@ return {
 		{ key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
 		{
 			key = "Space",
-			mods = "ALT",
+			mods = "CTRL",
 			action = wezterm.action.ShowLauncherArgs({
 				flags = "FUZZY|WORKSPACES",
 			}),
