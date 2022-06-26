@@ -28,6 +28,24 @@ return {
 		top = 0,
 		bottom = 0,
 	},
-	keys = require("keys"),
+	keys = {
+		{
+			key = "[",
+			mods = "CMD",
+			action = {
+				Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "h", mods = "CTRL" } } },
+			},
+		},
+		{
+			key = "]",
+			mods = "CMD",
+			action = {
+				Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "l", mods = "CTRL" } } },
+			},
+		},
+		{ key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
+		{ key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
+		{ key = "Space", mods = "ALT", action = wezterm.action.ShowLauncher },
+	},
 	window_decorations = "RESIZE",
 }
