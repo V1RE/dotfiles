@@ -45,7 +45,13 @@ return {
 		},
 		{ key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
 		{ key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
-		{ key = "Space", mods = "ALT", action = wezterm.action.ShowLauncher },
+		{
+			key = "Space",
+			mods = "ALT",
+			action = wezterm.action.ShowLauncherArgs({
+				flags = "FUZZY|WORKSPACES",
+			}),
+		},
 	},
 	window_decorations = "RESIZE",
 }
