@@ -29,6 +29,7 @@ return {
 		bottom = 0,
 	},
 	use_fancy_tab_bar = false,
+	tab_bar_at_bottom = true,
 	keys = {
 		{
 			key = "[",
