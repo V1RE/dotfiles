@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
@@ -47,10 +48,12 @@ return {
 		},
 		-- { key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
 		-- { key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
+		{ key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
+		{ key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
 		{
 			key = "Space",
 			mods = "CTRL",
-			action = wezterm.action.ShowLauncherArgs({
+			action = act.ShowLauncherArgs({
 				flags = "FUZZY|WORKSPACES",
 			}),
 		},
