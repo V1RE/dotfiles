@@ -46,19 +46,19 @@ return {
 				Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "l", mods = "CTRL" } } },
 			},
 		},
-		-- { key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
-		-- { key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
+		{ key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
+		{ key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
 		{ key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
 		{ key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
 		{ key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
 		{ key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
-		{
-			key = "Space",
-			mods = "CTRL",
-			action = act.ShowLauncherArgs({
-				flags = "FUZZY|WORKSPACES",
-			}),
-		},
+		-- {
+		-- 	key = "Space",
+		-- 	mods = "CTRL",
+		-- 	action = act.ShowLauncherArgs({
+		-- 		flags = "FUZZY|WORKSPACES",
+		-- 	}),
+		-- },
 	},
 	window_decorations = "RESIZE",
 }
