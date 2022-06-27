@@ -50,6 +50,8 @@ return {
 		-- { key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
 		{ key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
 		{ key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
+		{ key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
+		{ key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
 		{
 			key = "Space",
 			mods = "CTRL",
