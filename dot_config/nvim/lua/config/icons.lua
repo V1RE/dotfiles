@@ -41,6 +41,7 @@ local M = {
 	Ignore = " ",
 	Information = " ",
 	Interface = " ",
+  Key = " ",
 	Keyword = " ",
 	Lightbulb = " ",
 	List = " ",
