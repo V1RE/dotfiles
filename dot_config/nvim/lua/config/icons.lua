@@ -49,6 +49,7 @@ local M = {
 	Misc = " ",
 	Mod = " ",
 	Module = " ",
+  Namespace = " ",
 	NewFile = " ",
 	NoHighlight = " ",
 	Note = " ",
