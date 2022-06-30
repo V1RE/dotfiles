@@ -130,14 +130,14 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = {
-			{
-				tree_spacing,
-				padding = 0,
-				color = {
-					fg = "#11111b",
-					bg = "#1e1e2e",
-				},
-			},
+			-- {
+			-- 	tree_spacing,
+			-- 	padding = 0,
+			-- 	color = {
+			-- 		fg = "#11111b",
+			-- 		bg = "#1e1e2e",
+			-- 	},
+			-- },
 			branch,
 			diagnostics,
 		},
