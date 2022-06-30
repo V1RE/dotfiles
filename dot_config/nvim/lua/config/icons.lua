@@ -54,6 +54,7 @@ local M = {
 	NewFile = " ",
 	NoHighlight = " ",
 	Note = " ",
+  Null = " ",
 	Number = " ",
 	NvimTree = " ",
 	Object = " ",
