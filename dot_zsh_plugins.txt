@@ -13,4 +13,4 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 
 wfxr/forgit kind:defer
 djui/alias-tips kind:defer
-g-plane/zsh-yarn-autocompletions kind:defer
+g-plane/zsh-yarn-autocompletions
