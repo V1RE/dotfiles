@@ -1,3 +1,5 @@
+local navic_ok, navic = pcall(require, "nvim-navic")
+
 local M = {}
 
 -- TODO: backfill this to template
@@ -50,9 +52,13 @@ local function lsp_highlight_document(client)
 	illuminate.on_attach(client)
 end
 
-M.on_attach = function(client)
+M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.document_formatting = false
+	end
+
+	if navic_ok then
+		navic.attach(client, bufnr)
 	end
 
 	lsp_highlight_document(client)
