@@ -1,5 +1,6 @@
 jeffreytse/zsh-vi-mode
 
+g-plane/zsh-yarn-autocompletions
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
@@ -13,4 +14,3 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 
 wfxr/forgit kind:defer
 djui/alias-tips kind:defer
-g-plane/zsh-yarn-autocompletions
