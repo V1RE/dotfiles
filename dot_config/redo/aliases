@@ -41,3 +41,13 @@ adbc() {
 	adb shell pm clear com.iamsterdam.iamsterdam
 	adb shell monkey -p com.iamsterdam.iamsterdam 1
 }
+
+# Generated on 2022-06-30T13:12:01+02:00.
+nuil() { 
+    nu -i --latest
+}
+
+# Generated on 2022-06-30T13:12:49+02:00.
+nui() { 
+    nu -i
+}
