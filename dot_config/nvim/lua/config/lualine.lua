@@ -1,6 +1,6 @@
 local lualine_ok, lualine = pcall(require, "lualine")
-local gps_ok, gps = pcall(require, "nvim-gps")
-if not (lualine_ok and gps_ok) then
+local navic_ok, navic = pcall(require, "nvim-navic")
+if not (lualine_ok and navic_ok) then
 	return
 end
 
@@ -95,15 +95,6 @@ local location = {
 	"location",
 }
 
-local nvim_gps = function()
-	local gps_location = gps.get_location()
-	if gps_location == "error" then
-		return ""
-	else
-		return gps.get_location()
-	end
-end
-
 -- cool function for progress
 local progress = function()
 	local current_line = vim.fn.line(".")
@@ -142,7 +133,7 @@ lualine.setup({
 			diagnostics,
 		},
 		lualine_b = { mode },
-		lualine_c = { "filename", nvim_gps },
+		lualine_c = { "filename", { navic.get_location, cond = navic.is_available } },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
