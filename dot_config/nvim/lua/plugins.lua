@@ -49,6 +49,8 @@ return packer.startup(function(use)
 		config = require("config.lf"),
 	})
 
+	use("tpope/vim-abolish")
+
 	use("voldikss/vim-floaterm")
 
 	use({
