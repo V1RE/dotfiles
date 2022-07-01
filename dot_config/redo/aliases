@@ -8,6 +8,7 @@ update() {
 	brew reinstall neovim
 	yarn global upgrade --latest
 	cargo install-update -a
+	antidote update
 }
 
 # Generated on 2022-04-22T16:21:46+02:00.
@@ -43,11 +44,11 @@ adbc() {
 }
 
 # Generated on 2022-06-30T13:12:01+02:00.
-nuil() { 
-    nu -i --latest
+nuil() {
+	nu -i --latest
 }
 
 # Generated on 2022-06-30T13:12:49+02:00.
-nui() { 
-    nu -i
+nui() {
+	nu -i
 }
