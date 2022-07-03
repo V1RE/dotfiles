@@ -53,8 +53,8 @@ return {
 		{ key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
 		{ key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
 		{
-			key = "Space",
-			mods = "Enter",
+			key = "Enter",
+			mods = "CTRL",
 			action = act.ShowLauncherArgs({
 				flags = "FUZZY|WORKSPACES",
 			}),
