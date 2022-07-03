@@ -55,7 +55,7 @@ return {
 		{
 			key = "Enter",
 			mods = "CTRL",
-			action = act.ShowLauncher(),
+			action = act.ShowLauncher,
 		},
 	},
 	window_decorations = "RESIZE",
