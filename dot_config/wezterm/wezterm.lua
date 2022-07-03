@@ -52,13 +52,13 @@ return {
 		{ key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
 		{ key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
 		{ key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
-		-- {
-		-- 	key = "Space",
-		-- 	mods = "CTRL",
-		-- 	action = act.ShowLauncherArgs({
-		-- 		flags = "FUZZY|WORKSPACES",
-		-- 	}),
-		-- },
+		{
+			key = "Space",
+			mods = "Enter",
+			action = act.ShowLauncherArgs({
+				flags = "FUZZY|WORKSPACES",
+			}),
+		},
 	},
 	window_decorations = "RESIZE",
 }
