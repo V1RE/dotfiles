@@ -55,7 +55,9 @@ return {
 		{
 			key = "Enter",
 			mods = "CTRL",
-			action = act.ShowLauncher,
+			action = act.ShowLauncherArgs({
+				flags = "FUZZY|WORKSPACES",
+			}),
 		},
 	},
 	window_decorations = "RESIZE",
