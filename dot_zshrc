@@ -1,4 +1,3 @@
-zmodload zsh/zprof
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -77,3 +76,10 @@ compdef _directories md
 
 source ~/.zsh_aliases
 eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/Users/niels/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
