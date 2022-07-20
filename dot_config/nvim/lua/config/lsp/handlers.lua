@@ -55,6 +55,13 @@ end
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.document_formatting = false
+		require("lsp-inlayhints").setup_autocmd(bufnr, "typescript/inlayHints")
+	end
+
+	if client.name ~= "rust_analyzer" then
+		if client.server_capabilities.inlayHintProvider then
+			require("lsp-inlayhints").setup_autocmd(bufnr)
+		end
 	end
 
 	if navic_ok then
