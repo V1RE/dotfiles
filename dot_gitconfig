@@ -10,4 +10,4 @@
 	excludesfile = ~/.gitignore
 
 [includeIf "gitdir:~/Code/Socialbrothers/"]
-  path = .gitconfig-sb
+  path = .sb.gitconfig
