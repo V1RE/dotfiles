@@ -35,6 +35,7 @@ for _, server in ipairs(lspinstaller.get_installed_servers()) do
         includeInlayVariableTypeHints = true,
       },
     },
+  }
 	}
 
 	if server.name == "sumneko_lua" then
