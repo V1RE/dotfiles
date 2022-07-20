@@ -23,6 +23,19 @@ for _, server in ipairs(lspinstaller.get_installed_servers()) do
 		},
 
 		capabilities = capabilities,
+      settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  ,
 	}
 
 	if server.name == "sumneko_lua" then
