@@ -10,8 +10,8 @@ catppuccin.setup({
 		comments = {"italic"},
 		functions = {"italic"},
 		keywords = {"italic"},
-		strings = {"NONE"},
-		variables = {"NONE"},
+		strings = {},
+		variables = {},
 	},
 })
 
