@@ -143,11 +143,11 @@ return packer.startup(function(use)
 	--use("lunarvim/darkplus.nvim")
 	--use("lunarvim/onedarker.nvim")
 	--use("EdenEast/nightfox.nvim")
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- 	config = require("config.catppuccin-nvim"),
-	-- })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = require("config.catppuccin-nvim"),
+	})
 
 	-- snippets
 	use({
