@@ -122,11 +122,6 @@ return packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 
 	use({
-		"lvimuser/lsp-inlayhints.nvim",
-		config = require("config.lsp-inlayhints"),
-	})
-
-	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = require("config.indentline"),
 	})
@@ -271,6 +266,12 @@ return packer.startup(function(use)
 		"folke/which-key.nvim",
 		config = require("config.whichkey"),
 	})
+
+	use({
+		"lvimuser/lsp-inlayhints.nvim",
+		config = require("config.inlayhints"),
+	})
+
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
