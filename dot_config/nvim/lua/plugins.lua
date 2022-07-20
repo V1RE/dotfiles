@@ -122,6 +122,11 @@ return packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 
 	use({
+		"lvimuser/lsp-inlayhints.nvim",
+		config = require("config.lsp-inlayhints"),
+	})
+
+	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = require("config.indentline"),
 	})
