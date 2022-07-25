@@ -45,5 +45,5 @@ db.section.footer.opts.hl = "Type"
 db.section.header.opts.hl = "Include"
 db.section.buttons.opts.hl = "Keyword"
 
-db.opts.opts.noautocmd = true
+-- db.opts.opts.noautocmd = true
 a.setup(db.opts)
