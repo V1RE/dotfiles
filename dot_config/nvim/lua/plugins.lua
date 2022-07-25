@@ -267,10 +267,10 @@ return packer.startup(function(use)
 		config = require("config.whichkey"),
 	})
 
-	use({
+	--[[ use({
 		"lvimuser/lsp-inlayhints.nvim",
 		config = require("config.inlayhints"),
-	})
+	}) ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
