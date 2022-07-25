@@ -7,7 +7,7 @@ end
 
 local i = require("config.icons")
 
-db.section.header.val = {
+db.section.header = {
 	[[                               __                ]],
 	[[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
 	[[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
@@ -16,7 +16,7 @@ db.section.header.val = {
 	[[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 
-db.section.buttons.val = {
+db.section.buttons = {
 	db.button("f", i.Telescope .. " Find file", ":Telescope find_files <CR>"),
 	db.button("e", i.Create .. " New file", ":ene <BAR> startinsert <CR>"),
 	db.button("p", i.Project .. " Find project", ":Telescope projects <CR>"),
@@ -30,7 +30,7 @@ local function header()
 	local lines = {}
 	local handle = io.popen("figlet -f 'big' $(basename $PWD)")
 	if handle == nil then
-		return db.section.header.val
+		return db.section.header
 	end
 	for line in handle:lines() do
 		table.insert(lines, line)
@@ -39,7 +39,7 @@ local function header()
 	return lines
 end
 
-db.section.header.val = header()
+db.section.header = header()
 
 db.section.footer.opts.hl = "Type"
 db.section.header.opts.hl = "Include"

@@ -12,7 +12,7 @@ hints.setup({
 			show_variable_name = false,
 			max_len_align = false,
 			max_len_align_padding = 1,
-			right_align = false,
+			right_align = true,
 			right_align_padding = 7,
 			highlight = "Comment",
 		},
