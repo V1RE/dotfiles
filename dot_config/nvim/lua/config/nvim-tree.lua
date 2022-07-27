@@ -10,8 +10,8 @@ local cb = ntreec.nvim_tree_callback
 local u = i.unspaced
 
 ntree.setup({
-	open_on_setup = false,
-	open_on_setup_file = false,
+	open_on_setup = true,
+	open_on_setup_file = true,
 	hijack_cursor = true,
 	hijack_netrw = false,
 	disable_netrw = true,
