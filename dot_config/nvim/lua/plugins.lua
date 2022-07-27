@@ -129,10 +129,10 @@ return packer.startup(function(use)
 	use("antoinemadec/FixCursorHold.nvim")
 	use("christoomey/vim-tmux-navigator")
 
-	use({
-		"goolord/alpha-nvim",
-		config = require("config.alpha"),
-	})
+	-- use({
+	-- 	"goolord/alpha-nvim",
+	-- 	config = require("config.alpha"),
+	-- })
 
 	use({
 		"stevearc/dressing.nvim",
