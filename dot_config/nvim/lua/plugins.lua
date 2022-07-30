@@ -83,8 +83,6 @@ return packer.startup(function(use)
     config = require("config.webdevicons"),
   })
 
-  lore
-
   use({
     "kyazdani42/nvim-tree.lua",
     config = require("config.nvim-tree"),
