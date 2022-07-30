@@ -180,7 +180,6 @@ return packer.startup(function(use)
 
 	use({
 		"zbirenbaum/copilot-cmp",
-		module = "copilot_cmp",
 		after = { "copilot.lua", "nvim-cmp" },
 	})
 
