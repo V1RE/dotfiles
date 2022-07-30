@@ -166,7 +166,6 @@ return packer.startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-emoji",
-			{ "zbirenbaum/copilot-cmp", module = "copilot_cmp" },
 		},
 		config = require("config.cmp"),
 	})
@@ -177,6 +176,12 @@ return packer.startup(function(use)
 
 		run = "./install.sh",
 		requires = "hrsh7th/nvim-cmp",
+	})
+
+	use({
+		"zbirenbaum/copilot-cmp",
+		module = "copilot_cmp",
+		after = { "copilot.lua", "nvim-cmp" },
 	})
 
 	use("rafamadriz/friendly-snippets")
@@ -270,6 +275,7 @@ return packer.startup(function(use)
 
 	use({
 		"zbirenbaum/copilot.lua",
+		after = "nvim-lspconfig",
 		event = { "VimEnter" },
 		config = function()
 			vim.defer_fn(function()
