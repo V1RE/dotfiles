@@ -200,6 +200,7 @@ return packer.startup(function(use)
 		"zbirenbaum/copilot-cmp",
 		module = "copilot_cmp",
 		requires = "hrsh7th/nvim-cmp",
+		after = { "copilot.lua", "nvim-cmp" },
 	})
 
 	use("rafamadriz/friendly-snippets")
