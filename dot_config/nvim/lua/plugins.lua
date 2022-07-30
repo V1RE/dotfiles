@@ -158,7 +158,7 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"zbirenbaum/copilot.lua",
+		"zbirenbaum/copilot.lu",
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
@@ -199,7 +199,6 @@ return packer.startup(function(use)
 	use({
 		"zbirenbaum/copilot-cmp",
 		module = "copilot_cmp",
-		requires = "hrsh7th/nvim-cmp",
 	})
 
 	use("rafamadriz/friendly-snippets")
