@@ -267,6 +267,16 @@ return packer.startup(function(use)
 		config = require("config.whichkey"),
 	})
 
+	use({
+		"zbirenbaum/copilot.lua",
+		event = { "VimEnter" },
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup()
+			end, 100)
+		end,
+	})
+
 	--[[ use({
 		"lvimuser/lsp-inlayhints.nvim",
 		config = require("config.inlayhints"),
