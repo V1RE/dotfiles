@@ -155,6 +155,16 @@ return packer.startup(function(use)
 		config = require("config.luasnippets"),
 	})
 
+	use({
+		"zbirenbaum/copilot.lua",
+		event = { "VimEnter" },
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup()
+			end, 100)
+		end,
+	})
+
 	-- cmp plugins
 	use({
 		"hrsh7th/nvim-cmp",
@@ -180,7 +190,7 @@ return packer.startup(function(use)
 
 	use({
 		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua", "nvim-cmp" },
+		requires = { "hrsh7th/nvim-cmp", "zbirenbaum/copilot.lua" },
 	})
 
 	use("rafamadriz/friendly-snippets")
@@ -270,16 +280,6 @@ return packer.startup(function(use)
 	use({
 		"folke/which-key.nvim",
 		config = require("config.whichkey"),
-	})
-
-	use({
-		"zbirenbaum/copilot.lua",
-		event = { "VimEnter" },
-		config = function()
-			vim.defer_fn(function()
-				require("copilot").setup()
-			end, 100)
-		end,
 	})
 
 	--[[ use({
