@@ -267,8 +267,6 @@ return packer.startup(function(use)
 		config = require("config.whichkey"),
 	})
 
-	use("github/copilot.vim")
-
 	--[[ use({
 		"lvimuser/lsp-inlayhints.nvim",
 		config = require("config.inlayhints"),
