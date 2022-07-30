@@ -161,17 +161,15 @@ return packer.startup(function(use)
 		"zbirenbaum/copilot.lua",
 		event = "InsertEnter",
 		config = function()
-			vim.schedule(function()
-				require("copilot").setup({
-					cmp = {
-						enabled = true,
-						method = "getCompletionsCycling",
-					},
-					panel = {
-						enabled = true,
-					},
-				})
-			end)
+			require("copilot").setup({
+				cmp = {
+					enabled = true,
+					method = "getCompletionsCycling",
+				},
+				panel = {
+					enabled = true,
+				},
+			})
 		end,
 	})
 
@@ -201,7 +199,7 @@ return packer.startup(function(use)
 	use({
 		"zbirenbaum/copilot-cmp",
 		module = "copilot_cmp",
-		after = { "copilot.lua", "nvim-cmp" },
+		requires = "hrsh7th/nvim-cmp",
 	})
 
 	use("rafamadriz/friendly-snippets")
