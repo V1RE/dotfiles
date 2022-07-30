@@ -158,7 +158,7 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"zbirenbaum/copilot.lu",
+		"zbirenbaum/copilot.lua",
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
