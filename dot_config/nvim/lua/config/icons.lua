@@ -23,6 +23,7 @@ local M = {
 	Comment = " ",
 	Constant = " ",
 	Constructor = " ",
+	Copilot = " ",
 	Create = " ",
 	Dashboard = " ",
 	Diff = " ",

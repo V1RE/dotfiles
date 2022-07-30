@@ -37,6 +37,11 @@ cmp.setup({
 				vim_item.menu = "Tabnine"
 			end
 
+			if entry.source.name == "copilot" then
+				vim_item.kind = i.Copilot
+				vim_item.menu = "Copilot"
+			end
+
 			return vim_item
 		end,
 	},
@@ -44,6 +49,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
+		{ name = "copilot", max_item_count = 3 },
 		{ name = "cmp_tabnine", max_item_count = 3 },
 		{ name = "luasnip", max_item_count = 3 },
 		{ name = "buffer", max_item_count = 5 },
