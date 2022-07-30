@@ -46,7 +46,9 @@ return packer.startup(function(use)
 
 	use({
 		"ptzz/lf.vim",
-		config = require("config.lf"),
+		config = function()
+			require("config.lf")
+		end,
 	})
 
 	use("tpope/vim-abolish")
@@ -55,44 +57,60 @@ return packer.startup(function(use)
 
 	use({
 		"phaazon/hop.nvim",
-		config = require("config.hop-nvim"),
+		config = function()
+			require("config.hop-nvim")
+		end,
 	})
 
 	use({
 		"windwp/nvim-autopairs",
-		config = require("config.autopairs"),
+		config = function()
+			require("config.autopairs")
+		end,
 	})
 
 	use({
 		"numToStr/Comment.nvim",
-		config = require("config.comment"),
+		config = function()
+			require("config.comment")
+		end,
 	})
 
 	use({
 		"SmiteshP/nvim-navic",
-		config = require("config.navic"),
+		config = function()
+			require("config.navic")
+		end,
 	})
 
 	use({
 		"norcalli/nvim-colorizer.lua",
-		config = require("config.colorizer"),
+		config = function()
+			require("config.colorizer")
+		end,
 	})
 
 	use({
 		"kyazdani42/nvim-web-devicons",
-		config = require("config.webdevicons"),
+		config = function()
+			require("config.webdevicons")
+		end,
 	})
 
 	-- a function which says hello world from.
 
 	use({
 		"kyazdani42/nvim-tree.lua",
-		config = require("config.nvim-tree"),
+		config = function()
+			require("config.nvim-tree")
+		end,
 	})
 
 	use({
 		"akinsho/bufferline.nvim",
-		config = require("config.bufferline"),
+		config = function()
+			require("config.bufferline")
+		end,
 	})
 
 	use("alker0/chezmoi.vim")
@@ -101,22 +119,30 @@ return packer.startup(function(use)
 
 	use({
 		"nvim-lualine/lualine.nvim",
-		config = require("config.lualine"),
+		config = function()
+			require("config.lualine")
+		end,
 	})
 
 	use({
 		"akinsho/toggleterm.nvim",
-		config = require("config.toggleterm"),
+		config = function()
+			require("config.toggleterm")
+		end,
 	})
 
 	use({
 		"ahmedkhalf/project.nvim",
-		config = require("config.project"),
+		config = function()
+			require("config.project")
+		end,
 	})
 
 	use({
 		"ghillb/cybu.nvim",
-		config = require("config.cybu"),
+		config = function()
+			require("config.cybu")
+		end,
 	})
 
 	use("lewis6991/impatient.nvim")
@@ -125,7 +151,9 @@ return packer.startup(function(use)
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		config = require("config.indentline"),
+		config = function()
+			require("config.indentline")
+		end,
 	})
 
 	use("antoinemadec/FixCursorHold.nvim")
@@ -133,12 +161,14 @@ return packer.startup(function(use)
 
 	-- use({
 	-- 	"goolord/alpha-nvim",
-	-- 	config = require("config.alpha"),
+	-- 	config = function() require("config.alpha") end,
 	-- })
 
 	use({
 		"stevearc/dressing.nvim",
-		config = require("config.dressing"),
+		config = function()
+			require("config.dressing")
+		end,
 	})
 
 	-- Colorschemes
@@ -148,13 +178,17 @@ return packer.startup(function(use)
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
-		config = require("config.catppuccin-nvim"),
+		config = function()
+			require("config.catppuccin-nvim")
+		end,
 	})
 
 	-- snippets
 	use({
 		"L3MON4D3/LuaSnip",
-		config = require("config.luasnippets"),
+		config = function()
+			require("config.luasnippets")
+		end,
 	})
 
 	use({
@@ -185,12 +219,16 @@ return packer.startup(function(use)
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-emoji",
 		},
-		config = require("config.cmp"),
+		config = function()
+			require("config.cmp")
+		end,
 	})
 
 	use({
 		"tzachar/cmp-tabnine",
-		config = require("config.tabnine"),
+		config = function()
+			require("config.tabnine")
+		end,
 
 		run = "./install.sh",
 		requires = "hrsh7th/nvim-cmp",
@@ -206,7 +244,9 @@ return packer.startup(function(use)
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
-		config = require("config.lsp"),
+		config = function()
+			require("config.lsp")
+		end,
 	})
 
 	use("folke/lua-dev.nvim")
@@ -221,23 +261,31 @@ return packer.startup(function(use)
 
 	use({
 		"b0o/incline.nvim",
-		config = require("config.incline"),
+		config = function()
+			require("config.incline")
+		end,
 	})
 
 	use({
 		"ray-x/lsp_signature.nvim",
-		config = require("config.signature"),
+		config = function()
+			require("config.signature")
+		end,
 	})
 
 	use({
 		"tami5/lspsaga.nvim",
-		config = require("config.lspsaga"),
+		config = function()
+			require("config.lspsaga")
+		end,
 	})
 
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		config = require("config.telescope"),
+		config = function()
+			require("config.telescope")
+		end,
 	})
 
 	use({
@@ -253,7 +301,9 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-		config = require("config.treesitter"),
+		config = function()
+			require("config.treesitter")
+		end,
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-ts-autotag")
@@ -261,38 +311,50 @@ return packer.startup(function(use)
 
 	use({
 		"monaqa/dial.nvim",
-		config = require("config.dial"),
+		config = function()
+			require("config.dial")
+		end,
 	})
 
 	use({
 		"j-hui/fidget.nvim",
-		config = require("config.fidget"),
+		config = function()
+			require("config.fidget")
+		end,
 	})
 
 	use({
 		"folke/trouble.nvim",
-		config = require("config.trouble"),
+		config = function()
+			require("config.trouble")
+		end,
 	})
 
 	-- Git
 	use({
 		"lewis6991/gitsigns.nvim",
-		config = require("config.gitsigns"),
+		config = function()
+			require("config.gitsigns")
+		end,
 	})
 
 	use({
 		"mrjones2014/legendary.nvim",
-		config = require("config.legendary-nvim"),
+		config = function()
+			require("config.legendary-nvim")
+		end,
 	})
 
 	use({
 		"folke/which-key.nvim",
-		config = require("config.whichkey"),
+		config = function()
+			require("config.whichkey")
+		end,
 	})
 
 	--[[ use({
 		"lvimuser/lsp-inlayhints.nvim",
-		config = require("config.inlayhints"),
+		config = function() require("config.inlayhints") end,
 	}) ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim
