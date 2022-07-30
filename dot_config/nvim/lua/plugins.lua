@@ -83,6 +83,8 @@ return packer.startup(function(use)
 		config = require("config.webdevicons"),
 	})
 
+	-- a function which says hello world from.
+
 	use({
 		"kyazdani42/nvim-tree.lua",
 		config = require("config.nvim-tree"),
@@ -199,7 +201,6 @@ return packer.startup(function(use)
 	use({
 		"zbirenbaum/copilot-cmp",
 		module = "copilot_cmp",
-		requires = "hrsh7th/nvim-cmp",
 		after = { "copilot.lua", "nvim-cmp" },
 	})
 
