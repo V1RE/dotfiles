@@ -251,9 +251,12 @@ return packer.startup(function(use)
 
 	use("folke/lua-dev.nvim")
 
-	use("williamboman/nvim-lsp-installer")
+	-- use("williamboman/nvim-lsp-installer")
 
-	use("tamago324/nlsp-settings.nvim")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+
+	-- use("tamago324/nlsp-settings.nvim")
 
 	use("jose-elias-alvarez/null-ls.nvim")
 
@@ -273,12 +276,12 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({
+	--[[ use({
 		"tami5/lspsaga.nvim",
 		config = function()
 			require("config.lspsaga")
 		end,
-	})
+	}) ]]
 
 	-- Telescope
 	use({
@@ -295,7 +298,7 @@ return packer.startup(function(use)
 
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
-	use({ "nvim-telescope/telescope-file-browser.nvim" })
+	--[[ 	use({ "nvim-telescope/telescope-file-browser.nvim" }) ]]
 
 	-- Treesitter
 	use({
