@@ -243,12 +243,8 @@ return packer.startup(function(use)
 
 	use("folke/lua-dev.nvim")
 
-	-- use("williamboman/nvim-lsp-installer")
-
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-
-	-- use("tamago324/nlsp-settings.nvim")
 
 	use("jose-elias-alvarez/null-ls.nvim")
 
