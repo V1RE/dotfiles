@@ -22,12 +22,10 @@ M.setup = function()
 		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 	end
 
-	local config = {
-		-- disable virtual text
+	vim.diagnostic.config({
 		virtual_lines = false,
 		virtual_text = false,
 
-		-- show signs
 		signs = {
 			active = signs,
 		},
@@ -38,13 +36,11 @@ M.setup = function()
 			focusable = true,
 			style = "minimal",
 			border = "rounded",
-			source = "always", -- Or "always"
+			source = "always",
 			header = "",
 			prefix = "",
 		},
-	}
-
-	vim.diagnostic.config(config)
+	})
 
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
@@ -63,11 +59,11 @@ end
 
 local function attach_navic(client, bufnr)
 	vim.g.navic_silence = true
-	local status_ok, navic = pcall(require, "nvim-navic")
+	local status_ok = pcall(require, "nvim-navic")
 	if not status_ok then
 		return
 	end
-	navic.attach(client, bufnr)
+	require("nvim-navic").attach(client, bufnr)
 end
 
 M.on_attach = function(client, bufnr)
