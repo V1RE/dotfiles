@@ -38,7 +38,7 @@ M.setup = function()
 			focusable = true,
 			style = "minimal",
 			border = "rounded",
-			source = "if_many", -- Or "always"
+			source = "always", -- Or "always"
 			header = "",
 			prefix = "",
 		},
