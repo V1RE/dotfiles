@@ -31,23 +31,25 @@ end
 
 local opts = {}
 
-for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+for _, server in pairs(mason_lspconfig.get_installed_servers()) do
 	opts = {
 		on_attach = require("config.lsp.handlers").on_attach,
 		capabilities = require("config.lsp.handlers").capabilities,
 	}
 
-	if server.name == "jsonls" then
+	server = vim.split(server, "@")[1]
+
+	if server == "jsonls" then
 		local jsonls_opts = require("config.lsp.settings.jsonls")
 		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
 	end
 
-	if server.name == "yamlls" then
+	if server == "yamlls" then
 		local yamlls_opts = require("config.lsp.settings.yamlls")
 		opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
 	end
 
-	if server.name == "sumneko_lua" then
+	if server == "sumneko_lua" then
 		local l_status_ok, lua_dev = pcall(require, "lua-dev")
 		if not l_status_ok then
 			return
@@ -56,10 +58,10 @@ for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
 		opts = vim.tbl_deep_extend("force", lua_dev.setup(), opts)
 	end
 
-	if server.name == "tsserver" then
+	if server == "tsserver" then
 		local tsserver_opts = require("config.lsp.settings.tsserver")
 		opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
 	end
 
-	lspconfig[server.name].setup(opts)
+	lspconfig[server].setup(opts)
 end
