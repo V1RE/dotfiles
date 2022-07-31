@@ -1,14 +1,21 @@
-local navic_ok, navic = pcall(require, "nvim-navic")
-
 local M = {}
 
--- TODO: backfill this to template
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_cmp_ok then
+	return
+end
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
 M.setup = function()
+	local icons = require("config.icons")
 	local signs = {
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn", text = "" },
-		{ name = "DiagnosticSignHint", text = "" },
-		{ name = "DiagnosticSignInfo", text = "" },
+		{ name = "DiagnosticSignError", text = icons.Error },
+		{ name = "DiagnosticSignWarn", text = icons.Warning },
+		{ name = "DiagnosticSignHint", text = icons.Hint },
+		{ name = "DiagnosticSignInfo", text = icons.Information },
 	}
 
 	for _, sign in ipairs(signs) do
@@ -16,7 +23,11 @@ M.setup = function()
 	end
 
 	local config = {
-		virtual_text = true,
+		-- disable virtual text
+		virtual_lines = false,
+		virtual_text = false,
+
+		-- show signs
 		signs = {
 			active = signs,
 		},
@@ -24,10 +35,10 @@ M.setup = function()
 		underline = true,
 		severity_sort = true,
 		float = {
-			focusable = false,
+			focusable = true,
 			style = "minimal",
 			border = "rounded",
-			source = "always",
+			source = "if_many", -- Or "always"
 			header = "",
 			prefix = "",
 		},
@@ -35,9 +46,7 @@ M.setup = function()
 
 	vim.diagnostic.config(config)
 
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-	})
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 		border = "rounded",
@@ -52,29 +61,22 @@ local function lsp_highlight_document(client)
 	illuminate.on_attach(client)
 end
 
-M.on_attach = function(client, bufnr)
-	if client.name == "tsserver" then
-		client.server_capabilities.document_formatting = false
-		-- require("lsp-inlayhints").setup_autocmd(bufnr, "typescript/inlayHints")
+local function attach_navic(client, bufnr)
+	vim.g.navic_silence = true
+	local status_ok, navic = pcall(require, "nvim-navic")
+	if not status_ok then
+		return
 	end
-
-	--[[ if client.name ~= "rust_analyzer" then
-		if client.server_capabilities.inlayHintProvider then
-			require("lsp-inlayhints").setup_autocmd(bufnr)
-		end
-	end ]]
-
-	if navic_ok then
-		navic.attach(client, bufnr)
-	end
-
-	lsp_highlight_document(client)
+	navic.attach(client, bufnr)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+M.on_attach = function(client, bufnr)
+	lsp_highlight_document(client)
+	attach_navic(client, bufnr)
 
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+	if client.name == "tsserver" then
+		require("lsp-inlayhints").on_attach(bufnr, client)
+	end
+end
 
 return M

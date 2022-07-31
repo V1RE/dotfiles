@@ -97,7 +97,7 @@ return packer.startup(function(use)
 		end,
 	})
 
-	-- a function which says hello world from.
+	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -159,11 +159,6 @@ return packer.startup(function(use)
 	use("antoinemadec/FixCursorHold.nvim")
 	use("christoomey/vim-tmux-navigator")
 
-	-- use({
-	-- 	"goolord/alpha-nvim",
-	-- 	config = function() require("config.alpha") end,
-	-- })
-
 	use({
 		"stevearc/dressing.nvim",
 		config = function()
@@ -172,9 +167,6 @@ return packer.startup(function(use)
 	})
 
 	-- Colorschemes
-	--use("lunarvim/darkplus.nvim")
-	--use("lunarvim/onedarker.nvim")
-	--use("EdenEast/nightfox.nvim")
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
@@ -276,13 +268,6 @@ return packer.startup(function(use)
 		end,
 	})
 
-	--[[ use({
-		"tami5/lspsaga.nvim",
-		config = function()
-			require("config.lspsaga")
-		end,
-	}) ]]
-
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -297,8 +282,6 @@ return packer.startup(function(use)
 	})
 
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
-
-	--[[ 	use({ "nvim-telescope/telescope-file-browser.nvim" }) ]]
 
 	-- Treesitter
 	use({
@@ -355,10 +338,7 @@ return packer.startup(function(use)
 		end,
 	})
 
-	--[[ use({
-		"lvimuser/lsp-inlayhints.nvim",
-		config = function() require("config.inlayhints") end,
-	}) ]]
+	use("lvimuser/lsp-inlayhints.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
