@@ -34,10 +34,12 @@ require("config.lsp.mason")
 require("config.lsp.handlers").setup()
 require("config.lsp.null-ls")
 
-local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
+local l_status_ok = pcall(require, "lsp_lines")
 if not l_status_ok then
 	return
 end
+
+local lsp_lines = require("lsp_lines")
 
 lsp_lines.setup()
 
