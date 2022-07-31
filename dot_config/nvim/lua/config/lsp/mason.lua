@@ -55,7 +55,7 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
 			return
 		end
 
-		opts = vim.tbl_deep_extend("force", lua_dev.setup(), opts)
+		opts = lua_dev.setup({ lspconfig = opts })
 	end
 
 	if server == "tsserver" then
