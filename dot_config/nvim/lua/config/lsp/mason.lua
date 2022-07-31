@@ -50,12 +50,12 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
 		local sumneko_lua_opts = require("config.lsp.settings.sumneko_lua")
 		opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
 
-		--[[ local l_status_ok, lua_dev = pcall(require, "lua-dev")
+		local l_status_ok, lua_dev = pcall(require, "lua-dev")
 		if not l_status_ok then
 			return
 		end
 
-		opts = lua_dev.setup({ lspconfig = opts }) ]]
+		opts = lua_dev.setup({ lspconfig = opts })
 	end
 
 	if server == "tsserver" then
