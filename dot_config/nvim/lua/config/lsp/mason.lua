@@ -13,21 +13,13 @@ local servers = {
 	"cssmodules_ls",
 	"emmet_ls",
 	"html",
-	"jdtls",
 	"jsonls",
-	"solc",
-	"solidity_ls",
 	"sumneko_lua",
-	"tflint",
-	"terraformls",
 	"tsserver",
-	"pyright",
 	"yamlls",
 	"bashls",
 	"clangd",
-	"rust_analyzer",
 	"taplo",
-	"zk@v0.10.1",
 	"lemminx",
 }
 
@@ -93,7 +85,6 @@ for _, server in pairs(servers) do
 			},
 		})
 		lspconfig.sumneko_lua.setup(luadev)
-		goto continue
 	end
 
 	if server == "tsserver" then
@@ -106,39 +97,12 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	end
 
-	if server == "solc" then
-		local solc_opts = require("config.lsp.settings.solc")
-		opts = vim.tbl_deep_extend("force", solc_opts, opts)
-	end
-
 	if server == "emmet_ls" then
 		local emmet_ls_opts = require("config.lsp.settings.emmet_ls")
 		opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
 	end
 
-	if server == "zk" then
-		local zk_opts = require("config.lsp.settings.zk")
-		opts = vim.tbl_deep_extend("force", zk_opts, opts)
-	end
-
-	if server == "jdtls" then
-		goto continue
-	end
-
-	if server == "rust_analyzer" then
-		local rust_opts = require("config.lsp.settings.rust")
-		-- opts = vim.tbl_deep_extend("force", rust_opts, opts)
-		local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
-		if not rust_tools_status_ok then
-			return
-		end
-
-		rust_tools.setup(rust_opts)
-		goto continue
-	end
-
 	lspconfig[server].setup(opts)
-	::continue::
 end
 
 -- TODO: add something to installer later
