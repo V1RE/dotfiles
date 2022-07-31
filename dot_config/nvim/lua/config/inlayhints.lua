@@ -14,14 +14,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		require("lsp-inlayhints").on_attach(args.buf, client)
+		hints.on_attach(args.buf, client)
 	end,
 })
 
 hints.setup({
 	inlay_hints = {
 		parameter_hints = {
-			show = false,
+			show = true,
 			-- prefix = "<- ",
 			separator = ", ",
 		},
@@ -41,7 +41,7 @@ hints.setup({
 		-- padding from the left if max_len_align is true
 		max_len_align_padding = 1,
 		-- whether to align to the extreme right or not
-		right_align = false,
+		right_align = true,
 		-- padding from the right if right_align is true
 		right_align_padding = 7,
 		-- highlight group
