@@ -49,7 +49,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
-		{ name = "copilot", max_item_count = 3 },
+		{ name = "copilot" },
 		{ name = "cmp_tabnine", max_item_count = 3 },
 		{ name = "luasnip", max_item_count = 3 },
 		{ name = "buffer", max_item_count = 5 },
@@ -75,7 +75,6 @@ cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
-	}, {
 		{ name = "cmdline" },
 	}),
 })
