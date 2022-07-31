@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: 111
 M = {}
 
 local status_ok = pcall(require, "lspconfig")
