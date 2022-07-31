@@ -21,14 +21,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 hints.setup({
 	inlay_hints = {
 		parameter_hints = {
-			show = true,
+			show = false,
 			-- prefix = "<- ",
 			separator = ", ",
 		},
 		type_hints = {
 			-- type and other hints
 			show = true,
-			prefix = "",
+			prefix = "oi",
 			separator = ", ",
 			remove_colon_end = false,
 			remove_colon_start = false,
@@ -41,7 +41,7 @@ hints.setup({
 		-- padding from the left if max_len_align is true
 		max_len_align_padding = 1,
 		-- whether to align to the extreme right or not
-		right_align = true,
+		right_align = false,
 		-- padding from the right if right_align is true
 		right_align_padding = 7,
 		-- highlight group
