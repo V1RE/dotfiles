@@ -1,12 +1,14 @@
-local status_ok, mason = pcall(require, "mason")
-if not status_ok then
+local mason_ok = pcall(require, "mason")
+local mason_lsp_ok = pcall(require, "mason-lspconfig")
+local lsp_ok = pcall(require, "lspconfig")
+
+if not mason_ok and mason_lsp_ok and lsp_ok then
 	return
 end
 
-local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not status_ok_1 then
-	return
-end
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require("lspconfig")
 
 local settings = {
 	ui = {
@@ -23,11 +25,6 @@ local settings = {
 
 mason.setup(settings)
 mason_lspconfig.setup()
-
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-	return
-end
 
 local opts = {}
 
@@ -50,6 +47,9 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
 	end
 
 	if server == "sumneko_lua" then
+		local sumneko_lua_opts = require("config.lsp.settings.sumneko_lua")
+		opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
+
 		local l_status_ok, lua_dev = pcall(require, "lua-dev")
 		if not l_status_ok then
 			return
