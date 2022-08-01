@@ -1,4 +1,4 @@
-local wk = require("whichkey")
+local wk = require("which-key")
 local telescope = require("telescope.builtin")
 
 local i = require("config.icons")
