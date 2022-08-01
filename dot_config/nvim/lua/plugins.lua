@@ -305,13 +305,6 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({
-		"folke/trouble.nvim",
-		config = function()
-			require("config.trouble")
-		end,
-	})
-
 	-- Git
 	use({
 		"lewis6991/gitsigns.nvim",
