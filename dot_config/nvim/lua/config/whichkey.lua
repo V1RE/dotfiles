@@ -1,8 +1,5 @@
-local wk_ok, wk = pcall(require, "which-key")
-local telescope_ok, telescope = pcall(require, "telescope.builtin")
-if not (wk_ok and telescope_ok) then
-	return
-end
+local wk = require("whichkey")
+local telescope = require("telescope.builtin")
 
 local i = require("config.icons")
 
@@ -85,10 +82,10 @@ local mappings = {
 
 		l = {
 			name = i.Field .. "LSP",
-			I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+			I = { "<cmd>Mason<cr>", "Installer Info" },
 			S = { telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
 			a = { vim.lsp.buf.code_action, "Code Action" },
-			d = { telescope.lsp_document_diagnostics, "Document Diagnostics" },
+			d = { require("lsp_lines").toggle, "Document Diagnostics" },
 			f = { vim.lsp.buf.format, "Format" },
 			i = { "<cmd>LspInfo<cr>", "Info" },
 			j = { vim.lsp.diagnostic.goto_next, "Next Diagnostic" },
