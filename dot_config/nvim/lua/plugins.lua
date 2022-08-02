@@ -328,7 +328,10 @@ return packer.startup(function(use)
   })
 
   use({
-    "mfussenegger/nvim-dap",
+    "rcarriga/nvim-dap-ui",
+    requires = {
+      "mfussenegger/dap-nvim",
+    },
     config = function()
       require("config.dap")
     end,
