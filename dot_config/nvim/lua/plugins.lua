@@ -327,16 +327,17 @@ return packer.startup(function(use)
     end,
   })
 
-  use({ "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } })
-
-  use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-
   use({
     "mfussenegger/nvim-dap",
+    requires = { "rcarriga/nvim-dap-ui" },
     config = function()
       require("config.dap")
     end,
   })
+
+  use({ "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } })
+
+  use({ "rcarriga/nvim-dap-ui" })
 
   use({
     "folke/which-key.nvim",
