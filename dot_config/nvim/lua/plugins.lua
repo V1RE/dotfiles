@@ -328,6 +328,13 @@ return packer.startup(function(use)
   })
 
   use({
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("config.dap")
+    end,
+  })
+
+  use({
     "folke/which-key.nvim",
     config = function()
       require("config.whichkey")
