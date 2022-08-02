@@ -138,7 +138,7 @@ local mappings = {
   },
 }
 
-M.setup = function()
+M.init = function()
   wk.setup(setup)
   wk.register(mappings, opts)
 end

@@ -329,7 +329,7 @@ return packer.startup(function(use)
 
   use({
     "folke/which-key.nvim",
-    config = require("config.whichkey").setup,
+    config = require("config.whichkey").init,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim
