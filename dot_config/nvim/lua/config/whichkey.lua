@@ -72,7 +72,12 @@ local mappings = {
       b = { telescope.git_branches, "Checkout branch" },
       c = { telescope.git_commits, "Checkout commit" },
       d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-      g = { lazygit.toggle, "Lazygit" },
+      g = {
+        function()
+          lazygit:toggle()
+        end,
+        "Lazygit",
+      },
       j = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
       k = { "<cmd>Gitsigns prev_hunk<cr>", "Prev Hunk" },
       l = { "<cmd>Gitsigns blame_line<cr>", "Blame" },
