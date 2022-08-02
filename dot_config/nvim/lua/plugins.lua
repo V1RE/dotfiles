@@ -15,10 +15,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Use a protected call so we don't error out on first use
-local packer_ok, packer = pcall(require, "packer")
+local packer_ok = pcall(require, "packer")
 if not packer_ok then
   return
 end
+
+local packer = require("packer")
 
 -- Have packer use a popup window
 packer.init({

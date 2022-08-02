@@ -1,4 +1,5 @@
 local dap = require("dap")
+local path = require("mason-core")
 
 local dapui = require("dapui")
 
@@ -69,3 +70,20 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close({})
 end
+
+dap.adapters.node2 = {
+  args = { path.concat({ vim.fn.stdpath("data"), "mason", "packages" }) },
+}
+
+dap.configurations.typescriptreact = { -- change to typescript if needed
+  {
+    type = "chrome",
+    request = "attach",
+    program = "${file}",
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = "inspector",
+    port = 9222,
+    webRoot = "${workspaceFolder}",
+  },
+}
