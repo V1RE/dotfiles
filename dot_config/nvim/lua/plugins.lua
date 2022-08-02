@@ -333,7 +333,7 @@ return packer.startup(function(use)
     "mfussenegger/nvim-dap",
     requires = { "rcarriga/nvim-dap-ui" },
     config = function()
-      require("config.dap")
+      require("config.nvim-dap")
     end,
   })
 
