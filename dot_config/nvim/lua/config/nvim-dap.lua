@@ -1,6 +1,6 @@
 local dap = require("dap")
 
-local dapui = require("dap-ui")
+local dapui = require("dapui")
 
 dapui.setup({
   icons = { expanded = "▾", collapsed = "▸" },
