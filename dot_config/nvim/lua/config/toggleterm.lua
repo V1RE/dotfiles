@@ -1,10 +1,10 @@
 local status_ok = pcall(require, "toggleterm")
-local whichkey = require("config.whichkey")
 if not status_ok then
   return
 end
 
 local toggleterm = require("toggleterm")
+local whichkey = require("config.whichkey")
 
 toggleterm.setup({
   size = 40,
