@@ -1,7 +1,10 @@
-local status_ok, toggleterm = pcall(require, "toggleterm")
+local status_ok = pcall(require, "toggleterm")
+local whichkey = require("config.whichkey")
 if not status_ok then
   return
 end
+
+local toggleterm = require("toggleterm")
 
 toggleterm.setup({
   size = 40,
@@ -40,25 +43,15 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
-function _LAZYGIT_TOGGLE()
-  lazygit:toggle()
-end
-
--- lf file picker
-local temp_path = "/tmp/lfpickerpath"
-local lfpicker = Terminal:new({
-  cmd = "lf -selection-path " .. temp_path,
-  direction = "float",
-  on_close = function()
-    local file = io.open(temp_path, "r")
-    if file ~= nil then
-      vim.cmd("tabe " .. file:read("*a"))
-      file:close()
-      os.remove(temp_path)
-    end
-  end,
+whichkey.register({
+  ["<leader>"] = {
+    g = {
+      g = {
+        function()
+          lazygit:toggle()
+        end,
+        "Lazygit",
+      },
+    },
+  },
 })
-
-function _LFPICKER_TOGGLE()
-  lfpicker:toggle()
-end
