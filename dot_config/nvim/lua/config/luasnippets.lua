@@ -1,7 +1,9 @@
-local status_ok, ls = pcall(require, "luasnip")
+local status_ok = pcall(require, "luasnip")
 if not status_ok then
-	return
+  return
 end
+
+local ls = require("luasnip")
 
 --
 -- local s = ls.snippet
@@ -15,12 +17,14 @@ end
 -- })
 
 local function jump(dir)
-	return function()
-		if ls.jumpable(dir) then
-			ls.jump(dir)
-		end
-	end
+  return function()
+    if ls.jumpable(dir) then
+      ls.jump(dir)
+    end
+  end
 end
 
 vim.keymap.set({ "i", "s" }, "<c-k>", jump(1), { silent = true })
 vim.keymap.set({ "i", "s" }, "<c-j>", jump(-1), { silent = true })
+
+require("config.snippets.typescript")
