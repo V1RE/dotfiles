@@ -17,7 +17,7 @@ symbol = " "
 [directory]
 home_symbol = " "
 repo_root_style = "cyan bold"
-repo_root_format = "[$before_root_path]($style) [$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+repo_root_format = " [$repo_root]($repo_root_style)[$before_root_path]($style)[$read_only]($read_only_style) "
 truncate_to_repo = true
 
 [package]
