@@ -10,7 +10,7 @@ function t() {
   tmux has-session 2>/dev/null
 
   if [ $? != 0 ]; then
-    tmux new-session
+    tmux new-session -t "dots"
   else
     tmux attach -t $(tmux list-sessions -F "#{session_name}" | fzf --height 40% --reverse --border)
   fi
