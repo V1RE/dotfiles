@@ -1,7 +1,7 @@
 local fn = vim.fn
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
+if fn.empty(fn.glob(install_path, nil, {})) > 0 then
   PACKER_BOOTSTRAP = fn.system({
     "git",
     "clone",
