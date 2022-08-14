@@ -1,6 +1,8 @@
-local impatient_ok, impatient = pcall(require, "impatient")
+local impatient_ok = pcall(require, "impatient")
 if not impatient_ok then
-	return
+  return
 end
+
+local impatient = require("impatient")
 
 impatient.enable_profile()
