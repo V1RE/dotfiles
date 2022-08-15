@@ -3,62 +3,98 @@ local act = wezterm.action
 
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
-	local names = {
-		name,
-		"nielsicon",
-		"CaskaydiaCove Nerd Font",
-		"PragmataPro Liga",
-		"PragmataPro Mono Liga",
-		"Noto Color Emoji",
-		"JetBrains Mono",
-	}
-	return wezterm.font_with_fallback(names, params)
+  local names = {
+    name,
+    "nielsicon",
+    "CaskaydiaCove Nerd Font",
+    "PragmataPro Liga",
+    "PragmataPro Mono Liga",
+    "Noto Color Emoji",
+    "JetBrains Mono",
+  }
+  return wezterm.font_with_fallback(names, params)
 end
 
 return {
-	font_dirs = { "fonts" },
-	font = font_with_fallback("Cascadia Code"),
-	font_size = 18,
-	color_scheme = "catppuccin",
-	colors = require("colors.catppuccin"),
-	hide_tab_bar_if_only_one_tab = true,
-	term = "wezterm",
-	window_padding = {
-		left = 0,
-		right = 0,
-		top = 0,
-		bottom = 0,
-	},
-	use_fancy_tab_bar = false,
-	tab_bar_at_bottom = true,
-	keys = {
-		{
-			key = "[",
-			mods = "CMD",
-			action = {
-				Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "h", mods = "CTRL" } } },
-			},
-		},
-		{
-			key = "]",
-			mods = "CMD",
-			action = {
-				Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "l", mods = "CTRL" } } },
-			},
-		},
-		{ key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
-		{ key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
-		{ key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
-		{ key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
-		{ key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
-		{ key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
-		{
-			key = "Enter",
-			mods = "CTRL",
-			action = act.ShowLauncherArgs({
-				flags = "FUZZY|WORKSPACES",
-			}),
-		},
-	},
-	window_decorations = "RESIZE",
+  font_dirs = { "fonts" },
+  font = font_with_fallback("Cascadia Code"),
+  font_size = 18,
+  color_scheme = "catppuccin",
+  colors = require("colors.catppuccin"),
+  hide_tab_bar_if_only_one_tab = true,
+  term = "wezterm",
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
+  },
+  use_fancy_tab_bar = false,
+  tab_bar_at_bottom = true,
+  keys = {
+    {
+      key = "[",
+      mods = "CMD",
+      action = {
+        Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "h", mods = "CTRL" } } },
+      },
+    },
+    {
+      key = "]",
+      mods = "CMD",
+      action = {
+        Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "l", mods = "CTRL" } } },
+      },
+    },
+    { key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
+    { key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
+    { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
+    { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
+    { key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
+    { key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
+    {
+      key = "Enter",
+      mods = "CTRL",
+      action = act.ShowLauncherArgs({
+        flags = "FUZZY|WORKSPACES",
+      }),
+    },
+  },
+  window_decorations = "RESIZE",
+  hyperlink_rules = {
+    -- Linkify things that look like URLs and the host has a TLD name.
+    {
+      regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",
+      format = "$0",
+    },
+
+    -- linkify email addresses
+    {
+      regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]],
+      format = "mailto:$0",
+    },
+
+    -- file:// URI
+    {
+      regex = [[\bfile://\S*\b]],
+      format = "$0",
+    },
+
+    -- Linkify things that look like URLs with numeric addresses as hosts.
+    -- E.g. http://127.0.0.1:8000 for a local development server,
+    -- or http://192.168.1.1 for the web interface of many routers.
+    {
+      regex = [[\b\w+://(?:[\d]{1,3}\.){3}[\d]{1,3}\S*\b]],
+      format = "$0",
+    },
+
+    -- Make username/project paths clickable. This implies paths like the following are for GitHub.
+    -- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
+    -- As long as a full URL hyperlink regex exists above this it should not match a full URL to
+    -- GitHub or GitLab / BitBucket (i.e. https://gitlab.com/user/project.git is still a whole clickable URL)
+    {
+      regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+      format = "https://www.github.com/$1/$3",
+    },
+  },
 }
