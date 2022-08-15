@@ -59,6 +59,22 @@ return {
         flags = "FUZZY|WORKSPACES",
       }),
     },
+    {
+      key = "P",
+      mods = "CMD",
+      action = wezterm.action({
+        QuickSelectArgs = {
+          patterns = {
+            "https?://\\S+",
+          },
+          action = wezterm.action_callback(function(window, pane)
+            local url = window:get_selection_text_for_pane(pane)
+            wezterm.log_info("opening: " .. url)
+            wezterm.open_with(url)
+          end),
+        },
+      }),
+    },
   },
   window_decorations = "RESIZE",
   hyperlink_rules = {
