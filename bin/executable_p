@@ -4,10 +4,24 @@ codedir="${HOME}/Code/"
 sbdir="${codedir}Socialbrothers/"
 
 if [ $# -ne 0 ]; then
-	result="$(zoxide query "${sbdir}" "$@")"
+	result="$(zoxide query "${codedir}" "$@")"
 	cd "${result}" || return
 else
-	results="$(fd --type=d --prune --base-directory=/Users/niels/Code/Socialbrothers --strip-cwd-prefix --path-separator='')"
+	scope="$(gum choose 'Work' 'Personal')"
+
+	basedir=''
+
+	case "${scope}" in
+	"Work")
+		basedir="${sbdir}"
+		;;
+	"Personal")
+		basedir="${codedir}"
+		;;
+	*) return 1 ;;
+	esac
+
+	results="$(fd --type=d --prune --base-directory="${basedir}" --strip-cwd-prefix --path-separator='')"}
 	result="$(echo "${results}" | gum filter --height=20 --placeholder=Project... --indicator.foreground='#ff470b' --match.foreground='#ff470b')"
 	cd "${sbdir}${result}" || return
 fi
