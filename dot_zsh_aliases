@@ -38,10 +38,10 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
-alias sb="source sb"
+alias p="source p"
 
 # Socialbrothers
-function sbo() {
+function sb() {
   local sbdir=~/Code/Socialbrothers/
   if (( $# != 0 ))
   then
