@@ -1,7 +1,7 @@
 #!/bin/sh
 
 codedir="${HOME}/Code/"
-sbdir="${codedir}/Socialbrothers/"
+sbdir="${codedir}Socialbrothers/"
 
 if [ $# -ne 0 ]; then
 	result="$(zoxide query "${codedir}" "$@")"
@@ -34,3 +34,5 @@ else
 		cd "${path}" || return
 	fi
 fi
+
+return
