@@ -48,11 +48,11 @@ cmp.setup({
   sources = {
     { name = "copilot" },
     { name = "luasnip", max_item_count = 3 },
-    { name = "nvim_lsp", group_index = 1 },
+    { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
     { name = "cmp_tabnine", max_item_count = 3 },
-    { name = "buffer", max_item_count = 5, group_index = 2 },
+    { name = "buffer", max_item_count = 5 },
     { name = "emoji" },
   },
   confirm_opts = {
