@@ -1,7 +1,7 @@
 local ntree = require("nvim-tree")
 
 local i = require("config.icons")
-local cb = ntreec.nvim_tree_callback
+local cb = require("nvim-tree.config").nvim_tree_callback
 local u = i.unspaced
 
 ntree.setup({
