@@ -59,7 +59,7 @@ return packer.startup(function(use)
 
   use({
     "phaazon/hop.nvim",
-    config = configure("config.hop-nvim"),
+    config = function() require("config.hop-nvim") end,
   })
 
   use({
