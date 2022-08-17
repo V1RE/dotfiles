@@ -1,6 +1,6 @@
 #!/bin/sh
 
-p() {
+_p() {
 	codedir="${HOME}/Code/"
 	sbdir="${codedir}Socialbrothers/"
 
@@ -36,4 +36,4 @@ p() {
 	fi
 }
 
-p "$@"
+_p "$@"
