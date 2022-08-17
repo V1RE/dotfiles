@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 local gitsigns = require("gitsigns")
-local i = require("icons").unspaced
 
 gitsigns.setup({
   signs = {
