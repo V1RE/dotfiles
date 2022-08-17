@@ -38,7 +38,7 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
-alias sb="source ./bin/sb"
+alias sb="source sb"
 
 # Socialbrothers
 function sbo() {
