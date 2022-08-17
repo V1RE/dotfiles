@@ -47,12 +47,12 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
   if server == "sumneko_lua" then
     local sumneko_lua_opts = require("config.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts) or {}
-    local l_status_ok = pcall(require, "lua-deva")
-    if not l_status_ok then
-      return
-    end
-
-    opts = require("lua-dev").setup({ lspconfig = opts }) or {}
+    --[[ local l_status_ok = pcall(require, "lua-dev") ]]
+    --[[ if not l_status_ok then ]]
+    --[[   return ]]
+    --[[ end ]]
+    --[[]]
+    --[[ opts = require("lua-dev").setup({ lspconfig = opts }) or {} ]]
   end
 
   if server == "tsserver" then
