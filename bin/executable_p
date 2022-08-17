@@ -29,6 +29,7 @@ else
 
 	path="${basedir}${result}"
 
+	echo "${path}"
 	if [ -z "${result}" ] && [ -d "${path}" ]; then
 		cd "${path}" || return
 	fi
