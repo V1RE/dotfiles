@@ -10,7 +10,7 @@ if [ $# -ne 0 ]; then
 		builtin cd "${result}" || return
 	fi
 
-	echo "${result}"
+	return
 else
 	scope="$(gum choose 'Work' 'Personal')"
 
@@ -36,4 +36,6 @@ else
 		builtin cd "${path}" || return
 	fi
 	echo "${result}"
+
+	return
 fi
