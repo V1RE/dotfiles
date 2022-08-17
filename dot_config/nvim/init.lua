@@ -1,5 +1,5 @@
-require("util.configure")
 require("profiler")
+require("util.configure")
 require("options")
 require("keymaps")
 require("plugins")
