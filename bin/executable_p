@@ -7,10 +7,8 @@ if [ $# -ne 0 ]; then
 	result="$(zoxide query "${codedir}" "$@")"
 
 	if [ -z "${result}" ]; then
-		builtin cd "${result}" || return
+		cd "${result}"
 	fi
-
-	return
 else
 	scope="$(gum choose 'Work' 'Personal')"
 
@@ -33,9 +31,7 @@ else
 
 	echo "${path}"
 	if [ -z "${result}" ]; then
-		builtin cd "${path}" || return
+		cd "${path}"
 	fi
 	echo "${result}"
-
-	return
 fi
