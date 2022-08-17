@@ -1,35 +1,40 @@
 #!/bin/sh
 
-codedir="${HOME}/Code/"
-sbdir="${codedir}Socialbrothers/"
+p() {
 
-if [ $# -ne 0 ]; then
-	result="$(zoxide query "${codedir}" "$@")"
+	codedir="${HOME}/Code/"
+	sbdir="${codedir}Socialbrothers/"
 
-	if [ -z "${result}" ] && [ -d "${result}" ]; then
-		cd "${result}" || return
+	if [ $# -ne 0 ]; then
+		result="$(zoxide query "${codedir}" "$@")"
+
+		if [ -z "${result}" ] && [ -d "${result}" ]; then
+			cd "${result}" || return
+		fi
 	fi
-fi
 
-scope="$(gum choose 'Work' 'Personal')"
+	scope="$(gum choose 'Work' 'Personal')"
 
-basedir=''
+	basedir=''
 
-case "${scope}" in
-"Work")
-	basedir="${sbdir}"
-	;;
-"Personal")
-	basedir="${codedir}"
-	;;
-*) return 1 ;;
-esac
+	case "${scope}" in
+	"Work")
+		basedir="${sbdir}"
+		;;
+	"Personal")
+		basedir="${codedir}"
+		;;
+	*) return 1 ;;
+	esac
 
-results="$(fd --type=d --prune --base-directory="${basedir}" --strip-cwd-prefix --path-separator='')"
-result="$(echo "${results}" | gum filter --height=20 --placeholder=Project... --indicator.foreground='#ff470b' --match.foreground='#ff470b')"
+	results="$(fd --type=d --prune --base-directory="${basedir}" --strip-cwd-prefix --path-separator='')"
+	result="$(echo "${results}" | gum filter --height=20 --placeholder=Project... --indicator.foreground='#ff470b' --match.foreground='#ff470b')"
 
-path="${basedir}${result}"
+	path="${basedir}${result}"
 
-if [ -z "${result}" ] && [ -d "${path}" ]; then
-	cd "${path}" || return
-fi
+	if [ -z "${result}" ] && [ -d "${path}" ]; then
+		cd "${path}" || return
+	fi
+}
+
+p "$@"
