@@ -1,12 +1,11 @@
 #!/bin/sh
 
 p() {
-
 	codedir="${HOME}/Code/"
 	sbdir="${codedir}Socialbrothers/"
 
 	if [ $# -ne 0 ]; then
-		result="$(zoxide query "${codedir}" "$@")"
+		result="$(zoxide query "${codedir}" "$1")"
 
 		if [ -z "${result}" ] && [ -d "${result}" ]; then
 			cd "${result}" || return
