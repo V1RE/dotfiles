@@ -7,9 +7,6 @@ return {
       diagnostics = {
         globals = { "vim" },
       },
-      workspace = {
-        useGitIgnore = true,
-      },
       telemetry = {
         enable = false,
       },
