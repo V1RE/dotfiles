@@ -5,5 +5,6 @@ sbdir="${HOME}/Code/Socialbrothers/"
 if [ $# -ne 0 ]; then
 	echo "${sbdir}"
 	result="$(zoxide query "${sbdir}" "$@")"
+	echo "${result}"
 	cd "${result}" || return
 fi
