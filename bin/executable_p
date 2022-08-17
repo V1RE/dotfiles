@@ -6,9 +6,11 @@ sbdir="${codedir}Socialbrothers/"
 if [ $# -ne 0 ]; then
 	result="$(zoxide query "${codedir}" "$@")"
 
-	if [ -z "${result}" ] && [ -d "${result}" ]; then
+	if [ -z "${result}" ]; then
 		cd "${result}" || return
 	fi
+
+	echo "${result}"
 else
 	scope="$(gum choose 'Work' 'Personal')"
 
@@ -30,9 +32,8 @@ else
 	path="${basedir}${result}"
 
 	echo "${path}"
-	if [ -z "${result}" ] && [ -d "${path}" ]; then
+	if [ -z "${result}" ]; then
 		cd "${path}" || return
 	fi
+	echo "${result}"
 fi
-
-return
