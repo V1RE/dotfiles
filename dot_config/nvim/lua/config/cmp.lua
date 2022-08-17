@@ -1,14 +1,15 @@
-local cmp_ok, cmp = pcall(require, "cmp")
-local ls_ok, ls = pcall(require, "luasnip")
-local lslfvsc_ok, lslfvsc = pcall(require, "luasnip/loaders/from_vscode")
+local cmp_ok = pcall(require, "cmp")
+local ls_ok = pcall(require, "luasnip")
 
-if not (cmp_ok and ls_ok and lslfvsc_ok) then
+if not (cmp_ok and ls_ok) then
   return
 end
 
-lslfvsc.lazy_load()
-
+local cmp = require("cmp")
+local ls = require("luasnip")
 local i = require("config.icons")
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
   snippet = {
