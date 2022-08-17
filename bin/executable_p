@@ -7,7 +7,7 @@ if [ $# -ne 0 ]; then
 	result="$(zoxide query "${codedir}" "$@")"
 
 	if [ -z "${result}" ]; then
-		cd "${result}" || return
+		builtin cd "${result}" || return
 	fi
 
 	echo "${result}"
@@ -33,7 +33,7 @@ else
 
 	echo "${path}"
 	if [ -z "${result}" ]; then
-		cd "${path}" || return
+		builtin cd "${path}" || return
 	fi
 	echo "${result}"
 fi
