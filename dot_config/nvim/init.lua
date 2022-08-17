@@ -1,3 +1,4 @@
+require("util.configure")
 require("profiler")
 require("options")
 require("keymaps")
