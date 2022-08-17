@@ -1,17 +1,15 @@
 #!/bin/sh
 
-_p() {
-	codedir="${HOME}/Code/"
-	sbdir="${codedir}Socialbrothers/"
+codedir="${HOME}/Code/"
+sbdir="${codedir}/Socialbrothers/"
 
-	if [ $# -ne 0 ]; then
-		result="$(zoxide query "${codedir}" "$1")"
+if [ $# -ne 0 ]; then
+	result="$(zoxide query "${codedir}" "$@")"
 
-		if [ -z "${result}" ] && [ -d "${result}" ]; then
-			cd "${result}" || return
-		fi
+	if [ -z "${result}" ] && [ -d "${result}" ]; then
+		cd "${result}" || return
 	fi
-
+else
 	scope="$(gum choose 'Work' 'Personal')"
 
 	basedir=''
@@ -34,6 +32,4 @@ _p() {
 	if [ -z "${result}" ] && [ -d "${path}" ]; then
 		cd "${path}" || return
 	fi
-}
-
-_p "$@"
+fi
