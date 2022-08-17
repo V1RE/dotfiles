@@ -39,7 +39,7 @@ alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
 # Socialbrothers
-function sb() {
+function sbo() {
   local sbdir=~/Code/Socialbrothers/
   if (( $# != 0 ))
   then
