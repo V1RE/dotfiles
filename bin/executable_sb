@@ -10,5 +10,5 @@ if [ $# -ne 0 ]; then
 else
 	results="$(fd --type=d --prune --base-directory=/Users/niels/Code/Socialbrothers --strip-cwd-prefix --path-separator='')"
 	result="$(echo "${results}" | gum filter --height=20 --placeholder=Project... --indicator.foreground='#ff470b' --match.foreground='#ff470b')"
-	cd "${result}" || return
+	cd "${sbdir}${result}" || return
 fi
