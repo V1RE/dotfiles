@@ -7,7 +7,7 @@ if [ $# -ne 0 ]; then
 	result="$(zoxide query "${codedir}" "$@")"
 
 	if [ -z "${result}" ]; then
-		cd "${result}"
+		builtin cd "${result}" || return
 	fi
 else
 	scope="$(gum choose 'Work' 'Personal')"
@@ -15,12 +15,8 @@ else
 	basedir=''
 
 	case "${scope}" in
-	"Work")
-		basedir="${sbdir}"
-		;;
-	"Personal")
-		basedir="${codedir}"
-		;;
+	"Work") basedir="${sbdir}" ;;
+	"Personal") basedir="${codedir}" ;;
 	*) return 1 ;;
 	esac
 
@@ -29,9 +25,8 @@ else
 
 	path="${basedir}${result}"
 
-	echo "${path}"
 	if [ -z "${result}" ]; then
-		cd "${path}"
+		builtin cd "${path}" || return
 	fi
-	echo "${result}"
+	return
 fi
