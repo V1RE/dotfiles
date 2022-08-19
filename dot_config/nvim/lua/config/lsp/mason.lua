@@ -58,6 +58,13 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
   if server == "tsserver" then
     local tsserver_opts = require("config.lsp.settings.tsserver")
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts) or {}
+    local ts_ok = pcall(require, "tsserver")
+    if ts_ok then
+      require("typescript").setup({
+        server = opts,
+      })
+      return
+    end
   end
 
   lspconfig[server].setup(opts)
