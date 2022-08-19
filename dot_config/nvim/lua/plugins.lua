@@ -252,6 +252,8 @@ return packer.startup(function(use)
 
   use("b0o/schemastore.nvim")
 
+  use("jose-elias-alvarez/typescript.nvim")
+
   use({
     "b0o/incline.nvim",
     config = function()
