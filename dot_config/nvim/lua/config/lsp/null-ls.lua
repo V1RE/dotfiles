@@ -34,9 +34,7 @@ null_ls.setup({
     formatting.stylelint,
     formatting.stylua,
     formatting.tidy,
-    hover.dictionary.with({
-      filetypes = {},
-    }),
+    hover.dictionary,
     linters.eslint_d,
     linters.luacheck,
     linters.rubocop,
