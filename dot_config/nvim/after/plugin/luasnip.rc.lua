@@ -1,8 +1,3 @@
-local status_ok = pcall(require, "luasnip")
-if not status_ok then
-  return
-end
-
 local ls = require("luasnip")
 
 --
