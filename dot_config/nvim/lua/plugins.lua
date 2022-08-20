@@ -57,7 +57,7 @@ return packer.startup(function(use)
 
   use("voldikss/vim-floaterm")
 
-  use({ "phaazon/hop.nvim" })
+  use("phaazon/hop.nvim")
 
   use({
     "windwp/nvim-autopairs",
@@ -66,12 +66,7 @@ return packer.startup(function(use)
     end,
   })
 
-  use({
-    "numToStr/Comment.nvim",
-    config = function()
-      require("config.comment")
-    end,
-  })
+  use("numToStr/Comment.nvim")
 
   use({
     "SmiteshP/nvim-navic",
