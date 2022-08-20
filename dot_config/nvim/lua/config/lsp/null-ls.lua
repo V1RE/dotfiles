@@ -27,7 +27,6 @@ null_ls.setup({
     code_actions.shellcheck,
     formatting.eslint_d,
     formatting.google_java_format,
-    formatting.phpcsfixer,
     formatting.prettierd,
     formatting.rubocop,
     formatting.shfmt,
