@@ -1,4 +1,4 @@
-require("Comment").setup({
+require("omment").setup({
   pre_hook = function(ctx)
     local U = require("Comment.utils")
 
