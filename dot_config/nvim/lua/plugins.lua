@@ -198,9 +198,6 @@ return packer.startup(function(use)
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-emoji",
     },
-    config = function()
-      require("config.cmp")
-    end,
   })
 
   use({
