@@ -1,5 +1,3 @@
-local M = {}
-
 local wk = require("which-key")
 local telescope = require("telescope.builtin")
 
@@ -139,11 +137,3 @@ local mappings = {
 
 wk.setup(setup)
 wk.register(mappings, opts)
-
-local register = function(mapTable)
-  wk.register(mapTable, opts)
-end
-
-M.register = register
-
-return M

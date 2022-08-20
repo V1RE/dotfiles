@@ -168,27 +168,14 @@ return packer.startup(function(use)
   })
 
   -- snippets
-  use("L3MON4D3/LuaSnip")
+  use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
 
-  use({
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        cmp = {
-          enabled = true,
-          method = "getCompletionsCycling",
-        },
-        panel = {
-          enabled = true,
-        },
-      })
-    end,
-  })
+  use({ "zbirenbaum/copilot.lua", event = "InsertEnter" })
 
   -- cmp plugins
   use({
     "hrsh7th/nvim-cmp",
+    as = "nvim_cmp",
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -202,18 +189,12 @@ return packer.startup(function(use)
 
   use({
     "tzachar/cmp-tabnine",
-    config = function()
-      require("config.tabnine")
-    end,
 
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   })
 
-  use({
-    "zbirenbaum/copilot-cmp",
-    module = "copilot_cmp",
-  })
+  use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp" })
 
   use("rafamadriz/friendly-snippets")
 
@@ -310,24 +291,7 @@ return packer.startup(function(use)
     end,
   })
 
-  use({ "rcarriga/nvim-dap-ui" })
-
-  use({
-    "mfussenegger/nvim-dap",
-    requires = { "rcarriga/nvim-dap-ui" },
-    config = function()
-      require("config.nvim-dap")
-    end,
-  })
-
-  use({ "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } })
-
-  use({
-    "folke/which-key.nvim",
-    config = function()
-      require("config.whichkey")
-    end,
-  })
+  use({ "folke/which-key.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
