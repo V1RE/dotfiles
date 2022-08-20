@@ -168,7 +168,7 @@ return packer.startup(function(use)
   })
 
   -- snippets
-  use({ "L3MON4D3/LuaSnip", as = "LuaSnip" })
+  use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
 
   use({
     "zbirenbaum/copilot.lua",

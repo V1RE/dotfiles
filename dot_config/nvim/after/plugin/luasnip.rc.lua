@@ -1,16 +1,5 @@
 local ls = require("LuaSnip")
 
---
--- local s = ls.snippet
--- local i = ls.insert_node
--- local fmt = require("luasnip.extras.fmt")
---
--- ls.add_snippets("all", {
---   s("clg", {
---     fmt("console.log({});", { i(1) }),
---   }),
--- })
-
 local function jump(dir)
   return function()
     if ls.jumpable(dir) then
