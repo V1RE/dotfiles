@@ -1,10 +1,3 @@
-local cmp_ok = pcall(require, "cmp")
-local ls_ok = pcall(require, "luasnip")
-
-if not (cmp_ok and ls_ok) then
-  return
-end
-
 local cmp = require("cmp")
 local ls = require("luasnip")
 local i = require("config.icons")

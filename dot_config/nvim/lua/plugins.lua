@@ -168,7 +168,7 @@ return packer.startup(function(use)
   })
 
   -- snippets
-  use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
+  use("L3MON4D3/LuaSnip")
 
   use({
     "zbirenbaum/copilot.lua",
@@ -261,10 +261,7 @@ return packer.startup(function(use)
     end,
   })
 
-  use({
-    "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make",
-  })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
   use({ "nvim-telescope/telescope-ui-select.nvim" })
 
