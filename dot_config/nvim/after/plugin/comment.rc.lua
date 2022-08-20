@@ -1,7 +1,7 @@
 if pcall(require, "Comment") then
   return
 end
-
+--[[
 require("Comment").setup({
   pre_hook = function(ctx)
     local U = require("Comment.utils")
@@ -18,4 +18,4 @@ require("Comment").setup({
       location = location,
     })
   end,
-})
+}) ]]
