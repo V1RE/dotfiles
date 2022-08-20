@@ -63,7 +63,6 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
       require("typescript").setup({
         server = opts,
       })
-      return
     end
   end
 
