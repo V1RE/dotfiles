@@ -1,10 +1,5 @@
 M = {}
 
-local status_ok = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
 M.server_capabilities = function()
   local active_clients = vim.lsp.get_active_clients()
   local active_client_map = {}
@@ -30,15 +25,7 @@ end
 require("config.lsp.lsp-signature")
 require("config.lsp.mason")
 require("config.lsp.handlers").setup()
-require("config.lsp.null-ls")
 
-local l_status_ok = pcall(require, "lsp_lines")
-if not l_status_ok then
-  return
-end
-
-local lsp_lines = require("lsp_lines")
-
-lsp_lines.setup()
+require("lsp_lines").setup()
 
 return M

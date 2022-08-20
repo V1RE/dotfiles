@@ -41,46 +41,26 @@ return packer.startup(function(use)
   use("nvim-lua/popup.nvim")
   use("nvim-lua/plenary.nvim")
   use("MunifTanjim/nui.nvim")
-
   use("machakann/vim-sandwich")
-
   use("wakatime/vim-wakatime")
-
   use({
     "ptzz/lf.vim",
     config = function()
       require("config.lf")
     end,
   })
-
   use("tpope/vim-abolish")
-
   use("voldikss/vim-floaterm")
-
   use("phaazon/hop.nvim")
-
   use({
     "windwp/nvim-autopairs",
     config = function()
       require("config.autopairs")
     end,
   })
-
   use("numToStr/Comment.nvim")
-
-  use({
-    "SmiteshP/nvim-navic",
-    config = function()
-      require("config.navic")
-    end,
-  })
-
-  use({
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("config.colorizer")
-    end,
-  })
+  use({ "SmiteshP/nvim-navic" })
+  use({ "norcalli/nvim-colorizer.lua" })
 
   use({
     "kyazdani42/nvim-web-devicons",

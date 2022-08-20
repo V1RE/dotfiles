@@ -1,13 +1,6 @@
-local status_ok = pcall(require, "nvim-navic")
-if not status_ok then
-  return
-end
-
-local navic = require("nvim-navic")
-
 local i = require("config.icons")
 
-navic.setup({
+require("nvim-navic").setup({
   icons = {
     File = i.File .. " ",
     Module = i.Module .. " ",

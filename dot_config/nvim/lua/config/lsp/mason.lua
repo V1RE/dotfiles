@@ -1,11 +1,3 @@
-local mason_ok = pcall(require, "mason")
-local mason_lsp_ok = pcall(require, "mason-lspconfig")
-local lsp_ok = pcall(require, "lspconfig")
-
-if not mason_ok and mason_lsp_ok and lsp_ok then
-  return
-end
-
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
