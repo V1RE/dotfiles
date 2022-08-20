@@ -57,12 +57,7 @@ return packer.startup(function(use)
 
   use("voldikss/vim-floaterm")
 
-  use({
-    "phaazon/hop.nvim",
-    config = function()
-      require("config.hop-nvim")
-    end,
-  })
+  use({ "phaazon/hop.nvim" })
 
   use({
     "windwp/nvim-autopairs",
