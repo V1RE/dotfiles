@@ -200,7 +200,7 @@ return packer.startup(function(use)
   })
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
-  use("mizlan/iswap.nvim")
+  --[[ use("mizlan/iswap.nvim") ]]
   use("monaqa/dial.nvim")
 
   use({
