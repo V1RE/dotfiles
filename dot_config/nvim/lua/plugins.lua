@@ -130,13 +130,7 @@ return packer.startup(function(use)
 
   use("antoinemadec/FixCursorHold.nvim")
   use("christoomey/vim-tmux-navigator")
-
-  use({
-    "stevearc/dressing.nvim",
-    config = function()
-      require("config.dressing")
-    end,
-  })
+  use("stevearc/dressing.nvim")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
@@ -176,29 +170,13 @@ return packer.startup(function(use)
   })
 
   use("folke/lua-dev.nvim")
-
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
-
   use("jose-elias-alvarez/null-ls.nvim")
-
   use("b0o/schemastore.nvim")
-
   use("jose-elias-alvarez/typescript.nvim")
-
-  use({
-    "b0o/incline.nvim",
-    config = function()
-      require("config.incline")
-    end,
-  })
-
-  use({
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("config.signature")
-    end,
-  })
+  use("b0o/incline.nvim")
+  use("ray-x/lsp_signature.nvim")
 
   -- Telescope
   use({
@@ -210,7 +188,7 @@ return packer.startup(function(use)
 
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
-  use({ "nvim-telescope/telescope-ui-select.nvim" })
+  use("nvim-telescope/telescope-ui-select.nvim")
 
   -- Treesitter
   use({
@@ -223,13 +201,7 @@ return packer.startup(function(use)
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
   use("mizlan/iswap.nvim")
-
-  use({
-    "monaqa/dial.nvim",
-    config = function()
-      require("config.dial")
-    end,
-  })
+  use("monaqa/dial.nvim")
 
   use({
     "j-hui/fidget.nvim",
@@ -260,7 +232,7 @@ return packer.startup(function(use)
     end,
   })
 
-  use({ "folke/which-key.nvim" })
+  use("folke/which-key.nvim")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
