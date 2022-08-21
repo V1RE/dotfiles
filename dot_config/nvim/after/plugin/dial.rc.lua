@@ -1,6 +1,7 @@
 local augend = require("dial.augend")
+local map = require("dial.map")
 
-require("dial").augends:register_group({
+require("dial.config").augends:register_group({
   default = {
     augend.integer.alias.decimal,
     augend.integer.alias.hex,
@@ -23,8 +24,6 @@ require("dial").augends:register_group({
     augend.semver.alias.semver,
   },
 })
-
-local map = require("dial.map")
 
 vim.keymap.set("n", "<C-a>", map.inc_normal())
 vim.keymap.set("n", "<C-x>", map.dec_normal())
