@@ -179,36 +179,18 @@ return packer.startup(function(use)
   use("ray-x/lsp_signature.nvim")
 
   -- Telescope
-  use({
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      require("config.telescope")
-    end,
-  })
-
+  use("nvim-telescope/telescope.nvim")
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
   use("nvim-telescope/telescope-ui-select.nvim")
 
   -- Treesitter
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    config = function()
-      require("config.treesitter")
-    end,
-  })
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
-  --[[ use("mizlan/iswap.nvim") ]]
+  use("mizlan/iswap.nvim")
   use("monaqa/dial.nvim")
 
-  use({
-    "j-hui/fidget.nvim",
-    config = function()
-      require("config.fidget")
-    end,
-  })
+  use("j-hui/fidget.nvim")
 
   -- Git
   use({
