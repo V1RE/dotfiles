@@ -52,22 +52,11 @@ return packer.startup(function(use)
   use("tpope/vim-abolish")
   use("voldikss/vim-floaterm")
   use("phaazon/hop.nvim")
-  use({
-    "windwp/nvim-autopairs",
-    config = function()
-      require("config.autopairs")
-    end,
-  })
+  use("windwp/nvim-autopairs")
   use("numToStr/Comment.nvim")
-  use({ "SmiteshP/nvim-navic" })
-  use({ "norcalli/nvim-colorizer.lua" })
-
-  use({
-    "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("config.webdevicons")
-    end,
-  })
+  use("SmiteshP/nvim-navic")
+  use("norcalli/nvim-colorizer.lua")
+  use("kyazdani42/nvim-web-devicons")
 
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
