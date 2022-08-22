@@ -57,6 +57,7 @@ return packer.startup(function(use)
   use("SmiteshP/nvim-navic")
   use("norcalli/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
+  use("github/copilot.vim")
 
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
