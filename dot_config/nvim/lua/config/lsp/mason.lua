@@ -18,35 +18,31 @@ local settings = {
 mason.setup(settings)
 mason_lspconfig.setup()
 
-for _, server in pairs(mason_lspconfig.get_installed_servers()) do
-  local opts = {
-    on_attach = require("config.lsp.handlers").on_attach,
-    capabilities = require("config.lsp.handlers").capabilities,
-  }
+local opts = {
+  on_attach = require("config.lsp.handlers").on_attach,
+  capabilities = require("config.lsp.handlers").capabilities,
+}
 
-  server = vim.split(server, "@")[1]
+mason_lspconfig.setup_handlers({
+  function(server)
+    lspconfig[server].setup(opts)
+  end,
 
-  if server == "jsonls" then
-    local jsonls_opts = require("config.lsp.settings.jsonls")
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts) or {}
-  end
+  ["sumneko_lua"] = function()
+    opts = vim.tbl_deep_extend("force", require("config.lsp.settings.sumneko_lua"), opts) or {}
+    lspconfig.sumneko_lua.setup(require("lua-dev").setup({ lspconfig = opts }) or {})
+  end,
 
-  if server == "yamlls" then
-    local yamlls_opts = require("config.lsp.settings.yamlls")
-    opts = vim.tbl_deep_extend("force", yamlls_opts, opts) or {}
-  end
+  ["jsonls"] = function()
+    lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.jsonls"), opts) or {})
+  end,
 
-  if server == "sumneko_lua" then
-    local sumneko_lua_opts = require("config.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts) or {}
-    opts = require("lua-dev").setup({ lspconfig = opts }) or {}
-  end
+  ["yamlls"] = function()
+    lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.yamlls"), opts) or {})
+  end,
 
-  if server == "tsserver" then
-    local tsserver_opts = require("config.lsp.settings.tsserver")
-    opts = vim.tbl_deep_extend("force", tsserver_opts, opts) or {}
+  ["tsserver"] = function()
+    opts = vim.tbl_deep_extend("force", require("config.lsp.settings.tsserver"), opts) or {}
     require("typescript").setup({ server = opts })
-  end
-
-  lspconfig[server].setup(opts)
-end
+  end,
+})
