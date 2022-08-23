@@ -6,7 +6,7 @@ update() {
 	brew update
 	brew upgrade
 	brew reinstall neovim
-	n install lts
+	n lts -d
 	yarn global upgrade --latest
 	cargo install-update -a
 	antidote update

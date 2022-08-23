@@ -38,8 +38,6 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
-alias p=". ~/bin/_p"
-
 # Socialbrothers
 function sb() {
   local sbdir=~/Code/Socialbrothers/
