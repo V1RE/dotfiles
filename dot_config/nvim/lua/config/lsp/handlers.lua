@@ -1,21 +1,17 @@
 local M = {}
+local i = require("config.icons")
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_cmp_ok then
-  return
-end
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+M.capabilities = require("cmp_nvim_lsp").update_capabilities(M.capabilities)
 
 M.setup = function()
-  local icons = require("config.icons")
   local signs = {
-    { name = "DiagnosticSignError", text = icons.Error },
-    { name = "DiagnosticSignWarn", text = icons.Warning },
-    { name = "DiagnosticSignHint", text = icons.Hint },
-    { name = "DiagnosticSignInfo", text = icons.Information },
+    { name = "DiagnosticSignError", text = i.Error },
+    { name = "DiagnosticSignWarn", text = i.Warning },
+    { name = "DiagnosticSignHint", text = i.Hint },
+    { name = "DiagnosticSignInfo", text = i.Information },
   }
 
   for _, sign in ipairs(signs) do
@@ -25,7 +21,6 @@ M.setup = function()
   vim.diagnostic.config({
     virtual_lines = false,
     virtual_text = false,
-
     signs = {
       active = signs,
     },
