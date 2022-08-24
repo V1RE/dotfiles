@@ -1,7 +1,4 @@
-local cybu_ok, cybu = pcall(require, "cybu")
-if not cybu_ok then
-  return
-end
+local cybu = require("cybu")
 
 cybu.setup({
   position = {
@@ -22,4 +19,9 @@ cybu.setup({
     "NvimTree",
     "alpha",
   },
+})
+
+require("which-key").register({
+  L = cybu.cycle("next"),
+  H = cybu.cycle("prev"),
 })

@@ -1,8 +1,3 @@
-local status_ok = pcall(require, "lsp-inlayhints")
-if not status_ok then
-  return
-end
-
 local hints = require("lsp-inlayhints")
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})

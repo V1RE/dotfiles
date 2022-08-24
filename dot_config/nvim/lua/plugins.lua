@@ -59,39 +59,12 @@ return packer.startup(function(use)
   use("alker0/chezmoi.vim")
   use("moll/vim-bbye")
   use("nvim-lualine/lualine.nvim")
-
-  use({
-    "akinsho/toggleterm.nvim",
-    config = function()
-      require("config.toggleterm")
-    end,
-  })
-
-  use({
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("config.project")
-    end,
-  })
-
-  use({
-    "ghillb/cybu.nvim",
-    config = function()
-      require("config.cybu")
-    end,
-  })
-
+  use("akinsho/toggleterm.nvim")
+  use("ahmedkhalf/project.nvim")
+  use("ghillb/cybu.nvim")
   use("lewis6991/impatient.nvim")
-
   use("RRethy/vim-illuminate")
-
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("config.indentline")
-    end,
-  })
-
+  use("lukas-reineke/indent-blankline.nvim")
   use("antoinemadec/FixCursorHold.nvim")
   use("christoomey/vim-tmux-navigator")
   use("stevearc/dressing.nvim")
@@ -154,7 +127,6 @@ return packer.startup(function(use)
   use("windwp/nvim-ts-autotag")
   use("mizlan/iswap.nvim")
   use("monaqa/dial.nvim")
-
   use("j-hui/fidget.nvim")
 
   -- Git
@@ -165,20 +137,8 @@ return packer.startup(function(use)
     end,
   })
 
-  use({
-    "mrjones2014/legendary.nvim",
-    config = function()
-      require("config.legendary-nvim")
-    end,
-  })
-
-  use({
-    "lvimuser/lsp-inlayhints.nvim",
-    config = function()
-      require("config.inlayhints")
-    end,
-  })
-
+  use("mrjones2014/legendary.nvim")
+  use("lvimuser/lsp-inlayhints.nvim")
   use("folke/which-key.nvim")
 
   -- Automatically set up your configuration after cloning packer.nvim
