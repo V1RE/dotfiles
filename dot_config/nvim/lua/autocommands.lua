@@ -24,17 +24,6 @@ vim.cmd([[
     autocmd VimResized * tabdo wincmd =
   augroup end
 
-  augroup _alpha
-    autocmd!
-    autocmd User AlphaReady lua require"nvim-tree".toggle(false, true)
-    autocmd User AlphaReady AlphaRedraw
-  augroup end
-
-  " augroup _nvimtree
-  "   autocmd!
-  "   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-  " augroup end
-
   augroup _lsp
     autocmd!
     autocmd FileType plist set ft=xml

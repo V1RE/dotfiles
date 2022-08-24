@@ -1,5 +1,4 @@
 require("catppuccin").setup({
-  transparent_background = false,
   term_colors = true,
   styles = {
     comments = { "italic" },
@@ -17,6 +16,12 @@ require("catppuccin").setup({
       enabled = true,
       colored_indent_levels = true,
     },
+  },
+  dim_inactive = {
+    enabled = true,
+  },
+  compile = {
+    enable = true,
   },
 })
 

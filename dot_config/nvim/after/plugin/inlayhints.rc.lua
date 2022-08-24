@@ -42,5 +42,4 @@ hints.setup({
     -- highlight group
     highlight = "Comment",
   },
-  debug_mode = true,
 })
