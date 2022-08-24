@@ -55,13 +55,9 @@ return packer.startup(function(use)
   --[[ use("github/copilot.vim") ]]
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
   use("kyazdani42/nvim-tree.lua")
-
   use("akinsho/bufferline.nvim")
-
   use("alker0/chezmoi.vim")
-
   use("moll/vim-bbye")
-
   use({
     "nvim-lualine/lualine.nvim",
     config = function()

@@ -1,9 +1,4 @@
-local lualine_ok, lualine = pcall(require, "lualine")
-local navic_ok, navic = pcall(require, "nvim-navic")
-if not (lualine_ok and navic_ok) then
-  return
-end
-
+local navic = require("nvim-navic")
 local i = require("config.icons")
 
 local hide_in_width = function()
@@ -90,10 +85,10 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-lualine.setup({
+require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = "auto",
+    theme = "catppuccin",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = {},
