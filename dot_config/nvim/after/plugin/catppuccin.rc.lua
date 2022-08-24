@@ -1,3 +1,5 @@
+vim.g.catppuccin_flavour = "mocha"
+
 require("catppuccin").setup({
   term_colors = false,
   styles = {
@@ -28,4 +30,4 @@ require("catppuccin").setup({
   },
 })
 
-require("colorscheme")
+vim.cmd([[colorscheme catppuccin]])
