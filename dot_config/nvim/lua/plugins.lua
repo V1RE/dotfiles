@@ -25,9 +25,9 @@ local packer = require("packer")
 -- Have packer use a popup window
 packer.init({
   display = {
-    --[[ open_fn = function()
+    open_fn = function()
       return require("packer.util").float({ border = "rounded" })
-    end, ]]
+    end,
     keybindings = {
       quit = "<esc>",
     },
@@ -92,7 +92,7 @@ return packer.startup(function(use)
     },
   })
 
-  use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+  use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "nvim_cmp" })
 
   use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp" })
 
