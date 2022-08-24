@@ -28,6 +28,6 @@ local function cycle(direction)
 end
 
 require("which-key").register({
-  L = cycle("next"),
-  H = cycle("prev"),
+  L = { cycle("next") },
+  H = { cycle("prev") },
 })
