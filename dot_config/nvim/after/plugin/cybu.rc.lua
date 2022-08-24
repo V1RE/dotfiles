@@ -1,4 +1,5 @@
 local cybu = require("cybu")
+local i = require("config.icons")
 
 cybu.setup({
   position = {
@@ -28,6 +29,6 @@ local function cycle(direction)
 end
 
 require("which-key").register({
-  L = { cycle("next") },
-  H = { cycle("prev") },
+  L = { cycle("next"), i.ChevronRight .. "Next buffer" },
+  H = { cycle("prev"), i.ChevronLeft .. "Previouw buffer" },
 })
