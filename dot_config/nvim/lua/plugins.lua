@@ -74,8 +74,8 @@ return packer.startup(function(use)
 
   -- snippets
   use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
-
   use({ "zbirenbaum/copilot.lua", event = "InsertEnter" })
+  use("rafamadriz/friendly-snippets")
 
   -- cmp plugins
   use({
@@ -91,12 +91,8 @@ return packer.startup(function(use)
       "hrsh7th/cmp-emoji",
     },
   })
-
   use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "nvim_cmp" })
-
   use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp" })
-
-  use("rafamadriz/friendly-snippets")
 
   -- LSP
   use({

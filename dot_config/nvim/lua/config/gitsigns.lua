@@ -1,5 +1,5 @@
 require("gitsigns").setup({
-  signs = {
+  --[[ signs = {
     add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
     delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
@@ -10,7 +10,7 @@ require("gitsigns").setup({
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
     },
-  },
+  }, ]]
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
   numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
