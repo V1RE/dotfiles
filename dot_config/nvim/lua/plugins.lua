@@ -95,13 +95,7 @@ return packer.startup(function(use)
   use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp" })
 
   -- LSP
-  use({
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("config.lsp")
-    end,
-  })
-
+  use("neovim/nvim-lspconfig")
   use("folke/lua-dev.nvim")
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
@@ -126,12 +120,7 @@ return packer.startup(function(use)
   use("j-hui/fidget.nvim")
 
   -- Git
-  use({
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("config.gitsigns")
-    end,
-  })
+  use("lewis6991/gitsigns.nvim")
 
   use("mrjones2014/legendary.nvim")
   use("lvimuser/lsp-inlayhints.nvim")

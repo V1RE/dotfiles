@@ -19,9 +19,12 @@ require("catppuccin").setup({
   },
   dim_inactive = {
     enabled = true,
+    shade = "dark",
+    percentage = 0.15,
   },
   compile = {
     enable = true,
+    path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
 })
 
