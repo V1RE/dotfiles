@@ -1,5 +1,5 @@
 require("catppuccin").setup({
-  term_colors = true,
+  term_colors = false,
   styles = {
     comments = { "italic" },
     functions = { "italic" },
