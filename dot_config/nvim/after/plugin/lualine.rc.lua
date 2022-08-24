@@ -102,7 +102,6 @@ require("lualine").setup({
     },
     lualine_b = { mode },
     lualine_c = { "filename", { navic.get_location, cond = navic.is_available } },
-    -- lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_x = { diff, spaces, "encoding", filetype },
     lualine_y = { location },
     lualine_z = { progress },

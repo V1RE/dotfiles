@@ -1,12 +1,4 @@
-local status_ok = pcall(require, "toggleterm")
-if not status_ok then
-  return
-end
-
-local toggleterm = require("toggleterm")
-local whichkey = require("config.whichkey")
-
-toggleterm.setup({
+require("toggleterm").setup({
   size = 40,
   open_mapping = [[<C-Space>]],
   hide_numbers = true,
@@ -43,15 +35,9 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
-whichkey.register({
-  ["<leader>"] = {
-    g = {
-      g = {
-        function()
-          lazygit:toggle()
-        end,
-        "Lazygit",
-      },
-    },
+require("which-key").register({
+  ["<leader>gg"] = {
+    lazygit.toggle,
+    "Lazygit",
   },
 })
