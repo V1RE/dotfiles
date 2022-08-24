@@ -21,7 +21,11 @@ cybu.setup({
   },
 })
 
+local function cycle(direction)
+  cycle(direction)
+end
+
 require("which-key").register({
-  L = cybu.cycle("next"),
-  H = cybu.cycle("prev"),
+  L = cycle("next"),
+  H = cycle("prev"),
 })
