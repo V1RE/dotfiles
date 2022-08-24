@@ -22,7 +22,9 @@ cybu.setup({
 })
 
 local function cycle(direction)
-  cybu.cycle(direction)
+  return function()
+    cybu.cycle(direction)
+  end
 end
 
 require("which-key").register({
