@@ -1,10 +1,8 @@
-local ntree = require("nvim-tree")
-
 local i = require("config.icons")
 local cb = require("nvim-tree.config").nvim_tree_callback
 local u = i.unspaced
 
-ntree.setup({
+require("nvim-tree").setup({
   open_on_setup = true,
   open_on_setup_file = true,
   hijack_cursor = true,

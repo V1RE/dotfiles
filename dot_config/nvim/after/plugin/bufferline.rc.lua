@@ -18,7 +18,7 @@ require("bufferline").setup({
     separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = true,
   },
-  highlights = {
+  --[[ highlights = {
     fill = {
       fg = { attribute = "fg", highlight = "#ff0000" },
       bg = { attribute = "bg", highlight = "TabLine" },
@@ -90,5 +90,5 @@ require("bufferline").setup({
       fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
       bg = { attribute = "bg", highlight = "Normal" },
     },
-  },
+  }, ]]
 })

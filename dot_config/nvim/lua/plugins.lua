@@ -43,12 +43,7 @@ return packer.startup(function(use)
   use("MunifTanjim/nui.nvim")
   use("machakann/vim-sandwich")
   use("wakatime/vim-wakatime")
-  use({
-    "ptzz/lf.vim",
-    config = function()
-      require("config.lf")
-    end,
-  })
+  use("ptzz/lf.vim")
   use("tpope/vim-abolish")
   use("voldikss/vim-floaterm")
   use("phaazon/hop.nvim")
@@ -58,22 +53,10 @@ return packer.startup(function(use)
   use("norcalli/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
   --[[ use("github/copilot.vim") ]]
-
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
+  use("kyazdani42/nvim-tree.lua")
 
-  use({
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require("config.nvim-tree")
-    end,
-  })
-
-  use({
-    "akinsho/bufferline.nvim",
-    config = function()
-      require("config.bufferline")
-    end,
-  })
+  use("akinsho/bufferline.nvim")
 
   use("alker0/chezmoi.vim")
 
