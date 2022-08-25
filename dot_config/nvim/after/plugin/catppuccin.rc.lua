@@ -1,7 +1,7 @@
-vim.g.catppuccin_flavour = "mocha"
+vim.g.catppuccin_flavour = "macchiato"
 
 require("catppuccin").setup({
-  term_colors = true,
+  term_colors = false,
   styles = {
     comments = { "italic" },
     functions = { "italic" },
@@ -18,11 +18,6 @@ require("catppuccin").setup({
       enabled = true,
       colored_indent_levels = true,
     },
-  },
-  dim_inactive = {
-    enabled = true,
-    shade = "dark",
-    percentage = 0.42,
   },
   compile = {
     enabled = true,
