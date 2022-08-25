@@ -101,21 +101,27 @@ require("lualine").setup({
       diagnostics,
     },
     lualine_b = { mode },
-    lualine_c = { "filename" },
-    lualine_x = { diff, spaces, "encoding", filetype },
-    lualine_y = { location },
-    lualine_z = { progress },
-  },
-  extensions = { "nvim-tree", "quickfix", "toggleterm" },
-  winbar = {
-    lualine_a = { { navic.get_location, cond = navic.is_available } },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {
+    lualine_c = {
       {
         "filetype",
         icon_only = true,
       },
+      {
+        "filename",
+        path = 1,
+      },
+      { navic.get_location, cond = navic.is_available },
+    },
+    lualine_x = { diff, spaces, "encoding", filetype },
+    lualine_y = { location },
+    lualine_z = { progress },
+  },
+  extensions = { "quickfix", "toggleterm" },
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {
       "filename",
     },
     lualine_y = {},
