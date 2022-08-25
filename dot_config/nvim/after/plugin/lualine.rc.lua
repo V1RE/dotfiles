@@ -119,8 +119,8 @@ require("lualine").setup({
   winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
+    lualine_c = {},
+    lualine_x = { "filename" },
     lualine_y = {},
     lualine_z = {},
   },
