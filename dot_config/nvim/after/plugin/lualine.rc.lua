@@ -117,14 +117,4 @@ require("lualine").setup({
     lualine_z = { progress },
   },
   extensions = { "quickfix", "toggleterm" },
-  tabline = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {
-      "filename",
-    },
-    lualine_y = {},
-    lualine_z = {},
-  },
 })
