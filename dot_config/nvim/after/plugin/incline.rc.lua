@@ -39,7 +39,7 @@ require("incline").setup({
   window = {
     margin = {
       horizontal = 1,
-      vertical = -1,
+      vertical = 0,
     },
     options = {
       signcolumn = "no",
