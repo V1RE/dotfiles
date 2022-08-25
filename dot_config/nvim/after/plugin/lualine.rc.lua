@@ -120,7 +120,13 @@ require("lualine").setup({
     lualine_a = {},
     lualine_b = {},
     lualine_c = {},
-    lualine_x = { "filename" },
+    lualine_x = {
+      {
+        "filetype",
+        icon_only = true,
+      },
+      "filename",
+    },
     lualine_y = {},
     lualine_z = {},
   },
