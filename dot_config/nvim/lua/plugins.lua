@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use("antoinemadec/FixCursorHold.nvim")
   use("christoomey/vim-tmux-navigator")
   use("stevearc/dressing.nvim")
+  use("b0o/incline.nvim")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
