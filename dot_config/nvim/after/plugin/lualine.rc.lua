@@ -117,7 +117,7 @@ require("lualine").setup({
     lualine_z = { progress },
   },
   extensions = { "quickfix", "toggleterm" },
-  winbar = {
+  tabline = {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {},
