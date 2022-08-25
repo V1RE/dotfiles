@@ -37,7 +37,9 @@ local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
 require("which-key").register({
   ["<leader>gg"] = {
-    lazygit.toggle,
+    function()
+      lazygit:toggle()
+    end,
     "Lazygit",
   },
 })
