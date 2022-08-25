@@ -65,18 +65,7 @@ local mappings = {
 
     g = {
       name = " Git",
-      R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
-      b = { telescope.git_branches, "Checkout branch" },
-      c = { telescope.git_commits, "Checkout commit" },
-      d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-      j = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
-      k = { "<cmd>Gitsigns prev_hunk<cr>", "Prev Hunk" },
       l = { "<cmd>Gitsigns blame_line<cr>", "Blame" },
-      o = { telescope.git_status, "Open changed file" },
-      p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
-      r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
-      s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
-      u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
     },
 
     l = {
