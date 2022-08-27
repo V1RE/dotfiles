@@ -15,7 +15,7 @@ function t() {
 		tmux new-session -t "dots"
 	else
 		sessions=$(tmux list-sessions -F "#{session_name}")
-		session=$(fzf --height 40% --reverse --border <"${sessions}")
+		session=$(echo "${sessions}" | fzf --height 40% --reverse --border)
 		tmux attach -t "${session}"
 	fi
 }
