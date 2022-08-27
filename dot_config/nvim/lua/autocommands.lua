@@ -30,4 +30,8 @@ vim.cmd([[
     autocmd BufReadPost Podfile set ft=ruby
     autocmd BufReadPost *.ejs.t set ft=embedded_template
   augroup end
+
+  augroup _chezmoi
+    autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+  augroup end
 ]])
