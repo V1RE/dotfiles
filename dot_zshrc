@@ -77,3 +77,5 @@ compdef _directories md
 source ~/.zsh_aliases
 # source ~/bin/_p
 eval "$(zoxide init zsh)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
