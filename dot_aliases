@@ -12,7 +12,7 @@ function t() {
 	local session
 
 	if ! tmux has-session; then
-		tmux new-session -t "dots"
+		tmux new-session -s "dots"
 	else
 		sessions=$(tmux list-sessions -F \#S)
 		session=$(echo "${sessions}" | gum filter --placeholder "Pick session...")
