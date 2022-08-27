@@ -30,7 +30,6 @@ null_ls.setup({
     formatting.prettierd,
     formatting.rubocop,
     formatting.shfmt,
-    formatting.shellharden,
     formatting.stylelint,
     formatting.stylua,
     formatting.tidy,
