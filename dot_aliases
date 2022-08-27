@@ -14,9 +14,9 @@ function t() {
 	if ! tmux has-session; then
 		tmux new-session -t "dots"
 	else
-		sessions=$(tmux list-sessions -F "#{session_name}")
-		session=$(echo "${sessions}" | fzf --height 40% --reverse --border)
-		tmux attach -t "${session}"
+		sessions=$(tmux list-sessions -F \#S)
+		session=$(echo "${sessions}" | gum filter --placeholder "Pick session...")
+		tmux switch-client -t "${session}" || tmux attach -t "${session}"
 	fi
 }
 
