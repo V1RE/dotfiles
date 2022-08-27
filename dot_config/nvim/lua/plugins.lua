@@ -111,6 +111,7 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use("nvim-telescope/telescope-ui-select.nvim")
   use("ThePrimeagen/refactoring.nvim")
+  use("nvim-telescope/telescope-file-browser.nvim")
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
