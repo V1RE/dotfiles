@@ -42,6 +42,34 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
+function p() {
+	local codedir="${HOME}/Code/"
+	local sbdir="${codedir}Socialbrothers/"
+	local result
+
+	if [[ $# -ne 0 ]]; then
+		result=$(zoxide query "${codedir}" "$@")
+	else
+		local basedir
+		local selected
+
+		case $(gum choose 'Work' 'Personal') in
+		"Work") basedir="${sbdir}" ;;
+		"Personal") basedir="${codedir}" ;;
+		*) return 1 ;;
+		esac
+
+		results=$(fd --type=d --prune --base-directory="${basedir}" --strip-cwd-prefix --path-separator='')
+		selected="$(echo "${results}" | gum filter --height=20 --placeholder=Project... --indicator.foreground='#ff470b' --match.foreground='#ff470b')"
+
+		result="${basedir}${selected}"
+	fi
+
+	if [[ -d "${result}" ]]; then
+		cd "${result}" || return
+	fi
+}
+
 # Socialbrothers
 function sb() {
 	local sbdir=~/Code/Socialbrothers/
