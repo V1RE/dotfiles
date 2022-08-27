@@ -34,7 +34,18 @@ null_ls.setup({
     formatting.stylua,
     formatting.tidy,
     hover.dictionary,
-    linters.eslint_d,
+    linters.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          ".eslintrc",
+          ".eslintrc.js",
+          ".eslintrc.cjs",
+          ".eslintrc.yaml",
+          ".eslintrc.yml",
+          ".eslintrc.json",
+        })
+      end,
+    }),
     linters.luacheck,
     linters.rubocop,
     linters.shellcheck,
