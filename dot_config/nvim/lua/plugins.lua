@@ -63,7 +63,7 @@ return packer.startup(function(use)
   use("akinsho/toggleterm.nvim")
   use("ahmedkhalf/project.nvim")
   use("ghillb/cybu.nvim")
-  use("lewis6991/impatient.nvim")
+  --[[ use("lewis6991/impatient.nvim") ]]
   use("RRethy/vim-illuminate")
   use("lukas-reineke/indent-blankline.nvim")
   use("antoinemadec/FixCursorHold.nvim")
