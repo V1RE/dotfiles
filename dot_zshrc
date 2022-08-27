@@ -74,7 +74,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
-source ~/.zsh_aliases
+source ~/.aliases
 # source ~/bin/_p
 eval "$(zoxide init zsh)"
 export VOLTA_HOME="$HOME/.volta"
