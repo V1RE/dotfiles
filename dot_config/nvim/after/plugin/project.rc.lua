@@ -19,7 +19,7 @@ require("project_nvim").setup({
   detection_methods = { "pattern" },
 
   ---@usage patterns used to detect root dir, when **"pattern"** is in detection_methods
-  patterns = { ".git", "package.json", "turbo.json" },
+  patterns = { ".git", "turbo.json", "package.json" },
 
   ---@ Show hidden files in telescope when searching for files in a project
   show_hidden = false,
