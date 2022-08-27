@@ -56,7 +56,7 @@ function p() {
 		case $(gum choose 'Work' 'Personal') in
 		"Work") basedir="${sbdir}" ;;
 		"Personal") basedir="${codedir}" ;;
-		*) return 1 ;;
+		*) return ;;
 		esac
 
 		results=$(fd --type=d --prune --base-directory="${basedir}" --strip-cwd-prefix --path-separator='')
