@@ -1,17 +1,22 @@
 #!/bin/bash
 
 # General
-alias v="$EDITOR"
+alias v='$EDITOR'
 
 # Impatient.nvim
 alias nvim="nvim --startuptime /tmp/nvim-startuptime"
 
 # Tmux
 function t() {
+	local sessions
+	local session
+
 	if ! tmux has-session; then
 		tmux new-session -t "dots"
 	else
-		tmux attach -t "$(tmux list-sessions -F "#{session_name}" | fzf --height 40% --reverse --border)"
+		sessions=$(tmux list-sessions -F "#{session_name}")
+		session=$(fzf --height 40% --reverse --border <"${sessions}")
+		tmux attach -t "${session}"
 	fi
 }
 
