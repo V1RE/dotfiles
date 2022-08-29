@@ -38,7 +38,7 @@ mason_lspconfig.setup_handlers({
     lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.jsonls"), opts) or {})
   end,
 
-  ["aml-language-server"] = function()
+  ["yaml-language-server"] = function()
     lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.yamlls"), opts) or {})
   end,
 
