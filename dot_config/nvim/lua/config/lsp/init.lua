@@ -22,10 +22,9 @@ M.server_capabilities = function()
   end)
 end
 
+require("lsp_lines").setup()
 require("config.lsp.lsp-signature")
 require("config.lsp.mason")
 require("config.lsp.handlers").setup()
-
-require("lsp_lines").setup()
 
 return M
