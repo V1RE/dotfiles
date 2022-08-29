@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    hints.on_attach(args.buf, client, false)
+    hints.on_attach(client, args.buf, false)
   end,
 })
 
