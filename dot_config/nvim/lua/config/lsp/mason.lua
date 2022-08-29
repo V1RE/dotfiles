@@ -25,6 +25,7 @@ local opts = {
 
 mason_lspconfig.setup_handlers({
   function(server)
+    print(server)
     lspconfig[server].setup(opts)
   end,
 
