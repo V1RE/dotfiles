@@ -25,7 +25,6 @@ local opts = {
 
 mason_lspconfig.setup_handlers({
   function(server)
-    print(server)
     lspconfig[server].setup(opts)
   end,
 
@@ -38,12 +37,11 @@ mason_lspconfig.setup_handlers({
     lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.jsonls"), opts) or {})
   end,
 
-  ["yaml-language-server"] = function()
+  ["yamlls"] = function()
     lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.yamlls"), opts) or {})
   end,
 
   ["tsserver"] = function(server)
-    print(server)
     opts = vim.tbl_deep_extend("force", require("config.lsp.settings.tsserver"), opts) or {}
     require("typescript").setup({ server = opts })
   end,
