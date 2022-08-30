@@ -3,6 +3,7 @@ require("gitsigns").setup({
   numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
   attach_to_untracked = true,
+  current_line_blame = true,
   current_line_blame_formatter_opts = {
     relative_time = false,
   },
