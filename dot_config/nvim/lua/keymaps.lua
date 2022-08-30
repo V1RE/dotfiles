@@ -2,7 +2,7 @@ local opts = { silent = true }
 
 -- Shorten function name
 local function keymap(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 --Remap space as leader key
