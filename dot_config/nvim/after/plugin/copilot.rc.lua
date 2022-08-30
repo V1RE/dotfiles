@@ -1,1 +1,1 @@
-require("copilot.init").setup()
+require("copilot").setup()
