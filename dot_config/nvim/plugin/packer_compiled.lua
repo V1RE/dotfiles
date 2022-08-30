@@ -148,11 +148,6 @@ _G.packer_plugins = {
     path = "/Users/niels/.local/share/nvim/site/pack/packer/opt/copilot.lua",
     url = "https://github.com/zbirenbaum/copilot.lua"
   },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/Users/niels/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
-  },
   ["cybu.nvim"] = {
     loaded = true,
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/cybu.nvim",
