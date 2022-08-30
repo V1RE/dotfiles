@@ -1,1 +1,1 @@
-require("copilot.lua").setup()
+require("copilot").setup()
