@@ -92,6 +92,7 @@ return packer.startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
   })
   use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "nvim_cmp" })
