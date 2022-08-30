@@ -58,7 +58,7 @@ M.on_attach = function(client, bufnr)
   attach_navic(client, bufnr)
 
   if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(bufnr, client, false)
+    require("lsp-inlayhints").on_attach(client, bufnr, false)
   end
 end
 
