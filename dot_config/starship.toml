@@ -14,6 +14,9 @@ vicmd_symbol = "[](bold #7bc8fc)"
 [git_branch]
 symbol = " "
 
+[git_commit]
+tag_symbol = " "
+
 [directory]
 home_symbol = " "
 repo_root_style = "cyan bold"
