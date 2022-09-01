@@ -76,6 +76,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("jascha030/nitepal.nvim")
+  use("olivercederborg/poimandres.nvim")
 
   -- snippets
   use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
