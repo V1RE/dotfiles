@@ -253,6 +253,11 @@ _G.packer_plugins = {
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["nitepal.nvim"] = {
+    loaded = true,
+    path = "/Users/niels/.local/share/nvim/site/pack/packer/start/nitepal.nvim",
+    url = "https://github.com/jascha030/nitepal.nvim"
+  },
   ["nui.nvim"] = {
     loaded = true,
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/nui.nvim",
