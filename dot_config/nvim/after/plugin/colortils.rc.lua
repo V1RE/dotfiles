@@ -1,0 +1,1 @@
+require("colortils").setup()
