@@ -1,5 +1,4 @@
-return
-vim.g.catppuccin_flavour = "macchiato"
+--[[ vim.g.catppuccin_flavour = "macchiato"
 
 require("catppuccin").setup({
   term_colors = false,
@@ -26,4 +25,4 @@ require("catppuccin").setup({
   },
 })
 
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd("colorscheme catppuccin")]]
