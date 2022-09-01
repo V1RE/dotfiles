@@ -71,7 +71,7 @@ return packer.startup(function(use)
   use("stevearc/dressing.nvim")
   use("b0o/incline.nvim")
   use("rcarriga/nvim-notify")
-  use({ "max397574/colortils.nvim", command = "Colortils" })
+  use("max397574/colortils.nvim")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
