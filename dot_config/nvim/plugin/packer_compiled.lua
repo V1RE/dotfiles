@@ -333,6 +333,11 @@ _G.packer_plugins = {
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["poimandres.nvim"] = {
+    loaded = true,
+    path = "/Users/niels/.local/share/nvim/site/pack/packer/start/poimandres.nvim",
+    url = "https://github.com/olivercederborg/poimandres.nvim"
+  },
   ["popup.nvim"] = {
     loaded = true,
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/popup.nvim",
