@@ -70,7 +70,7 @@ return packer.startup(function(use)
   use("christoomey/vim-tmux-navigator")
   use("stevearc/dressing.nvim")
   use("b0o/incline.nvim")
-  use("rcarriga/nvim-notify")
+  --[[ use("rcarriga/nvim-notify") ]]
   use("max397574/colortils.nvim")
 
   -- Colorschemes

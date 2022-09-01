@@ -32,6 +32,10 @@ return {
   },
   use_fancy_tab_bar = true,
   tab_bar_at_bottom = true,
+  leader = {
+    key = "b",
+    mods = "CMD",
+  },
   keys = {
     {
       key = "[",
