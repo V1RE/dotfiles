@@ -3,5 +3,5 @@ require("options")
 require("keymaps")
 require("plugins")
 require("config.lsp")
-require("colorscheme")
+--[[ require("colorscheme") ]]
 require("autocommands")
