@@ -1,1 +1,1 @@
-require("colortils").setup()
+require("colortils").setup({})
