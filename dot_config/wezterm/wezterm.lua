@@ -30,7 +30,7 @@ return {
     top = 30,
     bottom = 30,
   },
-  use_fancy_tab_bar = true,
+  use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
   window_background_opacity = 0.89,
   leader = {
