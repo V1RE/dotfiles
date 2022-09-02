@@ -49,7 +49,7 @@ return {
       key = "Enter",
       mods = "CTRL",
       action = act.ShowLauncherArgs({
-        flags = "FUZZY|WORKSPACES",
+        flags = "FUZZY",
       }),
     },
     {
