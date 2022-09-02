@@ -18,7 +18,7 @@ end
 return {
   font_dirs = { "fonts" },
   font = font_with_fallback("Cascadia Code"),
-  font_size = 18,
+  font_size = 16,
   line_height = 1.4,
   color_scheme = "Poimandres",
   --[[ colors = require("colors.catppuccin"), ]]
@@ -37,20 +37,7 @@ return {
     mods = "CMD",
   },
   keys = {
-    {
-      key = "[",
-      mods = "CMD",
-      action = {
-        Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "h", mods = "CTRL" } } },
-      },
-    },
-    {
-      key = "]",
-      mods = "CMD",
-      action = {
-        Multiple = { { SendKey = { key = "b", mods = "CTRL" } }, { SendKey = { key = "l", mods = "CTRL" } } },
-      },
-    },
+    { key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
     { key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
     { key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
     { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
