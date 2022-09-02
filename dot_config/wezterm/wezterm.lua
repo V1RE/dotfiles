@@ -39,8 +39,8 @@ return {
   },
   keys = {
     { key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-    { key = "t", mods = "CMD", action = "DisableDefaultAssignment" },
-    { key = "w", mods = "CMD", action = "DisableDefaultAssignment" },
+    --[[ { key = "t", mods = "CMD", action = "DisableDefaultAssignment" }, ]]
+    --[[ { key = "w", mods = "CMD", action = "DisableDefaultAssignment" }, ]]
     { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
     { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
     { key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
