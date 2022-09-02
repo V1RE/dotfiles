@@ -32,6 +32,7 @@ return {
   },
   use_fancy_tab_bar = true,
   tab_bar_at_bottom = true,
+  window_background_opacity = 0.89,
   leader = {
     key = "b",
     mods = "CMD",
