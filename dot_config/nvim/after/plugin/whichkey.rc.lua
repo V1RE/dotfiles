@@ -35,7 +35,12 @@ local opts = {
 
 local mappings = {
   ["<leader>"] = {
-    f = { telescope.find_files, i.Telescope .. "Find files" },
+    f = {
+      function()
+        telescope.frecency.frecency({ workspace = "LSP" })
+      end,
+      i.Telescope .. "Find files",
+    },
     F = { telescope.live_grep, i.Search .. "Find Text" },
     e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
     k = { "<cmd>Lf<cr>", i.Class .. "File Manager" },
