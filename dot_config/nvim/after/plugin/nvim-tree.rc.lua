@@ -3,8 +3,8 @@ local cb = require("nvim-tree.config").nvim_tree_callback
 local u = i.unspaced
 
 require("nvim-tree").setup({
-  open_on_setup = false,
-  open_on_setup_file = false,
+  open_on_setup = true,
+  open_on_setup_file = true,
   hijack_cursor = true,
   disable_netrw = true,
   diagnostics = {
@@ -27,6 +27,7 @@ require("nvim-tree").setup({
   },
   view = {
     width = 40,
+    side = "right",
     mappings = {
       list = {
         { key = { "l", "<CR>", "o" }, cb = cb("edit") },
@@ -39,9 +40,6 @@ require("nvim-tree").setup({
           end,
         },
       },
-    },
-    float = {
-      enable = true,
     },
   },
   actions = {
