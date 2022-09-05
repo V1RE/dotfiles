@@ -123,6 +123,7 @@ return packer.startup(function(use)
   use("windwp/nvim-ts-autotag")
   use("mizlan/iswap.nvim")
   use("monaqa/dial.nvim")
+  use("nvim-treesitter/nvim-treesitter-context")
 
   -- Git
   use("lewis6991/gitsigns.nvim")
