@@ -37,7 +37,7 @@ local mappings = {
   ["<leader>"] = {
     f = {
       function()
-        telescope.frecency.frecency({ workspace = "LSP" })
+        telescope.extensions.frecency.frecency({ workspace = "LSP" })
       end,
       i.Telescope .. "Find files",
     },
