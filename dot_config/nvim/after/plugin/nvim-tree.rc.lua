@@ -40,6 +40,7 @@ require("nvim-tree").setup({
         },
       },
     },
+    centralize_selection = true,
     float = {
       enable = true,
       open_win_config = {
