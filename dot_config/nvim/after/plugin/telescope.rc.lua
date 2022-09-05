@@ -35,6 +35,7 @@ telescope.setup({
     find_files = {
       find_command = { "fd", "--type=file", "--hidden", "--exclude=.git", "--strip-cwd-prefix" },
     },
+    lsp_references = themes.get_cursor({}),
   },
 
   extensions = {
