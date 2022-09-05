@@ -8,9 +8,6 @@ require("nvim-tree").setup({
   hijack_cursor = true,
   hijack_netrw = true,
   disable_netrw = true,
-  remove_keymaps = {
-    "<TAB>",
-  },
   diagnostics = {
     enable = true,
     show_on_dirs = true,
@@ -36,6 +33,12 @@ require("nvim-tree").setup({
         { key = { "l", "<CR>", "o" }, cb = cb("edit") },
         { key = "h", cb = cb("close_node") },
         { key = "v", cb = cb("vsplit") },
+        {
+          key = "<tab>",
+          cb = function()
+            require("hop").hint_lines()
+          end,
+        },
       },
     },
     float = {
