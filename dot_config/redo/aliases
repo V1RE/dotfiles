@@ -6,6 +6,7 @@ update() {
 	brew update
 	brew upgrade
 	brew reinstall neovim
+	brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
 	n lts -d
 	yarn global upgrade --latest
 	cargo install-update -a
