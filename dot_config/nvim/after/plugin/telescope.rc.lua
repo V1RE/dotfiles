@@ -12,8 +12,9 @@ telescope.setup({
     prompt_prefix = i.Telescope,
     selection_caret = i.ChevronRight,
     path_display = { "truncate" },
-    layout_config = {},
-    winblend = 15,
+    layout_config = {
+      prompt_position = "top",
+    },
 
     vimgrep_arguments = {
       "rg",
