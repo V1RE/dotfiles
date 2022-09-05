@@ -6,9 +6,13 @@ local i = require("config.icons")
 
 telescope.setup({
   defaults = {
+    history = {
+      path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
+      limit = 100,
+    },
     prompt_prefix = i.Telescope,
     selection_caret = i.ChevronRight,
-    path_display = { "smart" },
+    path_display = { "truncate" },
 
     vimgrep_arguments = {
       "rg",
@@ -63,3 +67,4 @@ telescope.load_extension("refactoring")
 telescope.load_extension("projects")
 telescope.load_extension("file_browser")
 telescope.load_extension("frecency")
+telescope.load_extension("smart_history")
