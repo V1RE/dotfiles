@@ -38,7 +38,7 @@ null_ls.setup({
     linters.luacheck,
     linters.rubocop,
     linters.shellcheck,
-    linters.stylelint,
+    --[[ linters.stylelint, ]]
     linters.tidy,
     linters.write_good,
   },
