@@ -3,8 +3,8 @@ local cb = require("nvim-tree.config").nvim_tree_callback
 local u = i.unspaced
 
 require("nvim-tree").setup({
-  open_on_setup = true,
-  open_on_setup_file = true,
+  open_on_setup = false,
+  open_on_setup_file = false,
   hijack_cursor = true,
   disable_netrw = true,
   diagnostics = {
