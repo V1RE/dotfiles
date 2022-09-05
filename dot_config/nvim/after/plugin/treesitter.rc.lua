@@ -33,5 +33,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("treesitter-context").setup({
-  separator = "│",
+  separator = " ",
+  mode = "topline",
 })
