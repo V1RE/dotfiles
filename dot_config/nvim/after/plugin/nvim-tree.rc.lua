@@ -27,7 +27,6 @@ require("nvim-tree").setup({
   },
   view = {
     width = 40,
-    side = "right",
     mappings = {
       list = {
         { key = { "l", "<CR>", "o" }, cb = cb("edit") },
@@ -39,6 +38,17 @@ require("nvim-tree").setup({
             require("hop").hint_lines()
           end,
         },
+      },
+    },
+    float = {
+      enable = true,
+      open_win_config = {
+        relative = "editor",
+        border = "rounded",
+        width = 40,
+        height = 9999,
+        row = 1,
+        col = 1,
       },
     },
   },
