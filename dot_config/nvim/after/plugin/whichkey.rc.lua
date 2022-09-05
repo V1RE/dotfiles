@@ -35,12 +35,7 @@ local opts = {
 
 local mappings = {
   ["<leader>"] = {
-    f = {
-      function()
-        require("telescope").extensions.frecency.frecency({ workspace = "CWD" })
-      end,
-      i.Telescope .. "Find files",
-    },
+    f = { telescope.frecency, i.Telescope .. "Find files" },
     F = { telescope.live_grep, i.Search .. "Find Text" },
     e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
     k = { "<cmd>Lf<cr>", i.Class .. "File Manager" },
