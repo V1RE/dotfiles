@@ -40,9 +40,18 @@ require("nvim-tree").setup({
       enable = true,
     },
   },
+  actions = {
+    remove_file = {
+      close_window = false,
+    },
+    open_file = {
+      quit_on_open = true,
+    },
+  },
   renderer = {
     group_empty = true,
     highlight_git = true,
+    highlight_open_files = true,
     icons = {
       glyphs = {
         git = {
