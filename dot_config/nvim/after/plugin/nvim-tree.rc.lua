@@ -33,7 +33,11 @@ require("nvim-tree").setup({
         { key = { "l", "<CR>", "o" }, cb = cb("edit") },
         { key = "h", cb = cb("close_node") },
         { key = "v", cb = cb("vsplit") },
+        { key = "<TAB>", action = "" },
       },
+    },
+    float = {
+      enable = true,
     },
   },
   renderer = {
