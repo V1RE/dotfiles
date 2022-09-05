@@ -7,7 +7,7 @@ local i = require("config.icons")
 telescope.setup({
   defaults = {
     history = {
-      path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
+      path = vim.fn.stdpath("data") .. "/databases/telescope_history.sqlite3",
       limit = 100,
     },
     prompt_prefix = i.Telescope,
