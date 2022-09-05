@@ -5,7 +5,7 @@ local themes = require("telescope.themes")
 local i = require("config.icons")
 
 telescope.setup({
-  defaults = themes.get_ivy({
+  defaults = themes.get_dropdown({
     prompt_prefix = i.Telescope,
     selection_caret = i.ChevronRight,
     path_display = { "smart" },
@@ -35,7 +35,6 @@ telescope.setup({
     find_files = {
       find_command = { "fd", "--type=file", "--hidden", "--exclude=.git", "--strip-cwd-prefix" },
     },
-    lsp_references = themes.get_cursor({}),
   },
 
   extensions = {
