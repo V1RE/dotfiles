@@ -1,6 +1,5 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
-local themes = require("telescope.themes")
 
 local i = require("config.icons")
 
