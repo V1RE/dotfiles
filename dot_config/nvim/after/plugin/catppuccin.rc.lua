@@ -1,6 +1,7 @@
 vim.g.catppuccin_flavour = "macchiato"
 
 require("catppuccin").setup({
+  transparent_background = true,
   term_colors = false,
   styles = {
     comments = { "italic" },
