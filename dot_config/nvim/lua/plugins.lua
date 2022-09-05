@@ -120,6 +120,7 @@ return packer.startup(function(use)
     "nvim-telescope/telescope-frecency.nvim",
     requires = { "tami5/sqlite.lua" },
   })
+  use("nvim-telescope/telescope-smart-history.nvim")
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
