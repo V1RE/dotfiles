@@ -37,7 +37,7 @@ local mappings = {
   ["<leader>"] = {
     f = {
       function()
-        telescope.extensions.frecency.frecency({ workspace = "LSP" })
+        require("telescope").extensions.frecency.frecency({ workspace = "LSP" })
       end,
       i.Telescope .. "Find files",
     },
