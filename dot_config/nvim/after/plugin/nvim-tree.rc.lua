@@ -61,7 +61,7 @@ require("nvim-tree").setup({
   renderer = {
     group_empty = true,
     highlight_git = true,
-    highlight_opened_files = "name",
+    highlight_opened_files = "icon",
     icons = {
       glyphs = {
         git = {
