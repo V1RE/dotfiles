@@ -1,5 +1,7 @@
 vim.g.catppuccin_flavour = "macchiato"
 
+local colors = require("catppuccin.palettes").get_palette()
+
 require("catppuccin").setup({
   transparent_background = true,
   term_colors = false,
@@ -23,6 +25,9 @@ require("catppuccin").setup({
   compile = {
     enabled = true,
     path = vim.fn.stdpath("cache") .. "/catppuccin",
+  },
+  custom_highlights = {
+    NvimTreeOpenedFile = { fg = colors.red },
   },
 })
 
