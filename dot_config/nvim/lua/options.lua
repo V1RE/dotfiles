@@ -24,7 +24,7 @@ local options = {
   shiftwidth = 2,
   showmode = false,
   showtabline = 2,
-  sidescrolloff = 8,
+  sidescrolloff = 5,
   signcolumn = "yes",
   smartcase = true,
   smartindent = true,
@@ -38,6 +38,7 @@ local options = {
   updatetime = 300,
   wrap = false,
   writebackup = false,
+  list = true,
 }
 
 for k, v in pairs(options) do
