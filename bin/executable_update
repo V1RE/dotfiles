@@ -3,59 +3,48 @@
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-Nala() {
-	sudo nala upgrade -y
+function Neovim() {
+	brew reinstall neovim
 }
 
-Apt() {
-	sudo apt update
-	sudo apt upgrade -y
+function Wezterm() {
+	brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
 }
 
-Flatpak() {
-	flatpak update
+function Volta() {
+	volta install node
+	volta install yarn
 }
 
-Homebrew() {
+function Homebrew() {
+	brew update
 	brew upgrade
 }
 
-Yarn() {
+function Yarn() {
 	yarn global upgrade
 }
 
-Bun() {
-	bun upgrade
+function Antidote() {
+	antidote update
 }
 
+function Cargo() {
+	cargo install-update -a
+}
+
+options=""
 # check if first argument is -i or --interactive else run all functions
-if [ "$1" = "-i" ] || [ "$1" = "--interactive" ]; then
-	options=$(gum choose --selected.foreground 1 --cursor.foreground 1 --no-limit Nala Apt Flatpak Homebrew Yarn Bun)
-	echo ""
-	for option in $options; do
-		printf "Running for ${RED}$option${NC}\n"
-
-		$option
-		echo ""
-	done
-
+if [[ "$1" = "-a" ]] || [[ "$1" = "--all" ]]; then
+	echo "Running all functions"
 else
-	printf "Running for ${RED}Nala${NC}\n"
-	Nala
+	options=$(gum choose --no-limit Homebrew Neovim Wezterm Volta Yarn Antidote Cargo)
 	echo ""
-
-	printf "Running for ${RED}Flatpak${NC}\n"
-	Flatpak
-	echo ""
-
-	printf "Running for ${RED}Homebrew${NC}\n"
-	Homebrew
-	echo ""
-
-	printf "Running for ${RED}Yarn${NC}\n"
-	Yarn
-	echo ""
-
-	printf "Running for ${RED}Bun${NC}\n"
-	Bun
 fi
+
+for option in ${options}; do
+	printf "Running for %s%s%s\n" "${RED}" "${option}" "${NC}"
+
+	${option}
+	echo ""
+done
