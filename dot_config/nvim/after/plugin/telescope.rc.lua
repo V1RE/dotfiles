@@ -64,10 +64,9 @@ telescope.setup({
         },
       },
     },
-    frecency = {
-      themes.get_ivy({}),
+    frecency = themes.get_ivy({
       default_workspace = "CWD",
-    },
+    }),
   },
 })
 
