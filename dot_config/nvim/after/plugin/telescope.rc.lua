@@ -54,7 +54,7 @@ telescope.setup({
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
     file_browser = {
-      hijack_netrw = true,
+      hijack_netrw = false,
     },
     frecency = {
       default_workspace = "CWD",
