@@ -5,8 +5,8 @@ local u = i.unspaced
 require("nvim-tree").setup({
   open_on_setup = true,
   open_on_setup_file = true,
-  hijack_cursor = true,
-  disable_netrw = true,
+  hijack_cursor = false,
+  disable_netrw = false,
   diagnostics = {
     enable = true,
     show_on_dirs = true,

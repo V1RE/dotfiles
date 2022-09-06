@@ -55,7 +55,7 @@ telescope.setup({
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
     file_browser = {
-      hijack_netrw = false,
+      hijack_netrw = true,
       mappings = {
         i = {
           ["<C-c>"] = telescope.extensions.file_browser.actions.create_from_prompt,
