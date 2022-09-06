@@ -20,7 +20,8 @@ return {
   font = font_with_fallback("Cascadia Code"),
   font_size = 16,
   line_height = 1.4,
-  color_scheme = "Poimandres",
+  --[[ color_scheme = "Poimandres", ]]
+  color_scheme = "Catppuccin Macchiato",
   --[[ colors = require("colors.catppuccin"), ]]
   hide_tab_bar_if_only_one_tab = true,
   term = "wezterm",

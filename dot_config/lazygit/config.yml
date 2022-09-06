@@ -4,16 +4,16 @@ gui:
   mouseEvents: false
   showFileTree: true
   scrollHeight: 5
-  theme:
-    activeBorderColor:
-      - magenta
-      - bold
-    optionsTextColor:
-      - red
-    selectedLineBgColor:
-      - reverse
-    selectedRangeBgColor:
-      - reverse
+  # theme:
+  #   activeBorderColor:
+  #     - magenta
+  #     - bold
+  #   optionsTextColor:
+  #     - red
+  #   selectedLineBgColor:
+  #     - reverse
+  #   selectedRangeBgColor:
+  #     - reverse
 git:
   paging:
     colorArg: always
