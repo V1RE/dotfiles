@@ -34,6 +34,7 @@ telescope.setup({
         ["<C-k>"] = actions.cycle_history_prev,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<ESC>"] = "close",
       },
       n = {
         q = actions.close,
@@ -58,6 +59,7 @@ telescope.setup({
       mappings = {
         i = {
           ["<C-c>"] = telescope.extensions.file_browser.actions.create_from_prompt,
+          ["<ESC>"] = false,
         },
       },
     },
