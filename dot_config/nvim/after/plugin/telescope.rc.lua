@@ -61,6 +61,9 @@ telescope.setup({
         },
       },
     },
+    frecency = {
+      default_workspace = "CWD",
+    },
   },
 })
 
