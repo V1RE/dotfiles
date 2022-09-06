@@ -56,6 +56,7 @@ telescope.setup({
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
     file_browser = {
+      theme = "dropdown",
       hijack_netrw = false,
       mappings = {
         i = {
@@ -64,15 +65,14 @@ telescope.setup({
         },
       },
     },
-    frecency = themes.get_ivy({
+    frecency = {
       default_workspace = "CWD",
-    }),
+      picker = {
+        themes.get_ivy(),
+      },
+    },
     ["ui-select"] = {
-      themes.get_cursor({
-        layout_config = {
-          height = 12,
-        },
-      }),
+      themes.get_cursor(),
     },
   },
 })
