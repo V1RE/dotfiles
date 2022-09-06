@@ -34,7 +34,9 @@ telescope.setup({
         ["<C-k>"] = actions.cycle_history_prev,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
-        --[[ ["<esc>"] = actions.close, ]]
+      },
+      n = {
+        q = actions.close,
       },
     },
   },
@@ -55,11 +57,6 @@ telescope.setup({
       theme = "dropdown",
       hijack_netrw = false,
       initial_mode = "normal",
-      mappings = {
-        i = {
-          ["<esc>"] = actions,
-        },
-      },
     },
     frecency = {
       default_workspace = "CWD",
