@@ -42,7 +42,7 @@ require("nvim-tree").setup({
     },
     centralize_selection = true,
     float = {
-      enable = true,
+      --[[ enable = true, ]]
       open_win_config = {
         relative = "editor",
         border = "rounded",
