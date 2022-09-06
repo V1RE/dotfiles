@@ -68,7 +68,11 @@ telescope.setup({
       default_workspace = "CWD",
     }),
     ["ui-select"] = {
-      themes.get_dropdown(),
+      themes.get_cursor({
+        layout_config = {
+          height = 12,
+        },
+      }),
     },
   },
 })
