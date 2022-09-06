@@ -57,9 +57,6 @@ require("nvim-tree").setup({
     remove_file = {
       close_window = false,
     },
-    open_file = {
-      quit_on_open = true,
-    },
   },
   renderer = {
     group_empty = true,

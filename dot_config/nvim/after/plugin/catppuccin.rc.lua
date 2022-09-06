@@ -17,6 +17,7 @@ require("catppuccin").setup({
     telescope = true,
     which_key = true,
     navic = true,
+    hop = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,
@@ -27,7 +28,7 @@ require("catppuccin").setup({
     path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
   custom_highlights = {
-    NvimTreeOpenedFile = { fg = colors.red },
+    NvimTreeOpenedFile = { fg = colors.blue },
   },
 })
 
