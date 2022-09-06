@@ -55,6 +55,11 @@ telescope.setup({
     },
     file_browser = {
       hijack_netrw = false,
+      mappings = {
+        i = {
+          ["<C-c>"] = telescope.extensions.file_browser.actions.create_from_prompt,
+        },
+      },
     },
     frecency = {
       default_workspace = "CWD",
