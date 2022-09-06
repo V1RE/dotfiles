@@ -33,14 +33,8 @@ function Cargo() {
 	cargo install-update -a
 }
 
-options=""
-# check if first argument is -i or --interactive else run all functions
-if [[ "$1" = "-a" ]] || [[ "$1" = "--all" ]]; then
-	echo "Running all functions"
-else
-	options=$(gum choose --no-limit Homebrew Neovim Wezterm Volta Yarn Antidote Cargo)
-	echo ""
-fi
+options=$(gum choose --no-limit Homebrew Neovim Wezterm Volta Yarn Antidote Cargo)
+echo ""
 
 for option in ${options}; do
 	printf "Running for %s%s%s\n" "${RED}" "${option}" "${NC}"
