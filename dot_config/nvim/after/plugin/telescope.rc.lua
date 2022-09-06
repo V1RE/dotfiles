@@ -34,7 +34,7 @@ telescope.setup({
         ["<C-k>"] = actions.cycle_history_prev,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close,
+        --[[ ["<esc>"] = actions.close, ]]
       },
     },
   },
@@ -56,8 +56,8 @@ telescope.setup({
       hijack_netrw = false,
       initial_mode = "normal",
       mappings = {
-        ["i"] = {
-          ["<esc>"] = nil,
+        i = {
+          ["<esc>"] = actions,
         },
       },
     },
