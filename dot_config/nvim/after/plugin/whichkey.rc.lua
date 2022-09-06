@@ -38,7 +38,12 @@ local mappings = {
     f = { require("telescope").extensions.frecency.frecency, i.Telescope .. "Find files" },
     F = { telescope.live_grep, i.Search .. "Find Text" },
     e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
-    k = { require("telescope").extensions.file_browser.file_browser, i.Class .. "File Manager" },
+    k = {
+      function()
+        require("telescope").extensions.file_browser.file_browser({ path = "%:p:h" })
+      end,
+      i.Class .. "File Manager",
+    },
     h = { "<cmd>nohlsearch<CR>", i.NoHighlight .. "Clear highlight" },
 
     b = {
