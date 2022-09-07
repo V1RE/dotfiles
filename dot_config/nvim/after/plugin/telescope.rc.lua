@@ -1,6 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
+local action_state = require("telescope.actions.state")
 
 local i = require("config.icons")
 
@@ -36,6 +37,16 @@ telescope.setup({
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<ESC>"] = "close",
+        ["<CR>"] = {
+          pre = function(prompt_bufnr)
+            action_state
+              .get_current_history()
+              :append(action_state.get_current_line(), action_state.get_current_picker(prompt_bufnr))
+          end,
+          action = function(prompt_bufnr)
+            return action_set.select(prompt_bufnr, "default")
+          end,
+        },
       },
       n = {
         q = actions.close,
