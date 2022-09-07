@@ -122,6 +122,7 @@ return packer.startup(function(use)
     requires = { "tami5/sqlite.lua" },
   })
   use("nvim-telescope/telescope-smart-history.nvim")
+  use("s1n7ax/nvim-window-picker")
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
