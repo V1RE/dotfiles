@@ -42,10 +42,6 @@ telescope.setup({
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<ESC>"] = "close",
-        ["<CR>"] = function(prompt_bufnr)
-          vim.pretty_print(prompt_bufnr)
-          return action_set.select(prompt_bufnr, "default")
-        end,
       },
       n = {
         q = actions.close,
