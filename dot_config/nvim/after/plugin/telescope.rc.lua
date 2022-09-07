@@ -21,7 +21,7 @@ telescope.setup({
     sorting_strategy = "ascending",
 
     get_selection_window = function()
-      return windowpicker.pick_window()
+      return windowpicker.pick_window() or vim.api.nvim_get_current_win()
     end,
 
     vimgrep_arguments = {
