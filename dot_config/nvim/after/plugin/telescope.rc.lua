@@ -2,6 +2,7 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
 local action_set = require("telescope.actions.set")
+local windowpicker = require("window-picker")
 
 local i = require("config.icons")
 
@@ -19,9 +20,8 @@ telescope.setup({
     },
     sorting_strategy = "ascending",
 
-    get_selection_window = function(picker, entry)
-      vim.pretty_print(picker, entry)
-      return 0
+    get_selection_window = function()
+      return windowpicker.pick_window()
     end,
 
     vimgrep_arguments = {
