@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-local action_state = require("telescope.actions.state")
 local action_set = require("telescope.actions.set")
 
 local i = require("config.icons")
@@ -39,6 +38,7 @@ telescope.setup({
         ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<ESC>"] = "close",
         ["<CR>"] = function(prompt_bufnr)
+          vim.pretty_print(prompt_bufnr)
           return action_set.select(prompt_bufnr, "default")
         end,
       },
