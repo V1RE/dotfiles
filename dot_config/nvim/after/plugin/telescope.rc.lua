@@ -50,6 +50,10 @@ telescope.setup({
   pickers = {
     find_files = {
       find_command = { "fd", "--type=file", "--hidden", "--exclude=.git", "--strip-cwd-prefix" },
+      get_selection_window = function(picker, entry)
+        vim.pretty_print(picker, entry)
+        return 0
+      end,
     },
   },
 
