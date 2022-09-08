@@ -10,4 +10,6 @@ wk.register({
       a = { require("harpoon.mark").add_file, "Add file" },
     },
   },
+}, {
+  nowait = true,
 })
