@@ -5,7 +5,7 @@ return {
         enable = false,
       },
       diagnostics = {
-        globals = { "vim" },
+        globals = { "vim", "hs" },
       },
       telemetry = {
         enable = false,
