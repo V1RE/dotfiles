@@ -16,5 +16,5 @@ end)
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
   centerMouse()
-  hs.application.get("WezTerm"):activate(true)
+  hs.application.launchOrFocusByBundleID("com.github.wez.wezterm")
 end)
