@@ -20,10 +20,6 @@ telescope.setup({
     },
     sorting_strategy = "ascending",
 
-    get_selection_window = function()
-      return windowpicker.pick_window() or vim.api.nvim_get_current_win()
-    end,
-
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -64,6 +60,10 @@ telescope.setup({
     file_browser = {
       theme = "dropdown",
       hijack_netrw = false,
+
+      get_selection_window = function()
+        return windowpicker.pick_window() or vim.api.nvim_get_current_win()
+      end,
       mappings = {
         i = {
           ["<C-c>"] = telescope.extensions.file_browser.actions.create_from_prompt,

@@ -11,10 +11,10 @@ end
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
   centerMouse()
-  hs.application.get("Arc"):activate(true)
+  hs.application.get("company.thebrowser.Browser"):activate(true)
 end)
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
   centerMouse()
-  hs.application.get("/System/Volumes/Data/Applications/WezTerm.app"):activate(true)
+  hs.application.get("com.github.wez.wezterm"):activate(true)
 end)
