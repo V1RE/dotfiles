@@ -1,4 +1,4 @@
-local null_ls = require("null-ls")
+--[[ local null_ls = require("null-ls")
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
@@ -38,7 +38,7 @@ null_ls.setup({
     linters.luacheck,
     linters.rubocop,
     linters.shellcheck,
-    --[[ linters.stylelint, ]]
+    linters.stylelint,
     linters.tidy,
     linters.write_good,
   },
@@ -54,4 +54,4 @@ null_ls.setup({
       })
     end
   end,
-})
+}) ]]
