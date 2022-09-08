@@ -15,5 +15,5 @@ end)
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
   centerMouse()
-  hs.application.open("WezTerm")
+  hs.application.get("WezTerm"):activate(true)
 end)
