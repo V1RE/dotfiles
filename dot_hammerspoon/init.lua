@@ -5,7 +5,7 @@ hs.loadSpoon("ControlEscape"):start()
 local function centerMouse()
   local screen = hs.screen.primaryScreen()
   local center = screen:fullFrame().center
-  hs.mouse.setAbsolutePosition(center)
+  hs.mouse.absolutePosition(center)
 end
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
