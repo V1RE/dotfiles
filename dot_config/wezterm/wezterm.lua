@@ -34,10 +34,10 @@ return {
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
   window_background_opacity = 0.90,
-  leader = {
+  --[[ leader = {
     key = "b",
     mods = "CMD",
-  },
+  }, ]]
   keys = {
     { key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
     --[[ { key = "t", mods = "CMD", action = "DisableDefaultAssignment" }, ]]
@@ -47,8 +47,8 @@ return {
     { key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
     { key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
     {
-      key = "Enter",
-      mods = "CTRL",
+      key = "b",
+      mods = "CMD",
       action = act.ShowLauncherArgs({
         flags = "FUZZY|WORKSPACES",
       }),
