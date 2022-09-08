@@ -1,4 +1,4 @@
-hs.loadSpoon("EmmyLua"):init()
+--[[ hs.loadSpoon("EmmyLua"):init() ]]
 hs.loadSpoon("ControlEscape"):start()
 
 --[[ local switcher = hs.window.switcher.new({ "Arc", "WezTerm" }) ]]
@@ -16,5 +16,5 @@ end)
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
   centerMouse()
-  hs.application.launchOrFocusByBundleID("com.github.wez.wezterm")
+  hs.application.get("/System/Volumes/Data/Applications/WezTerm.app"):activate(true)
 end)
