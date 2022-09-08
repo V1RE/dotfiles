@@ -66,6 +66,7 @@ local mappings = {
       i = { "<cmd>PackerInstall<cr>", "Install" },
       s = { "<cmd>PackerSync<cr>", "Sync" },
       u = { "<cmd>PackerUpdate<cr>", "Update" },
+      r = { "<cmd>so %<cr>", "Source current file" },
     },
 
     g = {

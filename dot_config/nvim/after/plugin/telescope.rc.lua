@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-local action_set = require("telescope.actions.set")
 local windowpicker = require("window-picker")
 
 local i = require("config.icons")
@@ -64,6 +63,7 @@ telescope.setup({
       get_selection_window = function()
         return windowpicker.pick_window() or vim.api.nvim_get_current_win()
       end,
+
       mappings = {
         i = {
           ["<C-c>"] = telescope.extensions.file_browser.actions.create_from_prompt,
@@ -90,3 +90,4 @@ telescope.load_extension("projects")
 telescope.load_extension("file_browser")
 telescope.load_extension("frecency")
 telescope.load_extension("smart_history")
+telescope.load_extension("harpoon")

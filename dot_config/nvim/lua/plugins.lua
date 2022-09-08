@@ -123,6 +123,7 @@ return packer.startup(function(use)
   })
   use("nvim-telescope/telescope-smart-history.nvim")
   use("s1n7ax/nvim-window-picker")
+  use("ThePrimeagen/harpoon")
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
