@@ -1,3 +1,4 @@
+hs.loadSpoon("EmmyLua"):init()
 hs.loadSpoon("ControlEscape"):start()
 
 --[[ local switcher = hs.window.switcher.new({ "Arc", "WezTerm" }) ]]
