@@ -67,7 +67,6 @@ return packer.startup(function(use)
   use("RRethy/vim-illuminate")
   use("lukas-reineke/indent-blankline.nvim")
   use("antoinemadec/FixCursorHold.nvim")
-  use("christoomey/vim-tmux-navigator")
   use("stevearc/dressing.nvim")
   use("b0o/incline.nvim")
   --[[ use("rcarriga/nvim-notify") ]]

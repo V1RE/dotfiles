@@ -69,11 +69,6 @@ local mappings = {
       r = { "<cmd>so %<cr>", "Source current file" },
     },
 
-    g = {
-      name = " Git",
-      l = { "<cmd>Gitsigns blame_line<cr>", "Blame" },
-    },
-
     l = {
       name = i.Field .. "LSP",
       I = { "<cmd>Mason<cr>", "Installer Info" },
@@ -91,7 +86,7 @@ local mappings = {
       w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostics" },
     },
     s = {
-      name = " Search",
+      name = i.Telescope .. "Search",
       C = { telescope.commands, "Commands" },
       m = { telescope.man_pages, "Man Pages" },
       R = { telescope.registers, "Registers" },
@@ -101,16 +96,7 @@ local mappings = {
       k = { telescope.keymaps, "Keymaps" },
       r = { telescope.oldfiles, "Open Recent File" },
     },
-
-    t = {
-      name = " Terminal",
-      f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-      h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-      v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-    },
   },
-
-  ["<C-Space>"] = { "<cmd>ToggleTerm size=15 direction=float<cr>", "ToggleTerm" },
 
   ["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
   [";"] = { telescope.commands, " Commands" },

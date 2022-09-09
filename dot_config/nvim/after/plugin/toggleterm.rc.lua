@@ -1,4 +1,7 @@
-require("toggleterm").setup({
+local icons = require("config.icons")
+local toggleterm = require("toggleterm")
+
+toggleterm.setup({
   size = 40,
   open_mapping = [[<C-Space>]],
   hide_numbers = true,
@@ -36,10 +39,16 @@ local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
 require("which-key").register({
-  ["<leader>gg"] = {
-    function()
-      lazygit:toggle()
-    end,
-    "Lazygit",
+  ["<leader>"] = {
+    g = {
+      function()
+        lazygit:toggle()
+      end,
+      " Lazygit",
+    },
+  },
+  ["<C-Space>"] = {
+    toggleterm.toggle_all,
+    icons.Terminal .. "Terminal",
   },
 })
