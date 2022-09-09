@@ -1,5 +1,6 @@
 local wk = require("which-key")
 local ui = require("harpoon.ui")
+local icons = require("config.icons")
 
 require("harpoon").setup()
 
@@ -16,9 +17,9 @@ end
 wk.register({
   ["<leader>"] = {
     a = {
-      name = "Harpoon",
-      t = { ui.toggle_quick_menu, "Toggle quick menu" },
-      n = { require("harpoon.mark").add_file, "Add file" },
+      name = icons.BookMark .. "Harpoon",
+      f = { ui.toggle_quick_menu, "Quick menu" },
+      n = { require("harpoon.mark").add_file, "Add mark" },
       j = nav_mark(1),
       k = nav_mark(2),
       l = nav_mark(3),
