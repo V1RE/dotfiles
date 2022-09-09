@@ -37,6 +37,7 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+local term = Terminal:new({})
 
 require("which-key").register({
   ["<leader>"] = {
@@ -48,7 +49,9 @@ require("which-key").register({
     },
   },
   ["<C-Space>"] = {
-    toggleterm.toggle_all,
+    function()
+      term:toggle()
+    end,
     icons.Terminal .. "Terminal",
   },
 })
