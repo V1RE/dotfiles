@@ -99,7 +99,6 @@ local mappings = {
   },
 
   ["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
-  [";"] = { telescope.commands, " Commands" },
 
   K = { vim.lsp.buf.hover, i.Comment .. "Hover" },
 

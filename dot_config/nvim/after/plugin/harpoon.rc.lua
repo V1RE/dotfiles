@@ -15,14 +15,13 @@ local function nav_mark(index)
 end
 
 wk.register({
-  ["<leader>"] = {
-    a = {
-      name = icons.BookMark .. "Harpoon",
-      f = { ui.toggle_quick_menu, "Quick menu" },
-      n = { require("harpoon.mark").add_file, "Add mark" },
-      j = nav_mark(1),
-      k = nav_mark(2),
-      l = nav_mark(3),
-    },
+  [";"] = {
+    name = icons.BookMark .. "Harpoon",
+    j = { ui.toggle_quick_menu, "Quick menu" },
+    c = { require("harpoon.mark").add_file, "Add mark" },
+    a = nav_mark(1),
+    s = nav_mark(2),
+    d = nav_mark(3),
+    f = nav_mark(4),
   },
 })
