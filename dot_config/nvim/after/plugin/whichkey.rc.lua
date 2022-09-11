@@ -1,5 +1,4 @@
 local wk = require("which-key")
-local telescope = require("telescope.builtin")
 
 local i = require("config.icons")
 
@@ -42,7 +41,6 @@ local mappings = {
       name = i.Buffer .. "Buffer",
       s = { "<cmd>w!<CR>", i.Save .. "Save" },
       d = { "<cmd>Bdelete<CR>", i.Close .. "Close" },
-      f = { telescope.buffers, i.Telescope .. "Find" },
     },
 
     j = {
