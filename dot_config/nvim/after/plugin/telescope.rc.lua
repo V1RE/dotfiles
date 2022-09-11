@@ -111,5 +111,18 @@ utils.map({
       k = { builtin.keymaps, "Keymaps" },
       r = { builtin.oldfiles, "Open Recent File" },
     },
+    b = {
+      f = { builtin.buffers, i.Telescope .. "Find" },
+    },
+    l = {
+      S = { builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
+      s = { builtin.lsp_document_symbols, "Document Symbols" },
+      w = { builtin.lsp_workspace_diagnostics, "Workspace Diagnostics" },
+    },
+    g = {
+      d = { builtin.lsp_definitions, i.Constant .. "Definition" },
+      i = { builtin.lsp_implementations, i.Interface .. "Implementations" },
+      r = { builtin.lsp_references, i.Reference .. "References" },
+    },
   },
 })

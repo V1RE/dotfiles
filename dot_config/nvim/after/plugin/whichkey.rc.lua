@@ -62,7 +62,6 @@ local mappings = {
     l = {
       name = i.Field .. "LSP",
       I = { "<cmd>Mason<cr>", "Installer Info" },
-      S = { telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
       a = { vim.lsp.buf.code_action, "Code Action" },
       d = { require("lsp_lines").toggle, "Document Diagnostics" },
       f = { vim.lsp.buf.format, "Format" },
@@ -72,8 +71,6 @@ local mappings = {
       l = { vim.lsp.codelens.run, "CodeLens Action" },
       q = { vim.diagnostic.set_loclist, "Quickfix" },
       r = { vim.lsp.buf.rename, "Rename" },
-      s = { telescope.lsp_document_symbols, "Document Symbols" },
-      w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostics" },
     },
   },
 
@@ -82,9 +79,6 @@ local mappings = {
   g = {
     name = i.Goto .. "Go to",
     a = { vim.lsp.buf.range_code_action, i.Event .. "Code actions" },
-    d = { telescope.lsp_definitions, i.Constant .. "Definition" },
-    i = { telescope.lsp_implementations, i.Interface .. "Implementations" },
-    r = { telescope.lsp_references, i.Reference .. "References" },
     l = { vim.diagnostic.open_float, i.Warning .. "Diagnostics" },
   },
 
