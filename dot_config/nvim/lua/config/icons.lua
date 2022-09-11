@@ -97,6 +97,7 @@ local M = {
   Warning = " ",
   Watch = " ",
   Window = " ",
+  Rocket = " ",
 }
 
 local unspaced = {}

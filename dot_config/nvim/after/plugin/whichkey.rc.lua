@@ -35,15 +35,7 @@ local opts = {
 
 local mappings = {
   ["<leader>"] = {
-    f = { require("telescope").extensions.frecency.frecency, i.Telescope .. "Find files" },
-    F = { telescope.live_grep, i.Search .. "Find Text" },
     e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
-    k = {
-      function()
-        require("telescope").extensions.file_browser.file_browser({ path = "%:p:h" })
-      end,
-      i.Class .. "File Manager",
-    },
     h = { "<cmd>nohlsearch<CR>", i.NoHighlight .. "Clear highlight" },
 
     b = {
@@ -85,20 +77,7 @@ local mappings = {
       s = { telescope.lsp_document_symbols, "Document Symbols" },
       w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostics" },
     },
-    s = {
-      name = i.Telescope .. "Search",
-      C = { telescope.commands, "Commands" },
-      m = { telescope.man_pages, "Man Pages" },
-      R = { telescope.registers, "Registers" },
-      b = { telescope.builtin, "Builtin pickers" },
-      c = { telescope.colorscheme, "Colorscheme" },
-      h = { telescope.help_tags, "Find Help" },
-      k = { telescope.keymaps, "Keymaps" },
-      r = { telescope.oldfiles, "Open Recent File" },
-    },
   },
-
-  ["<Tab>"] = { "<cmd>HopWord<cr>", " Hop" },
 
   K = { vim.lsp.buf.hover, i.Comment .. "Hover" },
 

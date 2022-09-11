@@ -2,6 +2,8 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
 local windowpicker = require("window-picker")
+local utils = require("utils")
+local builtin = require("telescope.builtin")
 
 local i = require("config.icons")
 
@@ -59,6 +61,7 @@ telescope.setup({
     file_browser = {
       theme = "dropdown",
       hijack_netrw = false,
+      path = "%:p:h",
 
       get_selection_window = function()
         return windowpicker.pick_window() or vim.api.nvim_get_current_win()
@@ -91,3 +94,22 @@ telescope.load_extension("file_browser")
 telescope.load_extension("frecency")
 telescope.load_extension("smart_history")
 telescope.load_extension("harpoon")
+
+utils.map({
+  ["<leader>"] = {
+    f = { telescope.extensions.frecency.frecency, i.Telescope .. "Find files" },
+    F = { builtin.live_grep, i.Search .. "Find Text" },
+    k = { telescope.extensions.file_browser.file_browser, i.Class .. "File Manager" },
+    s = {
+      name = i.Telescope .. "Search",
+      C = { builtin.commands, "Commands" },
+      m = { builtin.man_pages, "Man Pages" },
+      R = { builtin.registers, "Registers" },
+      b = { builtin.builtin, "Builtin pickers" },
+      c = { builtin.colorscheme, "Colorscheme" },
+      h = { builtin.help_tags, "Find Help" },
+      k = { builtin.keymaps, "Keymaps" },
+      r = { builtin.oldfiles, "Open Recent File" },
+    },
+  },
+})
