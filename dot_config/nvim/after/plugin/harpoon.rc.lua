@@ -4,6 +4,7 @@ local icons = require("config.icons")
 
 require("harpoon").setup()
 
+-- vim.pretty_print(vim.fn.fnamemodify(require("harpoon.mark").get_marked_file_name(1), ":t"))
 --- @param index number
 local function nav_mark(index)
   return {
