@@ -19,6 +19,12 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = function()
+      ls.jump(1)
+    end,
+    ["<C-k>"] = function()
+      ls.jump(-1)
+    end,
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -40,7 +46,7 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = "copilot" },
+    { name = "copilot", max_item_count = 3 },
     { name = "luasnip", max_item_count = 3 },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
