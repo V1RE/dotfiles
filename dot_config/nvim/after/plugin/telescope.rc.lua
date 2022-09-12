@@ -119,10 +119,11 @@ utils.map({
       s = { builtin.lsp_document_symbols, "Document Symbols" },
       w = { builtin.lsp_workspace_diagnostics, "Workspace Diagnostics" },
     },
-    g = {
-      d = { builtin.lsp_definitions, i.Constant .. "Definition" },
-      i = { builtin.lsp_implementations, i.Interface .. "Implementations" },
-      r = { builtin.lsp_references, i.Reference .. "References" },
-    },
+  },
+
+  g = {
+    d = { builtin.lsp_definitions, i.Constant .. "Definition" },
+    i = { builtin.lsp_implementations, i.Interface .. "Implementations" },
+    r = { builtin.lsp_references, i.Reference .. "References" },
   },
 })

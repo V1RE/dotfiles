@@ -4,4 +4,4 @@ local utils = require("utils")
 
 hop.setup()
 
-utils.map({ ["<TAB>"] = { icons.Rocket .. "Hop", hop.hint_words } })
+utils.map({ ["<TAB>"] = { hop.hint_words, icons.Rocket .. "Hop" } })
