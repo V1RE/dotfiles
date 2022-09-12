@@ -20,10 +20,10 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<C-j>"] = function()
-      ls.jump(-1)
+      ls.jump(1)
     end,
     ["<C-k>"] = function()
-      ls.jump(1)
+      ls.jump(-1)
     end,
   },
   formatting = {
@@ -66,9 +66,11 @@ cmp.setup({
 
 cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = {
+  sources = cmp.config.sources({
+    { name = "nvim_lsp_document_symbol" },
+  }, {
     { name = "buffer" },
-  },
+  }),
 })
 
 cmp.setup.cmdline(":", {
