@@ -20,10 +20,10 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<C-j>"] = function()
-      ls.jump(1)
+      ls.jump(-1)
     end,
     ["<C-k>"] = function()
-      ls.jump(-1)
+      ls.jump(1)
     end,
   },
   formatting = {
