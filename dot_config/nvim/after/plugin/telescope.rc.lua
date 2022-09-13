@@ -49,6 +49,11 @@ telescope.setup({
     find_files = {
       find_command = { "fd", "--type=file", "--hidden", "--exclude=.git", "--strip-cwd-prefix" },
     },
+    lsp_references = {
+      get_selection_window = function()
+        return windowpicker.pick_window() or vim.api.nvim_get_current_win()
+      end,
+    },
   },
 
   extensions = {
