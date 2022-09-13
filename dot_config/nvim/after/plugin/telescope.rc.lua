@@ -20,6 +20,7 @@ telescope.setup({
       prompt_position = "top",
     },
     sorting_strategy = "ascending",
+    dynamic_preview_title = true,
 
     vimgrep_arguments = {
       "rg",
