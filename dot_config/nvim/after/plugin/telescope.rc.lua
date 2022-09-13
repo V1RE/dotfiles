@@ -97,7 +97,7 @@ telescope.load_extension("harpoon")
 
 utils.map({
   ["<leader>"] = {
-    f = { telescope.extensions.frecency.frecency, i.Telescope .. "Find files" },
+    f = { builtin.find_files, i.Telescope .. "Find files" },
     F = { builtin.live_grep, i.Search .. "Find Text" },
     k = { telescope.extensions.file_browser.file_browser, i.Class .. "File Manager" },
     s = {

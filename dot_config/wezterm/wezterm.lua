@@ -20,9 +20,7 @@ return {
   font = font_with_fallback("Cascadia Code"),
   font_size = 16,
   line_height = 1.4,
-  --[[ color_scheme = "Poimandres", ]]
   color_scheme = "Catppuccin Macchiato",
-  --[[ colors = require("colors.catppuccin"), ]]
   hide_tab_bar_if_only_one_tab = true,
   term = "wezterm",
   window_padding = {
@@ -47,14 +45,14 @@ return {
     { key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
     { key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
     {
-      key = "b",
+      key = "n",
       mods = "CMD",
       action = act.ShowLauncherArgs({
         flags = "FUZZY|WORKSPACES",
       }),
     },
     {
-      key = "P",
+      key = "p",
       mods = "CMD",
       action = wezterm.action({
         QuickSelectArgs = {
