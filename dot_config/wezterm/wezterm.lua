@@ -4,7 +4,7 @@ local act = wezterm.action
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
   local names = {
-    name,
+    { family = name, assume_emoji_presentation = true },
     "nielsicon",
     "CaskaydiaCove Nerd Font",
     "PragmataPro Liga",
@@ -15,6 +15,7 @@ local function font_with_fallback(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 
+-- 🙄
 return {
   font_dirs = { "fonts" },
   font = font_with_fallback("Cascadia Code"),
