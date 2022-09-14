@@ -1,3 +1,4 @@
+#!/bin/zsh
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -79,3 +80,5 @@ source ~/.aliases
 eval "$(zoxide init zsh)"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+source "$HOME/.config/broot/launcher/bash/br"
