@@ -9,6 +9,12 @@ local function centerMouse()
   hs.mouse.absolutePosition(center)
 end
 
+hs.hotkey.bind({ "cmd", "ctrl" }, "j", function()
+  centerMouse()
+  hs.eventtap.keyStroke("cmd", "tab")
+  hs.eventtap.keyStroke({})
+end)
+
 hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
   centerMouse()
   local arc = hs.application.get("company.thebrowser.Browser")
