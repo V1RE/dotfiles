@@ -11,10 +11,20 @@ end
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
   centerMouse()
-  hs.application.get("company.thebrowser.Browser"):activate(true)
+  local arc = hs.application.get("company.thebrowser.Browser")
+  if arc:isFrontmost() then
+    arc:hide()
+  else
+    arc:activate(true)
+  end
 end)
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
   centerMouse()
-  hs.application.get("com.github.wez.wezterm"):activate(true)
+  local wezterm = hs.application.get("com.github.wez.wezterm")
+  if wezterm:isFrontmost() then
+    wezterm:hide()
+  else
+    wezterm:activate(true)
+  end
 end)
