@@ -33,6 +33,7 @@ null_ls.setup({
     formatting.stylelint,
     formatting.stylua,
     formatting.tidy,
+    formatting.npm_groovy_lint,
     hover.dictionary,
     linters.eslint_d.with({
       condition = function(utils)
@@ -52,6 +53,7 @@ null_ls.setup({
     linters.stylelint,
     linters.tidy,
     linters.write_good,
+    linters.zsh,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
