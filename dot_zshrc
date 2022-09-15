@@ -35,6 +35,10 @@ alias ls="${aliases[ls]:-ls} -A"
 
 setopt glob_dots
 setopt autocd
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt inc_append_history
+setopt share_history
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
@@ -77,7 +81,6 @@ compdef _directories md
 source ~/.aliases
 # source ~/bin/_p
 eval "$(zoxide init zsh)"
-eval $(wezterm shell-completion --shell zsh)
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
