@@ -77,7 +77,7 @@ compdef _directories md
 source ~/.aliases
 # source ~/bin/_p
 eval "$(zoxide init zsh)"
-eval "$(wezterm shell-completion --shell zsh)"
+eval $(wezterm shell-completion --shell zsh)
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
