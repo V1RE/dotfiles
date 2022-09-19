@@ -40,14 +40,14 @@ local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 local term = Terminal:new({})
 
 require("which-key").register({
-  ["<leader>"] = {
+  --[[ ["<leader>"] = {
     g = {
       function()
         lazygit:toggle()
       end,
       " Lazygit",
     },
-  },
+  }, ]]
   ["<C-Space>"] = {
     function()
       term:toggle()
