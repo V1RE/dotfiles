@@ -118,6 +118,17 @@ utils.map({
       r = { builtin.oldfiles, "Open Recent File" },
     },
     a = { builtin.buffers, i.Telescope .. "Pick Buffer" },
+    [";"] = {
+      function()
+        telescope.extensions.harpoon.marks({
+          attach_mappings = function(_, map)
+            map("i", "<c-n>", "move_selection_next")
+            return true
+          end,
+        })
+      end,
+      i.Telescope .. "Pick Buffer",
+    },
     b = {
       f = { builtin.buffers, i.Telescope .. "Find" },
     },
