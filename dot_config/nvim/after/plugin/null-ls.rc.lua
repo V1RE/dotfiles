@@ -33,7 +33,6 @@ null_ls.setup({
     formatting.stylelint,
     formatting.stylua,
     formatting.tidy,
-    formatting.npm_groovy_lint,
     hover.dictionary,
     linters.eslint_d.with({
       condition = function(utils)
