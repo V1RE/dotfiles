@@ -1,4 +1,4 @@
-local i = require("config.icons")
+--[[ local i = require("config.icons")
 
 require("bufferline").setup({
   options = {
@@ -18,4 +18,4 @@ require("bufferline").setup({
     separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = true,
   },
-})
+}) ]]
