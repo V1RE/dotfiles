@@ -117,6 +117,7 @@ utils.map({
       k = { builtin.keymaps, "Keymaps" },
       r = { builtin.oldfiles, "Open Recent File" },
     },
+    a = { builtin.buffers, i.Telescope .. "Pick Buffer" },
     b = {
       f = { builtin.buffers, i.Telescope .. "Find" },
     },

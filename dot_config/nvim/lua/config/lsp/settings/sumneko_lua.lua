@@ -10,9 +10,9 @@ return {
       telemetry = {
         enable = false,
       },
-      workspace = {
+      --[[ workspace = {
         library = { "~/.hammerspoon/Spoons/EmmyLua.spoon/annotations" },
-      },
+      }, ]]
     },
   },
 }
