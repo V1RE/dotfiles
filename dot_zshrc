@@ -64,6 +64,7 @@ source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
 export PATH="$HOME/go/bin/:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
