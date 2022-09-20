@@ -46,10 +46,10 @@ cmp.setup({
     end,
   },
   sources = {
+    { name = "nvim_lsp", max_item_count = 30 },
     { name = "copilot", max_item_count = 3 },
-    { name = "luasnip", max_item_count = 3 },
-    { name = "nvim_lsp" },
     { name = "nvim_lua" },
+    { name = "luasnip", max_item_count = 3 },
     { name = "path" },
     { name = "cmp_tabnine", max_item_count = 3 },
     { name = "buffer", max_item_count = 5 },
