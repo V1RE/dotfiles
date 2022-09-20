@@ -79,7 +79,7 @@ return packer.startup(function(use)
 
   -- snippets
   use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
-  use({ "zbirenbaum/copilot.lua", event = "InsertEnter" })
+  use("zbirenbaum/copilot.lua")
   use("rafamadriz/friendly-snippets")
 
   -- cmp plugins
