@@ -52,7 +52,6 @@ return packer.startup(function(use)
   use("SmiteshP/nvim-navic")
   use("norcalli/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
-  use("github/copilot.vim")
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
   use("kyazdani42/nvim-tree.lua")
   use("akinsho/bufferline.nvim")
@@ -79,8 +78,18 @@ return packer.startup(function(use)
 
   -- snippets
   use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
-  use("zbirenbaum/copilot.lua")
   use("rafamadriz/friendly-snippets")
+
+  --[[ use("github/copilot.vim") ]]
+  use({
+    "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end,
+  })
 
   -- cmp plugins
   use({
