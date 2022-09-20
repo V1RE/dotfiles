@@ -70,6 +70,7 @@ return packer.startup(function(use)
   use("b0o/incline.nvim")
   --[[ use("rcarriga/nvim-notify") ]]
   use("max397574/colortils.nvim")
+  use("unblevable/quick-scope")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })

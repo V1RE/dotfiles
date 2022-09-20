@@ -15,7 +15,7 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "j", function()
   hs.eventtap.keyStroke({})
 end)
 
-hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
+--[[ hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
   centerMouse()
   local arc = hs.application.get("company.thebrowser.Browser")
   if arc:isFrontmost() then
@@ -23,7 +23,7 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "l", function()
   else
     arc:activate(true)
   end
-end)
+end) ]]
 
 hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
   centerMouse()
