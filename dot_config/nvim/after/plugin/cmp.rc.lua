@@ -46,14 +46,12 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = "nvim_lsp", max_item_count = 30 },
-    { name = "copilot", max_item_count = 3 },
-    { name = "nvim_lua" },
-    { name = "luasnip", max_item_count = 3 },
-    { name = "path" },
-    { name = "cmp_tabnine", max_item_count = 3 },
-    { name = "buffer", max_item_count = 5 },
-    { name = "emoji" },
+    { name = "copilot", group_index = 2 },
+    { name = "nvim_lsp", group_index = 2 },
+    { name = "path", group_index = 2 },
+    { name = "luasnip", group_index = 2 },
+    { name = "cmp_tabnine", group_index = 2 },
+    { name = "buffer", group_index = 5 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -62,14 +60,17 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+  formatters = {
+    insert_text = require("copilot_cmp.format").remove_existing,
+  },
   sorting = {
+    priority_weight = 1,
     comparators = {
+      cmp.config.compare.exact,
       require("copilot_cmp.comparators").prioritize,
       require("copilot_cmp.comparators").score,
-      -- Below is the default comparitor list and order for nvim-cmp
       cmp.config.compare.offset,
       -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-      cmp.config.compare.exact,
       cmp.config.compare.score,
       cmp.config.compare.recently_used,
       cmp.config.compare.locality,

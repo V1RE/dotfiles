@@ -83,10 +83,13 @@ return packer.startup(function(use)
   --[[ use("github/copilot.vim") ]]
   use({
     "zbirenbaum/copilot.lua",
+    after = { "nvim-lspconfig" },
     event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup()
+        require("copilot").setup({
+          copilot_node_command = "/Users/niels/.volta/tools/image/node/16.17.0/bin/node",
+        })
       end, 100)
     end,
   })
@@ -101,14 +104,12 @@ return packer.startup(function(use)
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-emoji",
     },
   })
   use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "nvim_cmp" })
   use({
     "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
+    after = { "copilot.lua", "nvim_cmp" },
     config = function()
       require("copilot_cmp").setup()
     end,
