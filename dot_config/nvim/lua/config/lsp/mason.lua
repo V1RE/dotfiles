@@ -42,7 +42,7 @@ mason_lspconfig.setup_handlers({
   end,
 
   ["denols"] = function()
-    lspconfig.denolos.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.denols"), opts) or {})
+    lspconfig.denols.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.denols"), opts) or {})
   end,
 
   ["tsserver"] = function()
