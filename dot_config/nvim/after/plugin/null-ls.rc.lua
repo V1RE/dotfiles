@@ -25,6 +25,7 @@ null_ls.setup({
   sources = {
     code_actions.eslint_d,
     code_actions.shellcheck,
+    code_actions.gitsigns,
     formatting.eslint_d,
     formatting.google_java_format,
     formatting.prettier,
@@ -49,7 +50,18 @@ null_ls.setup({
     linters.luacheck,
     linters.rubocop,
     linters.shellcheck,
-    linters.stylelint,
+    linters.stylelint.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          ".stylelintrc",
+          ".stylelintrc.js",
+          ".stylelintrc.cjs",
+          ".stylelintrc.yaml",
+          ".stylelintrc.yml",
+          ".stylelintrc.json",
+        })
+      end,
+    }),
     linters.tidy,
     linters.write_good,
     linters.zsh,
