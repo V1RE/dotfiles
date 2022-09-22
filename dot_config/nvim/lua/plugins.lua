@@ -71,11 +71,11 @@ return packer.startup(function(use)
   --[[ use("rcarriga/nvim-notify") ]]
   use("max397574/colortils.nvim")
   use("unblevable/quick-scope")
+  use("petertriho/nvim-scrollbar")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("jascha030/nitepal.nvim")
-  use("olivercederborg/poimandres.nvim")
 
   -- snippets
   use({ "L3MON4D3/LuaSnip", as = "lua-snip" })

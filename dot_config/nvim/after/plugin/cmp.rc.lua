@@ -80,6 +80,11 @@ cmp.setup({
       cmp.config.compare.order,
     },
   },
+
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 })
 
 cmp.setup.cmdline("/", {
