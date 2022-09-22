@@ -53,6 +53,19 @@ return packer.startup(function(use)
   use("NvChad/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
+  use({
+    "anuvyklack/windows.nvim",
+    requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require("windows").setup()
+    end,
+  })
   use("kyazdani42/nvim-tree.lua")
   use("akinsho/bufferline.nvim")
   use("alker0/chezmoi.vim")
@@ -152,19 +165,6 @@ return packer.startup(function(use)
   use("lewis6991/gitsigns.nvim")
   use("TimUntersberger/neogit")
 
-  use({
-    "anuvyklack/windows.nvim",
-    requires = {
-      "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim",
-    },
-    config = function()
-      vim.o.winwidth = 10
-      vim.o.winminwidth = 10
-      vim.o.equalalways = false
-      require("windows").setup()
-    end,
-  })
   use("mrjones2014/legendary.nvim")
   use("lvimuser/lsp-inlayhints.nvim")
   use("folke/which-key.nvim")
