@@ -41,6 +41,10 @@ mason_lspconfig.setup_handlers({
     lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.yamlls"), opts) or {})
   end,
 
+  ["denols"] = function()
+    lspconfig.denolos.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.denols"), opts) or {})
+  end,
+
   ["tsserver"] = function()
     opts = vim.tbl_deep_extend("force", require("config.lsp.settings.tsserver"), opts) or {}
     require("typescript").setup({ server = opts })
