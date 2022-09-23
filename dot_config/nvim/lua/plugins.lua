@@ -99,7 +99,9 @@ return packer.startup(function(use)
     "zbirenbaum/copilot.lua",
     after = { "nvim-lspconfig" },
     event = { "VimEnter" },
-    config = require("config.copilot.rc"),
+    config = function()
+      require("config.copilot.rc")
+    end,
   })
 
   -- cmp plugins
