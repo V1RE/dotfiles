@@ -100,7 +100,7 @@ return packer.startup(function(use)
     after = { "nvim-lspconfig" },
     event = { "VimEnter" },
     config = function()
-      require("config.copilot.rc")
+      require("config.copilot_rc")
     end,
   })
 
