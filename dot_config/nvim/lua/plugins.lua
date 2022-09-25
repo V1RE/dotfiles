@@ -42,7 +42,7 @@ return packer.startup(function(use)
   use("nvim-lua/popup.nvim")
   use("nvim-lua/plenary.nvim")
   use("MunifTanjim/nui.nvim")
-  use("machakann/vim-sandwich")
+  use("tpope/vim-surround")
   use("wakatime/vim-wakatime")
   use("tpope/vim-abolish")
   use("voldikss/vim-floaterm")
@@ -53,19 +53,6 @@ return packer.startup(function(use)
   use("NvChad/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
-  use({
-    "anuvyklack/windows.nvim",
-    requires = {
-      "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim",
-    },
-    config = function()
-      vim.o.winwidth = 10
-      vim.o.winminwidth = 10
-      vim.o.equalalways = false
-      require("windows").setup()
-    end,
-  })
   use("kyazdani42/nvim-tree.lua")
   use("akinsho/bufferline.nvim")
   use("alker0/chezmoi.vim")
@@ -81,10 +68,10 @@ return packer.startup(function(use)
   use("antoinemadec/FixCursorHold.nvim")
   use("stevearc/dressing.nvim")
   use("b0o/incline.nvim")
-  --[[ use("rcarriga/nvim-notify") ]]
   use("max397574/colortils.nvim")
-  use("unblevable/quick-scope")
   use("petertriho/nvim-scrollbar")
+
+  use("ggandor/leap.nvim")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
