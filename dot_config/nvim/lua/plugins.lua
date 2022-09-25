@@ -146,7 +146,6 @@ return packer.startup(function(use)
 
   -- Git
   use("lewis6991/gitsigns.nvim")
-  use("TimUntersberger/neogit")
 
   use("mrjones2014/legendary.nvim")
   use("lvimuser/lsp-inlayhints.nvim")
