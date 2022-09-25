@@ -19,6 +19,7 @@ require("catppuccin").setup({
     which_key = true,
     navic = true,
     hop = true,
+    leap = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,
