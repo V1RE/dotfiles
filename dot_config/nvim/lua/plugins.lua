@@ -121,6 +121,7 @@ return packer.startup(function(use)
   use("b0o/schemastore.nvim")
   use("jose-elias-alvarez/typescript.nvim")
   use("ray-x/lsp_signature.nvim")
+  use("mfussenegger/nvim-jdtls")
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
