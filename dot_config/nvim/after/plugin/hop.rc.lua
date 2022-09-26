@@ -12,7 +12,15 @@ local function f()
   })
 end
 
+local function F()
+  hop.hint_char1({
+    direction = hd.BEFORE_CURSOR,
+    current_line_only = true,
+  })
+end
+
 utils.map({
   ["<TAB>"] = { hop.hint_words, icons.Rocket .. "Hop" },
-  f = { f, "lol" },
+  f = { f, "f" },
+  F = { F, "F" },
 })
