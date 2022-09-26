@@ -1,5 +1,6 @@
 local navic = require("nvim-navic")
 local i = require("config.icons")
+local git_blame = require("gitblame")
 
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
@@ -85,6 +86,8 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+vim.g.gitblame_display_virtual_text = 0
+
 require("lualine").setup({
   options = {
     icons_enabled = true,
@@ -112,9 +115,9 @@ require("lualine").setup({
       },
       { navic.get_location, cond = navic.is_available },
     },
-    lualine_x = { diff, spaces, "encoding", filetype },
-    lualine_y = { location },
-    lualine_z = { location, progress },
+    lualine_x = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
+    lualine_y = { diff, spaces, "encoding", filetype },
+    lualine_z = { location },
   },
   extensions = { "quickfix", "toggleterm" },
 })
