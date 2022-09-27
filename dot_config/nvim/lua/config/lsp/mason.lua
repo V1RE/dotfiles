@@ -49,4 +49,8 @@ mason_lspconfig.setup_handlers({
     opts = vim.tbl_deep_extend("force", require("config.lsp.settings.tsserver"), opts) or {}
     require("typescript").setup({ server = opts })
   end,
+
+  ["jdtls"] = function()
+    --[[ require("jdtls").start_or_attach(vim.tbl_deep_extend("force", opts, require("config.lsp.settings.jdtls")) or {}) ]]
+  end,
 })
