@@ -33,14 +33,23 @@ return {
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
   window_background_opacity = 0.90,
-  --[[ leader = {
+  leader = {
     key = "b",
     mods = "CMD",
-  }, ]]
+  },
   keys = {
-    { key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-    --[[ { key = "t", mods = "CMD", action = "DisableDefaultAssignment" }, ]]
-    --[[ { key = "w", mods = "CMD", action = "DisableDefaultAssignment" }, ]]
+    { key = "l", mods = "LEADER", action = act.SplitPane({
+      direction = "Right",
+    }) },
+    { key = "k", mods = "LEADER", action = act.SplitPane({
+      direction = "Up",
+    }) },
+    { key = "h", mods = "LEADER", action = act.SplitPane({
+      direction = "Left",
+    }) },
+    { key = "j", mods = "LEADER", action = act.SplitPane({
+      direction = "Down",
+    }) },
     { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
     { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
     { key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
