@@ -13,4 +13,4 @@ local components = {
   },
 }
 
-require("feline").winbar.setup({ components = components })
+require("feline").setup({ components = components })
