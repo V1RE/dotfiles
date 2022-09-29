@@ -43,9 +43,6 @@ M.get_filename = function()
       file_icon = ""
     end
 
-    --[[ local navic_text = vim.api.nvim_get_hl_by_name("NavicText", true)
-    vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground }) ]]
-
     return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
   end
 end
@@ -63,7 +60,7 @@ local get_gps = function()
   end
 
   if gps_location then
-    return require("config.icons").ChevronRight .. gps_location
+    return require("config.icons").ChevronRight .. " " .. gps_location
   else
     return ""
   end
