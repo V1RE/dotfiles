@@ -1,4 +1,4 @@
-local navic = require("nvim-navic")
+--[[ local navic = require("nvim-navic")
 
 local components = {
   active = {},
@@ -14,4 +14,4 @@ table.insert(components.active, {
   end,
 })
 
-require("feline").winbar.setup({ components = components })
+require("feline").setup({ components = components }) ]]

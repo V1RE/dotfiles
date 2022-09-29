@@ -56,12 +56,6 @@ local mode = {
   end,
 }
 
-local filetype = {
-  "filetype",
-  icons_enabled = true,
-  icon = nil,
-}
-
 local branch = {
   "branch",
   icons_enabled = true,
@@ -88,6 +82,17 @@ end
 
 vim.g.gitblame_display_virtual_text = 0
 
+local winbar = {
+  lualine_a = {},
+  lualine_b = { { "filename" } },
+  lualine_c = {
+    { navic.get_location, cond = navic.is_available },
+  },
+  lualine_x = {},
+  lualine_y = {},
+  lualine_z = {},
+}
+
 require("lualine").setup({
   options = {
     icons_enabled = true,
@@ -98,6 +103,8 @@ require("lualine").setup({
     always_divide_middle = true,
     globalstatus = true,
   },
+  winbar = winbar,
+  inactive_winbar = winbar,
   sections = {
     lualine_a = {
       branch,
@@ -118,5 +125,5 @@ require("lualine").setup({
     lualine_y = { spaces, location },
     lualine_z = { progress },
   },
-  extensions = { "quickfix", "toggleterm" },
+  extensions = { "quickfix", "toggleterm", "nvim-tree" },
 })
