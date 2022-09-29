@@ -61,20 +61,20 @@ require("incline").setup({
   end,
   window = {
     margin = {
-      horizontal = 1,
+      horizontal = 0,
       vertical = 0,
     },
     options = {
       signcolumn = "yes",
       wrap = false,
     },
-    padding = 1,
+    padding = 0,
     padding_char = " ",
     placement = {
       horizontal = "left",
       vertical = "top",
     },
-    width = "fit",
+    width = "",
     winhighlight = {
       active = {
         EndOfBuffer = "None",

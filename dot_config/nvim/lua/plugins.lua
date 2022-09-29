@@ -71,7 +71,7 @@ return packer.startup(function(use)
   use("max397574/colortils.nvim")
   use("petertriho/nvim-scrollbar")
 
-  use("ggandor/leap.nvim")
+  use("feline-nvim/feline.nvim")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
