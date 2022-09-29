@@ -10,5 +10,5 @@ require("illuminate").configure({
     "fugitive",
     "NvimTree",
   },
-  under_cursor = true,
+  under_cursor = false,
 })
