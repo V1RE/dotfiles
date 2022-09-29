@@ -49,7 +49,7 @@ cmp.setup({
     { name = "copilot", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "path", group_index = 2 },
-    { name = "luasnip", group_index = 2 },
+    { name = "luasnip", group_index = 2, max_item_count = 5 },
     { name = "cmp_tabnine", group_index = 2 },
     { name = "buffer", group_index = 5 },
   },
