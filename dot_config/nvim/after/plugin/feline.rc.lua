@@ -5,10 +5,9 @@ local components = {
   inactive = {},
 }
 
-table.insert(components.active[1], {
+table.insert(components.active, {
   provider = function()
-    return "asdf"
-    --[[ return navic.get_location() ]]
+    return navic.get_location()
   end,
   enabled = function()
     return navic.is_available()
