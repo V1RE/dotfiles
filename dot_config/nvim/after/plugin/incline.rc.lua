@@ -1,4 +1,4 @@
-local navic = require("nvim-navic")
+--[[ local navic = require("nvim-navic")
 
 local get_gps = function()
   local status_ok, gps_location = pcall(navic.get_location, {})
@@ -89,4 +89,4 @@ require("incline").setup({
     },
     zindex = 50,
   },
-})
+}) ]]
