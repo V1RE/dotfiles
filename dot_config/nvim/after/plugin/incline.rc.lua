@@ -1,4 +1,23 @@
---[[ require("incline").setup({
+local navic = require("nvim-navic")
+
+local get_gps = function()
+  local status_ok, gps_location = pcall(navic.get_location, {})
+  if not status_ok then
+    return ""
+  end
+
+  if not navic.is_available() or gps_location == "error" then
+    return ""
+  end
+
+  if gps_location then
+    return " " .. require("config.icons").ChevronRight .. " " .. gps_location
+  else
+    return ""
+  end
+end
+
+require("incline").setup({
   debounce_threshold = {
     falling = 50,
     rising = 10,
@@ -30,10 +49,12 @@
   render = function(props)
     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
     local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+
     return {
       { icon, guifg = color },
       { " " },
       { filename },
+      { get_gps() },
     }
   end,
   window = {
@@ -66,4 +87,4 @@
     },
     zindex = 50,
   },
-}) ]]
+})
