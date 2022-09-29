@@ -10,7 +10,7 @@ local get_gps = function()
     return ""
   end
 
-  if gps_location then
+  if gps_location and gps_location ~= "" then
     return " " .. require("config.icons").ChevronRight .. " " .. gps_location
   else
     return ""
@@ -23,7 +23,7 @@ require("incline").setup({
     rising = 10,
   },
   hide = {
-    cursorline = false,
+    cursorline = true,
     focused_win = false,
     only_win = false,
   },
@@ -65,13 +65,13 @@ require("incline").setup({
       vertical = 0,
     },
     options = {
-      signcolumn = "no",
+      signcolumn = "yes",
       wrap = false,
     },
     padding = 1,
     padding_char = " ",
     placement = {
-      horizontal = "right",
+      horizontal = "left",
       vertical = "top",
     },
     width = "fit",
