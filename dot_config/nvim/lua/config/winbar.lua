@@ -127,7 +127,7 @@ M.create_winbar = function()
         callback = function()
           local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
           if not status_ok then
-            require("user.winbar").get_winbar()
+            --[[ :equire("user.winbar").get_winbar() ]]
           end
         end,
       }
