@@ -74,7 +74,7 @@ require("incline").setup({
       horizontal = "left",
       vertical = "top",
     },
-    width = "",
+    width = "fit",
     winhighlight = {
       active = {
         EndOfBuffer = "None",
