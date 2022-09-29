@@ -1,7 +1,7 @@
 local navic = require("nvim-navic")
 
 local components = {
-  active = { {} },
+  active = {},
   inactive = {},
 }
 
