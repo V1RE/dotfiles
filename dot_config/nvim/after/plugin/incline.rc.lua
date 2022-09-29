@@ -50,11 +50,13 @@ require("incline").setup({
     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
     local icon, color = require("nvim-web-devicons").get_icon_color(filename)
 
+    local gps = get_gps()
+
     return {
       { icon, guifg = color },
       { " " },
       { filename },
-      { get_gps() },
+      { gps },
     }
   end,
   window = {
