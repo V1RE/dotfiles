@@ -58,6 +58,13 @@ M.on_attach = function(client, bufnr)
   attach_navic(client, bufnr)
 
   if client.name == "tsserver" then
+    require("which-key").register({
+      ["<leader>"] = {
+        l = {
+          t = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused imports" },
+        },
+      },
+    }, { buffer = bufnr })
     require("lsp-inlayhints").on_attach(client, bufnr, false)
   end
 end
