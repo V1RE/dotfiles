@@ -31,18 +31,16 @@ M.winbar_filetype_exclude = {
 M.get_filename = function()
   local filename = vim.fn.expand("%:t")
   local extension = vim.fn.expand("%:e")
-  local f = require("user.functions")
 
-  if not f.isempty(filename) then
+  if filename then
     local file_icon, file_icon_color =
       require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     local hl_group = "FileIconColor" .. extension
 
     vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
-    if f.isempty(file_icon) then
+    if not file_icon then
       file_icon = ""
-      file_icon_color = ""
     end
 
     local navic_text = vim.api.nvim_get_hl_by_name("NavicText", true)
@@ -64,8 +62,8 @@ local get_gps = function()
     return ""
   end
 
-  if not require("user.functions").isempty(gps_location) then
-    return require("user.icons").ui.ChevronRight .. " " .. gps_location
+  if gps_location then
+    return require("config.icons").ChevronRight .. gps_location
   else
     return ""
   end
@@ -83,20 +81,19 @@ M.get_winbar = function()
   if excludes() then
     return
   end
-  local f = require("user.functions")
   local value = M.get_filename()
 
   local gps_added = false
-  if not f.isempty(value) then
+  if value then
     local gps_value = get_gps()
     value = value .. " " .. gps_value
-    if not f.isempty(gps_value) then
+    if gps_value then
       gps_added = true
     end
   end
 
-  if not f.isempty(value) and f.get_buf_option("mod") then
-    local mod = "%#LspCodeLens#" .. require("user.icons").ui.Circle .. "%*"
+  if value and vim.api.nvim_buf_get_option(0, "mod") then
+    local mod = "%#LspCodeLens#" .. require("config.icons").Circle .. "%*"
     if gps_added then
       value = value .. " " .. mod
     else
@@ -106,7 +103,7 @@ M.get_winbar = function()
 
   local num_tabs = #vim.api.nvim_list_tabpages()
 
-  if num_tabs > 1 and not f.isempty(value) then
+  if num_tabs > 1 and value then
     local tabpage_number = tostring(vim.api.nvim_tabpage_get_number(0))
     value = value .. "%=" .. tabpage_number .. "/" .. tostring(num_tabs)
   end
@@ -127,7 +124,7 @@ M.create_winbar = function()
         callback = function()
           local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
           if not status_ok then
-            --[[ :equire("user.winbar").get_winbar() ]]
+            require("config.winbar").get_winbar()
           end
         end,
       }
