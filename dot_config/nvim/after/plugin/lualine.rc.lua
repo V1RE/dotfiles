@@ -87,8 +87,19 @@ local winbar = {
   lualine_b = {},
   lualine_c = {
     { "filename" },
+    {
+      function()
+        local a = navic.get_location()
+        if a ~= "" then
+          return i.ChevronRight .. " " .. a
+        end
+
+        return ""
+      end,
+      cond = navic.is_available,
+    },
   },
-  lualine_x = { { navic.get_location, cond = navic.is_available } },
+  lualine_x = {},
   lualine_y = {},
   lualine_z = {},
 }
