@@ -67,7 +67,6 @@ return packer.startup(function(use)
   use("lukas-reineke/indent-blankline.nvim")
   use("antoinemadec/FixCursorHold.nvim")
   use("stevearc/dressing.nvim")
-  use("b0o/incline.nvim")
   use("max397574/colortils.nvim")
   use("petertriho/nvim-scrollbar")
 
