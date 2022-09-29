@@ -84,11 +84,11 @@ vim.g.gitblame_display_virtual_text = 0
 
 local winbar = {
   lualine_a = {},
-  lualine_b = { { "filename" } },
+  lualine_b = {},
   lualine_c = {
-    { navic.get_location, cond = navic.is_available },
+    { "filename" },
   },
-  lualine_x = {},
+  lualine_x = { { navic.get_location, cond = navic.is_available } },
   lualine_y = {},
   lualine_z = {},
 }
