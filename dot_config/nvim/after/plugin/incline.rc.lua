@@ -1,4 +1,4 @@
-require("incline").setup({
+--[[ require("incline").setup({
   debounce_threshold = {
     falling = 50,
     rising = 10,
@@ -66,4 +66,4 @@ require("incline").setup({
     },
     zindex = 50,
   },
-})
+}) ]]
