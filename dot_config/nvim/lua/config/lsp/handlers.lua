@@ -45,6 +45,7 @@ end
 M.on_attach = function(client, bufnr)
   require("illuminate").on_attach(client)
   require("aerial").on_attach(client, bufnr)
+  require("virtualtypes").on_attach(client, bufnr)
 
   if client.name == "tsserver" then
     require("which-key").register({
