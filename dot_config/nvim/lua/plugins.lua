@@ -77,14 +77,6 @@ return packer.startup(function(use)
     },
   })
 
-  use({
-    "folke/noice.nvim",
-    requires = { "rcarriga/nvim-notify" },
-    config = function()
-      require("noice").setup()
-    end,
-  })
-
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("jascha030/nitepal.nvim")
