@@ -17,14 +17,10 @@ aerial.setup({
     -- different buffer in the way of the preferred direction
     -- Enum: prefer_right, prefer_left, right, left, float
     default_direction = "right",
-
-    -- Determines where the aerial window will be opened
-    --   edge   - open aerial at the far right/left of the editor
-    --   window - open aerial to the right/left of the current window
     placement = "edge",
   },
 
-  open_automatic = true,
-
-  close_automatic_events = { "unsupported" },
+  open_automatic = function(bufnr)
+    return not aerial.was_closed() and aerial.num_symbols(bufnr) > 0
+  end,
 })

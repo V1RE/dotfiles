@@ -81,11 +81,29 @@ end
 
 vim.g.gitblame_display_virtual_text = 0
 
+local fileicon = {
+  "filetype",
+  icon_only = true,
+}
+
+local filename = {
+  "filename",
+  path = 0,
+
+  symbols = {
+    modified = i.Circle, -- Text to show when the file is modified.
+    readonly = i.Lock, -- Text to show when the file is non-modifiable or readonly.
+    unnamed = "[No Name]", -- Text to show for unnamed buffers.
+    newfile = "[New]", -- Text to show for new created file before first writting
+  },
+}
+
 local winbar = {
   lualine_a = {},
   lualine_b = {},
   lualine_c = {
-    { "filename" },
+    fileicon,
+    filename,
     {
       "aerial",
     },
@@ -114,10 +132,7 @@ require("lualine").setup({
     },
     lualine_b = { mode },
     lualine_c = {
-      {
-        "filetype",
-        icon_only = true,
-      },
+      fileicon,
       {
         "filename",
         path = 1,

@@ -52,7 +52,9 @@ return packer.startup(function(use)
   use("NvChad/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
-  use("kyazdani42/nvim-tree.lua")
+
+  use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })
+
   use("akinsho/bufferline.nvim")
   use("alker0/chezmoi.vim")
   use("Lilja/vim-chezmoi")
