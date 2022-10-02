@@ -53,7 +53,7 @@ return packer.startup(function(use)
   use("kyazdani42/nvim-web-devicons")
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
-  use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })
+  use("kyazdani42/nvim-tree.lua")
 
   use("akinsho/bufferline.nvim")
   use("alker0/chezmoi.vim")
