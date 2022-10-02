@@ -45,7 +45,8 @@ end
 M.on_attach = function(client, bufnr)
   require("illuminate").on_attach(client)
   require("aerial").on_attach(client, bufnr)
-  require("virtualtypes").on_attach(client, bufnr)
+  require("lsp-inlayhints").on_attach(client, bufnr, false)
+  require("lsp_signature").on_attach(client, bufnr)
 
   if client.name == "tsserver" then
     require("which-key").register({
@@ -55,7 +56,6 @@ M.on_attach = function(client, bufnr)
         },
       },
     }, { buffer = bufnr })
-    require("lsp-inlayhints").on_attach(client, bufnr, false)
   end
 end
 
