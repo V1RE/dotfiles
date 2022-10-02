@@ -27,6 +27,8 @@ require("nvim-tree").setup({
     custom = { "\\.git$" },
   },
   view = {
+    number = true,
+    relativenumber = true,
     width = 40,
     mappings = {
       list = {
