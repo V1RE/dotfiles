@@ -49,7 +49,6 @@ return packer.startup(function(use)
   use("phaazon/hop.nvim")
   use("windwp/nvim-autopairs")
   use("numToStr/Comment.nvim")
-  use("SmiteshP/nvim-navic")
   use("NvChad/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
   use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
@@ -70,12 +69,7 @@ return packer.startup(function(use)
   use("max397574/colortils.nvim")
   use("petertriho/nvim-scrollbar")
 
-  use({
-    "stevearc/aerial.nvim",
-    config = function()
-      require("aerial").setup()
-    end,
-  })
+  use("stevearc/aerial.nvim")
 
   use({
     "ggandor/flit.nvim",

@@ -1,4 +1,3 @@
-local navic = require("nvim-navic")
 local i = require("config.icons")
 local git_blame = require("gitblame")
 

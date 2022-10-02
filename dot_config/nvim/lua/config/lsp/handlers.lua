@@ -42,18 +42,8 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
-local function lsp_highlight_document(client)
-  require("illuminate").on_attach(client)
-end
-
-local function attach_navic(client, bufnr)
-  vim.g.navic_silence = true
-  require("nvim-navic").attach(client, bufnr)
-end
-
 M.on_attach = function(client, bufnr)
-  lsp_highlight_document(client)
-  attach_navic(client, bufnr)
+  require("illuminate").on_attach(client)
   require("aerial").on_attach(client, bufnr)
 
   if client.name == "tsserver" then

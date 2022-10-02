@@ -89,6 +89,13 @@ telescope.setup({
     ["ui-select"] = {
       themes.get_cursor(),
     },
+    aerial = {
+      show_nesting = {
+        ["_"] = false,
+        json = true,
+        yaml = true,
+      },
+    },
   },
 })
 
@@ -100,6 +107,7 @@ telescope.load_extension("file_browser")
 telescope.load_extension("frecency")
 telescope.load_extension("smart_history")
 telescope.load_extension("harpoon")
+telescope.load_extension("aerial")
 
 utils.map({
   ["<leader>"] = {
