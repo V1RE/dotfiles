@@ -143,4 +143,8 @@ require("lualine").setup({
     lualine_z = { progress },
   },
   extensions = { "quickfix", "toggleterm", "nvim-tree", "aerial" },
+  disabled_filetypes = {
+    statusline = {},
+    winbar = { "NvimTree" },
+  },
 })
