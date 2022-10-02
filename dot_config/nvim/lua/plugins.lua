@@ -70,6 +70,14 @@ return packer.startup(function(use)
   use("max397574/colortils.nvim")
   use("petertriho/nvim-scrollbar")
 
+  use({
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+  })
+
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("jascha030/nitepal.nvim")
