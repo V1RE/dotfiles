@@ -71,6 +71,13 @@ return packer.startup(function(use)
   use("petertriho/nvim-scrollbar")
 
   use({
+    "ggandor/flit.nvim",
+    requires = {
+      "ggandor/leap.nvim",
+    },
+  })
+
+  use({
     "folke/noice.nvim",
     requires = { "rcarriga/nvim-notify" },
     event = "VimEnter",
