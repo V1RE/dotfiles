@@ -19,11 +19,11 @@ end
 
 utils.map({
   ["<TAB>"] = { hop.hint_patterns, icons.Rocket .. "Hop" },
-  f = { f, "f" },
-  F = { F, "F" },
+  --[[ f = { f, "f" },
+  F = { F, "F" }, ]]
 })
 
-utils.map({
+--[[ utils.map({
   f = { f, "f" },
   F = { F, "F" },
-}, "v")
+}, "v") ]]
