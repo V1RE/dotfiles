@@ -119,7 +119,10 @@ require("lualine").setup({
     theme = "catppuccin",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = {},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = { "NvimTree" },
+    },
     always_divide_middle = true,
     globalstatus = true,
   },
@@ -143,8 +146,4 @@ require("lualine").setup({
     lualine_z = { progress },
   },
   extensions = { "quickfix", "toggleterm", "nvim-tree", "aerial" },
-  disabled_filetypes = {
-    statusline = {},
-    winbar = { "NvimTree" },
-  },
 })
