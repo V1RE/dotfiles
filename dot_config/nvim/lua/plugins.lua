@@ -42,7 +42,7 @@ return packer.startup(function(use)
   use("nvim-lua/popup.nvim")
   use("nvim-lua/plenary.nvim")
   use("MunifTanjim/nui.nvim")
-  use("tpope/vim-surround")
+  use("machakann/vim-sandwich")
   use("wakatime/vim-wakatime")
   use("tpope/vim-abolish")
   use("voldikss/vim-floaterm")
@@ -72,6 +72,8 @@ return packer.startup(function(use)
   use("petertriho/nvim-scrollbar")
 
   use("stevearc/aerial.nvim")
+
+  use("gen740/SmoothCursor.nvim")
 
   use({
     "ggandor/flit.nvim",
