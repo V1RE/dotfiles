@@ -71,6 +71,13 @@ return packer.startup(function(use)
   use("petertriho/nvim-scrollbar")
 
   use({
+    "stevearc/aerial.nvim",
+    config = function()
+      require("aerial").setup()
+    end,
+  })
+
+  use({
     "ggandor/flit.nvim",
     requires = {
       "ggandor/leap.nvim",
