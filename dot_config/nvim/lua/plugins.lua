@@ -75,6 +75,8 @@ return packer.startup(function(use)
 
   use("gen740/SmoothCursor.nvim")
 
+  use("ja-ford/delaytrain.nvim")
+
   use({
     "ggandor/flit.nvim",
     requires = {
