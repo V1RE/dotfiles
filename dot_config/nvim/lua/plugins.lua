@@ -129,7 +129,6 @@ return packer.startup(function(use)
   use("jose-elias-alvarez/typescript.nvim")
   use("ray-x/lsp_signature.nvim")
   use("mfussenegger/nvim-jdtls")
-  use("jubnzv/virtual-types.nvim")
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
@@ -152,6 +151,7 @@ return packer.startup(function(use)
   use("mizlan/iswap.nvim")
   use("monaqa/dial.nvim")
   use("nvim-treesitter/nvim-treesitter-context")
+  use("haringsrob/nvim_context_vt")
 
   -- Git
   use("lewis6991/gitsigns.nvim")

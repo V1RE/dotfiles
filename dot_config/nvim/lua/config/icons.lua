@@ -1,6 +1,10 @@
 local M = {
   Add = " ",
   Array = " ",
+  ArrowDown = " ",
+  ArrowLeft = " ",
+  ArrowRight = " ",
+  ArrowUp = " ",
   BigCircle = " ",
   BigUnfilledCircle = " ",
   BookMark = " ",
@@ -73,6 +77,7 @@ local M = {
   Rename = " ",
   Repo = " ",
   Robot = " ",
+  Rocket = " ",
   Save = " ",
   Search = " ",
   SearchCode = " ",
@@ -97,7 +102,6 @@ local M = {
   Warning = " ",
   Watch = " ",
   Window = " ",
-  Rocket = " ",
 }
 
 local unspaced = {}

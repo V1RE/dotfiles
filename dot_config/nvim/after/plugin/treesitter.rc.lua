@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 require("nvim-treesitter.configs").setup({
   ensure_installed = "all", -- one of "all", or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -33,3 +35,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("treesitter-context").setup()
+
+require("nvim_context_vt").setup({
+  prefix = icons.ArrowRight,
+})
