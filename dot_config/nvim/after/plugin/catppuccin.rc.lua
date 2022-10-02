@@ -20,6 +20,7 @@ require("catppuccin").setup({
     navic = true,
     hop = true,
     leap = true,
+    aerial = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,

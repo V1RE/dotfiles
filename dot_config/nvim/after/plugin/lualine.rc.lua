@@ -136,5 +136,5 @@ require("lualine").setup({
     lualine_y = { spaces, location },
     lualine_z = { progress },
   },
-  extensions = { "quickfix", "toggleterm", "nvim-tree" },
+  extensions = { "quickfix", "toggleterm", "nvim-tree", "aerial" },
 })
