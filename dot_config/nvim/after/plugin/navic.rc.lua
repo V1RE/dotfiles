@@ -30,6 +30,6 @@ require("nvim-navic").setup({
     TypeParameter = i.TypeParameter .. " ",
   },
 
-  highlight = false,
+  highlight = true,
   separator = " " .. i.ChevronRight .. " ",
 })

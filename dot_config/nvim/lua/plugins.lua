@@ -80,7 +80,6 @@ return packer.startup(function(use)
   use({
     "folke/noice.nvim",
     requires = { "rcarriga/nvim-notify" },
-    event = "VimEnter",
     config = function()
       require("noice").setup()
     end,
