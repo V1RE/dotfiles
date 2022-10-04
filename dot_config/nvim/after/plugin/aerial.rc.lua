@@ -6,36 +6,13 @@ aerial.setup({
   attach_mode = "global",
   backends = { "lsp", "treesitter", "markdown" },
 
-  icons = {
-    Boolean = i.Boolean,
-    Class = i.Class,
-    Color = i.Color,
-    Constant = " ",
-    Constructor = " ",
-    Enum = " ",
-    EnumMember = " ",
-    Event = " ",
-    Field = " ",
-    File = " ",
-    Folder = " ",
-    Function = " ",
-    Interface = " ",
-    Keyword = " ",
-    Method = " ",
-    Module = " ",
-    Operator = " ",
-    Package = " ",
-    Property = " ",
-    Reference = " ",
-    Snippet = " ",
-    String = "s]",
-    Struct = " ",
-    Text = " ",
-    Unit = "塞",
-    Value = " ",
-    Variable = " ",
-    Collapsed = " ",
-  },
+  show_guides = true,
+
+  icons = i,
+
+  link_folds_to_tree = true,
+  link_tree_to_folds = true,
+  manage_folds = true,
 
   layout = {
     -- These control the width of the aerial window.

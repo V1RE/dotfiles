@@ -23,6 +23,7 @@ local M = {
   Close = " ",
   CloseAll = " ",
   Code = " ",
+  Collapsed = " ",
   Color = " ",
   Comment = " ",
   Constant = " ",
