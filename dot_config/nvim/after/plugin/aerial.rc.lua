@@ -1,8 +1,41 @@
 local aerial = require("aerial")
+local i = require("config.icons")
+
 -- Call the setup function to change the default behavior
 aerial.setup({
   attach_mode = "global",
-  backends = { "lsp", "treesitter", "markdown" },
+  backends = { "treesitter", "lsp", "markdown" },
+
+  icons = {
+    Boolean = i.Boolean,
+    Class = i.Class,
+    Color = i.Color,
+    Constant = " ",
+    Constructor = " ",
+    Enum = " ",
+    EnumMember = " ",
+    Event = " ",
+    Field = " ",
+    File = " ",
+    Folder = " ",
+    Function = " ",
+    Interface = " ",
+    Keyword = " ",
+    Method = " ",
+    Module = " ",
+    Operator = " ",
+    Package = " ",
+    Property = " ",
+    Reference = " ",
+    Snippet = " ",
+    String = "s]",
+    Struct = " ",
+    Text = " ",
+    Unit = "塞",
+    Value = " ",
+    Variable = " ",
+    Collapsed = " ",
+  },
 
   layout = {
     -- These control the width of the aerial window.
