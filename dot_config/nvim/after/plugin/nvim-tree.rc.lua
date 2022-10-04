@@ -3,11 +3,11 @@ local cb = require("nvim-tree.config").nvim_tree_callback
 local u = i.unspaced
 
 require("nvim-tree").setup({
-  open_on_setup = false,
-  open_on_setup_file = false,
+  open_on_setup = true,
+  open_on_setup_file = true,
   hijack_cursor = true,
   disable_netrw = true,
-  hijack_unnamed_buffer_when_opening = false,
+  hijack_unnamed_buffer_when_opening = true,
   diagnostics = {
     enable = true,
     show_on_dirs = true,
@@ -27,8 +27,6 @@ require("nvim-tree").setup({
     custom = { "\\.git$" },
   },
   view = {
-    number = false,
-    relativenumber = false,
     width = 40,
     mappings = {
       list = {
@@ -44,17 +42,6 @@ require("nvim-tree").setup({
       },
     },
     centralize_selection = true,
-    float = {
-      --[[ enable = true, ]]
-      open_win_config = {
-        relative = "editor",
-        border = "rounded",
-        width = 40,
-        height = 9999,
-        row = 1,
-        col = 1,
-      },
-    },
   },
   actions = {
     remove_file = {
