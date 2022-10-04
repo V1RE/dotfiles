@@ -7,7 +7,7 @@ require("nvim-tree").setup({
   open_on_setup_file = false,
   hijack_cursor = true,
   disable_netrw = true,
-  hijack_unnamed_buffer_when_opening = true,
+  hijack_unnamed_buffer_when_opening = false,
   diagnostics = {
     enable = true,
     show_on_dirs = true,
@@ -27,8 +27,8 @@ require("nvim-tree").setup({
     custom = { "\\.git$" },
   },
   view = {
-    number = true,
-    relativenumber = true,
+    number = false,
+    relativenumber = false,
     width = 40,
     mappings = {
       list = {
