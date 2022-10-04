@@ -20,6 +20,8 @@ aerial.setup({
     placement = "edge",
   },
 
+  filter_kind = false,
+
   open_automatic = function(bufnr)
     return not aerial.was_closed() and aerial.num_symbols(bufnr) > 0
   end,
