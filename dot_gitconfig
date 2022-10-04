@@ -11,3 +11,5 @@
 
 [includeIf "gitdir:~/Code/Socialbrothers/"]
   path = .sb.gitconfig
+[push]
+	autoSetupRemote = true
