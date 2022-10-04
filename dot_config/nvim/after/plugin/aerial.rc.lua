@@ -4,7 +4,7 @@ local i = require("config.icons")
 -- Call the setup function to change the default behavior
 aerial.setup({
   attach_mode = "global",
-  backends = { "treesitter", "lsp", "markdown" },
+  backends = { "lsp", "treesitter", "markdown" },
 
   icons = {
     Boolean = i.Boolean,
