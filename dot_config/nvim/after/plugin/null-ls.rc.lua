@@ -34,6 +34,7 @@ null_ls.setup({
     formatting.stylelint,
     formatting.stylua,
     formatting.tidy,
+    formatting.gofumpt,
     hover.dictionary,
     linters.eslint_d.with({
       condition = function(utils)
