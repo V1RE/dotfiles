@@ -65,6 +65,8 @@ null_ls.setup({
     linters.tidy,
     linters.write_good,
     linters.zsh,
+    linters.golangci_lint,
+    linters.staticcheck,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
