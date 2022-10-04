@@ -2,6 +2,7 @@ local aerial = require("aerial")
 -- Call the setup function to change the default behavior
 aerial.setup({
   attach_mode = "global",
+  backends = { "lsp", "treesitter", "markdown" },
 
   layout = {
     -- These control the width of the aerial window.
