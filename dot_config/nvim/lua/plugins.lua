@@ -71,6 +71,8 @@ return packer.startup(function(use)
   use("max397574/colortils.nvim")
   use("petertriho/nvim-scrollbar")
 
+  use("qpkorr/vim-renamer")
+
   use("stevearc/aerial.nvim")
 
   use("gen740/SmoothCursor.nvim")
