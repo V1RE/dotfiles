@@ -3,7 +3,7 @@ local toggleterm = require("toggleterm")
 
 toggleterm.setup({
   size = 40,
-  open_mapping = [[<C-t>]],
+  open_mapping = [[<C-Space>]],
   hide_numbers = true,
   shade_filetypes = {},
   shade_terminals = true,
@@ -48,7 +48,7 @@ require("which-key").register({
       " Lazygit",
     },
   },
-  ["<C-t>"] = {
+  ["<C-Space>"] = {
     function()
       term:toggle()
     end,
