@@ -11,7 +11,7 @@
           "properties": {
             "cache_timeout": 10,
             "http_timeout": 500,
-            "url": "https://wakatime.com/api/v1/users/current/summaries?start=today&end=today&api_key=API_KEY"
+            "url": "https://wakatime.com/api/v1/users/current/summaries?start=today&end=today&api_key=f3086389-5a16-44c9-9505-e5c912128e59"
           },
           "style": "powerline",
           "template": " {{ secondsRound .CummulativeTotal.Seconds }} ",
