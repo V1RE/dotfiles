@@ -58,7 +58,7 @@ export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 
 # eval "$(starship init zsh)"
-eval "$(oh-my-posh init zsh --config \"$HOME/.config/oh-my-posh/config.omp.yaml\")"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.omp.yaml)"
 eval "$(rbenv init - zsh)"
 # eval "$(gh completion -s zsh)"
 source "$(redo alias-file)"
