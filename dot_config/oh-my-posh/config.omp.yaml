@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+final_space: true
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: path
+        style: powerline
+        powerline_symbol: ""
+        foreground: "#ffffff"
+        background: "#61AFEF"
+        properties:
+          style: folder
