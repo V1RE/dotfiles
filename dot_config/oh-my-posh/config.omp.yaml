@@ -6,6 +6,7 @@ blocks:
         - background: '#61AFEF'
           foreground: '#ffffff'
           powerline_symbol: 
+          invert_powerline: true
           properties:
             style: folder
           style: powerline
