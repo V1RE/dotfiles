@@ -7,6 +7,7 @@ blocks:
       - type: path
         style: powerline
         powerline_symbol: ""
+        templates_logic: join
         foreground: "#ffffff"
         background: "#61AFEF"
         properties:
