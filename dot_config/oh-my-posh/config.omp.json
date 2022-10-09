@@ -38,7 +38,7 @@
   "foreground": "white",
   "background": "blue",
   "template": " \ue620 {{ .Full }} "
-},
+ },
         {
           "background": "#8AADF4",
           "foreground": "#494D64",
