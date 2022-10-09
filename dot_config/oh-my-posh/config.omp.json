@@ -14,6 +14,15 @@
           "type": "session"
         },
         {
+          "background": "#c386f1",
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " {{ .POSH }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "text"
+        },
+        {
           "background": "#ff479c",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
