@@ -52,6 +52,7 @@ export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
+set -k
 
 export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
 
