@@ -28,9 +28,17 @@
             "windows": "\ue70f"
           },
           "style": "diamond",
-          "template": "{{.Icon}} ",
+          "template": " {{.Icon}}",
           "type": "os"
         },
+{
+  "type": "lua",
+  "style": "powerline",
+  "powerline_symbol": "\ue0b0",
+  "foreground": "white",
+  "background": "blue",
+  "template": " \ue620 {{ .Full }} "
+},
         {
           "background": "#8AADF4",
           "foreground": "#494D64",
