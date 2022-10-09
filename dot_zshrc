@@ -80,8 +80,7 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
-export ZSH_CUSTOM="$(antidote home)"
-bindkey '^X' create_completion
+bindkey '^x' create_completion
 
 source ~/.aliases
 # source ~/bin/_p
