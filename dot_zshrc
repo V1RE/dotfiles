@@ -56,6 +56,7 @@ setopt EXTENDED_HISTORY
 export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
 
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
+export ZVM_TERM="xterm-256color"
 
 function set_poshcontext() {
   export POSH=$(date)

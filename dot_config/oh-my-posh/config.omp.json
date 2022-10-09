@@ -18,9 +18,10 @@
           "foreground": "#ffffff",
           "leading_diamond": "\ue0b6",
           "style": "diamond",
-          "template": " {{ .POSH }} ",
+          "template": " {{ env \"MODE\" }} ",
           "trailing_diamond": "\ue0b0",
-          "type": "text"
+          "type": "text",
+          "interactive": true
         },
         {
           "background": "#ff479c",

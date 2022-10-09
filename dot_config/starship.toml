@@ -17,6 +17,10 @@ symbol = " "
 [git_commit]
 tag_symbol = " "
 
+[cmd_duration]
+min_time = 0
+show_milliseconds = true
+
 [directory]
 home_symbol = " "
 repo_root_style = "cyan bold"
@@ -38,12 +42,17 @@ symbol = " "
 
 [java]
 symbol = " "
+detect_folders = [ "android" ]
+style = "red bold"
 
 [rust]
 symbol = " "
 
 [python]
 symbol = " "
+
+[golang]
+symbol = " "
 
 [shlvl]
 disabled = false
