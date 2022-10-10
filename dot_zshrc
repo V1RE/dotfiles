@@ -46,6 +46,7 @@ export VISUAL=$EDITOR
 export MANPAGER='$EDITOR +Man!'
 export MANWIDTH=999
 export BAT_PAGER="/usr/bin/less"
+export GIT_PAGER="delta"
 export BROWSER="open"
 export REDO_HISTORY_PATH="$HISTFILE"
 export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
