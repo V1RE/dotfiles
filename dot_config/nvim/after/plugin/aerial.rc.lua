@@ -33,7 +33,7 @@ aerial.setup({
 
   filter_kind = false,
 
-  open_automatic = function(bufnr)
+  --[[ open_automatic = function(bufnr)
     return not aerial.was_closed() and aerial.num_symbols(bufnr) > 0
-  end,
+  end, ]]
 })
