@@ -63,7 +63,6 @@ local mappings = {
       name = i.Field .. "LSP",
       I = { "<cmd>Mason<cr>", "Installer Info" },
       a = { vim.lsp.buf.code_action, "Code Action" },
-      d = { require("lsp_lines").toggle, "Document Diagnostics" },
       f = { vim.lsp.buf.format, "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       j = { vim.diagnostic.goto_next, "Next Diagnostic" },
