@@ -51,7 +51,6 @@ return packer.startup(function(use)
   use("numToStr/Comment.nvim")
   use("NvChad/nvim-colorizer.lua")
   use("kyazdani42/nvim-web-devicons")
-  use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
   use("kyazdani42/nvim-tree.lua")
 
@@ -133,7 +132,6 @@ return packer.startup(function(use)
   use("jose-elias-alvarez/null-ls.nvim")
   use("b0o/schemastore.nvim")
   use("jose-elias-alvarez/typescript.nvim")
-  use("ray-x/lsp_signature.nvim")
   use("mfussenegger/nvim-jdtls")
 
   -- Telescope
@@ -164,7 +162,6 @@ return packer.startup(function(use)
   use("f-person/git-blame.nvim")
 
   use("mrjones2014/legendary.nvim")
-  use("lvimuser/lsp-inlayhints.nvim")
   use("folke/which-key.nvim")
 
   -- Automatically set up your configuration after cloning packer.nvim
