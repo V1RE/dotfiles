@@ -30,7 +30,7 @@ mason_lspconfig.setup_handlers({
 
   ["sumneko_lua"] = function()
     opts = vim.tbl_deep_extend("force", require("config.lsp.settings.sumneko_lua"), opts) or {}
-    lspconfig.sumneko_lua.setup(require("lua-dev.nvim").setup({ lspconfig = opts }) or {})
+    lspconfig.sumneko_lua.setup(require("lua-dev").setup({ lspconfig = opts }) or {})
   end,
 
   ["jsonls"] = function()
