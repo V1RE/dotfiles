@@ -30,6 +30,15 @@ mason_lspconfig.setup_handlers({
 
   ["sumneko_lua"] = function()
     lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.sumneko_lua"), opts) or {})
+    require("neodev").setup({
+      override = function(root_dir, library)
+        print(root_dir)
+        if require("neodev.util").has_file(root_dir, "~/.local/share/chezmoi/dot_config/nvim") then
+          library.enabled = true
+          library.plugins = true
+        end
+      end,
+    })
   end,
 
   ["jsonls"] = function()
