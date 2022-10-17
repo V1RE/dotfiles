@@ -1,6 +1,6 @@
 require("neodev").setup({
   override = function(root_dir, library)
-    vim.pretty_print(root_dir)
+    print(root_dir)
     if require("neodev.util").has_file(root_dir, "/Users/niels/.local/share/chezmoi") then
       library.enabled = true
       library.plugins = true
