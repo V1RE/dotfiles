@@ -54,7 +54,6 @@ return packer.startup(function(use)
 
   use("kyazdani42/nvim-tree.lua")
 
-  use("akinsho/bufferline.nvim")
   use("alker0/chezmoi.vim")
   use("Lilja/vim-chezmoi")
   use("moll/vim-bbye")
