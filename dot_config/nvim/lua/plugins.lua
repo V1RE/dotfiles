@@ -139,10 +139,6 @@ return packer.startup(function(use)
   use("nvim-telescope/telescope-ui-select.nvim")
   use("ThePrimeagen/refactoring.nvim")
   use("nvim-telescope/telescope-file-browser.nvim")
-  use({
-    "nvim-telescope/telescope-frecency.nvim",
-    requires = { "tami5/sqlite.lua" },
-  })
   use("nvim-telescope/telescope-smart-history.nvim")
   use("s1n7ax/nvim-window-picker")
   use("ThePrimeagen/harpoon")

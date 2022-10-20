@@ -80,12 +80,6 @@ telescope.setup({
         },
       },
     },
-    frecency = {
-      default_workspace = "CWD",
-      picker = {
-        themes.get_ivy(),
-      },
-    },
     ["ui-select"] = {
       themes.get_cursor(),
     },
@@ -104,7 +98,6 @@ telescope.load_extension("ui-select")
 telescope.load_extension("refactoring")
 telescope.load_extension("projects")
 telescope.load_extension("file_browser")
-telescope.load_extension("frecency")
 telescope.load_extension("smart_history")
 telescope.load_extension("harpoon")
 telescope.load_extension("aerial")
