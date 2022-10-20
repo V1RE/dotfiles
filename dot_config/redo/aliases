@@ -9,6 +9,7 @@ updates() {
 	brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
 	n lts -d
 	yarn global upgrade --latest
+	npx browserslist@latest --update-db
 	cargo install-update -a
 	antidote update
 }
