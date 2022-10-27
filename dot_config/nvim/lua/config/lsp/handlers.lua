@@ -44,7 +44,6 @@ end
 
 M.on_attach = function(client, bufnr)
   require("illuminate").on_attach(client)
-  require("aerial").on_attach(client, bufnr)
   --[[ require("lsp-inlayhints").on_attach(client, bufnr, false) ]]
 
   if client.name == "tsserver" then
