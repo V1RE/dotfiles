@@ -1,5 +1,6 @@
 local aerial = require("aerial")
 local i = require("config.icons")
+local utils = require("utils")
 
 -- Call the setup function to change the default behavior
 aerial.setup({
@@ -27,13 +28,16 @@ aerial.setup({
     -- options will open the window in the other direction *if* there is a
     -- different buffer in the way of the preferred direction
     -- Enum: prefer_right, prefer_left, right, left, float
-    default_direction = "right",
-    placement = "edge",
+    default_direction = "float",
   },
 
   filter_kind = false,
 
-  --[[ open_automatic = function(bufnr)
-    return not aerial.was_closed() and aerial.num_symbols(bufnr) > 0
-  end, ]]
+  close_on_select = true,
+})
+
+utils.map({
+  ["<leader>"] = {
+    [";"] = { aerial.toggle, i.Class .. "Jump to symbol" },
+  },
 })
