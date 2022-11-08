@@ -13,9 +13,6 @@ require("nvim-tree").setup({
       info = i.Information,
     },
   },
-  update_focused_file = {
-    enable = true,
-  },
   system_open = {
     cmd = nil,
   },
