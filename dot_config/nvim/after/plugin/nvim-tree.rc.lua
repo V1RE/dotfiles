@@ -7,7 +7,7 @@ require("nvim-tree").setup({
   open_on_setup_file = true,
   hijack_cursor = true,
   disable_netrw = true,
-  hijack_unnamed_buffer_when_opening = true,
+  hijack_unnamed_buffer_when_opening = false,
   diagnostics = {
     enable = true,
     show_on_dirs = true,
@@ -33,12 +33,6 @@ require("nvim-tree").setup({
         { key = { "l", "<CR>", "o" }, cb = cb("edit") },
         { key = "h", cb = cb("close_node") },
         { key = "v", cb = cb("vsplit") },
-        {
-          key = "<tab>",
-          cb = function()
-            require("hop").hint_lines()
-          end,
-        },
       },
     },
     centralize_selection = true,
