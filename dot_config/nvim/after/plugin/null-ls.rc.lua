@@ -33,7 +33,6 @@ null_ls.setup({
     formatting.shfmt,
     formatting.stylelint,
     formatting.stylua,
-    formatting.tidy,
     formatting.gofumpt,
     formatting.golines,
     formatting.jq,
@@ -65,7 +64,6 @@ null_ls.setup({
         })
       end,
     }),
-    linters.tidy,
     linters.write_good,
     linters.zsh,
     linters.golangci_lint,
