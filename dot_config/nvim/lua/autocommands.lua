@@ -29,6 +29,7 @@ vim.cmd([[
     autocmd FileType plist set ft=xml
     autocmd BufReadPost Podfile,Appfile,Fastfile,Matchfile,Pluginfile set ft=ruby
     autocmd BufReadPost *.ejs.t set ft=embedded_template
+    autocmd BufReadPost *.hbs set ft=html
   augroup end
 
   augroup _chezmoi
