@@ -23,17 +23,24 @@ local opts = {
   capabilities = require("config.lsp.handlers").capabilities,
 }
 
+--- @param server string
+local function merge_options(server)
+  local server_options = require("config.lsp.settings." .. server) or {}
+
+  return vim.tbl_deep_extend("keep", server_options, opts)
+end
+
 mason_lspconfig.setup_handlers({
   function(server)
     lspconfig[server].setup(opts)
   end,
 
-  ["sumneko_lua"] = function()
-    lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.sumneko_lua"), opts) or {})
+  ["sumneko_lua"] = function(server)
+    lspconfig.sumneko_lua.setup(merge_options(server))
+
     require("neodev").setup({
       override = function(root_dir, library)
-        print(root_dir)
-        if require("neodev.util").has_file(root_dir, "~/.local/share/chezmoi/dot_config/nvim") then
+        if require("neodev.util").has_file(root_dir, "~/.local/share/chezmoi") then
           library.enabled = true
           library.plugins = true
         end
@@ -41,24 +48,19 @@ mason_lspconfig.setup_handlers({
     })
   end,
 
-  ["jsonls"] = function()
-    lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.jsonls"), opts) or {})
+  ["jsonls"] = function(server)
+    lspconfig.jsonls.setup(merge_options(server))
   end,
 
-  ["yamlls"] = function()
-    lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.yamlls"), opts) or {})
+  ["yamlls"] = function(server)
+    lspconfig.yamlls.setup(merge_options(server))
   end,
 
-  ["denols"] = function()
-    lspconfig.denols.setup(vim.tbl_deep_extend("force", require("config.lsp.settings.denols"), opts) or {})
+  ["tsserver"] = function(server)
+    require("typescript").setup({ server = merge_options(server) })
   end,
 
-  ["tsserver"] = function()
-    opts = vim.tbl_deep_extend("force", require("config.lsp.settings.tsserver"), opts) or {}
-    require("typescript").setup({ server = opts })
-  end,
-
-  ["jdtls"] = function()
-    --[[ require("jdtls").start_or_attach(vim.tbl_deep_extend("force", opts, require("config.lsp.settings.jdtls")) or {}) ]]
-  end,
+  --[[ ["jdtls"] = function(_)
+    require("jdtls").start_or_attach(vim.tbl_deep_extend("force", opts, require("config.lsp.settings.jdtls")) or {})
+  end, ]]
 })
