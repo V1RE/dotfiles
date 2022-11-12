@@ -35,7 +35,3 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("treesitter-context").setup()
-
-require("nvim_context_vt").setup({
-  prefix = icons.ArrowRight,
-})

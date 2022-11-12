@@ -35,64 +35,69 @@ packer.init({
   },
 })
 
--- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- Package managers
   use("wbthomason/packer.nvim")
-  use("nvim-lua/popup.nvim")
+  use("williamboman/mason.nvim")
+
+  -- Performance
+  use("lewis6991/impatient.nvim")
+  use("antoinemadec/FixCursorHold.nvim")
+
+  -- Util libraries
   use("nvim-lua/plenary.nvim")
+
+  -- UI libraries
   use("MunifTanjim/nui.nvim")
-  use("machakann/vim-sandwich")
+  use("nvim-lua/popup.nvim")
+  use("stevearc/dressing.nvim")
+
+  -- Time management
   use("wakatime/vim-wakatime")
+
+  -- Terminal
+  use("akinsho/toggleterm.nvim")
+
+  -- Text manipulation
+  use("machakann/vim-sandwich")
   use("tpope/vim-abolish")
-  use("voldikss/vim-floaterm")
-  use("phaazon/hop.nvim")
-  use("windwp/nvim-autopairs")
-  use("numToStr/Comment.nvim")
+
+  -- Color helpers
   use("NvChad/nvim-colorizer.lua")
+  use("max397574/colortils.nvim")
+
   use("kyazdani42/nvim-web-devicons")
 
+  -- File management
   use("kyazdani42/nvim-tree.lua")
-
-  use("alker0/chezmoi.vim")
-  use("Lilja/vim-chezmoi")
-  use("moll/vim-bbye")
-  use("nvim-lualine/lualine.nvim")
-  use("akinsho/toggleterm.nvim")
-  use("ahmedkhalf/project.nvim")
-  use("ghillb/cybu.nvim")
-  use("lewis6991/impatient.nvim")
-  use("RRethy/vim-illuminate")
-  use("lukas-reineke/indent-blankline.nvim")
-  use("antoinemadec/FixCursorHold.nvim")
-  use("stevearc/dressing.nvim")
-  use("max397574/colortils.nvim")
-  use("petertriho/nvim-scrollbar")
-
   use("qpkorr/vim-renamer")
 
-  use("stevearc/aerial.nvim")
+  -- Chezmoi helpers
+  use("alker0/chezmoi.vim")
+  use("Lilja/vim-chezmoi")
 
-  use("gen740/SmoothCursor.nvim")
+  -- Buffer management
+  use("moll/vim-bbye")
+  use("nvim-lualine/lualine.nvim")
+  use("ghillb/cybu.nvim")
 
-  use("ja-ford/delaytrain.nvim")
+  -- Eye candy
+  use("RRethy/vim-illuminate")
+  use("lukas-reineke/indent-blankline.nvim")
+  use("petertriho/nvim-scrollbar")
 
-  use({
-    "ggandor/flit.nvim",
-    requires = {
-      "ggandor/leap.nvim",
-    },
-  })
+  -- Movement
+  use({ "ggandor/flit.nvim", requires = { "ggandor/leap.nvim" } })
+  use("phaazon/hop.nvim")
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("jascha030/nitepal.nvim")
 
-  -- snippets
+  -- Snippets
   use({ "L3MON4D3/LuaSnip", as = "lua-snip" })
   use("rafamadriz/friendly-snippets")
 
-  --[[ use("github/copilot.vim") ]]
   use({
     "zbirenbaum/copilot.lua",
     after = { "nvim-lspconfig" },
@@ -102,7 +107,7 @@ return packer.startup(function(use)
     end,
   })
 
-  -- cmp plugins
+  -- Cmp plugins
   use({
     "hrsh7th/nvim-cmp",
     as = "nvim_cmp",
@@ -125,13 +130,15 @@ return packer.startup(function(use)
 
   -- LSP
   use("neovim/nvim-lspconfig")
-  use("folke/neodev.nvim")
-  use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
+  use("folke/neodev.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
   use("b0o/schemastore.nvim")
   use("jose-elias-alvarez/typescript.nvim")
   use("mfussenegger/nvim-jdtls")
+  use("stevearc/aerial.nvim")
+  use("windwp/nvim-autopairs")
+  use("ahmedkhalf/project.nvim")
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
@@ -149,13 +156,13 @@ return packer.startup(function(use)
   use("mizlan/iswap.nvim")
   use("monaqa/dial.nvim")
   use("nvim-treesitter/nvim-treesitter-context")
-  use("haringsrob/nvim_context_vt")
+  use("numToStr/Comment.nvim")
 
   -- Git
   use("lewis6991/gitsigns.nvim")
   use("f-person/git-blame.nvim")
 
-  use("mrjones2014/legendary.nvim")
+  -- Keybindings
   use("folke/which-key.nvim")
 
   -- Automatically set up your configuration after cloning packer.nvim
