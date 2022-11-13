@@ -3,8 +3,8 @@
   "Lua.workspace.library": [
     "/Users/niels/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/nightly",
     "/opt/homebrew/Cellar/neovim/HEAD-7335a67/share/nvim/runtime",
-    "/Users/niels/.local/share/nvim/site/pack/packer/opt/*",
-    "/Users/niels/.local/share/nvim/site/pack/packer/start/*",
+    "/Users/niels/.local/share/nvim/site/pack/packer/opt/?",
+    "/Users/niels/.local/share/nvim/site/pack/packer/start/?",
     "${3rd}/luassert/library"
-  ],
+  ]
 }
