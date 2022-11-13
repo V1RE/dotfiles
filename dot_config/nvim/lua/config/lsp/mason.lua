@@ -36,8 +36,6 @@ mason_lspconfig.setup_handlers({
   end,
 
   ["sumneko_lua"] = function(server)
-    lspconfig.sumneko_lua.setup(merge_options(server))
-
     require("neodev").setup({
       override = function(root_dir, library)
         if require("neodev.util").has_file(root_dir, "~/.local/share/chezmoi") then
@@ -46,6 +44,8 @@ mason_lspconfig.setup_handlers({
         end
       end,
     })
+
+    lspconfig.sumneko_lua.setup(merge_options(server))
   end,
 
   ["jsonls"] = function(server)
