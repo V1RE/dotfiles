@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-local windowpicker = require("window-picker")
 local utils = require("utils")
 local builtin = require("telescope.builtin")
 
@@ -46,11 +45,6 @@ telescope.setup({
     find_files = {
       find_command = { "fd", "--type=file", "--hidden", "--exclude=.git", "--strip-cwd-prefix" },
     },
-    lsp_references = {
-      get_selection_window = function()
-        return windowpicker.pick_window() or vim.api.nvim_get_current_win()
-      end,
-    },
   },
 
   extensions = {
@@ -64,10 +58,6 @@ telescope.setup({
       theme = "dropdown",
       hijack_netrw = false,
       path = "%:p:h",
-
-      get_selection_window = function()
-        return windowpicker.pick_window() or vim.api.nvim_get_current_win()
-      end,
 
       mappings = {
         i = {
