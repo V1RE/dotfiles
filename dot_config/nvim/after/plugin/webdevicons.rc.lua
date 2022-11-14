@@ -64,7 +64,7 @@ require("nvim-web-devicons").setup({
     },
     cjs = {
       icon = "",
-      name = "Js",
+      name = "Cjs",
     },
   },
 })
