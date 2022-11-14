@@ -11,6 +11,11 @@ require("nvim-web-devicons").setup({
       color = "#4733bb",
       name = "ESLint",
     },
+    [".eslintrc.cjs"] = {
+      icon = "",
+      color = "#4733bb",
+      name = "ESLint",
+    },
     ["babel.config.js"] = {
       icon = "",
       color = "#f4dd5e",
