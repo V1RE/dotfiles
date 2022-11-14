@@ -314,11 +314,6 @@ _G.packer_plugins = {
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["nvim-window-picker"] = {
-    loaded = true,
-    path = "/Users/niels/.local/share/nvim/site/pack/packer/start/nvim-window-picker",
-    url = "https://github.com/s1n7ax/nvim-window-picker"
-  },
   nvim_cmp = {
     loaded = true,
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/nvim_cmp",
@@ -343,11 +338,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/niels/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
-  },
-  ["refactoring.nvim"] = {
-    loaded = true,
-    path = "/Users/niels/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
-    url = "https://github.com/ThePrimeagen/refactoring.nvim"
   },
   ["schemastore.nvim"] = {
     loaded = true,
