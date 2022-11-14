@@ -10,23 +10,6 @@ function upgrade() {
 	true
 }
 
-# Tmux
-function t() {
-	local sessions
-	local session
-
-	if ! tmux has-session; then
-		tmux new-session -s "dots"
-	else
-		sessions=$(tmux list-sessions -F \#S)
-		session=$(echo "${sessions}" | gum filter --placeholder "Pick session...")
-		tmux switch-client -t "${session}" || tmux attach -t "${session}"
-	fi
-}
-
-alias tl="tmux ls"
-alias ta="tmux a"
-
 alias cm="chezmoi"
 
 # Dotfiles
