@@ -89,7 +89,6 @@ source ~/.aliases
 eval "$(zoxide init zsh)"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-eval "$(volta completions zsh)"
 
 # source "$HOME/.config/broot/launcher/bash/br"
 # export PYENV_ROOT="$HOME/.pyenv"
