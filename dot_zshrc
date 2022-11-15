@@ -1,4 +1,4 @@
-FPATH="~/.zsh:${FPATH}"
+FPATH="~/.zsh/.volta-completions.zsh:${FPATH}"
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
