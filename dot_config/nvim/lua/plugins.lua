@@ -155,6 +155,7 @@ return packer.startup(function(use)
   use("monaqa/dial.nvim")
   use("nvim-treesitter/nvim-treesitter-context")
   use("numToStr/Comment.nvim")
+  use({ "cshuaimin/ssr.nvim", module = "ssr" })
 
   -- Git
   use("lewis6991/gitsigns.nvim")
