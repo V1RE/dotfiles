@@ -61,6 +61,7 @@ export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 # eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.omp.json)"
 eval "$(rbenv init - zsh)"
