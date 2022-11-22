@@ -18,7 +18,6 @@ require("catppuccin").setup({
     telescope = true,
     which_key = true,
     hop = true,
-    leap = true,
     aerial = true,
     indent_blankline = {
       enabled = true,

@@ -87,7 +87,6 @@ return packer.startup(function(use)
   use("petertriho/nvim-scrollbar")
 
   -- Movement
-  use({ "ggandor/flit.nvim", requires = { "ggandor/leap.nvim" } })
   use("phaazon/hop.nvim")
   use("jinh0/eyeliner.nvim")
 
