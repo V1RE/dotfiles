@@ -25,6 +25,7 @@ null_ls.setup({
   sources = {
     code_actions.eslint_d,
     code_actions.shellcheck,
+    code_actions.typescript,
     formatting.eslint_d,
     formatting.google_java_format,
     formatting.prettier,
