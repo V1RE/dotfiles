@@ -4,6 +4,12 @@ require("nvim-treesitter.configs").setup({
   ensure_installed = "all", -- one of "all", or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "haskell", "elixir", "phpdoc", "help" }, -- List of parsers to ignore installing
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+  },
   autopairs = {
     enable = true,
   },
