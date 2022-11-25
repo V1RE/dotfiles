@@ -48,6 +48,8 @@ null_ls.setup({
           ".eslintrc.json",
         })
       end,
+
+      extra_filetypes = { "graphql" },
     }),
     linters.luacheck,
     linters.rubocop,
