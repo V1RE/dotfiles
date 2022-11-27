@@ -61,6 +61,7 @@ return packer.startup(function(use)
   -- Text manipulation
   use("machakann/vim-sandwich")
   use("tpope/vim-abolish")
+  use("gbprod/yanky.nvim")
 
   -- Color helpers
   use("NvChad/nvim-colorizer.lua")
