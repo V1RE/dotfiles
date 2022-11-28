@@ -1,0 +1,9 @@
+{
+  "neodev": {
+    "library": {
+      "runtime": true,
+      "plugins": true,
+      "enabled": true
+    }
+  }
+}
