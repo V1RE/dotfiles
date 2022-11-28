@@ -1,15 +1,19 @@
-return {
+--- @type lspconfig.options.tsserver
+local tsserver = {
   settings = {
     typescript = {
       inlayHints = {
-        includeInlayEnumMemberValueHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayVariableTypeHints = true,
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
+        parameterNames = { enabled = "all" },
+        parameterTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        variableTypes = { enabled = true },
       },
+      format = { enable = false },
+      referencesCodeLens = { enabled = true },
     },
   },
 }
+
+return tsserver

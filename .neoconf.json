@@ -3,7 +3,18 @@
     "library": {
       "runtime": true,
       "plugins": true,
-      "enabled": true
+      "enabled": true,
+      "types": true
+    },
+    "experimental": {
+      "pathStrict": true
+    }
+  },
+  "neoconf": {
+    "plugins": {
+      "sumneko_lua": {
+        "enabled": true
+      }
     }
   }
 }
