@@ -22,7 +22,7 @@ M.server_capabilities = function()
   end)
 end
 
-require("config.lsp.mason")
 require("config.lsp.handlers").setup()
+require("config.lsp.mason")
 
 return M
