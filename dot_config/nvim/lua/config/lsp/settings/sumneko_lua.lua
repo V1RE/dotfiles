@@ -2,6 +2,9 @@
 local sumneko_lua = {
   settings = {
     Lua = {
+      workspace = {
+        checkThirdParty = false,
+      },
       hint = {
         enable = true,
       },
