@@ -7,6 +7,7 @@ local sumneko_lua = {
       },
       hint = {
         enable = true,
+        setType = true,
       },
       format = {
         enable = false,
