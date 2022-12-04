@@ -18,6 +18,7 @@ local settings = {
 mason.setup(settings)
 mason_lspconfig.setup()
 
+--- @type _.lspconfig.options
 local opts = {
   on_attach = require("config.lsp.handlers").on_attach,
   capabilities = require("config.lsp.handlers").capabilities,
@@ -45,6 +46,10 @@ mason_lspconfig.setup_handlers({
 
   ["yamlls"] = function(server)
     lspconfig.yamlls.setup(merge_options(server))
+  end,
+
+  ["denols"] = function(server)
+    lspconfig.denols.setup(merge_options(server))
   end,
 
   ["tsserver"] = function(server)

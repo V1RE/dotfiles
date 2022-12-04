@@ -1,7 +1,12 @@
-return {
-  yaml = {
-    schemaStore = {
-      enable = true,
+--- @type lspconfig.options.yamlls
+local yamlls = {
+  settings = {
+    redhat = {
+      telemetry = {
+        enabled = false,
+      },
     },
   },
 }
+
+return yamlls

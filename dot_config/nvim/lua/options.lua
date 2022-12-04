@@ -45,6 +45,10 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+}
+
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.listchars:append("trail:·")
