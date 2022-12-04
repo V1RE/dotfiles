@@ -15,6 +15,12 @@ local tsserver = {
       },
       format = { enable = false },
       referencesCodeLens = { enabled = true },
+      updateImportsOnFileMove = {
+        enabled = "always",
+      },
+      implementationsCodeLens = {
+        enabled = true,
+      },
     },
   },
 }
