@@ -1,8 +1,8 @@
-local util = require("lspconfig.util")
+local util = require("lua.lspconfig.util")
 
 --- @type lspconfig.options.tsserver
 local tsserver = {
-  root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
+  autostart = util.find_package_json_ancestor() ~= nil,
   settings = {
     typescript = {
       inlayHints = {
