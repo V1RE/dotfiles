@@ -1,4 +1,4 @@
-local util = require("lua.lspconfig.util")
+local util = require("lspconfig.util")
 
 --- @type lspconfig.options.tsserver
 local tsserver = {
