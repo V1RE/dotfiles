@@ -2,7 +2,7 @@ local util = require("lspconfig.util")
 
 --- @type lspconfig.options.tsserver
 local tsserver = {
-  autostart = util.find_package_json_ancestor() ~= nil,
+  autostart = util.find_package_json_ancestor(".") ~= nil,
   settings = {
     typescript = {
       inlayHints = {
