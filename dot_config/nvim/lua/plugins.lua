@@ -141,7 +141,7 @@ return packer.startup(function(use)
   use("stevearc/aerial.nvim")
   use("windwp/nvim-autopairs")
   use("ahmedkhalf/project.nvim")
-  use({ "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal" })
+  use({ "lvimuser/lsp-inlayhints.nvim" })
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
