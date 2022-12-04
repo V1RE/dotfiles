@@ -1,5 +1,8 @@
 local util = require("lspconfig.util")
 
-return {
+--- @type lspconfig.settings.denols
+local denols = {
   root_dir = util.root_pattern("deno.json"),
 }
+
+return denols
