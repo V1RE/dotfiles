@@ -2,6 +2,7 @@ local util = require("lspconfig.util")
 
 --- @type lspconfig.options.tsserver
 local tsserver = {
+  autostart = false,
   root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
   settings = {
     typescript = {
