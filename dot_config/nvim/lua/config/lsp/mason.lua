@@ -48,9 +48,9 @@ mason_lspconfig.setup_handlers({
     lspconfig.yamlls.setup(merge_options(server))
   end,
 
-  ["denols"] = function(server)
+  --[[ ["denols"] = function(server)
     lspconfig.denols.setup(merge_options(server))
-  end,
+  end, ]]
 
   ["tsserver"] = function(server)
     require("typescript").setup({ server = merge_options(server) })
