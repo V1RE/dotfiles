@@ -1,5 +1,5 @@
 require("colorizer").setup({
-  filetypes = { "*", "!cmp_menu" },
+  filetypes = { "sass", "css" },
   user_default_options = {
     RRGGBBAA = false, -- #RRGGBBAA hex codes
     AARRGGBB = false, -- #0xAARRGGBA hex codes
