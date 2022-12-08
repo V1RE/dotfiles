@@ -9,7 +9,7 @@ format = "$all$fill$shlvl$time$line_break$jobs$battery$status$shell$character"
 [character] # The name of the module we are configuring is "character"
 success_symbol = "[](bold #8fe8a8)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
 error_symbol = "[](bold #ff7ea3)"
-vicmd_symbol = "[](bold #7bc8fc)"
+vimcmd_symbol = "[](bold #7bc8fc)"
 
 [git_branch]
 symbol = " "
@@ -42,7 +42,7 @@ symbol = " "
 
 [java]
 symbol = " "
-detect_folders = [ "android" ]
+detect_folders = ["android"]
 style = "red bold"
 
 [rust]

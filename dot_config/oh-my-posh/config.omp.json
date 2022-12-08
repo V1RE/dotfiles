@@ -161,9 +161,7 @@
         },
         {
           "background": "#00897b",
-          "background_templates": [
-            "{{ if gt .Code 0 }}#e91e63{{ end }}"
-          ],
+          "background_templates": ["{{ if gt .Code 0 }}#e91e63{{ end }}"],
           "foreground": "#ffffff",
           "properties": {
             "always_enabled": true
