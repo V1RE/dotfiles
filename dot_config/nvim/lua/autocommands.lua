@@ -2,7 +2,6 @@ vim.cmd([[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
   augroup end
@@ -30,9 +29,5 @@ vim.cmd([[
     autocmd BufReadPost Podfile,Appfile,Fastfile,Matchfile,Pluginfile set ft=ruby
     autocmd BufReadPost *.ejs.t set ft=embedded_template
     autocmd BufReadPost *.hbs set ft=html
-  augroup end
-
-  augroup _chezmoi
-    autocmd BufWritePost ~/.local/share/chezmoi/* silent exec "!(chezmoi apply --source-path '%'&) > /dev/null"
   augroup end
 ]])
