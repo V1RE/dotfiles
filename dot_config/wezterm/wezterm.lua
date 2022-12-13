@@ -15,7 +15,6 @@ local function font_with_fallback(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 
--- 🙄
 return {
   font_dirs = { "fonts" },
   font = font_with_fallback("Cascadia Code"),
@@ -54,6 +53,13 @@ return {
     { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
     { key = "j", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
     { key = "k", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
+    {
+      key = "m",
+      mods = "CMD",
+      action = act.ShowLauncherArgs({
+        flags = "FUZZY",
+      }),
+    },
     {
       key = "n",
       mods = "CMD",
