@@ -1,6 +1,5 @@
 local aerial = require("aerial")
 local i = require("config.icons")
-local utils = require("utils")
 
 -- Call the setup function to change the default behavior
 aerial.setup({
@@ -34,10 +33,4 @@ aerial.setup({
   filter_kind = false,
 
   close_on_select = true,
-})
-
-utils.map({
-  ["<leader>"] = {
-    [";"] = { aerial.toggle, i.Class .. "Jump to symbol" },
-  },
 })
