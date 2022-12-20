@@ -54,6 +54,7 @@ return packer.startup(function(use)
 
   -- Time management
   use("wakatime/vim-wakatime")
+  use("mbbill/undotree")
 
   -- Terminal
   use("akinsho/toggleterm.nvim")
