@@ -27,9 +27,9 @@ return {
     left = 30,
     right = 30,
     top = 30,
-    bottom = 30,
+    bottom = 15,
   },
-  use_fancy_tab_bar = false,
+  use_fancy_tab_bar = true,
   tab_bar_at_bottom = true,
   window_background_opacity = 0.90,
   leader = {
