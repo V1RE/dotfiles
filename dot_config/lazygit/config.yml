@@ -4,6 +4,7 @@ gui:
   mouseEvents: false
   showFileTree: true
   scrollHeight: 5
+  expandFocusedSidePanel: true
   # theme:
   #   activeBorderColor:
   #     - magenta
