@@ -19,6 +19,8 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
   overrideGpg: true
+  log:
+    showGraph: "always"
 quitOnTopLevelReturn: false
 os:
   openCommand: "v {{filename}}"
