@@ -124,7 +124,6 @@ return packer.startup(function(use)
   use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "nvim_cmp" })
   use({
     "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim_cmp" },
     config = function()
       require("copilot_cmp").setup()
     end,
