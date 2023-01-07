@@ -21,6 +21,7 @@ local M = {
   Circle = " ",
   Class = " ",
   Close = " ",
+  ClosedFolder = " ",
   CloseAll = " ",
   Code = " ",
   Collapsed = " ",
