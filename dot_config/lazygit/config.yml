@@ -19,7 +19,7 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
-  overrideGpg: true
+  overrideGpg: false
   log:
     showGraph: "always"
 quitOnTopLevelReturn: false
