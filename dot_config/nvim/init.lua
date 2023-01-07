@@ -1,4 +1,3 @@
-require("profiler")
 require("options")
 require("keymaps")
 require("plugins")
