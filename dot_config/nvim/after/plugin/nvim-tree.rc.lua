@@ -1,4 +1,4 @@
-local i = require("config.icons")
+--[[ local i = require("config.icons")
 local cb = require("nvim-tree.config").nvim_tree_callback
 local u = i.unspaced
 
@@ -59,4 +59,4 @@ require("nvim-tree").setup({
       },
     },
   },
-})
+}) ]]

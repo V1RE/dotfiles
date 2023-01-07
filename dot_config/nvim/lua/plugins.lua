@@ -111,4 +111,6 @@ lazy.setup({
     end,
   },
   { "hrsh7th/cmp-cmdline" },
+
+  { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x", config = function() end },
 })
