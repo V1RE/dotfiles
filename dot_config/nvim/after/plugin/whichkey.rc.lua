@@ -51,6 +51,7 @@ local mappings = {
 
     p = {
       name = i.Lazy .. "Lazy",
+      s = { "<cmd>Lazy<cr>", "Show" },
       r = { "<cmd>so %<cr>", "Source current file" },
     },
 

@@ -1,3 +1,4 @@
+local util = require("core.util")
 local opts = { silent = true }
 
 -- Shorten function name
@@ -45,3 +46,11 @@ keymap("x", "J", ":move '>+1<CR>gv-gv")
 keymap("x", "K", ":move '<-2<CR>gv-gv")
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv")
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
+
+vim.keymap.set("n", "<leader>gg", function()
+  util.float_term({ "lazygit" })
+end, { desc = "Lazygit (cwd)" })
+
+vim.keymap.set("n", "<leader>gG", function()
+  util.float_term({ "lazygit" }, { cwd = util.get_root() })
+end, { desc = "Lazygit (root dir)" })
