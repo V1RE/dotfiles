@@ -197,6 +197,8 @@ lazy.setup({
             },
             ["<2-LeftMouse>"] = "open",
             ["<cr>"] = "open",
+            ["l"] = "open",
+            ["h"] = "close_node",
             ["<esc>"] = "revert_preview",
             ["P"] = { "toggle_preview", config = { use_float = true } },
             ["S"] = "open_split",
