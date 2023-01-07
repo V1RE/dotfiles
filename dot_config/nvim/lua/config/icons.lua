@@ -50,6 +50,7 @@ local M = {
   Interface = " ",
   Key = " ",
   Keyword = " ",
+  Lazy = "鈴",
   Lightbulb = " ",
   List = " ",
   Lock = " ",

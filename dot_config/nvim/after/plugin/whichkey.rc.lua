@@ -50,12 +50,7 @@ local mappings = {
     },
 
     p = {
-      name = " Packer",
-      S = { "<cmd>PackerStatus<cr>", "Status" },
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      s = { "<cmd>PackerSync<cr>", "Sync" },
-      u = { "<cmd>PackerUpdate<cr>", "Update" },
+      name = i.Lazy .. "Lazy",
       r = { "<cmd>so %<cr>", "Source current file" },
     },
 
