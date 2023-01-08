@@ -1,4 +1,5 @@
-return {
+--- @type LazyPluginSpec[]
+local M = {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -213,3 +214,5 @@ return {
     end,
   },
 }
+
+return M

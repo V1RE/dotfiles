@@ -1,5 +1,6 @@
-return {
-  "JoosepAlviste/nvim-ts-context-commentstring",
+--- @type LazyPluginSpec[]
+local M = {
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "Lilja/vim-chezmoi" },
   { "MunifTanjim/nui.nvim" },
@@ -90,3 +91,5 @@ return {
   },
   { "hrsh7th/cmp-cmdline" },
 }
+
+return M
