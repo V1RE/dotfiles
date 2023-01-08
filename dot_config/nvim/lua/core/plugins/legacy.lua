@@ -17,7 +17,6 @@ local M = {
   { "folke/neoconf.nvim" },
   { "folke/neodev.nvim" },
   { "folke/which-key.nvim" },
-  { "gbprod/yanky.nvim" },
   { "ghillb/cybu.nvim" },
   { "goolord/alpha-nvim" },
   { "hrsh7th/cmp-buffer" },
