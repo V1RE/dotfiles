@@ -1,6 +1,6 @@
 local schemastore = require("schemastore")
 
---- @type lspconfig.options.jsonls
+---@type lspconfig.options.jsonls
 local jsonls = {
   init_options = {
     provideFormatter = true,

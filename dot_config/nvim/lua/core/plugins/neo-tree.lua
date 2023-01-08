@@ -1,4 +1,4 @@
---- @type LazyPluginSpec[]
+---@type LazyPluginSpec[]
 local M = {
   {
     "nvim-neo-tree/neo-tree.nvim",

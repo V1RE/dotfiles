@@ -1,4 +1,4 @@
---- @type lspconfig.options.sumneko_lua
+---@type lspconfig.options.sumneko_lua
 local sumneko_lua = {
   settings = {
     Lua = {

@@ -1,4 +1,4 @@
---- @type lspconfig.options.yamlls
+---@type lspconfig.options.yamlls
 local yamlls = {
   settings = {
     redhat = {

@@ -1,4 +1,4 @@
---- @type LazyPluginSpec[]
+---@type LazyPluginSpec[]
 local M = {
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },

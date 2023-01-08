@@ -1,4 +1,5 @@
---- @type LazyPluginSpec[]
+---@diagnostic disable: redundant-return-value
+---@type LazyPluginSpec[]
 local M = {
   {
     "folke/noice.nvim",

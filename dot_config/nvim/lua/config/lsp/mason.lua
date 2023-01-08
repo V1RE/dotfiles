@@ -18,13 +18,13 @@ local settings = {
 mason.setup(settings)
 mason_lspconfig.setup()
 
---- @type _.lspconfig.options
+---@type _.lspconfig.options
 local opts = {
   on_attach = require("config.lsp.handlers").on_attach,
   capabilities = require("config.lsp.handlers").capabilities,
 }
 
---- @param server string
+---@param server string
 local function merge_options(server)
   local server_options = require("config.lsp.settings." .. server) or {}
 

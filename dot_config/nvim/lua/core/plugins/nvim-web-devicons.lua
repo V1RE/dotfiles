@@ -1,4 +1,4 @@
---- @type LazyPluginSpec[]
+--[[ --- @type LazyPluginSpec[]
 local M = {
   {
     "kyazdani42/nvim-web-devicons",
@@ -80,4 +80,4 @@ local M = {
   },
 }
 
-return M
+return M ]]
