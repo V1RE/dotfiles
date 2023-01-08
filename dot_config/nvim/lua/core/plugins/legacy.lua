@@ -68,7 +68,6 @@ return {
   { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
   { "stevearc/aerial.nvim" },
-  { "stevearc/dressing.nvim" },
   { "tpope/vim-abolish" },
   { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim_cmp" } },
   { "wakatime/vim-wakatime" },
