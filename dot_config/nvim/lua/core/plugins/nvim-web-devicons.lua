@@ -1,7 +1,7 @@
 --- @type LazyPluginSpec[]
 local M = {
   {
-    "nvim-tree/nvim-web-devicons",
+    "kyazdani42/nvim-web-devicons",
     opts = {
       override = {
         [".prettierrc.js"] = {
