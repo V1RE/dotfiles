@@ -62,7 +62,6 @@ local M = {
   { "nvim-treesitter/playground" },
   { "onsails/lspkind.nvim" },
   { "petertriho/nvim-scrollbar" },
-  { "phaazon/hop.nvim" },
   { "qpkorr/vim-renamer" },
   { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
