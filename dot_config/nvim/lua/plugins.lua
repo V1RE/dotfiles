@@ -47,7 +47,6 @@ lazy.setup({
     dependencies = { "cmp-buffer", "cmp-path", "cmp-nvim-lsp", "cmp_luasnip", "cmp-cmdline" },
   },
   { "j-hui/fidget.nvim" },
-  { "jinh0/eyeliner.nvim" },
   { "jose-elias-alvarez/null-ls.nvim" },
   { "jose-elias-alvarez/typescript.nvim" },
   { "karb94/neoscroll.nvim" },
