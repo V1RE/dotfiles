@@ -34,7 +34,6 @@ local M = {
   { "jose-elias-alvarez/typescript.nvim" },
   { "karb94/neoscroll.nvim" },
   { "lewis6991/gitsigns.nvim" },
-  { "lukas-reineke/indent-blankline.nvim" },
   { "luukvbaal/stabilize.nvim" },
   { "machakann/vim-sandwich" },
   { "max397574/colortils.nvim" },
