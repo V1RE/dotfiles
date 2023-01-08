@@ -1,10 +1,11 @@
-local neotree = {
+---@type LazyPluginSpec
+local M = {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v2.x",
   config = function()
     local i = require("config.icons")
 
-    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+    vim.g.neo_tree_remove_legacy_commands = 1
 
     require("neo-tree").setup({
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -212,4 +213,4 @@ local neotree = {
   end,
 }
 
-return neotree
+return M
