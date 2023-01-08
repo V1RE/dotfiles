@@ -32,7 +32,6 @@ return {
   { "jose-elias-alvarez/null-ls.nvim" },
   { "jose-elias-alvarez/typescript.nvim" },
   { "karb94/neoscroll.nvim" },
-  { "kyazdani42/nvim-web-devicons" },
   { "lewis6991/gitsigns.nvim" },
   { "lukas-reineke/indent-blankline.nvim" },
   { "luukvbaal/stabilize.nvim" },
