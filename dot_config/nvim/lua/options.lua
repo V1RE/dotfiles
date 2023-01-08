@@ -1,3 +1,4 @@
+--- @type vim.opt
 local options = {
   autoread = true,
   backup = false,
