@@ -7,7 +7,6 @@ local M = {
   { "NvChad/nvim-colorizer.lua" },
   { "RRethy/vim-illuminate" },
   { "TimUntersberger/neogit" },
-  { "ahmedkhalf/project.nvim" },
   { "alker0/chezmoi.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
   { "b0o/schemastore.nvim" },
