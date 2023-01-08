@@ -1,3 +1,4 @@
+--- @type vim.opt
 local options = {
   autoread = true,
   backup = false,
@@ -39,6 +40,10 @@ local options = {
   wrap = false,
   writebackup = false,
   list = true,
+  listchars = vim.opt.listchars .. ",trail:·",
+  shortmess = vim.opt.shortmess .. "c",
+  whichwrap = vim.opt.whichwrap .. ",<,>,[,],h,l",
+  iskeyword = vim.opt.iskeyword .. "-",
 }
 
 for k, v in pairs(options) do
@@ -49,9 +54,4 @@ vim.g.markdown_fenced_languages = {
   "ts=typescript",
 }
 
-vim.opt.shortmess:append("c")
-vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.opt.listchars:append("trail:·")
-
-vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]])
