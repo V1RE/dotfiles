@@ -1,5 +1,6 @@
 return {
-  {
+  ---@type LazyPluginSpec
+  [1] = {
     "kyazdani42/nvim-web-devicons",
     opts = {
       override = {
