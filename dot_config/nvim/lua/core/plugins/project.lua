@@ -2,7 +2,7 @@
 local M = {
   {
     "ahmedkhalf/project.nvim",
-    enabled = false,
+    enabled = true,
     ---@type ProjectOptions
     opts = {
       silent_chdir = true,
