@@ -1,5 +1,5 @@
 require("options")
 require("keymaps")
-require("plugins")
+require("core.lazy")
 require("config.lsp")
 require("autocommands")

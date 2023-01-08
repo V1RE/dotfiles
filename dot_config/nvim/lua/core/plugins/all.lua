@@ -1,23 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-local status_lazy, lazy = pcall(require, "lazy")
-if not status_lazy then
-  return print("Lazy.nvim is not installed")
-end
-
-lazy.setup({
-  { import = "core/plugins" },
+return {
   "JoosepAlviste/nvim-ts-context-commentstring",
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "Lilja/vim-chezmoi" },
@@ -110,4 +91,4 @@ lazy.setup({
     end,
   },
   { "hrsh7th/cmp-cmdline" },
-})
+}
