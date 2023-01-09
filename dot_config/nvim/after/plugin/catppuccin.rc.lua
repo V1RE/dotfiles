@@ -31,6 +31,7 @@ require("catppuccin").setup({
     path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
   custom_highlights = {
+
     NvimTreeOpenedFile = { fg = colors.peach },
     Comment = { fg = colors.overlay1 },
     LineNr = { fg = colors.overlay1 },

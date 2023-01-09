@@ -192,10 +192,16 @@ local M = {
       },
       source_selector = {
         winbar = true,
+        tab_labels = { -- table
+          filesystem = "  Files ", -- string | nil
+          buffers = nil, -- string | nil
+          git_status = "  Git ", -- string | nil
+          diagnostics = " 裂Diagnostics ", -- string | nil
+        },
       },
     },
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Reveal tree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
     },
   },
 }
