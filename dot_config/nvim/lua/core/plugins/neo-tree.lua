@@ -8,7 +8,12 @@ local M = {
     lazy = false,
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
-      vim.cmd("Neotree")
+      vim.cmd([[
+        augroup NEOTREE_AUGROUP
+          autocmd!
+          au VimEnter * lua vim.defer_fn(function() vim.cmd("Neotree show left") end, 10)
+        augroup END
+      ]])
     end,
     opts = {
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
