@@ -15,7 +15,6 @@ local M = {
   { "famiu/bufdelete.nvim" },
   { "folke/which-key.nvim" },
   { "ghillb/cybu.nvim" },
-  { "goolord/alpha-nvim" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-path" },
