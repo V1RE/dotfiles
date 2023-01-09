@@ -14,8 +14,6 @@ local M = {
   { "cshuaimin/ssr.nvim" },
   { "f-person/git-blame.nvim" },
   { "famiu/bufdelete.nvim" },
-  { "folke/neoconf.nvim" },
-  { "folke/neodev.nvim" },
   { "folke/which-key.nvim" },
   { "ghillb/cybu.nvim" },
   { "goolord/alpha-nvim" },
