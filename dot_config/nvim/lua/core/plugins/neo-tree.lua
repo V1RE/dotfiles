@@ -5,7 +5,7 @@ local M = {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    lazy = false,
+    event = { "VimEnter" },
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
     end,
@@ -110,7 +110,7 @@ local M = {
       nesting_rules = {},
       filesystem = {
         filtered_items = {
-          visible = false, -- when true, they will just be displayed differently than normal items
+          visible = true, -- when true, they will just be displayed differently than normal items
           hide_dotfiles = false,
           hide_gitignored = true,
           hide_hidden = true, -- only works on Windows for hidden files/directories
@@ -186,7 +186,7 @@ local M = {
       },
     },
     keys = {
-      { "<leader>e", "<cmd>Neotree reveal<cr>", desc = i.NeoTree .. "Reveal tree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Reveal tree" },
     },
   },
 }
