@@ -5,7 +5,7 @@ local M = {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    event = { "VimEnter" },
+    lazy = false,
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
       vim.cmd("Neotree")
