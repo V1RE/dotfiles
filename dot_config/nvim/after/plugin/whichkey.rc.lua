@@ -34,7 +34,6 @@ local opts = {
 
 local mappings = {
   ["<leader>"] = {
-    e = { "<cmd>NvimTreeToggle<cr>", i.NvimTree .. "Explorer" },
     h = { "<cmd>nohlsearch<CR>", i.NoHighlight .. "Clear highlight" },
 
     b = {

@@ -2,14 +2,9 @@
 local M = {
   {
     "rcarriga/nvim-notify",
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>nd",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Delete all Notifications",
-      },
+      { "<leader>nd", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Delete all Notifications", },
     },
     opts = {
       timeout = 3000,
