@@ -19,6 +19,8 @@ require("catppuccin").setup({
     which_key = true,
     hop = true,
     aerial = true,
+    notify = true,
+    neotree = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,
