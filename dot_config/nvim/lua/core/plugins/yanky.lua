@@ -1,10 +1,3 @@
-vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
-vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
-
 ---@type LazyPluginSpec[]
 local M = {
   {
@@ -15,6 +8,15 @@ local M = {
         on_yank = true,
         timer = 500,
       },
+    },
+
+    keys = {
+      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put after" },
+      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put before" },
+      { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put after" },
+      { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "Put before" },
+      { "<c-n>", "<Plug>(YankyCycleForward)" },
+      { "<c-p>", "<Plug>(YankyCycleBackward)" },
     },
   },
 }
