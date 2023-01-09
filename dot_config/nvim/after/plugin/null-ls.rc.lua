@@ -29,12 +29,9 @@ null_ls.setup({
     formatting.eslint_d,
     formatting.google_java_format,
     formatting.prettierd,
-    formatting.rubocop,
     formatting.shfmt,
     formatting.stylelint,
     formatting.stylua,
-    formatting.gofumpt,
-    formatting.golines,
     formatting.jq,
     hover.dictionary,
     linters.eslint_d.with({
@@ -52,7 +49,6 @@ null_ls.setup({
       extra_filetypes = { "graphql" },
     }),
     linters.luacheck,
-    linters.rubocop,
     linters.shellcheck,
     linters.stylelint.with({
       condition = function(utils)
@@ -68,8 +64,6 @@ null_ls.setup({
     }),
     linters.write_good,
     linters.zsh,
-    linters.golangci_lint,
-    linters.staticcheck,
     linters.actionlint,
   },
   on_attach = function(client, bufnr)
