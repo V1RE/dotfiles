@@ -4,6 +4,7 @@ vim.cmd([[
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
+    autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
   augroup end
 
   augroup _git
