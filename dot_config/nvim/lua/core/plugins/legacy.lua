@@ -10,7 +10,7 @@ local M = {
   { "alker0/chezmoi.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
   { "b0o/schemastore.nvim" },
-  { "catppuccin/nvim", as = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin" },
   { "cshuaimin/ssr.nvim" },
   { "f-person/git-blame.nvim" },
   { "famiu/bufdelete.nvim" },
