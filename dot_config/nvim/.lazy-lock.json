@@ -4,6 +4,7 @@
   "aerial.nvim": { "branch": "master", "commit": "3eafbd28ae573fa665121a6e058a450cf3fe8573" },
   "alpha-nvim": { "branch": "main", "commit": "21a0f2520ad3a7c32c0822f943368dc063a569fb" },
   "bufdelete.nvim": { "branch": "master", "commit": "f79e9d186b42fba5f1b1362006e7c70240db97a4" },
+  "catppuccin": { "branch": "main", "commit": "3020af75aae098a77737d91ee37c7147c8450d99" },
   "chezmoi.vim": { "branch": "main", "commit": "df01e4108be9f2e4092cd753ebfb46d04e6e47ce" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "23c51b2a3c00f6abc4e922dbd7c3b9aca6992063" },
