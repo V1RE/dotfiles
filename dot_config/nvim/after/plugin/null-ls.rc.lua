@@ -70,6 +70,7 @@ null_ls.setup({
     linters.zsh,
     linters.golangci_lint,
     linters.staticcheck,
+    linters.actionlint,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
