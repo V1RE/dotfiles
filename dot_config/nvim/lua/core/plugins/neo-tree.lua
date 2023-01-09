@@ -157,7 +157,7 @@ local M = {
           },
         },
       },
-      buffers = {
+      --[[ buffers = {
         follow_current_file = true, -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
         group_empty_dirs = true, -- when true, empty folders will be grouped together
@@ -169,7 +169,7 @@ local M = {
             ["."] = "set_root",
           },
         },
-      },
+      }, ]]
       git_status = {
         window = {
           position = "float",
@@ -183,6 +183,10 @@ local M = {
             ["gg"] = "git_commit_and_push",
           },
         },
+      },
+      source_selector = {
+        statusline = true,
+        winbar = true,
       },
     },
     keys = {
