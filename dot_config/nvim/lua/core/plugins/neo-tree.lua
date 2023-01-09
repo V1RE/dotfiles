@@ -8,6 +8,7 @@ local M = {
     event = { "VimEnter" },
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
+      vim.cmd("Neotree")
     end,
     opts = {
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -185,7 +186,6 @@ local M = {
         },
       },
       source_selector = {
-        statusline = true,
         winbar = true,
       },
     },
