@@ -19,7 +19,6 @@ local M = {
       sources = {
         "filesystem",
         "git_status",
-        "diagnostics",
       },
 
       popup_border_style = "rounded",
