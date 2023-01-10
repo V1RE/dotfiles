@@ -28,7 +28,6 @@ local M = {
   { "karb94/neoscroll.nvim" },
   { "lewis6991/gitsigns.nvim" },
   { "luukvbaal/stabilize.nvim" },
-  { "machakann/vim-sandwich" },
   { "max397574/colortils.nvim" },
   { "mbbill/undotree" },
   { "mizlan/iswap.nvim" },
