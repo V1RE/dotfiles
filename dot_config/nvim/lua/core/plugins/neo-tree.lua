@@ -69,6 +69,7 @@ local M = {
           ["m"] = { "move", config = { show_path = "relative" } },
           ["H"] = "prev_source",
           ["L"] = "next_source",
+          ["I"] = "toggle_hidden",
         },
       },
       filesystem = {
