@@ -2,7 +2,6 @@
 local M = {
   {
     "echasnovski/mini.surround",
-    keys = { "gz" },
     opts = {
       mappings = {
         add = "gza", -- Add surrounding in Normal and Visual modes
