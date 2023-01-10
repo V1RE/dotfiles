@@ -31,7 +31,7 @@ local M = {
           git_status = "  Git ", -- string | nil
         },
         tabs_layout = "active",
-        separator = "|",
+        separator = "",
       },
 
       default_component_configs = {
