@@ -30,7 +30,8 @@ local M = {
           filesystem = "  Files ", -- string | nil
           git_status = "  Git ", -- string | nil
         },
-        tabs_layout = "active",
+        tabs_layout = "equal",
+        content_layout = "center",
         separator = "",
       },
 
