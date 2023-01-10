@@ -17,13 +17,12 @@ require("catppuccin").setup({
     cmp = true,
     telescope = true,
     which_key = true,
-    hop = true,
     aerial = true,
     notify = true,
+    noice = true,
     neotree = true,
     indent_blankline = {
       enabled = true,
-      colored_indent_levels = true,
     },
   },
   compile = {
@@ -31,8 +30,6 @@ require("catppuccin").setup({
     path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
   custom_highlights = {
-
-    NvimTreeOpenedFile = { fg = colors.peach },
     Comment = { fg = colors.overlay1 },
     LineNr = { fg = colors.overlay1 },
     CursorLine = { bg = colors.none },
