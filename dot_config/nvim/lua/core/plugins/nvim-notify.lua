@@ -6,6 +6,7 @@ local M = {
     keys = {
       { "<leader>nd", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Delete all Notifications", },
     },
+    ---@type notify.Config
     opts = {
       timeout = 3000,
       max_height = function()
