@@ -20,6 +20,11 @@ local M = {
           color = "#4733bb",
           name = "ESLint",
         },
+        ["next.config.js"] = {
+          icon = "",
+          color = "#7f9cf5",
+          name = "Next",
+        },
         ["babel.config.js"] = {
           icon = "",
           color = "#f4dd5e",
