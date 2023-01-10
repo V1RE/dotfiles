@@ -57,7 +57,6 @@ local M = {
   { "wakatime/vim-wakatime" },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
-  { "windwp/nvim-autopairs" },
   {
     "zbirenbaum/copilot-cmp",
     config = function()
