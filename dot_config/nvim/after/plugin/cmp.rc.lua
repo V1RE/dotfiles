@@ -22,9 +22,6 @@ cmp.setup({
     ["<C-j>"] = function()
       ls.jump(1)
     end,
-    --[[ ["<C-k>"] = function()
-      ls.jump(-1)
-    end, ]]
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
