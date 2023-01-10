@@ -38,6 +38,7 @@ require("catppuccin").setup({
     DiagnosticVirtualTextWarn = { bg = colors.none },
     DiagnosticVirtualTextInfo = { bg = colors.none },
     DiagnosticVirtualTextHint = { bg = colors.none },
+    NotifyBackground = { bg = colors.base },
   },
 })
 
