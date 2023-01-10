@@ -12,11 +12,13 @@ local M = {
           ["vim.lsp.util.stylize_markdown"] = true,
         },
       },
+      ---@type NoicePresets
       presets = {
         bottom_search = true,
         command_palette = true,
         long_message_to_split = true,
         lsp_doc_border = true,
+        inc_rename = true,
       },
     },
     -- stylua: ignore
