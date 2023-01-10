@@ -1,6 +1,5 @@
 ---@type LazyPluginSpec[]
 local M = {
-  { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "Lilja/vim-chezmoi" },
   { "MunifTanjim/nui.nvim" },
@@ -49,10 +48,6 @@ local M = {
     dependencies = { "telescope-fzf-native.nvim", "telescope-ui-select.nvim" },
     cmd = "Telescope",
   },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "nvim-treesitter/nvim-treesitter-context" },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "nvim-treesitter/playground" },
   { "petertriho/nvim-scrollbar" },
   { "qpkorr/vim-renamer" },
   { "rafamadriz/friendly-snippets" },
@@ -64,7 +59,6 @@ local M = {
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
   { "windwp/nvim-autopairs" },
-  { "windwp/nvim-ts-autotag" },
   {
     "zbirenbaum/copilot-cmp",
     config = function()
