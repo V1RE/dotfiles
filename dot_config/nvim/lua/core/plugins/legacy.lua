@@ -35,7 +35,6 @@ local M = {
   { "moll/vim-bbye" },
   { "monaqa/dial.nvim" },
   { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
-  { "numToStr/Comment.nvim" },
   { "nvim-lua/plenary.nvim" },
   { "nvim-lua/popup.nvim" },
   { "nvim-lualine/lualine.nvim" },
