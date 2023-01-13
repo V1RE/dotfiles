@@ -66,6 +66,7 @@
   "vim-chezmoi": { "branch": "master", "commit": "8b1983b2b90af3edbc3ebdee75a044ff74b599a5" },
   "vim-illuminate": { "branch": "master", "commit": "da80f3877896adcf77f59fb0bf74e9601615d372" },
   "vim-renamer": { "branch": "master", "commit": "9c6346eb4556cf2d8ca55de6969247ab14fe2383" },
+  "vim-sandwich": { "branch": "master", "commit": "c5a2cc438ce6ea2005c556dc833732aa53cae21a" },
   "vim-wakatime": { "branch": "master", "commit": "b487cccc0e920e4fdf84f72d2fc1c86ef8dc3bdc" },
   "which-key.nvim": { "branch": "main", "commit": "e4fa445065a2bb0bbc3cca85346b67817f28e83e" },
   "yanky.nvim": { "branch": "main", "commit": "83bb1dc935b126b59acbd22225a421f0f38a7cde" }
