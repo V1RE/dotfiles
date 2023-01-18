@@ -23,15 +23,15 @@ return {
   color_scheme = "Catppuccin Macchiato",
   hide_tab_bar_if_only_one_tab = true,
   term = "wezterm",
-  window_padding = {
-    left = 30,
-    right = 30,
-    top = 30,
-    bottom = 15,
-  },
+  -- window_padding = {
+  --   left = 30,
+  --   right = 30,
+  --   top = 30,
+  --   bottom = 15,
+  -- },
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
-  window_background_opacity = 0.90,
+  -- window_background_opacity = 0.90,
   leader = {
     key = "b",
     mods = "CMD",
