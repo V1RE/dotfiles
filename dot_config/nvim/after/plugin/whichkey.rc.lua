@@ -76,10 +76,10 @@ local mappings = {
     l = { vim.diagnostic.open_float, i.Warning .. "Diagnostics" },
   },
 
-  ["<C-h>"] = { "<cmd>wincmd h<cr>", i.ChevronLeft .. "Left" },
-  ["<C-j>"] = { "<cmd>wincmd j<cr>", i.ChevronDown .. "Down" },
-  ["<C-k>"] = { "<cmd>wincmd k<cr>", i.ChevronUp .. "Up" },
-  ["<C-l>"] = { "<cmd>wincmd l<cr>", i.ChevronRight .. "Right" },
+  -- ["<C-h>"] = { "<cmd>wincmd h<cr>", i.ChevronLeft .. "Left" },
+  -- ["<C-j>"] = { "<cmd>wincmd j<cr>", i.ChevronDown .. "Down" },
+  -- ["<C-k>"] = { "<cmd>wincmd k<cr>", i.ChevronUp .. "Up" },
+  -- ["<C-l>"] = { "<cmd>wincmd l<cr>", i.ChevronRight .. "Right" },
 }
 
 wk.setup(setup)
