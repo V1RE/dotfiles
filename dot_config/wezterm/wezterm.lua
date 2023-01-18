@@ -20,7 +20,8 @@ return {
   font = font_with_fallback("Cascadia Code"),
   font_size = 16,
   line_height = 1.4,
-  color_scheme = "Catppuccin Macchiato",
+  -- color_scheme = "Catppuccin Macchiato",
+  color_scheme = "OneDark (base16)",
   hide_tab_bar_if_only_one_tab = true,
   term = "wezterm",
   window_padding = {
