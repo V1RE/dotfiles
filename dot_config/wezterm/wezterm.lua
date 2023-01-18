@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+
 local act = wezterm.action
 
 -- A helper function for my fallback fonts
