@@ -4,8 +4,4 @@ require("cmp_tabnine.config").setup({
   sort = true,
   run_on_every_keystroke = true,
   snippet_placeholder = "..",
-  ignored_file_types = { -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-  },
 })
