@@ -6,7 +6,13 @@ local M = {
     "cshuaimin/ssr.nvim",
     config = true,
     keys = {
-      { "<leader>lR", require("ssr").open, desc = i.SearchCode .. "SSR" },
+      {
+        "<leader>lR",
+        function()
+          require("ssr").open()
+        end,
+        desc = i.SearchCode .. "SSR",
+      },
     },
   },
 }
