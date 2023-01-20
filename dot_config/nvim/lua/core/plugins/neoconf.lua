@@ -1,10 +1,8 @@
----@type LazyPluginSpec[]
+---@type LazyPluginSpec
 local M = {
-  {
-    "folke/neoconf.nvim",
-    config = true,
-    cmd = "Neoconf",
-  },
+  "folke/neoconf.nvim",
+  config = true,
+  cmd = "Neoconf",
 }
 
 return M

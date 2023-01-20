@@ -1,9 +1,7 @@
----@type LazyPluginSpec[]
+---@type LazyPluginSpec
 local M = {
-  {
-    "stevearc/dressing.nvim",
-    config = true,
-  },
+  "stevearc/dressing.nvim",
+  config = true,
 }
 
 return M

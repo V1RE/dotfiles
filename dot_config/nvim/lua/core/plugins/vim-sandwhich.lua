@@ -1,8 +1,6 @@
----@type LazyPluginSpec[]
+---@type LazyPluginSpec
 local M = {
-  {
-    "machakann/vim-sandwich",
-  },
+  "machakann/vim-sandwich",
 }
 
 return M

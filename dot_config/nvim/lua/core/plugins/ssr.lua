@@ -1,18 +1,16 @@
 local i = require("config.icons")
 
----@type LazyPluginSpec[]
+---@type LazyPluginSpec
 local M = {
-  {
-    "cshuaimin/ssr.nvim",
-    config = true,
-    keys = {
-      {
-        "<leader>lR",
-        function()
-          require("ssr").open()
-        end,
-        desc = i.SearchCode .. "SSR",
-      },
+  "cshuaimin/ssr.nvim",
+  config = true,
+  keys = {
+    {
+      "<leader>lR",
+      function()
+        require("ssr").open()
+      end,
+      desc = i.SearchCode .. "SSR",
     },
   },
 }
