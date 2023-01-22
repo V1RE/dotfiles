@@ -28,7 +28,6 @@ local M = {
   { "lewis6991/gitsigns.nvim" },
   { "luukvbaal/stabilize.nvim" },
   { "max397574/colortils.nvim" },
-  { "mbbill/undotree" },
   { "mizlan/iswap.nvim" },
   { "moll/vim-bbye" },
   { "monaqa/dial.nvim" },

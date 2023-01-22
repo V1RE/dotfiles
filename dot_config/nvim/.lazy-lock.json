@@ -26,7 +26,7 @@
   "lua-snip": { "branch": "master", "commit": "5955bdd7b20854aea74dc86c7ddf9989296d52d7" },
   "lualine.nvim": { "branch": "master", "commit": "0050b308552e45f7128f399886c86afefc3eb988" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "d7ff61a828d59bc593ea3e2020508c114048d790" },
-  "mason.nvim": { "branch": "main", "commit": "bb88357eff0d0c69ab8ecc5985952e0a9a72175a" },
+  "mason.nvim": { "branch": "main", "commit": "b66333c224e59d7aec64c16cbda256ca2e1262d3" },
   "mini.comment": { "branch": "main", "commit": "137cf43aaaed41c733a8e0087fab6ee08bb45293" },
   "mini.indentscope": { "branch": "main", "commit": "3a517f11aa9d1434c4cdba1a807df4e5ca42d3ea" },
   "mini.pairs": { "branch": "main", "commit": "ead264c5fd846c06752b6f3e0edb1d806c888cf9" },
