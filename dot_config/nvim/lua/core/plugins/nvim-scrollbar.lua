@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "petertriho/nvim-scrollbar",
+  event = "VeryLazy",
   opts = function()
     local colors = require("catppuccin.palettes.macchiato")
 
