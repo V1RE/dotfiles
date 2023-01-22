@@ -45,7 +45,6 @@ local M = {
     dependencies = { "telescope-fzf-native.nvim", "telescope-ui-select.nvim" },
     cmd = "Telescope",
   },
-  { "qpkorr/vim-renamer" },
   { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
   { "stevearc/aerial.nvim" },
