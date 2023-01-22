@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "folke/neodev.nvim",
+  event = "VeryLazy",
   config = function()
     local util = require("neodev.util")
     require("neodev").setup({
