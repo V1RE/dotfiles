@@ -43,10 +43,8 @@ local M = {
   },
   { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
-  { "stevearc/aerial.nvim" },
   { "tpope/vim-abolish" },
   { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim_cmp" } },
-  { "wakatime/vim-wakatime" },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
   {
