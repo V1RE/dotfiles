@@ -12,7 +12,6 @@ local M = {
   { "f-person/git-blame.nvim" },
   { "famiu/bufdelete.nvim" },
   { "folke/which-key.nvim" },
-  { "ghillb/cybu.nvim" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-path" },
