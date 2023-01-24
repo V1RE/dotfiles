@@ -1,10 +1,10 @@
-vim.pretty_print(vim.cmd("args"))
+vim.pretty_print()
 ---@type LazyPluginSpec[]
 local M = {
   {
     "Lilja/vim-chezmoi",
     cond = function()
-      return nil == require("core.util").get_root():find(".local/share/chezmoi")
+      return nil == string:find(vim.cmd("args"), "chezmoi")
     end,
     init = function()
       vim.g.chezmoi = "enabled"
@@ -14,7 +14,7 @@ local M = {
     "alker0/chezmoi.vim",
     event = "VeryLazy",
     cond = function()
-      return nil == require("core.util").get_root():find(".local/share/chezmoi")
+      return nil == string:find(vim.cmd("args"), "chezmoi")
     end,
   },
 }
