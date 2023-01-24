@@ -1,3 +1,5 @@
+local i = require("config.icons")
+
 ---@type LazyPluginSpec[]
 local M = {
   {
@@ -10,6 +12,10 @@ local M = {
       require("core.util").on_attach(tsq.attach)
     end,
     ft = { "typescript", "typescriptreact" },
+    keys = {
+      { "<leader>lq", "<cmd>InspectTwoslashQueries<cr>", desc = i.TypeParameter .. "Inspect type" },
+      { "<leader>ld", "<cmd>RemoveTwoslashQueries<cr>", desc = i.Error .. "Remove type inspect" },
+    },
   },
 }
 
