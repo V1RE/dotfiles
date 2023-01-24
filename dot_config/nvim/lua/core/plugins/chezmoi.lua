@@ -1,10 +1,10 @@
-vim.pretty_print()
+vim.pretty_print(vim.api.nvim_exec("args", true))
 ---@type LazyPluginSpec[]
 local M = {
   {
     "Lilja/vim-chezmoi",
     cond = function()
-      return nil == string.find(vim.cmd("args"), "chezmoi")
+      return nil ~= vim.api.nvim_exec("args", true):find("chezmoi")
     end,
     init = function()
       vim.g.chezmoi = "enabled"
@@ -14,7 +14,7 @@ local M = {
     "alker0/chezmoi.vim",
     event = "VeryLazy",
     cond = function()
-      return nil == string.find(vim.cmd("args"), "chezmoi")
+      return nil ~= vim.api.nvim_exec("args", true):find("chezmoi")
     end,
   },
 }
