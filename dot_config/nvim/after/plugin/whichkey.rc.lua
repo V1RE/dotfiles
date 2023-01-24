@@ -63,7 +63,6 @@ local mappings = {
       j = { vim.diagnostic.goto_next, "Next Diagnostic" },
       k = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
       l = { vim.lsp.codelens.run, "CodeLens Action" },
-      q = { vim.diagnostic.set_loclist, "Quickfix" },
       r = { vim.lsp.buf.rename, "Rename" },
     },
   },
