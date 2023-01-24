@@ -13,7 +13,7 @@ local M = {
     "alker0/chezmoi.vim",
     event = "VeryLazy",
     cond = function()
-      vim.pretty_print(require("core.util").get_root())
+      vim.pretty_print(vim.loop.cwd())
       return nil == require("core.util").get_root():find(".local/share/chezmoi")
     end,
   },
