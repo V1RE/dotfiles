@@ -19,17 +19,9 @@ M.setup = function()
   end
 
   vim.diagnostic.config({
-    virtual_lines = false,
     virtual_text = false,
-    signs = {
-      active = signs,
-    },
-    update_in_insert = false,
-    underline = true,
     severity_sort = true,
     float = {
-      focusable = true,
-      style = "minimal",
       border = "rounded",
       source = "always",
       header = "",
