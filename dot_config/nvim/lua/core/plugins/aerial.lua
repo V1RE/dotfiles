@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "stevearc/aerial.nvim",
+  event = "VeryLazy",
   opts = {
     attach_mode = "global",
     backends = { "lsp", "treesitter", "markdown" },
