@@ -5,7 +5,7 @@ local M = {
     config = function()
       local tsq = require("twoslash-queries")
 
-      tsq.setup()
+      tsq.setup({})
 
       require("core.util").on_attach(tsq.attach)
     end,
