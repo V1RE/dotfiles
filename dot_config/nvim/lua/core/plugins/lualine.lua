@@ -1,5 +1,4 @@
 local i = require("config.icons")
-local git_blame = require("gitblame")
 
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
@@ -79,8 +78,6 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-vim.g.gitblame_display_virtual_text = 0
-
 local fileicon = {
   "filetype",
   icon_only = true,
@@ -113,37 +110,55 @@ local winbar = {
   lualine_z = {},
 }
 
-require("lualine").setup({
-  options = {
-    icons_enabled = true,
-    theme = "catppuccin",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = {
-      statusline = {},
-      winbar = { "neo-tree", "aerial" },
-    },
-    always_divide_middle = true,
-    globalstatus = true,
+---@type LazyPluginSpec[]
+local M = {
+  {
+    "f-person/git-blame.nvim",
+    init = function()
+      vim.g.gitblame_display_virtual_text = 0
+    end,
   },
-  winbar = winbar,
-  inactive_winbar = winbar,
-  sections = {
-    lualine_a = {
-      branch,
-      diagnostics,
-    },
-    lualine_b = { mode },
-    lualine_c = {
-      fileicon,
-      {
-        "filename",
-        path = 1,
+
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      options = {
+        icons_enabled = true,
+        theme = "catppuccin",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = { "neo-tree", "aerial" },
+        },
+        always_divide_middle = true,
+        globalstatus = true,
       },
+      winbar = winbar,
+      inactive_winbar = winbar,
+      sections = {
+        lualine_a = {
+          branch,
+          diagnostics,
+        },
+        lualine_b = { mode },
+        lualine_c = {
+          fileicon,
+          {
+            "filename",
+            path = 1,
+          },
+        },
+        lualine_x = {
+          { require("gitblame").get_current_blame_text, cond = require("gitblame").is_blame_text_available },
+          diff,
+        },
+        lualine_y = { spaces, location },
+        lualine_z = { progress },
+      },
+      extensions = { "quickfix", "neo-tree", "aerial" },
     },
-    lualine_x = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available }, diff },
-    lualine_y = { spaces, location },
-    lualine_z = { progress },
   },
-  extensions = { "quickfix", "neo-tree", "aerial" },
-})
+}
+
+return M
