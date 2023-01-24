@@ -2,6 +2,7 @@
 local M = {
   {
     "f-person/git-blame.nvim",
+    event = "VeryLazy",
     init = function()
       vim.g.gitblame_display_virtual_text = 0
     end,
@@ -109,28 +110,21 @@ local M = {
       }
 
       local winbar = {
-        lualine_a = {},
-        lualine_b = {},
         lualine_c = {
           fileicon,
           filename,
-          {
-            "aerial",
-          },
+          { "aerial" },
         },
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
       }
       return {
+        ---@type LualineNvimOptCacheOpt
         options = {
           icons_enabled = true,
           theme = "catppuccin",
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
+          component_separators = "",
+          section_separators = "",
           disabled_filetypes = {
-            statusline = {},
-            winbar = { "neo-tree", "aerial" },
+            winbar = { "neo-tree" },
           },
           always_divide_middle = true,
           globalstatus = true,
@@ -143,13 +137,7 @@ local M = {
             diagnostics,
           },
           lualine_b = { mode },
-          lualine_c = {
-            fileicon,
-            {
-              "filename",
-              path = 1,
-            },
-          },
+          lualine_c = { fileicon, { "filename", path = 1 } },
           lualine_x = {
             { require("gitblame").get_current_blame_text, cond = require("gitblame").is_blame_text_available },
             diff,
