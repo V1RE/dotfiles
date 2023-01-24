@@ -42,18 +42,8 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(client)
   require("illuminate").on_attach(client)
-
-  if client.name == "tsserver" then
-    require("which-key").register({
-      ["<leader>"] = {
-        l = {
-          t = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused imports" },
-        },
-      },
-    }, { buffer = bufnr })
-  end
 end
 
 return M
