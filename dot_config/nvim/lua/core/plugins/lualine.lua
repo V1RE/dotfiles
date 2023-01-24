@@ -9,6 +9,7 @@ local M = {
 
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     opts = function()
       local i = require("config.icons")
 
