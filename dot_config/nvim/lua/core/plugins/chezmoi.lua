@@ -2,7 +2,7 @@
 local M = {
   {
     "Lilja/vim-chezmoi",
-    enabled = function()
+    cond = function()
       return nil ~= require("core.util").get_root():find(".local/chezmoi")
     end,
     init = function()
@@ -11,7 +11,7 @@ local M = {
   },
   {
     "alker0/chezmoi.vim",
-    enabled = function()
+    cond = function()
       return nil ~= require("core.util").get_root():find(".local/chezmoi")
     end,
   },
