@@ -3,9 +3,6 @@
 # General
 alias v='$EDITOR'
 
-# Impatient.nvim
-alias nvim="nvim --startuptime /tmp/nvim-startuptime"
-
 function upgrade() {
 	true
 }
