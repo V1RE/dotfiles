@@ -1,6 +1,6 @@
----@type LazyPluginSpec[]
+---@type LazySpec[]
 local M = {
-  require("core.plugins.lsp.typescript"),
+  { import = "core.plugins.lsp.typescript", ft = { "typescript", "typescriptreact" } },
 }
 
 return M
