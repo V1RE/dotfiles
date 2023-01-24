@@ -10,7 +10,7 @@ function upgrade() {
 alias cm="chezmoi"
 
 # Dotfiles
-alias dots="chezmoi edit --watch --apply"
+alias dots="chezmoi edit ~/.config/nvim/init.lua --watch --apply"
 
 # Listing files
 alias ls="exa --icons --color=always --classify --git --group-directories-first"
