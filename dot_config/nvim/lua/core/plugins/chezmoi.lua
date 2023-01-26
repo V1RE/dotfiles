@@ -1,4 +1,3 @@
-vim.pretty_print(vim.api.nvim_exec("args", true))
 ---@type LazyPluginSpec[]
 local M = {
   {
