@@ -20,6 +20,7 @@ M.setup = function()
 
   vim.diagnostic.config({
     virtual_text = false,
+    virtual_lines = true,
     severity_sort = true,
     float = {
       border = "rounded",
