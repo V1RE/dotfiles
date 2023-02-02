@@ -1,177 +1,516 @@
-#compdef _turbo turbo
+#compdef turbo
 
-# zsh completion for turbo                                -*- shell-script -*-
+autoload -U is-at-least
 
-__turbo_debug()
-{
-    local file="$BASH_COMP_DEBUG_FILE"
-    if [[ -n ${file} ]]; then
-        echo "$*" >> "${file}"
+_turbo() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
     fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--cache-dir=[Override the filesystem cache directory]:CACHE_DIR: ' \
+'--cache-workers=[Set the number of concurrent cache operations (default 10)]:CACHE_WORKERS: ' \
+'--concurrency=[Limit the concurrency of task execution. Use 1 for serial (i.e. one-at-a-time) execution]:CONCURRENCY: ' \
+'--dry-run=[]' \
+'*--filter=[Use the given selector to specify package(s) to act as entry points. The syntax mirrors pnpm'\''s syntax, and additional documentation and examples can be found in turbo'\''s documentation https://turbo.build/repo/docs/reference/command-line-reference#--filter]:FILTER: ' \
+'*--global-deps=[Specify glob of global filesystem dependencies to be hashed. Useful for .env and files]:GLOBAL_DEPS: ' \
+'--graph=[Generate a graph of the task execution and output to a file when a filename is specified (.svg, .png, .jpg, .pdf, .json, .html). Outputs dot graph to stdout when if no filename is provided]' \
+'*--ignore=[Files to ignore when calculating changed files (i.e. --since). Supports globs]:IGNORE: ' \
+'--output-logs=[Set type of process output logging. Use "full" to show all output. Use "hash-only" to show only turbo-computed task hashes. Use "new-only" to show only new output with only hashes for cached tasks. Use "none" to hide process output. (default full)]:OUTPUT_LOGS:(full none hash-only new-only errors-only)' \
+'--profile=[File to write turbo'\''s performance profile output into. You can load the file up in chrome://tracing to see which parts of your build were slow]:PROFILE: ' \
+'*--scope=[Specify package(s) to act as entry points for task execution. Supports globs]:SCOPE: ' \
+'--since=[Limit/Set scope to changed packages since a mergebase. This uses the git diff ${target_branch}... mechanism to identify which packages have changed]:SINCE: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--continue[Continue execution even if a task exits with an error or non-zero exit code. The default behavior is to bail]' \
+'--single-package[Run turbo in single-package mode]' \
+'--force[Ignore the existing cache (to force execution)]' \
+'--include-dependencies[Include the dependencies of tasks in execution]' \
+'--no-cache[Avoid saving task results to the cache. Useful for development/watch tasks]' \
+'--no-daemon[Run without using turbo'\''s daemon process]' \
+'--no-deps[Exclude dependent task consumers from execution]' \
+'--only[]' \
+'--parallel[Execute all tasks in parallel]' \
+'--remote-only[Ignore the local filesystem cache for all tasks. Only allow reading and caching artifacts using the remote cache]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::tasks:' \
+'*::pass_through_args:' \
+":: :_turbo_commands" \
+"*::: :->turborepo-lib" \
+&& ret=0
+    case $state in
+    (turborepo-lib)
+        words=($line[3] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:turbo-command-$line[3]:"
+        case $line[3] in
+            (bin)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(completion)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':shell:(bash elvish fish powershell zsh)' \
+&& ret=0
+;;
+(daemon)
+_arguments "${_arguments_options[@]}" \
+'--idle-time=[Set the idle timeout for turbod (default 4h0m0s)]:IDLE_TIME: ' \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+":: :_turbo__daemon_commands" \
+"*::: :->daemon" \
+&& ret=0
+
+    case $state in
+    (daemon)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:turbo-daemon-command-$line[1]:"
+        case $line[1] in
+            (restart)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(start)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(status)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--json[Pass --json to report status in JSON format]' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(stop)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(link)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--no-gitignore[Do not create or modify .gitignore (default false)]' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(login)
+_arguments "${_arguments_options[@]}" \
+'--sso-team=[]:SSO_TEAM: ' \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(logout)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(prune)
+_arguments "${_arguments_options[@]}" \
+'*--scope=[]:SCOPE: ' \
+'--out-dir=[]:OUTPUT_DIR: ' \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--docker[]' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(run)
+_arguments "${_arguments_options[@]}" \
+'--cache-dir=[Override the filesystem cache directory]:CACHE_DIR: ' \
+'--cache-workers=[Set the number of concurrent cache operations (default 10)]:CACHE_WORKERS: ' \
+'--concurrency=[Limit the concurrency of task execution. Use 1 for serial (i.e. one-at-a-time) execution]:CONCURRENCY: ' \
+'--dry-run=[]' \
+'*--filter=[Use the given selector to specify package(s) to act as entry points. The syntax mirrors pnpm'\''s syntax, and additional documentation and examples can be found in turbo'\''s documentation https://turbo.build/repo/docs/reference/command-line-reference#--filter]:FILTER: ' \
+'*--global-deps=[Specify glob of global filesystem dependencies to be hashed. Useful for .env and files]:GLOBAL_DEPS: ' \
+'--graph=[Generate a graph of the task execution and output to a file when a filename is specified (.svg, .png, .jpg, .pdf, .json, .html). Outputs dot graph to stdout when if no filename is provided]' \
+'*--ignore=[Files to ignore when calculating changed files (i.e. --since). Supports globs]:IGNORE: ' \
+'--output-logs=[Set type of process output logging. Use "full" to show all output. Use "hash-only" to show only turbo-computed task hashes. Use "new-only" to show only new output with only hashes for cached tasks. Use "none" to hide process output. (default full)]:OUTPUT_LOGS:(full none hash-only new-only errors-only)' \
+'--profile=[File to write turbo'\''s performance profile output into. You can load the file up in chrome://tracing to see which parts of your build were slow]:PROFILE: ' \
+'*--scope=[Specify package(s) to act as entry points for task execution. Supports globs]:SCOPE: ' \
+'--since=[Limit/Set scope to changed packages since a mergebase. This uses the git diff ${target_branch}... mechanism to identify which packages have changed]:SINCE: ' \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--continue[Continue execution even if a task exits with an error or non-zero exit code. The default behavior is to bail]' \
+'--single-package[Run turbo in single-package mode]' \
+'--force[Ignore the existing cache (to force execution)]' \
+'--include-dependencies[Include the dependencies of tasks in execution]' \
+'--no-cache[Avoid saving task results to the cache. Useful for development/watch tasks]' \
+'--no-daemon[Run without using turbo'\''s daemon process]' \
+'--no-deps[Exclude dependent task consumers from execution]' \
+'--only[]' \
+'--parallel[Execute all tasks in parallel]' \
+'--remote-only[Ignore the local filesystem cache for all tasks. Only allow reading and caching artifacts using the remote cache]' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'-h[Print help information (use `--help` for more detail)]' \
+'--help[Print help information (use `--help` for more detail)]' \
+'*::tasks:' \
+'*::pass_through_args:' \
+&& ret=0
+;;
+(unlink)
+_arguments "${_arguments_options[@]}" \
+'--api=[Override the endpoint for API calls]:API: ' \
+'--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
+'--cwd=[The directory in which to run turbo]:CWD:_files' \
+'--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
+'--login=[Override the login endpoint]:LOGIN: ' \
+'--team=[Set the team slug for API calls]:TEAM: ' \
+'--token=[Set the auth token for API calls]:TOKEN: ' \
+'--trace=[Specify a file to save a pprof trace]:TRACE: ' \
+'(-v)--verbosity=[Verbosity level]:COUNT: ' \
+'--version[]' \
+'--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--color[Force color usage in the terminal]' \
+'--no-color[Suppress color usage in the terminal]' \
+'--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
+'(--verbosity)*-v[]' \
+'--check-for-update[Force a check for a new version of turbo]' \
+'--__test-run[]' \
+'--single-package[Run turbo in single-package mode]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
 }
 
-_turbo()
-{
-    local shellCompDirectiveError=1
-    local shellCompDirectiveNoSpace=2
-    local shellCompDirectiveNoFileComp=4
-    local shellCompDirectiveFilterFileExt=8
-    local shellCompDirectiveFilterDirs=16
-
-    local lastParam lastChar flagPrefix requestComp out directive comp lastComp noSpace
-    local -a completions
-
-    __turbo_debug "\n========= starting completion logic =========="
-    __turbo_debug "CURRENT: ${CURRENT}, words[*]: ${words[*]}"
-
-    # The user could have moved the cursor backwards on the command-line.
-    # We need to trigger completion from the $CURRENT location, so we need
-    # to truncate the command-line ($words) up to the $CURRENT location.
-    # (We cannot use $CURSOR as its value does not work when a command is an alias.)
-    words=("${=words[1,CURRENT]}")
-    __turbo_debug "Truncated words[*]: ${words[*]},"
-
-    lastParam=${words[-1]}
-    lastChar=${lastParam[-1]}
-    __turbo_debug "lastParam: ${lastParam}, lastChar: ${lastChar}"
-
-    # For zsh, when completing a flag with an = (e.g., turbo -n=<TAB>)
-    # completions must be prefixed with the flag
-    setopt local_options BASH_REMATCH
-    if [[ "${lastParam}" =~ '-.*=' ]]; then
-        # We are dealing with a flag with an =
-        flagPrefix="-P ${BASH_REMATCH}"
-    fi
-
-    # Prepare the command to obtain completions
-    requestComp="${words[1]} __complete ${words[2,-1]}"
-    if [ "${lastChar}" = "" ]; then
-        # If the last parameter is complete (there is a space following it)
-        # We add an extra empty parameter so we can indicate this to the go completion code.
-        __turbo_debug "Adding extra empty parameter"
-        requestComp="${requestComp} \"\""
-    fi
-
-    __turbo_debug "About to call: eval ${requestComp}"
-
-    # Use eval to handle any environment variables and such
-    out=$(eval ${requestComp} 2>/dev/null)
-    __turbo_debug "completion output: ${out}"
-
-    # Extract the directive integer following a : from the last line
-    local lastLine
-    while IFS='\n' read -r line; do
-        lastLine=${line}
-    done < <(printf "%s\n" "${out[@]}")
-    __turbo_debug "last line: ${lastLine}"
-
-    if [ "${lastLine[1]}" = : ]; then
-        directive=${lastLine[2,-1]}
-        # Remove the directive including the : and the newline
-        local suffix
-        (( suffix=${#lastLine}+2))
-        out=${out[1,-$suffix]}
-    else
-        # There is no directive specified.  Leave $out as is.
-        __turbo_debug "No directive found.  Setting do default"
-        directive=0
-    fi
-
-    __turbo_debug "directive: ${directive}"
-    __turbo_debug "completions: ${out}"
-    __turbo_debug "flagPrefix: ${flagPrefix}"
-
-    if [ $((directive & shellCompDirectiveError)) -ne 0 ]; then
-        __turbo_debug "Completion received error. Ignoring completions."
-        return
-    fi
-
-    while IFS='\n' read -r comp; do
-        if [ -n "$comp" ]; then
-            # If requested, completions are returned with a description.
-            # The description is preceded by a TAB character.
-            # For zsh's _describe, we need to use a : instead of a TAB.
-            # We first need to escape any : as part of the completion itself.
-            comp=${comp//:/\\:}
-
-            local tab=$(printf '\t')
-            comp=${comp//$tab/:}
-
-            __turbo_debug "Adding completion: ${comp}"
-            completions+=${comp}
-            lastComp=$comp
-        fi
-    done < <(printf "%s\n" "${out[@]}")
-
-    if [ $((directive & shellCompDirectiveNoSpace)) -ne 0 ]; then
-        __turbo_debug "Activating nospace."
-        noSpace="-S ''"
-    fi
-
-    if [ $((directive & shellCompDirectiveFilterFileExt)) -ne 0 ]; then
-        # File extension filtering
-        local filteringCmd
-        filteringCmd='_files'
-        for filter in ${completions[@]}; do
-            if [ ${filter[1]} != '*' ]; then
-                # zsh requires a glob pattern to do file filtering
-                filter="\*.$filter"
-            fi
-            filteringCmd+=" -g $filter"
-        done
-        filteringCmd+=" ${flagPrefix}"
-
-        __turbo_debug "File filtering command: $filteringCmd"
-        _arguments '*:filename:'"$filteringCmd"
-    elif [ $((directive & shellCompDirectiveFilterDirs)) -ne 0 ]; then
-        # File completion for directories only
-        local subdir
-        subdir="${completions[1]}"
-        if [ -n "$subdir" ]; then
-            __turbo_debug "Listing directories in $subdir"
-            pushd "${subdir}" >/dev/null 2>&1
-        else
-            __turbo_debug "Listing directories in ."
-        fi
-
-        local result
-        _arguments '*:dirname:_files -/'" ${flagPrefix}"
-        result=$?
-        if [ -n "$subdir" ]; then
-            popd >/dev/null 2>&1
-        fi
-        return $result
-    else
-        __turbo_debug "Calling _describe"
-        if eval _describe "completions" completions $flagPrefix $noSpace; then
-            __turbo_debug "_describe found some completions"
-
-            # Return the success of having called _describe
-            return 0
-        else
-            __turbo_debug "_describe did not find completions."
-            __turbo_debug "Checking if we should do file completion."
-            if [ $((directive & shellCompDirectiveNoFileComp)) -ne 0 ]; then
-                __turbo_debug "deactivating file completion"
-
-                # We must return an error code here to let zsh know that there were no
-                # completions found by _describe; this is what will trigger other
-                # matching algorithms to attempt to find completions.
-                # For example zsh can match letters in the middle of words.
-                return 1
-            else
-                # Perform file completion
-                __turbo_debug "Activating file completion"
-
-                # We must return the result of this command, so it must be the
-                # last command, or else we must store its result to return it.
-                _arguments '*:filename:_files'" ${flagPrefix}"
-            fi
-        fi
-    fi
+(( $+functions[_turbo_commands] )) ||
+_turbo_commands() {
+    local commands; commands=(
+'bin:Get the path to the Turbo binary' \
+'completion:Generate the autocompletion script for the specified shell' \
+'daemon:Runs the Turborepo background daemon' \
+'link:Link your local directory to a Vercel organization and enable remote caching' \
+'login:Login to your Vercel account' \
+'logout:Logout to your Vercel account' \
+'prune:Prepare a subset of your monorepo' \
+'run:Run tasks across projects in your monorepo' \
+'unlink:Unlink the current directory from your Vercel organization and disable Remote Caching' \
+    )
+    _describe -t commands 'turbo commands' commands "$@"
+}
+(( $+functions[_turbo__bin_commands] )) ||
+_turbo__bin_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo bin commands' commands "$@"
+}
+(( $+functions[_turbo__completion_commands] )) ||
+_turbo__completion_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo completion commands' commands "$@"
+}
+(( $+functions[_turbo__daemon_commands] )) ||
+_turbo__daemon_commands() {
+    local commands; commands=(
+'restart:Restarts the turbo daemon' \
+'start:Ensures that the turbo daemon is running' \
+'status:Reports the status of the turbo daemon' \
+'stop:Stops the turbo daemon' \
+    )
+    _describe -t commands 'turbo daemon commands' commands "$@"
+}
+(( $+functions[_turbo__link_commands] )) ||
+_turbo__link_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo link commands' commands "$@"
+}
+(( $+functions[_turbo__login_commands] )) ||
+_turbo__login_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo login commands' commands "$@"
+}
+(( $+functions[_turbo__logout_commands] )) ||
+_turbo__logout_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo logout commands' commands "$@"
+}
+(( $+functions[_turbo__prune_commands] )) ||
+_turbo__prune_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo prune commands' commands "$@"
+}
+(( $+functions[_turbo__daemon__restart_commands] )) ||
+_turbo__daemon__restart_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo daemon restart commands' commands "$@"
+}
+(( $+functions[_turbo__run_commands] )) ||
+_turbo__run_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo run commands' commands "$@"
+}
+(( $+functions[_turbo__daemon__start_commands] )) ||
+_turbo__daemon__start_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo daemon start commands' commands "$@"
+}
+(( $+functions[_turbo__daemon__status_commands] )) ||
+_turbo__daemon__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo daemon status commands' commands "$@"
+}
+(( $+functions[_turbo__daemon__stop_commands] )) ||
+_turbo__daemon__stop_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo daemon stop commands' commands "$@"
+}
+(( $+functions[_turbo__unlink_commands] )) ||
+_turbo__unlink_commands() {
+    local commands; commands=()
+    _describe -t commands 'turbo unlink commands' commands "$@"
 }
 
-# don't run the completion function when being source-ed or eval-ed
-if [ "$funcstack[1]" = "_turbo" ]; then
-    _turbo
-fi
+_turbo "$@"
