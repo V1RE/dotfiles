@@ -32,7 +32,7 @@ null_ls.setup({
     formatting.shfmt,
     formatting.stylelint,
     formatting.stylua,
-    formatting.jq,
+    -- formatting.jq,
     hover.dictionary,
     linters.eslint_d.with({
       condition = function(utils)
