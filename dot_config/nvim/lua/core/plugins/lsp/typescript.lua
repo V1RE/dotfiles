@@ -9,27 +9,13 @@ local M = {
 
       tsq.setup({})
 
-      require("core.util").on_attach(function(client, buffer)
-        tsq.attach(client, buffer)
-
-        vim.pretty_print(client, buffer)
-        if client.name ~= "tsserver" then
-          vim.keymap.set(
-            "n",
-            "<leader>lq",
-            "<cmd>InspectTwoslashQueries<cr>",
-            { desc = i.TypeParameter .. "Inspect type", buffer = buffer }
-          )
-
-          vim.keymap.set(
-            "n",
-            "<leader>ld",
-            "<cmd>RemoveTwoslashQueries<cr>",
-            { desc = i.Error .. "Remove type inspect", buffer = buffer }
-          )
-        end
-      end)
+      require("core.util").on_attach(tsq.attach)
     end,
+    ft = { "typescript", "typescriptreact" },
+    keys = {
+      { "<leader>lq", "<cmd>InspectTwoslashQueries<cr>", desc = i.TypeParameter .. "Inspect type" },
+      { "<leader>ld", "<cmd>RemoveTwoslashQueries<cr>", desc = i.Error .. "Remove type inspect" },
+    },
   },
 
   {
