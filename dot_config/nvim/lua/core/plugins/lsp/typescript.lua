@@ -9,9 +9,9 @@ local M = {
 
       tsq.setup({})
 
-      require("core.util").on_attach(tsq.attach)
-
       require("core.util").on_attach(function(client, buffer)
+        tsq.attach(client, buffer)
+
         if client.name ~= "tsserver" then
           vim.keymap.set(
             "n",
