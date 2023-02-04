@@ -12,8 +12,8 @@ local M = {
       require("core.util").on_attach(function(client, buffer)
         tsq.attach(client, buffer)
 
+        vim.pretty_print(client, buffer)
         if client.name ~= "tsserver" then
-          vim.pretty_print(client, buffer)
           vim.keymap.set(
             "n",
             "<leader>lq",
