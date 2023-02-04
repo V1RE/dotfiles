@@ -117,7 +117,6 @@ local M = {
         },
       }
       return {
-        ---@type LualineNvimOptCacheOpt
         options = {
           icons_enabled = true,
           theme = "catppuccin",
