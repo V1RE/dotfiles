@@ -13,6 +13,7 @@ local M = {
         tsq.attach(client, buffer)
 
         if client.name ~= "tsserver" then
+          vim.pretty_print(client, buffer)
           vim.keymap.set(
             "n",
             "<leader>lq",
