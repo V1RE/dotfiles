@@ -4,7 +4,7 @@ local i = require("config.icons")
 local M = {
   {
     "marilari88/twoslash-queries.nvim",
-    config = function()
+    init = function()
       local tsq = require("twoslash-queries")
 
       tsq.setup({})
