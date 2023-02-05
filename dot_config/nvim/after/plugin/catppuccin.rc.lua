@@ -24,6 +24,7 @@ require("catppuccin").setup({
     indent_blankline = {
       enabled = true,
     },
+    leap = true,
   },
   compile = {
     enabled = true,
