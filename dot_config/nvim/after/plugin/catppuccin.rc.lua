@@ -17,6 +17,7 @@ require("catppuccin").setup({
     cmp = true,
     telescope = true,
     which_key = true,
+    hop = true,
     aerial = true,
     notify = true,
     noice = true,
