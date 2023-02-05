@@ -2,7 +2,6 @@
 local M = {
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "MunifTanjim/nui.nvim" },
-  { "NvChad/nvim-colorizer.lua" },
   { "antoinemadec/FixCursorHold.nvim" },
   { "b0o/schemastore.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
