@@ -6,7 +6,7 @@ local M = {
     {
       "f",
       function()
-        require("hop").hint_char1()
+        require("hop").hint_char2()
       end,
       remap = true,
       desc = "Hop to char",
