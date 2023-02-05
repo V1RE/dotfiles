@@ -10,6 +10,9 @@ local M = {
     end
     leap.add_default_mappings(true)
   end,
+  opts = {
+    highlight_unlabeled_phase_one_targets = true,
+  },
 }
 
 return M
