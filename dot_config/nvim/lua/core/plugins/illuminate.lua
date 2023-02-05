@@ -4,7 +4,12 @@ local M = {
   event = "BufReadPost",
   opts = { delay = 200 },
   config = function(_, opts)
-    require("illuminate").configure(opts)
+    local illuminate = require("illuminate")
+
+    illuminate.configure(opts)
+
+    require("core.util").on_attach(illuminate.on_attach)
+
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()
         local buffer = vim.api.nvim_get_current_buf()
