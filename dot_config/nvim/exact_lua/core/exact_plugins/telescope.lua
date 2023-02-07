@@ -107,9 +107,9 @@ local M = {
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
       { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
 
-      { "<leader>gd", "<cmd>Telescope lsp_definitions<cr>", desc = i.Constant .. "Definition" },
-      { "<leader>gi", "<cmd>Telescope lsp_implementations<cr>", desc = i.Interface .. "Implementations" },
-      { "<leader>gr", "<cmd>Telescope lsp_references<cr>", desc = i.Reference .. "References" },
+      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = i.Constant .. "Definition" },
+      { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = i.Interface .. "Implementations" },
+      { "gr", "<cmd>Telescope lsp_references<cr>", desc = i.Reference .. "References" },
 
       { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
       { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
