@@ -5,7 +5,7 @@ local M = {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    version = false,
+    version = nil,
     dependencies = {
       {
         "nvim-telescope/telescope-file-browser.nvim",
