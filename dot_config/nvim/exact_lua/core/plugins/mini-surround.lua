@@ -1,12 +1,8 @@
 ---@type LazyPluginSpec[]
 local M = {
   {
-    "machakann/vim-sandwich",
-    event = "BufReadPost",
-    enabled = false,
-  },
-  {
     "echasnovski/mini.surround",
+    ---@diagnostic disable-next-line: assign-type-mismatch
     keys = function(_, keys)
       -- Populate the keys based on the user's options
       local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
@@ -20,7 +16,7 @@ local M = {
         { opts.mappings.replace, desc = "Replace surrounding" },
         { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
       }
-      return vim.list_extend(mappings, keys)
+      return vim.list_extend(mappings, keys, 1, #keys)
     end,
     opts = {
       mappings = {
@@ -34,7 +30,6 @@ local M = {
       },
     },
     config = function(_, opts)
-      -- use gz mappings instead of s to prevent conflict with leap
       require("mini.surround").setup(opts)
     end,
   },
