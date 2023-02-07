@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "phaazon/hop.nvim",
+  enabled = false,
   config = true,
   keys = {
     {
