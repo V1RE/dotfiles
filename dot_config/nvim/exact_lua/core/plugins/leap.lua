@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 local M = {
   "ggandor/leap.nvim",
-  enabled = false,
   event = "VeryLazy",
   dependencies = { { "ggandor/flit.nvim", opts = { labeled_modes = "nv" } } },
   config = function(_, opts)
