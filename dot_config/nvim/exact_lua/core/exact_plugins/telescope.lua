@@ -85,8 +85,12 @@ local M = {
     },
     config = function(_, opts)
       local telescope = require("telescope")
+
+      telescope.setup(opts)
+
       local utils = require("utils")
       local builtin = require("telescope.builtin")
+
       utils.map({
         ["<leader>"] = {
           f = { builtin.find_files, i.Telescope .. "Find files" },
@@ -119,8 +123,6 @@ local M = {
           r = { builtin.lsp_references, i.Reference .. "References" },
         },
       })
-
-      telescope.setup(opts)
     end,
   },
 }
