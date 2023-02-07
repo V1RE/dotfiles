@@ -85,13 +85,13 @@ local M = {
 
           mappings = {
             i = {
-              ["<C-c>"] = require("telescope").extensions.file_browser.actions.create_from_prompt,
+              -- ["<C-c>"] = require("telescope").extensions.file_browser.actions.create_from_prompt,
               ["<ESC>"] = false,
             },
           },
         },
         ["ui-select"] = {
-          require("telescope.themes").get_cursor(),
+          -- require("telescope.themes").get_cursor(),
         },
       },
     },
