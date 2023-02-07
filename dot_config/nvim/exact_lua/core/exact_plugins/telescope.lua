@@ -12,6 +12,9 @@ local M = {
         config = function()
           require("telescope").load_extension("file_browser")
         end,
+        keys = {
+          { "<leader>k", "<cmd>Telescope file_browser<cr>", desc = i.Class .. "File manager" },
+        },
       },
       {
         "nvim-telescope/telescope-ui-select.nvim",
@@ -92,48 +95,26 @@ local M = {
     },
     keys = {
       { "<leader><leader>", "<cmd>Telescope resume<cr>", desc = i.Watch .. "Resume Telescope" },
+      { "<leader>f", "<cmd>Telescope fd<cr>", desc = i.Telescope .. "Find files" },
+      { "<leader>F", "<cmd>Telescope live_grep<cr>", desc = i.Search .. "Find text" },
+
+      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+      { "<leader>sm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+      { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+      { "<leader>sb", "<cmd>Telescope builtin<cr>", desc = "Builtin pickers" },
+      { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
+      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+      { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+
+      { "<leader>gd", "<cmd>Telescope lsp_definitions<cr>", desc = i.Constant .. "Definition" },
+      { "<leader>gi", "<cmd>Telescope lsp_implementations<cr>", desc = i.Interface .. "Implementations" },
+      { "<leader>gr", "<cmd>Telescope lsp_references<cr>", desc = i.Reference .. "References" },
+
+      { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
+      { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
     },
-    config = function(_, opts)
-      local telescope = require("telescope")
-
-      telescope.setup(opts)
-
-      local utils = require("utils")
-      local builtin = require("telescope.builtin")
-
-      utils.map({
-        ["<leader>"] = {
-          f = { builtin.find_files, i.Telescope .. "Find files" },
-          F = { builtin.live_grep, i.Search .. "Find Text" },
-          k = { telescope.extensions.file_browser.file_browser, i.Class .. "File Manager" },
-          s = {
-            name = i.Telescope .. "Search",
-            C = { builtin.commands, "Commands" },
-            m = { builtin.man_pages, "Man Pages" },
-            R = { builtin.registers, "Registers" },
-            b = { builtin.builtin, "Builtin pickers" },
-            c = { builtin.colorscheme, "Colorscheme" },
-            h = { builtin.help_tags, "Find Help" },
-            k = { builtin.keymaps, "Keymaps" },
-            r = { builtin.oldfiles, "Open Recent File" },
-          },
-          b = {
-            f = { builtin.buffers, i.Telescope .. "Find" },
-          },
-          l = {
-            S = { builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
-            s = { builtin.lsp_document_symbols, "Document Symbols" },
-            w = { builtin.lsp_workspace_diagnostics, "Workspace Diagnostics" },
-          },
-        },
-
-        g = {
-          d = { builtin.lsp_definitions, i.Constant .. "Definition" },
-          i = { builtin.lsp_implementations, i.Interface .. "Implementations" },
-          r = { builtin.lsp_references, i.Reference .. "References" },
-        },
-      })
-    end,
   },
 }
 
