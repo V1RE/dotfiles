@@ -49,24 +49,24 @@ local M = {
 
         mappings = {
           i = {
-            ["<C-j>"] = function()
-              require("telescope.actions").cycle_history_next()
+            ["<C-j>"] = function(...)
+              require("telescope.actions").cycle_history_next(...)
             end,
-            ["<C-k>"] = function()
-              require("telescope.actions").cycle_history_prev()
+            ["<C-k>"] = function(...)
+              require("telescope.actions").cycle_history_prev(...)
             end,
-            ["<C-q>"] = function()
-              require("telescope.actions").send_selected_to_qflist()
-              require("telescope.actions").open_qflist()
+            ["<C-q>"] = function(...)
+              require("telescope.actions").send_selected_to_qflist(...)
+              require("telescope.actions").open_qflist(...)
             end,
-            ["<M-q>"] = function()
-              require("telescope.actions").send_to_qflist()
-              require("telescope.actions").open_qflist()
+            ["<M-q>"] = function(...)
+              require("telescope.actions").send_to_qflist(...)
+              require("telescope.actions").open_qflist(...)
             end,
           },
           n = {
-            q = function()
-              require("telescope.actions").close()
+            q = function(...)
+              require("telescope.actions").close(...)
             end,
           },
         },
@@ -94,6 +94,9 @@ local M = {
           -- require("telescope.themes").get_cursor(),
         },
       },
+    },
+    keys = {
+      { "<leader><leader>", "<cmd>Telescope resume<cr>", desc = i.Watch .. "Resume Telescope" },
     },
     config = function(_, opts)
       local telescope = require("telescope")
