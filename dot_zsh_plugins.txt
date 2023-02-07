@@ -1,6 +1,6 @@
 jeffreytse/zsh-vi-mode
 
-g-plane/zsh-yarn-autocompletions
+jscutlery/nx-completion
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
