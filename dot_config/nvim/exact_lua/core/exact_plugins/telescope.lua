@@ -49,13 +49,25 @@ local M = {
 
         mappings = {
           i = {
-            ["<C-j>"] = require("telescope.actions").cycle_history_next,
-            ["<C-k>"] = require("telescope.actions").cycle_history_prev,
-            ["<C-q>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
-            ["<M-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
+            ["<C-j>"] = function()
+              require("telescope.actions").cycle_history_next()
+            end,
+            ["<C-k>"] = function()
+              require("telescope.actions").cycle_history_prev()
+            end,
+            ["<C-q>"] = function()
+              require("telescope.actions").send_selected_to_qflist()
+              require("telescope.actions").open_qflist()
+            end,
+            ["<M-q>"] = function()
+              require("telescope.actions").send_to_qflist()
+              require("telescope.actions").open_qflist()
+            end,
           },
           n = {
-            q = require("telescope.actions").close,
+            q = function()
+              require("telescope.actions").close()
+            end,
           },
         },
       },
