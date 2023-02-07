@@ -14,11 +14,6 @@ local M = {
         end,
       },
       {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        enabled = false,
-      },
-      {
         "nvim-telescope/telescope-ui-select.nvim",
         config = function()
           require("telescope").load_extension("ui-select")
@@ -91,7 +86,7 @@ local M = {
           },
         },
         ["ui-select"] = {
-          -- require("telescope.themes").get_cursor(),
+          require("telescope.themes").get_cursor(),
         },
       },
     },
