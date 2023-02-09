@@ -86,7 +86,6 @@ local M = {
           name = "Attach",
           processId = require("dap.utils").pick_process,
           cwd = "${workspaceFolder}",
-          port = 9222,
         },
       }
     end
