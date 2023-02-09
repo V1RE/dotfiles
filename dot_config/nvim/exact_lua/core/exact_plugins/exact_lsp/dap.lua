@@ -68,7 +68,7 @@ local M = {
     end
 
     require("dap-vscode-js").setup({
-      debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+      debugger_cmd = { "js-debug-adapter 9229" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
     })
 
     for _, language in ipairs({ "typescript", "javascript" }) do
