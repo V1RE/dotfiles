@@ -5,13 +5,16 @@ local M = {
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",
-
-      config = function()
-        require("dapui").setup()
-      end,
+      config = true,
     },
     { "jbyuki/one-small-step-for-vimkind" },
-    { "mxsdev/nvim-dap-vscode-js" },
+    {
+      "mxsdev/nvim-dap-vscode-js",
+      -- dependencies = {
+      --
+      --   { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npm run compile" },
+      -- },
+    },
   },
 
   init = function()
@@ -64,6 +67,7 @@ local M = {
     }
 
     dap.adapters.nlua = function(callback, config)
+      ---@diagnostic disable-next-line: undefined-field
       callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
     end
 
@@ -81,10 +85,10 @@ local M = {
           cwd = "${workspaceFolder}",
         },
         {
-          type = "pwa-node",
+          type = "node-terminal",
           request = "attach",
           name = "Attach",
-          processId = require("dap.utils").pick_process,
+          processId = require("dap.util").pick_process,
           cwd = "${workspaceFolder}",
         },
       }
