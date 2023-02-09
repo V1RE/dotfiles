@@ -66,6 +66,25 @@ function M.config()
     callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
   end
 
+  for _, language in ipairs({ "typescript", "javascript" }) do
+    require("dap").configurations[language] = {
+      {
+        type = "pwa-node",
+        request = "launch",
+        name = "Launch file",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+      },
+      {
+        type = "pwa-node",
+        request = "attach",
+        name = "Attach",
+        processId = require("dap.utils").pick_process,
+        cwd = "${workspaceFolder}",
+      },
+    }
+  end
+
   local dapui = require("dapui")
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open({})
