@@ -76,6 +76,7 @@
   "vim-renamer": { "branch": "master", "commit": "9c6346eb4556cf2d8ca55de6969247ab14fe2383" },
   "vim-tmux-navigator": { "branch": "master", "commit": "cdd66d6a37d991bba7997d593586fc51a5b37aa8" },
   "vim-wakatime": { "branch": "master", "commit": "ee4ab57adf62a309aeef383a2da23b6e48e5ae50" },
+  "vscode-js-debug": { "branch": "main", "commit": "4d2a78523b82ba434506469918732b0df622da53" },
   "which-key.nvim": { "branch": "main", "commit": "684e96c5e8477f1ee9b3f2e9a12d802fd12c5531" },
   "yanky.nvim": { "branch": "main", "commit": "14b9c4cc572c3be5cf5b0a678e7ac240f08a8681" }
 }

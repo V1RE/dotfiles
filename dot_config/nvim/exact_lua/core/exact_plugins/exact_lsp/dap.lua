@@ -71,7 +71,7 @@ local M = {
     end
 
     require("dap-vscode-js").setup({
-      debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+      debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
     })
 
     for _, language in ipairs({ "typescript", "javascript" }) do
