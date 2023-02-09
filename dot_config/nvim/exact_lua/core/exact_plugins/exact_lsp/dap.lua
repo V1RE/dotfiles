@@ -84,7 +84,7 @@ local M = {
           cwd = "${workspaceFolder}",
         },
         {
-          type = "node-terminal",
+          type = "pwa-node",
           request = "attach",
           name = "Attach",
           processId = require("dap.utils").pick_process,
