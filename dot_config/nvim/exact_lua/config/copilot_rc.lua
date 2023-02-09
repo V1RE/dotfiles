@@ -2,7 +2,7 @@ local copilot = require("copilot")
 
 vim.defer_fn(function()
   copilot.setup({
-    copilot_node_command = "/Users/niels/.volta/tools/image/node/16.18.1/bin/node",
+    copilot_node_command = "/Users/niels/.volta/bin/node",
     panel = {
       auto_refresh = true,
     },
