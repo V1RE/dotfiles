@@ -19,7 +19,7 @@ function M.init()
   end, { desc = "Toggle Breakpoint" })
 
   vim.keymap.set("n", "<leader>dc", function()
-    require("dap").continue()
+    require("dap").continue({})
   end, { desc = "Continue" })
 
   vim.keymap.set("n", "<leader>do", function()
