@@ -123,7 +123,7 @@ local M = {
           component_separators = "",
           section_separators = "",
           disabled_filetypes = {
-            winbar = { "neo-tree" },
+            winbar = { "neo-tree", "dap-repl" },
           },
           always_divide_middle = true,
           globalstatus = true,
