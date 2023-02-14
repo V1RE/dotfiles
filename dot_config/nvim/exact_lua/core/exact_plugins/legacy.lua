@@ -1,10 +1,10 @@
 ---@type LazyPluginSpec[]
 local M = {
-  { "L3MON4D3/LuaSnip",               name = "lua-snip",  dependencies = { "friendly-snippets" } },
+  { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "MunifTanjim/nui.nvim" },
   { "antoinemadec/FixCursorHold.nvim" },
   { "b0o/schemastore.nvim" },
-  { "catppuccin/nvim",                name = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin" },
   { "famiu/bufdelete.nvim" },
   { "folke/which-key.nvim" },
   { "hrsh7th/cmp-buffer" },
@@ -24,13 +24,13 @@ local M = {
   { "mizlan/iswap.nvim" },
   { "moll/vim-bbye" },
   { "monaqa/dial.nvim" },
-  { "neovim/nvim-lspconfig",            dependencies = { "mason-lspconfig.nvim" } },
+  { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
   { "nvim-lua/plenary.nvim" },
   { "nvim-lua/popup.nvim" },
   { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
   { "tpope/vim-abolish" },
-  { "tzachar/cmp-tabnine",              build = "./install.sh",                   dependencies = { "nvim_cmp" } },
+  { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim_cmp" } },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
   {
