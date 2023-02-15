@@ -1,5 +1,5 @@
----@type lspconfig.options.sumneko_lua
-local sumneko_lua = {
+---@type lspconfig.options.lua_ls
+local lua_ls = {
   settings = {
     Lua = {
       workspace = {
@@ -19,4 +19,4 @@ local sumneko_lua = {
   },
 }
 
-return sumneko_lua
+return lua_ls

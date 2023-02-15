@@ -34,19 +34,15 @@ mason_lspconfig.setup_handlers({
   function(server)
     lspconfig[server].setup(opts)
   end,
-
-  ["sumneko_lua"] = function(server)
-    lspconfig.sumneko_lua.setup(merge_options(server))
+  ["lua_ls"] = function(server)
+    lspconfig.lua_ls.setup(merge_options(server))
   end,
-
   ["jsonls"] = function(server)
     lspconfig.jsonls.setup(merge_options(server))
   end,
-
   ["yamlls"] = function(server)
     lspconfig.yamlls.setup(merge_options(server))
   end,
-
   --[[ ["denols"] = function(server)
     lspconfig.denols.setup(merge_options(server))
   end, ]]
