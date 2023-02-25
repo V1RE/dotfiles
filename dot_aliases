@@ -21,6 +21,9 @@ alias tree="ll --tree --level=3"
 
 alias dev="mprocs"
 
+alias tlr="taze latest --recursive"
+alias tlri="taze latest --recursive --write --install"
+
 # Git
 alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
