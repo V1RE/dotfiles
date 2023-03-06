@@ -6,9 +6,8 @@ updates() {
 	brew update
 	brew upgrade
 	brew reinstall neovim
-	brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
+	brew upgrade --cask wez/wezterm/wezterm-nightly --no-quarantine --greedy-latest
 	n lts -d
-	yarn global upgrade --latest
 	npx browserslist@latest --update-db
 	ruptup update
 	cargo install-update -a
@@ -19,11 +18,6 @@ updates() {
 swoosh() {
 	defaults write com.apple.dock workspaces-swoosh-animation-off -bool yes
 	killall Dock
-}
-
-# Generated on 2022-05-05T15:32:23+02:00.
-adminGetKeys() {
-	jq -rc '.results | first | keys_unsorted | @csv' test.json | tr -d '"' | tr -d '\n' | pbcopy
 }
 
 # Generated on 2022-05-09T09:17:30+02:00.
