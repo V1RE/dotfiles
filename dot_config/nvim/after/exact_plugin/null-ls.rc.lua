@@ -62,10 +62,8 @@ null_ls.setup({
         })
       end,
     }),
-    linters.write_good,
     linters.zsh,
     linters.actionlint,
-    linters.cspell,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
