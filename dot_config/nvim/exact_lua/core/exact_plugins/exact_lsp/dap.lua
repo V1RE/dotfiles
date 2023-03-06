@@ -10,7 +10,9 @@ local M = {
     { "jbyuki/one-small-step-for-vimkind" },
     {
       "mxsdev/nvim-dap-vscode-js",
-      dependencies = { { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npm run compile" } },
+      dependencies = {
+        { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npm run compile", enabled = false },
+      },
     },
   },
 
