@@ -1,10 +1,10 @@
 if type brew &>/dev/null
 then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  FPATH="${HOME}/.zsh:${FPATH}"
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    FPATH="${HOME}/.zsh:${FPATH}"
 
-  autoload -Uz compinit
-  compinit
+    autoload -Uz compinit
+    compinit
 fi
 
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
@@ -53,6 +53,7 @@ export REDO_HISTORY_PATH="$HISTFILE"
 export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 setopt EXTENDED_HISTORY
 set -k
 
