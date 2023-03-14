@@ -35,34 +35,21 @@ null_ls.setup({
     formatting.beautysh,
     -- formatting.jq,
     hover.dictionary,
-    linters.eslint_d.with({
-      condition = function(utils)
-        return utils.root_has_file({
-          ".eslintrc",
-          ".eslintrc.js",
-          ".eslintrc.cjs",
-          ".eslintrc.yaml",
-          ".eslintrc.yml",
-          ".eslintrc.json",
-        })
-      end,
-
-      extra_filetypes = { "graphql" },
-    }),
+    linters.eslint_d,
     linters.luacheck,
     linters.shellcheck,
-    linters.stylelint.with({
-      condition = function(utils)
-        return utils.root_has_file({
-          ".stylelintrc",
-          ".stylelintrc.js",
-          ".stylelintrc.cjs",
-          ".stylelintrc.yaml",
-          ".stylelintrc.yml",
-          ".stylelintrc.json",
-        })
-      end,
-    }),
+    -- linters.stylelint.with({
+    --   condition = function(utils)
+    --     return utils.root_has_file({
+    --       ".stylelintrc",
+    --       ".stylelintrc.js",
+    --       ".stylelintrc.cjs",
+    --       ".stylelintrc.yaml",
+    --       ".stylelintrc.yml",
+    --       ".stylelintrc.json",
+    --     })
+    --   end,
+    -- }),
     linters.zsh,
     linters.actionlint,
   },
