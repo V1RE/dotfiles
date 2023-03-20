@@ -35,6 +35,7 @@ null_ls.setup({
     formatting.beautysh,
     -- formatting.jq,
     hover.dictionary,
+    linters.curlylint,
     linters.eslint_d,
     linters.luacheck,
     linters.shellcheck,
