@@ -28,7 +28,9 @@ null_ls.setup({
     require("typescript.extensions.null-ls.code-actions"),
     formatting.eslint_d,
     formatting.google_java_format,
-    formatting.prettierd,
+    formatting.prettierd.with({
+      extra_filetypes = { "liquid" },
+    }),
     formatting.shfmt,
     formatting.stylelint,
     formatting.stylua,
