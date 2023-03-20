@@ -62,11 +62,9 @@ export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
-
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
-# eval "$(rbenv init - zsh)"
+eval "$(rbenv init - zsh)"
 # eval "$(gh completion -s zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
