@@ -1,5 +1,6 @@
 ---@type LazyPluginSpec[]
 local M = {
+  { "tpope/vim-liquid" },
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "MunifTanjim/nui.nvim" },
   { "antoinemadec/FixCursorHold.nvim" },
