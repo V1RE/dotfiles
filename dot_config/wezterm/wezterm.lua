@@ -1,6 +1,16 @@
 local wezterm = require("wezterm")
 
+wezterm.on("update-right-status", function(window, pane)
+  window:set_right_status(pane:get_foreground_process_info() or "")
+end)
+
 local act = wezterm.action
+
+local config = {}
+
+if wezterm.config_builder then
+  config = wezterm.config_builder()
+end
 
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
@@ -16,16 +26,17 @@ local function font_with_fallback(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 
-wezterm.on("update-right-status", function(window, pane)
-  window:set_right_status(pane:get_foreground_process_name() or "")
-end)
+config.font_dirs = { "fonts" }
+config.font = font_with_fallback("Cascadia Code")
+config.font_size = 16
+config.line_height = 1.4
 
-return {
-  font_dirs = { "fonts" },
-  font = font_with_fallback("Cascadia Code"),
+config.use_fancy_tab_bar = true
+
+-- merge two lua
+local old_config = {
   font_size = 16,
   line_height = 1.4,
-  -- color_scheme = "Catppuccin Macchiato",
   color_scheme_dirs = { "./colors/" },
   color_scheme = "onedarker",
   hide_tab_bar_if_only_one_tab = true,
@@ -129,3 +140,11 @@ return {
     },
   },
 }
+
+for k, v in pairs(old_config) do
+  if config[k] == nil then
+    config[k] = v
+  end
+end
+
+return config
