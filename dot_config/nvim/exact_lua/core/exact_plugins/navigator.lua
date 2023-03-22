@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 local M = {
   "numToStr/Navigator.nvim",
-  event = "VeryLazy",
   config = true,
   keys = {
     { "<c-h>", "<CMD>NavigatorLeft<CR>", mode = { "n", "t" } },
