@@ -16,6 +16,10 @@ local function font_with_fallback(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 
+wezterm.on("update-right-status", function(window, pane)
+  window:set_right_status(pane:get_foreground_process_name())
+end)
+
 return {
   font_dirs = { "fonts" },
   font = font_with_fallback("Cascadia Code"),
