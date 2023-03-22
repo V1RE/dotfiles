@@ -17,7 +17,7 @@ local function font_with_fallback(name, params)
 end
 
 wezterm.on("update-right-status", function(window, pane)
-  window:set_right_status(pane:get_foreground_process_name())
+  window:set_right_status(pane:get_foreground_process_name() or "")
 end)
 
 return {
