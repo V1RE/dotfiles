@@ -49,11 +49,6 @@ wezterm.on("ActivatePaneDirection-down", function(window, pane)
   conditionalActivatePane(window, pane, "Down", "j")
 end)
 
-wezterm.on("format-tab-title", function(tab)
-  local prog = tab.active_pane.user_vars.PROG
-  return tab.active_pane.title .. " [" .. (prog or "") .. "]"
-end)
-
 wezterm.on("update-right-status", function(window, pane)
   window:set_right_status(pane:get_foreground_process_name() or "")
 end)
