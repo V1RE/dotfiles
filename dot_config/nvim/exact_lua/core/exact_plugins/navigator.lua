@@ -1,7 +1,8 @@
 ---@type LazyPluginSpec
 local M = {
-  "christoomey/vim-tmux-navigator",
+  "numToStr/Navigator.nvim",
   event = "VeryLazy",
+  config = true,
 }
 
 return M
