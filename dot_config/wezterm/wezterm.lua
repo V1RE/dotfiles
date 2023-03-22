@@ -33,7 +33,7 @@ return {
     bottom = 0,
   },
   use_fancy_tab_bar = false,
-  tab_bar_at_bottom = true,
+  tab_bar_at_bottom = false,
   window_background_opacity = 1,
   leader = {
     key = "b",
