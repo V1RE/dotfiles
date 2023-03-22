@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+require("events")
+
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
   local names = {
@@ -14,37 +16,6 @@ local function font_with_fallback(name, params)
   }
   return wezterm.font_with_fallback(names, params)
 end
-
-local function isViProcess(pane)
-  local name = "" .. pane:get_foreground_process_name()
-
-  return name:find("n?vim") ~= nil or name:find("chezmoi") ~= nil
-end
-
-local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
-  if isViProcess(pane) then
-    window:perform_action(act.SendKey({ key = vim_direction, mods = "CTRL" }), pane)
-  else
-    window:perform_action(act.ActivatePaneDirection(pane_direction), pane)
-  end
-end
-
-wezterm.on("ActivatePaneDirection-right", function(window, pane)
-  conditionalActivatePane(window, pane, "Right", "l")
-end)
-wezterm.on("ActivatePaneDirection-left", function(window, pane)
-  conditionalActivatePane(window, pane, "Left", "h")
-end)
-wezterm.on("ActivatePaneDirection-up", function(window, pane)
-  conditionalActivatePane(window, pane, "Up", "k")
-end)
-wezterm.on("ActivatePaneDirection-down", function(window, pane)
-  conditionalActivatePane(window, pane, "Down", "j")
-end)
-
-wezterm.on("update-right-status", function(window, pane)
-  window:set_right_status(pane:get_foreground_process_name() or "")
-end)
 
 local config = {}
 
