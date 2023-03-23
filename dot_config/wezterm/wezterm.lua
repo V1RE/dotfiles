@@ -29,6 +29,10 @@ config.font_size = 16
 config.line_height = 1.4
 
 config.use_fancy_tab_bar = true
+config.window_frame = {
+  font_size = 13.0,
+  font = wezterm.font("Roboto"),
+}
 
 config.pane_focus_follows_mouse = true
 
