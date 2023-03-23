@@ -30,6 +30,8 @@ config.line_height = 1.4
 
 config.use_fancy_tab_bar = true
 
+config.focus_follows_mouse = true
+
 -- merge two lua
 local old_config = {
   font_size = 16,
