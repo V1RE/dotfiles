@@ -20,6 +20,7 @@ _turbo() {
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
@@ -33,11 +34,14 @@ _turbo() {
 '--graph=[Generate a graph of the task execution and output to a file when a filename is specified (.svg, .png, .jpg, .pdf, .json, .html). Outputs dot graph to stdout when if no filename is provided]' \
 '*--ignore=[Files to ignore when calculating changed files (i.e. --since). Supports globs]:IGNORE: ' \
 '--output-logs=[Set type of process output logging. Use "full" to show all output. Use "hash-only" to show only turbo-computed task hashes. Use "new-only" to show only new output with only hashes for cached tasks. Use "none" to hide process output. (default full)]:OUTPUT_LOGS:(full none hash-only new-only errors-only)' \
+'--pkg-inference-root=[]:PKG_INFERENCE_ROOT: ' \
 '--profile=[File to write turbo'\''s performance profile output into. You can load the file up in chrome://tracing to see which parts of your build were slow]:PROFILE: ' \
 '*--scope=[Specify package(s) to act as entry points for task execution. Supports globs]:SCOPE: ' \
 '--since=[Limit/Set scope to changed packages since a mergebase. This uses the git diff ${target_branch}... mechanism to identify which packages have changed]:SINCE: ' \
+'--log-prefix=[Use "none" to remove prefixes from task logs. Note that tasks running in parallel interleave their logs and prefix is the only way to identify which task produced a log]:LOG_PREFIX:(none)' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -54,10 +58,9 @@ _turbo() {
 '--only[]' \
 '--parallel[Execute all tasks in parallel]' \
 '--remote-only[Ignore the local filesystem cache for all tasks. Only allow reading and caching artifacts using the remote cache]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 '*::tasks:' \
-'*::pass_through_args:' \
 ":: :_turbo_commands" \
 "*::: :->turborepo-lib" \
 && ret=0
@@ -74,12 +77,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -87,8 +92,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (completion)
@@ -98,12 +103,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -111,8 +118,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ':shell:(bash elvish fish powershell zsh)' \
 && ret=0
 ;;
@@ -124,12 +131,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -137,8 +146,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ":: :_turbo__daemon_commands" \
 "*::: :->daemon" \
 && ret=0
@@ -156,12 +165,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -169,8 +180,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (start)
@@ -180,12 +191,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -193,8 +206,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (status)
@@ -204,6 +217,7 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
@@ -211,6 +225,7 @@ _arguments "${_arguments_options[@]}" \
 '--json[Pass --json to report status in JSON format]' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -218,8 +233,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (stop)
@@ -229,12 +244,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -242,8 +259,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
         esac
@@ -257,6 +274,7 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
@@ -264,6 +282,7 @@ _arguments "${_arguments_options[@]}" \
 '--no-gitignore[Do not create or modify .gitignore (default false)]' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -271,8 +290,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (login)
@@ -283,12 +302,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -296,8 +317,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (logout)
@@ -307,12 +328,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -320,8 +343,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (prune)
@@ -333,6 +356,7 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
@@ -340,6 +364,7 @@ _arguments "${_arguments_options[@]}" \
 '--docker[]' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -347,8 +372,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (run)
@@ -362,14 +387,17 @@ _arguments "${_arguments_options[@]}" \
 '--graph=[Generate a graph of the task execution and output to a file when a filename is specified (.svg, .png, .jpg, .pdf, .json, .html). Outputs dot graph to stdout when if no filename is provided]' \
 '*--ignore=[Files to ignore when calculating changed files (i.e. --since). Supports globs]:IGNORE: ' \
 '--output-logs=[Set type of process output logging. Use "full" to show all output. Use "hash-only" to show only turbo-computed task hashes. Use "new-only" to show only new output with only hashes for cached tasks. Use "none" to hide process output. (default full)]:OUTPUT_LOGS:(full none hash-only new-only errors-only)' \
+'--pkg-inference-root=[]:PKG_INFERENCE_ROOT: ' \
 '--profile=[File to write turbo'\''s performance profile output into. You can load the file up in chrome://tracing to see which parts of your build were slow]:PROFILE: ' \
 '*--scope=[Specify package(s) to act as entry points for task execution. Supports globs]:SCOPE: ' \
 '--since=[Limit/Set scope to changed packages since a mergebase. This uses the git diff ${target_branch}... mechanism to identify which packages have changed]:SINCE: ' \
+'--log-prefix=[Use "none" to remove prefixes from task logs. Note that tasks running in parallel interleave their logs and prefix is the only way to identify which task produced a log]:LOG_PREFIX:(none)' \
 '--api=[Override the endpoint for API calls]:API: ' \
 '--cpuprofile=[Specify a file to save a cpu profile]:CPU_PROFILE: ' \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
@@ -386,16 +414,16 @@ _arguments "${_arguments_options[@]}" \
 '--remote-only[Ignore the local filesystem cache for all tasks. Only allow reading and caching artifacts using the remote cache]' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
 '(--verbosity)*-v[]' \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
-'-h[Print help information (use `--help` for more detail)]' \
-'--help[Print help information (use `--help` for more detail)]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
 '*::tasks:' \
-'*::pass_through_args:' \
 && ret=0
 ;;
 (unlink)
@@ -405,12 +433,14 @@ _arguments "${_arguments_options[@]}" \
 '--cwd=[The directory in which to run turbo]:CWD:_files' \
 '--heap=[Specify a file to save a pprof heap profile]:HEAP: ' \
 '--login=[Override the login endpoint]:LOGIN: ' \
+'--remote-cache-timeout=[Set a timeout for all HTTP requests]:TIMEOUT: ' \
 '--team=[Set the team slug for API calls]:TEAM: ' \
 '--token=[Set the auth token for API calls]:TOKEN: ' \
 '--trace=[Specify a file to save a pprof trace]:TRACE: ' \
 '(-v)--verbosity=[Verbosity level]:COUNT: ' \
 '--version[]' \
 '--skip-infer[Skip any attempts to infer which version of Turbo the project is configured to use]' \
+'--no-update-notifier[Disable the turbo update notification]' \
 '--color[Force color usage in the terminal]' \
 '--no-color[Suppress color usage in the terminal]' \
 '--preflight[When enabled, turbo will precede HTTP requests with an OPTIONS request for authorization]' \
@@ -418,8 +448,8 @@ _arguments "${_arguments_options[@]}" \
 '--check-for-update[Force a check for a new version of turbo]' \
 '--__test-run[]' \
 '--single-package[Run turbo in single-package mode]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
         esac
@@ -513,4 +543,8 @@ _turbo__unlink_commands() {
     _describe -t commands 'turbo unlink commands' commands "$@"
 }
 
-_turbo "$@"
+if [ "$funcstack[1]" = "_turbo" ]; then
+    _turbo "$@"
+else
+    compdef _turbo turbo
+fi
