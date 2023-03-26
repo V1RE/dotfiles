@@ -44,7 +44,7 @@ config.leader = {
 }
 config.keys = require("keys")
 
-config.cursor_style = "BlinkingBlock"
+config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_ease_in = "EaseIn"
 config.cursor_blink_ease_out = "EaseOut"
 
