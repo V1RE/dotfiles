@@ -45,6 +45,7 @@ config.leader = {
 config.keys = require("keys")
 
 config.macos_window_background_blur = 30
+config.color_scheme = "Catppuccin Mocha"
 
 -- merge two lua
 local old_config = {
