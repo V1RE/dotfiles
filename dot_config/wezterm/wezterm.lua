@@ -30,6 +30,13 @@ config.line_height = 1.4
 config.window_frame = {
   font_size = 13.0,
   font = wezterm.font("Roboto"),
+  -- The overall background color of the tab bar when
+  -- the window is focused
+  active_titlebar_bg = "#333333",
+
+  -- The overall background color of the tab bar when
+  -- the window is not focused
+  inactive_titlebar_bg = "#333333",
 }
 
 config.pane_focus_follows_mouse = true
