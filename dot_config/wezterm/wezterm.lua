@@ -7,8 +7,8 @@ local function font_with_fallback(name, params)
   local names = {
     name,
     "nielsicon",
-    "PragmataPro Liga",
     "CaskaydiaCove Nerd Font",
+    "PragmataPro Liga",
     "PragmataPro Mono Liga",
     "Noto Color Emoji",
     "JetBrains Mono",
@@ -23,7 +23,7 @@ if wezterm.config_builder then
 end
 
 config.font_dirs = { "fonts" }
-config.font = font_with_fallback("Cascadia Code")
+config.font = font_with_fallback("PragmataPro Liga")
 config.font_size = 16
 config.line_height = 1.4
 
