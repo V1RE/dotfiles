@@ -16,7 +16,6 @@ antidote load
 # Extend PATH.
 path=(~/bin $path)
 
-
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -a --color=always $realpath'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
@@ -24,8 +23,8 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 # Export environment variables.
 export GPG_TTY=$TTY
 
-function zvm_after_lazy_keybindings() {
-  zvm_bindkey viins '^r' mcfly-history-widget
+function zvm_after_init() {
+    eval "$(mcfly init zsh)"
 }
 
 # Autoload functions.
@@ -69,11 +68,8 @@ export ZVM_TERM="xterm-256color"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
-eval "$(mcfly init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
-
-
 
 export PATH="$HOME/go/bin/:$PATH"
 
