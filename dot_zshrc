@@ -63,7 +63,7 @@ export MCFLY_KEY_SCHEME=vim
 export MCFLY_FUZZY=2
 export MCFLY_RESULTS=50
 export MCFLY_INTERFACE_VIEW=BOTTOM
-export MCFLY_PROMPT=" "
+export MCFLY_PROMPT="❯"
 
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
