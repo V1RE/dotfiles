@@ -39,7 +39,7 @@ local M = {
   {
     key = "p",
     mods = "CMD",
-    action = wezterm.action({
+    action = act({
       QuickSelectArgs = {
         patterns = {
           "https?://\\S+",
