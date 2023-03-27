@@ -16,6 +16,8 @@ antidote load
 # Extend PATH.
 path=(~/bin $path)
 
+bindkey -s '^r' mcfly-history-widget
+
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -a --color=always $realpath'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
@@ -69,7 +71,6 @@ source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
 
-	    bindkey '^R' mcfly-history-widget
 
 export PATH="$HOME/go/bin/:$PATH"
 
