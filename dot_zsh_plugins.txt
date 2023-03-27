@@ -3,8 +3,6 @@ jeffreytse/zsh-vi-mode
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-joshskidmore/zsh-fzf-history-search kind:defer
-
 Aloxaf/fzf-tab
 
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
@@ -13,4 +11,3 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 
 wfxr/forgit kind:defer
 djui/alias-tips kind:defer
-
