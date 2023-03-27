@@ -24,7 +24,9 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 # Export environment variables.
 export GPG_TTY=$TTY
 
-bindkey '^r' mcfly-history-widget
+function zvm_after_lazy_keybindings() {
+  zvm_bindkey viins '^r' mcfly-history-widget
+}
 
 # Autoload functions.
 autoload -Uz zmv
