@@ -57,7 +57,7 @@ local old_config = {
     top = 0,
     bottom = 0,
   },
-  window_background_opacity = 0.9,
+  window_background_opacity = 0.95,
   window_decorations = "RESIZE",
   hyperlink_rules = {
     -- Linkify things that look like URLs and the host has a TLD name.
