@@ -60,7 +60,6 @@ wezterm.plugin.require("https://github.com/catppuccin/wezterm").apply_to_config(
 
 -- merge two lua
 local old_config = {
-  -- color_scheme_dirs = { "./colors/" },
   color_scheme = "Molokai",
   term = "wezterm",
   window_background_opacity = 0.95,

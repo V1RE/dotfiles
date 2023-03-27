@@ -64,6 +64,7 @@ export ZVM_TERM="xterm-256color"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
+eval "$(mcfly init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
