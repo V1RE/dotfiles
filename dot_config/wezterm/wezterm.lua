@@ -24,7 +24,7 @@ end
 
 config.font_dirs = { "fonts" }
 config.font = font_with_fallback("PragmataPro Liga")
-config.font_size = 16
+config.font_size = 18
 config.line_height = 1.4
 
 config.window_frame = {
