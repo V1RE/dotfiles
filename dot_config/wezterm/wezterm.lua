@@ -24,12 +24,12 @@ end
 
 config.font_dirs = { "fonts" }
 config.font = font_with_fallback("Cascadia Code")
-config.font_size = 18
+config.font_size = 17
 config.line_height = 1.4
 
 config.window_frame = {
   font_size = 13.0,
-  font = wezterm.font("PragmataPro Mono"),
+  font = wezterm.font("Roboto"),
 }
 
 config.pane_focus_follows_mouse = true
