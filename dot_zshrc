@@ -16,7 +16,6 @@ antidote load
 # Extend PATH.
 path=(~/bin $path)
 
-bindkey -s '^r' mcfly-history-widget
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -a --color=always $realpath'
@@ -24,6 +23,8 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 
 # Export environment variables.
 export GPG_TTY=$TTY
+
+bindkey '^r' mcfly-history-widget
 
 # Autoload functions.
 autoload -Uz zmv
