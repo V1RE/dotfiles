@@ -5,8 +5,8 @@ require("events")
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
   local names = {
-    "nielsicon",
     name,
+    "nielsicon",
     "CaskaydiaCove Nerd Font",
     "PragmataPro Liga",
     "PragmataPro Mono Liga",
@@ -23,7 +23,7 @@ if wezterm.config_builder then
 end
 
 config.font_dirs = { "fonts" }
-config.font = font_with_fallback("PragmataPro Liga")
+config.font = font_with_fallback("PragmataPro Mono Liga")
 config.font_size = 18
 config.line_height = 1.4
 
