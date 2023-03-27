@@ -7,8 +7,8 @@ local function font_with_fallback(name, params)
   local names = {
     name,
     "nielsicon",
-    "CaskaydiaCove Nerd Font",
     "PragmataPro Liga",
+    "CaskaydiaCove Nerd Font",
     "PragmataPro Mono Liga",
     "Noto Color Emoji",
     "JetBrains Mono",
