@@ -23,8 +23,6 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 # Export environment variables.
 export GPG_TTY=$TTY
 
-bindkey -s '^ ' 'lfcd^M'
-
 # Autoload functions.
 autoload -Uz zmv
 
@@ -62,23 +60,21 @@ export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE='true'
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
-# eval "$(gh completion -s zsh)"
+eval "$(zoxide init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
 export PATH="$HOME/go/bin/:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
-export PATH="$PATH:$HOME/.yarn/bin"
-export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+# export PATH="/usr/local/opt/openjdk/bin:$PATH"
+# export ANDROID_HOME="$HOME/Library/Android/sdk"
+# export PATH="$PATH:$ANDROID_HOME/emulator"
+# export PATH="$PATH:$ANDROID_HOME/tools"
+# export PATH="$PATH:$ANDROID_HOME/tools/bin"
+# export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 export ADBLOCK=true
 
@@ -86,32 +82,9 @@ export ADBLOCK=true
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
-bindkey '^x' create_completion
-
 source ~/.aliases
-# source ~/bin/_p
-eval "$(zoxide init zsh)"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-
-# source "$HOME/.config/broot/launcher/bash/br"
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-#
-# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="$HOME/.sdkman"
-# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-#
-# # bun completions
-# [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
-#
-# # bun
-# export BUN_INSTALL="$HOME/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-#
-# export DENO_INSTALL="$HOME/.deno"
-# export PATH="$DENO_INSTALL/bin:$PATH"
 
 # tabtab source for packages
 # uninstall by removing these lines

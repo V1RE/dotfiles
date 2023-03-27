@@ -1,6 +1,5 @@
 jeffreytse/zsh-vi-mode
 
-jscutlery/nx-completion
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
@@ -14,4 +13,3 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 
 wfxr/forgit kind:defer
 djui/alias-tips kind:defer
-tom-doerr/zsh_codex kind:defer
