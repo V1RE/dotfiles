@@ -7,6 +7,8 @@ then
     compinit
 fi
 
+eval "$(mcfly init zsh)"
+
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
 . ~/.antidote/antidote.zsh
@@ -94,5 +96,3 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PNPM_HOME="/Users/niels/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
-
-eval "$(mcfly init zsh)"
