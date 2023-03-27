@@ -44,6 +44,8 @@ config.leader = {
 }
 config.keys = require("keys")
 
+config.macos_window_background_blur = 20
+
 -- merge two lua
 local old_config = {
   color_scheme_dirs = { "./colors/" },
