@@ -23,7 +23,7 @@ if wezterm.config_builder then
 end
 
 config.font_dirs = { "fonts" }
-config.font = font_with_fallback("PragmataPro Mono Liga")
+config.font = font_with_fallback("Casecadia Code")
 config.font_size = 18
 config.line_height = 1.4
 
