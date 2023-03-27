@@ -64,6 +64,7 @@ export MCFLY_FUZZY=2
 export MCFLY_RESULTS=50
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_PROMPT="❯"
+export MCFLY_DISABLE_RUN_COMMAND=true
 
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
