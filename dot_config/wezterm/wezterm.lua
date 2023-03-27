@@ -54,8 +54,8 @@ wezterm.plugin.require("https://github.com/nekowinston/wezterm-bar").apply_to_co
   dividers = "slant_left",
   indicator = {
     leader = {
-      off = wezterm.nerdfonts.cod_terminal_tmux .. " ",
-      on = wezterm.nerdfonts.cod_move .. " ",
+      off = " ",
+      on = " ",
     },
   },
 })
