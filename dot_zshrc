@@ -7,8 +7,6 @@ then
     compinit
 fi
 
-eval "$(mcfly init zsh)"
-
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
 . ~/.antidote/antidote.zsh
@@ -66,8 +64,12 @@ export ZVM_TERM="xterm-256color"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
+eval "$(mcfly init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
+
+
+	    bindkey '^R' mcfly-history-widget
 
 export PATH="$HOME/go/bin/:$PATH"
 
