@@ -22,10 +22,6 @@ wezterm.on("ActivatePaneDirection-left", conditionalActivatePane("Left", "h"))
 wezterm.on("ActivatePaneDirection-up", conditionalActivatePane("Up", "k"))
 wezterm.on("ActivatePaneDirection-down", conditionalActivatePane("Down", "j"))
 
-wezterm.on("update-right-status", function(window, pane)
-  window:set_right_status(pane:get_foreground_process_name() or "")
-end)
-
 wezterm.on("window-config-reloaded", function(window)
   window:toast_notification("Configuration loaded.", "", nil, 5000)
 end)
