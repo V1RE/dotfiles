@@ -48,8 +48,8 @@ config.macos_window_background_blur = 20
 
 -- merge two lua
 local old_config = {
-  color_scheme_dirs = { "./colors/" },
-  color_scheme = "onedarker",
+  -- color_scheme_dirs = { "./colors/" },
+  color_scheme = "Molokai",
   term = "wezterm",
   window_padding = {
     left = 0,
