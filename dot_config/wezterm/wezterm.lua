@@ -62,7 +62,7 @@ wezterm.plugin.require("https://github.com/catppuccin/wezterm").apply_to_config(
 local old_config = {
   color_scheme = "Molokai",
   term = "wezterm",
-  window_background_opacity = 0.95,
+  window_background_opacity = 0.9,
   window_decorations = "RESIZE",
   hyperlink_rules = {
     -- Linkify things that look like URLs and the host has a TLD name.
