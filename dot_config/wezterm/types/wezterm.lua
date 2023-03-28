@@ -115,3 +115,4 @@ wezterm.action = nil
 --     "utf16_to_utf8": function,
 --     "version": "20230327-073855-407b1297",
 -- }
+return wezterm

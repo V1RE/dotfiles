@@ -1,10 +1,10 @@
 {
   "neodev": {
     "library": {
-      "runtime": true,
-      "plugins": true,
-      "enabled": true,
-      "types": true
+      "runtime": false,
+      "plugins": false,
+      "enabled": false,
+      "types": false
     },
     "pathStrict": true
   },
