@@ -5,7 +5,8 @@
       "plugins": true,
       "enabled": true,
       "types": true
-    }
+    },
+    "pathStrict": true
   },
   "neoconf": {
     "plugins": {
