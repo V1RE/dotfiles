@@ -51,9 +51,9 @@ mason_lspconfig.setup_handlers({
     lspconfig.denols.setup(merge_options(server))
   end,
 
-  -- ["vtsls"] = function(server)
-  --   lspconfig.vtsls.setup(merge_options(server))
-  -- end,
+  ["vtsls"] = function(server)
+    lspconfig.vtsls.setup(merge_options(server))
+  end,
 
   -- ["tsserver"] = function(server)
   --   require("typescript").setup({ server = merge_options(server) })
