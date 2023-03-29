@@ -34,18 +34,22 @@ mason_lspconfig.setup_handlers({
   function(server)
     lspconfig[server].setup(opts)
   end,
+
   ["lua_ls"] = function(server)
     lspconfig.lua_ls.setup(merge_options(server))
   end,
+
   ["jsonls"] = function(server)
     lspconfig.jsonls.setup(merge_options(server))
   end,
+
   ["yamlls"] = function(server)
     lspconfig.yamlls.setup(merge_options(server))
   end,
-  --[[ ["denols"] = function(server)
+
+  ["denols"] = function(server)
     lspconfig.denols.setup(merge_options(server))
-  end, ]]
+  end,
 
   ["vtsls"] = function(server)
     lspconfig.vtsls.setup(merge_options(server))
@@ -53,5 +57,9 @@ mason_lspconfig.setup_handlers({
 
   ["tsserver"] = function(server)
     require("typescript").setup({ server = merge_options(server) })
+  end,
+
+  ["stylelint_lsp"] = function(server)
+    lspconfig.stylelint_lsp.setup(merge_options(server))
   end,
 })
