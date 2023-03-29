@@ -1,12 +1,12 @@
 {
   "neodev": {
     "library": {
-      "runtime": false,
-      "plugins": false,
-      "enabled": false,
-      "types": false
+      "runtime": true,
+      "plugins": true,
+      "enabled": true,
+      "types": true
     },
-    "pathStrict": true
+    "pathStrict": false
   },
   "neoconf": {
     "plugins": {
