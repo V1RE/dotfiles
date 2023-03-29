@@ -3,7 +3,7 @@ local null_ls = require("null-ls")
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
-      return client.name ~= "tsserver"
+      return client.name ~= "tsserver" or client.name ~= "vtsls"
     end,
     bufnr = bufnr,
   })
@@ -25,7 +25,7 @@ null_ls.setup({
   sources = {
     code_actions.eslint_d,
     code_actions.shellcheck,
-    require("typescript.extensions.null-ls.code-actions"),
+    -- require("typescript.extensions.null-ls.code-actions"),
     formatting.eslint_d,
     formatting.google_java_format,
     formatting.prettierd.with({
