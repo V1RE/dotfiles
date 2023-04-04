@@ -5,7 +5,7 @@
 updates() {
     brew update
     brew upgrade
-    brew reinstall neovim
+    brew upgrade neovim --fetch-HEAD
     brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
     n lts -d
     volta install pnpm turbo taze vercel @antfu/ni node@lts
