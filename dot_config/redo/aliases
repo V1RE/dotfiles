@@ -8,8 +8,8 @@ updates() {
     brew reinstall neovim
     brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
     n lts -d
-    npx browserslist@latest --update-db
-    ruptup update
+    volta install pnpm turbo taze vercel @antfu/ni node@lts
+    rustup update
     cargo install-update -a
     antidote update
 }
