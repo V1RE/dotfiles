@@ -50,7 +50,13 @@ null_ls.setup({
     formatting.beautysh,
     -- formatting.jq,
     hover.dictionary,
-    linters.eslint_d,
+    linters.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          "package.json",
+        })
+      end,
+    }),
     linters.luacheck,
     linters.shellcheck,
     -- linters.stylelint.with({
