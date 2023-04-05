@@ -26,7 +26,20 @@ null_ls.setup({
     code_actions.eslint_d,
     code_actions.shellcheck,
     -- require("typescript.extensions.null-ls.code-actions"),
-    formatting.eslint_d,
+    formatting.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          "package.json",
+        })
+      end,
+    }),
+    formatting.deno_fmt.with({
+      condition = function(utils)
+        return not utils.root_has_file({
+          "package.json",
+        })
+      end,
+    }),
     formatting.google_java_format,
     formatting.prettierd.with({
       extra_filetypes = { "liquid" },
@@ -37,7 +50,6 @@ null_ls.setup({
     formatting.beautysh,
     -- formatting.jq,
     hover.dictionary,
-    linters.curlylint,
     linters.eslint_d,
     linters.luacheck,
     linters.shellcheck,
