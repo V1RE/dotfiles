@@ -71,7 +71,7 @@ export MCFLY_MENU_FOREGROUND=black
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
-# eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
@@ -80,12 +80,12 @@ source "$HOME/.config/lf/lficons.zsh"
 
 export PATH="$HOME/go/bin/:$PATH"
 
-# export PATH="/usr/local/opt/openjdk/bin:$PATH"
-# export ANDROID_HOME="$HOME/Library/Android/sdk"
-# export PATH="$PATH:$ANDROID_HOME/emulator"
-# export PATH="$PATH:$ANDROID_HOME/tools"
-# export PATH="$PATH:$ANDROID_HOME/tools/bin"
-# export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 export ADBLOCK=true
 
@@ -105,23 +105,3 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PNPM_HOME="/Users/niels/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
-#compdef 2d
-###-begin-2d-completions-###
-#
-# yargs command completion script
-#
-# Installation: 2d completion >> ~/.zshrc
-#    or 2d completion >> ~/.zprofile on OSX.
-#
-_2d_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" 2d --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _2d_yargs_completions 2d
-###-end-2d-completions-###
-
