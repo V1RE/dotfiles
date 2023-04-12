@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "rcarriga/nvim-notify",
-  enabled = false,
+  enabled = true,
   keys = {
     {
       "<leader>nd",

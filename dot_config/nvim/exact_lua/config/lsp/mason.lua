@@ -55,9 +55,9 @@ mason_lspconfig.setup_handlers({
     lspconfig.vtsls.setup(merge_options(server))
   end,
 
-  -- ["tsserver"] = function(server)
-  --   require("typescript").setup({ server = merge_options(server) })
-  -- end,
+  ["tsserver"] = function(server)
+    require("typescript").setup({ server = merge_options(server) })
+  end,
 
   ["stylelint_lsp"] = function(server)
     lspconfig.stylelint_lsp.setup(merge_options(server))
