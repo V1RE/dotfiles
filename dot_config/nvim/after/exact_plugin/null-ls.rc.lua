@@ -3,7 +3,7 @@ local null_ls = require("null-ls")
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
-      return client.name ~= "tsserver" or client.name ~= "vtsls"
+      return client.name ~= "tsserver" and client.name ~= "vtsls"
     end,
     bufnr = bufnr,
   })
