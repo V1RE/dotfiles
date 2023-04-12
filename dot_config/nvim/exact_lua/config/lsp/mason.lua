@@ -48,7 +48,7 @@ mason_lspconfig.setup_handlers({
   end,
 
   ["denols"] = function(server)
-    lspconfig.denols.setup(merge_options(server))
+    -- lspconfig.denols.setup(merge_options(server))
   end,
 
   ["vtsls"] = function(server)
