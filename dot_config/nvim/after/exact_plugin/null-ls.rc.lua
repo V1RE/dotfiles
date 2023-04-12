@@ -3,7 +3,7 @@ local null_ls = require("null-ls")
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
-      return client.name ~= "tsserver" and client.name ~= "vtsls"
+      return client.name ~= "vtsls"
     end,
     bufnr = bufnr,
   })
@@ -41,9 +41,9 @@ null_ls.setup({
       end,
     }),
     formatting.google_java_format,
-    -- formatting.prettierd.with({
-    --   extra_filetypes = { "liquid" },
-    -- }),
+    formatting.prettierd.with({
+      extra_filetypes = { "liquid" },
+    }),
     formatting.shfmt,
     formatting.stylelint,
     formatting.stylua,
