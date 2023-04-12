@@ -30,6 +30,8 @@ vim.cmd([[
     autocmd BufReadPost Podfile,Appfile,Fastfile,Matchfile,Pluginfile set ft=ruby
     autocmd BufReadPost *.ejs.t set ft=embedded_template
     autocmd BufReadPost *.hbs set ft=html
+    autocmd BufReadPost *.liquid set ft=liquid.html
     autocmd BufReadPost .prettierignore set ft=gitignore
+    autocmd BufReadPost dot_zshrc,dot_zshenv set ft=zsh
   augroup end
 ]])
