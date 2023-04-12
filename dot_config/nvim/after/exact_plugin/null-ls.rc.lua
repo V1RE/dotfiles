@@ -25,7 +25,6 @@ null_ls.setup({
   sources = {
     code_actions.eslint_d,
     code_actions.shellcheck,
-    -- require("typescript.extensions.null-ls.code-actions"),
     formatting.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({
@@ -35,8 +34,8 @@ null_ls.setup({
     }),
     formatting.deno_fmt.with({
       condition = function(utils)
-        return not utils.root_has_file({
-          "package.json",
+        return utils.root_has_file({
+          "deno.json",
         })
       end,
     }),
@@ -45,7 +44,6 @@ null_ls.setup({
       extra_filetypes = { "liquid" },
     }),
     formatting.shfmt,
-    formatting.stylelint,
     formatting.stylua,
     formatting.beautysh,
     -- formatting.jq,
@@ -59,18 +57,6 @@ null_ls.setup({
     }),
     linters.luacheck,
     linters.shellcheck,
-    -- linters.stylelint.with({
-    --   condition = function(utils)
-    --     return utils.root_has_file({
-    --       ".stylelintrc",
-    --       ".stylelintrc.js",
-    --       ".stylelintrc.cjs",
-    --       ".stylelintrc.yaml",
-    --       ".stylelintrc.yml",
-    --       ".stylelintrc.json",
-    --     })
-    --   end,
-    -- }),
     linters.zsh,
     linters.actionlint,
   },

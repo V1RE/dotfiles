@@ -2,7 +2,6 @@
 local denols = {
   settings = {
     deno = {
-      lint = false,
       enable = false,
     },
   },
