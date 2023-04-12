@@ -41,9 +41,9 @@ null_ls.setup({
       end,
     }),
     formatting.google_java_format,
-    formatting.prettierd.with({
-      extra_filetypes = { "liquid" },
-    }),
+    -- formatting.prettierd.with({
+    --   extra_filetypes = { "liquid" },
+    -- }),
     formatting.shfmt,
     formatting.stylelint,
     formatting.stylua,
