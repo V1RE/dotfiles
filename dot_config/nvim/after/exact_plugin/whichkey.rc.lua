@@ -58,7 +58,16 @@ local mappings = {
       name = i.Field .. "LSP",
       I = { "<cmd>Mason<cr>", "Installer Info" },
       a = { vim.lsp.buf.code_action, "Code Action" },
-      f = { vim.lsp.buf.format, "Format" },
+      f = {
+        function()
+          vim.lsp.buf.format({
+            filter = function(client)
+              return client.name == "null-ls"
+            end,
+          })
+        end,
+        "Format",
+      },
       i = { "<cmd>LspInfo<cr>", "Info" },
       j = { vim.diagnostic.goto_next, "Next Diagnostic" },
       k = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
