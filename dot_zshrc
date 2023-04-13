@@ -75,6 +75,7 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
+eval "$(github-copilot-cli alias -- "$0")"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
