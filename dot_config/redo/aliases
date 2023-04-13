@@ -32,8 +32,7 @@ adbr() {
 
 # Generated on 2022-05-11T14:20:11+02:00.
 adbs() {
-    adbr &
-    autoadb scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0 --shortcut-mod=lctrl+lalt
+    autoadb "adb -s '{}' reverse tcp:8081 tcp:8081 && scrcpy -Kw --power-off-on-close -s '{}' --window-width 506 --window-height 1125 --window-x -506 --window-y 0 --shortcut-mod=lctrl+lalt"
 }
 
 # Generated on 2022-06-08T14:41:52+02:00.
