@@ -75,7 +75,6 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
-eval "$(github-copilot-cli alias -- "$0")"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
@@ -97,6 +96,8 @@ compdef _directories md
 source ~/.aliases
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+eval "$(github-copilot-cli alias -- "$0")"
 
 # tabtab source for packages
 # uninstall by removing these lines
