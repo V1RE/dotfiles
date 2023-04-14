@@ -1,5 +1,8 @@
+local util = require("lspconfig.util")
+
 ---@type lspconfig.options.vtsls
 local tsserver = {
+  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   settings = {
     vtsls = {
       javascript = { format = { enable = false } },
