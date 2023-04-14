@@ -1,10 +1,6 @@
 ---@type lspconfig.options.denols
 local denols = {
-  settings = {
-    deno = {
-      enable = false,
-    },
-  },
+  autostart = false,
 }
 
 return denols
