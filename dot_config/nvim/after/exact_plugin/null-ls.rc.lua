@@ -13,7 +13,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
       -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name ~= "vtsls" and client.name ~= "tsserver" and client.name ~= "denols"
+      return client.name == "null-ls" or client.name == "rust_analyzer"
     end,
     bufnr = bufnr,
   })
