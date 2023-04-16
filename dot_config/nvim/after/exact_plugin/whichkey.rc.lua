@@ -62,7 +62,6 @@ local mappings = {
         function()
           vim.lsp.buf.format({
             filter = function(client)
-              require("notify").notify(client.name)
               return client.name == "null-ls"
             end,
           })
