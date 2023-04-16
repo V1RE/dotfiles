@@ -61,6 +61,7 @@ null_ls.setup({
     formatting.shfmt,
     formatting.stylua,
     formatting.beautysh,
+    formatting.rustfmt,
     -- formatting.jq,
     hover.dictionary,
     linters.eslint_d.with({
