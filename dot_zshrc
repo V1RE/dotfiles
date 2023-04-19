@@ -107,3 +107,23 @@ eval "$(github-copilot-cli alias -- "$0")"
 export PNPM_HOME="/Users/niels/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+#compdef 2d
+###-begin-2d-completions-###
+#
+# yargs command completion script
+#
+# Installation: 2d completion >> ~/.zshrc
+#    or 2d completion >> ~/.zprofile on OSX.
+#
+_2d_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" 2d --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _2d_yargs_completions 2d
+###-end-2d-completions-###
+
