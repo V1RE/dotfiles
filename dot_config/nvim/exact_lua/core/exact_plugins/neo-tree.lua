@@ -65,7 +65,7 @@ local M = {
       },
       window = {
         mappings = {
-          ["l"] = "open",
+          ["l"] = "open_with_window_picker",
           ["h"] = "close_node",
           ["<esc>"] = "revert_preview",
           ["a"] = { "add", config = { show_path = "relative" } },
