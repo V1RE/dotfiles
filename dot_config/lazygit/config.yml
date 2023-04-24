@@ -24,4 +24,4 @@ git:
     showGraph: "always"
 quitOnTopLevelReturn: false
 os:
-  openCommand: "v {{filename}}"
+  open: "v {{filename}}"
