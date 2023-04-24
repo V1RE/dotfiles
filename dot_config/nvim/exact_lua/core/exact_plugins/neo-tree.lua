@@ -4,7 +4,9 @@ local i = require("config.icons")
 local M = {
   {
     "s1n7ax/nvim-window-picker",
-    config = true,
+    opts = {
+      selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -74,6 +76,7 @@ local M = {
           ["H"] = "prev_source",
           ["L"] = "next_source",
           ["I"] = "toggle_hidden",
+          ["v"] = "open_vsplit",
         },
       },
       filesystem = {
