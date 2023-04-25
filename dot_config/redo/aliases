@@ -3,50 +3,50 @@
 
 # Generated on 2022-04-21T09:35:20+02:00.
 updates() {
-    brew update
-    brew upgrade
-    brew upgrade neovim --fetch-HEAD
-    brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
-    n lts -d
-    volta install pnpm turbo taze github-copilot-cli @antfu/ni node@lts
-    rustup update
-    cargo install-update -a
-    antidote update
+	brew update
+	brew upgrade
+	brew upgrade neovim --fetch-HEAD
+	brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
+	n lts -d
+	volta install pnpm turbo taze @githubnext/github-copilot-cli @antfu/ni node@lts
+	rustup update
+	cargo install-update -a
+	antidote update
 }
 
 # Generated on 2022-04-22T16:21:46+02:00.
 swoosh() {
-    defaults write com.apple.dock workspaces-swoosh-animation-off -bool yes
-    killall Dock
+	defaults write com.apple.dock workspaces-swoosh-animation-off -bool yes
+	killall Dock
 }
 
 # Generated on 2022-05-09T09:17:30+02:00.
 xcode() {
-    open -a /Applications/Xcode.app ./ios/*.xcworkspace
+	open -a /Applications/Xcode.app ./ios/*.xcworkspace
 }
 
 # Generated on 2022-05-11T14:20:11+02:00.
 adbs() {
-    autoadb adb_mirror_screen '{}'
+	autoadb adb_mirror_screen '{}'
 }
 
 # Generated on 2022-06-07T11:01:17+02:00.
 adbr() {
-    autoadb adb -s '{}' reverse tcp:8081 tcp:8081
+	autoadb adb -s '{}' reverse tcp:8081 tcp:8081
 }
 
 # Generated on 2022-06-08T14:41:52+02:00.
 adbc() {
-    adb shell pm clear com.iamsterdam.iamsterdam
-    adb shell monkey -p com.iamsterdam.iamsterdam 1
+	adb shell pm clear com.iamsterdam.iamsterdam
+	adb shell monkey -p com.iamsterdam.iamsterdam 1
 }
 
 # Generated on 2022-06-30T13:12:01+02:00.
 nuil() {
-    nu -i --latest
+	nu -i --latest
 }
 
 # Generated on 2022-06-30T13:12:49+02:00.
 nui() {
-    nu -i
+	nu -i
 }
