@@ -2,24 +2,29 @@
 local M = {
   {
     "rmagatti/goto-preview",
-    setup = true,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      dismiss_on_move = true,
+    },
     keys = {
       {
         "gpd",
         function()
-          require("goto-preview").goto_preview_definition()
+          require("goto-preview").goto_preview_definition({})
         end,
       },
       {
         "gpt",
         function()
-          require("goto-preview").goto_preview_type_definition()
+          require("goto-preview").goto_preview_type_definition({})
         end,
       },
       {
         "gpi",
         function()
-          require("goto-preview").goto_preview_implementation()
+          require("goto-preview").goto_preview_implementation({})
         end,
       },
       {
