@@ -21,10 +21,10 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Resize with arrows
-keymap("n", "<S-Up>", ":resize -2<CR>")
-keymap("n", "<S-Down>", ":resize +2<CR>")
-keymap("n", "<S-Left>", ":vertical resize -2<CR>")
-keymap("n", "<S-Right>", ":vertical resize +2<CR>")
+keymap("n", "<Up>", ":resize -2<CR>")
+keymap("n", "<Down>", ":resize +2<CR>")
+keymap("n", "<Left>", ":vertical resize -2<CR>")
+keymap("n", "<Right>", ":vertical resize +2<CR>")
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi")
