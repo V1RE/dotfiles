@@ -2,7 +2,9 @@
 local M = {
   {
     "dnlhc/glance.nvim",
-    config = true,
+    opts = {
+      detatched = true,
+    },
   },
 }
 
