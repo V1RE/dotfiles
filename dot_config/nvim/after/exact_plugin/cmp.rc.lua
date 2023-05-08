@@ -11,17 +11,17 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item()),
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item()),
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<Tab>"] = cmp.mapping.select_next_item(),
-    ["<C-j>"] = function()
+    ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
+    ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item()),
+    ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item()),
+    ["<C-j>"] = cmp.mapping(function()
       ls.jump(1)
-    end,
+    end),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -54,9 +54,6 @@ cmp.setup({
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  experimental = {
-    ghost_text = true,
-  },
   formatters = {
     insert_text = require("copilot_cmp.format").remove_existing,
   },
@@ -69,8 +66,8 @@ cmp.setup({
       cmp.config.compare.offset,
       -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
       cmp.config.compare.score,
-      cmp.config.compare.recently_used,
-      cmp.config.compare.locality,
+      -- cmp.config.compare.recently_used,
+      -- cmp.config.compare.locality,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
