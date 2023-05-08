@@ -9,6 +9,8 @@ function upgrade() {
 
 alias cm="chezmoi"
 
+alias cpd="cp -r ~/Downloads/${1} ."
+
 # Dotfiles
 alias dots="chezmoi edit --watch --apply"
 
