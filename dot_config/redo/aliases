@@ -8,9 +8,10 @@ updates() {
 	brew upgrade neovim --fetch-HEAD
 	brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
 	n lts -d
-	volta install pnpm turbo taze @githubnext/github-copilot-cli @antfu/ni node@lts
 	rustup update
 	cargo install-update -a
+	rtx plugins update
+	pnpm install --global pnpm turbo taze @githubnext/github-copilot-cli @antfu/ni node@lts
 	antidote update
 }
 
