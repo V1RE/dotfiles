@@ -3,3 +3,4 @@ missing_runtime_behavior = "prompt"
 
 [tools]
 node = "lts"
+pnpm = "latest"
