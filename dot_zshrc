@@ -71,9 +71,10 @@ export MCFLY_MENU_FOREGROUND=black
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 # eval "$(rbenv init - zsh)"
+eval "$(rtx activate zsh)"
 eval "$(zoxide init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
@@ -126,4 +127,3 @@ _2d_yargs_completions()
 }
 compdef _2d_yargs_completions 2d
 ###-end-2d-completions-###
-eval "$(rtx activate zsh)"
