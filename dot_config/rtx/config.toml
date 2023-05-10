@@ -4,3 +4,5 @@ missing_runtime_behavior = "prompt"
 [tools]
 node = "lts"
 pnpm = "latest"
+ruby = "3"
+java = "zulu-11"
