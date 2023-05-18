@@ -46,7 +46,7 @@ setopt share_history
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
 export VISUAL=$EDITOR
-export MANPAGER='$EDITOR +Man!'
+export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export BAT_PAGER="/usr/bin/less"
 export GIT_PAGER="delta"
@@ -118,10 +118,10 @@ export PATH="$PNPM_HOME:$PATH"
 #
 _2d_yargs_completions()
 {
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" 2d --get-yargs-completions "${words[@]}"))
+    local reply
+    local si=$IFS
+    IFS=$'
+    ' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" 2d --get-yargs-completions "${words[@]}"))
   IFS=$si
   _describe 'values' reply
 }
