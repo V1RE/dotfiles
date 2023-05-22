@@ -1,4 +1,4 @@
 #!/bin/bash
 
 adb -s "$1" reverse tcp:8081 tcp:8081
-scrcpy -Kw --power-off-on-close -s "$1" --window-width 506 --window-height 1125 --window-x -506 --window-y 0 --shortcut-mod=lsuper
+scrcpy -Kw --power-off-on-close -s "$1" --shortcut-mod=lsuper
