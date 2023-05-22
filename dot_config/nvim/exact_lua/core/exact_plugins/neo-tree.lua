@@ -14,12 +14,6 @@ local M = {
     cmd = "Neotree",
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
-      vim.cmd([[
-        augroup NEOTREE_AUGROUP
-          autocmd!
-          au VimEnter * lua vim.defer_fn(function() vim.cmd("Neotree show left") end, 10)
-        augroup END
-      ]])
     end,
     opts = {
       popup_border_style = "rounded",
@@ -89,8 +83,8 @@ local M = {
       },
     },
     keys = {
-      { "<leader>e", "<cmd>Neotree focus<cr>", desc = i.NeoTree .. "Focus tree" },
-      { "<leader>E", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
+      { "<leader>E", "<cmd>Neotree focus<cr>", desc = i.NeoTree .. "Focus tree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
     },
   },
 }
