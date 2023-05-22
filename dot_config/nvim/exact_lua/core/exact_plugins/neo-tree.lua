@@ -35,6 +35,15 @@ local M = {
         },
       },
 
+      event_handlers = {
+        {
+          event = "file_opened",
+          handler = function()
+            require("neo-tree").close_all()
+          end,
+        },
+      },
+
       default_component_configs = {
         icon = {
           folder_closed = i.ClosedFolder,
