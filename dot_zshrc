@@ -79,6 +79,10 @@ eval "$(zoxide init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
+
+export PNPM_HOME="/Users/niels/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 export PATH="$HOME/go/bin/:$PATH"
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
@@ -102,10 +106,6 @@ eval "$(github-copilot-cli alias -- "$0")"
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# pnpm
-export PNPM_HOME="/Users/niels/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
 #compdef 2d
 ###-begin-2d-completions-###
 #
