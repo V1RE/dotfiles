@@ -95,8 +95,6 @@ function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
 source ~/.aliases
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 eval "$(github-copilot-cli alias -- "$0")"
 
