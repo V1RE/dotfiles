@@ -6,17 +6,31 @@ local tsserver = {
   single_file_support = false,
   settings = {
     vtsls = {
-      javascript = { format = { enable = false } },
+      javascript = {
+        format = { enable = false },
+        inlayHints = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
       typescript = {
         format = { enable = false },
         implementationsCodeLens = { enabled = true },
         inlayHints = {
-          enumMemberValues = { enabled = true },
-          parameterNames = { enabled = "all" },
-          functionLikeReturnTypes = { enabled = true },
-          parameterTypes = { enabled = true },
-          propertyDeclarationTypes = { enabled = true },
-          variableTypes = { enabled = true },
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
         },
         preferences = {
           useAliasesForRenames = false,
