@@ -26,7 +26,7 @@ local M = {
         type_hints = {
           show = true,
         },
-        label_formatter = function(tbl, kind, opts, client_name)
+        label_formatter = function(tbl, kind, opts)
           if kind == 2 and not opts.parameter_hints.show then
             return ""
           elseif not opts.type_hints.show then
@@ -58,7 +58,7 @@ local M = {
         priority = 0,
       },
       enabled_at_startup = true,
-      debug_mode = false,
+      debug_mode = true,
     },
   },
 }
