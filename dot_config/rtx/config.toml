@@ -1,5 +1,6 @@
 [settings]
 missing_runtime_behavior = "prompt"
+experimental = true
 
 [tools]
 node = "lts"
