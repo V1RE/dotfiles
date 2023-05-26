@@ -7,6 +7,12 @@ local tsserver = {
     javascript = {
       format = { enable = false },
       inlayHints = {
+        variableTypes = { enabled = true },
+        parameterTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = false },
+        parameterNames = { enabled = "all" },
+        enumMemberValues = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
         includeInlayParameterNameHints = "all",
         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
         includeInlayFunctionParameterTypeHints = true,
@@ -20,7 +26,14 @@ local tsserver = {
     typescript = {
       format = { enable = false },
       implementationsCodeLens = { enabled = true },
+      preferGoToSourceDefinition = true,
       inlayHints = {
+        variableTypes = { enabled = true },
+        parameterTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = false },
+        parameterNames = { enabled = "all" },
+        enumMemberValues = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
         includeInlayParameterNameHints = "all",
         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
         includeInlayFunctionParameterTypeHints = true,
