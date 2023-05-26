@@ -28,10 +28,10 @@ local tsserver = {
       implementationsCodeLens = { enabled = true },
       preferGoToSourceDefinition = true,
       inlayHints = {
-        variableTypes = { enabled = true },
+        variableTypes = { enabled = false },
         parameterTypes = { enabled = true },
-        functionLikeReturnTypes = { enabled = false },
-        parameterNames = { enabled = "all" },
+        functionLikeReturnTypes = { enabled = true },
+        parameterNames = { enabled = "literals" },
         enumMemberValues = { enabled = true },
         propertyDeclarationTypes = { enabled = true },
         includeInlayParameterNameHints = "all",
@@ -40,7 +40,7 @@ local tsserver = {
         includeInlayVariableTypeHints = true,
         includeInlayVariableTypeHintsWhenTypeMatchesName = false,
         includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
       },
       preferences = {
