@@ -40,7 +40,7 @@ local tsserver = {
         includeInlayVariableTypeHints = true,
         includeInlayVariableTypeHintsWhenTypeMatchesName = false,
         includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = false,
         includeInlayEnumMemberValueHints = true,
       },
       preferences = {
