@@ -8,6 +8,7 @@ local lua_ls = {
       hint = {
         enable = true,
         setType = true,
+        arrayIndex = "Disable",
       },
       format = {
         enable = false,
