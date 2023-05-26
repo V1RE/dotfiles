@@ -24,7 +24,7 @@ local M = {
           show = true,
         },
         type_hints = {
-          show = true,
+          show = false,
         },
         label_formatter = function(tbl, kind, opts)
           if kind == 2 and not opts.parameter_hints.show then
