@@ -26,7 +26,14 @@ local tsserver = {
     typescript = {
       format = { enable = false },
       implementationsCodeLens = { enabled = true },
-      preferGoToSourceDefinition = true,
+      preferGoToSourceDefinition = false,
+      referencesCodeLens = {
+        showOnAllFunctions = true,
+        enabled = true,
+      },
+      suggest = {
+        completeFunctionCalls = true,
+      },
       inlayHints = {
         variableTypes = { enabled = false },
         parameterTypes = { enabled = true },
@@ -48,6 +55,7 @@ local tsserver = {
         importModuleSpecifier = "non-relative",
       },
       experimental = {
+        aiQuickFix = true,
         enableProjectDiagnostics = true,
         completion = { enableServerSideFuzzyMatch = true, entriesLimit = 25 },
         tsserver = { maxTsServerMemory = 4096 },
