@@ -100,8 +100,8 @@ local M = {
         follow_current_file = true,
         group_empty_dirs = true,
         use_libuv_file_watcher = true,
-        mappings = {
-          ["I"] = "toggle_hidden",
+        window = {
+          mappings = { ["I"] = "toggle_hidden" },
         },
       },
     },
