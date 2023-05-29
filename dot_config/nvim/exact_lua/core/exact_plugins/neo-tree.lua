@@ -3,12 +3,6 @@ local i = require("config.icons")
 ---@type LazyPluginSpec[]
 local M = {
   {
-    "s1n7ax/nvim-window-picker",
-    opts = {
-      selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    },
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
     cmd = "Neotree",
@@ -16,6 +10,26 @@ local M = {
       vim.g.neo_tree_remove_legacy_commands = 1
     end,
     lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+      {
+        "s1n7ax/nvim-window-picker",
+        opts = {
+          selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          autoselect_one = true,
+          include_current = false,
+          filter_rules = {
+            bo = {
+              filetype = { "neo-tree", "neo-tree-popup", "notify" },
+              buftype = { "terminal", "quickfix" },
+            },
+          },
+          other_win_hl_color = "#e35e4f",
+        },
+      },
+    },
     opts = {
       popup_border_style = "rounded",
 
@@ -24,14 +38,14 @@ local M = {
         show_scrolled_off_parent_node = true,
         content_layout = "center",
         separator = "",
-        sources = { -- table
+        sources = {
           {
-            source = "filesystem", -- string
-            display_name = "  Files ", -- string | nil
+            source = "filesystem",
+            display_name = "  Files ",
           },
           {
-            source = "git_status", -- string
-            display_name = "  Git ", -- string | nil
+            source = "git_status",
+            display_name = "  Git ",
           },
         },
       },
