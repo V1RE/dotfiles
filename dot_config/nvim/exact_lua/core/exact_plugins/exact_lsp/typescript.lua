@@ -33,6 +33,11 @@ local M = {
       end)
     end,
   },
+
+  {
+    "dmmulroy/tsc.nvim",
+    config = true,
+  },
 }
 
 return M
