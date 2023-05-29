@@ -36,7 +36,13 @@ local M = {
 
   {
     "dmmulroy/tsc.nvim",
-    config = true,
+    config = function()
+      require("tsc").setup({
+        flags = {
+          build = true,
+        },
+      })
+    end,
   },
 }
 
