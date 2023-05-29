@@ -17,7 +17,6 @@ local M = {
   { "j-hui/fidget.nvim" },
   { "jose-elias-alvarez/null-ls.nvim" },
   { "karb94/neoscroll.nvim" },
-  { "lewis6991/gitsigns.nvim" },
   { "luukvbaal/stabilize.nvim" },
   { "mizlan/iswap.nvim" },
   { "moll/vim-bbye" },
