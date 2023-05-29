@@ -15,6 +15,7 @@ local M = {
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
     end,
+    lazy = false,
     opts = {
       popup_border_style = "rounded",
 
