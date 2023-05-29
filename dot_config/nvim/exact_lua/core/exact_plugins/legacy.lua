@@ -1,9 +1,7 @@
 ---@type LazyPluginSpec[]
 local M = {
-  { "tpope/vim-liquid" },
   { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "MunifTanjim/nui.nvim" },
-  { "antoinemadec/FixCursorHold.nvim" },
   { "b0o/schemastore.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
   { "famiu/bufdelete.nvim" },
@@ -21,13 +19,11 @@ local M = {
   { "karb94/neoscroll.nvim" },
   { "lewis6991/gitsigns.nvim" },
   { "luukvbaal/stabilize.nvim" },
-  { "max397574/colortils.nvim" },
   { "mizlan/iswap.nvim" },
   { "moll/vim-bbye" },
   { "monaqa/dial.nvim" },
   { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
   { "nvim-lua/plenary.nvim" },
-  { "nvim-lua/popup.nvim" },
   { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
   { "tpope/vim-abolish" },
