@@ -78,7 +78,6 @@ local M = {
           ["m"] = { "move", config = { show_path = "relative" } },
           ["H"] = "prev_source",
           ["L"] = "next_source",
-          ["I"] = "toggle_hidden",
           ["v"] = "open_vsplit",
         },
       },
@@ -89,6 +88,9 @@ local M = {
         follow_current_file = true,
         group_empty_dirs = true,
         use_libuv_file_watcher = true,
+        mappings = {
+          ["I"] = "toggle_hidden",
+        },
       },
     },
     keys = {
