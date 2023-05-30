@@ -13,6 +13,7 @@ local M = {
   opts = {
     highlight_unlabeled_phase_one_targets = true,
   },
+  enabled = false,
 }
 
 return M
