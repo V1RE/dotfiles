@@ -1,4 +1,18 @@
----@class NeoComposer
+---@type LazyPluginSpec[]
+local M = {
+  {
+    "ecthelionvi/NeoComposer.nvim",
+    dependencies = { "kkharji/sqlite.lua" },
+    ---@type NeoComposer.Config
+    opts = {
+      keymaps = {
+        toggle_macro_menu = "<leader>nm",
+      },
+    },
+  },
+}
+
+return M
 
 ---@class NeoComposer.Colors
 ---@field bg string
@@ -7,38 +21,17 @@
 ---@field blue string
 ---@field green string
 
+---@class NeoComposer.Keymaps
+---@field play_macro string
+---@field yank_macro string
+---@field stop_macro string
+---@field toggle_record string
+---@field cycle_next string
+---@field cycle_prev string
+---@field toggle_macro_menu string
+
 ---@class NeoComposer.Config
 ---@field notify boolean
 ---@field delay_timer number
----@field colors table<string, string>
-local config = {
-  notify = true,
-  delay_timer = 150,
-  colors = {
-    bg = "#16161e",
-    fg = "#ff9e64",
-    red = "#ec5f67",
-    blue = "#5fb3b3",
-    green = "#99c794",
-  },
-  keymaps = {
-    play_macro = "Q",
-    yank_macro = "yq",
-    stop_macro = "cq",
-    toggle_record = "q",
-    cycle_next = "<c-n>",
-    cycle_prev = "<c-p>",
-    toggle_macro_menu = "<m-q>",
-  },
-}
-
----@type LazyPluginSpec[]
-local M = {
-  {
-    "ecthelionvi/NeoComposer.nvim",
-    dependencies = { "kkharji/sqlite.lua" },
-    opts = {},
-  },
-}
-
-return M
+---@field colors NeoComposer.Colors
+---@field keymaps NeoComposer.Keymaps
