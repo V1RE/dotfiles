@@ -57,8 +57,6 @@ local tsserver = {
       experimental = {
         aiQuickFix = true,
         enableProjectDiagnostics = true,
-        completion = { enableServerSideFuzzyMatch = true, entriesLimit = 25 },
-        tsserver = { maxTsServerMemory = 4096 },
       },
     },
   },
