@@ -2,7 +2,7 @@
 local M = {
   {
     "m4xshen/hardtime.nvim",
-    enable = false,
+    enabled = false,
     opts = {
       disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "neo-tree" },
     },
