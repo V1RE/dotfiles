@@ -2,6 +2,7 @@
 local M = {
   {
     "lvimuser/lsp-inlayhints.nvim",
+    enabled = false,
     branch = "anticonceal",
     init = function()
       vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
