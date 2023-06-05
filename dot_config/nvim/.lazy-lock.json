@@ -60,6 +60,7 @@
   "plenary.nvim": { "branch": "master", "commit": "499e0743cf5e8075cd32af68baa3946a1c76adf1" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "schemastore.nvim": { "branch": "main", "commit": "2d0b27ad28443cb700835b0d6a404ffe7f29c731" },
+  "sentiment.nvim": { "branch": "main", "commit": "54a6db15b630eccfa98c32a76baf90f21c6f1e40" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },
   "ssr.nvim": { "branch": "main", "commit": "e5768511518a397fa712f26389ba30d0404990de" },
   "stabilize.nvim": { "branch": "master", "commit": "eeb1873daffaba67246188a5668b366e45ed1de1" },
