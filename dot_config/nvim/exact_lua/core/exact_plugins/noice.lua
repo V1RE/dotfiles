@@ -18,12 +18,21 @@ local M = {
       long_message_to_split = true,
       lsp_doc_border = true,
     },
+    ---@type NoiceRoute[]
     routes = {
       {
         filter = {
           event = "msg_show",
           kind = "",
           find = "written",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+          find = "Formatting",
         },
         opts = { skip = true },
       },
