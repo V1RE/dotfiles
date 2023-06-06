@@ -5,6 +5,4 @@ experimental = true
 [tools]
 node = "lts"
 pnpm = "latest"
-ruby = "3"
-java = "zulu-11"
-deno = "1"
+deno = "latest"

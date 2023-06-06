@@ -80,6 +80,8 @@ pre_sudo = true
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 #"Custom command using interactive shell (unix)" = "-i vim_upgrade"
+"Rtx update plugins" = "~/.cargo/bin/rtx update plugins"
+"Rtx upgrade" = "~/.cargo/bin/rtx upgrade"
 
 [brew]
 #greedy_cask = true
