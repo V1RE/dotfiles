@@ -28,14 +28,6 @@ local M = {
         },
         opts = { skip = true },
       },
-      {
-        filter = {
-          event = "notify",
-          kind = "",
-          find = "Formatting",
-        },
-        opts = { skip = true },
-      },
     },
   },
   -- stylua: ignore

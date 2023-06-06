@@ -13,7 +13,6 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
       -- apply whatever logic you want (in this example, we'll only use null-ls)
-      vim.notify("Formatting with " .. client.name .. " ...")
       return client.name == "null-ls" or client.name == "rustfmt"
     end,
     bufnr = bufnr,
@@ -55,9 +54,7 @@ null_ls.setup({
       end,
     }),
     formatting.google_java_format,
-    formatting.prettierd.with({
-      extra_filetypes = { "liquid" },
-    }),
+    formatting.prettierd,
     formatting.shfmt,
     formatting.stylua,
     formatting.beautysh,
