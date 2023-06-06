@@ -20,7 +20,7 @@ local config = wezterm.config_builder()
 
 config.font_dirs = { "fonts" }
 config.font = font_with_fallback("Cascadia Code")
-config.font_size = 17
+config.font_size = 14
 config.line_height = 1.4
 config.command_palette_font_size = 16
 
