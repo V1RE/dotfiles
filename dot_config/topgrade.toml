@@ -1,5 +1,5 @@
-[misc]
 disable = ["ruby_gems"]
+
 # Don't ask for confirmations
 #assume_yes = true
 
