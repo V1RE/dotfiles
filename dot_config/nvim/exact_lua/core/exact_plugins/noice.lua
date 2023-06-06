@@ -18,7 +18,7 @@ local M = {
       long_message_to_split = true,
       lsp_doc_border = true,
     },
-    ---@type NoiceRoute[]
+    ---@type NoiceRouteConfig[]
     routes = {
       {
         filter = {
@@ -30,7 +30,7 @@ local M = {
       },
       {
         filter = {
-          event = "msg_show",
+          event = "notify",
           kind = "",
           find = "Formatting",
         },
