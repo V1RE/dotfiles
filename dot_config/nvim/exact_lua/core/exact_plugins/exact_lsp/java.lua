@@ -24,7 +24,7 @@ local M = {
 
         path.data_dir = vim.fn.stdpath("cache") .. "/nvim-jdtls"
 
-        local jdtls_install = jdtls:get_install_path()
+        local jdtls_install = "/Users/niels/.local/share/nvim/mason/packages/jdtls"
 
         path.java_agent = jdtls_install .. "/lombok.jar"
         path.launcher_jar = vim.fn.glob(jdtls_install .. "/plugins/org.eclipse.equinox.launcher_*.jar")
