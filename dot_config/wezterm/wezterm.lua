@@ -5,8 +5,8 @@ require("events")
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
   local names = {
-    name,
     "nielsicon",
+    name,
     "Cascadia Code",
     "CaskaydiaCove Nerd Font",
     "PragmataPro Liga",
