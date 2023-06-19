@@ -20,9 +20,9 @@ end
 local config = wezterm.config_builder()
 
 config.font_dirs = { "fonts" }
-config.font = font_with_fallback("Maple Mono")
+config.font = font_with_fallback("PragmataPro Liga")
 config.font_size = 16
-config.line_height = 1.3
+config.line_height = 1.4
 config.command_palette_font_size = 16
 
 config.window_frame = {
