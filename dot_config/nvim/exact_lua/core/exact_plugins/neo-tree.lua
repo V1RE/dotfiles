@@ -19,7 +19,7 @@ local M = {
           include_current = false,
           filter_rules = {
             bo = {
-              filetype = { "neo-tree", "neo-tree-popup", "notify" },
+              filetype = { "neo-tree", "neo-tree-popup", "notify", "noice" },
               buftype = { "terminal", "quickfix" },
             },
           },
