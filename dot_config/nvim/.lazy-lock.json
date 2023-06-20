@@ -1,4 +1,5 @@
 {
+  "Hypersonic.nvim": { "branch": "main", "commit": "73714ab3606a998bdb9714883fc805dfd33acd92" },
   "Navigator.nvim": { "branch": "master", "commit": "91d86506ac2a039504d5205d32a1d4bc7aa57072" },
   "NeoComposer.nvim": { "branch": "main", "commit": "dc6e17ee990f2dba2e73f3d9b2357907b70768d6" },
   "aerial.nvim": { "branch": "master", "commit": "c30fb2c9bd09592351eed676f4c20e7a6411020e" },
