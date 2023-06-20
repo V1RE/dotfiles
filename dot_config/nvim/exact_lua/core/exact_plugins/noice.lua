@@ -17,6 +17,11 @@ local M = {
       command_palette = true,
       long_message_to_split = true,
       lsp_doc_border = true,
+      cmdline_output_to_split = true,
+      inc_rename = true,
+    },
+    notify = {
+      view = "mini",
     },
     ---@type NoiceRouteConfig[]
     routes = {
