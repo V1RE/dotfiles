@@ -36,7 +36,7 @@ local M = {
           return vim.b[buf].neo_tree_source == "git_status"
         end,
         pinned = true,
-        size = { height = 20 },
+        size = { height = 8 },
         open = "Neotree position=right git_status",
       },
     },
