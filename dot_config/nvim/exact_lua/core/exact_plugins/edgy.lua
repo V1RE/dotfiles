@@ -27,6 +27,7 @@ local M = {
         filter = function(buf)
           return vim.b[buf].neo_tree_source == "filesystem"
         end,
+        pinned = true,
         size = { height = 0.5 },
       },
       {
@@ -46,11 +47,6 @@ local M = {
         end,
         pinned = true,
         open = "Neotree position=top buffers",
-      },
-      {
-        ft = "Outline",
-        pinned = true,
-        open = "SymbolsOutlineOpen",
       },
       -- any other neo-tree windows
       "neo-tree",
