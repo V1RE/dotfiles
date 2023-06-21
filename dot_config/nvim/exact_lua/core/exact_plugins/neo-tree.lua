@@ -30,32 +30,6 @@ local M = {
     opts = {
       popup_border_style = "rounded",
 
-      source_selector = {
-        winbar = true,
-        show_scrolled_off_parent_node = true,
-        content_layout = "center",
-        separator = "",
-        sources = {
-          {
-            source = "filesystem",
-            display_name = "  Files ",
-          },
-          {
-            source = "git_status",
-            display_name = "  Git ",
-          },
-        },
-      },
-
-      event_handlers = {
-        {
-          event = "file_opened",
-          handler = function()
-            require("neo-tree").close_all()
-          end,
-        },
-      },
-
       default_component_configs = {
         icon = {
           folder_closed = i.ClosedFolder,
@@ -104,10 +78,11 @@ local M = {
           mappings = { ["I"] = "toggle_hidden" },
         },
       },
+      open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" },
     },
     keys = {
-      { "<leader>E", "<cmd>Neotree focus<cr>", desc = i.NeoTree .. "Focus tree" },
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
+      { "<leader>e", "<cmd>Neotree focus<cr>", desc = i.NeoTree .. "Focus tree" },
+      { "<leader>E", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
     },
   },
 }

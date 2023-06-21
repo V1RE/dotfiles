@@ -20,9 +20,8 @@ local M = {
       },
     },
     left = {
-      -- Neo-tree filesystem always takes half the screen height
       {
-        title = "Neo-Tree",
+        title = " Files",
         ft = "neo-tree",
         filter = function(buf)
           return vim.b[buf].neo_tree_source == "filesystem"
@@ -30,7 +29,7 @@ local M = {
         pinned = true,
       },
       {
-        title = "Neo-Tree Git",
+        title = " Git",
         ft = "neo-tree",
         filter = function(buf)
           return vim.b[buf].neo_tree_source == "git_status"
