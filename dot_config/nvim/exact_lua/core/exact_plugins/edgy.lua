@@ -28,7 +28,6 @@ local M = {
           return vim.b[buf].neo_tree_source == "filesystem"
         end,
         pinned = true,
-        size = { height = 0.5 },
       },
       {
         title = "Neo-Tree Git",
@@ -37,19 +36,9 @@ local M = {
           return vim.b[buf].neo_tree_source == "git_status"
         end,
         pinned = true,
+        size = { height = 20 },
         open = "Neotree position=right git_status",
       },
-      {
-        title = "Neo-Tree Buffers",
-        ft = "neo-tree",
-        filter = function(buf)
-          return vim.b[buf].neo_tree_source == "buffers"
-        end,
-        pinned = true,
-        open = "Neotree position=top buffers",
-      },
-      -- any other neo-tree windows
-      "neo-tree",
     },
   },
 }
