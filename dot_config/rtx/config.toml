@@ -3,6 +3,6 @@ missing_runtime_behavior = "prompt"
 experimental = true
 
 [tools]
-node = "lts"
+node = "18"
 pnpm = "latest"
 deno = "latest"
