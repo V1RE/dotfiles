@@ -28,7 +28,7 @@ require("catppuccin").setup({
     enabled = true,
     path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
-  color_overrides = {
+  custom_highlights = {
     Comment = { fg = colors.overlay1 },
     LineNr = { fg = colors.overlay1 },
     CursorLine = { bg = colors.none },
