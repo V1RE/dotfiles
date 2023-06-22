@@ -17,9 +17,7 @@ require("catppuccin").setup({
     cmp = true,
     telescope = true,
     which_key = true,
-    hop = true,
     aerial = true,
-    notify = true,
     noice = true,
     neotree = true,
     indent_blankline = {
@@ -30,7 +28,7 @@ require("catppuccin").setup({
     enabled = true,
     path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
-  custom_highlights = {
+  color_overrides = {
     Comment = { fg = colors.overlay1 },
     LineNr = { fg = colors.overlay1 },
     CursorLine = { bg = colors.none },

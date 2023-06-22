@@ -13,23 +13,26 @@ local M = {
     dependencies = {
       {
         "s1n7ax/nvim-window-picker",
-        opts = {
-          selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-          autoselect_one = true,
-          include_current = false,
-          filter_rules = {
-            bo = {
-              filetype = { "neo-tree", "neo-tree-popup", "notify", "noice" },
-              buftype = { "terminal", "quickfix" },
+        opts = function()
+          local colors = require("catppuccin.palettes").get_palette()
+
+          return {
+            selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            autoselect_one = true,
+            include_current = false,
+            filter_rules = {
+              bo = {
+                filetype = { "neo-tree", "neo-tree-popup", "notify", "noice", "edgy", "Trouble", "qf" },
+                buftype = { "terminal", "quickfix" },
+              },
             },
-          },
-          other_win_hl_color = "#e35e4f",
-        },
+            other_win_hl_color = colors.red,
+          }
+        end,
       },
     },
     opts = {
       popup_border_style = "rounded",
-
       default_component_configs = {
         icon = {
           folder_closed = i.ClosedFolder,
