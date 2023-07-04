@@ -7,6 +7,9 @@ local M = {
     vim.opt.splitkeep = "screen"
   end,
   opts = {
+    options = {
+      left = { size = 40 },
+    },
     bottom = {
       "Trouble",
       { ft = "qf", title = "QuickFix" },
@@ -20,7 +23,6 @@ local M = {
       },
     },
     left = {
-      size = 40,
       {
         title = " Files",
         ft = "neo-tree",
