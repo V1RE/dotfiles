@@ -20,6 +20,7 @@ local M = {
       },
     },
     left = {
+      size = 40,
       {
         title = " Files",
         ft = "neo-tree",
