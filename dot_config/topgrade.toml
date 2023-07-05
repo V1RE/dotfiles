@@ -1,3 +1,4 @@
+[misc]
 disable = ["ruby_gems"]
 
 # Don't ask for confirmations
