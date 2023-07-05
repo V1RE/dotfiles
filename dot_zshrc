@@ -125,3 +125,6 @@ _2d_yargs_completions()
 }
 compdef _2d_yargs_completions 2d
 ###-end-2d-completions-###
+
+# bun completions
+[ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
