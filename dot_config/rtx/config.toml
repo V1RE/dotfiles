@@ -4,5 +4,6 @@ experimental = true
 
 [tools]
 node = "18"
-pnpm = "latest"
+pnpm = "8"
 deno = "latest"
+bun = "latest"
