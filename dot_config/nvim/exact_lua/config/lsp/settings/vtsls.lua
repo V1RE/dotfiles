@@ -36,10 +36,18 @@ local tsserver = {
           useAliasesForRenames = false,
           importModuleSpecifier = "non-relative",
         },
+        tsserver = {
+          maxTsServerMemory = 8192,
+        },
+        referencesCodeLens = {
+          showOnAllFunctions = true,
+          enabled = true,
+        },
+        tsdk = "node_modules/typescript/lib",
         experimental = {
           enableProjectDiagnostics = true,
           completion = { enableServerSideFuzzyMatch = true, entriesLimit = 25 },
-          tsserver = { maxTsServerMemory = 4096 },
+          aiQuickFix = true,
         },
       },
     },
