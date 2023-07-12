@@ -19,22 +19,6 @@ local M = {
   },
 
   {
-    "jose-elias-alvarez/typescript.nvim",
-    config = function()
-      require("core.util").on_attach(function(client, buffer)
-        if client.name ~= "tsserver" then
-          vim.keymap.set(
-            "n",
-            "<leader>lt",
-            "<cmd>TypescriptRemoveUnused<cr>",
-            { desc = i.Module .. "Remove unused imports", buffer = buffer }
-          )
-        end
-      end)
-    end,
-  },
-
-  {
     "dmmulroy/tsc.nvim",
     config = function()
       require("tsc").setup({
@@ -43,6 +27,12 @@ local M = {
         },
       })
     end,
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 }
 
