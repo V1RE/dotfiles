@@ -72,7 +72,6 @@
   "tsc.nvim": { "branch": "main", "commit": "579a24aee7195c0ab3eb7c9c3f71a7d1650d72f9" },
   "twoslash-queries.nvim": { "branch": "main", "commit": "a70c075da0a2922c257eed6d4ba2acbe2d8439e6" },
   "typescript-tools.nvim": { "branch": "master", "commit": "fffd5ed6781fe3943216e2b57124f81e1c398647" },
-  "typescript.nvim": { "branch": "main", "commit": "de304087e6e49981fde01af8ccc5b21e8519306f" },
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-abolish": { "branch": "master", "commit": "cb3dcb220262777082f63972298d57ef9e9455ec" },
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
