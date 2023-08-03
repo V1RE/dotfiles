@@ -5,6 +5,9 @@ local M = {
     highlight = {
       pattern = [[.*<(KEYWORDS).*:]],
     },
+    search = {
+      pattern = [[\b(KEYWORDS)(.*?):]],
+    },
   },
 }
 
