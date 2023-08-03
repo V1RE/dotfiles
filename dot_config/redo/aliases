@@ -51,3 +51,8 @@ nuil() {
 nui() {
 	nu -i
 }
+
+# Generated on 2023-07-14T12:07:05+02:00.
+pi() { 
+    bundle exec pod install
+}
