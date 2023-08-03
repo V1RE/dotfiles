@@ -1,7 +1,11 @@
 ---@type LazyPluginSpec
 local M = {
   "folke/todo-comments.nvim",
-  opts = {},
+  opts = {
+    highlight = {
+      pattern = [[.*<(KEYWORDS).*:]],
+    },
+  },
 }
 
 return M
