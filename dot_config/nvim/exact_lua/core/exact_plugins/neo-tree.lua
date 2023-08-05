@@ -9,11 +9,14 @@ local M = {
   dependencies = {
     {
       "s1n7ax/nvim-window-picker",
-      opts = function()
-        return {
+      name = "window-picker",
+      event = "VeryLazy",
+      version = "2.*",
+      config = function()
+        require("window-picker").setup({
           selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
           autoselect_one = true,
-          include_current = false,
+          include_current_win = false,
           filter_rules = {
             bo = {
               filetype = { "neo-tree", "neo-tree-popup", "notify", "noice", "edgy", "Trouble", "qf" },
@@ -21,7 +24,7 @@ local M = {
             },
           },
           other_win_hl_color = require("catppuccin.palettes").get_palette().red,
-        }
+        })
       end,
     },
   },
