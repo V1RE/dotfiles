@@ -71,6 +71,8 @@ export MCFLY_MENU_FOREGROUND=black
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
+export PATH="$HOME/go/bin/:$PATH"
+
 # eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 # eval "$(rbenv init - zsh)"
@@ -83,7 +85,6 @@ source "$HOME/.config/lf/lficons.zsh"
 export PNPM_HOME="/Users/niels/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-export PATH="$HOME/go/bin/:$PATH"
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
