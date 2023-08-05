@@ -34,6 +34,7 @@ alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
 alias rm="trash"
+alias cat="bat"
 
 # Tmux
 function t() {
