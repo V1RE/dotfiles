@@ -54,7 +54,6 @@
   "nvim-ts-autotag": { "branch": "main", "commit": "6be1192965df35f94b8ea6d323354f7dc7a557e4" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "e9062e2dfb9854e6a927370f2d720de354c88524" },
   "nvim-web-devicons": { "branch": "master", "commit": "efbfed0567ef4bfac3ce630524a0f6c8451c5534" },
-  "nvim-window-picker": { "branch": "main", "commit": "1b1bb834b0acb9eebb11a61664efc665757f1ba2" },
   "nvim_cmp": { "branch": "main", "commit": "c4e491a87eeacf0408902c32f031d802c7eafce8" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "5cacc816153c66a50de92c9cee29077b4a380254" },
   "playground": { "branch": "master", "commit": "2b81a018a49f8e476341dfcb228b7b808baba68b" },
@@ -80,5 +79,6 @@
   "vim-illuminate": { "branch": "master", "commit": "5ed17582a8e97bf0a0c617c3cf762e98f87b9859" },
   "vim-wakatime": { "branch": "master", "commit": "018fa9a80c27ccf2a8967b9e27890372e5c2fb4f" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
+  "window-picker": { "branch": "main", "commit": "fd5d3348b3e254ca3134f97793b4a8c702c4ad1d" },
   "yanky.nvim": { "branch": "main", "commit": "95c2f006ea6eaed2b2d8b8b4943b8fcf13faf03f" }
 }
