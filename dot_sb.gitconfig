@@ -3,3 +3,6 @@
 	email = nielsmentink@socialbrothers.nl
 [core]
 	excludesfile = ~/.sb.gitignore
+
+[includeIf "gitdir:~/Code/Socialbrothers/edsn/"]
+  path = .edsn.gitconfig
