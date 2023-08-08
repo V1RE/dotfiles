@@ -42,6 +42,9 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
+setopt correct
+setopt autolist
+setopt extended_history
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
@@ -56,7 +59,6 @@ export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-setopt EXTENDED_HISTORY
 set -k
 
 export MCFLY_KEY_SCHEME=vim
@@ -73,18 +75,14 @@ export ZVM_TERM="xterm-256color"
 
 export PATH="$HOME/go/bin/:$PATH"
 
-# eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
-# eval "$(rbenv init - zsh)"
 eval "$(rtx activate zsh)"
 eval "$(zoxide init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
-
 export PNPM_HOME="/Users/niels/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -93,7 +91,10 @@ export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
+# Sorry @zloirock, I don't want to see your ads.
 export ADBLOCK=true
+# I absolutely despise git hooks.
+export HUSKY=0
 
 # Define functions and completions.
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
