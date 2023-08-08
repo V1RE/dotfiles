@@ -45,6 +45,7 @@ setopt share_history
 setopt correct
 setopt autolist
 setopt extended_history
+setopt extended_glob
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
