@@ -113,7 +113,7 @@ local M = {
       },
       { "<leader>F", "<cmd>Telescope live_grep<cr>", desc = i.Search .. "Find text" },
       {
-        "<leader>f",
+        "<leader>k",
         function()
           require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
         end,
