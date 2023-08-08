@@ -37,16 +37,17 @@ alias tree='tree -a -I .git'
 # Add flags to existing aliases.
 alias ls="${aliases[ls]:-ls} -A"
 
-setopt glob_dots
 setopt autocd
+setopt autolist
+setopt correct
+setopt extended_glob
+setopt extended_history
+setopt glob_dots
 setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt inc_append_history
+setopt no_case_glob
 setopt share_history
-setopt correct
-setopt autolist
-setopt extended_history
-setopt extended_glob
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
