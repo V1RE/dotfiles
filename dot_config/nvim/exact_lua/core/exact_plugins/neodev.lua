@@ -5,7 +5,7 @@ local M = {
     local util = require("neodev.util")
     require("neodev").setup({
       library = {
-        plugins = { "nvim-dap-ui" },
+        plugins = true,
         types = true,
       },
       override = function(root_dir, library)
