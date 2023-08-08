@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 local i = require("config.icons")
 
 ---@type LazyPluginSpec[]

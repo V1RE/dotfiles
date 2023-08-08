@@ -1,10 +1,12 @@
 local copilot = require("copilot")
 
 vim.defer_fn(function()
-  copilot.setup({
+  ---@type copilot_config
+  local opts = {
     copilot_node_command = "/usr/local/bin/node",
-    panel = {
-      auto_refresh = true,
-    },
-  })
+    ---@type copilot_config_panel
+    panel = { enabled = false },
+    suggestion = { enabled = false },
+  }
+  copilot.setup(opts)
 end, 1000)

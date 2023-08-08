@@ -18,7 +18,7 @@ local settings = {
 mason.setup(settings)
 mason_lspconfig.setup()
 
----@type _.lspconfig.options
+---@class _.lspconfig.options
 local opts = {
   capabilities = require("config.lsp.handlers").capabilities,
 }
