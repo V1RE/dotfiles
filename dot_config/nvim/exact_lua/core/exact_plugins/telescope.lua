@@ -13,7 +13,15 @@ local M = {
           require("telescope").load_extension("file_browser")
         end,
         keys = {
-          { "<leader>K", "<cmd>Telescope file_browser<cr>", desc = i.Class .. "File manager" },
+          {
+            "<leader>K",
+            function()
+              require("telescope").extensions.file_browser.file_browser({
+                cwd = require("telescope.utils").buffer_dir(),
+              })
+            end,
+            desc = i.Class .. "File manager",
+          },
         },
       },
       {
@@ -99,13 +107,18 @@ local M = {
       {
         "<leader>f",
         function()
-          require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
+          require("telescope.builtin").find_files({ hidden = true })
         end,
         desc = i.Telescope .. "Find files",
-        id,
       },
       { "<leader>F", "<cmd>Telescope live_grep<cr>", desc = i.Search .. "Find text" },
-      { "<leader>k", "<cmd>Telescope fd<cr>", desc = i.Class .. "File manager" },
+      {
+        "<leader>f",
+        function()
+          require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
+        end,
+        desc = i.Telescope .. "Find files cwd",
+      },
 
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },

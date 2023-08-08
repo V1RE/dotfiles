@@ -2,7 +2,7 @@
   "workspace.library": [
     "/Users/niels/.local/share/nvim/lazy/neodev.nvim/types/nightly",
     "/opt/homebrew/Cellar/neovim/HEAD-677e02b/share/nvim/runtime/lua",
-    "/Users/niels/.local/share/nvim/lazy/*/lua",
+    "/Users/niels/.local/share/nvim/lazy/?/lua",
     "/Users/niels/.local/share/nvim/lazy/neoconf.nvim/types/lua",
     "/Users/niels/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/45cbe461"
   ]
