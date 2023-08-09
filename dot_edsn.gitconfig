@@ -1,3 +1,4 @@
 [user]
   name = Niels Mentink
   email = niels.mentink@edsn.nl
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXKGrBZDKT0zl4AUVBjEfLoMVNuz0BQLhlXCG4l9igJ
