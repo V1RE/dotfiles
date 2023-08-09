@@ -18,5 +18,5 @@
 [includeIf "gitdir:~/Code/Socialbrothers/"]
   path = .sb.gitconfig
 
-[includeIf "gitdir:~/Code/Socialbrothers/edsn/*"]
+[includeIf "gitdir:~/Code/Socialbrothers/edsn/"]
   path = .edsn.gitconfig
