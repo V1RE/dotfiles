@@ -30,6 +30,8 @@ local function merge_options(server)
   return vim.tbl_deep_extend("keep", server_options, opts)
 end
 
+lspconfig.gopls.setup(opts)
+
 mason_lspconfig.setup_handlers({
   function(server)
     lspconfig[server].setup(opts)
