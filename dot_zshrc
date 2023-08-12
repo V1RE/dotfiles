@@ -76,7 +76,7 @@ export MCFLY_MENU_FOREGROUND=black
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
-export PATH="$HOME/go/bin/:$PATH"
+# export PATH="$HOME/go/bin/:$PATH"
 
 eval "$(starship init zsh)"
 eval "$(rtx activate zsh)"
