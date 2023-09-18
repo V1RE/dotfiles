@@ -20,3 +20,6 @@
 
 [includeIf "gitdir:~/Code/Socialbrothers/edsn/"]
   path = .edsn.gitconfig
+[diff "lockb"]
+	textconv = bun
+	binary = true
