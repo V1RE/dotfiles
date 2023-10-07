@@ -11,7 +11,7 @@ local jsonls = {
         extra = {
           {
             url = "https://unpkg.com/syncpack/dist/schema.json",
-            fileMatch = ".syncpackrc.json",
+            fileMatch = { ".syncpackrc.json" },
             name = "Syncpack",
             description = "Consistent dependency versions in large JavaScript Monorepos",
           },
