@@ -11,3 +11,4 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 
 wfxr/forgit kind:defer
 djui/alias-tips kind:defer
+g-plane/pnpm-shell-completion kind:defer
