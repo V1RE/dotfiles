@@ -16,6 +16,7 @@ local M = {
         lsp_fallback = true,
     },
   },
+  enabled = false
 }
 
 return M
