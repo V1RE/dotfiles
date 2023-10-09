@@ -15,7 +15,7 @@ local M = {
     dependencies = { "cmp-buffer", "cmp-path", "cmp-nvim-lsp", "cmp_luasnip", "cmp-cmdline" },
   },
   { "j-hui/fidget.nvim" },
-  { "jose-elias-alvarez/null-ls.nvim" },
+  { "jose-elias-alvarez/null-ls.nvim",enabled = false },
   { "karb94/neoscroll.nvim" },
   { "luukvbaal/stabilize.nvim" },
   { "mizlan/iswap.nvim" },
