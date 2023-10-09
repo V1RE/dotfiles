@@ -1,8 +1,8 @@
-local typescript = {"eslint_d",{"prettierd","prettier"}}
+local typescript = { "eslint_d", { "prettierd", "prettier" } }
 
 ---@type LazyPluginSpec
 local M = {
-  'stevearc/conform.nvim',
+  "stevearc/conform.nvim",
   opts = {
     ---@type table<string, conform.FormatterUnit[]>
     formatters_by_ft = {
@@ -12,11 +12,11 @@ local M = {
       javascriptreact = typescript,
     },
     format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
+      timeout_ms = 500,
+      lsp_fallback = true,
     },
   },
-  enabled = false
+  enabled = false,
 }
 
 return M
