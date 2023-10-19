@@ -11,7 +11,10 @@ local inlayHints = {
 
 ---@type lspconfig.options.tsserver
 local tsserver = {
-  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+  root_dir = function(filename, bufnr)
+    return util.find_git_ancestor(filename)
+      or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(filename)
+  end,
   settings = {
     javascript = {
       format = { enable = false },
