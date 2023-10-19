@@ -147,10 +147,7 @@ local M = {
           },
           lualine_b = { mode },
           lualine_c = { fileicon, { "filename", path = 1 } },
-          lualine_x = {
-            { require("gitblame").get_current_blame_text, cond = require("gitblame").is_blame_text_available },
-            diff,
-          },
+          lualine_x = { diff },
           lualine_y = { spaces, location },
           lualine_z = { progress },
         },
