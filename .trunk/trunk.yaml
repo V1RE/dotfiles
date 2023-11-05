@@ -1,11 +1,38 @@
 version: 0.1
 cli:
-  version: 1.1.0
+  version: 1.17.1
 lint:
+  disabled:
+    - checkov@3.0.19
+    - trufflehog@3.62.1
   enabled:
-    - gitleaks@8.8.7
-    - markdownlint@0.31.1
-    - prettier@2.6.2
-    - shellcheck@0.8.0
-    - shfmt@3.4.0
-    - taplo@release-cli-0.6.3
+    - oxipng@9.0.0
+    - renovate@37.8.1
+    - stylua@0.18.2
+    - trivy@0.46.1
+    - yamllint@1.32.0
+    - git-diff-check
+    - actionlint@1.6.26
+    - gitleaks@8.18.0
+    - markdownlint@0.37.0
+    - prettier@3.0.3
+    - shellcheck@0.9.0
+    - shfmt@3.6.0
+    - taplo@0.8.1
+runtimes:
+  enabled:
+    - python@3.10.8
+    - go@1.21.0
+    - node@18.12.1
+plugins:
+  sources:
+    - id: trunk
+      ref: v1.2.6
+      uri: https://github.com/trunk-io/plugins
+actions:
+  disabled:
+    - trunk-announce
+    - trunk-check-pre-push
+    - trunk-fmt-pre-commit
+  enabled:
+    - trunk-upgrade-available

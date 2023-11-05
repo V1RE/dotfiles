@@ -1,5 +1,19 @@
 [misc]
-only = ["brew_formula", "brew_cask", "bun", "cargo", "chezmoi", "deno", "github_cli_extensions", "go", "pnpm", "rustup", "system", "vim", "custom_commands"]
+only = [
+  "brew_formula",
+  "brew_cask",
+  "bun",
+  "cargo",
+  "chezmoi",
+  "deno",
+  "github_cli_extensions",
+  "go",
+  "pnpm",
+  "rustup",
+  "system",
+  "vim",
+  "custom_commands",
+]
 
 # Don't ask for confirmations
 #assume_yes = true

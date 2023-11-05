@@ -1,6 +1,4 @@
-startuppopupversion: 1
 gui:
-  showIcons: true
   mouseEvents: false
   showFileTree: true
   scrollHeight: 5
@@ -21,7 +19,7 @@ git:
     pager: delta --dark --paging=never
   overrideGpg: true
   log:
-    showGraph: "always"
+    showGraph: always
 quitOnTopLevelReturn: false
 os:
   open: "v {{filename}}"
