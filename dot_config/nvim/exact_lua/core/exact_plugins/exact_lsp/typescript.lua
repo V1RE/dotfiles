@@ -40,7 +40,6 @@ local M = {
         "remove_unused",
       },
     },
-    branch = "feat-commands-as-code-actions",
     after = { "neoconf" },
     enabled = true,
   },
