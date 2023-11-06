@@ -41,7 +41,7 @@ local M = {
       },
     },
     after = { "neoconf" },
-    enabled = true,
+    enabled = false,
   },
 }
 
