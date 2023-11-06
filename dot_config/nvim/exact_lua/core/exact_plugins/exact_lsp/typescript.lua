@@ -42,7 +42,7 @@ local M = {
     },
     branch = "feat-commands-as-code-actions",
     after = { "neoconf" },
-    enabled = false,
+    enabled = true,
   },
 }
 
