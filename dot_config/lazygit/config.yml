@@ -1,4 +1,5 @@
 gui:
+  showIcons: true
   mouseEvents: false
   showFileTree: true
   scrollHeight: 5
