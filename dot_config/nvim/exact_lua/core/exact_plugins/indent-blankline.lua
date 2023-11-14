@@ -5,7 +5,7 @@ local M = {
   main = "ibl",
   ---@type ibl.config
   opts = {
-    indent = { char = "│" },
+    -- indent = { char = "│" },
     scope = { enabled = true },
     exclude = { filetypes = { "help", "neo-tree", "Trouble", "lazy" } },
   },
