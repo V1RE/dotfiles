@@ -2,6 +2,7 @@
 local M = {
   "echasnovski/mini.indentscope",
   event = "BufReadPre",
+  enabled = false,
   opts = {
     symbol = "│",
     options = { try_as_border = true },
