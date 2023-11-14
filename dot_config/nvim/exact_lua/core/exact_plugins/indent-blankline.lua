@@ -2,14 +2,12 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
   event = "BufReadPre",
+  main = "ibl",
   ---@type ibl.config
   opts = {
-    indent = {
-      char = "│",
-    },
-    exclude = {
-      filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-    },
+    indent = { char = "│" },
+    scope = { enabled = true },
+    exclude = { filetypes = { "help", "neo-tree", "Trouble", "lazy" } },
   },
 }
 
