@@ -133,3 +133,5 @@ compdef _2d_yargs_completions 2d
 
 # bun completions
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
+
+[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
