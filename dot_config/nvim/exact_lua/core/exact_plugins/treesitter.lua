@@ -9,7 +9,12 @@ local M = {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     { "nvim-treesitter/playground" },
     { "windwp/nvim-ts-autotag" },
-    { "JoosepAlviste/nvim-ts-context-commentstring" },
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      init = function()
+        vim.g.skip_ts_context_commentstring_module = true
+      end,
+    },
   },
 
   ---@type TSConfig
