@@ -20,6 +20,7 @@ git:
     pager: delta --dark --paging=never
   overrideGpg: true
   log:
+    showWholeGraph: true
     showGraph: always
 quitOnTopLevelReturn: false
 os:
