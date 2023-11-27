@@ -20,13 +20,10 @@ local M = {
 
   {
     "dmmulroy/tsc.nvim",
-    config = function()
-      require("tsc").setup({
-        flags = {
-          build = true,
-        },
-      })
-    end,
+    main = "tsc",
+    opts = {
+      auto_start_watch_mode = true,
+    },
   },
 
   ---@type LazyPluginSpec
