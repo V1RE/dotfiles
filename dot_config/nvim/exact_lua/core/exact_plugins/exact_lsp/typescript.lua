@@ -26,6 +26,7 @@ local M = {
       auto_start_watch_mode = true,
       flags = {
         build = true,
+        watch = true,
       },
     },
   },
