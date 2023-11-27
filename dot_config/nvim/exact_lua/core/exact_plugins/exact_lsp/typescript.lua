@@ -21,6 +21,7 @@ local M = {
   {
     "dmmulroy/tsc.nvim",
     main = "tsc",
+    event = "VeryLazy",
     opts = {
       auto_start_watch_mode = true,
     },
