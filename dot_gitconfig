@@ -27,3 +27,10 @@
 
 [delta]
   line-numbers = true
+  hyperlinks = true
+[diff]
+  colorMoved = default
+[merge]
+  conflictstyle = diff3
+[interactive]
+    diffFilter = delta
