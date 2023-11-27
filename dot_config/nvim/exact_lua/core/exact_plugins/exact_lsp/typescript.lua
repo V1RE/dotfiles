@@ -24,6 +24,9 @@ local M = {
     event = "VeryLazy",
     opts = {
       auto_start_watch_mode = true,
+      flags = {
+        build = true,
+      },
     },
   },
 
