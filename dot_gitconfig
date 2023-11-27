@@ -1,19 +1,20 @@
 [user]
-	name = Niels Mentink
-	email = niels@ment.ink
+  name = Niels Mentink
+  email = niels@ment.ink
   signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDzX9rLb0fMRUrupT12D87fwwbEF928zgR3M3e5ImU1IbehhIbWG6uq5EOt9IaQhOtn9SsrUgSTZPqbrrHq2RPyomHi8fwR1pZtu/9x9EKbx4x9LMVSRaVxHIaVZE1irRsWbe3K8wX+aEzehrtJeTGrk7aeda7n9rIoQVdjrDpnIYc2vzcEHMycBjyocUj8N8ywTy+oH4uNix08LPmW+Yw6LQsPaOAeqBej1kKPFnYOz8PP7QaK9xK17erkk5CVoQ1PV4G9aLcBROon6hF0Wp22YJuTawN1zRZkxa080Xeczf7fOdmerxHt6U4d37cDg8S0pnT8rvHFkX4jDUubUOugIi8hS69e9AMTQ2BY7iUZ8rDhzA4MskEsVbiXvT90BEYz4FC0N836dLKpx03xJKkxymocykEVG7ewcN3yz1zjXpX6IpcA1plo2wpwJUaTqPolsTzgPkqZPph5BJDajxBwu7/3ZO6D4lGShqjxlqnBJiKwsgh2ZrOywMpTyMsk1pU=
 [commit]
-	gpgsign = true
+  gpgsign = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
+  pager = delta
 [gpg]
   format = ssh
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
 
 [includeIf "gitdir:~/Code/Socialbrothers/"]
   path = .sb.gitconfig
@@ -21,5 +22,8 @@
 [includeIf "gitdir:~/Code/Socialbrothers/edsn/"]
   path = .edsn.gitconfig
 [diff "lockb"]
-	textconv = bun
-	binary = true
+  textconv = bun
+  binary = true
+
+[delta]
+  line-numbers = true
