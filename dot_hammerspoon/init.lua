@@ -11,13 +11,3 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "j", function()
   hs.eventtap.keyStroke("cmd", "tab")
   hs.eventtap.keyStroke({})
 end)
-
-hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
-  centerMouse()
-  local wezterm = hs.application.get("com.github.wez.wezterm")
-  if wezterm:isFrontmost() then
-    wezterm:hide()
-  else
-    wezterm:activate(true)
-  end
-end)
