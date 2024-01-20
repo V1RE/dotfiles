@@ -79,7 +79,7 @@ export ZVM_TERM="xterm-256color"
 export PATH="$HOME/go/bin/:$PATH"
 
 eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
+eval "$(/Users/niels/.local/bin/mise activate zsh)"
 eval "$(zoxide init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
