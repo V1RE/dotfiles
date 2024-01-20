@@ -79,7 +79,7 @@ export ZVM_TERM="xterm-256color"
 export PATH="$HOME/go/bin/:$PATH"
 
 eval "$(starship init zsh)"
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
@@ -142,5 +142,3 @@ compdef _gt_yargs_completions gt
 
 # bun completions
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
-
-[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
