@@ -1,6 +1,0 @@
-[tools]
-node = "20"
-pnpm = "8"
-deno = "latest"
-bun = "latest"
-go = "1"
