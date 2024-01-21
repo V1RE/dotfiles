@@ -10,7 +10,7 @@ updates() {
 	n lts -d
 	rustup update
 	cargo install-update -a
-	rtx plugins update
+	mise plugins update
 	pnpm install --global pnpm turbo taze @githubnext/github-copilot-cli @antfu/ni node@lts
 	antidote update
 }
