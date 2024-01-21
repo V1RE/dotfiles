@@ -95,8 +95,9 @@ pre_sudo = true
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 #"Custom command using interactive shell (unix)" = "-i vim_upgrade"
-"Rtx update plugins" = "~/.cargo/bin/rtx plugins update"
-"Rtx upgrade" = "~/.cargo/bin/rtx upgrade"
+"Mise self-update" = "/Users/niels/.local/bin/mise self-update"
+"Mise update plugins" = "/Users/niels/.local/bin/mise plugins update"
+"Mise upgrade" = "/Users/niels/.local/bin/mise upgrade"
 
 [brew]
 #greedy_cask = true
