@@ -78,6 +78,7 @@ symbol = " "
 
 [custom.next]
 command = "pkgversion next"
+when = "pkgversion next"
 symbol = " "
 format = "using [$symbol(v$output)]($style) "
 description = "The current version of Next.js defined in the package.json"
@@ -85,6 +86,7 @@ style = "#ffffff bold"
 
 [custom.react]
 command = "pkgversion react"
+when = "pkgversion react"
 symbol = " "
 format = "using [$symbol(v$output)]($style) "
 description = "The current version of React defined in the package.json"
