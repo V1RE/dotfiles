@@ -78,7 +78,6 @@ symbol = " "
 
 [custom.next]
 command = "pkgversion next"
-when = "pkgversion next"
 symbol = " "
 format = "using [$symbol(v$output)]($style) "
 description = "The current version of Next.js defined in the package.json"
