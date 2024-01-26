@@ -1,6 +1,5 @@
 ---@type LazyPluginSpec[]
 local M = {
-  { "L3MON4D3/LuaSnip", name = "lua-snip", dependencies = { "friendly-snippets" } },
   { "MunifTanjim/nui.nvim" },
   { "b0o/schemastore.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
@@ -23,7 +22,6 @@ local M = {
   { "monaqa/dial.nvim" },
   { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
   { "nvim-lua/plenary.nvim" },
-  { "rafamadriz/friendly-snippets" },
   { "saadparwaiz1/cmp_luasnip" },
   { "tpope/vim-abolish" },
   { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim_cmp" } },
