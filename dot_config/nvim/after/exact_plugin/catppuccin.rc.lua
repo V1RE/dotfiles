@@ -37,6 +37,10 @@ require("catppuccin").setup({
     DiagnosticVirtualTextWarn = { bg = colors.none },
     DiagnosticVirtualTextInfo = { bg = colors.none },
     DiagnosticVirtualTextHint = { bg = colors.none },
+    DiagnosticUnderlineError = { style = { "undercurl" } },
+    DiagnosticUnderlineWarn = { style = { "undercurl" } },
+    DiagnosticUnderlineInfo = { style = { "undercurl" } },
+    DiagnosticUnderlineHint = { style = { "undercurl" } },
     NotifyBackground = { bg = colors.base },
   },
 })
