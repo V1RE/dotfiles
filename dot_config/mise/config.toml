@@ -2,3 +2,12 @@
 node = "20"
 pnpm = "8"
 bun = "latest"
+
+[env]
+mise.path = ["./node_modules/.bin"]
+
+[settings]
+status.show_tools = true
+experimental = true
+legacy_version_file = true
+cargo_binstall = true
