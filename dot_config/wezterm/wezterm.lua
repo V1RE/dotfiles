@@ -23,6 +23,7 @@ config.font = font_with_fallback("Cascadia Code")
 config.font_size = 16
 config.line_height = 1.4
 config.command_palette_font_size = 16
+config.cursor_blink_rate = 800
 
 config.window_frame = {
   font_size = 16,
