@@ -12,7 +12,10 @@ local inlayHints = {
 
 ---@type lspconfig.options.vtsls
 local tsserver = {
-  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+  root_dir = function(filename)
+    return util.find_git_ancestor(filename)
+      or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(filename)
+  end,
   single_file_support = false,
   settings = {
     vtsls = {
@@ -20,6 +23,8 @@ local tsserver = {
         enableProjectDiagnostics = true,
         completion = { enableServerSideFuzzyMatch = true, entriesLimit = 25 },
       },
+      enableMoveToFileCodeAction = true,
+      autoUseWorkspaceTsdk = true,
     },
     javascript = {
       format = { enable = false },
@@ -32,15 +37,30 @@ local tsserver = {
       preferences = {
         useAliasesForRenames = false,
         importModuleSpecifier = "non-relative",
+        preferTypeOnlyAutoImports = true,
       },
       tsserver = {
         maxTsServerMemory = 8192,
+        nodePath = "/Users/niels/.local/share/mise/installs/bun/latest/bin/bun",
       },
       referencesCodeLens = {
         showOnAllFunctions = true,
         enabled = true,
       },
-      tsdk = "node_modules/typescript/lib",
+      experimental = {
+        aiCodeActions = {
+          extractInterface = true,
+          missingFunctionDeclaration = true,
+          extractType = true,
+          inferAndAddTypes = true,
+          extractFunction = true,
+          extractConstant = true,
+          classIncorrectlyImplementsInterface = true,
+          classDoesntImplementInheritedAbstractMember = true,
+          addNameToNamelessParameter = true,
+        },
+        enableProjectDiagnostics = true,
+      },
     },
   },
 }
