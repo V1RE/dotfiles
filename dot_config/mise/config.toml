@@ -2,6 +2,7 @@
 node = "20"
 pnpm = "8"
 bun = "latest"
+lua = "5.1"
 
 [settings]
 status.show_tools = true
