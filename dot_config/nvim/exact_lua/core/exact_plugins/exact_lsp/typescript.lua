@@ -31,7 +31,11 @@ local M = {
     },
   },
 
-  ---@type LazyPluginSpec
+  {
+    "yioneko/nvim-vtsls",
+    config = true,
+  },
+
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
