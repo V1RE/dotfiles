@@ -46,6 +46,7 @@ local M = {
       },
     },
     after = { "neoconf" },
+    event = "VeryLazy",
   },
 }
 
