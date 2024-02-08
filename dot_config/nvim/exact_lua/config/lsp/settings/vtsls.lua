@@ -1,5 +1,3 @@
-local util = require("lspconfig.util")
-
 ---@type _.lspconfig.settings.vtsls.InlayHints
 local inlayHints = {
   enumMemberValues = { enabled = true },
@@ -12,10 +10,6 @@ local inlayHints = {
 
 ---@type lspconfig.options.vtsls
 local tsserver = {
-  root_dir = function(filename)
-    return util.find_git_ancestor(filename)
-      or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(filename)
-  end,
   single_file_support = false,
   settings = {
     vtsls = {
@@ -41,7 +35,6 @@ local tsserver = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "/Users/niels/.local/share/mise/installs/bun/latest/bin/bun",
       },
       referencesCodeLens = {
         showOnAllFunctions = true,
