@@ -43,8 +43,8 @@ cmp.setup({
     end,
   },
   sources = {
+    { name = "codeium", group_index = 2, max_item_count = 3 },
     { name = "copilot", group_index = 2 },
-    { name = "codeium", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "path", group_index = 2 },
     { name = "luasnip", group_index = 2, max_item_count = 5 },

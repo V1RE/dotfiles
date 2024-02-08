@@ -11,6 +11,8 @@ local M = {
   {
     "hrsh7th/nvim-cmp",
     name = "nvim_cmp",
+    version = false,
+    event = "InsertEnter",
     dependencies = { "cmp-buffer", "cmp-path", "cmp-nvim-lsp", "cmp_luasnip", "cmp-cmdline" },
   },
   { "j-hui/fidget.nvim" },
