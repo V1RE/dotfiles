@@ -4,7 +4,7 @@ local lspconfig = require("lspconfig")
 
 require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
-local settings = {
+mason.setup({
   ui = {
     border = "rounded",
     icons = {
@@ -15,9 +15,7 @@ local settings = {
   },
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
-}
-
-mason.setup(settings)
+})
 mason_lspconfig.setup()
 
 ---@class _.lspconfig.options
