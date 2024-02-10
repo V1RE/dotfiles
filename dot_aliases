@@ -34,6 +34,8 @@ alias cdr='cd $(gitroot)'
 alias rm="trash"
 alias cat="bat"
 
+alias ping="gping"
+
 # Tmux
 function t() {
 	local sessions
