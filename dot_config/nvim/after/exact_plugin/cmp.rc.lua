@@ -39,12 +39,17 @@ cmp.setup({
         vim_item.menu = "Copilot"
       end
 
+      if entry.source.name == "codeium" then
+        vim_item.kind = " "
+        vim_item.menu = "Codeium"
+      end
+
       return vim_item
     end,
   },
   sources = {
     { name = "codeium", group_index = 2, max_item_count = 3 },
-    { name = "copilot", group_index = 2 },
+    { name = "copilot", group_index = 3 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "path", group_index = 2 },
     { name = "luasnip", group_index = 2, max_item_count = 5 },
