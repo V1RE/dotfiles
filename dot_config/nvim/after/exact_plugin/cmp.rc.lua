@@ -48,12 +48,12 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = "codeium", group_index = 2, max_item_count = 3 },
-    { name = "copilot", group_index = 3 },
-    { name = "nvim_lsp", group_index = 2 },
+    { name = "codeium", group_index = 2, max_item_count = 3, priority = 100 },
+    { name = "nvim_lsp", group_index = 2, max_item_count = 15, priority = 90 },
     { name = "path", group_index = 2 },
     { name = "luasnip", group_index = 2, max_item_count = 5 },
-    { name = "cmp_tabnine", group_index = 2 },
+    { name = "cmp_tabnine", group_index = 2, max_item_count = 3, priority = 10 },
+    { name = "copilot", group_index = 2, max_item_count = 3, priority = 10 },
     { name = "buffer", group_index = 5 },
   },
   confirm_opts = {
