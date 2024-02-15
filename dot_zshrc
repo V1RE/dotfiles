@@ -80,7 +80,7 @@ export PATH="$HOME/go/bin/:$PATH"
 
 eval "$(starship init zsh)"
 eval "$(/Users/niels/.local/bin/mise activate zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
