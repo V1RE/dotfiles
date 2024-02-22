@@ -13,8 +13,8 @@ alias cm="chezmoi"
 alias dots="chezmoi edit --watch --apply"
 
 # Listing files
-alias ls="eza --icons --color=always --classify --git --group-directories-first"
-alias l="ls --git-ignore"
+alias ls="eza --icons --color=always --classify --git --group-directories-first --git-ignore"
+alias l="ls --oneline"
 alias ll="ls --long"
 alias la="ll -a"
 alias tree="ll --tree --level=3"
