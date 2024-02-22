@@ -13,13 +13,11 @@ alias cm="chezmoi"
 alias dots="chezmoi edit --watch --apply"
 
 # Listing files
-alias ls="exa --icons --color=always --classify --git --group-directories-first"
+alias ls="eza --icons --color=always --classify --git --group-directories-first"
 alias l="ls --git-ignore"
 alias ll="ls --long"
 alias la="ll -a"
 alias tree="ll --tree --level=3"
-
-alias dev="mprocs"
 
 alias tlr="taze latest --recursive"
 alias tlri="taze latest --recursive --write --install"
