@@ -2,11 +2,8 @@
 node = "20"
 pnpm = "8"
 bun = "latest"
-lua = "5.1"
 
 [settings]
-status.show_tools = true
 experimental = true
-legacy_version_file = true
 cargo_binstall = true
 trusted_config_paths = ["~/Code/"]
