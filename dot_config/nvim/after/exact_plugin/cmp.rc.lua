@@ -17,9 +17,7 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
     ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
-    ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item()),
-    ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item()),
-    ["<C-j>"] = cmp.mapping(function()
+    ["<Tab>"] = cmp.mapping(function()
       ls.jump(1)
     end),
   },
