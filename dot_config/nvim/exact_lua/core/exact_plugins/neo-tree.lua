@@ -86,6 +86,7 @@ local M = {
     { "<leader>e", "<cmd>Neotree focus<cr>", desc = i.NeoTree .. "Focus tree" },
     { "<leader>E", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
   },
+  enabled = false,
 }
 
 return M
