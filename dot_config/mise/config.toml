@@ -2,6 +2,7 @@
 node = "20"
 pnpm = "8"
 bun = "latest"
+caddy = "latest"
 
 [settings]
 experimental = true
