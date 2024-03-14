@@ -9,7 +9,6 @@ local M = {
   },
   keys = {
     { "<leader>e", "<cmd>Oil<cr>", desc = i.NeoTree .. "Show Oil" },
-    -- { "<leader>E", "<cmd>Neotree toggle<cr>", desc = i.NeoTree .. "Toggle tree" },
   },
 }
 

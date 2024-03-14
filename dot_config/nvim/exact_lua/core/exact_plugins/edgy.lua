@@ -22,26 +22,26 @@ local M = {
         end,
       },
     },
-    left = {
-      {
-        title = " Files",
-        ft = "neo-tree",
-        filter = function(buf)
-          return vim.b[buf].neo_tree_source == "filesystem"
-        end,
-        pinned = true,
-      },
-      {
-        title = " Git",
-        ft = "neo-tree",
-        filter = function(buf)
-          return vim.b[buf].neo_tree_source == "git_status"
-        end,
-        pinned = true,
-        size = { height = 8 },
-        open = "Neotree position=right git_status",
-      },
-    },
+    -- left = {
+    --   {
+    --     title = " Files",
+    --     ft = "neo-tree",
+    --     filter = function(buf)
+    --       return vim.b[buf].neo_tree_source == "filesystem"
+    --     end,
+    --     pinned = true,
+    --   },
+    --   {
+    --     title = " Git",
+    --     ft = "neo-tree",
+    --     filter = function(buf)
+    --       return vim.b[buf].neo_tree_source == "git_status"
+    --     end,
+    --     pinned = true,
+    --     size = { height = 8 },
+    --     open = "Neotree position=right git_status",
+    --   },
+    -- },
   },
 }
 
