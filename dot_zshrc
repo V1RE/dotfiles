@@ -84,8 +84,8 @@ eval "$(zoxide init --cmd cd zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
 
-export PNPM_HOME="/Users/niels/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# export PNPM_HOME="/Users/niels/Library/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
