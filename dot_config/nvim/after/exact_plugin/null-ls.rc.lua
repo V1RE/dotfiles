@@ -37,12 +37,18 @@ end
 null_ls.setup({
   debug = false,
   sources = {
-    code_actions.eslint_d,
+    code_actions.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          "node_modules/.bin/eslint",
+        })
+      end,
+    }),
     code_actions.shellcheck,
     formatting.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({
-          "package.json",
+          "node_modules/.bin/eslint",
         })
       end,
     }),
@@ -54,7 +60,13 @@ null_ls.setup({
       end,
     }),
     formatting.google_java_format,
-    formatting.prettierd,
+    formatting.prettierd.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          "node_modules/.bin/prettier",
+        })
+      end,
+    }),
     formatting.shfmt,
     formatting.stylua,
     formatting.beautysh,
@@ -64,7 +76,7 @@ null_ls.setup({
     linters.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({
-          "package.json",
+          "node_modules/.bin/eslint",
         })
       end,
     }),
