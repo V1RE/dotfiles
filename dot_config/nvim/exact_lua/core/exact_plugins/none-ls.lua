@@ -1,22 +1,3 @@
----@type LazyPluginSpec[]
-local M = {
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    config = function()
-local null_ls = require("null-ls")
-
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local linters = null_ls.builtins.diagnostics
--- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#code-actions
-local code_actions = null_ls.builtins.code_actions
--- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#hover
-local hover = null_ls.builtins.hover
-
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
@@ -42,59 +23,73 @@ local on_attach = function(client, bufnr)
   end
 end
 
-null_ls.setup({
-  debug = false,
-  sources = {
-    require("none-ls.code_actions.eslint_d").with({
-      condition = function(utils)
-        return utils.root_has_file({
-          "node_modules/.bin/eslint",
-        })
-      end,
-    }),
-    -- code_actions.shellcheck,
-    require("none-ls.formatting.eslint_d").with({
-      condition = function(utils)
-        return utils.root_has_file({
-          "node_modules/.bin/eslint",
-        })
-      end,
-    }),
-    -- formatting.deno_fmt.with({
-    --   condition = function(utils)
-    --     return utils.root_has_file({
-    --       "deno.json",
-    --     })
-    --   end,
-    -- }),
-    formatting.google_java_format,
-    formatting.prettierd.with({
-      condition = function(utils)
-        return utils.root_has_file({
-          "node_modules/.bin/prettier",
-        })
-      end,
-    }),
-    formatting.shfmt,
-    formatting.stylua,
-    formatting.beautysh,
-    -- formatting.rustfmt,
-    -- formatting.jq,
-    hover.dictionary,
-    require("none-ls.diagnostics.eslint_d").with({
-      condition = function(utils)
-        return utils.root_has_file({
-          "node_modules/.bin/eslint",
-        })
-      end,
-    }),
-    -- linters.luacheck,
-    -- linters.shellcheck,
-    linters.zsh,
-    linters.actionlint,
-  },
-  on_attach = on_attach,
-})
+---@type LazyPluginSpec[]
+local M = {
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    config = function()
+      local null_ls = require("null-ls")
+
+      local formatting = null_ls.builtins.formatting
+      local linters = null_ls.builtins.diagnostics
+      local hover = null_ls.builtins.hover
+
+      null_ls.setup({
+        debug = false,
+        sources = {
+          require("none-ls.code_actions.eslint_d").with({
+            condition = function(utils)
+              return utils.root_has_file({
+                "node_modules/.bin/eslint",
+              })
+            end,
+          }),
+          -- code_actions.shellcheck,
+          require("none-ls.formatting.eslint_d").with({
+            condition = function(utils)
+              return utils.root_has_file({
+                "node_modules/.bin/eslint",
+              })
+            end,
+          }),
+          -- formatting.deno_fmt.with({
+          --   condition = function(utils)
+          --     return utils.root_has_file({
+          --       "deno.json",
+          --     })
+          --   end,
+          -- }),
+          formatting.google_java_format,
+          formatting.prettierd.with({
+            condition = function(utils)
+              return utils.root_has_file({
+                "node_modules/.bin/prettier",
+              })
+            end,
+          }),
+          formatting.shfmt,
+          formatting.stylua,
+          -- formatting.beautysh,
+          -- formatting.rustfmt,
+          -- formatting.jq,
+          hover.dictionary,
+          require("none-ls.diagnostics.eslint_d").with({
+            condition = function(utils)
+              return utils.root_has_file({
+                "node_modules/.bin/eslint",
+              })
+            end,
+          }),
+          -- linters.luacheck,
+          -- linters.shellcheck,
+          linters.zsh,
+          linters.actionlint,
+        },
+        on_attach = on_attach,
+      })
     end,
   },
 }
