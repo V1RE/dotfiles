@@ -2,6 +2,9 @@
 local M = {
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
 local null_ls = require("null-ls")
 
@@ -42,7 +45,7 @@ end
 null_ls.setup({
   debug = false,
   sources = {
-    code_actions.eslint_d.with({
+    require("none-ls.code_actions.eslint_d").with({
       condition = function(utils)
         return utils.root_has_file({
           "node_modules/.bin/eslint",
@@ -50,7 +53,7 @@ null_ls.setup({
       end,
     }),
     code_actions.shellcheck,
-    formatting.eslint_d.with({
+    require("none-ls.formatting.eslint_d").with({
       condition = function(utils)
         return utils.root_has_file({
           "node_modules/.bin/eslint",
@@ -78,7 +81,7 @@ null_ls.setup({
     formatting.rustfmt,
     -- formatting.jq,
     hover.dictionary,
-    linters.eslint_d.with({
+    require("none-ls.diagnostics.eslint_d").with({
       condition = function(utils)
         return utils.root_has_file({
           "node_modules/.bin/eslint",
