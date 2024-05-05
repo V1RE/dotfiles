@@ -52,7 +52,7 @@ null_ls.setup({
         })
       end,
     }),
-    code_actions.shellcheck,
+    -- code_actions.shellcheck,
     require("none-ls.formatting.eslint_d").with({
       condition = function(utils)
         return utils.root_has_file({
@@ -60,13 +60,13 @@ null_ls.setup({
         })
       end,
     }),
-    formatting.deno_fmt.with({
-      condition = function(utils)
-        return utils.root_has_file({
-          "deno.json",
-        })
-      end,
-    }),
+    -- formatting.deno_fmt.with({
+    --   condition = function(utils)
+    --     return utils.root_has_file({
+    --       "deno.json",
+    --     })
+    --   end,
+    -- }),
     formatting.google_java_format,
     formatting.prettierd.with({
       condition = function(utils)
@@ -78,7 +78,7 @@ null_ls.setup({
     formatting.shfmt,
     formatting.stylua,
     formatting.beautysh,
-    formatting.rustfmt,
+    -- formatting.rustfmt,
     -- formatting.jq,
     hover.dictionary,
     require("none-ls.diagnostics.eslint_d").with({
@@ -88,8 +88,8 @@ null_ls.setup({
         })
       end,
     }),
-    linters.luacheck,
-    linters.shellcheck,
+    -- linters.luacheck,
+    -- linters.shellcheck,
     linters.zsh,
     linters.actionlint,
   },
