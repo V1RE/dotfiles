@@ -62,6 +62,7 @@ local M = {
           --     })
           --   end,
           -- }),
+          formatting.biome,
           formatting.google_java_format,
           formatting.prettierd.with({
             condition = function(utils)
