@@ -44,6 +44,8 @@ local M = {
             condition = function(utils)
               return utils.root_has_file({
                 "node_modules/.bin/eslint",
+              }) and not utils.root_has_file({
+                "biome.json",
               })
             end,
           }),
@@ -52,6 +54,8 @@ local M = {
             condition = function(utils)
               return utils.root_has_file({
                 "node_modules/.bin/eslint",
+              }) and not utils.root_has_file({
+                "biome.json",
               })
             end,
           }),
@@ -67,7 +71,7 @@ local M = {
           formatting.prettierd.with({
             condition = function(utils)
               return utils.root_has_file({
-                "node_modules/.bin/prettier",
+                ".prettierignore",
               })
             end,
           }),
@@ -81,6 +85,8 @@ local M = {
             condition = function(utils)
               return utils.root_has_file({
                 "node_modules/.bin/eslint",
+              }) and not utils.root_has_file({
+                "biome.json",
               })
             end,
           }),
