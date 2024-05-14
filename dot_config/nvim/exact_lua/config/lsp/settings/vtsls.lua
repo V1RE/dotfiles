@@ -30,7 +30,6 @@ local tsserver = {
       inlayHints,
       preferences = {
         useAliasesForRenames = false,
-        importModuleSpecifier = "non-relative",
         preferTypeOnlyAutoImports = true,
       },
       tsserver = {
@@ -42,7 +41,6 @@ local tsserver = {
       },
       experimental = {
         aiCodeActions = {
-          extractInterface = true,
           missingFunctionDeclaration = true,
           extractType = true,
           inferAndAddTypes = true,
