@@ -1,11 +1,19 @@
----@type LazyPluginSpec
+---@type LazyPluginSpec[]
 local M = {
-  "Exafunction/codeium.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "hrsh7th/nvim-cmp",
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = true,
   },
-  config = true,
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end,
+  },
 }
 
 return M
