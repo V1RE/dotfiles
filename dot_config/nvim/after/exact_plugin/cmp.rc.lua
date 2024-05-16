@@ -17,9 +17,9 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
     ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
-    ["<Tab>"] = cmp.mapping(function()
-      ls.jump(1)
-    end),
+    -- ["<Tab>"] = cmp.mapping(function()
+    --   ls.jump(1)
+    -- end),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
