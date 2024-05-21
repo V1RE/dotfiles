@@ -66,7 +66,13 @@ local M = {
           --     })
           --   end,
           -- }),
-          formatting.biome,
+          formatting.biome.with({
+            condition = function(utils)
+              return utils.root_has_file({
+                "biome.json",
+              })
+            end,
+          }),
           formatting.google_java_format,
           formatting.prettierd.with({
             condition = function(utils)
