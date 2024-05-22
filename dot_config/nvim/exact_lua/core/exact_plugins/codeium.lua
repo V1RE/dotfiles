@@ -13,6 +13,7 @@ local M = {
     config = function()
       require("supermaven-nvim").setup({})
     end,
+    enabled = false,
   },
 }
 
