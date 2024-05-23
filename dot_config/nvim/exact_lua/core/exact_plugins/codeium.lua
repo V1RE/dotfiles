@@ -11,9 +11,10 @@ local M = {
   {
     "supermaven-inc/supermaven-nvim",
     config = function()
-      require("supermaven-nvim").setup({})
+      require("supermaven-nvim").setup({
+        disable_keymaps = true,
+      })
     end,
-    enabled = false,
   },
 }
 

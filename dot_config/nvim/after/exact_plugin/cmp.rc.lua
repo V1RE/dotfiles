@@ -17,9 +17,9 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
     ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
-    -- ["<Tab>"] = cmp.mapping(function()
-    --   ls.jump(1)
-    -- end),
+    ["<Tab>"] = cmp.mapping(function()
+      ls.jump(1)
+    end),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -42,10 +42,16 @@ cmp.setup({
         vim_item.menu = "Codeium"
       end
 
+      if entry.source.name == "supermaven" then
+        vim_item.kind = " "
+        vim_item.menu = "Supermaven"
+      end
+
       return vim_item
     end,
   },
   sources = {
+    { name = "supermaven", group_index = 2, max_item_count = 3, priority = 100 },
     { name = "codeium", group_index = 2, max_item_count = 3, priority = 100 },
     { name = "nvim_lsp", group_index = 2, max_item_count = 15, priority = 90 },
     { name = "path", group_index = 2 },
