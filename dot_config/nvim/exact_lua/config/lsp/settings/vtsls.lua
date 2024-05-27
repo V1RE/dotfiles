@@ -73,6 +73,7 @@ local tsserver = {
       table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
     end
   end,
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 }
 
 return tsserver
