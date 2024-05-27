@@ -2,7 +2,7 @@
   "lspconfig": {
     "lua_ls": {
       "Lua.workspace.library": [
-        "/home/Niels/.local/share/nvim/lazy/wezterm-types/types"
+        "~/.local/share/nvim/lazy/wezterm-types/types/wezterm/init.lua"
       ]
     }
   }

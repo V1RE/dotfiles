@@ -1,0 +1,9 @@
+{
+  "workspace": {
+    "library": ["~/.local/share/nvim/lazy/wezterm-types/types"]
+  },
+    "diagnostics.disable": [
+        "inject-field",
+        "missing-fields"
+    ]
+}
