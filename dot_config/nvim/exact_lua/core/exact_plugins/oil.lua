@@ -7,7 +7,7 @@ local M = {
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
   },
-  event = "VeryLazy",
+  lazy = false,
   keys = {
     { "<leader>e", "<cmd>Oil<cr>", desc = i.NeoTree .. "Show Oil" },
   },
