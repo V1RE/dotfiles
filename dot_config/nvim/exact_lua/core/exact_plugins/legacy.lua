@@ -44,6 +44,7 @@ local M = {
     end,
   },
   { "hrsh7th/cmp-cmdline" },
+  { "justinsgithub/wezterm-types" },
 }
 
 return M
