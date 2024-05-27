@@ -8,21 +8,8 @@ local inlayHints = {
   parameterNames = { enabled = "all" },
 }
 
-local mason_registry = require("mason-registry")
-local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-  .. "/node_modules/@vue/language-server"
-
 ---@type lspconfig.options.vtsls
 local tsserver = {
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = vue_language_server_path,
-        languages = { "vue" },
-      },
-    },
-  },
   single_file_support = false,
   settings = {
     vtsls = {
@@ -32,6 +19,9 @@ local tsserver = {
       },
       enableMoveToFileCodeAction = true,
       autoUseWorkspaceTsdk = true,
+      tsserver = {
+        globalPlugins = {},
+      },
     },
     javascript = {
       format = { enable = false },
@@ -67,7 +57,22 @@ local tsserver = {
       },
     },
   },
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  before_init = function(params, config)
+    local result = vim
+      .system({ "pnpm", "why", "vue", "--depth=0" }, { cwd = params.workspaceFolders[1].name, text = true })
+      :wait()
+    if result.stdout ~= "[]" then
+      local vuePluginConfig = {
+        name = "@vue/typescript-plugin",
+        location = require("mason-registry").get_package("vue-language-server"):get_install_path()
+          .. "/node_modules/@vue/language-server",
+        languages = { "vue" },
+        configNamespace = "typescript",
+        enableForWorkspaceTypeScriptVersions = true,
+      }
+      table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
+    end
+  end,
 }
 
 return tsserver

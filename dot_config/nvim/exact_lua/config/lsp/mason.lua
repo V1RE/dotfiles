@@ -61,6 +61,10 @@ mason_lspconfig.setup_handlers({
   --   lspconfig.tsserver.setup(merge_options(server))
   -- end,
 
+  ["volar"] = function(server)
+    lspconfig.volar.setup(merge_options(server))
+  end,
+
   ["stylelint_lsp"] = function(server)
     lspconfig.stylelint_lsp.setup(merge_options(server))
   end,
