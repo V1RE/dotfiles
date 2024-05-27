@@ -67,6 +67,7 @@ local tsserver = {
       },
     },
   },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
 }
 
 return tsserver
