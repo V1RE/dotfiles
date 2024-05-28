@@ -48,8 +48,7 @@ local M = {
 
   {
     "windwp/nvim-ts-autotag",
-    event = "LazyFile",
-    config = true
+    config = true,
   },
 }
 
