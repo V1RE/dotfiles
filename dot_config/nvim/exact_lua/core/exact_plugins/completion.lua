@@ -67,6 +67,13 @@ local M = {
         }, {
           { name = "buffer" },
         }),
+        experimental = {
+          ghost_text = true,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
       }
 
       return config
@@ -115,6 +122,7 @@ local M = {
         name = "codeium",
         group_index = 1,
         priority = 100,
+        max_items = 3,
       })
     end,
   },
