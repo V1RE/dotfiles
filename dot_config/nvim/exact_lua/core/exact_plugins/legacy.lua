@@ -20,7 +20,7 @@ local M = {
   { "nvim-lua/plenary.nvim" },
   -- { "saadparwaiz1/cmp_luasnip" },
   { "tpope/vim-abolish" },
-  { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim_cmp" } },
+  { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim-cmp" } },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
   { "zbirenbaum/copilot-cmp", config = function() require("copilot_cmp").setup() end },
