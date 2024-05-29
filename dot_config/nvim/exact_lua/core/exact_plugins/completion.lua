@@ -22,10 +22,10 @@ local M = {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
-        preselect = "None",
+        preselect = "item",
         mapping = {
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
           ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
@@ -123,7 +123,7 @@ local M = {
         name = "codeium",
         group_index = 1,
         priority = 100,
-        max_items = 3,
+        max_item_count = 3,
       })
     end,
   },
@@ -143,6 +143,7 @@ local M = {
         name = "supermaven",
         group_index = 1,
         priority = 100,
+        max_item_count = 3,
       })
     end,
   },
