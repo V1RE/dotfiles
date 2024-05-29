@@ -20,7 +20,7 @@ local M = {
       ---@type cmp.ConfigSchema
       local config = {
         completion = {
-          completeopt = "menu,menuone,noinsert",
+          completeopt = "menu,menuone,noselect,noinsert",
         },
         preselect = cmp.PreselectMode.None,
         mapping = {
