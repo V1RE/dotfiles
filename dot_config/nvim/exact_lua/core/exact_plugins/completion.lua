@@ -22,6 +22,7 @@ local M = {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
+        preselect = "None",
         mapping = {
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
