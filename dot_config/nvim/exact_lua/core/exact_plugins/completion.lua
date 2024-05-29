@@ -22,7 +22,7 @@ local M = {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
-        preselect = "item",
+        preselect = cmp.PreselectMode.None,
         mapping = {
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -30,6 +30,10 @@ local M = {
           ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
           ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
+        },
+        confirm_opts = {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
         },
         formatting = {
           format = function(entry, vim_item)
