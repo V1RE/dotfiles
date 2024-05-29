@@ -1,21 +1,21 @@
 ---@type _.lspconfig.settings.vtsls.InlayHints
 local inlayHints = {
-  enumMemberValues = { enabled = true },
+  parameterNames = { enabled = "literals" },
+  parameterTypes = { enabled = true },
   variableTypes = { enabled = true },
   propertyDeclarationTypes = { enabled = true },
   functionLikeReturnTypes = { enabled = true },
-  parameterTypes = { enabled = true },
-  parameterNames = { enabled = "all" },
+  enumMemberValues = { enabled = true },
 }
 
 ---@type lspconfig.options.vtsls
-local tsserver = {
+local vtsls = {
   single_file_support = false,
   settings = {
     vtsls = {
       experimental = {
         enableProjectDiagnostics = true,
-        completion = { enableServerSideFuzzyMatch = true, entriesLimit = 25 },
+        useVsCodeWatcher = true,
       },
       enableMoveToFileCodeAction = true,
       autoUseWorkspaceTsdk = true,
@@ -59,4 +59,4 @@ local tsserver = {
   },
 }
 
-return tsserver
+return vtsls
