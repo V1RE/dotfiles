@@ -68,4 +68,8 @@ mason_lspconfig.setup_handlers({
   ["stylelint_lsp"] = function(server)
     lspconfig.stylelint_lsp.setup(merge_options(server))
   end,
+
+  ["eslint"] = function(server)
+    lspconfig.eslint.setup(merge_options(server))
+  end,
 })
