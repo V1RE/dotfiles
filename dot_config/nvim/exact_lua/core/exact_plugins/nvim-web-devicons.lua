@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 local M = {
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
   event = "VeryLazy",
   opts = {
     override = {
@@ -16,6 +16,21 @@ local M = {
         name = "ESLint",
       },
       [".eslintrc.cjs"] = {
+        icon = "",
+        color = "#4733bb",
+        name = "ESLint",
+      },
+      ["eslint.config.js"] = {
+        icon = "",
+        color = "#4733bb",
+        name = "ESLint",
+      },
+      ["eslint.config.mjs"] = {
+        icon = "",
+        color = "#4733bb",
+        name = "ESLint",
+      },
+      ["eslint.config.cjs"] = {
         icon = "",
         color = "#4733bb",
         name = "ESLint",
