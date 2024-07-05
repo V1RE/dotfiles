@@ -13,7 +13,11 @@ local vtsls = {
   single_file_support = false,
   settings = {
     vtsls = {
+      experimental = {
+        enableProjectDiagnostics = true,
+      },
       enableMoveToFileCodeAction = true,
+      autoUseWorkspaceTsdk = true,
     },
     javascript = {
       format = { enable = false },
@@ -32,7 +36,6 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        autoUseWorkspaceTsdk = true,
         experimental = {
           enableProjectDiagnostics = true,
         },
