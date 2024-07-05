@@ -104,6 +104,8 @@ local M = {
       dapui.close({})
     end
   end,
+
+  enabled = false,
 }
 
 -- - `DapBreakpoint` for breakpoints (default: `B`)
