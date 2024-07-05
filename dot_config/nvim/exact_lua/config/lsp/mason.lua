@@ -2,7 +2,7 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
--- require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
 mason.setup({
   ui = {
