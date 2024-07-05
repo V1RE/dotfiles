@@ -15,13 +15,9 @@ local vtsls = {
     vtsls = {
       experimental = {
         enableProjectDiagnostics = true,
-        useVsCodeWatcher = true,
       },
       enableMoveToFileCodeAction = true,
       autoUseWorkspaceTsdk = true,
-      tsserver = {
-        globalPlugins = {},
-      },
     },
     javascript = {
       format = { enable = false },
@@ -29,7 +25,10 @@ local vtsls = {
     },
     typescript = {
       format = { enable = false },
-      implementationsCodeLens = { enabled = true },
+      implementationsCodeLens = {
+        enabled = true,
+        showOnInterfaceMethods = true,
+      },
       inlayHints,
       preferences = {
         useAliasesForRenames = false,
@@ -41,19 +40,6 @@ local vtsls = {
       referencesCodeLens = {
         showOnAllFunctions = true,
         enabled = true,
-      },
-      experimental = {
-        aiCodeActions = {
-          missingFunctionDeclaration = true,
-          extractType = true,
-          inferAndAddTypes = true,
-          extractFunction = true,
-          extractConstant = true,
-          classIncorrectlyImplementsInterface = true,
-          classDoesntImplementInheritedAbstractMember = true,
-          addNameToNamelessParameter = true,
-        },
-        enableProjectDiagnostics = true,
       },
     },
   },
