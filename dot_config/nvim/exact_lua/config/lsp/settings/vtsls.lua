@@ -36,12 +36,6 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        experimental = {
-          enableProjectDiagnostics = true,
-        },
-      },
-      suggestionActions = {
-        enabled = true,
       },
       referencesCodeLens = {
         showOnAllFunctions = true,
