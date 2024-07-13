@@ -31,6 +31,12 @@ local M = {
           require("telescope").load_extension("ui-select")
         end,
       },
+      {
+        "nvim-telescope/telescope-media-files.nvim",
+        config = function()
+          require("telescope").load_extension("media_files")
+        end,
+      },
     },
     opts = {
       defaults = {
@@ -100,6 +106,11 @@ local M = {
         },
         ["ui-select"] = {
           -- require("telescope.themes").get_cursor(),
+        },
+        media_files = {
+          -- filetypes whitelist
+          -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+          filetypes = { "png", "webp", "jpg", "jpeg", "svg", "mp4", "pdf" },
         },
       },
     },
