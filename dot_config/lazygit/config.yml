@@ -4,16 +4,6 @@ gui:
   showFileTree: true
   scrollHeight: 5
   expandFocusedSidePanel: false
-  # theme:
-  #   activeBorderColor:
-  #     - magenta
-  #     - bold
-  #   optionsTextColor:
-  #     - red
-  #   selectedLineBgColor:
-  #     - reverse
-  #   selectedRangeBgColor:
-  #     - reverse
 git:
   paging:
     colorArg: always
@@ -24,4 +14,4 @@ git:
     showGraph: always
 quitOnTopLevelReturn: false
 os:
-  open: "v {{filename}}"
+  editPreset: nvim
