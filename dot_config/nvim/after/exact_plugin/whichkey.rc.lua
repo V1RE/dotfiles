@@ -2,93 +2,50 @@ local wk = require("which-key")
 
 local i = require("config.icons")
 
-local setup = {
-  plugins = {
-    spelling = {
-      enabled = true,
+wk.setup({
+  modes = {
+    c = false,
+    i = false,
+    n = true,
+    o = false,
+    s = false,
+    t = false,
+    x = false,
+  },
+  spec = {
+    { "<leader>b", group = i.Buffer .. "Buffer", nowait = true, remap = false },
+    { "<leader>bd", "<cmd>Bdelete<CR>", desc = i.Close .. "Close", nowait = true, remap = false },
+    { "<leader>bs", "<cmd>w!<CR>", desc = i.Save .. "Save", nowait = true, remap = false },
+    { "<leader>h", "<cmd>nohlsearch<CR>", desc = i.NoHighlight .. "Clear highlight", nowait = true, remap = false },
+    { "<leader>j", group = i.Window .. "Window", nowait = true, remap = false },
+    { "<leader>ja", "<cmd>qa<CR>", desc = i.CloseAll .. "Close all", nowait = true, remap = false },
+    { "<leader>jd", "<cmd>q<CR>", desc = i.Close .. "Close", nowait = true, remap = false },
+    { "<leader>l", group = i.Field .. "LSP", nowait = true, remap = false },
+    { "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info", nowait = true, remap = false },
+    { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", nowait = true, remap = false },
+    {
+      "<leader>lf",
+      function()
+        vim.lsp.buf.format({
+          filter = function(client)
+            return client.name == "null-ls"
+          end,
+        })
+      end,
+      desc = "Format",
+      nowait = true,
+      remap = false,
     },
+    { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
+    { "<leader>lj", vim.diagnostic.goto_next, desc = "Next Diagnostic", nowait = true, remap = false },
+    { "<leader>lk", vim.diagnostic.goto_prev, desc = "Prev Diagnostic", nowait = true, remap = false },
+    { "<leader>ll", vim.lsp.codelens.run, desc = "CodeLens Action", nowait = true, remap = false },
+    { "<leader>lr", vim.lsp.buf.rename, desc = "Rename", nowait = true, remap = false },
+    { "<leader>p", group = i.Lazy .. "Lazy", nowait = true, remap = false },
+    { "<leader>pr", "<cmd>so %<cr>", desc = "Source current file", nowait = true, remap = false },
+    { "<leader>ps", "<cmd>Lazy<cr>", desc = "Show", nowait = true, remap = false },
+    { "K", vim.lsp.buf.hover, desc = i.Comment .. "Hover", nowait = true, remap = false },
+    { "g", group = i.Goto .. "Go to", nowait = true, remap = false },
+    { "gl", vim.diagnostic.open_float, desc = i.Warning .. "Diagnostics", nowait = true, remap = false },
   },
-  icons = {
-    breadcrumb = " ",
-    separator = " ",
-    group = "",
-  },
-  window = {
-    border = "rounded",
-    position = "bottom",
-    winblend = 25,
-  },
-  layout = {
-    align = "center",
-  },
-}
-
-local opts = {
-  mode = "n", -- NORMAL mode
-  prefix = nil,
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
-local mappings = {
-  ["<leader>"] = {
-    h = { "<cmd>nohlsearch<CR>", i.NoHighlight .. "Clear highlight" },
-
-    b = {
-      name = i.Buffer .. "Buffer",
-      s = { "<cmd>w!<CR>", i.Save .. "Save" },
-      d = { "<cmd>Bdelete<CR>", i.Close .. "Close" },
-    },
-
-    j = {
-      name = i.Window .. "Window",
-      d = { "<cmd>q<CR>", i.Close .. "Close" },
-      a = { "<cmd>qa<CR>", i.CloseAll .. "Close all" },
-    },
-
-    p = {
-      name = i.Lazy .. "Lazy",
-      s = { "<cmd>Lazy<cr>", "Show" },
-      r = { "<cmd>so %<cr>", "Source current file" },
-    },
-
-    l = {
-      name = i.Field .. "LSP",
-      I = { "<cmd>Mason<cr>", "Installer Info" },
-      a = { vim.lsp.buf.code_action, "Code Action" },
-      f = {
-        function()
-          vim.lsp.buf.format({
-            filter = function(client)
-              return client.name == "null-ls"
-            end,
-          })
-        end,
-        "Format",
-      },
-      i = { "<cmd>LspInfo<cr>", "Info" },
-      j = { vim.diagnostic.goto_next, "Next Diagnostic" },
-      k = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
-      l = { vim.lsp.codelens.run, "CodeLens Action" },
-      r = { vim.lsp.buf.rename, "Rename" },
-    },
-  },
-
-  K = { vim.lsp.buf.hover, i.Comment .. "Hover" },
-
-  g = {
-    name = i.Goto .. "Go to",
-    a = { vim.lsp.buf.range_code_action, i.Event .. "Code actions" },
-    l = { vim.diagnostic.open_float, i.Warning .. "Diagnostics" },
-  },
-
-  -- ["<C-h>"] = { "<cmd>wincmd h<cr>", i.ChevronLeft .. "Left" },
-  -- ["<C-j>"] = { "<cmd>wincmd j<cr>", i.ChevronDown .. "Down" },
-  -- ["<C-k>"] = { "<cmd>wincmd k<cr>", i.ChevronUp .. "Up" },
-  -- ["<C-l>"] = { "<cmd>wincmd l<cr>", i.ChevronRight .. "Right" },
-}
-
-wk.setup(setup)
-wk.register(mappings, opts)
+})
