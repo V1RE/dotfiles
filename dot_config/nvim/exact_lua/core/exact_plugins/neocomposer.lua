@@ -9,6 +9,7 @@ local M = {
         toggle_macro_menu = "<leader>nm",
       },
     },
+    enabled = false,
   },
 }
 
