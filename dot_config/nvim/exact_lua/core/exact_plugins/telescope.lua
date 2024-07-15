@@ -106,6 +106,7 @@ local M = {
                 "--center=on",
                 "--clear",
                 "--format=symbols",
+                "--size=" .. width .. "x" .. height,
                 filepath,
               }, { on_stdout = send_output, stdout_buffered = true, pty = true })
             else
