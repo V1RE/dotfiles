@@ -102,10 +102,7 @@ local M = {
                 end
               end
               vim.fn.jobstart({
-                "chafa --animate=off --center=on --clear --size",
-                width,
-                "x",
-                height,
+                "chafa --animate=off --center=on --clear --size=" .. width .. "x" .. height,
                 filepath,
               }, { on_stdout = send_output, stdout_buffered = true, pty = true })
             else
