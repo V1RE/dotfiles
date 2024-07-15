@@ -7,6 +7,7 @@ local M = {
 
     ---@type wk.Opts
     return {
+      preset = "helix",
       ---@type wk.Spec
       spec = {
         { "<leader>b", group = "Buffer", nowait = true, remap = false, icon = i.Buffer },

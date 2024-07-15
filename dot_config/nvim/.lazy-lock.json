@@ -59,7 +59,6 @@
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "schemastore.nvim": { "branch": "main", "commit": "2580d32172f66fa37c0e57fb14e1b5bc94ed9e15" },
-  "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
   "stabilize.nvim": { "branch": "master", "commit": "eeb1873daffaba67246188a5668b366e45ed1de1" },
   "supermaven-nvim": { "branch": "main", "commit": "df3ecf7823a1a28fe47233c5502db513d95d5d6d" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "a7ab9a957b17199183388c6f357d614fcaa508e5" },
@@ -76,6 +75,6 @@
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
   "vim-wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" },
   "wezterm-types": { "branch": "main", "commit": "1518752906ba3fac0060d9efab6e4d3ec15d4b5a" },
-  "which-key.nvim": { "branch": "main", "commit": "f5067d2b244c19eca38b5b495b6eb3e361ac565d" },
+  "which-key.nvim": { "branch": "main", "commit": "7915964e73c30ba5657e9a762c6570925dad421b" },
   "yanky.nvim": { "branch": "main", "commit": "73215b77d22ebb179cef98e7e1235825431d10e4" }
 }
