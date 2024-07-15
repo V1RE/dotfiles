@@ -3,7 +3,7 @@ local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = function()
-    local i = require("dot_config.nvim.exact_lua.config.icons")
+    local i = require("config.icons")
 
     ---@type wk.Opts
     return {
