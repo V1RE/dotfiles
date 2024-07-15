@@ -102,7 +102,9 @@ local M = {
                 end
               end
               vim.fn.jobstart({
-                "chafa --animate=off --center=on --clear",
+                "chafa",
+                "--center",
+                "--clear",
                 filepath,
               }, { on_stdout = send_output, stdout_buffered = true, pty = true })
             else
