@@ -78,6 +78,10 @@ local M = {
           },
         },
         preview = {
+          ---Hook for previewing images
+          ---@param filepath string
+          ---@param bufnr number
+          ---@param opts { winid: number }
           mime_hook = function(filepath, bufnr, opts)
             ---Check if the file is an image
             ---@param file string
@@ -89,6 +93,8 @@ local M = {
               return vim.tbl_contains(image_extensions, extension)
             end
             if is_image(filepath) then
+              local height = vim.api.nvim_win_get_height(opts.winid)
+              local width = vim.api.nvim_win_get_width(opts.winid)
               local term = vim.api.nvim_open_term(bufnr, {})
               local function send_output(_, data, _)
                 for _, d in ipairs(data) do
@@ -96,8 +102,11 @@ local M = {
                 end
               end
               vim.fn.jobstart({
-                "chafa",
-                filepath, -- Terminal image viewer command
+                "chafa --animate=off --center=on --clear --size",
+                width,
+                "x",
+                height,
+                filepath,
               }, { on_stdout = send_output, stdout_buffered = true, pty = true })
             else
               require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Binary cannot be previewed")
@@ -111,7 +120,6 @@ local M = {
           hidden = true,
         },
       },
-
       extensions = {
         file_browser = {
           theme = "dropdown",
