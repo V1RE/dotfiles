@@ -96,7 +96,7 @@ local M = {
                 end
               end
               vim.fn.jobstart({
-                "catimg",
+                "chafa",
                 filepath, -- Terminal image viewer command
               }, { on_stdout = send_output, stdout_buffered = true, pty = true })
             else
