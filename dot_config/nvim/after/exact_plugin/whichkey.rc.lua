@@ -3,15 +3,6 @@ local wk = require("which-key")
 local i = require("config.icons")
 
 wk.setup({
-  modes = {
-    c = false,
-    i = false,
-    n = true,
-    o = false,
-    s = false,
-    t = false,
-    x = false,
-  },
   spec = {
     { "<leader>b", group = i.Buffer .. "Buffer", nowait = true, remap = false },
     { "<leader>bd", "<cmd>Bdelete<CR>", desc = i.Close .. "Close", nowait = true, remap = false },
