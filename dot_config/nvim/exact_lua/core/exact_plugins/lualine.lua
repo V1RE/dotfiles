@@ -11,6 +11,7 @@ local M = {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    dependencies = { "folke/noice.nvim" },
     opts = function()
       local i = require("config.icons")
 
@@ -147,7 +148,29 @@ local M = {
           },
           lualine_b = { mode },
           lualine_c = { fileicon, { "filename", path = 1 } },
-          lualine_x = { diff },
+          lualine_x = {
+            diff,
+
+            {
+              require("noice").api.status.message.get_hl,
+              cond = require("noice").api.status.message.has,
+            },
+            {
+              require("noice").api.status.command.get,
+              cond = require("noice").api.status.command.has,
+              color = { fg = "#ff9e64" },
+            },
+            {
+              require("noice").api.status.mode.get,
+              cond = require("noice").api.status.mode.has,
+              color = { fg = "#ff9e64" },
+            },
+            {
+              require("noice").api.status.search.get,
+              cond = require("noice").api.status.search.has,
+              color = { fg = "#ff9e64" },
+            },
+          },
           lualine_y = { spaces, location },
           lualine_z = { progress },
         },
