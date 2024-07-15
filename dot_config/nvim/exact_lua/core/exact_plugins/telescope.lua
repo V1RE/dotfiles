@@ -103,7 +103,7 @@ local M = {
               end
               vim.fn.jobstart({
                 "chafa",
-                "--center",
+                "--center=on",
                 "--clear",
                 filepath,
               }, { on_stdout = send_output, stdout_buffered = true, pty = true })
