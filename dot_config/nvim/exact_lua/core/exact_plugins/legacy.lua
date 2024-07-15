@@ -4,11 +4,6 @@ local M = {
   { "b0o/schemastore.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
   { "famiu/bufdelete.nvim" },
-  { "folke/which-key.nvim" },
-  -- { "hrsh7th/cmp-buffer" },
-  -- { "hrsh7th/cmp-nvim-lsp" },
-  -- { "hrsh7th/cmp-path" },
-  -- { "hrsh7th/nvim-cmp", name = "nvim_cmp", version = false, event = "InsertEnter", dependencies = { "cmp-buffer", "cmp-path", "cmp-nvim-lsp", "cmp_luasnip", "cmp-cmdline" } },
   { "j-hui/fidget.nvim" },
   { "nvimtools/none-ls.nvim" },
   { "karb94/neoscroll.nvim" },
@@ -18,14 +13,24 @@ local M = {
   { "monaqa/dial.nvim" },
   { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
   { "nvim-lua/plenary.nvim" },
-  -- { "saadparwaiz1/cmp_luasnip" },
   { "tpope/vim-abolish" },
   { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim-cmp" } },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
-  { "zbirenbaum/copilot-cmp", config = function() require("copilot_cmp").setup() end },
-  { "zbirenbaum/copilot.lua", dependencies = { "nvim-lspconfig" }, event = { "VimEnter" }, config = function() require("config.copilot_rc") end },
-  -- { "hrsh7th/cmp-cmdline" },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    dependencies = { "nvim-lspconfig" },
+    event = { "VimEnter" },
+    config = function()
+      require("config.copilot_rc")
+    end,
+  },
   { "justinsgithub/wezterm-types" },
 }
 
