@@ -47,13 +47,13 @@ keymap("x", "K", ":move '<-2<CR>gv-gv")
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv")
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
 
-vim.keymap.set("n", "<leader>gg", function()
+vim.keymap.set("n", "<leader>gG", function()
   util.float_term({ "lazygit" })
 end, { desc = "Lazygit (cwd)" })
 
-vim.keymap.set("n", "<leader>gG", function()
-  util.float_term({ "lazygit" }, { cwd = util.get_root() })
-end, { desc = "Lazygit (root dir)" })
+-- vim.keymap.set("n", "<leader>gG", function()
+--   util.float_term({ "lazygit" }, { cwd = util.get_root() })
+-- end, { desc = "Lazygit (root dir)" })
 
 vim.keymap.set("n", "<C-Space>", function()
   util.float_term(nil, { cwd = util.get_root(), interactive = true })
