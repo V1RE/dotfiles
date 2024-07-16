@@ -1,4 +1,4 @@
 #!/bin/bash
 
 adb -s "$1" reverse tcp:8081 tcp:8081
-scrcpy -Kw --power-off-on-close -s "$1" --shortcut-mod=lsuper
+scrcpy --keyboard=uhid --stay-awake --show-touches --select-usb --shortcut-mod=lsuper --no-mouse-hover --max-fps=60 --window-title="Scrcpy" -s "$1"
