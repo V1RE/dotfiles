@@ -6,7 +6,10 @@ local M = {
     "sindrets/diffview.nvim",
     "nvim-telescope/telescope.nvim",
   },
-  config = true,
+  ---@type NeogitConfig
+  opts = {
+    graph_style = "unicode",
+  },
   cmd = "Neogit",
   keys = {
     {

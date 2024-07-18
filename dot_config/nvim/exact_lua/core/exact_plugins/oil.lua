@@ -3,6 +3,7 @@ local i = require("config.icons")
 ---@type LazyPluginSpec
 local M = {
   "stevearc/oil.nvim",
+  ---@type oil.setupOpts
   opts = {
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
