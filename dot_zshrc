@@ -33,7 +33,11 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 export GPG_TTY=$TTY
 
 function zvm_after_init() {
-    eval "$(mcfly init zsh)"
+    # eval "$(mcfly init zsh)"
+
+    . "$HOME/.atuin/bin/env"
+
+    eval "$(atuin init zsh)"
 }
 
 # Autoload functions.
@@ -136,7 +140,3 @@ compdef _gt_yargs_completions gt
 
 # bun completions
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
-
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
