@@ -33,11 +33,9 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 export GPG_TTY=$TTY
 
 function zvm_after_init() {
-    # eval "$(mcfly init zsh)"
-
     . "$HOME/.atuin/bin/env"
 
-    eval "$(atuin init zsh)"
+    eval "$(atuin init zsh --disable-up-arrow)"
 }
 
 # Autoload functions.
@@ -76,15 +74,6 @@ export SAVEHIST=$HISTSIZE
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 set -k
 
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=2
-export MCFLY_RESULTS=50
-export MCFLY_INTERFACE_VIEW=BOTTOM
-export MCFLY_PROMPT="❯"
-export MCFLY_DISABLE_RUN_COMMAND=true
-export MCFLY_MENU_BACKGROUND=green
-export MCFLY_MENU_FOREGROUND=black
-
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
@@ -98,6 +87,8 @@ eval "$(/Users/niels/.local/bin/mise activate zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
+source "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
