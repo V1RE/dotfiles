@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 local M = {
   "NeogitOrg/neogit",
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "sindrets/diffview.nvim",
