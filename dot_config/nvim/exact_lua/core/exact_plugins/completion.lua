@@ -108,27 +108,26 @@ local M = {
   },
 
   -- codeium cmp source
-  {
-    "nvim-cmp",
-    dependencies = {
-      {
-        "Exafunction/codeium.nvim",
-        cmd = "Codeium",
-        build = ":Codeium Auth",
-        opts = {},
-      },
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = "codeium",
-        group_index = 1,
-        priority = 100,
-        max_item_count = 3,
-      })
-    end,
-    enabled = false
-  },
+  -- {
+  --   "nvim-cmp",
+  --   dependencies = {
+  --     {
+  --       "Exafunction/codeium.nvim",
+  --       cmd = "Codeium",
+  --       build = ":Codeium Auth",
+  --       opts = {},
+  --     },
+  --   },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, 1, {
+  --       name = "codeium",
+  --       group_index = 1,
+  --       priority = 100,
+  --       max_item_count = 3,
+  --     })
+  --   end,
+  -- },
 
   -- supermaven cmp source
   {
