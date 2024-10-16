@@ -3,7 +3,7 @@ node = "22"
 pnpm = "9"
 bun = "latest"
 usage = "latest"
-neovim = "npm:neovim"
+"npm:neovim" = "latest"
 
 [settings]
 experimental = true
