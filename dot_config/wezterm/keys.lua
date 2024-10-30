@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+
 local M = {
   { key = "l", mods = "LEADER", action = act.SplitPane({
     direction = "Right",
@@ -32,9 +34,7 @@ local M = {
   {
     key = "n",
     mods = "CMD",
-    action = act.ShowLauncherArgs({
-      flags = "FUZZY|WORKSPACES",
-    }),
+    action = workspace_switcher.switch_workspace(),
   },
   {
     key = "p",

@@ -55,6 +55,12 @@ wezterm.plugin.require("https://github.com/nekowinston/wezterm-bar").apply_to_co
 
 wezterm.plugin.require("https://github.com/catppuccin/wezterm").apply_to_config(config)
 
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+
+workspace_switcher.zoxide_path = "/opt/homebrew/bin/zoxide"
+
+workspace_switcher.apply_to_config(config)
+
 config.term = "wezterm"
 config.window_background_opacity = 0.8
 config.window_decorations = "RESIZE"
