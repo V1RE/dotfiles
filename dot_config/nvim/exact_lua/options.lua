@@ -56,5 +56,3 @@ vim.opt.listchars:append("trail:·")
 
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]])
-
-vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
