@@ -108,26 +108,26 @@ local M = {
   },
 
   -- codeium cmp source
-  -- {
-  --   "nvim-cmp",
-  --   dependencies = {
-  --     {
-  --       "Exafunction/codeium.nvim",
-  --       cmd = "Codeium",
-  --       build = ":Codeium Auth",
-  --       opts = {},
-  --     },
-  --   },
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     table.insert(opts.sources, 1, {
-  --       name = "codeium",
-  --       group_index = 1,
-  --       priority = 100,
-  --       max_item_count = 3,
-  --     })
-  --   end,
-  -- },
+  {
+    "nvim-cmp",
+    dependencies = {
+      {
+        "Exafunction/codeium.nvim",
+        cmd = "Codeium",
+        build = ":Codeium Auth",
+        opts = {},
+      },
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = "codeium",
+        group_index = 1,
+        priority = 100,
+        max_item_count = 3,
+      })
+    end,
+  },
 
   -- supermaven cmp source
   {
@@ -145,6 +145,49 @@ local M = {
         group_index = 1,
         priority = 100,
         max_item_count = 3,
+      })
+    end,
+  },
+
+  -- copilot cmp source
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
+  {
+    "nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = "copilot.lua",
+        opts = {},
+        config = function(_, opts)
+          local copilot_cmp = require("copilot_cmp")
+          copilot_cmp.setup(opts);
+          
+          -- attach cmp source whenever copilot attaches
+          -- fixes lazy-loading issues with the copilot cmp source
+          require("core.util").on_attach(function(client)
+            copilot_cmp._on_insert_enter({})
+          end)
+        end,
+      },
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = "copilot",
+        group_index = 1,
+        priority = 100,
       })
     end,
   },
