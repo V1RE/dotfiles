@@ -17,22 +17,6 @@ local M = {
   { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim-cmp" }, enabled = false },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-    enabled = false,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    dependencies = { "nvim-lspconfig" },
-    event = { "VimEnter" },
-    config = function()
-      require("config.copilot_rc")
-    end,
-    enabled = false
-  },
   { "justinsgithub/wezterm-types" },
 }
 
