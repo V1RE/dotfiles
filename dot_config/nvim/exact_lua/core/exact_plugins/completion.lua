@@ -6,11 +6,10 @@ local M = {
     version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
+      { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+      { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
+      { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
       "saadparwaiz1/cmp_luasnip",
     },
     ---@return cmp.Config
