@@ -1,7 +1,8 @@
 ---@type LazyPluginSpec[]
 local M = {
   {
-    "hrsh7th/nvim-cmp",
+    "iguanacucumber/magazine.nvim",
+    name = "nvim-cmp", -- Otherwise highlighting gets messed up
     version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
