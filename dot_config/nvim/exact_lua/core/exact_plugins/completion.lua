@@ -1,15 +1,15 @@
 ---@type LazyPluginSpec[]
 local M = {
   {
-    "iguanacucumber/magazine.nvim",
-    name = "nvim-cmp", -- Otherwise highlighting gets messed up
+    "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
-      { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
-      { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
       "saadparwaiz1/cmp_luasnip",
     },
     ---@return cmp.Config
