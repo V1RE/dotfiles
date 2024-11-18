@@ -57,7 +57,7 @@ mason_lspconfig.setup_handlers({
     lspconfig.vtsls.setup(merge_options(server))
   end,
 
-  -- ["tsserver"] = function(server)
+  -- ["ts_ls"] = function(server)
   --   lspconfig.tsserver.setup(merge_options(server))
   -- end,
 

@@ -9,9 +9,9 @@ local inlayHints = {
   parameterNames = { enabled = "all" },
 }
 
----@type lspconfig.options.tsserver
-local tsserver = {
-  root_dir = function(filename, bufnr)
+---@type lspconfig.options.ts_ls
+local ts_ls = {
+  root_dir = function(filename)
     return util.find_git_ancestor(filename)
       or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(filename)
   end,
@@ -57,4 +57,4 @@ local tsserver = {
   },
 }
 
-return tsserver
+return ts_ls
