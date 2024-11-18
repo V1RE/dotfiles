@@ -127,6 +127,7 @@ local M = {
         max_item_count = 3,
       })
     end,
+    enabled = false,
   },
 
   -- supermaven cmp source
