@@ -10,7 +10,6 @@ local M = {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "saadparwaiz1/cmp_luasnip",
     },
     ---@return cmp.Config
     opts = function()
@@ -108,46 +107,46 @@ local M = {
   },
 
   -- codeium cmp source
-  {
-    "nvim-cmp",
-    dependencies = {
-      {
-        "Exafunction/codeium.nvim",
-        cmd = "Codeium",
-        build = ":Codeium Auth",
-        opts = {},
-      },
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = "codeium",
-        group_index = 1,
-        priority = 100,
-        max_item_count = 3,
-      })
-    end,
-  },
-
-  -- supermaven cmp source
-  {
-    "nvim-cmp",
-    dependencies = {
-      {
-        "supermaven-inc/supermaven-nvim",
-        opts = { disable_keymaps = true, disable_inline_completion = true },
-      },
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = "supermaven",
-        group_index = 1,
-        priority = 100,
-        max_item_count = 3,
-      })
-    end,
-  },
+  -- {
+  --   "nvim-cmp",
+  --   dependencies = {
+  --     {
+  --       "Exafunction/codeium.nvim",
+  --       cmd = "Codeium",
+  --       build = ":Codeium Auth",
+  --       opts = {},
+  --     },
+  --   },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, 1, {
+  --       name = "codeium",
+  --       group_index = 1,
+  --       priority = 100,
+  --       max_item_count = 3,
+  --     })
+  --   end,
+  -- },
+  --
+  -- -- supermaven cmp source
+  -- {
+  --   "nvim-cmp",
+  --   dependencies = {
+  --     {
+  --       "supermaven-inc/supermaven-nvim",
+  --       opts = { disable_keymaps = true, disable_inline_completion = true },
+  --     },
+  --   },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, 1, {
+  --       name = "supermaven",
+  --       group_index = 1,
+  --       priority = 100,
+  --       max_item_count = 3,
+  --     })
+  --   end,
+  -- },
 
   -- copilot cmp source
   -- {
