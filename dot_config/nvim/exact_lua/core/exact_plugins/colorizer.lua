@@ -13,6 +13,7 @@ local M = {
     buftypes = { "*", "!terminal", "!prompt", "!popup", "!nofile" },
   },
   event = "BufReadPre",
+  enabled = false,
 }
 
 return M
