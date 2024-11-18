@@ -18,6 +18,11 @@ local vtsls = {
       },
       enableMoveToFileCodeAction = true,
       autoUseWorkspaceTsdk = true,
+      tsserver = {
+        maxTsServerMemory = 8192,
+        log = "normal",
+        nodePath = "~/.local/share/mise/installs/node/latest/bin",
+      },
     },
     javascript = {
       format = { enable = false },
@@ -31,11 +36,13 @@ local vtsls = {
       },
       inlayHints,
       preferences = {
-        useAliasesForRenames = false,
+        useAliasesForRenames = true,
         preferTypeOnlyAutoImports = true,
       },
       tsserver = {
         maxTsServerMemory = 8192,
+        log = "normal",
+        nodePath = "~/.local/share/mise/installs/node/latest/bin",
       },
       referencesCodeLens = {
         showOnAllFunctions = true,

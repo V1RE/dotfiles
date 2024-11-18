@@ -14,7 +14,6 @@ local M = {
   { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
   { "nvim-lua/plenary.nvim" },
   { "tpope/vim-abolish" },
-  -- { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = { "nvim-cmp" }, enabled = false },
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
   { "justinsgithub/wezterm-types" },

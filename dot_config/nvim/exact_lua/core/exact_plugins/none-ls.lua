@@ -40,32 +40,6 @@ local M = {
       null_ls.setup({
         debug = false,
         sources = {
-          -- require("none-ls.code_actions.eslint_d").with({
-          --   condition = function(utils)
-          --     return utils.root_has_file({
-          --       "node_modules/.bin/eslint",
-          --     }) and not utils.root_has_file({
-          --       "biome.json",
-          --     })
-          --   end,
-          -- }),
-          -- code_actions.shellcheck,
-          -- require("none-ls.formatting.eslint_d").with({
-          --   condition = function(utils)
-          --     return utils.root_has_file({
-          --       "node_modules/.bin/eslint",
-          --     }) and not utils.root_has_file({
-          --       "biome.json",
-          --     })
-          --   end,
-          -- }),
-          -- formatting.deno_fmt.with({
-          --   condition = function(utils)
-          --     return utils.root_has_file({
-          --       "deno.json",
-          --     })
-          --   end,
-          -- }),
           formatting.biome.with({
             condition = function(utils)
               return utils.root_has_file({
@@ -73,7 +47,6 @@ local M = {
               })
             end,
           }),
-          formatting.google_java_format,
           formatting.prettierd.with({
             condition = function(utils)
               return utils.root_has_file({
@@ -83,21 +56,7 @@ local M = {
           }),
           formatting.shfmt,
           formatting.stylua,
-          -- formatting.beautysh,
-          -- formatting.rustfmt,
-          -- formatting.jq,
           hover.dictionary,
-          -- require("none-ls.diagnostics.eslint_d").with({
-          --   condition = function(utils)
-          --     return utils.root_has_file({
-          --       "node_modules/.bin/eslint",
-          --     }) and not utils.root_has_file({
-          --       "biome.json",
-          --     })
-          --   end,
-          -- }),
-          -- linters.luacheck,
-          -- linters.shellcheck,
           linters.zsh,
           linters.actionlint,
         },

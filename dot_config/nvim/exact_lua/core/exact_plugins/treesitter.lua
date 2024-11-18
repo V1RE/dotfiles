@@ -8,7 +8,7 @@ local M = {
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-context", config = true },
       { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "nvim-treesitter/playground" },
+      { "nvim-treesitter/playground", enabled = false },
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         init = function()
