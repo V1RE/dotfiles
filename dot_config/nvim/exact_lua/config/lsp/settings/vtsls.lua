@@ -20,7 +20,6 @@ local vtsls = {
       autoUseWorkspaceTsdk = true,
       tsserver = {
         maxTsServerMemory = 8192,
-        log = "normal",
         nodePath = "~/.local/share/mise/installs/node/latest/bin",
       },
     },
@@ -41,10 +40,10 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        log = "normal",
         nodePath = "~/.local/share/mise/installs/node/latest/bin",
       },
       referencesCodeLens = {
+
         showOnAllFunctions = true,
         enabled = true,
       },
