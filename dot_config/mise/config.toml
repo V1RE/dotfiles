@@ -9,3 +9,4 @@ usage = "latest"
 experimental = true
 cargo_binstall = true
 trusted_config_paths = ["~/Code/"]
+vfox = false
