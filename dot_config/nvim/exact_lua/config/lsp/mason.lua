@@ -53,13 +53,13 @@ mason_lspconfig.setup_handlers({
   --   lspconfig.denols.setup(merge_options(server))
   -- end,
 
-  ["vtsls"] = function(server)
-    lspconfig.vtsls.setup(merge_options(server))
-  end,
-
-  -- ["ts_ls"] = function(server)
-  --   lspconfig.tsserver.setup(merge_options(server))
+  -- ["vtsls"] = function(server)
+  --   lspconfig.vtsls.setup(merge_options(server))
   -- end,
+
+  ["ts_ls"] = function(server)
+    lspconfig.tsserver.setup(merge_options(server))
+  end,
 
   -- ["volar"] = function(server)
   --   lspconfig.volar.setup(merge_options(server))

@@ -1,40 +1,34 @@
 local util = require("lspconfig.util")
 
-local inlayHints = {
-  enumMemberValues = { enabled = true },
-  variableTypes = { enabled = true },
-  propertyDeclarationTypes = { enabled = true },
-  functionLikeReturnTypes = { enabled = true },
-  parameterTypes = { enabled = true },
-  parameterNames = { enabled = "all" },
-}
-
 ---@type lspconfig.options.ts_ls
 local ts_ls = {
   root_dir = function(filename)
     return util.find_git_ancestor(filename)
       or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(filename)
   end,
+  single_file_support = false,
   settings = {
     javascript = {
       format = { enable = false },
-      inlayHints,
     },
     typescript = {
-      format = { enable = false },
-      implementationsCodeLens = { enabled = true },
-      preferGoToSourceDefinition = false,
-      referencesCodeLens = {
-        showOnAllFunctions = true,
-        enabled = true,
+      tsserver = {
+        nodePath = "~/.local/share/mise/installs/node/latest/bin/node --max-old-space-size=8192",
+        maxTsServerMemory = 8192,
+        experimental = {
+          expandableHover = true,
+          enableProjectDiagnostics = true,
+        },
       },
+      format = { enable = false },
+      preferGoToSourceDefinition = false,
       suggest = {
         completeFunctionCalls = true,
       },
-      inlayHints,
       preferences = {
         useAliasesForRenames = false,
         importModuleSpecifier = "non-relative",
+        preferTypeOnlyAutoImports = true,
       },
       experimental = {
         aiCodeActions = {
@@ -49,9 +43,6 @@ local ts_ls = {
           addNameToNamelessParameter = true,
         },
         enableProjectDiagnostics = true,
-        tsserver = {
-          maxTsServerMemory = 4096,
-        },
       },
     },
   },
