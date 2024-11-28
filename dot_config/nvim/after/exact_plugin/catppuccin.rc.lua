@@ -23,11 +23,11 @@ require("catppuccin").setup({
     indent_blankline = {
       enabled = true,
     },
+    mason = true,
+    treesitter = true,
+    gitsigns = true,
   },
-  compile = {
-    enabled = true,
-    path = vim.fn.stdpath("cache") .. "/catppuccin",
-  },
+  default_integrations = true,
   custom_highlights = {
     Comment = { fg = colors.overlay1 },
     LineNr = { fg = colors.overlay1 },
