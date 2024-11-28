@@ -33,6 +33,10 @@ local M = {
       require("mini.surround").setup(opts)
     end,
   },
+  {
+    "echasnovski/mini.cursorword",
+    config = true,
+  },
 }
 
 return M
