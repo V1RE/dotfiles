@@ -2,6 +2,7 @@
 local M = {
   "RRethy/vim-illuminate",
   event = "BufReadPost",
+  enabled = false,
   opts = { delay = 200 },
   config = function(_, opts)
     local illuminate = require("illuminate")
