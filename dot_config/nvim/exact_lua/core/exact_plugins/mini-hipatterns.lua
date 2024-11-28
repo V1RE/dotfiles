@@ -12,6 +12,7 @@ local M = {
         },
       })
     end,
+    enabled = false,
   },
 }
 
