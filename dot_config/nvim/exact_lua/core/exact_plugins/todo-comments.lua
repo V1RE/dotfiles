@@ -9,7 +9,7 @@ local M = {
       pattern = [[\b(KEYWORDS)(.*?):]],
     },
   },
-  enabled = false,
+  enabled = true,
 }
 
 return M
