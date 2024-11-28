@@ -58,7 +58,7 @@ mason_lspconfig.setup_handlers({
   -- end,
 
   ["ts_ls"] = function(server)
-    lspconfig.tsserver.setup(merge_options(server))
+    lspconfig.ts_ls.setup(merge_options(server))
   end,
 
   -- ["volar"] = function(server)
