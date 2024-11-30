@@ -7,7 +7,15 @@ local M = {
       keys = "etovxqpdygfblzhckisuran",
     },
     keys = {
-      { "<Tab>", ":HopWord<CR>", mode = "n", desc = "Hop to word", noremap = true },
+      {
+        "<C-Space>",
+        function()
+          require("hop").hint_words({})
+        end,
+        mode = "n",
+        desc = "Hop to word",
+        noremap = true,
+      },
     },
   },
 }
