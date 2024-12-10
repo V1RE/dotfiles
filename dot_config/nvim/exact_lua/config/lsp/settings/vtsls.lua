@@ -1,13 +1,3 @@
----@type _.lspconfig.settings.vtsls.InlayHints
-local inlayHints = {
-  parameterNames = { enabled = "all" },
-  parameterTypes = { enabled = true },
-  variableTypes = { enabled = true },
-  propertyDeclarationTypes = { enabled = true },
-  functionLikeReturnTypes = { enabled = true },
-  enumMemberValues = { enabled = true },
-}
-
 ---@type lspconfig.options.vtsls
 local vtsls = {
   single_file_support = false,
@@ -20,12 +10,11 @@ local vtsls = {
       autoUseWorkspaceTsdk = true,
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "~/.local/share/mise/installs/node/latest/bin/node",
+        nodePath = "~/.local/share/mise/installs/node/latest/bin/node --max-old-space-size=8192",
       },
     },
     javascript = {
       format = { enable = false },
-      inlayHints,
     },
     typescript = {
       format = { enable = false },
@@ -33,17 +22,15 @@ local vtsls = {
         enabled = true,
         showOnInterfaceMethods = true,
       },
-      inlayHints,
       preferences = {
         useAliasesForRenames = true,
         preferTypeOnlyAutoImports = true,
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "~/.local/share/mise/installs/node/latest/bin/node",
+        nodePath = "~/.local/share/mise/installs/node/latest/bin/node --max-old-space-size=8192",
       },
       referencesCodeLens = {
-
         showOnAllFunctions = true,
         enabled = true,
       },

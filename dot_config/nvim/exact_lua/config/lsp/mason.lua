@@ -2,7 +2,7 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
--- require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
 mason.setup({
   ui = {
@@ -53,13 +53,13 @@ mason_lspconfig.setup_handlers({
   --   lspconfig.denols.setup(merge_options(server))
   -- end,
 
-  -- ["vtsls"] = function(server)
-  --   lspconfig.vtsls.setup(merge_options(server))
-  -- end,
-
-  ["ts_ls"] = function(server)
-    lspconfig.ts_ls.setup(merge_options(server))
+  ["vtsls"] = function(server)
+    lspconfig.vtsls.setup(merge_options(server))
   end,
+
+  -- ["ts_ls"] = function(server)
+  --   lspconfig.ts_ls.setup(merge_options(server))
+  -- end,
 
   -- ["volar"] = function(server)
   --   lspconfig.volar.setup(merge_options(server))
