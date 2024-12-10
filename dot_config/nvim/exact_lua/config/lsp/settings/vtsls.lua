@@ -13,7 +13,7 @@ local vtsls = {
       autoUseWorkspaceTsdk = true,
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "~/.local/share/mise/installs/node/latest/bin/node --max-old-space-size=8192",
+        nodePath = "~/.local/share/mise/installs/node/latest/bin/node",
       },
     },
     javascript = {
@@ -31,7 +31,7 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "~/.local/share/mise/installs/node/latest/bin/node --max-old-space-size=8192",
+        nodePath = "~/.local/share/mise/installs/node/latest/bin/node",
       },
       referencesCodeLens = {
         showOnAllFunctions = true,
