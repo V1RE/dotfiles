@@ -5,6 +5,9 @@ local vtsls = {
     vtsls = {
       experimental = {
         enableProjectDiagnostics = true,
+        completion = {
+          enableServerSideFuzzyMatch = true,
+        },
       },
       enableMoveToFileCodeAction = true,
       autoUseWorkspaceTsdk = true,
@@ -33,6 +36,14 @@ local vtsls = {
       referencesCodeLens = {
         showOnAllFunctions = true,
         enabled = true,
+      },
+      inlayHints = {
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
       },
     },
   },
