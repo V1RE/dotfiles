@@ -15,6 +15,7 @@ local M = {
       -- your own keymap.
       keymap = {
         preset = "default",
+        ["<CR>"] = { "accept", "fallback" },
       },
 
       appearance = {
@@ -37,6 +38,12 @@ local M = {
 
       -- experimental signature help support
       signature = { enabled = true },
+
+      completion = {
+        list = {
+          selection = "manual",
+        },
+      },
     },
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
