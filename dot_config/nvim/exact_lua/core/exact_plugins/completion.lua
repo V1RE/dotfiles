@@ -29,6 +29,7 @@ local M = {
           ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
           ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
+          ["<C-y>"] = cmp.mapping(cmp.mapping.confirm({ select = true })),
         },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
