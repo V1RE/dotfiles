@@ -41,8 +41,15 @@ local M = {
 
       completion = {
         list = {
-          selection = "manual",
+          selection = "auto_insert",
         },
+      },
+
+      documentation = {
+        -- Controls whether the documentation window will automatically show when selecting a completion item
+        auto_show = true,
+        -- Delay before showing the documentation window
+        auto_show_delay_ms = 100,
       },
     },
     -- allows extending the providers array elsewhere in your config
