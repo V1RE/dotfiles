@@ -26,6 +26,18 @@ require("catppuccin").setup({
     mason = true,
     treesitter = true,
     gitsigns = true,
+    mini = true,
+    snacks = true,
+    treesitter_context = true,
+    native_lsp = {
+      enabled = true,
+      underlines = {
+        errors = { "undercurl" },
+        hints = { "underdouble" },
+        warnings = { "undercurl" },
+        information = { "underdashed" },
+      },
+    },
   },
   default_integrations = true,
   custom_highlights = {

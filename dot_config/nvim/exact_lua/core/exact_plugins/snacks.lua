@@ -10,6 +10,7 @@ local M = {
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true },
+      statuscolumn = { enabled = true },
     },
   },
 }
