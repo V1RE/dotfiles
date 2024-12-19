@@ -3,16 +3,19 @@ local M = {
   {
     "saghen/blink.cmp",
     lazy = false, -- lazy loading handled internally
-    dependencies = "rafamadriz/friendly-snippets",
-    version = "v0.*",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      {
+        "saghen/blink.compat",
+        version = "*",
+        optional = true,
+        opts = {},
+      },
+    },
+    version = "*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      -- 'default' for mappings similar to built-in completion
-      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-      -- see the "default configuration" section below for full documentation on how to define
-      -- your own keymap.
       keymap = {
         preset = "default",
         ["<CR>"] = { "accept", "fallback" },
@@ -21,44 +24,31 @@ local M = {
 
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- Useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release
         use_nvim_cmp_as_default = true,
-        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = "mono",
       },
 
-      -- default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        completion = {
+          enabled_providers = { "lsp", "path", "snippets", "buffer" },
+        },
         providers = {
-          snippets = {
-            name = "Snippets",
-            module = "blink.cmp.sources.snippets",
-            score_offset = -3,
+          path = {
             max_items = 3,
-            opts = {
-              friendly_snippets = true,
-              search_paths = { vim.fn.stdpath("config") .. "/snippets" },
-              global_snippets = { "all" },
-              extended_filetypes = {},
-              ignored_filetypes = {},
-              get_filetype = function()
-                return vim.bo.filetype
-              end,
-            },
+          },
+          snippets = {
+            max_items = 3,
           },
         },
-        -- optionally disable cmdline completions
-        -- cmdline = {},
       },
 
-      -- experimental signature help support
-      signature = { enabled = true },
-
       completion = {
+        menu = {
+          draw = {
+            treesitter = true,
+          },
+        },
+
         list = {
           selection = "auto_insert",
         },
@@ -78,7 +68,95 @@ local M = {
 
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
-    opts_extend = { "sources.default" },
+    opts_extend = {
+      "sources.completion.enabled_providers",
+      "sources.compat",
+    },
+
+    ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
+    config = function(_, opts)
+      -- setup compat sources
+      local enabled = opts.sources.completion.enabled_providers
+      for _, source in ipairs(opts.sources.compat or {}) do
+        opts.sources.providers[source] = vim.tbl_deep_extend(
+          "force",
+          { name = source, module = "blink.compat.source" },
+          opts.sources.providers[source] or {}
+        )
+        if type(enabled) == "table" and not vim.tbl_contains(enabled, source) then
+          table.insert(enabled, source)
+        end
+      end
+
+      -- Unset custom prop to pass blink.cmp validation
+      opts.sources.compat = nil
+
+      -- check if we need to override symbol kinds
+      for _, provider in pairs(opts.sources.providers or {}) do
+        ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
+        if provider.kind then
+          local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+          local kind_idx = #CompletionItemKind + 1
+
+          CompletionItemKind[kind_idx] = provider.kind
+          ---@diagnostic disable-next-line: no-unknown
+          CompletionItemKind[provider.kind] = kind_idx
+
+          ---@type fun(ctx: blink.cmp.Context, items: blink.cmp.CompletionItem[]): blink.cmp.CompletionItem[]
+          local transform_items = provider.transform_items
+          ---@param ctx blink.cmp.Context
+          ---@param items blink.cmp.CompletionItem[]
+          provider.transform_items = function(ctx, items)
+            items = transform_items and transform_items(ctx, items) or items
+            for _, item in ipairs(items) do
+              item.kind = kind_idx or item.kind
+            end
+            return items
+          end
+
+          -- Unset custom prop to pass blink.cmp validation
+          provider.kind = nil
+        end
+      end
+
+      require("blink.cmp").setup(opts)
+    end,
+  },
+
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = {
+      {
+        "Exafunction/codeium.nvim",
+        cmd = "Codeium",
+        build = ":Codeium Auth",
+        opts = {},
+      },
+      "saghen/blink.compat",
+    },
+    opts = {
+      sources = {
+        compat = { "codeium" },
+        ---@type table<string, blink.cmp.SourceProviderConfig>
+        providers = {
+          codeium = {
+            kind = "Codeium",
+            score_offset = 100,
+            async = true,
+            max_items = 3,
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "catppuccin",
+    optional = true,
+    opts = {
+      integrations = { blink_cmp = true },
+    },
   },
 }
 
