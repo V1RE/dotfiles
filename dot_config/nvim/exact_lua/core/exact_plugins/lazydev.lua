@@ -9,8 +9,9 @@ local M = {
         "lazy.nvim",
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "wezterm-types", mods = { "wezterm" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
       },
     },
   },
