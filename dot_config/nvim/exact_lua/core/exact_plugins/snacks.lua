@@ -8,8 +8,8 @@ local M = {
     opts = {
       bigfile = { enabled = true },
       indent = { enabled = true },
-      scroll = { enabled = true },
-      words = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
     },
   },
 }
