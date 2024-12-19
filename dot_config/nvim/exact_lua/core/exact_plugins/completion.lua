@@ -43,6 +43,11 @@ local M = {
       },
 
       completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+
         menu = {
           draw = {
             treesitter = true,
@@ -54,15 +59,8 @@ local M = {
         },
 
         accept = {
-          auto_brackets = { enabled = true },
+          auto_brackets = { enabled = false },
         },
-      },
-
-      documentation = {
-        -- Controls whether the documentation window will automatically show when selecting a completion item
-        auto_show = true,
-        -- Delay before showing the documentation window
-        auto_show_delay_ms = 0,
       },
     },
 
@@ -145,7 +143,7 @@ local M = {
             kind = "Codeium",
             score_offset = 100,
             async = true,
-            max_items = 3,
+            max_items = 1,
           },
         },
       },
@@ -175,7 +173,7 @@ local M = {
             kind = "Supermaven",
             score_offset = 100,
             async = true,
-            max_items = 3,
+            max_items = 1,
           },
         },
       },
