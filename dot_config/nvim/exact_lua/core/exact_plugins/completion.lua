@@ -32,6 +32,25 @@ local M = {
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          snippets = {
+            name = "Snippets",
+            module = "blink.cmp.sources.snippets",
+            score_offset = -3,
+            max_items = 3,
+            opts = {
+              friendly_snippets = true,
+              search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+              global_snippets = { "all" },
+              extended_filetypes = {},
+              ignored_filetypes = {},
+              get_filetype = function()
+                return vim.bo.filetype
+              end,
+            },
+          },
+
+        },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },
@@ -43,15 +62,22 @@ local M = {
         list = {
           selection = "auto_insert",
         },
+
+        ghost_text = { enabled = true },
+
+        accept = {
+          auto_brackets = { enabled = true },
+        },
       },
 
       documentation = {
         -- Controls whether the documentation window will automatically show when selecting a completion item
         auto_show = true,
         -- Delay before showing the documentation window
-        auto_show_delay_ms = 100,
+        auto_show_delay_ms = 0,
       },
     },
+
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
     opts_extend = { "sources.default" },
