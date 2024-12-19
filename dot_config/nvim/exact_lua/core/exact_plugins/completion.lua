@@ -49,7 +49,6 @@ local M = {
               end,
             },
           },
-
         },
         -- optionally disable cmdline completions
         -- cmdline = {},
@@ -62,8 +61,6 @@ local M = {
         list = {
           selection = "auto_insert",
         },
-
-        ghost_text = { enabled = true },
 
         accept = {
           auto_brackets = { enabled = true },
