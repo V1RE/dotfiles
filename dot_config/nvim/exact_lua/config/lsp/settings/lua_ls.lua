@@ -7,7 +7,10 @@ local lua_ls = {
       },
       hint = {
         enable = true,
-        setType = true,
+        setType = false,
+        paramType = true,
+        paramName = "Disable",
+        semicolon = "Disable",
         arrayIndex = "Disable",
       },
       format = {
@@ -15,6 +18,15 @@ local lua_ls = {
       },
       telemetry = {
         enable = false,
+      },
+      codeLens = {
+        enable = true,
+      },
+      completion = {
+        callSnippet = "Replace",
+      },
+      doc = {
+        privateName = { "^_" },
       },
     },
   },

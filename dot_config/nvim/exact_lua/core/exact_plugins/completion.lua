@@ -123,6 +123,7 @@ local M = {
     end,
   },
 
+  -- Codeium Blink cmp source
   {
     "saghen/blink.cmp",
     optional = true,
@@ -142,6 +143,36 @@ local M = {
         providers = {
           codeium = {
             kind = "Codeium",
+            score_offset = 100,
+            async = true,
+            max_items = 3,
+          },
+        },
+      },
+    },
+  },
+
+  -- Supermaven Blink cmp source
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = {
+      {
+        "supermaven-inc/supermaven-nvim",
+        opts = {
+          disable_keymaps = true,
+          disable_inline_completion = true,
+          ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
+        },
+      },
+      "saghen/blink.compat",
+    },
+    opts = {
+      sources = {
+        compat = { "supermaven" },
+        providers = {
+          supermaven = {
+            kind = "Supermaven",
             score_offset = 100,
             async = true,
             max_items = 3,
