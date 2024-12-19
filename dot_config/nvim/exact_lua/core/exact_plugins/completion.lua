@@ -16,6 +16,7 @@ local M = {
       keymap = {
         preset = "default",
         ["<CR>"] = { "accept", "fallback" },
+        ["<C-space>"] = { "show_documentation" },
       },
 
       appearance = {
