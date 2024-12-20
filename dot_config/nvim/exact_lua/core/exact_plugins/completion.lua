@@ -147,7 +147,7 @@ local M = {
         providers = {
           codeium = {
             kind = "Codeium",
-            score_offset = 100,
+            score_offset = -1,
             async = true,
             max_items = 1,
           },
@@ -177,7 +177,7 @@ local M = {
         providers = {
           supermaven = {
             kind = "Supermaven",
-            score_offset = 100,
+            score_offset = -1,
             async = true,
             max_items = 1,
           },
