@@ -35,9 +35,7 @@ local M = {
       },
 
       sources = {
-        completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer" },
-        },
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
           path = {
             max_items = 3,
@@ -56,7 +54,7 @@ local M = {
 
         menu = {
           draw = {
-            treesitter = true,
+            treesitter = { "lsp" },
           },
         },
 
@@ -75,12 +73,13 @@ local M = {
     opts_extend = {
       "sources.completion.enabled_providers",
       "sources.compat",
+      "sources.default",
     },
 
     ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
     config = function(_, opts)
       -- setup compat sources
-      local enabled = opts.sources.completion.enabled_providers
+      local enabled = opts.sources.default
       for _, source in ipairs(opts.sources.compat or {}) do
         opts.sources.providers[source] = vim.tbl_deep_extend(
           "force",
