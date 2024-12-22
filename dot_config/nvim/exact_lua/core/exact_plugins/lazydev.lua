@@ -22,7 +22,7 @@ local M = {
       sources = {
         -- add lazydev to your completion providers
         completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+          default = { "lazydev" },
         },
         providers = {
           -- dont show LuaLS require statements when lazydev has items
