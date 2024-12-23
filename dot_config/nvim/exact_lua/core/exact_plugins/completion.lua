@@ -73,12 +73,11 @@ local M = {
         },
 
         ghost_text = { enabled = false },
-
-        trigger = {
-          prefetch_on_insert = true,
-        },
       },
-      signature = { enabled = true },
+
+      signature = {
+        enabled = true,
+      },
     },
 
     -- allows extending the providers array elsewhere in your config
@@ -221,7 +220,7 @@ local M = {
             name = "copilot",
             module = "blink-cmp-copilot",
             score_offset = 100,
-            async = true,
+            async = false,
           },
         },
       },
