@@ -55,6 +55,21 @@ local M = {
         menu = {
           draw = {
             treesitter = { "lsp" },
+
+            components = {
+              kind_icon = {
+                ellipsis = false,
+                text = function(ctx)
+                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return kind_icon
+                end,
+                -- Optionally, you may also use the highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
+                end,
+              },
+            },
           },
         },
 
@@ -67,6 +82,10 @@ local M = {
         },
 
         ghost_text = { enabled = true },
+
+        trigger = {
+          prefetch_on_insert = true,
+        },
       },
     },
 
@@ -148,7 +167,7 @@ local M = {
           codeium = {
             kind = "Codeium",
             score_offset = -1,
-            async = true,
+            async = false,
             max_items = 1,
           },
         },
@@ -178,8 +197,38 @@ local M = {
           supermaven = {
             kind = "Supermaven",
             score_offset = -1,
-            async = true,
+            async = false,
             max_items = 1,
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "saghen/blink.cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        build = ":Copilot auth",
+        opts = {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+          filetypes = { markdown = true, help = true },
+        },
+      },
+      { "giuxtaposition/blink-cmp-copilot" },
+    },
+    opts = {
+      sources = {
+        compat = { "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            score_offset = 100,
+            async = true,
           },
         },
       },
