@@ -20,11 +20,11 @@ local M = {
         preset = "default",
         ["<CR>"] = { "accept", "fallback" },
         ["<C-space>"] = { "show", "show_documentation" },
+        ["<C-d>"] = { "scroll_documentation_down" },
+        ["<C-u>"] = { "scroll_documentation_up" },
       },
 
       appearance = {
-        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
         kind_icons = {
           Color = "██",
@@ -65,6 +65,8 @@ local M = {
         accept = {
           auto_brackets = { enabled = false },
         },
+
+        ghost_text = { enabled = true },
       },
     },
 
