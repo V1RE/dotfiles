@@ -41,7 +41,7 @@
   "none-ls.nvim": { "branch": "main", "commit": "40dc2e983560acaea29d6312b33fafba37b0c272" },
   "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "b8ed35bf2c5c350ee84699adb2f797a453d60c5f" },
-  "nvim-lspconfig": { "branch": "master", "commit": "9204642002ba91f9e0b7d0e5989f373657fe754a" },
+  "nvim-lspconfig": { "branch": "master", "commit": "b54abeb8b90af1cb4592ce937ee95ed8cb457801" },
   "nvim-treesitter": { "branch": "master", "commit": "caba7ef3556079dec03407bcbb290ddc688ea06e" },
   "nvim-treesitter-context": { "branch": "master", "commit": "2bcf700b59bc92850ca83a1c02e86ba832e0fae0" },
   "nvim-ts-autotag": { "branch": "main", "commit": "1cca23c9da708047922d3895a71032bc0449c52d" },
