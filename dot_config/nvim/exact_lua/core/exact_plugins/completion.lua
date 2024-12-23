@@ -56,19 +56,9 @@ local M = {
           draw = {
             treesitter = { "lsp" },
 
-            components = {
-              kind_icon = {
-                ellipsis = false,
-                text = function(ctx)
-                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return kind_icon
-                end,
-                -- Optionally, you may also use the highlights from mini.icons
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
-              },
+            columns = {
+              { "label", "label_description", gap = 1 },
+              { "kind_icon", "kind" },
             },
           },
         },
@@ -82,6 +72,8 @@ local M = {
         },
 
         ghost_text = { enabled = true },
+
+        completeopt = "menu,menuone,noselect,noinsert",
 
         trigger = {
           prefetch_on_insert = true,
