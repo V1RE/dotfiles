@@ -73,8 +73,6 @@ local M = {
 
         ghost_text = { enabled = true },
 
-        completeopt = "menu,menuone,noselect,noinsert",
-
         trigger = {
           prefetch_on_insert = true,
         },
