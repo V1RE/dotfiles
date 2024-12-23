@@ -225,6 +225,7 @@ local M = {
         compat = { "copilot" },
         providers = {
           copilot = {
+            kind = "Copilot",
             name = "copilot",
             module = "blink-cmp-copilot",
             score_offset = 100,
