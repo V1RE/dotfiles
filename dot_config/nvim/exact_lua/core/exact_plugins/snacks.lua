@@ -11,6 +11,16 @@ local M = {
       input = { enabled = true },
       notifier = { enabled = true },
       statuscolumn = { enabled = true },
+      lazygit = {},
+    },
+    keys = {
+      {
+        "<leader>gg",
+        function()
+          require("snacks").lazygit.open()
+        end,
+        desc = "Lazygit (cwd)",
+      },
     },
   },
 }
