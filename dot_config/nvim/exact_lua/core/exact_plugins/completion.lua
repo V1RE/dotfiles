@@ -78,8 +78,8 @@ local M = {
       signature = {
         enabled = true,
         window = {
-          border = "rounded"
-        }
+          border = "rounded",
+        },
       },
     },
 
@@ -259,7 +259,7 @@ local M = {
 
 ---@type LazyPluginSpec[]
 ---@diagnostic disable-next-line: unused-local
-local oldCmp = {
+M = {
   {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
