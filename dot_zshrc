@@ -1,3 +1,7 @@
+ if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+   "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+ fi
+
 if type brew &>/dev/null
 then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
