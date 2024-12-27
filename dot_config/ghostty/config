@@ -19,3 +19,4 @@ shell-integration = zsh
 
 # Color scheme (using Catppuccin Mocha)
 theme = "catppuccin-mocha"
+macos-titlebar-style = "tabs"
