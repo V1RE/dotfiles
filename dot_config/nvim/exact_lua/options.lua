@@ -56,8 +56,4 @@ vim.opt.listchars:append("trail:·")
 
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]])
-vim.cmd([[
-if isdirectory($GHOSTTY_RESOURCES_DIR . "/../vim/vimfiles")
-  set runtimepath^=$GHOSTTY_RESOURCES_DIR/../vim/vimfiles
-endif
-]])
+vim.opt.runtimepath:append(",/Applications/Ghostty.app/Contents/Resources/vim/vimfiles")
