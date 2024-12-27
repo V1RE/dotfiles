@@ -1,7 +1,6 @@
-# font-codepoint-map = U+F101-U+F27F=nielsicon
-# Font configuration
-font-family = "Cascadia Code"
 font-family = "nielsicon"
+font-family = "CaskaydiaCove Nerd Font Mono"
+font-family = "Cascadia Code"
 font-family = "CaskaydiaCove Nerd Font"
 font-family = "PragmataPro Liga"
 font-family = "PragmataPro Mono Liga"
@@ -9,7 +8,7 @@ font-family = "Noto Color Emoji"
 font-family = "JetBrains Mono"
 
 font-size = 16
-adjust-cell-height = 40%
+adjust-cell-height = 1.4
 
 # Window appearance
 window-theme = "system"
