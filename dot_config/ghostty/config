@@ -16,5 +16,7 @@ window-theme = "system"
 background-opacity = 0.8
 background-blur-radius = 20
 
+shell-integration = zsh
+
 # Color scheme (using Catppuccin Mocha)
 theme = "catppuccin-mocha"
