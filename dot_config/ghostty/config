@@ -9,15 +9,12 @@ font-family = "Noto Color Emoji"
 font-family = "JetBrains Mono"
 
 font-size = 16
-adjust-cell-height = 40%  # Approximating line-height 1.4
+adjust-cell-height = 40%
 
 # Window appearance
 window-theme = "system"
-window-background-opacity = 0.8
-window-decorations = "RESIZE"
-
-# macOS specific settings
-macos-window-background-blur = 30
+background-opacity = 0.8
+background-blur-radius = 20
 
 # Color scheme (using Catppuccin Mocha)
 theme = "catppuccin-mocha"
