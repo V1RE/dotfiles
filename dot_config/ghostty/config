@@ -1,1 +1,23 @@
-font-codepoint-map = U+F101-U+F27F=nielsicon
+# font-codepoint-map = U+F101-U+F27F=nielsicon
+# Font configuration
+font-family = "Cascadia Code"
+font-family = "nielsicon"
+font-family = "CaskaydiaCove Nerd Font"
+font-family = "PragmataPro Liga"
+font-family = "PragmataPro Mono Liga"
+font-family = "Noto Color Emoji"
+font-family = "JetBrains Mono"
+
+font-size = 16
+adjust-cell-height = 40%  # Approximating line-height 1.4
+
+# Window appearance
+window-theme = "system"
+window-background-opacity = 0.8
+window-decorations = "RESIZE"
+
+# macOS specific settings
+macos-window-background-blur = 30
+
+# Color scheme (using Catppuccin Mocha)
+theme = "catppuccin-mocha"
