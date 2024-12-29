@@ -91,3 +91,6 @@ symbol = " "
 format = "using [$symbol(v$output)]($style) "
 description = "The current version of React defined in the package.json"
 style = "blue bold"
+
+[aws]
+disabled = true
