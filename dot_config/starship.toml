@@ -64,6 +64,7 @@ format = "[$symbol]($style)"
 
 [time]
 disabled = false
+format = "[$time]($style)"
 
 [localip]
 disabled = false
