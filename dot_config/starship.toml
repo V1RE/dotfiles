@@ -4,9 +4,9 @@ format = "$all$fill$shlvl$time$line_break$jobs$battery$status$shell$character"
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
-success_symbol = "[⚡](bold #8fe8a8)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[⚡](bold #ff7ea3)"
-vimcmd_symbol = "[⚡](bold #7bc8fc)"
+success_symbol = "[](bold #8fe8a8)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[](bold #ff7ea3)"
+vimcmd_symbol = "[](bold #7bc8fc)"
 
 [git_branch]
 symbol = " "
