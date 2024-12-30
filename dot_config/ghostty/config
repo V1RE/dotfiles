@@ -23,3 +23,5 @@ shell-integration-features = true
 theme = "catppuccin-mocha"
 
 command = "/opt/homebrew/bin/zsh"
+
+auto-update-channel = "tip"
