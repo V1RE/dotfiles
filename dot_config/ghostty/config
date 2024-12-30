@@ -27,3 +27,5 @@ theme = "catppuccin-mocha"
 command = "/opt/homebrew/bin/zsh"
 
 auto-update-channel = "tip"
+
+macos-option-as-alt = true
