@@ -15,6 +15,8 @@ window-theme = "system"
 background-opacity = 0.8
 background-blur-radius = 20
 macos-titlebar-style = "tabs"
+window-padding-x = 8
+window-padding-y = 8
 
 shell-integration = zsh
 shell-integration-features = true
