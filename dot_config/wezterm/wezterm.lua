@@ -25,6 +25,9 @@ config.font_size = 16
 config.line_height = 1.4
 config.command_palette_font_size = 16
 
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = true
+
 config.window_frame = {
   font_size = 16,
   font = wezterm.font({ family = "Roboto" }),
