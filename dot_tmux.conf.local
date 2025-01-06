@@ -127,7 +127,7 @@ thm_black4="#575268"
 
 # window style
 tmux_conf_theme_window_fg="$thm_fg"
-tmux_conf_theme_window_bg="$thm_bg"
+# tmux_conf_theme_window_bg="$thm_bg"
 
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
