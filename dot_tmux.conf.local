@@ -272,7 +272,7 @@ tmux_conf_theme_right_separator_sub=""
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" #{?client_prefix,,}  #S | #{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | #(cd #{pane_current_path}; git rev-parse --is-inside-work-tree 2>/dev/null  && echo \" $(git branch --show-current)\" || echo '') "
+tmux_conf_theme_status_left=" #{?client_prefix,,}  #S | #{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | #(cd #{pane_current_path}; git rev-parse --is-inside-work-tree 2>/dev/null  && echo \" $(git branch --show-current)\" || echo '') "
 tmux_conf_theme_status_right=" #{?mouse,,} , #{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_hbar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} "
 
 # status left style
