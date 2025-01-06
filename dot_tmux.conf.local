@@ -397,6 +397,23 @@ set -g status-position top
 # Update status-bar every second
 set -g status-interval 1
 
+# Remove delay when pressing escape
+set -sg escape-time 0
+
+# Increase scrollback buffer size
+set -g history-limit 50000
+
+# Switch windows using Cmd + h,l (Note: In tmux we'll use Alt/Meta instead of Cmd)
+bind -n M-h previous-window
+bind -n M-l next-window
+
+# Switch workspaces (sessions) using Cmd + j,k (using Alt/Meta)
+bind -n M-j switch-client -n
+bind -n M-k switch-client -p
+
+# Quick session switcher (similar to Cmd+n workspace switcher)
+bind -n M-n choose-tree -s
+
 
 # -- tpm -----------------------------------------------------------------------
 
