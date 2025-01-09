@@ -56,4 +56,11 @@ vim.opt.listchars:append("trail:·")
 
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]])
-vim.opt.runtimepath:append(",/Applications/Ghostty.app/Contents/Resources/vim/vimfiles")
+vim.opt.runtimepath:prepend("/Applications/Ghostty.app/Contents/Resources/vim/vimfiles")
+
+vim.cmd([[ 
+    augroup GhosttyFt
+        " Ghostty
+        autocmd BufRead,BufNewFile **/ghostty/config set ft=ghostty
+    augroup end
+]])
