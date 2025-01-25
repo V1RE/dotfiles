@@ -1,0 +1,133 @@
+if type brew &>/dev/null
+then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    FPATH="${HOME}/.zsh:${FPATH}"
+
+    autoload -Uz compinit
+    compinit
+fi
+
+# argc-completions
+export ARGC_COMPLETIONS_ROOT="/Users/niels/Code/argc-completions"
+export ARGC_COMPLETIONS_PATH="$ARGC_COMPLETIONS_ROOT/completions"
+export PATH="$ARGC_COMPLETIONS_ROOT/bin:$PATH"
+# To add completions for only the specified command, modify next line e.g. argc_scripts=( cargo git )
+argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
+source <(argc --argc-completions zsh $argc_scripts)
+
+[[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
+
+. ~/.antidote/antidote.zsh
+
+antidote load
+
+# Extend PATH.
+path=(~/bin $path)
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -a --color=always $realpath'
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
+
+# Export environment variables.
+export GPG_TTY=$TTY
+
+function zvm_after_init() {
+    . "$HOME/.atuin/bin/env"
+
+    eval "$(atuin init zsh --disable-up-arrow)"
+}
+
+# Autoload functions.
+autoload -Uz zmv
+
+# Define aliases.
+alias tree='tree -a -I .git'
+
+# Add flags to existing aliases.
+alias ls="${aliases[ls]:-ls} -A"
+
+setopt autocd
+setopt autolist
+setopt correct
+setopt extended_glob
+setopt extended_history
+setopt glob_dots
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt inc_append_history
+setopt no_case_glob
+setopt share_history
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR="nvim"
+export VISUAL=$EDITOR
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export BAT_PAGER="/usr/bin/less"
+export GIT_PAGER="delta"
+export BROWSER="open"
+export REDO_HISTORY_PATH="$HISTFILE"
+export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+set -k
+
+export ZVM_VI_SURROUND_BINDKEY="s-prefix"
+export ZVM_TERM="xterm-256color"
+
+export PATH="$HOME/go/bin/:$PATH"
+
+export PNPM_HOME="/Users/niels/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+eval "$(starship init zsh)"
+eval "$(/Users/niels/.local/bin/mise activate zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+source "$(redo alias-file)"
+source "$HOME/.config/lf/lficons.zsh"
+source "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh --disable-up-arrow)"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# Sorry @zloirock, I don't want to see your ads.
+export ADBLOCK=true
+# I absolutely despise git hooks.
+export HUSKY=0
+
+# Define functions and completions.
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && command cd -- "$1" }
+compdef _directories md
+
+source ~/.aliases
+
+# tabtab source for packages
+# uninstall by removing these lines
+# [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+#compdef gt
+###-begin-gt-completions-###
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
+# bun completions
+[ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"

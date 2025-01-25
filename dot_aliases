@@ -34,6 +34,8 @@ alias cat="bat"
 
 alias ping="gping"
 
+alias zed="zed-preview"
+
 # Tmux
 function t() {
 	local sessions
