@@ -6,6 +6,7 @@ local M = {
     opts = { -- set to setup table
       tailwind = true, -- Enable tailwind colors
     },
+    enabled = false,
   },
 }
 
