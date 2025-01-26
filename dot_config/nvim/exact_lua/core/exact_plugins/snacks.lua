@@ -22,6 +22,20 @@ local M = {
         end,
         desc = "Lazygit (cwd)",
       },
+      {
+        "gn",
+        function()
+          require("snacks").words.jump(1, true)
+        end,
+        desc = "Go to next word",
+      },
+      {
+        "gp",
+        function()
+          require("snacks").words.jump(-1, true)
+        end,
+        desc = "Go to previous word",
+      }
     },
   },
 }
