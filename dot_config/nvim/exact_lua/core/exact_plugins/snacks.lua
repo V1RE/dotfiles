@@ -10,9 +10,13 @@ local M = {
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true },
+      dashboard = {
+        enabled = true,
+        preset = "github",
+      },
       statuscolumn = {
         enabled = true,
-        left = { "mark", "sign", "git" }, -- priority of signs on the left (high to low)
+        left = { "mark", "sign" }, -- priority of signs on the left (high to low)
         right = { "fold", "git" }, -- priority of signs on the right (high to low)
       },
       words = { enabled = true },
