@@ -79,7 +79,6 @@ local M = {
           end,
           { section = "startup" },
         },
-        debug = true,
       },
       statuscolumn = {
         enabled = true,
@@ -110,6 +109,14 @@ local M = {
           require("snacks").words.jump(-1, true)
         end,
         desc = "Go to previous word",
+      },
+      {
+        "<leader>u",
+        function()
+          local snacks = require("snacks")
+          snacks.picker(snacks.picker.sources.undo)
+        end,
+        desc = "Undo history",
       },
     },
   },
