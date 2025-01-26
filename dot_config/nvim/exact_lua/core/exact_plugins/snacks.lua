@@ -119,15 +119,18 @@ local M = {
         desc = "Undo history",
       },
     },
-    cmd = function()
+    init = function()
       local snacks = require("snacks")
 
       vim.api.nvim_create_user_command("Snacks", function()
         snacks.picker()
-      end, {})
-
-      return { "Snacks" }
+      end, {
+        bar = true,
+        bang = true,
+      })
     end,
+
+    cmd = { "Snacks" },
   },
 }
 
