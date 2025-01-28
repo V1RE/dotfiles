@@ -1,3 +1,5 @@
+local i = require("config.icons")
+
 ---@type LazyPluginSpec[]
 local M = {
   {
@@ -17,43 +19,117 @@ local M = {
       },
       words = { enabled = true },
       lazygit = {},
+      picker = {
+        ui_select = true,
+      },
     },
     keys = {
       {
         "<leader>gg",
         function()
-          require("snacks").lazygit.open()
+          Snacks.lazygit.open()
         end,
         desc = "Lazygit (cwd)",
       },
       {
         "gn",
         function()
-          require("snacks").words.jump(1, true)
+          Snacks.words.jump(1, true)
         end,
         desc = "Go to next word",
       },
       {
         "gp",
         function()
-          require("snacks").words.jump(-1, true)
+          Snacks.words.jump(-1, true)
         end,
         desc = "Go to previous word",
       },
       {
         "<leader>u",
         function()
-          local snacks = require("snacks")
-          snacks.picker(snacks.picker.sources.undo)
+          Snacks.picker(Snacks.picker.sources.undo)
         end,
         desc = "Undo history",
       },
+
+      {
+        "<leader><leader>",
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = i.Watch .. "Resume Picker",
+      },
+
+      {
+        "<leader>f",
+        function()
+          Snacks.picker.pick(Snacks.picker.sources.smart)
+        end,
+        desc = i.Telescope .. "Find files",
+      },
+      {
+        "<leader>F",
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = i.Search .. "Find text",
+      },
+      {
+        "<leader>sh",
+        function()
+          Snacks.picker.help()
+        end,
+        desc = "Find Help",
+      },
+
+      {
+        "gd",
+        function()
+          Snacks.picker.lsp_definitions()
+        end,
+        desc = i.Constant .. "Definition",
+      },
+      {
+        "gi",
+        function()
+          Snacks.picker.lsp_implementations()
+        end,
+        desc = i.Interface .. "Implementations",
+      },
+      {
+        "gr",
+        function()
+          Snacks.picker.lsp_references()
+        end,
+        nowait = true,
+        desc = i.Reference .. "References",
+      },
+      {
+        "<leader>lS",
+        function()
+          Snacks.picker.lsp_symbols({ workspace = true })
+        end,
+        desc = "Workspace Symbols",
+      },
+      {
+        "<leader>ls",
+        function()
+          Snacks.picker.lsp_symbols({ workspace = false })
+        end,
+        desc = "Document Symbols",
+      },
+      {
+        "<leader>lw",
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = "Workspace Diagnostics",
+      },
     },
     init = function()
-      local snacks = require("snacks")
-
-      vim.api.nvim_create_user_command("Snacks", function()
-        snacks.picker()
+      vim.api.nvim_create_user_command("Snacks", function(command)
+        Snacks.picker.pick(command.args or "files")
       end, {
         bar = true,
         bang = true,
