@@ -10,9 +10,6 @@ local M = {
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true },
-      dashboard = {
-        enabled = true,
-      },
       statuscolumn = {
         enabled = true,
         left = { "mark", "sign" }, -- priority of signs on the left (high to low)
