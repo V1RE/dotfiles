@@ -4,6 +4,7 @@ pnpm = "9"
 bun = "latest"
 usage = "latest"
 "npm:neovim" = "latest"
+java = "23"
 
 [settings]
 experimental = true
