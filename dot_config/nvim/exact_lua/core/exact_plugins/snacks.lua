@@ -64,7 +64,7 @@ local M = {
       {
         "<leader>f",
         function()
-          Snacks.picker.pick(Snacks.picker.sources.smart)
+          Snacks.picker.files()
         end,
         desc = i.Telescope .. "Find files",
       },
