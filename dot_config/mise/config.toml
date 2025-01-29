@@ -6,6 +6,7 @@ usage = "latest"
 "npm:neovim" = "latest"
 java = "23"
 "npm:taze" = "latest"
+"npm:knip" = "latest"
 
 [settings]
 experimental = true
