@@ -5,6 +5,7 @@ bun = "1.2"
 usage = "latest"
 "npm:neovim" = "latest"
 java = "23"
+"npm:taze" = "latest"
 
 [settings]
 experimental = true
