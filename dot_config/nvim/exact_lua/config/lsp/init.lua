@@ -8,7 +8,7 @@ vim.filetype.add({
   },
   filename = {
     ["bun.lock"] = "jsonc",
-    ["*.env.*"] = "sh",
+    [".env.*"] = "sh",
     ["Podfile"] = "ruby",
     ["Appfile"] = "ruby",
     ["Fastfile"] = "ruby",
