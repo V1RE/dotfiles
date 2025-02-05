@@ -5,6 +5,9 @@ local M = {
     ---@module "csvview"
     ---@type CsvView.Options
     opts = {
+      view = {
+        display_mode = "border",
+      },
       parser = { comments = { "#", "//" } },
       keymaps = {
         -- Text objects for selecting fields
