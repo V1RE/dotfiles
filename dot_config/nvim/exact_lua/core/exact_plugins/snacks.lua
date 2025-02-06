@@ -1,3 +1,6 @@
+---@type table<string, Image>
+local images = {}
+
 local i = require("config.icons")
 
 ---@type LazyPluginSpec[]
