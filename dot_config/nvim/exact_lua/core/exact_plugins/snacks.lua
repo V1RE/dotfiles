@@ -21,51 +21,9 @@ local M = {
       lazygit = {},
       picker = {
         ui_select = true,
-      },
-    },
-    keys = {
-      {
-        "<leader>gg",
-        function()
-          Snacks.lazygit.open()
-        end,
-        desc = "Lazygit (cwd)",
-      },
-      {
-        "gn",
-        function()
-          Snacks.words.jump(1, true)
-        end,
-        desc = "Go to next word",
-      },
-      {
-        "gp",
-        function()
-          Snacks.words.jump(-1, true)
-        end,
-        desc = "Go to previous word",
-      },
-      {
-        "<leader>u",
-        function()
-          Snacks.picker(Snacks.picker.sources.undo)
-        end,
-        desc = "Undo history",
-      },
-
-      {
-        "<leader><leader>",
-        function()
-          Snacks.picker.resume()
-        end,
-        desc = i.Watch .. "Resume Picker",
-      },
-
-      {
-        "<leader>f",
-        function()
-          Snacks.picker.files({
-            hidden = true,
+        sources = {
+          files = {
+            ---@param ctx snacks.picker.preview.ctx
             preview = function(ctx)
               local check_is_image = function(fileName)
                 local image_extensions = { "png", "jpg", "webp" } -- Supported image formats
@@ -137,7 +95,52 @@ local M = {
               end
               image:render()
             end,
-          })
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit.open()
+        end,
+        desc = "Lazygit (cwd)",
+      },
+      {
+        "gn",
+        function()
+          Snacks.words.jump(1, true)
+        end,
+        desc = "Go to next word",
+      },
+      {
+        "gp",
+        function()
+          Snacks.words.jump(-1, true)
+        end,
+        desc = "Go to previous word",
+      },
+      {
+        "<leader>u",
+        function()
+          Snacks.picker(Snacks.picker.sources.undo)
+        end,
+        desc = "Undo history",
+      },
+
+      {
+        "<leader><leader>",
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = i.Watch .. "Resume Picker",
+      },
+
+      {
+        "<leader>f",
+        function()
+          Snacks.picker.files({ hidden = true })
         end,
         desc = i.Telescope .. "Find files",
       },
