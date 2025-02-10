@@ -14,6 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("core.plugins", {
   performance = {
     rtp = {
+      {
+        path = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles",
+        prepend = true,
+      },
       disabled_plugins = {
         -- "gzip",
         -- "matchit",
