@@ -25,6 +25,7 @@ local M = {
       max_height_window_percentage = 50,
       kitty_method = "normal",
     },
+    enabled = false,
   },
 }
 
