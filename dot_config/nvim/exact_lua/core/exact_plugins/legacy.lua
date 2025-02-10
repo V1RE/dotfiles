@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   { "MunifTanjim/nui.nvim" },
   { "b0o/schemastore.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
@@ -18,5 +18,3 @@ local M = {
   { "williamboman/mason.nvim" },
   { "justinsgithub/wezterm-types" },
 }
-
-return M

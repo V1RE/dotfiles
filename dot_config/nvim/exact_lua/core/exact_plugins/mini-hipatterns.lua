@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "echasnovski/mini.hipatterns",
     config = function(_, opts)
@@ -15,5 +15,3 @@ local M = {
     enabled = false,
   },
 }
-
-return M

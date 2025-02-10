@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "numToStr/Navigator.nvim",
   config = true,
   keys = {
@@ -10,5 +10,3 @@ local M = {
     { "<c-p>", "<CMD>NavigatorPrevious<CR>", mode = { "n", "t" } },
   },
 }
-
-return M

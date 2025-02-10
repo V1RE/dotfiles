@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "stevearc/aerial.nvim",
   event = "VeryLazy",
   opts = {
@@ -12,5 +12,3 @@ local M = {
     layout = { default_direction = "float" },
   },
 }
-
-return M

@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "smoka7/hop.nvim",
     version = "*",
@@ -19,5 +19,3 @@ local M = {
     },
   },
 }
-
-return M

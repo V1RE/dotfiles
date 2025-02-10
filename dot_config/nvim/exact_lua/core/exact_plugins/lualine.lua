@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
@@ -179,5 +179,3 @@ local M = {
     end,
   },
 }
-
-return M

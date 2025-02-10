@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "gbprod/yanky.nvim",
   opts = {
     highlight = {
@@ -18,5 +18,3 @@ local M = {
     { "<c-p>", "<Plug>(YankyCycleBackward)" },
   },
 }
-
-return M

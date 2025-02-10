@@ -2,7 +2,7 @@
 local i = require("config.icons")
 
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
@@ -173,5 +173,3 @@ local M = {
     },
   },
 }
-
-return M

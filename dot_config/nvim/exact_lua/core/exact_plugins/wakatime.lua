@@ -1,7 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "wakatime/vim-wakatime",
   event = "VeryLazy",
 }
-
-return M

@@ -8,7 +8,7 @@ local function format(opts)
 end
 
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/flash.nvim",
   event = "VeryLazy",
   ---@type Flash.Config
@@ -69,5 +69,3 @@ local M = {
     },
   },
 }
-
-return M

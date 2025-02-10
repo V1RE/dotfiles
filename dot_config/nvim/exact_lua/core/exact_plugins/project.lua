@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "ahmedkhalf/project.nvim",
   ---@param opts ProjectOptions
   config = function(_, opts)
@@ -12,5 +12,3 @@ local M = {
     detection_methods = { "pattern" },
   },
 }
-
-return M

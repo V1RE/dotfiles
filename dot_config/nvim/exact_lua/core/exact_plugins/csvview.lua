@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "hat0uma/csvview.nvim",
     ---@module "csvview"
@@ -26,5 +26,3 @@ local M = {
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
   },
 }
-
-return M

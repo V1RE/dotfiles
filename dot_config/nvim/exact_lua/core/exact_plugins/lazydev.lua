@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -17,5 +17,3 @@ local M = {
   },
   { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
 }
-
-return M

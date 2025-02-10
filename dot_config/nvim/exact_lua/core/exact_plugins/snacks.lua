@@ -1,7 +1,7 @@
 local i = require("config.icons")
 
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -21,9 +21,9 @@ local M = {
       lazygit = {},
       picker = {
         ui_select = true,
-      },
-      image = {
-        enabled = false,
+        debug = {
+          scores = true,
+        },
       },
     },
     keys = {
@@ -135,9 +135,11 @@ local M = {
         pattern = "VeryLazy",
         callback = function()
           -- Setup some globals for debugging (lazy-loaded)
+          ---@diagnostic disable-next-line: duplicate-set-field
           _G.dd = function(...)
             Snacks.debug.inspect(...)
           end
+          ---@diagnostic disable-next-line: duplicate-set-field
           _G.bt = function()
             Snacks.debug.backtrace()
           end
@@ -147,5 +149,3 @@ local M = {
     end,
   },
 }
-
-return M

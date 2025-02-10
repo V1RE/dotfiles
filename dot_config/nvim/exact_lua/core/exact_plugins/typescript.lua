@@ -1,6 +1,4 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "yioneko/nvim-vtsls",
 }
-
-return M

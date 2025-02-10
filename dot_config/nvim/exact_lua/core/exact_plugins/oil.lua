@@ -1,7 +1,7 @@
 local i = require("config.icons")
 
 ---@type LazyPluginSpec
-local M = {
+return {
   "stevearc/oil.nvim",
   ---@type oil.setupOpts
   opts = {
@@ -13,5 +13,3 @@ local M = {
     { "<leader>e", "<cmd>Oil<cr>", desc = i.NeoTree .. "Show Oil" },
   },
 }
-
-return M

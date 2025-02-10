@@ -1,7 +1,7 @@
 local i = require("config.icons")
 
 ---@type LazyPluginSpec
-local M = {
+return {
   "ghillb/cybu.nvim",
 
   ---@type CybuOptions
@@ -43,5 +43,3 @@ local M = {
     },
   },
 }
-
-return M

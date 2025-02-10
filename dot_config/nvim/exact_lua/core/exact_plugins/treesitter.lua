@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -46,5 +46,3 @@ local M = {
     enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 }
-
-return M

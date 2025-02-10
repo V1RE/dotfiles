@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
 end
 
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
@@ -65,5 +65,3 @@ local M = {
     end,
   },
 }
-
-return M

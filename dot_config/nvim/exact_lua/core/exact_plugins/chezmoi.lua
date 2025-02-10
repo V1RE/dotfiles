@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "Lilja/vim-chezmoi",
     cond = function()
@@ -31,5 +31,3 @@ local M = {
     end,
   },
 }
-
-return M

@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "echasnovski/mini.icons",
     lazy = true,
@@ -163,5 +163,3 @@ local M = {
     },
   },
 }
-
-return M

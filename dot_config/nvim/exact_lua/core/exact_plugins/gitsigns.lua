@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "lewis6991/gitsigns.nvim",
     ---@type Gitsigns.Config
@@ -8,5 +8,3 @@ local M = {
     },
   },
 }
-
-return M

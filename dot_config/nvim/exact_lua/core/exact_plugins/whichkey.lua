@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = function()
@@ -70,5 +70,3 @@ local M = {
     }
   end,
 }
-
-return M

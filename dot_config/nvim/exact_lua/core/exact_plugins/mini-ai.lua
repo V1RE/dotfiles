@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "echasnovski/mini.ai",
     version = false,
@@ -9,5 +9,3 @@ local M = {
     end,
   },
 }
-
-return M

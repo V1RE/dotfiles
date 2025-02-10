@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/noice.nvim",
   event = "VeryLazy",
   ---@type NoiceConfig
@@ -48,5 +48,3 @@ local M = {
     { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward"},
   },
 }
-
-return M

@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/edgy.nvim",
   event = "VeryLazy",
   init = function()
@@ -44,5 +44,3 @@ local M = {
     -- },
   },
 }
-
-return M

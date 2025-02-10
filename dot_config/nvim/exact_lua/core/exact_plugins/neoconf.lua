@@ -1,8 +1,6 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/neoconf.nvim",
   config = true,
   lazy = false,
 }
-
-return M

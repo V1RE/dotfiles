@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/trouble.nvim",
   opts = {},
   keys = {
@@ -11,5 +11,3 @@ local M = {
     { "gR", "<cmd>TroubleToggle lsp_references<cr>", silent = true, noremap = true },
   },
 }
-
-return M

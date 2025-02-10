@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
     "echasnovski/mini.comment",
@@ -16,5 +16,3 @@ local M = {
     end,
   },
 }
-
-return M

@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -9,5 +9,3 @@ local M = {
     enabled = false,
   },
 }
-
-return M

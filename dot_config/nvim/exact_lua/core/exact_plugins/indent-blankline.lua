@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "lukas-reineke/indent-blankline.nvim",
   event = "BufReadPre",
   main = "ibl",
@@ -11,5 +11,3 @@ local M = {
     exclude = { filetypes = { "help", "neo-tree", "Trouble", "lazy" } },
   },
 }
-
-return M

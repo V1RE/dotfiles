@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "echasnovski/mini.surround",
     ---@diagnostic disable-next-line: assign-type-mismatch
@@ -38,5 +38,3 @@ local M = {
     config = true,
   },
 }
-
-return M

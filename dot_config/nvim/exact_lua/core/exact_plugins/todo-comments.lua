@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "folke/todo-comments.nvim",
   opts = {
     highlight = {
@@ -11,5 +11,3 @@ local M = {
   },
   enabled = true,
 }
-
-return M

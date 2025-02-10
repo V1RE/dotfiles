@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "3rd/image.nvim",
     event = "VeryLazy",
@@ -28,5 +28,3 @@ local M = {
     enabled = false,
   },
 }
-
-return M

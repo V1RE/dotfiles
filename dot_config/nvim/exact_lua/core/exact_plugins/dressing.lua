@@ -1,7 +1,5 @@
 ---@type LazyPluginSpec
-local M = {
+return {
   "stevearc/dressing.nvim",
   config = true,
 }
-
-return M

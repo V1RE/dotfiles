@@ -1,5 +1,5 @@
 ---@type LazyPluginSpec[]
-local M = {
+return {
   {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -12,5 +12,3 @@ local M = {
     },
   },
 }
-
-return M
