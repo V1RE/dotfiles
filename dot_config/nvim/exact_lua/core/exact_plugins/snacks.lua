@@ -22,6 +22,9 @@ local M = {
       picker = {
         ui_select = true,
       },
+      image = {
+        enabled = false,
+      },
     },
     keys = {
       {
