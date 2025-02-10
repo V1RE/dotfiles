@@ -23,7 +23,7 @@ local M = {
         ui_select = true,
       },
       image = {
-        enabled = false,
+        enabled = true,
       },
     },
     keys = {
