@@ -1,5 +1,5 @@
----@type Wezterm
-local wezterm = require("wezterm")
+---@diagnostic disable: missing-fields
+local wezterm = require("wezterm") --[[@as Wezterm]]
 
 require("events")
 
@@ -24,6 +24,9 @@ config.font = font_with_fallback("Cascadia Code")
 config.font_size = 16
 config.line_height = 1.4
 config.command_palette_font_size = 16
+
+config.front_end = "WebGpu"
+config.max_fps = 120
 
 config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = true
@@ -85,4 +88,4 @@ config.hyperlink_rules = {
   { regex = [["([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)"]], format = "https://www.github.com/$1/$3" },
 }
 
-return config --[[@as Wezterm]]
+return config
