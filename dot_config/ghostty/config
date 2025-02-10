@@ -7,8 +7,9 @@ font-family = "PragmataPro Mono Liga"
 font-family = "Noto Color Emoji"
 font-family = "JetBrains Mono"
 
-font-size = 16
+font-size = 18
 adjust-cell-height = 40%
+adjust-cursor-height = 40%
 
 # Window appearance
 window-theme = "system"
