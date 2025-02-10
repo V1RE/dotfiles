@@ -5,7 +5,7 @@ font-family = "PragmataPro Liga"
 font-family = "PragmataPro Mono Liga"
 font-family = "Noto Color Emoji"
 font-family = "JetBrains Mono"
-font-codepoint-map = U+E8E1-U+EBF8 = "nielsicon"
+font-codepoint-map = U+E5FE-U+EBF8 = "nielsicon"
 
 font-size = 16
 adjust-cell-height = 40%
