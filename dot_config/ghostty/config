@@ -1,4 +1,4 @@
-# font-family = "nielsicon"
+font-codepoint-map = U+E8E1-U+EBF8 = "nielsicon"
 font-family = "CaskaydiaCove Nerd Font Mono"
 font-family = "Cascadia Code"
 font-family = "CaskaydiaCove Nerd Font"
