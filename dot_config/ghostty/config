@@ -1,9 +1,9 @@
 font-codepoint-map = U+E5FE-U+FC16 = nielsicon
 font-family = "PragmataPro Liga"
+font-family = "PragmataPro Mono Liga"
 font-family = "CaskaydiaCove Nerd Font Mono"
 font-family = "Cascadia Code"
 font-family = "CaskaydiaCove Nerd Font"
-font-family = "PragmataPro Mono Liga"
 font-family = "Noto Color Emoji"
 font-family = "JetBrains Mono"
 
@@ -14,10 +14,13 @@ adjust-cursor-height = 40%
 # Window appearance
 window-theme = "system"
 background-opacity = 0.8
-background-blur-radius = 20
+# background-blur-radius = 20
+background-blur = true
 macos-titlebar-style = "tabs"
 window-padding-x = 8
 window-padding-y = 8
+
+mouse-hide-while-typing = true
 
 shell-integration = zsh
 shell-integration-features = true
