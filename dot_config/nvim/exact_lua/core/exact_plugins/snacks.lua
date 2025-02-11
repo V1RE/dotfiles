@@ -21,6 +21,9 @@ return {
       lazygit = {},
       picker = {
         ui_select = true,
+        debug = {
+          scores = false,
+        },
       },
     },
     keys = {
