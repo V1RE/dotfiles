@@ -19,6 +19,7 @@ return {
       },
       words = { enabled = true },
       lazygit = {},
+      dim = { enabled = true },
       picker = {
         ui_select = true,
         debug = {
