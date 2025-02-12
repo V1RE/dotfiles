@@ -26,6 +26,14 @@ return {
           scores = false,
         },
       },
+      win = {
+        input = {
+          keys = {
+            ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+          },
+        },
+      },
     },
     keys = {
       {
@@ -68,7 +76,7 @@ return {
       {
         "<leader>f",
         function()
-          Snacks.picker.files({ hidden = true, layout = { preset = "ivy" } })
+          Snacks.picker.files({ hidden = true })
         end,
         desc = i.Telescope .. "Find files",
       },
