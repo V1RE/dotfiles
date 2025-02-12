@@ -68,7 +68,7 @@ return {
       {
         "<leader>f",
         function()
-          Snacks.picker.files({ hidden = true })
+          Snacks.picker.files({ hidden = true, layout = { preset = "ivy" } })
         end,
         desc = i.Telescope .. "Find files",
       },
