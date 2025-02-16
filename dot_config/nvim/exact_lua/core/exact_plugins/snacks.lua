@@ -22,9 +22,6 @@ return {
       dim = { enabled = true },
       picker = {
         ui_select = true,
-        debug = {
-          scores = false,
-        },
         win = {
           input = {
             keys = {
@@ -76,7 +73,7 @@ return {
       {
         "<leader>f",
         function()
-          Snacks.picker.files({ hidden = true })
+          Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
         end,
         desc = i.Telescope .. "Find files",
       },
