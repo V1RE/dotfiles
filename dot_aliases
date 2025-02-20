@@ -106,4 +106,7 @@ function lfcd() {
 	fi
 }
 
-alias gt="bun --bun $(mise where npm:@withgraphite/graphite-cli@latest)/bin/gt"
+local gtbin
+gtbin=$(mise where npm:@withgraphite/graphite-cli@latest)/bin/gt
+
+alias gt="bun --bun ${gtbin}"
