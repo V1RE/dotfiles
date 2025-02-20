@@ -22,3 +22,6 @@ lockfile = true
 
 [settings.npm]
 bun = true
+
+[env]
+'_'.path = "~/bin"
