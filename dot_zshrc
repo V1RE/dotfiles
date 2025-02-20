@@ -74,6 +74,7 @@ export SAVEHIST=$HISTSIZE
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 set -k
 
+export ZVM_VI_EDITOR=$EDITOR
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
