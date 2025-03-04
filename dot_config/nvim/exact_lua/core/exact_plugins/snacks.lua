@@ -20,6 +20,7 @@ return {
       words = { enabled = true },
       lazygit = {},
       dim = { enabled = true },
+      image = { enabled = true },
       picker = {
         ui_select = true,
         win = {
