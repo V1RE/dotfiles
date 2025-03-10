@@ -30,6 +30,7 @@ local function merge_options(server)
 end
 
 -- lspconfig.gopls.setup(opts)
+lspconfig.sourcekit.setup(merge_options("sourcekit"))
 
 mason_lspconfig.setup_handlers({
   function(server)
@@ -70,9 +71,5 @@ mason_lspconfig.setup_handlers({
 
   ["eslint"] = function(server)
     lspconfig.eslint.setup(merge_options(server))
-  end,
-
-  ["sourcekit"] = function(server)
-    lspconfig.sourcekit.setup(merge_options(server))
   end,
 })
