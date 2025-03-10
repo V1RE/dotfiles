@@ -16,7 +16,6 @@ mason.setup({
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
 })
-mason_lspconfig.setup()
 
 ---@class _.lspconfig.options
 local opts = {
