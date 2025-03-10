@@ -72,4 +72,8 @@ mason_lspconfig.setup_handlers({
   ["eslint"] = function(server)
     lspconfig.eslint.setup(merge_options(server))
   end,
+
+  ["sourcekit"] = function(server)
+    lspconfig.sourcekit.setup(merge_options(server))
+  end,
 })
