@@ -72,4 +72,8 @@ mason_lspconfig.setup_handlers({
   ["eslint"] = function(server)
     lspconfig.eslint.setup(merge_options(server))
   end,
+
+  ["kotlin_language_server"] = function(server)
+    lspconfig.kotlin_language_server.setup(merge_options(server))
+  end,
 })
