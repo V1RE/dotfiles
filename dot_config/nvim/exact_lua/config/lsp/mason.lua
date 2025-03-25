@@ -1,6 +1,7 @@
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
+lspconfig.kotlin_language_server.setup({})
 
 require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
@@ -31,8 +32,6 @@ end
 
 -- lspconfig.gopls.setup(opts)
 lspconfig.sourcekit.setup(merge_options("sourcekit"))
-
-lspconfig.kotlin_language_server.setup({})
 
 mason_lspconfig.setup_handlers({
   function(server)
