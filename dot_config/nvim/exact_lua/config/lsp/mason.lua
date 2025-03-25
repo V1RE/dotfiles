@@ -32,7 +32,7 @@ end
 -- lspconfig.gopls.setup(opts)
 lspconfig.sourcekit.setup(merge_options("sourcekit"))
 
-lspconfig.kotlin_language_server.setup(merge_options("kotlin_language_server"))
+lspconfig.kotlin_language_server.setup({})
 
 mason_lspconfig.setup_handlers({
   function(server)
