@@ -32,6 +32,8 @@ end
 -- lspconfig.gopls.setup(opts)
 lspconfig.sourcekit.setup(merge_options("sourcekit"))
 
+lspconfig.kotlin_language_server.setup(merge_options("kotlin_language_server"))
+
 mason_lspconfig.setup_handlers({
   function(server)
     lspconfig[server].setup(opts)
@@ -71,9 +73,5 @@ mason_lspconfig.setup_handlers({
 
   ["eslint"] = function(server)
     lspconfig.eslint.setup(merge_options(server))
-  end,
-
-  ["kotlin_language_server"] = function(server)
-    lspconfig.kotlin_language_server.setup(merge_options(server))
   end,
 })
