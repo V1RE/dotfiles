@@ -20,7 +20,9 @@ M.setup = function()
 
   vim.diagnostic.config({
     virtual_text = false,
-    virtual_lines = true,
+    virtual_lines = {
+      current_line = true,
+    },
     signs = {
       active = signs,
     },
