@@ -11,7 +11,7 @@ java = "24"
 "npm:turbo" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:vercel" = "latest"
-"npm:@withgraphite/graphite-cli" = "1.6.0"
+"npm:@withgraphite/graphite-cli" = "1.6.1"
 
 [settings]
 experimental = true
