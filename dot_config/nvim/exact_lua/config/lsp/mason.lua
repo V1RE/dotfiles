@@ -33,46 +33,44 @@ end
 -- lspconfig.gopls.setup(opts)
 lspconfig.sourcekit.setup(merge_options("sourcekit"))
 
--- mason_lspconfig.setup_handlers({
---   function(server)
---     lspconfig[server].setup(opts)
---   end,
---
---   ["lua_ls"] = function(server)
---     lspconfig.lua_ls.setup(merge_options(server))
---   end,
---
---   ["jsonls"] = function(server)
---     lspconfig.jsonls.setup(merge_options(server))
---   end,
---
---   ["yamlls"] = function(server)
---     lspconfig.yamlls.setup(merge_options(server))
---   end,
---
---   -- ["denols"] = function(server)
---   --   lspconfig.denols.setup(merge_options(server))
---   -- end,
---
---   ["vtsls"] = function(server)
---     lspconfig.vtsls.setup(merge_options(server))
---   end,
---
---   -- ["ts_ls"] = function(server)
---   --   lspconfig.ts_ls.setup(merge_options(server))
---   -- end,
---
---   -- ["volar"] = function(server)
---   --   lspconfig.volar.setup(merge_options(server))
---   -- end,
---
---   ["stylelint_lsp"] = function(server)
---     lspconfig.stylelint_lsp.setup(merge_options(server))
---   end,
---
---   ["eslint"] = function(server)
---     lspconfig.eslint.setup(merge_options(server))
---   end,
--- })
+mason_lspconfig.setup_handlers({
+  function(server)
+    lspconfig[server].setup(opts)
+  end,
 
-mason_lspconfig.setup()
+  ["lua_ls"] = function(server)
+    lspconfig.lua_ls.setup(merge_options(server))
+  end,
+
+  ["jsonls"] = function(server)
+    lspconfig.jsonls.setup(merge_options(server))
+  end,
+
+  ["yamlls"] = function(server)
+    lspconfig.yamlls.setup(merge_options(server))
+  end,
+
+  -- ["denols"] = function(server)
+  --   lspconfig.denols.setup(merge_options(server))
+  -- end,
+
+  ["vtsls"] = function(server)
+    lspconfig.vtsls.setup(merge_options(server))
+  end,
+
+  -- ["ts_ls"] = function(server)
+  --   lspconfig.ts_ls.setup(merge_options(server))
+  -- end,
+
+  -- ["volar"] = function(server)
+  --   lspconfig.volar.setup(merge_options(server))
+  -- end,
+
+  ["stylelint_lsp"] = function(server)
+    lspconfig.stylelint_lsp.setup(merge_options(server))
+  end,
+
+  ["eslint"] = function(server)
+    lspconfig.eslint.setup(merge_options(server))
+  end,
+})
