@@ -1,5 +1,5 @@
 [tools]
-node = "23"
+node = "24"
 pnpm = "10"
 bun = "1.2"
 usage = "latest"
