@@ -19,6 +19,7 @@ cargo_binstall = true
 trusted_config_paths = ["~/Code/"]
 vfox = false
 lockfile = true
+idiomatic_version_file_enable_tools = ["node"]
 
 [settings.npm]
 bun = true
