@@ -13,7 +13,7 @@ java = "24"
 "npm:vercel" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
 "npm:@google/gemini-cli" = "latest"
-"go:github.com/charmbracelet/crush" = "0.7.1"
+"go:github.com/charmbracelet/crush" = "latest"
 
 [settings]
 experimental = true
