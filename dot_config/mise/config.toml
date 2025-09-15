@@ -15,7 +15,7 @@ java = "24"
 node = "24"
 pnpm = "10"
 usage = "latest"
-"npm:@openai/codex" = "0.31.0"
+"npm:@openai/codex" = "0.36.0"
 
 [settings]
 experimental = true
