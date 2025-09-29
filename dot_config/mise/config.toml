@@ -16,6 +16,7 @@ java = "24"
 node = "24"
 pnpm = "10"
 usage = "latest"
+uv = "0.8.22"
 
 [settings]
 experimental = true
