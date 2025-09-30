@@ -14,7 +14,7 @@ return {
   { "neovim/nvim-lspconfig", dependencies = { "mason-lspconfig.nvim" } },
   { "nvim-lua/plenary.nvim" },
   { "tpope/vim-abolish" },
-  { "mason-org/mason.nvim", version = "^1.0.0" },
+  { "mason-org/mason.nvim", version = "2.0.1" },
   { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
   { "justinsgithub/wezterm-types" },
 }
