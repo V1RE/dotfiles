@@ -10,6 +10,7 @@ local M = {
           enabled = false,
         },
       },
+      debug = true,
     },
     keys = {
       {
@@ -69,6 +70,7 @@ local M = {
         desc = "Sidekick Switch Focus",
       },
     },
+    cmd = { "Sidekick" },
   },
 }
 
