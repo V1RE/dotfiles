@@ -2,6 +2,7 @@
 local M = {
   {
     "folke/sidekick.nvim",
+    ---@type sidekick.Config
     opts = {
       cli = {
         mux = {
