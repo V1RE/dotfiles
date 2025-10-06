@@ -70,7 +70,7 @@
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-chezmoi": { "branch": "master", "commit": "8b1983b2b90af3edbc3ebdee75a044ff74b599a5" },
   "vim-wakatime": { "branch": "master", "commit": "d7973b157a632d1edeff01818f18d67e584eeaff" },
-  "wezterm-types": { "branch": "main", "commit": "cfa3aa49d3a55f5004ae41df4bcf99449030fff6" },
+  "wezterm-types": { "branch": "main", "commit": "9e6bc9d7f2cf6105d89a6ffcfebe9f83100878c8" },
   "which-key.nvim": { "branch": "main", "commit": "904308e6885bbb7b60714c80ab3daf0c071c1492" },
   "yanky.nvim": { "branch": "main", "commit": "04775cc6e10ef038c397c407bc17f00a2f52b378" }
 }
