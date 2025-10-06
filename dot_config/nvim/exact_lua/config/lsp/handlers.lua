@@ -3,28 +3,34 @@ local i = require("config.icons")
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
--- M.capabilities = require('blink.cmp').get_lsp_capabilities(M.capabilities)
-M.capabilities = require("cmp_nvim_lsp").default_capabilities(M.capabilities)
+M.capabilities = require("blink.cmp").get_lsp_capabilities(M.capabilities)
+-- M.capabilities = require("cmp_nvim_lsp").default_capabilities(M.capabilities)
 
 M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = i.Error },
-    { name = "DiagnosticSignWarn", text = i.Warning },
-    { name = "DiagnosticSignHint", text = i.Hint },
-    { name = "DiagnosticSignInfo", text = i.Information },
-  }
-
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
-
   vim.diagnostic.config({
     virtual_text = false,
     virtual_lines = {
       current_line = true,
     },
     signs = {
-      active = signs,
+      text = {
+        [vim.diagnostic.severity.ERROR] = i.Error,
+        [vim.diagnostic.severity.WARN] = i.Warning,
+        [vim.diagnostic.severity.HINT] = i.Hint,
+        [vim.diagnostic.severity.INFO] = i.Information,
+      },
+      texthl = {
+        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      },
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.HINT] = "",
+        [vim.diagnostic.severity.INFO] = "",
+      },
     },
     severity_sort = true,
     float = {

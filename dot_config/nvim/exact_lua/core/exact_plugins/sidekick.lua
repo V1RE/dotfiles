@@ -11,6 +11,9 @@ local M = {
         },
       },
       debug = true,
+      nes = {
+        enabled = true,
+      },
     },
     keys = {
       {
