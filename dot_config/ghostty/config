@@ -26,7 +26,7 @@ shell-integration = zsh
 shell-integration-features = true
 
 # Color scheme (using Catppuccin Mocha)
-theme = "catppuccin-mocha"
+theme = "Catppuccin Mocha"
 
 command = "/opt/homebrew/bin/zsh"
 
