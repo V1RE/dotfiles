@@ -29,6 +29,7 @@ path=(~/bin $path)
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':fzf-tab:*' query-string ''
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -a --color=always $realpath'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
 
