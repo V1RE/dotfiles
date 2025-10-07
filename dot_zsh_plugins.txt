@@ -5,7 +5,6 @@ jeffreytse/zsh-vi-mode
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-Aloxaf/fzf-tab
 
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
