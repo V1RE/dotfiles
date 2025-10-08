@@ -94,6 +94,7 @@ return {
             name = "Snippets",
             module = "blink.cmp.sources.snippets",
             score_offset = -1,
+            max_items = 3,
             opts = {
               friendly_snippets = true,
               search_paths = { vim.fn.stdpath("config") .. "/snippets" },
@@ -135,13 +136,21 @@ return {
     opts_extend = { "sources.default" },
   },
 
+  -- blink.compat for nvim-cmp source compatibility
+  {
+    "saghen/blink.compat",
+    version = "2.*",
+    lazy = true,
+    opts = {},
+  },
+
   -- Codeium setup
   {
     "Exafunction/codeium.nvim",
     cmd = "Codeium",
     build = ":Codeium Auth",
     opts = {
-      enable_cmp_source = false, -- We'll use blink.compat instead
+      enable_cmp_source = true,
     },
   },
 
@@ -151,7 +160,7 @@ return {
     opts = {
       disable_keymaps = true,
       disable_inline_completion = true,
-      ignore_filetypes = { cpp = true }, -- Disable for C++ as in your config
+      ignore_filetypes = { cpp = true },
     },
   },
 
