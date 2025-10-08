@@ -50,6 +50,13 @@ return {
             auto_show = true,
             border = "rounded",
             winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+            draw = {
+              columns = {
+                { "kind_icon" },
+                { "label", "label_description", gap = 1 },
+                { "kind" },
+              },
+            },
           },
           documentation = {
             auto_show = true,
