@@ -10,14 +10,6 @@ return {
     opts = {},
   },
 
-  -- Smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = "VeryLazy",
-    opts = {},
-    enabled = false,
-  },
-
   -- Stabilize window on open
   {
     "luukvbaal/stabilize.nvim",
