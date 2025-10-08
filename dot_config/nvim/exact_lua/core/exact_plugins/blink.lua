@@ -16,122 +16,147 @@ return {
       "supermaven-inc/supermaven-nvim",
       "zbirenbaum/copilot.lua",
     },
-    ---@type blink.cmp.Config
-    opts = {
-      -- Use nvim-cmp mappings for familiarity
-      keymap = {
-        preset = "default",
-        ["<C-n>"] = { "select_next", "fallback" },
-        ["<C-p>"] = { "select_prev", "fallback" },
-        ["<C-u>"] = { "scroll_documentation_up", "fallback" },
-        ["<C-d>"] = { "scroll_documentation_down", "fallback" },
-        ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
-        ["<CR>"] = { "accept", "fallback" },
-        ["<C-y>"] = { "select_and_accept", "fallback" },
-      },
+    opts = function()
+      local icons = require("config.icons")
 
-      appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "mono",
-      },
+      ---@type blink.cmp.Config
+      return {
+        -- Use nvim-cmp mappings for familiarity
+        keymap = {
+          preset = "default",
+          ["<C-n>"] = { "select_next", "fallback" },
+          ["<C-p>"] = { "select_prev", "fallback" },
+          ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+          ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+          ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+          ["<CR>"] = { "accept", "fallback" },
+          ["<C-y>"] = { "select_and_accept", "fallback" },
+        },
 
-      completion = {
-        -- Use similar behavior to nvim-cmp
-        list = {
-          selection = {
-            preselect = false,
-            auto_insert = true,
+        appearance = {
+          use_nvim_cmp_as_default = true,
+          nerd_font_variant = "mono",
+        },
+
+        completion = {
+          -- Use similar behavior to nvim-cmp
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = true,
+            },
           },
-        },
-        menu = {
-          auto_show = true,
-          border = "rounded",
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-        },
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 200,
-          window = {
+          menu = {
+            auto_show = true,
             border = "rounded",
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,EndOfBuffer:Normal",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
           },
-        },
-        ghost_text = {
-          enabled = true, -- Disable for nvim-cmp like behavior
-          show_with_selection = true,
-        },
-      },
-
-      -- Use luasnip for snippets
-      snippets = {
-        preset = "luasnip",
-      },
-
-      sources = {
-        default = { "lsp", "path", "snippets", "buffer", "codeium", "supermaven", "copilot" },
-        providers = {
-          -- LSP source
-          lsp = {
-            name = "LSP",
-            module = "blink.cmp.sources.lsp",
-            fallbacks = { "buffer" },
-          },
-          -- Buffer source
-          buffer = {
-            name = "Buffer",
-            module = "blink.cmp.sources.buffer",
-            score_offset = -3,
-          },
-          -- Path source
-          path = {
-            name = "Path",
-            module = "blink.cmp.sources.path",
-            score_offset = 3,
-            fallbacks = { "buffer" },
-          },
-          -- Snippets source
-          snippets = {
-            name = "Snippets",
-            module = "blink.cmp.sources.snippets",
-            score_offset = -1,
-            max_items = 3,
-            opts = {
-              search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 200,
+            window = {
+              border = "rounded",
+              winhighlight = "Normal:Normal,FloatBorder:FloatBorder,EndOfBuffer:Normal",
             },
           },
-
-          codeium = {
-            name = "Codeium",
-            module = "codeium.blink",
-            async = true,
-            score_offset = 100,
+          ghost_text = {
+            enabled = true, -- Disable for nvim-cmp like behavior
+            show_with_selection = true,
           },
+        },
 
-          supermaven = {
-            name = "supermaven",
-            module = "blink.compat.source",
-            async = true,
-            score_offset = 100, -- High priority like in nvim-cmp
-            opts = {
-              source_name = "supermaven",
+        -- Use luasnip for snippets
+        snippets = {
+          preset = "luasnip",
+        },
+
+        sources = {
+          default = { "lsp", "path", "snippets", "buffer", "codeium", "supermaven", "copilot" },
+          providers = {
+            -- LSP source
+            lsp = {
+              name = "LSP",
+              module = "blink.cmp.sources.lsp",
+              fallbacks = { "buffer" },
             },
-          },
-          copilot = {
-            name = "Copilot",
-            module = "blink.compat.source",
-            score_offset = 100, -- High priority like in nvim-cmp
-            async = true,
-            opts = {
-              source_name = "copilot",
+            -- Buffer source
+            buffer = {
+              name = "Buffer",
+              module = "blink.cmp.sources.buffer",
+              score_offset = -3,
+            },
+            -- Path source
+            path = {
+              name = "Path",
+              module = "blink.cmp.sources.path",
+              score_offset = 3,
+              fallbacks = { "buffer" },
+            },
+            -- Snippets source
+            snippets = {
+              name = "Snippets",
+              module = "blink.cmp.sources.snippets",
+              score_offset = -1,
+              max_items = 3,
+              opts = {
+                search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+              },
+            },
+
+            codeium = {
+              name = "Codeium",
+              module = "codeium.blink",
+              async = true,
+              score_offset = 100,
+              transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                  item.kind_icon = icons.Robot
+                  item.kind_name = "Codeium"
+                end
+                return items
+              end,
+            },
+
+            supermaven = {
+              name = "Supermaven",
+              module = "blink.compat.source",
+              async = true,
+              score_offset = 100,
+              opts = {
+                source_name = "supermaven",
+              },
+              transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                  item.kind_icon = icons.Rocket
+                  item.kind_name = "Supermaven"
+                end
+                return items
+              end,
+            },
+            copilot = {
+              name = "Copilot",
+              module = "blink.compat.source",
+              score_offset = 100,
+              async = true,
+              opts = {
+                source_name = "copilot",
+              },
+              transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                  item.kind_icon = icons.Copilot
+                  item.kind_name = "Copilot"
+                end
+                return items
+              end,
             },
           },
         },
-      },
 
-      fuzzy = {
-        implementation = "prefer_rust_with_warning",
-      },
-    },
+        fuzzy = {
+          implementation = "prefer_rust_with_warning",
+        },
+      }
+    end,
 
     opts_extend = { "sources.default" },
   },
