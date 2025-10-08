@@ -78,13 +78,28 @@ return {
         },
 
         sources = {
-          default = { "lsp", "path", "snippets", "buffer", "codeium", "supermaven", "copilot" },
+          default = { "lspfirst", "lsp", "codeium", "supermaven", "copilot", "path", "snippets", "buffer" },
           providers = {
-            -- LSP source
+            -- LSP source (highest priority)
+            lspfirst = {
+              name = "LSP",
+              module = "blink.cmp.sources.lsp",
+              fallbacks = { "buffer" },
+              score_offset = 100,
+              max_items = 3,
+            },
             lsp = {
               name = "LSP",
               module = "blink.cmp.sources.lsp",
               fallbacks = { "buffer" },
+              score_offset = 5,
+              transform_items = function(_, items)
+                table.remove(items, 3)
+                table.remove(items, 2)
+                table.remove(items, 1)
+
+                return items
+              end,
             },
             -- Buffer source
             buffer = {
@@ -110,11 +125,13 @@ return {
               },
             },
 
+            -- AI sources (limited to 3 total)
             codeium = {
               name = "Codeium",
               module = "codeium.blink",
               async = true,
-              score_offset = 100,
+              score_offset = 9,
+              max_items = 1,
               transform_items = function(_, items)
                 for _, item in ipairs(items) do
                   item.kind_icon = icons.Robot
@@ -128,7 +145,8 @@ return {
               name = "supermaven",
               module = "blink.compat.source",
               async = true,
-              score_offset = 100,
+              score_offset = 10,
+              max_items = 1,
               opts = {
                 source_name = "supermaven",
               },
@@ -143,8 +161,9 @@ return {
             copilot = {
               name = "copilot",
               module = "blink.compat.source",
-              score_offset = 100,
+              score_offset = 8,
               async = true,
+              max_items = 1,
               opts = {
                 source_name = "copilot",
               },
