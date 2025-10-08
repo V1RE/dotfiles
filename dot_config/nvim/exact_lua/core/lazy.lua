@@ -12,6 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("core.plugins", {
+  rocks = {
+    enabled = false,
+  },
   performance = {
     rtp = {
       {
