@@ -118,7 +118,7 @@ return {
             },
 
             supermaven = {
-              name = "Supermaven",
+              name = "supermaven",
               module = "blink.compat.source",
               async = true,
               score_offset = 100,
@@ -134,7 +134,7 @@ return {
               end,
             },
             copilot = {
-              name = "Copilot",
+              name = "copilot",
               module = "blink.compat.source",
               score_offset = 100,
               async = true,
