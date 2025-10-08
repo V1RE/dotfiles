@@ -96,22 +96,21 @@ return {
             score_offset = -1,
             max_items = 3,
             opts = {
-              friendly_snippets = true,
               search_paths = { vim.fn.stdpath("config") .. "/snippets" },
             },
           },
-          -- AI sources via blink.compat
+
           codeium = {
             name = "Codeium",
-            module = "blink.compat.source",
-            score_offset = 100, -- High priority like in nvim-cmp
-            opts = {
-              source_name = "codeium",
-            },
+            module = "codeium.blink",
+            async = true,
+            score_offset = 100,
           },
+
           supermaven = {
-            name = "Supermaven",
+            name = "supermaven",
             module = "blink.compat.source",
+            async = true,
             score_offset = 100, -- High priority like in nvim-cmp
             opts = {
               source_name = "supermaven",
@@ -121,6 +120,7 @@ return {
             name = "Copilot",
             module = "blink.compat.source",
             score_offset = 100, -- High priority like in nvim-cmp
+            async = true,
             opts = {
               source_name = "copilot",
             },
@@ -160,7 +160,6 @@ return {
     opts = {
       disable_keymaps = true,
       disable_inline_completion = true,
-      ignore_filetypes = { cpp = true },
     },
   },
 
