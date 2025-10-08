@@ -207,7 +207,7 @@ return {
           -- Add your LSP servers here
           lua_ls = {},
           pyright = {},
-          tsserver = {},
+          ts_ls = {},
           -- Add more servers as needed
         },
         setup = {
@@ -221,14 +221,12 @@ return {
       }
     end,
     config = function(_, opts)
-      local lspconfig = require("lspconfig")
-
       -- Setup servers
       for server_name, server_opts in pairs(opts.servers) do
         if opts.setup["*"] then
           opts.setup["*"](server_name, server_opts)
         end
-        lspconfig[server_name].setup(server_opts)
+        vim.lsp.config(server_name, server_opts)
       end
     end,
   },
