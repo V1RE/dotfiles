@@ -6,6 +6,7 @@ return {
     dependencies = {
       "mason-lspconfig.nvim",
       "saghen/blink.cmp",
+      "neoconf.nvim",
     },
   },
 
