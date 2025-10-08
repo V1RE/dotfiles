@@ -15,6 +15,7 @@ return {
     "karb94/neoscroll.nvim",
     event = "VeryLazy",
     opts = {},
+    enabled = false,
   },
 
   -- Stabilize window on open
