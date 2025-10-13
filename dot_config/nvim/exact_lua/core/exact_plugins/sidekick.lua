@@ -6,8 +6,8 @@ local M = {
     opts = {
       cli = {
         mux = {
-          backend = "zellij",
-          enabled = false,
+          backend = "tmux",
+          enabled = true,
         },
       },
       debug = true,
