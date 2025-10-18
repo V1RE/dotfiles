@@ -198,3 +198,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+**/.cursor/.agent-tools
+**/.cursor/.agent-notes
