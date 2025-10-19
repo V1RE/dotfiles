@@ -1,5 +1,4 @@
 [tools]
-"go:github.com/charmbracelet/crush" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:@google/gemini-cli" = "latest"
@@ -8,7 +7,6 @@
 "npm:@withgraphite/graphite-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
-"npm:opencode-ai" = "latest"
 "npm:taze" = "latest"
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
