@@ -14,10 +14,10 @@
 bun = "latest"
 java = "24"
 node = "22"
+opencode = "latest"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
-opencode = "latest"
 
 [settings]
 experimental = true
