@@ -12,7 +12,7 @@
 "npm:turbo" = "latest"
 "npm:vercel" = "latest"
 bun = "latest"
-java = "24"
+java = "25.0.1+8.0.LTS"
 node = "22"
 opencode = "latest"
 pnpm = "10"
