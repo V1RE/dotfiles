@@ -139,3 +139,5 @@ compdef _gt_yargs_completions gt
 # bun completions
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
 
+eval $(eas autocomplete:script zsh)
+
