@@ -18,6 +18,7 @@ opencode = "latest"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
+"npm:eas-cli" = "16.25.1"
 
 [settings]
 experimental = true
