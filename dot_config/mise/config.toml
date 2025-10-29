@@ -19,6 +19,7 @@ pnpm = "10"
 usage = "latest"
 uv = "latest"
 "npm:eas-cli" = "16.25.1"
+"npm:@anthropic-ai/claude-code" = "2.0.28"
 
 [settings]
 experimental = true
