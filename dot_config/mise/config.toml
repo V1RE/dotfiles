@@ -1,10 +1,12 @@
 [tools]
+"npm:@anthropic-ai/claude-code" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:@sourcegraph/amp" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
+"npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
 "npm:taze" = "latest"
@@ -18,8 +20,6 @@ opencode = "latest"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
-"npm:eas-cli" = "16.25.1"
-"npm:@anthropic-ai/claude-code" = "2.0.28"
 
 [settings]
 experimental = true
