@@ -51,6 +51,7 @@ local M = {
       end),
     }),
   },
+  { key = "Enter", mods = "SHIFT", action = act({ SendString = "\x1b\r" }) },
 }
 
 return M
