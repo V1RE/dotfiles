@@ -10,7 +10,6 @@ local M = {
           enabled = true,
         },
       },
-      debug = true,
       nes = {
         enabled = true,
       },
