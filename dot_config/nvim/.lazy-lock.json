@@ -53,7 +53,7 @@
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "schemastore.nvim": { "branch": "main", "commit": "976b31e094615b2c27009561b3c67a37c87c93c2" },
   "sidekick.nvim": { "branch": "main", "commit": "c2bdf8cfcd87a6be5f8b84322c1b5052e78e302e" },
-  "snacks.nvim": { "branch": "main", "commit": "eee204d690f8d8e755229ff20f63d23d48565d7c" },
+  "snacks.nvim": { "branch": "main", "commit": "dec29f55666f8f4545835636077a86b150faf630" },
   "stabilize.nvim": { "branch": "master", "commit": "eeb1873daffaba67246188a5668b366e45ed1de1" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "3610dc7dc91f06aa98b11dca5cc30dfa98626b7e" },
