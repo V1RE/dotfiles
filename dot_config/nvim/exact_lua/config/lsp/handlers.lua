@@ -41,22 +41,7 @@ M.setup = function()
     },
   })
 
-  vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
-    config = config or {}
-    config.border = config.border or "rounded"
-    config.max_width = config.max_width or math.floor(vim.o.columns * 0.7)
-    config.max_height = config.max_height or math.floor(vim.o.lines * 0.3)
-
-    -- Ensure width/height are positive integers to prevent nvim_open_win errors
-    if config.width then
-      config.width = math.max(1, math.floor(config.width))
-    end
-    if config.height then
-      config.height = math.max(1, math.floor(config.height))
-    end
-
-    vim.lsp.handlers.hover(err, result, ctx, config)
-  end
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
