@@ -13,6 +13,10 @@ return {
         { path = "wezterm-types", mods = { "wezterm" } },
         { path = "snacks.nvim", words = { "Snacks" } },
       },
+      -- Disable when project has its own .luarc.json
+      enabled = function(root_dir)
+        return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+      end,
     },
   },
   { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings

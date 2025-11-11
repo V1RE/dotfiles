@@ -1,2 +1,8 @@
 key.txt.age
 .lazy-lock.json
+
+# Ignore project-local LSP configs (except in dotfile subdirs)
+**/.neoconf.json
+**/.luarc.json
+!dot_config/**/.neoconf.json
+!dot_hammerspoon/**/.luarc.json
