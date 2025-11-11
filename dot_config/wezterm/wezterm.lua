@@ -1,5 +1,6 @@
 ---@diagnostic disable: missing-fields
-local wezterm = require("wezterm") --[[@as Wezterm]]
+---@class Wezterm
+local wezterm = require("wezterm")
 
 require("events")
 

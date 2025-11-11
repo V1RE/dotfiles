@@ -1,4 +1,5 @@
-local wezterm = require("wezterm") --[[@as Wezterm]]
+---@class Wezterm
+local wezterm = require("wezterm")
 local act = wezterm.action
 
 local function isViProcess(pane)
