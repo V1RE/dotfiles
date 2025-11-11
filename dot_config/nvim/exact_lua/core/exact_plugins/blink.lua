@@ -78,8 +78,14 @@ return {
         },
 
         sources = {
-          default = { "lspfirst", "lsp", "codeium", "supermaven", "copilot", "path", "snippets", "buffer" },
+          default = { "lazydev", "lspfirst", "lsp", "codeium", "supermaven", "copilot", "path", "snippets", "buffer" },
           providers = {
+            -- LazyDev source (for require/module completions)
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              score_offset = 100,
+            },
             -- LSP source (highest priority)
             lspfirst = {
               name = "LSP",
