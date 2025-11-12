@@ -82,7 +82,6 @@ return {
           default = {
             "lazydev",
             "lspfirst",
-            "avante",
             "avante_files",
             "avante_mentions",
             "avante_commands",
