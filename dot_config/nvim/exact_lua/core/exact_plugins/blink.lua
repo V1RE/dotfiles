@@ -82,6 +82,7 @@ return {
           default = {
             "lazydev",
             "lspfirst",
+            "avante",
             "avante_files",
             "avante_mentions",
             "avante_commands",
@@ -202,7 +203,6 @@ return {
               module = "blink.compat.source",
               score_offset = 6,
               async = true,
-              max_items = 3,
               opts = {
                 source_name = "avante_commands",
               },
@@ -220,7 +220,6 @@ return {
               module = "blink.compat.source",
               score_offset = 7,
               async = true,
-              max_items = 5,
               opts = {
                 source_name = "avante_mentions",
               },
@@ -238,7 +237,6 @@ return {
               module = "blink.compat.source",
               score_offset = 5,
               async = true,
-              max_items = 3,
               opts = {
                 source_name = "avante_files",
               },
@@ -348,6 +346,7 @@ return {
           -- Default setup function
           ---@param server_name string
           ---@param opts table
+          ---@diagnostic disable-next-line: unused-local
           ["*"] = function(server_name, opts)
             opts.capabilities = capabilities
           end,
