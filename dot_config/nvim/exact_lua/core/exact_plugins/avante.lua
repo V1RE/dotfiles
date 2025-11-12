@@ -19,78 +19,35 @@ return {
       { "<leader>aS", "<cmd>AvanteStop<cr>", desc = "Stop Request", mode = { "n", "v" } },
       { "<leader>ap", "<cmd>AvanteSwitchProvider<cr>", desc = "Switch Provider", mode = { "n", "v" } },
     },
-    opts = function()
-      return {
-        -- Use Claude as primary provider
-        provider = "claude",
-        -- Use Copilot as secondary provider
-        copilot = {
-          enabled = true,
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      provider = "copilot",
+      file_selector = {
+        provider = "snacks",
+      },
+      -- Highlights integration with catppuccin
+      highlights = {
+        diff = {
+          current = "DiffText",
+          incoming = "DiffAdd",
         },
-        -- ACP (Agent Client Protocol) setup for CLI tools
-        acp = {
-          enabled = true,
-          providers = {
-            {
-              name = "claude_code",
-              command = "claude-code",
-              description = "Claude Code CLI",
-            },
-            {
-              name = "codex",
-              command = "codex",
-              description = "OpenAI Codex CLI",
-            },
-          },
+      },
+      -- Mappings
+      mappings = {
+        submit = {
+          normal = "<CR>",
+          insert = "<C-CR>",
         },
-        -- Agentic mode (auto-execute tools)
-        mode = "agentic",
-        behaviour = {
-          -- Disable auto-suggestions (manual trigger only)
-          auto_suggestions = false,
-          auto_apply_diff = false,
-          enable_token_counting = true,
+        ask = "<leader>aa",
+        edit = "<leader>ae",
+        toggle = {
+          default = "<leader>at",
+          debug = "<leader>ad",
+          hint = "<leader>ah",
         },
-        -- UI configuration
-        windows = {
-          position = "right",
-          width = 30,
-          sidebar_header = {
-            enabled = true,
-            rounded = true,
-          },
-        },
-        -- Use Snacks for file selection
-        file_selector = {
-          provider = "snacks",
-        },
-        -- Hints configuration
-        hints = {
-          enabled = true,
-        },
-        -- Highlights integration with catppuccin
-        highlights = {
-          diff = {
-            current = "DiffText",
-            incoming = "DiffAdd",
-          },
-        },
-        -- Mappings
-        mappings = {
-          submit = {
-            normal = "<CR>",
-            insert = "<C-CR>",
-          },
-          ask = "<leader>aa",
-          edit = "<leader>ae",
-          toggle = {
-            default = "<leader>at",
-            debug = "<leader>ad",
-            hint = "<leader>ah",
-          },
-        },
-      }
-    end,
+      },
+    },
   },
 
   -- render-markdown.nvim (required dependency)
@@ -123,27 +80,6 @@ return {
         icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
       },
     },
-  },
-
-  -- Integrate with edgy.nvim for sidebar management
-  {
-    "folke/edgy.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.right = opts.right or {}
-      table.insert(opts.right, {
-        title = "Avante",
-        ft = "Avante",
-        size = { width = 0.3 },
-        pinned = false,
-      })
-      table.insert(opts.right, {
-        title = "AvanteInput",
-        ft = "AvanteInput",
-        size = { width = 0.3 },
-        pinned = false,
-      })
-    end,
   },
 
   -- Update which-key for avante mappings
