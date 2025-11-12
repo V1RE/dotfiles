@@ -19,6 +19,7 @@ return {
     opts = function()
       local icons = require("config.icons")
 
+      ---@module 'blink-cmp'
       ---@type blink.cmp.Config
       return {
         -- Use nvim-cmp mappings for familiarity
@@ -78,7 +79,18 @@ return {
         },
 
         sources = {
-          default = { "lazydev", "lspfirst", "lsp", "codeium", "supermaven", "copilot", "path", "snippets", "buffer" },
+          default = {
+            "lazydev",
+            "lspfirst",
+            "lsp",
+            "codeium",
+            "supermaven",
+            "copilot",
+            "avante",
+            "path",
+            "snippets",
+            "buffer",
+          },
           providers = {
             -- LazyDev source (for require/module completions)
             lazydev = {
@@ -177,6 +189,61 @@ return {
                 for _, item in ipairs(items) do
                   item.kind_icon = icons.Copilot
                   item.kind_name = "Copilot"
+                end
+                return items
+              end,
+            },
+
+            -- Avante completion sources for better AI integration
+            avante_commands = {
+              name = "avante_commands",
+              module = "blink.compat.source",
+              score_offset = 6,
+              async = true,
+              max_items = 3,
+              opts = {
+                source_name = "avante_commands",
+              },
+              transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                  item.kind_icon = icons.Robot
+                  item.kind_name = "Avante"
+                end
+                return items
+              end,
+            },
+
+            avante_mentions = {
+              name = "avante_mentions",
+              module = "blink.compat.source",
+              score_offset = 7,
+              async = true,
+              max_items = 5,
+              opts = {
+                source_name = "avante_mentions",
+              },
+              transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                  item.kind_icon = icons.Robot
+                  item.kind_name = "Avante"
+                end
+                return items
+              end,
+            },
+
+            avante_files = {
+              name = "avante_files",
+              module = "blink.compat.source",
+              score_offset = 5,
+              async = true,
+              max_items = 3,
+              opts = {
+                source_name = "avante_files",
+              },
+              transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                  item.kind_icon = icons.Robot
+                  item.kind_name = "Avante"
                 end
                 return items
               end,
