@@ -14,7 +14,7 @@
 "npm:vercel" = "latest"
 bun = "latest"
 java = "24"
-node = "22"
+node = "24"
 opencode = "latest"
 pnpm = "10"
 usage = "latest"
