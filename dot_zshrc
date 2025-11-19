@@ -141,3 +141,6 @@ compdef _gt_yargs_completions gt
 
 eval $(eas autocomplete:script zsh)
 
+
+# Added by Antigravity
+export PATH="/Users/niels/.antigravity/antigravity/bin:$PATH"
