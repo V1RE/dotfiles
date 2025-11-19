@@ -19,6 +19,7 @@ opencode = "latest"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
+"npm:@google/gemini-cli" = "nightly"
 
 [settings]
 experimental = true
