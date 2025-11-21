@@ -5,7 +5,7 @@
 "npm:@google/gemini-cli" = "nightly"
 "npm:@openai/codex" = "latest"
 "npm:@sourcegraph/amp" = "latest"
-"npm:@withgraphite/graphite-cli" = "alpha"
+"npm:@withgraphite/graphite-cli" = { version = "alpha" }
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
@@ -36,7 +36,3 @@ bun = true
 '_'.path = "~/bin"
 OPENCODE_ENABLE_EXPERIMENTAL_MODELS = true
 OPENCODE_EXPERIMENTAL_WATCHER = true
-
-[alias.node]
-gt = "alpha"
-
