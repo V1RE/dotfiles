@@ -36,3 +36,6 @@ bun = true
 '_'.path = "~/bin"
 OPENCODE_ENABLE_EXPERIMENTAL_MODELS = true
 OPENCODE_EXPERIMENTAL_WATCHER = true
+
+[alias]
+"npm:@withgraphite/graphite-cli" = { latest = "alpha" }
