@@ -2,9 +2,10 @@
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
+"npm:@google/gemini-cli" = "nightly"
 "npm:@openai/codex" = "latest"
 "npm:@sourcegraph/amp" = "latest"
-"npm:@withgraphite/graphite-cli" = "latest"
+"npm:@withgraphite/graphite-cli" = "alpha"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
@@ -19,7 +20,6 @@ opencode = "latest"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
-"npm:@google/gemini-cli" = "nightly"
 
 [settings]
 experimental = true
@@ -36,6 +36,3 @@ bun = true
 '_'.path = "~/bin"
 OPENCODE_ENABLE_EXPERIMENTAL_MODELS = true
 OPENCODE_EXPERIMENTAL_WATCHER = true
-
-[alias]
-"npm:@withgraphite/graphite-cli" = { latest = "alpha" }
