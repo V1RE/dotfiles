@@ -1,9 +1,7 @@
 [tools]
-"npm:@anthropic-ai/claude-code" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:@google/gemini-cli" = "latest"
-"npm:@openai/codex" = "latest"
 "npm:@sourcegraph/amp" = "latest"
 "npm:@withgraphite/graphite-cli" = "latest"
 "npm:eas-cli" = "latest"
@@ -15,6 +13,8 @@
 "npm:turbo" = "latest"
 "npm:vercel" = "latest"
 bun = "latest"
+claude = "latest"
+codex = "latest"
 java = "24"
 node = "22"
 opencode = "latest"
