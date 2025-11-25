@@ -1,5 +1,7 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 # Inserts a blank line between shell prompts
-add_newline = true
+add_newline= true
 format = "$all$fill$shlvl$time$line_break$jobs$battery$status$shell$character"
 
 # Replace the "❯" symbol in the prompt with "➜"
@@ -76,21 +78,21 @@ symbol = " "
 detect_files = [".lua-version", ".luarc.json", ".stylua.toml", ".luacheckrc"]
 symbol = " "
 
-[custom.next]
-command = "pkgversion next"
-when = "pkgversion next"
-symbol = " "
-format = "using [$symbol(v$output)]($style) "
-description = "The current version of Next.js defined in the package.json"
-style = "#ffffff bold"
-
-[custom.react]
-command = "pkgversion react"
-when = "pkgversion react"
-symbol = " "
-format = "using [$symbol(v$output)]($style) "
-description = "The current version of React defined in the package.json"
-style = "blue bold"
+# [custom.next]
+# command = "pkgversion next"
+# when = "pkgversion next"
+# symbol = " "
+# format = "using [$symbol(v$output)]($style) "
+# description = "The current version of Next.js defined in the package.json"
+# style = "#ffffff bold"
+#
+# [custom.react]
+# command = "pkgversion react"
+# when = "pkgversion react"
+# symbol = " "
+# format = "using [$symbol(v$output)]($style) "
+# description = "The current version of React defined in the package.json"
+# style = "blue bold"
 
 [aws]
 disabled = true
