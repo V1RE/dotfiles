@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 if type brew &>/dev/null
 then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -141,6 +143,4 @@ compdef _gt_yargs_completions gt
 
 eval $(eas autocomplete:script zsh)
 
-
-# Added by Antigravity
-export PATH="/Users/niels/.antigravity/antigravity/bin:$PATH"
+zprof
