@@ -6,7 +6,11 @@ then
     FPATH="${HOME}/.zsh:${FPATH}"
 
     autoload -Uz compinit
-    compinit
+    if [[ -n ${ZDOTDIR:-~}/.zcompdump(#qN.mh+24) ]]; then
+        compinit
+    else
+        compinit -C
+    fi
 fi
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
@@ -94,8 +98,6 @@ eval "$(/Users/niels/.local/bin/mise activate zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 source "$(redo alias-file)"
 source "$HOME/.config/lf/lficons.zsh"
-source "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh --disable-up-arrow)"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -142,5 +144,8 @@ compdef _gt_yargs_completions gt
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
 
 eval $(eas autocomplete:script zsh)
+
+zcompile ~/.zsh_plugins.zsh 2>/dev/null &!
+zcompile ~/.zshrc 2>/dev/null &!
 
 zprof

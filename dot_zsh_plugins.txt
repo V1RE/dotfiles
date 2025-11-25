@@ -3,9 +3,9 @@ atuinsh/atuin
 jeffreytse/zsh-vi-mode
 
 zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
+zsh-users/zsh-autosuggestions kind:defer
 
-Aloxaf/fzf-tab
+Aloxaf/fzf-tab kind:defer
 
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
