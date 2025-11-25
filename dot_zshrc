@@ -1,5 +1,3 @@
-zmodload zsh/zprof
-
 if type brew &>/dev/null
 then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -143,9 +141,7 @@ compdef _gt_yargs_completions gt
 # bun completions
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
 
-eval $(eas autocomplete:script zsh)
+# eval $(eas autocomplete:script zsh)
 
 zcompile ~/.zsh_plugins.zsh 2>/dev/null &!
 zcompile ~/.zshrc 2>/dev/null &!
-
-zprof
