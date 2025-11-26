@@ -13,7 +13,7 @@
 "npm:turbo" = "latest"
 "npm:vercel" = "latest"
 bun = "latest"
-claude = "latest"
+claude-code = "latest"
 codex = "latest"
 java = "24"
 node = "22"
