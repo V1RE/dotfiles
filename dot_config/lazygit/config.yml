@@ -5,9 +5,10 @@ gui:
   scrollHeight: 5
   expandFocusedSidePanel: false
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  localBranchSortOrder: recency
+  pagers:
+    - colorArg: always
+    - pager: delta --dark --paging=never
   overrideGpg: true
   log:
     showWholeGraph: true
