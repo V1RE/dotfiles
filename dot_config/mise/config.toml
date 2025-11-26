@@ -1,9 +1,10 @@
 [tools]
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:@google/gemini-cli" = "latest"
-"npm:@sourcegraph/amp" = "latest"
-"npm:@withgraphite/graphite-cli" = "latest"
+gemini = "latest"
+"amp" = "latest"
+# "npm:@withgraphite/graphite-cli" = "latest"
+graphite = "latest"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
