@@ -105,6 +105,3 @@ function lfcd() {
 		fi
 	fi
 }
-
-local gtbin
-gtbin=$(mise where npm:@withgraphite/graphite-cli@latest)/bin/gt

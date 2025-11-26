@@ -3,7 +3,6 @@
 "npm:@fsouza/prettierd" = "latest"
 gemini = "latest"
 "amp" = "latest"
-# "npm:@withgraphite/graphite-cli" = "latest"
 graphite = "latest"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
