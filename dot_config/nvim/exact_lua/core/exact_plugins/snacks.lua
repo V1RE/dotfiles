@@ -72,13 +72,13 @@ return {
         desc = i.Watch .. "Resume Picker",
       },
 
-      {
-        "<leader>f",
-        function()
-          Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
-        end,
-        desc = i.Telescope .. "Find files",
-      },
+      -- {
+      --   "<leader>f",
+      --   function()
+      --     Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
+      --   end,
+      --   desc = i.Telescope .. "Find files",
+      -- },
       {
         "<leader>F",
         function()
