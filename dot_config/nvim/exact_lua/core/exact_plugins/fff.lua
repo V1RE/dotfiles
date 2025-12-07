@@ -48,5 +48,6 @@ return {
         desc = i.Telescope .. "Find files",
       },
     },
+    enabled = false
   },
 }
