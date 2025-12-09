@@ -1,0 +1,60 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "catppuchin",
+  "mcp": {
+    "expo": {
+      "url": "https://mcp.expo.dev/mcp",
+      "enabled": true,
+      "type": "remote",
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "type": "remote",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
+      },
+    },
+    "Figma": {
+      "enabled": false,
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/sse"
+    },
+    "maestro": {
+      "enabled": false,
+      "type": "local",
+      "command": ["mise", "x", "maestro", "--", "maestro", "mcp"]
+    },
+    "effect docs": {
+      "enabled": false,
+      "type": "local",
+      "command": ["bun", "x", "effect-mcp"]
+    },
+    "Playwright": {
+      "type": "local",
+      "command": ["bun", "x", "@playwright/mcp@latest"]
+    },
+  },
+  "lsp": {
+    "lua-language-server": {
+      "command": ["lua-language-server"],
+      "extensions": [".lua"]
+    }
+  },
+  "experimental": {
+    "batch_tool": true,
+    "openTelemetry": true,
+  },
+  "agent": {
+    "plan": {
+      "permission": {
+        "external_directory": "allow"
+      }
+    },
+    "explore": {
+      "permission": {
+        "external_directory": "allow"
+      }
+    }
+  },
+  "username": "Niels"
+}
