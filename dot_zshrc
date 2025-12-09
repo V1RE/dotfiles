@@ -16,11 +16,11 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
 # argc-completions
-export ARGC_COMPLETIONS_ROOT="/Users/niels/Code/argc-completions"
-export ARGC_COMPLETIONS_PATH="$ARGC_COMPLETIONS_ROOT/completions"
-export PATH="$ARGC_COMPLETIONS_ROOT/bin:$PATH"
+# export ARGC_COMPLETIONS_ROOT="/Users/niels/Code/argc-completions"
+# export ARGC_COMPLETIONS_PATH="$ARGC_COMPLETIONS_ROOT/completions"
+# export PATH="$ARGC_COMPLETIONS_ROOT/bin:$PATH"
 # To add completions for only the specified command, modify next line e.g. argc_scripts=( cargo git )
-argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
+# argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
 
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
@@ -122,7 +122,7 @@ source ~/.aliases
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-source <(argc --argc-completions zsh $argc_scripts)
+# source <(argc --argc-completions zsh $argc_scripts)
 
 #compdef gt
 ###-begin-gt-completions-###
