@@ -1,7 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "orng",
-  "plugin": ["@tarquinen/opencode-dcp@latest", "opencode-gemini-auth@latest"],
   "mcp": {
     "gh_grep": {
       "type": "remote",
@@ -42,8 +41,7 @@
   },
   "experimental": {
     "batch_tool": true,
-    "openTelemetry": true,
-    "primary_tools": ["prune"]
+    "openTelemetry": true
   },
   "agent": {
     "plan": {
