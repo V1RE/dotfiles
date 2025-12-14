@@ -200,3 +200,6 @@ dist
 .pnp.*
 **/.cursor/.agent-tools
 **/.cursor/.agent-notes
+
+**/.beads/
+**/.claude/settings.local.json
