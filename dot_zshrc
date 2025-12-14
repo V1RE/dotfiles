@@ -145,3 +145,6 @@ compdef _gt_yargs_completions gt
 
 zcompile ~/.zsh_plugins.zsh 2>/dev/null &!
 zcompile ~/.zshrc 2>/dev/null &!
+
+# opencode
+export PATH=/Users/niels/.opencode/bin:$PATH
