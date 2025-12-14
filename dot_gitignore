@@ -203,3 +203,4 @@ dist
 
 **/.beads/
 **/.claude/settings.local.json
+.beads/
