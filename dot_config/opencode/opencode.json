@@ -55,5 +55,6 @@
       }
     }
   },
-  "username": "Niels"
+  "username": "Niels",
+  "plugin": ["@nick-vi/opencode-type-inject"]
 }
