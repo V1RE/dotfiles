@@ -58,6 +58,7 @@
   "username": "Niels",
   "plugin": [
     "@nick-vi/opencode-type-inject",
-    "@franlol/opencode-md-table-formatter"
+    "@franlol/opencode-md-table-formatter",
+    "opencode-openai-codex-auth@4.1.0"
   ]
 }
