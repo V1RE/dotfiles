@@ -7,7 +7,7 @@
 [init]
   defaultBranch = main
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = /Users/niels/.gitignore
   pager = delta
 [gpg]
   format = ssh
@@ -20,10 +20,10 @@
 [rebase]
   updateRefs = true
 
-[includeIf "gitdir:~/Code/Socialbrothers/"]
+[includeIf "gitdir:/Users/niels/Code/Socialbrothers/"]
   path = .sb.gitconfig
 
-[includeIf "gitdir:~/Code/Socialbrothers/edsn/"]
+[includeIf "gitdir:/Users/niels/Code/Socialbrothers/edsn/"]
   path = .edsn.gitconfig
 
 [diff "lockb"]
