@@ -56,5 +56,8 @@
     }
   },
   "username": "Niels",
-  "plugin": ["@nick-vi/opencode-type-inject"]
+  "plugin": [
+    "@nick-vi/opencode-type-inject",
+    "@franlol/opencode-md-table-formatter"
+  ]
 }
