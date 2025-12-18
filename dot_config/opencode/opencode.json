@@ -44,6 +44,6 @@
   "username": "Niels",
   "plugin": [
     "@franlol/opencode-md-table-formatter",
-    "file:///Users/niels/Code/openmem"
+    "file:///Users/niels/Code/openmem/src/index.ts"
   ]
 }
