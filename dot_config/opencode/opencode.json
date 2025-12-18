@@ -6,11 +6,6 @@
       "type": "remote",
       "url": "https://mcp.grep.app"
     },
-    "expo": {
-      "url": "https://mcp.expo.dev/mcp",
-      "enabled": false,
-      "type": "remote"
-    },
     "context7": {
       "url": "https://mcp.context7.com/mcp",
       "type": "remote",
@@ -18,19 +13,10 @@
         "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       }
     },
-    "Figma": {
-      "enabled": false,
+    "websearch-exa": {
       "type": "remote",
-      "url": "http://127.0.0.1:3845/sse"
-    },
-    "maestro": {
-      "enabled": false,
-      "type": "local",
-      "command": ["mise", "x", "maestro", "--", "maestro", "mcp"]
-    },
-    "Playwright": {
-      "type": "local",
-      "command": ["bun", "x", "@playwright/mcp@latest"]
+      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
+      "enabled": true
     }
   },
   "lsp": {
