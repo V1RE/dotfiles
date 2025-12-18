@@ -42,5 +42,8 @@
     }
   },
   "username": "Niels",
-  "plugin": ["@franlol/opencode-md-table-formatter"]
+  "plugin": [
+    "@franlol/opencode-md-table-formatter",
+    "file:///Users/niels/Code/openmem"
+  ]
 }
