@@ -36,6 +36,8 @@ alias ping="gping"
 
 alias zed="zed-preview"
 
+alias oc="opencode"
+
 # Tmux
 function t() {
 	local sessions
