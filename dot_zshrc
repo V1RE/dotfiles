@@ -5,9 +5,9 @@ then
 
     autoload -Uz compinit
     if [[ -n ${ZDOTDIR:-~}/.zcompdump(#qN.mh+24) ]]; then
-        compinit
+        compinit -i
     else
-        compinit -C
+        compinit -C -i
     fi
 fi
 
