@@ -107,3 +107,14 @@ function lfcd() {
 		fi
 	fi
 }
+
+function ctxup() {
+  local ctx_dir="${$HOME/.ctx}"
+
+  fd -HI -t d -d 2 --glob '.git' "$ctx_dir" --format '{//}' | parallel --bar --tag '
+    cd {} &&
+    git fetch --all --prune &&
+    git reset --hard origin/$(git rev-parse --abbrev-ref origin/HEAD | sed "s|origin/||") &&
+    git clean -fd
+  ' 2>&1
+}
