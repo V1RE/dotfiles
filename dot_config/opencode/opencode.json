@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "orng",
+  "theme": "vercel",
   "permission": {
     "bash": {
       "*": "allow",
@@ -188,6 +188,16 @@
       }
     },
     "explore": {
+      "permission": {
+        "external_directory": "allow"
+      },
+      "model": "github-copilot/gemini-3-flash-preview",
+      "tools": {
+        "batch": false,
+        "morph_edit": false
+      }
+    },
+    "general": {
       "permission": {
         "external_directory": "allow"
       }
