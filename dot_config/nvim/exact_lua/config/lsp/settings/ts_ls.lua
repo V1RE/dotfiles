@@ -7,7 +7,9 @@ local ts_ls = {
       or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(filename)
   end,
   single_file_support = false,
+  cmd = { "tsgo", "--lsp", "--stdio" },
   settings = {
+    complete_function_calls = true,
     javascript = {
       format = { enable = false },
     },
@@ -15,37 +17,32 @@ local ts_ls = {
       tsserver = {
         nodePath = "~/.local/share/mise/installs/node/latest/bin/node --max-old-space-size=8192",
         maxTsServerMemory = 8192,
-        experimental = {
-          expandableHover = true,
-          enableProjectDiagnostics = true,
-        },
       },
-      format = { enable = false },
-      preferGoToSourceDefinition = false,
+      updateImportsOnFileMove = { enabled = "always" },
       suggest = {
         completeFunctionCalls = true,
       },
+      format = { enable = false },
       preferences = {
-        useAliasesForRenames = false,
-        importModuleSpecifier = "non-relative",
+        useAliasesForRenames = true,
         preferTypeOnlyAutoImports = true,
       },
-      experimental = {
-        aiCodeActions = {
-          extractInterface = true,
-          missingFunctionDeclaration = true,
-          extractType = true,
-          inferAndAddTypes = true,
-          extractFunction = true,
-          extractConstant = true,
-          classIncorrectlyImplementsInterface = true,
-          classDoesntImplementInheritedAbstractMember = true,
-          addNameToNamelessParameter = true,
-        },
-        enableProjectDiagnostics = true,
+      referencesCodeLens = {
+        showOnAllFunctions = true,
+        enabled = true,
+      },
+      inlayHints = {
+        enumMemberValues = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        variableTypes = { enabled = false },
       },
     },
   },
 }
+
+ts_ls.settings.javascript = vim.tbl_deep_extend("force", {}, ts_ls.settings.typescript, ts_ls.settings.javascript or {})
 
 return ts_ls
