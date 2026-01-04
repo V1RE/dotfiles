@@ -204,7 +204,8 @@
   "username": "Niels",
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest",
-    "opencode-supermemory@latest"
+    "opencode-supermemory@latest",
+    "@plannotator/opencode@latest"
   ],
   "instructions": [
     "~/.config/opencode/plugin/morph-fast-apply/MORPH_INSTRUCTIONS.md"
