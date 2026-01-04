@@ -5,6 +5,7 @@
     "bash": {
       "*": "allow",
 
+      "git *": "deny",
       "git status*": "allow",
       "git log*": "allow",
       "git show*": "allow",
@@ -66,8 +67,8 @@
       "git sparse-checkout list*": "allow",
       "git cherry*": "allow",
       "git range-diff*": "allow",
-      "git *": "deny",
 
+      "gh *": "deny",
       "gh pr view*": "allow",
       "gh pr list*": "allow",
       "gh pr status*": "allow",
@@ -119,8 +120,8 @@
       "gh browse -n*": "allow",
       "gh --help*": "allow",
       "gh help*": "allow",
-      "gh *": "deny",
 
+      "gt *": "deny",
       "gt log*": "allow",
       "gt ls*": "allow",
       "gt ll*": "allow",
@@ -138,7 +139,6 @@
       "gt completion*": "allow",
       "gt --help*": "allow",
       "gt -h*": "allow",
-      "gt *": "deny",
 
       "lazygit*": "deny",
       "lg *": "deny",
