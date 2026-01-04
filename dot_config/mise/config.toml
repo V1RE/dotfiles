@@ -1,5 +1,4 @@
 [tools]
-"amp" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
@@ -7,7 +6,6 @@
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
-"npm:opencode-ai" = "latest"
 "npm:taze" = "latest"
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
