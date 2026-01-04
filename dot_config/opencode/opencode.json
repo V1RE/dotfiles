@@ -204,7 +204,10 @@
     }
   },
   "username": "Niels",
-  "plugin": ["@franlol/opencode-md-table-formatter", "opencode-supermemory"],
+  "plugin": [
+    "@franlol/opencode-md-table-formatter@latest",
+    "opencode-supermemory@latest"
+  ],
   "instructions": [
     "~/.config/opencode/plugin/morph-fast-apply/MORPH_INSTRUCTIONS.md"
   ]
