@@ -2,7 +2,7 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 
 -- Configure vtsls custom config
--- vim.lsp.config("vtsls", require("vtsls").lspconfig)
+vim.lsp.config('vtsls', require("vtsls").lspconfig)
 
 mason.setup({
   ui = {
@@ -25,14 +25,14 @@ local opts = {
 ---@param server string
 local function merge_options(server)
   local server_options = require("config.lsp.settings." .. server) or {}
-
+  
   return vim.tbl_deep_extend("keep", server_options, opts)
 end
 
 -- Configure individual servers
-vim.lsp.config("kotlin_language_server", {})
+vim.lsp.config('kotlin_language_server', {})
 
-vim.lsp.config("sourcekit", merge_options("sourcekit"))
+vim.lsp.config('sourcekit', merge_options("sourcekit"))
 
 -- Setup mason-lspconfig handlers
 mason_lspconfig.setup_handlers({
@@ -42,37 +42,32 @@ mason_lspconfig.setup_handlers({
   end,
 
   ["lua_ls"] = function(server)
-    vim.lsp.config("lua_ls", merge_options(server))
-    vim.lsp.enable("lua_ls")
+    vim.lsp.config('lua_ls', merge_options(server))
+    vim.lsp.enable('lua_ls')
   end,
 
   ["jsonls"] = function(server)
-    vim.lsp.config("jsonls", merge_options(server))
-    vim.lsp.enable("jsonls")
+    vim.lsp.config('jsonls', merge_options(server))
+    vim.lsp.enable('jsonls')
   end,
 
   ["yamlls"] = function(server)
-    vim.lsp.config("yamlls", merge_options(server))
-    vim.lsp.enable("yamlls")
+    vim.lsp.config('yamlls', merge_options(server))
+    vim.lsp.enable('yamlls')
   end,
 
-  -- ["vtsls"] = function(server)
-  --   vim.lsp.config('vtsls', merge_options(server))
-  --   vim.lsp.enable('vtsls')
-  -- end,
-
-  ["ts_ls"] = function(server)
-    vim.lsp.config("ts_ls", merge_options(server))
-    vim.lsp.enable("ts_ls")
+  ["vtsls"] = function(server)
+    vim.lsp.config('vtsls', merge_options(server))
+    vim.lsp.enable('vtsls')
   end,
 
   ["stylelint_lsp"] = function(server)
-    vim.lsp.config("stylelint_lsp", merge_options(server))
-    vim.lsp.enable("stylelint_lsp")
+    vim.lsp.config('stylelint_lsp', merge_options(server))
+    vim.lsp.enable('stylelint_lsp')
   end,
 
   ["eslint"] = function(server)
-    vim.lsp.config("eslint", merge_options(server))
-    vim.lsp.enable("eslint")
+    vim.lsp.config('eslint', merge_options(server))
+    vim.lsp.enable('eslint')
   end,
 })
