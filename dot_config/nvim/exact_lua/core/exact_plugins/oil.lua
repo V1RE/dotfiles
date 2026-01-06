@@ -23,6 +23,8 @@ return {
         end,
         desc = "Open in Finder",
       },
+      ["<C-l>"] = false,
+      ["<C-r>"] = "actions.refresh",
     },
   },
   lazy = false,
