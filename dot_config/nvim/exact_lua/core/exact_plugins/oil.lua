@@ -24,6 +24,7 @@ return {
         desc = "Open in Finder",
       },
       ["<C-l>"] = false,
+      ["<C-h>"] = false,
       ["<C-r>"] = "actions.refresh",
     },
   },
