@@ -206,7 +206,7 @@
     "@franlol/opencode-md-table-formatter@latest",
     "opencode-supermemory@latest",
     "opencode-wakatime",
-    "file://~/Code/openctx/src/index.ts"
+    "file://~/Code/openctx"
   ],
   "instructions": [
     "~/.config/opencode/plugin/morph-fast-apply/MORPH_INSTRUCTIONS.md"
