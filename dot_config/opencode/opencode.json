@@ -207,8 +207,5 @@
     "opencode-supermemory@latest",
     "opencode-wakatime",
     "file:///Users/niels/Code/openctx/src/index.ts"
-  ],
-  "instructions": [
-    "~/.config/opencode/plugin/morph-fast-apply/MORPH_INSTRUCTIONS.md"
   ]
 }
