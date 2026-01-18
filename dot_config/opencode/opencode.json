@@ -77,6 +77,7 @@
       "gh issue view*": "allow",
       "gh issue list*": "allow",
       "gh issue status*": "allow",
+      "gh issue create*": "allow",
       "gh repo view*": "allow",
       "gh repo list*": "allow",
       "gh repo clone*": "allow",
