@@ -34,3 +34,4 @@ bun = true
 [env]
 '_'.path = "~/bin"
 OPENCODE_EXPERIMENTAL = true
+OPENSPEC_NO_AUTO_CONFIG = "1"
