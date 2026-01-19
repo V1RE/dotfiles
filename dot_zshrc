@@ -2,6 +2,7 @@ if type brew &>/dev/null
 then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     FPATH="${HOME}/.zsh:${FPATH}"
+    FPATH="${HOME}/.zsh/completions:${FPATH}"
 
     autoload -Uz compinit
     if [[ -n ${ZDOTDIR:-~}/.zcompdump(#qN.mh+24) ]]; then
@@ -151,7 +152,7 @@ export PATH=/Users/niels/.opencode/bin:$PATH
 
 # OPENSPEC:START
 # OpenSpec shell completions configuration
-fpath=("/Users/niels/.zsh/completions" $fpath)
-autoload -Uz compinit
-compinit
+# fpath=("/Users/niels/.zsh/completions" $fpath)
+# autoload -Uz compinit
+# compinit
 # OPENSPEC:END
