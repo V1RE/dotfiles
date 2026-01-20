@@ -170,6 +170,11 @@
       "type": "remote",
       "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
       "enabled": true
+    },
+    "tlo": {
+      "type": "local",
+      "command": ["bunx", "@2digits/tlo-mcp"],
+      "enabled": true
     }
   },
   "lsp": {
