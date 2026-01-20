@@ -3,10 +3,6 @@
 # General
 alias v='$EDITOR'
 
-function upgrade() {
-	true
-}
-
 alias cm="chezmoi"
 
 # Dotfiles
@@ -39,76 +35,6 @@ alias zed="zed-preview"
 alias oc="opencode"
 
 alias npx="bunx"
-
-# Tmux
-function t() {
-	local sessions
-	local session
-
-	if ! tmux has-session; then
-		tmux new-session -s "Dots"
-	else
-		sessions=$(tmux list-sessions -F \#S)
-		session=$(echo "${sessions}" | gum filter --placeholder "Pick session...")
-		tmux switch-client -t "${session}" || tmux attach -t "${session}"
-	fi
-}
-
-alias tl="tmux ls"
-alias ta="tmux a"
-
-function p() {
-	local codedir="${HOME}/Code/"
-	local sbdir="${codedir}Socialbrothers/"
-	local result
-
-	if [[ $# -ne 0 ]]; then
-		result=$(zoxide query "${codedir}" "$@")
-	else
-		local basedir
-		local selected
-
-		case $(gum choose 'Work' 'Personal') in
-		"Work") basedir="${sbdir}" ;;
-		"Personal") basedir="${codedir}" ;;
-		*) return ;;
-		esac
-
-		results=$(fd --type=d --prune --base-directory="${basedir}" --strip-cwd-prefix --path-separator='')
-		selected="$(echo "${results}" | gum filter --height=20 --placeholder=Project... --indicator.foreground='#ff470b' --match.foreground='#ff470b')"
-
-		result="${basedir}${selected}"
-	fi
-
-	if [[ -d ${result} ]]; then
-		cd "${result}" || return
-		open -g raycast://confetti
-	fi
-}
-
-# Socialbrothers
-function adbw() {
-	wifion=$(adb shell settings get global wifi_on)
-	if [[ ${wifion} == 1 ]]; then
-		adb shell svc wifi disable
-	else
-		adb shell svc wifi enable
-	fi
-}
-
-function lfcd() {
-	tmp="$(mktemp)"
-	lf -last-dir-path="${tmp}" "$@"
-	if [[ -f ${tmp} ]]; then
-		dir="$(cat "${tmp}")"
-		rm -f "${tmp}"
-		if [[ -d ${dir} ]]; then
-			if [[ ${dir} != "${PWD}" ]]; then
-				cd "${dir}" || exit
-			fi
-		fi
-	fi
-}
 
 function ctxup() {
 	local ctx_dir="$HOME/.ctx"
