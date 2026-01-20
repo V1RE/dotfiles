@@ -208,6 +208,6 @@
     "opencode-supermemory@latest",
     "opencode-wakatime",
     "file:///Users/niels/Code/openctx/src/index.ts",
-    "@2digits/opencode-plugin"
+    "@2digits/opencode-plugin@latest"
   ]
 }
