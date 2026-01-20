@@ -208,6 +208,6 @@
     "opencode-supermemory@latest",
     "opencode-wakatime",
     "file:///Users/niels/Code/openctx/src/index.ts",
-    "file:///Users/niels/Code/Socialbrothers/configs-2digits/packages/opencode-plugin/src/index.ts"
+    "@2digits/opencode-plugin"
   ]
 }
