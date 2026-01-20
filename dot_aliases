@@ -38,6 +38,8 @@ alias zed="zed-preview"
 
 alias oc="opencode"
 
+alias npx="bunx"
+
 # Tmux
 function t() {
 	local sessions
