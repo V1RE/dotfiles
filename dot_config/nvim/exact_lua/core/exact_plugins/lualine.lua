@@ -170,6 +170,15 @@ return {
               cond = require("noice").api.status.search.has,
               color = { fg = "#ff9e64" },
             },
+            {
+              function()
+                return require("opencode").statusline()
+              end,
+              cond = function()
+                local ok, opencode = pcall(require, "opencode")
+                return ok and opencode.statusline() ~= ""
+              end,
+            },
           },
           lualine_y = { spaces, location },
           lualine_z = { progress },
