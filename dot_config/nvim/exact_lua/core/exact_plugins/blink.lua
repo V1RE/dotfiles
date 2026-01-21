@@ -82,9 +82,6 @@ return {
           default = {
             "lazydev",
             "lspfirst",
-            "avante_files",
-            "avante_mentions",
-            "avante_commands",
             "lsp",
             "codeium",
             "supermaven",
@@ -196,57 +193,6 @@ return {
               end,
             },
 
-            -- Avante completion sources for better AI integration
-            avante_commands = {
-              name = "avante_commands",
-              module = "blink.compat.source",
-              score_offset = 6,
-              async = true,
-              opts = {
-                source_name = "avante_commands",
-              },
-              transform_items = function(_, items)
-                for _, item in ipairs(items) do
-                  item.kind_icon = icons.Robot
-                  item.kind_name = "Avante"
-                end
-                return items
-              end,
-            },
-
-            avante_mentions = {
-              name = "avante_mentions",
-              module = "blink.compat.source",
-              score_offset = 7,
-              async = true,
-              opts = {
-                source_name = "avante_mentions",
-              },
-              transform_items = function(_, items)
-                for _, item in ipairs(items) do
-                  item.kind_icon = icons.Robot
-                  item.kind_name = "Avante"
-                end
-                return items
-              end,
-            },
-
-            avante_files = {
-              name = "avante_files",
-              module = "blink.compat.source",
-              score_offset = 5,
-              async = true,
-              opts = {
-                source_name = "avante_files",
-              },
-              transform_items = function(_, items)
-                for _, item in ipairs(items) do
-                  item.kind_icon = icons.Robot
-                  item.kind_name = "Avante"
-                end
-                return items
-              end,
-            },
           },
         },
 
