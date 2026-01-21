@@ -35,3 +35,4 @@ bun = true
 '_'.path = "~/bin"
 OPENCODE_EXPERIMENTAL = true
 OPENSPEC_NO_AUTO_CONFIG = "1"
+OPENSPEC_NO_COMPLETIONS = "1"
