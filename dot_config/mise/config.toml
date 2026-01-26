@@ -3,6 +3,7 @@
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:btca" = "latest"
+"npm:clawdbot" = "latest"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
