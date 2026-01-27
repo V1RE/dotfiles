@@ -2,11 +2,12 @@
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:btca" = "latest"
 "npm:clawdbot" = "latest"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
+"npm:opensrc" = "latest"
+"npm:skills" = "latest"
 "npm:taze" = "latest"
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
@@ -30,7 +31,7 @@ lockfile = true
 idiomatic_version_file_enable_tools = ["node"]
 
 [settings.npm]
-bun = true
+package_manager = "bun"
 
 [env]
 '_'.path = "~/bin"
