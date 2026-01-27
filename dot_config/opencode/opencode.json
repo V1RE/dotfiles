@@ -199,7 +199,7 @@
         "batch": "deny",
         "morph_edit": "deny"
       },
-      "model": "github-copilot/gemini-3-flash-preview"
+      "model": "github-copilot/claude-haiku-4.5"
     },
     "general": {
       "permission": {
@@ -210,7 +210,6 @@
   "username": "Niels",
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest",
-    "opencode-supermemory@latest",
     "opencode-wakatime",
     "file:///Users/niels/Code/openctx/src/index.ts",
     "@2digits/opencode-plugin@latest"
