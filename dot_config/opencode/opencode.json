@@ -175,6 +175,11 @@
       "type": "local",
       "command": ["bunx", "@2digits/tlo-mcp"],
       "enabled": true
+    },
+    "figma-desktop": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp",
+      "enabled": false
     }
   },
   "lsp": {
