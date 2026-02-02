@@ -187,6 +187,18 @@
     "batch_tool": true,
     "openTelemetry": true
   },
+  "provider": {
+    "openrouter": {
+      "models": {
+        "stepfun/step-3.5-flash:free": {
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        }
+      }
+    }
+  },
   "agent": {
     "plan": {
       "permission": {
