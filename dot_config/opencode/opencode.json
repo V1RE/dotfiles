@@ -196,6 +196,7 @@
     "openrouter": {
       "models": {
         "stepfun/step-3.5-flash:free": {
+          "name": "Step 3.5 flash",
           "cost": {
             "input": 0,
             "output": 0
