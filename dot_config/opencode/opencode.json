@@ -217,7 +217,7 @@
         "batch": "deny",
         "morph_edit": "deny"
       },
-      "model": "openrouter/stepfun/step-3.5-flash:free"
+      "model": "opencode/kimi-k2.5"
     },
     "general": {
       "permission": {
