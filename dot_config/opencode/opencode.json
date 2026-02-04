@@ -217,7 +217,7 @@
         "batch": "deny",
         "morph_edit": "deny"
       },
-      "model": "stepfun/step-3.5-flash:free"
+      "model": "openrouter/stepfun/step-3.5-flash:free"
     },
     "general": {
       "permission": {
