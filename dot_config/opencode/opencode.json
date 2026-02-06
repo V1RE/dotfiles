@@ -216,8 +216,7 @@
         "external_directory": "allow",
         "batch": "deny",
         "morph_edit": "deny"
-      },
-      "model": "openrouter/moonshotai/kimi-k2.5"
+      }
     },
     "general": {
       "permission": {
