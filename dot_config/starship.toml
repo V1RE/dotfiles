@@ -11,7 +11,7 @@ error_symbol = "[](bold #ff7ea3)"
 vimcmd_symbol = "[](bold #7bc8fc)"
 
 [git_branch]
-symbol = " "
+symbol = " "
 ignore_branches = ["gitbutler/workspace"]
 
 [git_commit]
