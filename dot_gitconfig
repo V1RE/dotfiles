@@ -37,3 +37,5 @@
   colorMoved = default
 [merge]
   conflictstyle = diff3
+[gitbutler]
+	aiModelProvider = lmstudio
