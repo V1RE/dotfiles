@@ -11,7 +11,8 @@ error_symbol = "[](bold #ff7ea3)"
 vimcmd_symbol = "[](bold #7bc8fc)"
 
 [git_branch]
-symbol = " "
+symbol = " "
+ignore_branches = ["gitbutler/workspace"]
 
 [git_commit]
 tag_symbol = " "
@@ -93,6 +94,16 @@ symbol = " "
 # format = "using [$symbol(v$output)]($style) "
 # description = "The current version of React defined in the package.json"
 # style = "blue bold"
+
+[custom.gitbutler]
+description = "GitButler virtual branches"
+command = "~/.config/scripts/starship-gitbutler.sh"
+when = 'test "$(git symbolic-ref --short HEAD 2>/dev/null)" = "gitbutler/workspace"'
+require_repo = true
+symbol = "⧓ "
+format = "on [$symbol$output]($style) "
+style = "bold purple"
+ignore_timeout = true
 
 [aws]
 disabled = true
