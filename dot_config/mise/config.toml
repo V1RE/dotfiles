@@ -5,6 +5,7 @@
 "npm:agent-browser" = "latest"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
+"npm:mdrip" = "latest"
 "npm:neovim" = "latest"
 "npm:ocx" = "latest"
 "npm:opensrc" = "latest"
