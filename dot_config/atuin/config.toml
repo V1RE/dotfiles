@@ -37,7 +37,6 @@ records = true
 [preview]
 
 [daemon]
-enabled = true
 
 [ui]
 columns = ["time", "directory", "command"]
