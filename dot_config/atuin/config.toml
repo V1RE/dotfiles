@@ -40,4 +40,4 @@ records = true
 enabled = true
 
 [ui]
-columns = ["time", "command", "directory"]
+columns = ["time", "directory", "command"]
