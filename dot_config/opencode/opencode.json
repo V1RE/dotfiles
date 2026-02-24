@@ -174,12 +174,17 @@
     "tlo": {
       "type": "local",
       "command": ["bunx", "@2digits/tlo-mcp"],
-      "enabled": true
+      "enabled": false
     },
     "figma-desktop": {
       "type": "remote",
       "url": "http://127.0.0.1:3845/mcp",
       "enabled": false
+    },
+    "opensrc": {
+      "type": "local",
+      "command": ["bunx", "opensrc-mcp"],
+      "enabled": true
     }
   },
   "lsp": {
@@ -192,19 +197,6 @@
     "batch_tool": true,
     "openTelemetry": true
   },
-  "provider": {
-    "openrouter": {
-      "models": {
-        "stepfun/step-3.5-flash:free": {
-          "name": "Step 3.5 flash",
-          "cost": {
-            "input": 0,
-            "output": 0
-          }
-        }
-      }
-    }
-  },
   "agent": {
     "plan": {
       "permission": {
@@ -212,6 +204,7 @@
       }
     },
     "explore": {
+      "model": "github-copilot/claude-haiku-4.5",
       "permission": {
         "external_directory": "allow",
         "batch": "deny",
@@ -228,7 +221,6 @@
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest",
     "opencode-wakatime",
-    "file:///Users/niels/Code/openctx/src/index.ts",
     "@2digits/opencode-plugin@latest"
   ]
 }
