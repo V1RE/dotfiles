@@ -150,6 +150,8 @@ zcompile ~/.zshrc 2>/dev/null &!
 # opencode
 export PATH=/Users/niels/.opencode/bin:$PATH
 
+if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+
 # OPENSPEC:START
 # OpenSpec shell completions configuration
 # fpath=("/Users/niels/.zsh/completions" $fpath)
