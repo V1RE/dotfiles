@@ -204,7 +204,6 @@
       }
     },
     "explore": {
-      "model": "github-copilot/claude-haiku-4.5",
       "permission": {
         "external_directory": "allow",
         "batch": "deny",
@@ -218,9 +217,5 @@
     }
   },
   "username": "Niels",
-  "plugin": [
-    "@franlol/opencode-md-table-formatter@latest",
-    "opencode-wakatime",
-    "@2digits/opencode-plugin@latest"
-  ]
+  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin@latest"]
 }
