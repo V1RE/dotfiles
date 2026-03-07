@@ -123,14 +123,6 @@ keybinds clear-defaults=true {
         }
     }
     shared_among "normal" "locked" {
-        bind "Alt h" { GoToPreviousTab; }
-        bind "Alt l" { GoToNextTab; }
-        bind "Alt n" {
-            Run "/Users/niels/.local/bin/zj-project-switch" {
-                hold_on_close false
-            }
-        }
-        bind "Alt t" { NewTab; }
         bind "Super left" { MoveFocusOrTab "left"; }
         bind "Super down" { MoveFocus "down"; }
         bind "Super up" { MoveFocus "up"; }

@@ -7,14 +7,14 @@ font-family = "CaskaydiaCove Nerd Font"
 font-family = "Noto Color Emoji"
 font-family = "JetBrains Mono"
 
-font-size = 16
+font-size = 14
 adjust-cell-height = 40%
 adjust-cursor-height = 40%
 
 # Window appearance
 window-theme = "system"
 background-opacity = 0.8
-background-blur-radius = 30
+# background-blur-radius = 20
 background-blur = true
 macos-titlebar-style = "tabs"
 window-padding-x = 8
@@ -32,12 +32,5 @@ command = "/opt/zerobrew/bin/zsh"
 
 auto-update-channel = "tip"
 keybind = global:cmd+backquote=toggle_quick_terminal
-keybind = cmd+b=text:\x02
-keybind = cmd+h=text:\x1bh
-keybind = cmd+l=text:\x1bl
-keybind = cmd+m=toggle_command_palette
-keybind = cmd+n=text:\x1bn
-keybind = cmd+t=text:\x1bt
-keybind = shift+enter=text:\x1b\r
 
-macos-option-as-alt = right
+macos-option-as-alt = true
