@@ -154,6 +154,7 @@
       "glab*": "deny"
     }
   },
+  "autoupdate": "notify",
   "mcp": {
     "gh_grep": {
       "type": "remote",
