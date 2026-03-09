@@ -162,6 +162,7 @@
     "context7": {
       "url": "https://mcp.context7.com/mcp",
       "type": "remote",
+      "enabled": false,
       "headers": {
         "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       }
@@ -185,6 +186,11 @@
       "type": "local",
       "command": ["bunx", "opensrc-mcp"],
       "enabled": true
+    },
+    "memelord": {
+      "type": "local",
+      "command": ["memelord", "serve"],
+      "enabled": true
     }
   },
   "lsp": {
@@ -206,8 +212,7 @@
     "explore": {
       "permission": {
         "external_directory": "allow",
-        "batch": "deny",
-        "morph_edit": "deny"
+        "batch": "deny"
       }
     },
     "general": {
