@@ -191,7 +191,12 @@
     "memelord": {
       "type": "local",
       "command": ["memelord", "serve"],
-      "enabled": false
+      "enabled": true
+    },
+    "codemogger": {
+      "type": "local",
+      "command": ["codemogger", "mcp"],
+      "enabled": true
     }
   },
   "lsp": {
@@ -223,9 +228,5 @@
     }
   },
   "username": "Niels",
-  "plugin": [
-    "opencode-wakatime",
-    "@2digits/opencode-plugin@latest",
-    "opencode-memelord@latest"
-  ]
+  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin@latest"]
 }

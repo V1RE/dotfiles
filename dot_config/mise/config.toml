@@ -3,6 +3,7 @@
 "npm:@fsouza/prettierd" = "latest"
 "npm:@vercel/before-and-after" = "latest"
 "npm:agent-browser" = "latest"
+"npm:codemogger" = "latest"
 "npm:eas-cli" = "latest"
 "npm:knip" = "latest"
 "npm:mdrip" = "latest"
