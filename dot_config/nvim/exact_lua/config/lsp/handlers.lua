@@ -6,6 +6,14 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require("blink.cmp").get_lsp_capabilities(M.capabilities)
 -- M.capabilities = require("cmp_nvim_lsp").default_capabilities(M.capabilities)
 
+local function with_border(handler)
+  return function(err, result, ctx, config)
+    local resolved_config = vim.tbl_deep_extend("force", config or {}, { border = "rounded" })
+
+    return handler(err, result, ctx, resolved_config)
+  end
+end
+
 M.setup = function()
   vim.diagnostic.config({
     virtual_text = false,
@@ -41,9 +49,9 @@ M.setup = function()
     },
   })
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  vim.lsp.handlers["textDocument/hover"] = with_border(vim.lsp.handlers.hover)
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = with_border(vim.lsp.handlers.signature_help)
 
   vim.lsp.commands["editor.action.showReferences"] = function(command, ctx)
     local locations = command.arguments[3]

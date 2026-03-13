@@ -216,7 +216,7 @@ return {
   -- Codeium setup
   {
     "Exafunction/codeium.nvim",
-    cmd = "Codeium",
+    event = "VeryLazy",
     build = ":Codeium Auth",
     opts = {
       enable_cmp_source = true,
@@ -235,7 +235,7 @@ return {
   -- Copilot setup
   {
     "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
+    event = "VeryLazy",
     build = ":Copilot auth",
     opts = {
       suggestion = { enabled = false },

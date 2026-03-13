@@ -26,6 +26,15 @@ return {
       "mason.nvim",
       "nvim-lspconfig",
     },
-    opts = {},
+    opts = {
+      ensure_installed = {
+        "eslint",
+        "jsonls",
+        "lua_ls",
+        "stylelint_lsp",
+        "vtsls",
+        "yamlls",
+      },
+    },
   },
 }
