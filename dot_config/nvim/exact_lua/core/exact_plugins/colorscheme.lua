@@ -10,6 +10,7 @@ return {
       flavour = "macchiato",
       transparent_background = true,
       term_colors = false,
+      auto_integrations = true,
       styles = {
         comments = { "italic" },
         functions = { "italic" },
@@ -62,7 +63,8 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin")
+
+      vim.cmd.colorscheme("catppuccin-nvim")
     end,
   },
 }
