@@ -47,3 +47,6 @@ _zb_path_append "$ZEROBREW_BIN"
 _zb_path_append "$ZEROBREW_PREFIX/bin"
 
 # <<< zerobrew <<<
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
