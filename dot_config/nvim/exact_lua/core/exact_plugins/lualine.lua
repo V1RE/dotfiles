@@ -1,14 +1,6 @@
 ---@type LazyPluginSpec[]
 return {
   {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.g.gitblame_display_virtual_text = 0
-    end,
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = { "folke/noice.nvim" },

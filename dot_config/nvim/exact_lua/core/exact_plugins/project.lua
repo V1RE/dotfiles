@@ -1,10 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "ahmedkhalf/project.nvim",
-  ---@param opts ProjectOptions
-  config = function(_, opts)
-    require("project_nvim").setup(opts)
-  end,
+  main = "project_nvim",
   ---@type ProjectOptions
   opts = {
     silent_chdir = true,

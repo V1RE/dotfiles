@@ -15,16 +15,26 @@ return {
     "mason-org/mason.nvim",
     cmd = "Mason",
     build = ":MasonUpdate",
-    opts = {},
+    opts = {
+      ui = {
+        border = "rounded",
+        icons = {
+          package_installed = "◍",
+          package_pending = "◍",
+          package_uninstalled = "◍",
+        },
+      },
+      log_level = vim.log.levels.INFO,
+      max_concurrent_installers = 4,
+    },
   },
 
   -- Mason LSP configuration
   {
     "mason-org/mason-lspconfig.nvim",
-    version = "^1.0.0",
     dependencies = {
-      "mason.nvim",
-      "nvim-lspconfig",
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
     },
     opts = {
       ensure_installed = {
@@ -35,6 +45,7 @@ return {
         "vtsls",
         "yamlls",
       },
+      automatic_enable = false,
     },
   },
 }

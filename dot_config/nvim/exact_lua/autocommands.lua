@@ -22,15 +22,4 @@ vim.cmd([[
     autocmd!
     autocmd VimResized * tabdo wincmd =
   augroup end
-
-  augroup _lsp
-    autocmd!
-    autocmd FileType plist set ft=xml
-    autocmd BufReadPost Podfile,Appfile,Fastfile,Matchfile,Pluginfile set ft=ruby
-    autocmd BufReadPost *.ejs.t set ft=embedded_template
-    autocmd BufReadPost *.hbs set ft=html
-    autocmd BufReadPost *.liquid set ft=liquid.html
-    autocmd BufReadPost .prettierignore set ft=gitignore
-    autocmd BufReadPost dot_zshrc,dot_zshenv set ft=zsh
-  augroup end
 ]])

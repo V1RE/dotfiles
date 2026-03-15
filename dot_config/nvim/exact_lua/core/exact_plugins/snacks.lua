@@ -38,7 +38,7 @@ return {
       {
         "<leader>gg",
         function()
-          Snacks.lazygit.open()
+          Snacks.lazygit()
         end,
         desc = "Lazygit (cwd)",
       },
@@ -59,7 +59,7 @@ return {
       {
         "<leader>u",
         function()
-          Snacks.picker(Snacks.picker.sources.undo)
+          Snacks.picker.undo()
         end,
         desc = "Undo history",
       },
@@ -119,14 +119,14 @@ return {
       {
         "<leader>lS",
         function()
-          Snacks.picker.lsp_symbols({ workspace = true })
+          Snacks.picker.lsp_workspace_symbols()
         end,
         desc = "Workspace Symbols",
       },
       {
         "<leader>ls",
         function()
-          Snacks.picker.lsp_symbols({ workspace = false })
+          Snacks.picker.lsp_symbols()
         end,
         desc = "Document Symbols",
       },

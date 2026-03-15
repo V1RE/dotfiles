@@ -9,7 +9,7 @@ local options = {
 	cursorline = true,
 	expandtab = true,
 	fileencoding = "utf-8",
-	foldexpr = "nvim_treesitter#foldexpr()",
+	foldexpr = "v:lua.vim.treesitter.foldexpr()",
 	foldlevelstart = 999,
 	foldmethod = "expr",
 	guifont = "FiraCode Nerd Font:h16",
@@ -56,11 +56,3 @@ vim.opt.listchars:append("trail:·")
 
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]])
-vim.opt.runtimepath:prepend("/Applications/Ghostty.app/Contents/Resources/vim/vimfiles")
-
-vim.cmd([[ 
-    augroup GhosttyFt
-      " Ghostty
-      autocmd BufRead,BufNewFile **/.*/**/ghostty/config set ft=ghostty
-    augroup end
-]])

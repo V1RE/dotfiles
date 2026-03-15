@@ -3,7 +3,7 @@ return {
   {
     "saghen/blink.cmp",
     version = "1.*",
-    event = "InsertEnter",
+    lazy = false,
     dependencies = {
       -- Snippet engine
       "L3MON4D3/LuaSnip",
@@ -35,7 +35,6 @@ return {
         },
 
         appearance = {
-          use_nvim_cmp_as_default = true,
           nerd_font_variant = "mono",
         },
 
@@ -247,65 +246,4 @@ return {
     },
   },
 
-  -- Luasnip setup
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    build = "make install_jsregexp",
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-    },
-    config = function(_, opts)
-      require("luasnip").config.set_config(opts)
-
-      -- Load friendly snippets
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      -- Load custom snippets if they exist
-      local custom_snippets_path = vim.fn.stdpath("config") .. "/snippets"
-      if vim.fn.isdirectory(custom_snippets_path) == 1 then
-        require("luasnip.loaders.from_vscode").lazy_load({
-          paths = { custom_snippets_path },
-        })
-      end
-    end,
-  },
-
-  -- LSP capabilities setup for blink.cmp
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" },
-    opts = function()
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      return {
-        servers = {
-          -- Add your LSP servers here
-          lua_ls = {},
-          pyright = {},
-          ts_ls = {},
-          -- Add more servers as needed
-        },
-        setup = {
-          -- Default setup function
-          ---@param server_name string
-          ---@param opts table
-          ---@diagnostic disable-next-line: unused-local
-          ["*"] = function(server_name, opts)
-            opts.capabilities = capabilities
-          end,
-        },
-      }
-    end,
-    config = function(_, opts)
-      -- Setup servers
-      for server_name, server_opts in pairs(opts.servers) do
-        if opts.setup["*"] then
-          opts.setup["*"](server_name, server_opts)
-        end
-        vim.lsp.config(server_name, server_opts)
-      end
-    end,
-  },
 }

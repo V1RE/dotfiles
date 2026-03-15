@@ -47,7 +47,7 @@ config.keys = require("keys")
 
 config.macos_window_background_blur = 30
 -- config.color_scheme = "Molokai"
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Catppuccin Macchiato"
 
 wezterm.plugin.require("https://github.com/nekowinston/wezterm-bar").apply_to_config(config, {
   position = "top",

@@ -1,19 +1,10 @@
 ---@type LazyPluginSpec[]
 return {
   {
-    "Lilja/vim-chezmoi",
-    cond = function()
-      return nil ~= vim.api.nvim_exec("args", true):find("chezmoi")
-    end,
-    init = function()
-      vim.g.chezmoi = "enabled"
-    end,
-  },
-  {
     "alker0/chezmoi.vim",
-    event = "VeryLazy",
-    cond = function()
-      return nil ~= vim.api.nvim_exec("args", true):find("chezmoi")
+    lazy = false,
+    init = function()
+      vim.g["chezmoi#use_tmp_buffer"] = true
     end,
   },
   {
@@ -23,7 +14,7 @@ return {
       require("chezmoi").setup(opts)
 
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
+        pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/**" },
         callback = function()
           vim.schedule(require("chezmoi.commands.__edit").watch)
         end,

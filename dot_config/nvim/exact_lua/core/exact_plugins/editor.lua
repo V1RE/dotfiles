@@ -6,12 +6,6 @@ return {
     cmd = { "Bdelete", "Bwipeout" },
   },
 
-  -- Alternative buffer deletion
-  {
-    "moll/vim-bbye",
-    cmd = { "Bdelete", "Bwipeout" },
-  },
-
   -- Swap list items
   {
     "mizlan/iswap.nvim",
@@ -30,21 +24,38 @@ return {
     },
     config = function()
       local augend = require("dial.augend")
+      local map = require("dial.map")
+
       require("dial.config").augends:register_group({
         default = {
           augend.integer.alias.decimal,
           augend.integer.alias.hex,
-          augend.date.alias["%Y/%m/%d"],
+          augend.integer.alias.binary,
           augend.constant.alias.bool,
+          augend.constant.new({
+            elements = { "public", "private" },
+            word = true,
+            cyclic = true,
+          }),
+          augend.constant.new({
+            elements = { "&&", "||" },
+            word = false,
+            cyclic = true,
+          }),
+          augend.date.alias["%Y/%m/%d"],
+          augend.date.alias["%Y-%m-%d"],
+          augend.date.alias["%H:%M:%S"],
+          augend.hexcolor.new({ case = "lower" }),
+          augend.semver.alias.semver,
         },
       })
 
-      vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
-      vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
-      vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
-      vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
-      vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
-      vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
+      vim.keymap.set("n", "<C-a>", map.inc_normal(), { noremap = true })
+      vim.keymap.set("n", "<C-x>", map.dec_normal(), { noremap = true })
+      vim.keymap.set("v", "<C-a>", map.inc_visual(), { noremap = true })
+      vim.keymap.set("v", "<C-x>", map.dec_visual(), { noremap = true })
+      vim.keymap.set("v", "g<C-a>", map.inc_gvisual(), { noremap = true })
+      vim.keymap.set("v", "g<C-x>", map.dec_gvisual(), { noremap = true })
     end,
   },
 

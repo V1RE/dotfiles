@@ -25,8 +25,8 @@ mouse-hide-while-typing = true
 shell-integration = zsh
 shell-integration-features = true
 
-# Color scheme (using Catppuccin Mocha)
-theme = "Catppuccin Mocha"
+# Color scheme (using Catppuccin Macchiato)
+theme = "Catppuccin Macchiato"
 
 command = "/opt/zerobrew/bin/zsh"
 

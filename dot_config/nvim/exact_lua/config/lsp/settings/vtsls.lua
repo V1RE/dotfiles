@@ -22,7 +22,6 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "~/.local/share/mise/installs/node/latest/bin/node",
       },
     },
     typescript = {
@@ -37,7 +36,6 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
-        nodePath = "~/.local/share/mise/installs/node/latest/bin/node",
       },
       referencesCodeLens = {
         showOnAllFunctions = true,

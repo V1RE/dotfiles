@@ -30,11 +30,7 @@ return {
         {
           "<leader>lf",
           function()
-            vim.lsp.buf.format({
-              filter = function(client)
-                return client.name == "null-ls"
-              end,
-            })
+            vim.lsp.buf.format({ async = true })
           end,
           desc = "Format",
           nowait = true,

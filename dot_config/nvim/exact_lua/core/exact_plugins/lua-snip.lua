@@ -1,9 +1,12 @@
 ---@type LazyPluginSpec
 return {
   "L3MON4D3/LuaSnip",
-
+  version = "v2.*",
   build = vim.fn.has("win32") ~= 0 and "make install_jsregexp" or nil,
-
+  opts = {
+    history = true,
+    delete_check_events = "TextChanged",
+  },
   dependencies = {
     "rafamadriz/friendly-snippets",
   },
