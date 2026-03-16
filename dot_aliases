@@ -26,14 +26,21 @@ alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
 function gtwt() {
-	gt create "$@" || return
+	if ! gt create "$@"; then
+		echo "Error: Failed to create Graphite branch" >&2
+		return 1
+	fi
 
 	local branch
-	branch="$(git branch --show-current)" || return
+	if ! branch="$(git branch --show-current)" || [[ -z "$branch" ]]; then
+		echo "Error: Could not determine current branch after gt create" >&2
+		return 1
+	fi
 
-	[[ -n "$branch" ]] || return 1
-
-	wt switch "$branch"
+	if ! wt switch "$branch"; then
+		echo "Error: Failed to switch Worktrunk worktree for branch '$branch'" >&2
+		return 1
+	fi
 }
 
 alias rm="trash"

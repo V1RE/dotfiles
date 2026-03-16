@@ -38,14 +38,15 @@ stacking tool and adds [Worktrunk](https://worktrunk.dev/) for separate worktree
 per branch.
 
 - `mise` installs Graphite with `graphite = "latest"`
-- `mise` installs Worktrunk with `"cargo:worktrunk" = "latest"`
+- `mise` installs Worktrunk with `"cargo:worktrunk" = "latest"` because keys
+  containing colons must be quoted in TOML
 - `~/.zshrc` initializes Worktrunk shell integration when `wt` is installed
 
 After applying your dotfiles, reload your shell after Worktrunk is installed so
 the managed `wt` shell integration is picked up:
 
 ```bash
-exec zsh
+exec "${SHELL:-/bin/zsh}"
 ```
 
 Recommended flow:
@@ -58,7 +59,7 @@ gtwt my-stack-branch
 Worktrunk worktree with `wt switch`.
 
 If you create or already have a branch outside of Graphite, track it first and
-then switch into its worktree:
+then switch into its worktree while checked out on that branch:
 
 ```bash
 gt track
