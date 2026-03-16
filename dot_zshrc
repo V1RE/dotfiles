@@ -163,4 +163,4 @@ if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
 
-eval "$(wt config shell init zsh)"
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
