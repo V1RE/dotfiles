@@ -30,3 +30,37 @@ If you're having problems with the `.git` directory getting symlinked to your
 cd ~/dotfiles
 stow -D .git
 ```
+
+## Graphite + Worktrunk workflow 🌳
+
+This setup keeps [Graphite CLI](https://graphite.com/docs/cli-quick-start) as the
+stacking tool and adds [Worktrunk](https://worktrunk.dev/) for separate worktrees
+per branch.
+
+- `mise` installs Graphite with `graphite = "latest"`
+- `mise` installs Worktrunk with `"cargo:worktrunk" = "latest"`
+- `~/.zshrc` initializes Worktrunk shell integration when `wt` is installed
+
+After applying your dotfiles, reload your shell after Worktrunk is installed so
+the managed `wt` shell integration is picked up:
+
+```bash
+exec zsh
+```
+
+Recommended flow:
+
+```bash
+gtwt my-stack-branch
+```
+
+`gtwt` runs `gt create` first, then opens the new Graphite branch in a matching
+Worktrunk worktree with `wt switch`.
+
+If you create or already have a branch outside of Graphite, track it first and
+then switch into its worktree:
+
+```bash
+gt track
+wt switch "$(git branch --show-current)"
+```

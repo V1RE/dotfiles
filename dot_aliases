@@ -25,6 +25,17 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
+function gtwt() {
+	gt create "$@" || return
+
+	local branch
+	branch="$(git branch --show-current)" || return
+
+	[[ -n "$branch" ]] || return 1
+
+	wt switch "$branch"
+}
+
 alias rm="trash"
 alias cat="bat"
 

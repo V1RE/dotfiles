@@ -139,6 +139,10 @@ _gt_yargs_completions()
 compdef _gt_yargs_completions gt
 ###-end-gt-completions-###
 
+if type wt &>/dev/null; then
+    eval "$(wt config shell init zsh 2>/dev/null)"
+fi
+
 # bun completions
 [ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
 
