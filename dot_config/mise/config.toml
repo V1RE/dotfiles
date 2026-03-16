@@ -1,3 +1,5 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
 [tools]
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fsouza/prettierd" = "latest"
@@ -21,6 +23,7 @@ codex = "latest"
 graphite = "latest"
 hcloud = "latest"
 java = "24"
+lazygit = "latest"
 node = "24"
 pnpm = "10"
 usage = "latest"
@@ -36,6 +39,9 @@ idiomatic_version_file_enable_tools = ["node"]
 
 [settings.npm]
 package_manager = "bun"
+
+[settings.cargo]
+binstall = true
 
 [env]
 '_'.path = "~/bin"
