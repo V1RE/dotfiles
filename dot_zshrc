@@ -16,6 +16,8 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
+eval "$(wt config shell init zsh)"
+
 # argc-completions
 # export ARGC_COMPLETIONS_ROOT="/Users/niels/Code/argc-completions"
 # export ARGC_COMPLETIONS_PATH="$ARGC_COMPLETIONS_ROOT/completions"
