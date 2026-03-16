@@ -1,6 +1,7 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
 [tools]
+"cargo:worktrunk" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:@vercel/before-and-after" = "latest"
