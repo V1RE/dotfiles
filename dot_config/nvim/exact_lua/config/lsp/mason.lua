@@ -6,7 +6,7 @@ local servers = {
   "lua_ls",
   "jsonls",
   "yamlls",
-  -- "vtsls",
+  "vtsls",
   "stylelint_lsp",
   "eslint",
   "sourcekit",
