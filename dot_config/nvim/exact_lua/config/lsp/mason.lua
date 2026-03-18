@@ -11,7 +11,7 @@ local servers = {
   "eslint",
   "sourcekit",
   "kotlin_language_server",
-  "ts_ls",
+  "tsgo",
   "oxlint",
   "oxfmt",
 }

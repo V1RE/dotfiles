@@ -10,7 +10,7 @@ local tsls = {
     "typescript.tsx",
   },
 
-  ---@type lspconfig.settings.ts_ls
+  ---@type lspconfig.settings.tsgo
   settings = {
     typescript = {
       experimental = {
