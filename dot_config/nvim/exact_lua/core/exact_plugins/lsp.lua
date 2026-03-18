@@ -44,6 +44,8 @@ return {
         "stylelint_lsp",
         "vtsls",
         "yamlls",
+        "oxlint",
+        "oxfmt",
       },
       automatic_enable = false,
     },
