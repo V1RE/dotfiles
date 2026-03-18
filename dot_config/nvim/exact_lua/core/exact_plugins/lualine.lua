@@ -7,6 +7,7 @@ return {
     opts = function()
       local i = require("config.icons")
 
+
       local hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end
@@ -119,10 +120,10 @@ return {
           { "aerial" },
         },
       }
+
       return {
         options = {
           icons_enabled = true,
-          theme = "catppuccin",
           component_separators = "",
           section_separators = "",
           disabled_filetypes = {
