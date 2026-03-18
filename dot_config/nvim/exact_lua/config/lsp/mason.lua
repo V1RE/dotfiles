@@ -14,6 +14,7 @@ local servers = {
   "tsgo",
   "oxlint",
   "oxfmt",
+  "opencode",
 }
 
 ---@param server string
