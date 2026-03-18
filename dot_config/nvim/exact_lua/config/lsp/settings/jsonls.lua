@@ -1,10 +1,11 @@
 local schemastore = require("schemastore")
 
----@type lspconfig.options.jsonls
+---@type vim.lsp.Config
 local jsonls = {
   init_options = {
     provideFormatter = false,
   },
+  ---@type lspconfig.settings.jsonls
   settings = {
     json = {
       schemas = schemastore.json.schemas(),

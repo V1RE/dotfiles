@@ -1,5 +1,5 @@
 ---@type vim.lsp.Config
-local vtsls = {
+local tsls = {
   single_file_support = false,
   filetypes = {
     "javascript",
@@ -10,23 +10,16 @@ local vtsls = {
     "typescript.tsx",
   },
 
-  ---@type lspconfig.settings.vtsls
+  ---@type lspconfig.settings.ts_ls
   settings = {
-    complete_function_calls = true,
-    vtsls = {
-      enableMoveToFileCodeAction = true,
-      autoUseWorkspaceTsdk = true,
-      experimental = {
-        maxInlayHintLength = 30,
-        completion = {
-          enableServerSideFuzzyMatch = true,
-        },
-      },
-      tsserver = {
-        maxTsServerMemory = 8192,
-      },
-    },
     typescript = {
+      experimental = {
+        useTsgo = true,
+      },
+      workspaceSymbols = {
+        excludeLibrarySymbols = true,
+        scope = "allOpenProjects",
+      },
       updateImportsOnFileMove = { enabled = "always" },
       suggest = {
         completeFunctionCalls = true,
@@ -38,6 +31,9 @@ local vtsls = {
       },
       tsserver = {
         maxTsServerMemory = 8192,
+        experimental = {
+          enableProjectDiagnostics = true,
+        },
       },
       referencesCodeLens = {
         showOnAllFunctions = true,
@@ -55,6 +51,6 @@ local vtsls = {
   },
 }
 
-vtsls.settings.javascript = vim.tbl_deep_extend("force", {}, vtsls.settings.typescript, vtsls.settings.javascript or {})
+tsls.settings.javascript = vim.tbl_deep_extend("force", {}, tsls.settings.typescript, tsls.settings.javascript or {})
 
-return vtsls
+return tsls

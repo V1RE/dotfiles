@@ -6,11 +6,14 @@ local servers = {
   "lua_ls",
   "jsonls",
   "yamlls",
-  "vtsls",
+  -- "vtsls",
   "stylelint_lsp",
   "eslint",
   "sourcekit",
   "kotlin_language_server",
+  "ts_ls",
+  "oxlint",
+  "oxfmt",
 }
 
 ---@param server string
