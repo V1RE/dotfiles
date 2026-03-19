@@ -29,6 +29,7 @@ node = "24"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
+"github:anomalyco/opencode-beta" = { version = "latest", asset_pattern = "opencode-darwin-arm64.zip", rename_exe = "opencode-beta" }
 
 [settings]
 experimental = true
