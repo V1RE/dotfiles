@@ -24,6 +24,14 @@
 # Creates: ~/code/myproject.feature-auth
 worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
+# ## cmux workspace integration
+
+[post-create]
+cmux = "~/.config/worktrunk/hooks/cmux-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
+
+[pre-remove]
+cmux = "~/.config/worktrunk/hooks/cmux-remove.sh {{ repo }} {{ branch }}"
+
 # ## LLM commit messages
 #
 # Generate commit messages automatically during merge. Requires an external CLI tool.
