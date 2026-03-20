@@ -21,7 +21,6 @@ if [ -z "$new_workspace" ]; then
   exit 1
 fi
 
-cmux select-workspace --workspace "$new_workspace"
 cmux rename-workspace --workspace "$new_workspace" "$TITLE"
 
 default_surface=$(cmux list-pane-surfaces --workspace "$new_workspace" | awk 'NR==1 {print $1}')
@@ -29,10 +28,12 @@ if [ -n "$default_surface" ]; then
   cmux rename-tab --surface "$default_surface" "Neovim"
 fi
 
-cmux new-surface
+cmux select-workspace --workspace "$new_workspace"
+
+cmux new-surface --workspace "$new_workspace"
 ref=$(cmux identify --json | jq -r '.focused.surface_ref')
 cmux rename-tab --surface "$ref" ""
 
-cmux new-surface
+cmux new-surface --workspace "$new_workspace"
 ref=$(cmux identify --json | jq -r '.focused.surface_ref')
 cmux rename-tab --surface "$ref" "Development Server"
