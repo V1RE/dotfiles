@@ -43,16 +43,25 @@ workspace_ref_by_title() {
   '
 }
 
+workspace_tree_node() {
+  cmux_json tree | jq -c --arg workspace_ref "$1" '
+    first(
+      .windows[]?.workspaces[]?
+      | select((.ref // .workspace_ref // .id) == $workspace_ref)
+    ) // empty
+  '
+}
+
 first_pane_ref() {
-  cmux_json list-panes --workspace "$1" | jq -r '
-    [.panes[]? | (.pane_ref // .pane_id // .id)]
+  workspace_tree_node "$1" | jq -r '
+    [(.panes // [])[]? | (.ref // .pane_ref // .pane_id // .id)]
     | .[0] // empty
   '
 }
 
 first_surface_ref() {
-  cmux_json list-pane-surfaces --workspace "$1" --pane "$2" | jq -r '
-    [.surfaces[]? | (.surface_ref // .surface_id // .id)]
+  workspace_tree_node "$1" | jq -r '
+    [(.panes // [])[]?.surfaces[]? | (.ref // .surface_ref // .surface_id // .id)]
     | .[0] // empty
   '
 }
@@ -98,7 +107,7 @@ if [ -z "$default_pane" ]; then
   exit 1
 fi
 
-default_surface="$(first_surface_ref "$new_workspace" "$default_pane")"
+default_surface="$(first_surface_ref "$new_workspace")"
 if [ -n "$default_surface" ]; then
   rename_tab "$new_workspace" "$default_surface" "Neovim" || true
 fi
