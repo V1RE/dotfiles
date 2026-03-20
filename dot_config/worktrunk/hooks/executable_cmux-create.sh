@@ -15,10 +15,17 @@ if [ -n "$existing" ]; then
   sleep 0.5
 fi
 
-cmux new-workspace --cwd "$WORKTREE_PATH"
-cmux rename-workspace "$TITLE"
+new_workspace=$(cmux new-workspace --cwd "$WORKTREE_PATH" | awk '{print $2}')
+if [ -z "$new_workspace" ]; then
+  echo "Failed to parse new workspace ID" >&2
+  exit 1
+fi
+
+cmux select-workspace --workspace "$new_workspace"
+cmux rename-workspace --workspace "$new_workspace" "$TITLE"
 
 cmux send "nvim\n"
+
 ref=$(cmux identify --json | jq -r '.focused.surface_ref')
 cmux rename-tab --surface "$ref" "Neovim"
 
