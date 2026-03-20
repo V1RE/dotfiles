@@ -28,6 +28,7 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
 [post-create]
 cmux = "~/.config/worktrunk/hooks/cmux-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
+graphite = "~/.config/worktrunk/hooks/graphite-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
 
 [pre-remove]
 cmux = "~/.config/worktrunk/hooks/cmux-remove.sh {{ repo }} {{ branch }}"
@@ -93,7 +94,13 @@ no-cd = true       # Skip directory change after switching (--cd to override)
 #
 # Command templates that run with `wt step <name>`. See `wt step` aliases (https://worktrunk.dev/step/#aliases) for usage and flags.
 #
-# [aliases]
+[aliases]
+gtc = "~/.config/worktrunk/hooks/graphite-step.sh c -a"
+gtm = "~/.config/worktrunk/hooks/graphite-step.sh m -a"
+gtls = "~/.config/worktrunk/hooks/graphite-step.sh ls"
+gtss = "~/.config/worktrunk/hooks/graphite-step.sh ss"
+gtsync = "~/.config/worktrunk/hooks/graphite-step.sh sync"
+
 # greet = "echo Hello from {{ branch }}"
 # url = "echo http://localhost:{{ branch | hash_port }}"
 #
