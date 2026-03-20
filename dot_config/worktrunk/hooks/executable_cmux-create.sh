@@ -15,7 +15,7 @@ if [ -n "$existing" ]; then
   sleep 0.5
 fi
 
-new_workspace=$(cmux new-workspace --cwd "$WORKTREE_PATH" | awk '{print $2}')
+new_workspace=$(cmux new-workspace --cwd "$WORKTREE_PATH" --command "nvim" | awk '{print $2}')
 if [ -z "$new_workspace" ]; then
   echo "Failed to parse new workspace ID" >&2
   exit 1
@@ -24,10 +24,10 @@ fi
 cmux select-workspace --workspace "$new_workspace"
 cmux rename-workspace --workspace "$new_workspace" "$TITLE"
 
-cmux send "nvim\n"
-
-ref=$(cmux identify --json | jq -r '.focused.surface_ref')
-cmux rename-tab --surface "$ref" "Neovim"
+default_surface=$(cmux list-pane-surfaces --workspace "$new_workspace" | awk 'NR==1 {print $1}')
+if [ -n "$default_surface" ]; then
+  cmux rename-tab --surface "$default_surface" "Neovim"
+fi
 
 cmux new-surface
 ref=$(cmux identify --json | jq -r '.focused.surface_ref')
