@@ -14,57 +14,26 @@ cmux_json() {
   cmux --json "$@"
 }
 
-extract_handle() {
+extract_handle_from_output() {
   local kind="$1"
+  local output="$2"
 
-  python3 - "$kind" <<'PY'
-import json
-import re
-import sys
+  if [ "$kind" = "surface" ]; then
+    if [[ "$output" =~ (surface|tab):[A-Za-z0-9._-]+ ]]; then
+      printf '%s\n' "${BASH_REMATCH[0]}"
+      return 0
+    fi
+  elif [[ "$output" =~ ${kind}:[A-Za-z0-9._-]+ ]]; then
+    printf '%s\n' "${BASH_REMATCH[0]}"
+    return 0
+  fi
 
-kind = sys.argv[1]
-text = sys.stdin.read().strip()
+  if [[ "$output" =~ [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12} ]]; then
+    printf '%s\n' "${BASH_REMATCH[0]}"
+    return 0
+  fi
 
-if not text:
-    raise SystemExit(0)
-
-aliases = {
-    "surface": ("surface", "tab"),
-}
-kinds = aliases.get(kind, (kind,))
-
-if text[:1] in "[{":
-    try:
-        payload = json.loads(text)
-    except json.JSONDecodeError:
-        payload = None
-    if isinstance(payload, dict):
-        for candidate in kinds:
-            for key in (
-                f"created_{candidate}_ref",
-                f"{candidate}_ref",
-                f"created_{candidate}_id",
-                f"{candidate}_id",
-            ):
-                value = payload.get(key)
-                if isinstance(value, str) and value.strip():
-                    print(value.strip())
-                    raise SystemExit(0)
-        value = payload.get("id")
-        if isinstance(value, str) and value.strip():
-            print(value.strip())
-            raise SystemExit(0)
-
-for candidate in kinds:
-    match = re.search(rf"\b{re.escape(candidate)}:[A-Za-z0-9._-]+\b", text)
-    if match:
-        print(match.group(0))
-        raise SystemExit(0)
-
-match = re.search(r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b", text)
-if match:
-    print(match.group(0))
-PY
+  return 1
 }
 
 workspace_ref_by_title() {
@@ -114,7 +83,8 @@ if [ -n "$existing_workspace" ]; then
   exit 0
 fi
 
-new_workspace="$(cmux_json new-workspace --cwd "$WORKTREE_PATH" --command "nvim" | extract_handle workspace)"
+new_workspace_output="$(cmux new-workspace --cwd "$WORKTREE_PATH" --command "nvim")"
+new_workspace="$(extract_handle_from_output workspace "$new_workspace_output" || true)"
 if [ -z "$new_workspace" ]; then
   echo "Failed to parse new workspace ID" >&2
   exit 1
@@ -133,11 +103,8 @@ if [ -n "$default_surface" ]; then
   rename_tab "$new_workspace" "$default_surface" "Neovim" || true
 fi
 
-shell_surface="$(cmux_json new-surface --workspace "$new_workspace" --pane "$default_pane" | extract_handle surface)"
-:
-
-dev_surface="$(cmux_json new-surface --workspace "$new_workspace" --pane "$default_pane" | extract_handle surface)"
-:
+cmux new-surface --workspace "$new_workspace" --pane "$default_pane" >/dev/null
+cmux new-surface --workspace "$new_workspace" --pane "$default_pane" >/dev/null
 
 cmux select-workspace --workspace "$new_workspace" >/dev/null
 
