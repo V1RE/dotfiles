@@ -15,8 +15,3 @@ adbs() {
 adbr() {
 	autoadb adb -s '{}' reverse tcp:8081 tcp:8081
 }
-
-# Generated on 2023-07-14T12:07:05+02:00.
-pi() {
-	bundle exec pod install
-}
