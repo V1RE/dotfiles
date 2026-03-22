@@ -1,0 +1,16 @@
+{
+  "tui.editor.deleteCharBackward": ["backspace", "ctrl+h"],
+  "tui.editor.deleteWordBackward": ["ctrl+w", "ctrl+backspace", "alt+backspace"],
+  "tui.editor.deleteWordForward": ["alt+d", "alt+delete", "ctrl+delete"],
+  "tui.input.newLine": ["shift+enter", "ctrl+enter", "ctrl+j"],
+  "app.interrupt": ["escape", "ctrl+g"],
+  "app.editor.external": ["ctrl+alt+e"],
+  "app.session.new": ["ctrl+alt+n"],
+  "app.session.tree": ["ctrl+alt+g"],
+  "app.session.resume": ["ctrl+alt+l"],
+  "app.model.select": ["ctrl+alt+m"],
+  "app.model.cycleForward": ["f2"],
+  "app.model.cycleBackward": ["shift+f2"],
+  "app.thinking.cycle": ["ctrl+t"],
+  "app.thinking.toggle": ["ctrl+alt+t"]
+}
