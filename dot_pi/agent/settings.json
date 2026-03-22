@@ -1,9 +1,0 @@
-{
-  "theme": "vercel-dark",
-  "quietStartup": true,
-  "collapseChangelog": true,
-  "doubleEscapeAction": "tree",
-  "showHardwareCursor": true,
-  "npmCommand": ["mise", "exec", "node@20", "--", "npm"],
-  "shellCommandPrefix": "shopt -s expand_aliases 2>/dev/null || true; source ~/.aliases >/dev/null 2>&1 || true"
-}
