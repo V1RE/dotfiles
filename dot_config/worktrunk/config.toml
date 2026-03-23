@@ -1,11 +1,11 @@
 worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
 [post-create]
-cmux = "~/.config/worktrunk/hooks/cmux-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
+# cmux = "~/.config/worktrunk/hooks/cmux-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
 graphite = "~/.config/worktrunk/hooks/graphite-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
 
 [pre-remove]
-cmux = "~/.config/worktrunk/hooks/cmux-remove.sh {{ repo }} {{ branch }}"
+# cmux = "~/.config/worktrunk/hooks/cmux-remove.sh {{ repo }} {{ branch }}"
 
 [commit.generation]
 command = "opencode run -m github-copilot/claude-haiku-4.5"
