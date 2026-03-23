@@ -155,6 +155,34 @@
     }
   },
   "autoupdate": "notify",
+  "provider": {
+    "anthropic": {
+      "name": "Anthropic",
+      "models": {
+        "claude-sonnet-4-6": {},
+        "claude-opus-4-6": {
+          "limit": {
+            "context": 500000,
+            "output": 128000
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 30000
+            }
+          }
+        },
+        "claude-opus-4-5": {
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 16000
+            }
+          }
+        }
+      }
+    }
+  },
   "mcp": {
     "gh_grep": {
       "type": "remote",
