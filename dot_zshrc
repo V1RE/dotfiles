@@ -191,11 +191,3 @@ else
   compdef _opencode_yargs_completions opencode
 fi
 ###-end-opencode-completions-###
-
-tsm_palette() {
-  zle -I
-  tsm p
-  zle reset-prompt
-}
-zle -N tsm_palette
-bindkey '^g' tsm_palette
