@@ -27,7 +27,7 @@ common_subcommands = [
   "pnpx",
   "bun",
   "bunx",
-  "eas"
+  "eas",
 ]
 
 [keys]
