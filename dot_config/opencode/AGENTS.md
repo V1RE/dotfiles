@@ -25,3 +25,13 @@ Fight entropy. Leave the codebase better than you found it.
 - Skip confirmations like "I'll continue..." Just do it.
 - If a task needs 1 tool call, don't use 3. Plan before acting.
 - Do not summarize what you just did unless the result is ambiguous or you need additional input.
+
+## cq
+
+- Use `cq` in its intended loop, not just as an available tool.
+- Before non-routine work involving unfamiliar tools, libraries, APIs, CI/CD, packaging, infra, or unexpected errors, call `cq_query` first with relevant domain tags.
+- If a returned knowledge unit proves useful or correct, call `cq_confirm` immediately.
+- If no useful knowledge exists and you discover a non-obvious lesson, call `cq_propose` before finishing.
+- If a knowledge unit is wrong, stale, or duplicate, call `cq_flag`.
+- Do not batch `cq` MCP calls.
+- Before ending a task, explicitly consider: query used, confirm needed, propose needed, or flag needed.

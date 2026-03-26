@@ -219,7 +219,7 @@
     "memelord": {
       "type": "local",
       "command": ["memelord", "serve"],
-      "enabled": true
+      "enabled": false
     },
     "cq": {
       "type": "local",
