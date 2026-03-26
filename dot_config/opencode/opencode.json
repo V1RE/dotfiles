@@ -214,11 +214,16 @@
     "opensrc": {
       "type": "local",
       "command": ["bunx", "opensrc-mcp"],
-      "enabled": true
+      "enabled": false
     },
     "memelord": {
       "type": "local",
       "command": ["memelord", "serve"],
+      "enabled": true
+    },
+    "cq": {
+      "type": "local",
+      "command": ["mise", "x", "--", "cq-mcp-server"],
       "enabled": true
     },
     "codemogger": {
