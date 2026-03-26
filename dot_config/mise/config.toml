@@ -21,7 +21,7 @@
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
 "npm:vercel" = "latest"
-"pipx:git+https://github.com/mozilla-ai/cq#subdirectory=plugins/cq/server" = { version = "0.4.0"  }
+"pipx:cq-mcp-server" = { version = "latest", uvx_args = "--from git+https://github.com/mozilla-ai/cq.git#subdirectory=plugins/cq/server" }
 bun = "latest"
 codex = "latest"
 graphite = "latest"
