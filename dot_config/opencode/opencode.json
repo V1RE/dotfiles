@@ -223,7 +223,14 @@
     },
     "cq": {
       "type": "local",
-      "command": ["mise", "x", "--", "cq-mcp-server"],
+      "command": [
+        "uv",
+        "tool",
+        "run",
+        "--from",
+        "git+https://github.com/mozilla-ai/cq.git#subdirectory=plugins/cq/server",
+        "cq-mcp-server"
+      ],
       "enabled": true
     },
     "codemogger": {
