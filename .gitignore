@@ -2,3 +2,6 @@
 .opencode/plans/**
 /.memelord
 /.codemogger
+
+# opensrc - source code for packages
+opensrc/
