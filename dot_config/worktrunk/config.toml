@@ -1,6 +1,6 @@
 worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
-[pre-start]
+[post-switch]
 cmux = "~/.config/worktrunk/hooks/cmux-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
 graphite = "~/.config/worktrunk/hooks/graphite-create.sh {{ repo }} {{ branch }} {{ worktree_path }}"
 
