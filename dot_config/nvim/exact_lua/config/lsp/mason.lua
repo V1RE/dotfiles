@@ -7,13 +7,9 @@ local servers = {
   "jsonls",
   "yamlls",
   "vtsls",
-  "stylelint_lsp",
   "eslint",
-  "sourcekit",
-  "kotlin_language_server",
   "tsgo",
   "oxlint",
-  "oxfmt",
 }
 
 ---@param server string

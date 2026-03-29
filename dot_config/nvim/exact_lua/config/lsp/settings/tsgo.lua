@@ -10,21 +10,42 @@ local tsls = {
     "typescript.tsx",
   },
 
-  ---@type lspconfig.settings.tsgo
+  ---@type lspconfig.settings.ts_ls
   settings = {
     typescript = {
       experimental = {
         useTsgo = true,
       },
-      workspaceSymbols = {
-        excludeLibrarySymbols = true,
-        scope = "allOpenProjects",
+
+      autoClosingTags = true,
+      check = { npmIsInstalled = true },
+      disableAutomaticTypeAcquisition = false,
+      enablePromptUseWorkspaceTsdk = true,
+      implementationsCodeLens = {
+        enabled = true,
+        showOnAllClassMethods = true,
+        showOnInterfaceMethods = true,
       },
-      updateImportsOnFileMove = { enabled = "always" },
+      suggestionActions = {
+        enabled = true,
+      },
+      preferGoToSourceDefinition = true,
+      reportStyleChecksAsWarnings = false,
+      tsc = {},
       suggest = {
         completeFunctionCalls = true,
+        autoImports = true,
+        completeJSDocs = true,
+        classMemberSnippets = {
+          enabled = true,
+        },
+        enabled = true,
+        jsdoc = { generateReturns = true },
+        includeAutomaticOptionalChainCompletions = true,
+        includeCompletionsForImportStatements = true,
+        objectLiteralMethodSnippets = { enabled = true },
+        paths = true,
       },
-      format = { enable = false },
       preferences = {
         useAliasesForRenames = true,
         preferTypeOnlyAutoImports = true,
@@ -39,13 +60,19 @@ local tsls = {
         showOnAllFunctions = true,
         enabled = true,
       },
+      workspaceSymbols = {
+        excludeLibrarySymbols = true,
+        scope = "allOpenProjects",
+      },
+      updateImportsOnFileMove = { enabled = "always" },
+      format = { enable = false },
       inlayHints = {
-        enumMemberValues = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
         parameterNames = { enabled = "literals" },
         parameterTypes = { enabled = true },
+        variableTypes = { enabled = true },
         propertyDeclarationTypes = { enabled = true },
-        variableTypes = { enabled = false },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
       },
     },
   },

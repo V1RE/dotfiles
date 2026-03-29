@@ -37,6 +37,40 @@ return {
       local linters = null_ls.builtins.diagnostics
       local hover = null_ls.builtins.hover
 
+	local methods = require("null-ls.methods")
+      local h = require("null-ls.helpers")
+
+	local u = require("null-ls.utils")
+
+local vp = h.make_builtin({
+		name = "vite+",
+		method = methods.internal.FORMATTING,
+		filetypes = {
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"vue",
+			"svelte",
+			"astro",
+			"html",
+			"css",
+			"scss",
+			"less",
+		},
+		factory = h.formatter_factory,
+		generator_opts = {
+			command = "vp",
+			args = { "fmt", "$FILENAME" },
+			to_temp_file = true,
+			from_temp_file = true,
+			timeout = 10000,
+			cwd = h.cache.by_bufnr(function(params)
+				return u.root_pattern(".oxfmtrc.json", "oxfmt.config.ts", "vite.config.ts")(params.bufname)
+			end),
+		},
+	})
+
       null_ls.setup({
         debug = false,
         sources = {
@@ -56,6 +90,9 @@ return {
           }),
           formatting.shfmt,
           formatting.stylua,
+          vp.with({
+            only_local = "node_modules/.bin",
+          }),
           hover.dictionary,
           linters.zsh,
           linters.actionlint,
