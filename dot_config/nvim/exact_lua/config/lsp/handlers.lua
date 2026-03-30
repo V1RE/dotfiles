@@ -6,31 +6,12 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require("blink.cmp").get_lsp_capabilities(M.capabilities)
 -- M.capabilities = require("cmp_nvim_lsp").default_capabilities(M.capabilities)
 
-local function resolve_float_config(config)
-  return vim.tbl_deep_extend("force", config or {}, { border = "rounded" })
-end
+local function with_border(handler)
+  return function(err, result, ctx, config)
+    local resolved_config = vim.tbl_deep_extend("force", config or {}, { border = "rounded" })
 
-local function open_plaintext_markdown(result, config)
-  if not (result and result.contents) then
-    return
+    return handler(err, result, ctx, resolved_config)
   end
-
-  local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-  markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
-
-  if vim.tbl_isempty(markdown_lines) then
-    return
-  end
-
-  return vim.lsp.util.open_floating_preview(markdown_lines, "text", resolve_float_config(config))
-end
-
-local function hover_handler(_, result, _, config)
-  return open_plaintext_markdown(result, config)
-end
-
-local function signature_help_handler(_, result, _, config)
-  return open_plaintext_markdown(result, config)
 end
 
 M.setup = function()
@@ -68,9 +49,9 @@ M.setup = function()
     },
   })
 
-  vim.lsp.handlers["textDocument/hover"] = hover_handler
+  vim.lsp.handlers["textDocument/hover"] = with_border(vim.lsp.handlers.hover)
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = signature_help_handler
+  vim.lsp.handlers["textDocument/signatureHelp"] = with_border(vim.lsp.handlers.signature_help)
 
   vim.lsp.commands["editor.action.showReferences"] = function(command, ctx)
     local locations = command.arguments[3]
