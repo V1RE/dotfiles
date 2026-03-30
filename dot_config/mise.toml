@@ -1,7 +1,4 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
-[tools]
-lua-language-server = "latest"
-
 [settings.cargo]
 binstall = true

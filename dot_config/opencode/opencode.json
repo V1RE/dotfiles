@@ -239,12 +239,6 @@
       "enabled": true
     }
   },
-  "lsp": {
-    "lua-language-server": {
-      "command": ["lua-language-server"],
-      "extensions": [".lua"]
-    }
-  },
   "experimental": {
     "batch_tool": true,
     "openTelemetry": true
