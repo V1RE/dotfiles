@@ -5,7 +5,6 @@ return {
     build = ":TSUpdate",
     lazy = false,
     main = "nvim-treesitter.configs",
-    branch = "main",
 
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-context", config = true },
