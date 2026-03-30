@@ -14,7 +14,7 @@
   "cybu.nvim": { "branch": "main", "commit": "2b970234efb91e4e005d7e53985694139c361075" },
   "dial.nvim": { "branch": "master", "commit": "f2634758455cfa52a8acea6f142dcd6271a1bf57" },
   "edgy.nvim": { "branch": "main", "commit": "8bfd2808994a988c975694122f68624b8a219f5f" },
-  "fff.nvim": { "branch": "main", "commit": "d88922e6c74b357cfd029128ce5ecd813b6eb747" },
+  "fff.nvim": { "branch": "main", "commit": "e83b137be5d9a2947f59e1b68e0b8c4ab3eac2f3" },
   "fidget.nvim": { "branch": "main", "commit": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
