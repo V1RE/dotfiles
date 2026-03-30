@@ -6,7 +6,6 @@ local servers = {
   "lua_ls",
   "jsonls",
   "yamlls",
-  "vtsls",
   "eslint",
   "tsgo",
   "oxlint",
