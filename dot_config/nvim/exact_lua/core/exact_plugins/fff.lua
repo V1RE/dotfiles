@@ -11,10 +11,10 @@ return {
     end,
     -- if you are using nixos
     -- build = "nix run .#release",
-    opts = { -- (optional)
+    opts = {
       debug = {
-        enabled = true, -- we expect your collaboration at least during the beta
-        show_scores = true, -- to help us optimize the scoring system, feel free to share your scores!
+        enabled = false,
+        show_scores = false,
       },
       layout = {
         height = 0.8,
@@ -23,9 +23,12 @@ return {
         preview_position = "right", -- or 'left', 'right', 'top', 'bottom'
         preview_size = 0.5,
       },
-
       preview = {
         line_numbers = true,
+      },
+      keymaps = {
+        focus_list = nil,
+        focus_preview = nil,
       },
     },
     -- No need to lazy-load with lazy.nvim.
@@ -33,21 +36,36 @@ return {
     lazy = false,
     keys = {
       {
-        "ff", -- try it if you didn't it is a banger keybinding for a picker
+        "ff",
         function()
           require("fff").find_files()
         end,
         desc = "FFFind files",
       },
-
       {
         "<leader>f",
         function()
-          require("fff").find_in_git_root()
+          require("fff").find_files()
         end,
         desc = i.Telescope .. "Find files",
       },
+      {
+        "<leader>F",
+        function()
+          require("fff").live_grep()
+        end,
+        desc = i.Search .. "Find text",
+      },
+      {
+        "<leader>k",
+        function()
+          local current_file = vim.api.nvim_buf_get_name(0)
+          local directory = current_file ~= "" and vim.fs.dirname(current_file) or vim.uv.cwd()
+          require("fff").find_files_in_dir(directory)
+        end,
+        desc = i.Telescope .. "Find files cwd",
+      },
     },
-    enabled = false
+    enabled = true,
   },
 }

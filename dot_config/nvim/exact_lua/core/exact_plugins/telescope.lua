@@ -146,14 +146,6 @@ return {
       --   desc = i.Telescope .. "Find files",
       -- },
       -- { "<leader>F", "<cmd>Telescope live_grep<cr>", desc = i.Search .. "Find text" },
-      {
-        "<leader>k",
-        function()
-          require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
-        end,
-        desc = i.Telescope .. "Find files cwd",
-      },
-
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
       { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers" },

@@ -73,20 +73,6 @@ return {
       },
 
       {
-        "<leader>f",
-        function()
-          Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
-        end,
-        desc = i.Telescope .. "Find files",
-      },
-      {
-        "<leader>F",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = i.Search .. "Find text",
-      },
-      {
         "<leader>sh",
         function()
           Snacks.picker.help()
