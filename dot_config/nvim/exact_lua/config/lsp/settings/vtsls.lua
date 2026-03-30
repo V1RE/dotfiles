@@ -4,10 +4,8 @@ local vtsls = {
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
   },
 
   -- Only keep code actions; tsgo handles everything else

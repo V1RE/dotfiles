@@ -4,10 +4,8 @@ local tsls = {
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
   },
 
   ---@type lspconfig.settings.ts_ls
