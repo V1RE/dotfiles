@@ -66,6 +66,6 @@ return {
         desc = i.Telescope .. "Find files cwd",
       },
     },
-    enabled = false,
+    enabled = true,
   },
 }
