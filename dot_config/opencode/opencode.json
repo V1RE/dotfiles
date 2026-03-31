@@ -221,6 +221,10 @@
       "command": ["memelord", "serve"],
       "enabled": false
     },
+    "pieces": {
+      "type": "remote",
+      "url": "http://localhost:39300/model_context_protocol/2025-03-26/mcp"
+    },
     "cq": {
       "type": "local",
       "command": [
