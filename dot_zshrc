@@ -12,18 +12,6 @@ then
     fi
 fi
 
-# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-# source <(carapace _carapace)
-
-
-# argc-completions
-# export ARGC_COMPLETIONS_ROOT="/Users/niels/Code/argc-completions"
-# export ARGC_COMPLETIONS_PATH="$ARGC_COMPLETIONS_ROOT/completions"
-# export PATH="$ARGC_COMPLETIONS_ROOT/bin:$PATH"
-# To add completions for only the specified command, modify next line e.g. argc_scripts=( cargo git )
-# argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
-
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
 . ~/.antidote/antidote.zsh
@@ -102,6 +90,7 @@ source "$HOME/.config/lf/lficons.zsh"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export PATH="$HOME/.atuin/bin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
@@ -176,13 +165,6 @@ zcompile ~/.zshrc 2>/dev/null &!
 export PATH=/Users/niels/.opencode/bin:$PATH
 
 if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
-
-# OPENSPEC:START
-# OpenSpec shell completions configuration
-# fpath=("/Users/niels/.zsh/completions" $fpath)
-# autoload -Uz compinit
-# compinit
-# OPENSPEC:END
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
