@@ -21,7 +21,7 @@ Fight entropy. Leave the codebase better than you found it.
 - Never re-run commands to "verify" unless the outcome was uncertain.
 - Don't echo back large blocks of code or file contents unless asked.
 - Batch related edits into single operations. Don't make 5 edits when 1 handles it.
-- Never try to batch any MCP commands. It will error. (so this includes opensrc, memelord, codemogger, etc.)
+- Never try to batch any MCP commands. It will error.
 - Skip confirmations like "I'll continue..." Just do it.
 - If a task needs 1 tool call, don't use 3. Plan before acting.
 - Do not summarize what you just did unless the result is ambiguous or you need additional input.

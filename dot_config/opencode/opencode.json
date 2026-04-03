@@ -223,18 +223,12 @@
     },
     "pieces": {
       "type": "remote",
-      "url": "http://localhost:39300/model_context_protocol/2025-03-26/mcp"
+      "url": "http://localhost:39300/model_context_protocol/2025-03-26/mcp",
+      "enabled": false
     },
     "cq": {
       "type": "local",
-      "command": [
-        "uv",
-        "tool",
-        "run",
-        "--from",
-        "git+https://github.com/mozilla-ai/cq.git#subdirectory=plugins/cq/server",
-        "cq-mcp-server"
-      ],
+      "command": ["cq", "mcp"],
       "enabled": true
     },
     "codemogger": {
