@@ -32,6 +32,7 @@ node = "24"
 pnpm = "10"
 usage = "latest"
 uv = "latest"
+"github:mozilla-ai/cq" = { version = "latest", "asset_pattern" = "cq_Darwin_arm64.tar.gz" }
 # "github:anomalyco/opencode-beta" = { version = "latest", asset_pattern = "opencode-darwin-arm64.zip", rename_exe = "opencode-beta" }
 
 [settings]
