@@ -260,5 +260,9 @@
     }
   },
   "username": "Niels",
-  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin@latest"]
+  "plugin": [
+    "opencode-wakatime",
+    "@2digits/opencode-plugin@latest",
+    "file://~/Library/Application Support/opencode/plugins/worktrunk.ts"
+  ]
 }
