@@ -71,6 +71,85 @@ return {
         end,
         desc = i.Watch .. "Resume Picker",
       },
+      {
+        "ff",
+        function()
+          Snacks.picker.files()
+        end,
+        desc = "Find files",
+      },
+      {
+        "<leader>f",
+        function()
+          Snacks.picker.files()
+        end,
+        desc = i.Telescope .. "Find files",
+      },
+      {
+        "<leader>F",
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = i.Search .. "Find text",
+      },
+      {
+        "<leader>k",
+        function()
+          local current_file = vim.api.nvim_buf_get_name(0)
+          local cwd = current_file ~= "" and vim.fs.dirname(current_file) or vim.uv.cwd()
+          Snacks.picker.files({ cwd = cwd })
+        end,
+        desc = i.Telescope .. "Find files cwd",
+      },
+      {
+        "<leader>sC",
+        function()
+          Snacks.picker.commands()
+        end,
+        desc = "Commands",
+      },
+      {
+        "<leader>sm",
+        function()
+          Snacks.picker.man()
+        end,
+        desc = "Man Pages",
+      },
+      {
+        "<leader>sR",
+        function()
+          Snacks.picker.registers()
+        end,
+        desc = "Registers",
+      },
+      {
+        "<leader>sb",
+        function()
+          Snacks.picker.pickers()
+        end,
+        desc = "Builtin pickers",
+      },
+      {
+        "<leader>sc",
+        function()
+          Snacks.picker.colorschemes()
+        end,
+        desc = "Colorscheme",
+      },
+      {
+        "<leader>sk",
+        function()
+          Snacks.picker.keymaps()
+        end,
+        desc = "Keymaps",
+      },
+      {
+        "<leader>sr",
+        function()
+          Snacks.picker.recent()
+        end,
+        desc = "Open Recent File",
+      },
 
       {
         "<leader>sh",
