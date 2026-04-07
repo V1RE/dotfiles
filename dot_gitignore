@@ -201,6 +201,11 @@ dist
 **/.cursor/.agent-tools
 **/.cursor/.agent-notes
 
-**/.beads/
 **/.claude/settings.local.json
-.beads/
+
+/.opencode/package-lock.json
+/.opencode/plans/**
+
+/opensrc/
+/.memelord
+/.codemogger

@@ -40,7 +40,9 @@ return {
         { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false, icon = i.Information },
         {
           "<leader>lj",
-          vim.diagnostic.goto_next,
+          function()
+            vim.diagnostic.jump({ count = 1, float = true })
+          end,
           desc = "Next Diagnostic",
           nowait = true,
           remap = false,
@@ -48,7 +50,9 @@ return {
         },
         {
           "<leader>lk",
-          vim.diagnostic.goto_prev,
+          function()
+            vim.diagnostic.jump({ count = -1, float = true })
+          end,
           desc = "Prev Diagnostic",
           nowait = true,
           remap = false,

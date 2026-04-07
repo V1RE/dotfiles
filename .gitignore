@@ -5,3 +5,4 @@
 
 # opensrc - source code for packages
 opensrc/
+/.opencode/package-lock.json

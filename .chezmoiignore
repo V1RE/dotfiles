@@ -8,3 +8,4 @@ key.txt.age
 !dot_hammerspoon/**/.luarc.json
 /AGENTS.md
 opensrc/
+/.opencode/package-lock.json
