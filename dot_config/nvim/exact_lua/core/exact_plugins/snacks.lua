@@ -75,6 +75,27 @@ return {
         desc = i.Watch .. "Resume Picker",
       },
       {
+        "<leader>nl",
+        function()
+          Snacks.picker.notifications()
+        end,
+        desc = "Notification List",
+      },
+      {
+        "<leader>nh",
+        function()
+          Snacks.notifier.show_history()
+        end,
+        desc = "Notification History",
+      },
+      {
+        "<leader>na",
+        function()
+          Snacks.notifier.hide()
+        end,
+        desc = "Dismiss Notifications",
+      },
+      {
         "ff",
         function()
           Snacks.picker.files()
@@ -204,6 +225,48 @@ return {
           Snacks.picker.diagnostics()
         end,
         desc = "Workspace Diagnostics",
+      },
+      {
+        "<leader>xx",
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = "Diagnostics",
+      },
+      {
+        "<leader>xw",
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = "Workspace Diagnostics",
+      },
+      {
+        "<leader>xd",
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
+        desc = "Buffer Diagnostics",
+      },
+      {
+        "<leader>xl",
+        function()
+          Snacks.picker.loclist()
+        end,
+        desc = "Location List",
+      },
+      {
+        "<leader>xq",
+        function()
+          Snacks.picker.qflist()
+        end,
+        desc = "Quickfix List",
+      },
+      {
+        "gR",
+        function()
+          Snacks.picker.lsp_references()
+        end,
+        desc = "References",
       },
     },
     init = function()

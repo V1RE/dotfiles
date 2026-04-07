@@ -3,7 +3,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    dependencies = { "folke/noice.nvim" },
     opts = function()
       local i = require("config.icons")
 
@@ -96,6 +95,11 @@ return {
         return "spaces: " .. vim.api.nvim_get_option_value("shiftwidth", { buf = 0 })
       end
 
+      local progress_status = function()
+        local status = vim.ui.progress_status()
+        return status ~= "" and status or nil
+      end
+
       local fileicon = {
         "filetype",
         icon_only = false,
@@ -143,26 +147,7 @@ return {
           lualine_c = { fileicon, { "filename", path = 1 } },
           lualine_x = {
             diff,
-
-            {
-              require("noice").api.status.message.get_hl,
-              cond = require("noice").api.status.message.has,
-            },
-            {
-              require("noice").api.status.command.get,
-              cond = require("noice").api.status.command.has,
-              color = { fg = "#ff9e64" },
-            },
-            {
-              require("noice").api.status.mode.get,
-              cond = require("noice").api.status.mode.has,
-              color = { fg = "#ff9e64" },
-            },
-            {
-              require("noice").api.status.search.get,
-              cond = require("noice").api.status.search.has,
-              color = { fg = "#ff9e64" },
-            },
+            progress_status,
             {
               function()
                 return require("opencode").statusline()

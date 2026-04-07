@@ -11,7 +11,16 @@ return {
       ---@type wk.Spec
       spec = {
         { "<leader>b", group = "Buffer", nowait = true, remap = false, icon = i.Buffer },
-        { "<leader>bd", "<cmd>Bdelete<CR>", desc = "Close", nowait = true, remap = false, icon = i.Close },
+        {
+          "<leader>bd",
+          function()
+            Snacks.bufdelete()
+          end,
+          desc = "Close",
+          nowait = true,
+          remap = false,
+          icon = i.Close,
+        },
         { "<leader>bs", "<cmd>w!<CR>", desc = "Save", nowait = true, remap = false, icon = i.Save },
         {
           "<leader>h",

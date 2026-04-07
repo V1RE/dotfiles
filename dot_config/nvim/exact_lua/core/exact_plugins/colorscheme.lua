@@ -35,7 +35,6 @@ return {
         mason = true,
         mini = true,
         neotree = true,
-        noice = true,
         snacks = true,
         telescope = { enabled = true },
         treesitter_context = true,

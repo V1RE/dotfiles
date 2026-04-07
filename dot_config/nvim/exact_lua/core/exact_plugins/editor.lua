@@ -1,11 +1,5 @@
 ---@type LazyPluginSpec[]
 return {
-  -- Better buffer deletion
-  {
-    "famiu/bufdelete.nvim",
-    cmd = { "Bdelete", "Bwipeout" },
-  },
-
   -- Swap list items
   {
     "mizlan/iswap.nvim",
