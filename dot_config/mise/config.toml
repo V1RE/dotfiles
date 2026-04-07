@@ -14,9 +14,7 @@
 "npm:memelord" = "latest"
 "npm:neovim" = "latest"
 "npm:ocx" = "latest"
-"npm:openplexer" = "latest"
 "npm:opensrc" = "latest"
-"npm:screenpipe" = "latest"
 "npm:skills" = "latest"
 "npm:taze" = "latest"
 "npm:trash-cli" = "latest"
@@ -36,9 +34,8 @@ uv = "latest"
 
 [settings]
 experimental = true
-cargo_binstall = true
 trusted_config_paths = ["~/Code/"]
-vfox = false
+disable_backends = ["vfox"]
 lockfile = true
 idiomatic_version_file_enable_tools = ["node"]
 
@@ -47,6 +44,7 @@ package_manager = "bun"
 
 [settings.cargo]
 binstall = true
+
 
 [env]
 '_'.path = "~/bin"
