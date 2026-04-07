@@ -14,11 +14,4 @@ command = "opencode run -m github-copilot/claude-haiku-4.5"
 summary = true
 
 [switch]
-no-cd = true
-
-[aliases]
-gtc = "~/.config/worktrunk/hooks/graphite-step.sh c -a"
-gtm = "~/.config/worktrunk/hooks/graphite-step.sh m -a"
-gtls = "~/.config/worktrunk/hooks/graphite-step.sh ls"
-gtss = "~/.config/worktrunk/hooks/graphite-step.sh ss"
-gtsync = "~/.config/worktrunk/hooks/graphite-step.sh sync"
+cd = false
