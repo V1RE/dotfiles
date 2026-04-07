@@ -32,6 +32,9 @@ return {
             },
           },
         },
+        matcher = {
+          frecency = true,
+        },
       },
     },
     keys = {
