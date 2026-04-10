@@ -235,6 +235,11 @@
       "type": "local",
       "command": ["codemogger", "mcp"],
       "enabled": true
+    },
+    "granola": {
+      "type": "remote",
+      "url": "https://mcp.granola.ai/mcp",
+      "enabled": false
     }
   },
   "experimental": {
