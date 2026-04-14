@@ -152,6 +152,11 @@
       "lab *": "deny",
       "lab": "deny",
       "glab*": "deny"
+    },
+    "external_directory": {
+      "$HOME/.opensrc/**": "allow",
+      "$HOME/Code/**": "allow",
+      "/tmp/**": "allow"
     }
   },
   "autoupdate": "notify",
