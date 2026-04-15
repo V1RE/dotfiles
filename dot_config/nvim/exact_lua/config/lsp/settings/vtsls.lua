@@ -9,7 +9,7 @@ local vtsls = {
   },
 
   -- Only keep code actions; tsgo handles everything else
-  on_attach = function(client, _bufnr)
+  on_attach = function(client)
     client.server_capabilities.completionProvider = nil
     client.server_capabilities.hoverProvider = false
     client.server_capabilities.definitionProvider = false
