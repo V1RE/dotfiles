@@ -6,6 +6,41 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    config = function(_, opts)
+      local db = require("snacks.picker.util.db")
+
+      if not db._busy_timeout_patched then
+        db._busy_timeout_patched = true
+
+        local new = db.new
+
+        function db.new(path, value_type)
+          local store = new(path, value_type)
+
+          if path:find("picker%-frecency%.sqlite3$") then
+            -- Multiple Neovim instances can race on frecency writes.
+            store:exec("PRAGMA busy_timeout=1000")
+
+            local set = store.set
+
+            function store:set(key, value)
+              local ok, err = pcall(set, self, key, value)
+              if ok then
+                return
+              end
+              if tostring(err):find("Failed to execute insert statement", 1, true) then
+                return
+              end
+              error(err)
+            end
+          end
+
+          return store
+        end
+      end
+
+      require("snacks").setup(opts)
+    end,
     ---@type snacks.Config
     opts = {
       dashboard = { enabled = true },
