@@ -131,16 +131,9 @@ return {
         desc = "Dismiss Notifications",
       },
       {
-        "ff",
-        function()
-          Snacks.picker.files()
-        end,
-        desc = "Find files",
-      },
-      {
         "<leader>f",
         function()
-          Snacks.picker.files()
+          Snacks.picker.files({ hidden = true })
         end,
         desc = i.Telescope .. "Find files",
       },
