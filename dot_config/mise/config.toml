@@ -25,6 +25,7 @@
 bun = "latest"
 codex = "latest"
 graphite = "latest"
+"cargo:worktrunk" = "latest"
 hcloud = "latest"
 java = "24"
 lazygit = "latest"
