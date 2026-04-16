@@ -1,0 +1,8 @@
+#:schema https://pitchfork.jdx.dev/schema.json
+
+[settings.general]
+mise = true
+
+[daemons.kimaki]
+run = "kimaki --auto-restart"
+boot_start = true
