@@ -17,6 +17,7 @@
 "npm:neovim" = "latest"
 "npm:ocx" = "latest"
 "npm:opensrc" = "latest"
+"npm:playwriter" = "latest"
 "npm:skills" = "latest"
 "npm:taze" = "latest"
 "npm:trash-cli" = "latest"
