@@ -160,34 +160,6 @@
     }
   },
   "autoupdate": "notify",
-  "provider": {
-    "anthropic": {
-      "name": "Anthropic",
-      "models": {
-        "claude-sonnet-4-6": {},
-        "claude-opus-4-6": {
-          "limit": {
-            "context": 500000,
-            "output": 128000
-          },
-          "options": {
-            "thinking": {
-              "type": "enabled",
-              "budgetTokens": 30000
-            }
-          }
-        },
-        "claude-opus-4-5": {
-          "options": {
-            "thinking": {
-              "type": "enabled",
-              "budgetTokens": 16000
-            }
-          }
-        }
-      }
-    }
-  },
   "mcp": {
     "gh_grep": {
       "type": "remote",
@@ -206,24 +178,9 @@
       "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
       "enabled": true
     },
-    "tlo": {
-      "type": "local",
-      "command": ["bunx", "@2digits/tlo-mcp"],
-      "enabled": false
-    },
     "figma-desktop": {
       "type": "remote",
       "url": "http://127.0.0.1:3845/mcp",
-      "enabled": false
-    },
-    "opensrc": {
-      "type": "local",
-      "command": ["bunx", "opensrc-mcp"],
-      "enabled": false
-    },
-    "memelord": {
-      "type": "local",
-      "command": ["memelord", "serve"],
       "enabled": false
     },
     "pieces": {
@@ -270,9 +227,5 @@
     }
   },
   "username": "Niels",
-  "plugin": [
-    "opencode-wakatime",
-    "@2digits/opencode-plugin@latest",
-    "file://~/Library/Application Support/opencode/plugins/worktrunk.ts"
-  ]
+  "plugin": ["opencode-wakatime"]
 }
