@@ -23,7 +23,7 @@
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
 "npm:vercel" = "latest"
-"pipx:dinobase" = "latest"
+# "pipx:dinobase" = "latest"
 bun = "latest"
 codex = "latest"
 graphite = "latest"
