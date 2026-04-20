@@ -38,7 +38,6 @@ uv = "latest"
 [settings]
 experimental = true
 trusted_config_paths = ["~/Code/"]
-disable_backends = ["vfox"]
 lockfile = true
 idiomatic_version_file_enable_tools = ["node"]
 
