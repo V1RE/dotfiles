@@ -7,8 +7,10 @@ local servers = {
   "jsonls",
   "yamlls",
   "eslint",
-  "tsgo",
+  -- "tsgo",
+  "vtsls",
   "oxlint",
+  "taplo",
 }
 
 ---@param server string
