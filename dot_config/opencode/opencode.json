@@ -202,6 +202,14 @@
       "type": "remote",
       "url": "https://mcp.granola.ai/mcp",
       "enabled": false
+    },
+    "posthog": {
+      "type": "remote",
+      "url": "https://mcp.posthog.com/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:POSTHOG_MCP_KEY}"
+      },
+      "enabled": false
     }
   },
   "experimental": {
