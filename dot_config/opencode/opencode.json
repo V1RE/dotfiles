@@ -235,5 +235,5 @@
     }
   },
   "username": "Niels",
-  "plugin": ["opencode-wakatime"]
+  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin"]
 }
