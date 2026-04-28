@@ -235,9 +235,5 @@
     }
   },
   "username": "Niels",
-  "plugin": [
-    "opencode-wakatime",
-    "@2digits/opencode-plugin@0.2.3",
-    ["@ishaksebsib/opencode-tree", { "storageScope": "global" }]
-  ]
+  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin@0.2.3"]
 }

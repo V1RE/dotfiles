@@ -8,12 +8,5 @@
   "keybinds": {
     "input_undo": "ctrl+-,super+z,option+z"
   },
-  "plugin": [
-    [
-      "@ishaksebsib/opencode-tree",
-      {
-        "storageScope": "global"
-      }
-    ]
-  ]
+  "plugin": [["@ishaksebsib/opencode-tree", { "storageScope": "global" }]]
 }
