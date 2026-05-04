@@ -4,6 +4,7 @@
 "cargo:worktrunk" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fsouza/prettierd" = "latest"
+"npm:@gmickel/gno" = "latest"
 "npm:@vercel/before-and-after" = "latest"
 "npm:agent-browser" = "latest"
 "npm:codemogger" = "latest"
