@@ -24,6 +24,7 @@
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
 "npm:vercel" = "latest"
+"npm:zele" = "latest"
 bun = "latest"
 codex = "latest"
 graphite = "latest"
