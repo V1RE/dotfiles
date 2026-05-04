@@ -16,6 +16,7 @@ fi
 
 . ~/.antidote/antidote.zsh
 
+[[ -s ~/.zsh_plugins.zsh ]] || rm -f ~/.zsh_plugins.zsh
 antidote load
 
 # Extend PATH.
