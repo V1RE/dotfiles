@@ -214,7 +214,7 @@
     "slack": {
       "type": "remote",
       "url": "https://mcp.slack.com/mcp",
-      "enabled": true,
+      "enabled": false,
       "oauth": {
         "clientId": "1601185624273.8899143856786",
         "redirectUri": "http://localhost:3118/callback"
