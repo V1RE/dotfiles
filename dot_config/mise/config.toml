@@ -4,17 +4,14 @@
 "cargo:worktrunk" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:@gmickel/gno" = "latest"
 "npm:@vercel/before-and-after" = "latest"
 "npm:agent-browser" = "latest"
 "npm:codemogger" = "latest"
-"npm:critique" = "latest"
+"npm:deepsec" = "latest"
 "npm:eas-cli" = "latest"
 "npm:fallow" = "latest"
 "npm:kimaki" = "latest"
 "npm:knip" = "latest"
-"npm:mdrip" = "latest"
-"npm:memelord" = "latest"
 "npm:neovim" = "latest"
 "npm:ocx" = "latest"
 "npm:opensrc" = "latest"
@@ -52,7 +49,6 @@ binstall = true
 
 [settings.pipx]
 uvx = true
-
 
 [env]
 '_'.path = "~/bin"
