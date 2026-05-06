@@ -6,3 +6,9 @@ mise = true
 [daemons.kimaki]
 run = "kimaki --auto-restart"
 boot_start = true
+
+[daemons.pieces_poke]
+run = "poke tunnel -n pieces http://localhost:39300/model_context_protocol/2025-03-26/mcp"
+boot_start = true
+cron.schedule = "* * * * *"
+cron.retrigger = "finish"
