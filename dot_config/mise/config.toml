@@ -4,10 +4,8 @@
 "cargo:worktrunk" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:@vercel/before-and-after" = "latest"
 "npm:agent-browser" = "latest"
 "npm:codemogger" = "latest"
-"npm:deepsec" = "latest"
 "npm:eas-cli" = "latest"
 "npm:fallow" = "latest"
 "npm:kimaki" = "latest"
@@ -53,9 +51,13 @@ uvx = true
 
 [env]
 '_'.path = "~/bin"
-OPENCODE_EXPERIMENTAL = true
-OPENCODE_EXPERIMENTAL_MARKDOWN = true
-OPENCODE_EXPERIMENTAL_FILEWATCHER = true
+OPENCODE_EXPERIMENTAL = "1"
+OPENCODE_EXPERIMENTAL_MARKDOWN = "1"
+OPENCODE_EXPERIMENTAL_FILEWATCHER = "1"
+OPENCODE_EXPERIMENTAL_SCOUT = "1"
+OPENCODE_ENABLE_EXPERIMENTAL_MODELS = "1"
+OPENCODE_EXPERIMENTAL_CUSTOMIZE_SKILL = "1"
+OPENCODE_ENABLE_PARALLEL = "1"
 CLAUDE_CODE_NO_FLICKER = true
 
 OPENSPEC_NO_AUTO_CONFIG = "1"
