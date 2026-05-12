@@ -29,7 +29,7 @@ java = "24"
 lazygit = "latest"
 node = "24"
 pitchfork = "latest"
-pnpm = "10"
+pnpm = "11"
 usage = "latest"
 uv = "latest"
 
