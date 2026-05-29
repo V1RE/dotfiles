@@ -45,7 +45,7 @@ return {
     opts = {
       dashboard = { enabled = true },
       bigfile = { enabled = true },
-      indent = { enabled = true },
+      indent = { enabled = true, scope = { enabled = false } },
       input = { enabled = true },
       notifier = { enabled = true },
       statuscolumn = {
@@ -55,7 +55,7 @@ return {
       },
       words = { enabled = true },
       lazygit = {},
-      dim = { enabled = true },
+      dim = { enabled = false },
       image = { enabled = true },
       picker = {
         ui_select = true,
