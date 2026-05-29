@@ -6,10 +6,6 @@ return {
     lazy = false,
     main = "nvim-treesitter.configs",
 
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter-context", config = true },
-    },
-
     ---@type TSConfig
     opts = {
       modules = {},
