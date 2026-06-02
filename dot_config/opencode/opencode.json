@@ -1,7 +1,101 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "vercel",
+  "lsp": true,
+  "autoupdate": "notify",
+  "mcp": {
+    "granola": {
+      "type": "remote",
+      "url": "https://mcp.granola.ai/mcp",
+      "enabled": false
+    },
+    "posthog": {
+      "type": "remote",
+      "url": "https://mcp.posthog.com/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:POSTHOG_MCP_KEY}"
+      },
+      "enabled": false
+    },
+    "slack": {
+      "type": "remote",
+      "url": "https://mcp.slack.com/mcp",
+      "enabled": false,
+      "oauth": {
+        "clientId": "1601185624273.8899143856786",
+        "redirectUri": "http://localhost:3118/callback"
+      }
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": false
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "type": "remote",
+      "enabled": false,
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "websearch-exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
+      "enabled": true
+    },
+    "cq": {
+      "type": "local",
+      "command": ["cq", "mcp"],
+      "enabled": false
+    },
+    "codemogger": {
+      "type": "local",
+      "command": ["codemogger", "mcp"],
+      "enabled": true
+    }
+  },
+  "experimental": {
+    "batch_tool": true,
+    "openTelemetry": true
+  },
+  "reference": {
+    "effect": { "repository": "Effect-TS/effect-smol" },
+    "alchemy": { "repository": "alchemy-run/alchemy-effect" }
+  },
+  "formatter": true,
+  "compaction": { "auto": true, "reserved": 10000 },
+  "agent": {
+    "plan": {
+      "permission": {
+        "external_directory": "allow"
+      }
+    },
+    "explore": {
+      "permission": {
+        "external_directory": "allow",
+        "batch": "deny"
+      }
+    },
+    "general": {
+      "permission": {
+        "external_directory": "allow"
+      }
+    }
+  },
+  "username": "Niels",
+  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin"],
+
   "permission": {
+    "websearch": "allow",
+    "lsp": "allow",
+    "external_directory": {
+      "$HOME/.opensrc/**": "allow",
+      "$HOME/Code/**": "allow",
+      "$HOME/.local/share/opencode/**": "allow",
+      "/tmp/**": "allow"
+    },
+
     "bash": {
       "*": "allow",
 
@@ -152,96 +246,6 @@
       "lab *": "deny",
       "lab": "deny",
       "glab*": "deny"
-    },
-    "external_directory": {
-      "$HOME/.opensrc/**": "allow",
-      "$HOME/Code/**": "allow",
-      "/tmp/**": "allow"
-    },
-    "websearch": "allow",
-    "lsp": "allow"
-  },
-  "lsp": true,
-  "autoupdate": "notify",
-  "mcp": {
-    "granola": {
-      "type": "remote",
-      "url": "https://mcp.granola.ai/mcp",
-      "enabled": false
-    },
-    "posthog": {
-      "type": "remote",
-      "url": "https://mcp.posthog.com/mcp",
-      "headers": {
-        "Authorization": "Bearer {env:POSTHOG_MCP_KEY}"
-      },
-      "enabled": false
-    },
-    "slack": {
-      "type": "remote",
-      "url": "https://mcp.slack.com/mcp",
-      "enabled": false,
-      "oauth": {
-        "clientId": "1601185624273.8899143856786",
-        "redirectUri": "http://localhost:3118/callback"
-      }
-    },
-    "gh_grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app"
-    },
-    "context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "type": "remote",
-      "enabled": false,
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
-    "websearch-exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
-      "enabled": true
-    },
-    "cq": {
-      "type": "local",
-      "command": ["cq", "mcp"],
-      "enabled": false
-    },
-    "codemogger": {
-      "type": "local",
-      "command": ["codemogger", "mcp"],
-      "enabled": true
     }
-  },
-  "experimental": {
-    "batch_tool": true,
-    "openTelemetry": true,
-  },
-  "reference": {
-    "effect":{"repository": "Effect-TS/effect-smol"},
-    "alchemy": {"repository": "alchemy-run/alchemy-effect"},
-  },
-  "formatter":true,
-  "compaction": {"auto": true,"reserved": 10000},
-  "agent": {
-    "plan": {
-      "permission": {
-        "external_directory": "allow"
-      }
-    },
-    "explore": {
-      "permission": {
-        "external_directory": "allow",
-        "batch": "deny"
-      }
-    },
-    "general": {
-      "permission": {
-        "external_directory": "allow"
-      }
-    }
-  },
-  "username": "Niels",
-  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin"]
+  }
 }
