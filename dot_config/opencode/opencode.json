@@ -157,47 +157,13 @@
       "$HOME/.opensrc/**": "allow",
       "$HOME/Code/**": "allow",
       "/tmp/**": "allow"
-    }
+    },
+    "websearch": "allow",
+    "lsp": "allow"
   },
+  "lsp": true,
   "autoupdate": "notify",
   "mcp": {
-    "gh_grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app"
-    },
-    "context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "type": "remote",
-      "enabled": false,
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
-    "websearch-exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
-      "enabled": true
-    },
-    "figma-desktop": {
-      "type": "remote",
-      "url": "http://127.0.0.1:3845/mcp",
-      "enabled": false
-    },
-    "pieces": {
-      "type": "remote",
-      "url": "http://localhost:39300/model_context_protocol/2025-03-26/mcp",
-      "enabled": false
-    },
-    "cq": {
-      "type": "local",
-      "command": ["cq", "mcp"],
-      "enabled": true
-    },
-    "codemogger": {
-      "type": "local",
-      "command": ["codemogger", "mcp"],
-      "enabled": true
-    },
     "granola": {
       "type": "remote",
       "url": "https://mcp.granola.ai/mcp",
@@ -219,12 +185,45 @@
         "clientId": "1601185624273.8899143856786",
         "redirectUri": "http://localhost:3118/callback"
       }
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "type": "remote",
+      "enabled": false,
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "websearch-exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
+      "enabled": true
+    },
+    "cq": {
+      "type": "local",
+      "command": ["cq", "mcp"],
+      "enabled": false
+    },
+    "codemogger": {
+      "type": "local",
+      "command": ["codemogger", "mcp"],
+      "enabled": true
     }
   },
   "experimental": {
     "batch_tool": true,
-    "openTelemetry": true
+    "openTelemetry": true,
   },
+  "reference": {
+    "effect":{"repository": "Effect-TS/effect-smol"},
+    "alchemy": {"repository": "alchemy-run/alchemy-effect"},
+  },
+  "formatter":true,
+  "compaction": {"auto": true,"reserved": 10000},
   "agent": {
     "plan": {
       "permission": {
