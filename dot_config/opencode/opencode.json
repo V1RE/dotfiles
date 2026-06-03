@@ -11,7 +11,8 @@
       "type": "remote",
       "url": "https://mcp.posthog.com/mcp",
       "headers": {
-        "Authorization": "Bearer {env:POSTHOG_MCP_KEY}"
+        "Authorization": "Bearer {env:POSTHOG_MCP_KEY}",
+        "x-posthog-mcp-mode": "cli"
       },
       "enabled": false
     },
