@@ -54,8 +54,15 @@
     "openTelemetry": true
   },
   "reference": {
-    "effect": { "repository": "Effect-TS/effect-smol" },
-    "alchemy": { "repository": "alchemy-run/alchemy-effect" }
+    "effect": {
+      "repository": "Effect-TS/effect-smol"
+    },
+    "alchemy": {
+      "repository": "alchemy-run/alchemy-effect"
+    },
+    "opencode": {
+      "repository": "anomalyco/opencode"
+    }
   },
   "formatter": true,
   "agent": {
@@ -77,7 +84,11 @@
     }
   },
   "username": "Niels",
-  "plugin": ["opencode-wakatime", "@2digits/opencode-plugin"],
+  "plugin": [
+    "opencode-wakatime",
+    "@2digits/opencode-plugin",
+    "@rama_nigg/open-cursor"
+  ],
   "permission": {
     "websearch": "allow",
     "external_directory": {
@@ -237,6 +248,21 @@
       "lab *": "deny",
       "lab": "deny",
       "glab*": "deny"
+    }
+  },
+  "provider": {
+    "cursor-acp": {
+      "name": "Cursor ACP",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:32124/v1"
+      },
+      "models": {
+        "composer-2": { "name": "Composer 2" },
+        "composer-2-fast": { "name": "Composer 2 Fast" },
+        "composer-2.5": { "name": "Composer 2.5" },
+        "composer-2.5-fast": { "name": "Composer 2.5 Fast" }
+      }
     }
   }
 }
