@@ -22,6 +22,9 @@ window-padding-y = 8
 
 mouse-hide-while-typing = true
 
+link-url = true
+link-previews = true
+
 shell-integration = zsh
 shell-integration-features = true
 
