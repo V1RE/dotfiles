@@ -33,15 +33,15 @@ command = "/opt/zerobrew/bin/zsh"
 auto-update-channel = "tip"
 keybind = global:cmd+backquote=toggle_quick_terminal
 
-# Let Herdr receive the WezTerm-style cmd shortcuts instead of macOS/Ghostty.
-keybind = unconsumed:cmd+b=ignore
-keybind = unconsumed:cmd+h=ignore
-keybind = unconsumed:cmd+j=ignore
-keybind = unconsumed:cmd+k=ignore
-keybind = unconsumed:cmd+l=ignore
-keybind = unconsumed:cmd+m=ignore
-keybind = unconsumed:cmd+n=ignore
-keybind = unconsumed:cmd+p=ignore
+# Send WezTerm-style cmd shortcuts to Herdr using Kitty keyboard protocol.
+keybind = cmd+b=text:\x1b[98;9u
+keybind = cmd+h=text:\x1b[104;9u
+keybind = cmd+j=text:\x1b[106;9u
+keybind = cmd+k=text:\x1b[107;9u
+keybind = cmd+l=text:\x1b[108;9u
+keybind = cmd+m=text:\x1b[109;9u
+keybind = cmd+n=text:\x1b[110;9u
+keybind = cmd+p=text:\x1b[112;9u
 
 # WezTerm shift-enter behavior.
 keybind = shift+enter=text:\x1b\r
