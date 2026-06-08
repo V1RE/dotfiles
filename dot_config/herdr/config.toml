@@ -33,6 +33,21 @@ name = "catppuccin"
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
 prefix = "cmd+b"
 
+# WezTerm parity: cmd+b then hjkl splits; Herdr only exposes right/down splits,
+# so h/l create a vertical split and j/k create a horizontal split.
+split_vertical = ["prefix+l", "prefix+h"]
+split_horizontal = ["prefix+j", "prefix+k"]
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
+previous_tab = "cmd+h"
+next_tab = "cmd+l"
+next_workspace = "cmd+j"
+previous_workspace = "cmd+k"
+goto = "cmd+m"
+workspace_picker = "cmd+n"
+
 # Prefix-mode actions
 # help = "prefix+?"
 # settings = "prefix+s"
@@ -91,6 +106,12 @@ prefix = "cmd+b"
 # key = "prefix+alt+g"
 # type = "pane"
 # command = "lazygit"
+
+[[keys.command]]
+key = "cmd+p"
+type = "shell"
+command = 'pane="${HERDR_ACTIVE_PANE_ID:-}"; [ -n "$pane" ] || exit 0; herdr_bin="${HERDR_BIN_PATH:-herdr}"; url="$("$herdr_bin" pane read "$pane" --source visible --lines 200 2>/dev/null | grep -Eo "https?://[^[:space:]]+" | tail -n 1)"; [ -n "$url" ] && open "$url"'
+description = "open last visible URL"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.

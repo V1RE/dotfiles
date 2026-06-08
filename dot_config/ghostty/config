@@ -33,4 +33,17 @@ command = "/opt/zerobrew/bin/zsh"
 auto-update-channel = "tip"
 keybind = global:cmd+backquote=toggle_quick_terminal
 
+# Let Herdr receive the WezTerm-style cmd shortcuts instead of macOS/Ghostty.
+keybind = unconsumed:cmd+b=ignore
+keybind = unconsumed:cmd+h=ignore
+keybind = unconsumed:cmd+j=ignore
+keybind = unconsumed:cmd+k=ignore
+keybind = unconsumed:cmd+l=ignore
+keybind = unconsumed:cmd+m=ignore
+keybind = unconsumed:cmd+n=ignore
+keybind = unconsumed:cmd+p=ignore
+
+# WezTerm shift-enter behavior.
+keybind = shift+enter=text:\x1b\r
+
 macos-option-as-alt = true
