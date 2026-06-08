@@ -16,7 +16,7 @@ window-theme = "system"
 background-opacity = 0.8
 # background-blur-radius = 20
 background-blur = true
-macos-titlebar-style = "tabs"
+macos-titlebar-style = "hidden"
 window-padding-x = 8
 window-padding-y = 8
 
