@@ -46,7 +46,8 @@ next_tab = "cmd+l"
 next_workspace = "cmd+j"
 previous_workspace = "cmd+k"
 goto = "cmd+m"
-workspace_picker = "cmd+n"
+new_workspace = "cmd+n"
+close_tab = "cmd+w"
 
 # Prefix-mode actions
 # help = "prefix+?"
