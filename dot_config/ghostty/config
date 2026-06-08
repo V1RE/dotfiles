@@ -45,6 +45,7 @@ keybind = cmd+l=text:\x1b[108;9u
 keybind = cmd+m=text:\x1b[109;9u
 keybind = cmd+n=text:\x1b[110;9u
 keybind = cmd+p=text:\x1b[112;9u
+keybind = cmd+t=text:\x1b[116;9u
 keybind = cmd+w=text:\x1b[119;9u
 
 # WezTerm shift-enter behavior.
