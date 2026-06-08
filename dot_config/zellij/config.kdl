@@ -123,6 +123,11 @@ keybinds clear-defaults=true {
         }
     }
     shared_among "normal" "locked" {
+        bind "Ctrl h" { MoveFocus "left"; }
+        bind "Ctrl j" { MoveFocus "down"; }
+        bind "Ctrl k" { MoveFocus "up"; }
+        bind "Ctrl l" { MoveFocus "right"; }
+        bind "Super b" { SwitchToMode "tmux"; }
         bind "Super left" { MoveFocusOrTab "left"; }
         bind "Super down" { MoveFocus "down"; }
         bind "Super up" { MoveFocus "up"; }
@@ -133,20 +138,28 @@ keybinds clear-defaults=true {
         bind "Super [" { PreviousSwapLayout; }
         bind "Super ]" { NextSwapLayout; }
         bind "Super f" { ToggleFloatingPanes; }
-        bind "Super h" { MoveFocusOrTab "left"; }
+        bind "Super h" { GoToPreviousTab; }
         bind "Super i" { MoveTab "left"; }
         bind "Super j" { MoveFocus "down"; }
         bind "Super k" { MoveFocus "up"; }
-        bind "Super l" { MoveFocusOrTab "right"; }
-        bind "Super n" { NewPane; }
+        bind "Super l" { GoToNextTab; }
+        bind "Super m" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
+        bind "Super n" { NewTab; }
         bind "Super o" { MoveTab "right"; }
+        bind "Super t" { NewTab; }
+        bind "Super w" { CloseTab; }
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
-        bind "Ctrl h" { SwitchToMode "move"; }
+        bind "Ctrl y" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
         bind "Ctrl o" { SwitchToMode "session"; }
@@ -240,10 +253,10 @@ keybinds clear-defaults=true {
         bind "[" { SwitchToMode "scroll"; }
         bind "Ctrl b" { Write 2; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
-        bind "h" { MoveFocus "left"; SwitchToMode "normal"; }
-        bind "j" { MoveFocus "down"; SwitchToMode "normal"; }
-        bind "k" { MoveFocus "up"; SwitchToMode "normal"; }
-        bind "l" { MoveFocus "right"; SwitchToMode "normal"; }
+        bind "h" { NewPane "right"; SwitchToMode "normal"; }
+        bind "j" { NewPane "down"; SwitchToMode "normal"; }
+        bind "k" { NewPane "down"; SwitchToMode "normal"; }
+        bind "l" { NewPane "right"; SwitchToMode "normal"; }
         bind "n" { GoToNextTab; SwitchToMode "normal"; }
         bind "o" { FocusNextPane; }
         bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
