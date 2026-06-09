@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "matrix",
+  "theme": "vercel",
   "scroll_speed": 6,
   "scroll_acceleration": {
     "enabled": true
