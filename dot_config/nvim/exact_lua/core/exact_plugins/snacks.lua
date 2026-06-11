@@ -133,7 +133,7 @@ return {
       {
         "<leader>f",
         function()
-          Snacks.picker.files({ hidden = true })
+          Snacks.picker.files()
         end,
         desc = i.Telescope .. "Find files",
       },
