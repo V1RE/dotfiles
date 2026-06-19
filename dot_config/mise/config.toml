@@ -21,6 +21,7 @@
 "npm:turbo" = "latest"
 "npm:wrangler" = "latest"
 "npm:zele" = "latest"
+aube = "latest"
 bun = "latest"
 codex = "latest"
 graphite = "latest"
