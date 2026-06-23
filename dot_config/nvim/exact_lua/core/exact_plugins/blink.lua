@@ -12,7 +12,7 @@ return {
       -- Compatibility layer for nvim-cmp sources
       "saghen/blink.compat",
       -- AI completions
-      "Exafunction/codeium.nvim",
+      -- "Exafunction/codeium.nvim",
       "supermaven-inc/supermaven-nvim",
       "zbirenbaum/copilot.lua",
     },
@@ -82,7 +82,7 @@ return {
             "lazydev",
             "lspfirst",
             "lsp",
-            "codeium",
+            -- "codeium",
             "supermaven",
             "copilot",
             "path",
@@ -142,20 +142,20 @@ return {
             },
 
             -- AI sources (limited to 3 total)
-            codeium = {
-              name = "Codeium",
-              module = "codeium.blink",
-              async = true,
-              score_offset = 9,
-              max_items = 1,
-              transform_items = function(_, items)
-                for _, item in ipairs(items) do
-                  item.kind_icon = icons.Robot
-                  item.kind_name = "Codeium"
-                end
-                return items
-              end,
-            },
+            -- codeium = {
+            --   name = "Codeium",
+            --   module = "codeium.blink",
+            --   async = true,
+            --   score_offset = 9,
+            --   max_items = 1,
+            --   transform_items = function(_, items)
+            --     for _, item in ipairs(items) do
+            --       item.kind_icon = icons.Robot
+            --       item.kind_name = "Codeium"
+            --     end
+            --     return items
+            --   end,
+            -- },
 
             supermaven = {
               name = "supermaven",
@@ -191,7 +191,6 @@ return {
                 return items
               end,
             },
-
           },
         },
 
@@ -212,15 +211,15 @@ return {
     opts = {},
   },
 
-  -- Codeium setup
-  {
-    "Exafunction/codeium.nvim",
-    event = "VeryLazy",
-    build = ":Codeium Auth",
-    opts = {
-      enable_cmp_source = true,
-    },
-  },
+  -- -- Codeium setup
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   event = "VeryLazy",
+  --   build = ":Codeium Auth",
+  --   opts = {
+  --     enable_cmp_source = true,
+  --   },
+  -- },
 
   -- Supermaven setup
   {
@@ -245,5 +244,4 @@ return {
       },
     },
   },
-
 }
