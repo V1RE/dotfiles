@@ -2,6 +2,7 @@
 
 [tools]
 "cargo:worktrunk" = "latest"
+"github:can1357/oh-my-pi" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:agent-browser" = "latest"
