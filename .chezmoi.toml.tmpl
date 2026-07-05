@@ -21,4 +21,5 @@ encryption = "age"
   autoPush = {{ $gitAutoPush }}
 
 [edit]
-  command = "nvim --cmd 'cd {{ .chezmoi.sourceDir }}'"
+  command = "nvim"
+  args = ["--cmd", "cd {{ .chezmoi.sourceDir }}"]
