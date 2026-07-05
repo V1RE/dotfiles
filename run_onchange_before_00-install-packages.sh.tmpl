@@ -45,4 +45,66 @@ BREWFILE
 if command -v mise >/dev/null 2>&1; then
   mise install --yes
 fi
+{{- else if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+apt_packages=(
+{{ range .packages.linux.apt -}}
+  "{{ . }}"
+{{ end -}}
+)
+
+if ! command -v apt-get >/dev/null 2>&1; then
+  echo "apt-get is required to install Linux bootstrap packages on this machine" >&2
+  exit 1
+fi
+
+if [ "$(id -u)" -eq 0 ]; then
+  apt_get=(apt-get)
+elif command -v sudo >/dev/null 2>&1; then
+  apt_get=(sudo apt-get)
+else
+  echo "sudo is required to install Linux bootstrap packages with apt-get" >&2
+  exit 1
+fi
+
+export DEBIAN_FRONTEND=noninteractive
+"${apt_get[@]}" update
+"${apt_get[@]}" install -y --no-install-recommends "${apt_packages[@]}"
+
+export PATH="${HOME}/.local/bin:${HOME}/.local/share/mise/shims:${PATH}"
+
+if ! command -v mise >/dev/null 2>&1; then
+  curl -fsSL https://mise.run | sh
+  export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
+if ! command -v mise >/dev/null 2>&1; then
+  echo "mise installation completed but mise is still not on PATH" >&2
+  exit 1
+fi
+
+eval "$(mise activate bash --shims)"
+
+export MISE_EXPERIMENTAL=1
+export MISE_YES=1
+
+mise_config_dir="${MISE_CONFIG_DIR:-${HOME}/.config/mise}"
+mkdir -p "${mise_config_dir}"
+mise_local_config="${mise_config_dir}/config.local.toml"
+
+mise_tools=(
+{{ range .packages.linux.mise -}}
+  "{{ . }}"
+{{ end -}}
+)
+
+for tool in "${mise_tools[@]}"; do
+  mise use --path "${mise_local_config}" "${tool}@latest"
+done
+
+mise install --yes
+mise reshim
 {{- end -}}

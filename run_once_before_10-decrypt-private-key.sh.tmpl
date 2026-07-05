@@ -1,3 +1,8 @@
+{{- $installSSHKeys := true -}}
+{{- if hasKey . "installSSHKeys" -}}
+{{- $installSSHKeys = .installSSHKeys -}}
+{{- end -}}
+{{- if $installSSHKeys -}}
 #!/bin/sh
 set -eu
 
@@ -9,3 +14,4 @@ if [ ! -f "${HOME}/.key.txt" ]; then
 	age --decrypt --output "${HOME}/.key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
 	chmod 600 "${HOME}/.key.txt"
 fi
+{{- end -}}

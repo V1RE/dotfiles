@@ -72,7 +72,9 @@ export REDO_HISTORY_PATH="$HISTFILE"
 export REDO_ALIAS_PATH="$HOME/.config/redo/aliases"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
-export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+if [ -S "$HOME/.1password/agent.sock" ]; then
+  export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+fi
 set -k
 
 export ZVM_VI_EDITOR=$EDITOR

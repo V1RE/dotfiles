@@ -33,3 +33,30 @@ packages:
       - font-cascadia-code
       - font-caskaydia-cove-nerd-font
       - font-jetbrains-mono
+
+  linux:
+    apt:
+      - build-essential
+      - ca-certificates
+      - curl
+      - file
+      - git
+      - procps
+      - unzip
+      - zsh
+    mise:
+      - age
+      - atuin
+      - bat
+      - btop
+      - eza
+      - fd
+      - fzf
+      - github-cli # gh
+      - delta # git-delta
+      - gum
+      - jq
+      - github:gokcehan/lf # lf
+      - neovim
+      - starship
+      - zoxide
