@@ -74,6 +74,32 @@ export DEBIAN_FRONTEND=noninteractive
 "${apt_get[@]}" update
 "${apt_get[@]}" install -y --no-install-recommends "${apt_packages[@]}"
 
+zsh_path="$(command -v zsh || true)"
+if [ -z "${zsh_path}" ]; then
+  echo "warning: zsh is not available; leaving login shell unchanged" >&2
+else
+  login_user="$(id -un)"
+  current_shell="$(getent passwd "${login_user}" | cut -d: -f7 || true)"
+
+  if [ -z "${current_shell}" ]; then
+    echo "warning: could not determine current login shell; leaving it unchanged" >&2
+  elif [ "${current_shell}" != "${zsh_path}" ]; then
+    if ! command -v chsh >/dev/null 2>&1; then
+      echo "warning: chsh is not available; leaving login shell unchanged" >&2
+    elif [ "$(id -u)" -eq 0 ]; then
+      if ! chsh -s "${zsh_path}" "${login_user}" </dev/null; then
+        echo "warning: could not change login shell to ${zsh_path}; continuing" >&2
+      fi
+    elif command -v sudo >/dev/null 2>&1; then
+      if ! sudo -n chsh -s "${zsh_path}" "${login_user}" </dev/null; then
+        echo "warning: could not change login shell to ${zsh_path}; continuing" >&2
+      fi
+    else
+      echo "warning: sudo is not available; leaving login shell unchanged" >&2
+    fi
+  fi
+fi
+
 export PATH="${HOME}/.local/bin:${HOME}/.local/share/mise/shims:${PATH}"
 
 if ! command -v mise >/dev/null 2>&1; then

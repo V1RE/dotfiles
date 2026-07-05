@@ -86,11 +86,11 @@ export PATH="$HOME/go/bin/:$PATH"
 export PNPM_HOME="$HOME/Library/pnpm"
 [[ -d "$PNPM_HOME" ]] && export PATH="$PNPM_HOME:$PATH"
 
-if [[ "${TERM:-}" != "dumb" ]] && command -v starship >/dev/null 2>&1; then
-    eval "$(starship init zsh)"
-fi
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
+fi
+if [[ "${TERM:-}" != "dumb" ]] && command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
 fi
 if command -v pitchfork >/dev/null 2>&1; then
     eval "$(pitchfork activate zsh)"
