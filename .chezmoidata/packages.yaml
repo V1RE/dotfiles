@@ -41,6 +41,7 @@ packages:
       - curl
       - file
       - git
+      - gh
       - npm
       - procps
       - python3

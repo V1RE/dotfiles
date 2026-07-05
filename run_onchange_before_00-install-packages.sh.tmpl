@@ -73,6 +73,14 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 "${apt_get[@]}" update
 "${apt_get[@]}" install -y --no-install-recommends "${apt_packages[@]}"
+if [ -z "${GITHUB_TOKEN:-}" ] && command -v gh >/dev/null 2>&1; then
+  github_token="$(gh auth token 2>/dev/null || true)"
+  if [ -n "${github_token}" ]; then
+    export GITHUB_TOKEN="${github_token}"
+  fi
+  unset github_token
+fi
+
 
 zsh_path="$(command -v zsh || true)"
 if [ -z "${zsh_path}" ]; then
