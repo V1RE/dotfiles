@@ -45,6 +45,34 @@ fi
 
 alias oc="opencode"
 
+function ocw() {
+	local host="${1:-opencode-worker-01.exe.xyz}"
+	local port="${OPENCODE_WORKER_PORT:-4096}"
+	local password
+	local tunnel_pid
+	local status
+
+	if ! command -v opencode >/dev/null 2>&1; then
+		echo "opencode is not installed locally" >&2
+		return 1
+	fi
+
+	password="$(ssh "$host" '. ~/.config/opencode/server.env; printf %s "$OPENCODE_SERVER_PASSWORD"')" || return
+	ssh -N -L "${port}:127.0.0.1:4096" "$host" &
+	tunnel_pid=$!
+	sleep 1
+	if ! kill -0 "$tunnel_pid" 2>/dev/null; then
+		echo "failed to open SSH tunnel to $host" >&2
+		return 1
+	fi
+
+	opencode attach "http://127.0.0.1:${port}" --username opencode --password "$password"
+	status=$?
+	kill "$tunnel_pid" 2>/dev/null || true
+	wait "$tunnel_pid" 2>/dev/null || true
+	return "$status"
+}
+
 alias npx="bunx"
 
 function ctxup() {
