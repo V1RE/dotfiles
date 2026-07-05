@@ -476,10 +476,6 @@ set-option -g automatic-rename on
 #   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
 # }
 #
-# everhour() {
-#   /Users/niels/Code/everhour/target/release/everhour status 2>/dev/null
-#   sleep 5
-# }
 #
 # "$@"
 # # /!\ do not remove the previous line

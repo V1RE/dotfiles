@@ -1,0 +1,33 @@
+{{- $hasGUI := or (and (hasKey . "hasGUI") (get . "hasGUI")) (and (not (hasKey . "hasGUI")) (eq .chezmoi.os "darwin")) -}}
+{{- $installSSHKeys := or (not (hasKey . "installSSHKeys")) (get . "installSSHKeys") -}}
+{{- $installWorkGit := and (hasKey . "installWorkGit") (get . "installWorkGit") -}}
+key.txt.age
+.lazy-lock.json
+readme.md
+dots.png
+renovate.json
+
+# Ignore project-local LSP configs (except in dotfile subdirs)
+**/.neoconf.json
+**/.luarc.json
+!dot_config/**/.neoconf.json
+!dot_hammerspoon/**/.luarc.json
+/AGENTS.md
+opensrc/
+/.opencode/package-lock.json
+
+{{- if or (ne .chezmoi.os "darwin") (not $hasGUI) }}
+.hammerspoon
+.config/ghostty
+.config/wezterm
+{{- end }}
+{{- if not $installSSHKeys }}
+.ssh/id_rsa
+.ssh/VPNiels
+.ssh/known_hosts
+{{- end }}
+{{- if not $installWorkGit }}
+.sb.gitconfig
+.sb.gitignore
+.edsn.gitconfig
+{{- end }}

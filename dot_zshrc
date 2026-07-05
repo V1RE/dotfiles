@@ -20,7 +20,7 @@ fi
 antidote load
 
 # Extend PATH.
-path=(~/bin $path)
+path=(~/bin "$HOME/.local/bin" $path)
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
@@ -32,9 +32,11 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 export GPG_TTY=$TTY
 
 function zvm_after_init() {
-    . "$HOME/.atuin/bin/env"
+    [[ -r "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
 
-    eval "$(atuin init zsh --disable-up-arrow)"
+    if command -v atuin >/dev/null 2>&1; then
+        eval "$(atuin init zsh --disable-up-arrow)"
+    fi
 }
 
 # Autoload functions.
@@ -79,15 +81,28 @@ export ZVM_TERM="xterm-256color"
 
 export PATH="$HOME/go/bin/:$PATH"
 
-export PNPM_HOME="/Users/niels/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME="$HOME/Library/pnpm"
+[[ -d "$PNPM_HOME" ]] && export PATH="$PNPM_HOME:$PATH"
 
-eval "$(starship init zsh)"
-eval "$(/Users/niels/.local/bin/mise activate zsh)"
-eval "$(pitchfork activate zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-source "$(redo alias-file)"
-source "$HOME/.config/lf/lficons.zsh"
+if [[ "${TERM:-}" != "dumb" ]] && command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi
+if command -v pitchfork >/dev/null 2>&1; then
+    eval "$(pitchfork activate zsh)"
+fi
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
+if command -v redo >/dev/null 2>&1; then
+    if redo_alias_file="$(redo alias-file 2>/dev/null)" && [[ -r "$redo_alias_file" ]]; then
+        source "$redo_alias_file"
+    fi
+    unset redo_alias_file
+fi
+[[ -r "$HOME/.config/lf/lficons.zsh" ]] && source "$HOME/.config/lf/lficons.zsh"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -113,7 +128,7 @@ source ~/.aliases
 
 #compdef pnpm
 ###-begin-pnpm-completion-###
-if type compdef &>/dev/null; then
+if command -v pnpm >/dev/null 2>&1 && type compdef &>/dev/null; then
   _pnpm_completion () {
     local reply
     local si=$IFS
@@ -143,20 +158,21 @@ fi
 
 #compdef gt
 ###-begin-gt-completions-###
-_gt_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _gt_yargs_completions gt
+if command -v gt >/dev/null 2>&1 && type compdef &>/dev/null; then
+  _gt_yargs_completions()
+  {
+    local reply
+    local si=$IFS
+    IFS=$'\n' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+    IFS=$si
+    _describe 'values' reply
+  }
+  compdef _gt_yargs_completions gt
+fi
 ###-end-gt-completions-###
 
 # bun completions
-[ -s "/Users/niels/.bun/_bun" ] && source "/Users/niels/.bun/_bun"
+[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
 # eval $(eas autocomplete:script zsh)
 
@@ -164,14 +180,18 @@ zcompile ~/.zsh_plugins.zsh 2>/dev/null &!
 zcompile ~/.zshrc 2>/dev/null &!
 
 # opencode
-export PATH=/Users/niels/.opencode/bin:$PATH
+[[ -d "$HOME/.opencode/bin" ]] && export PATH="$HOME/.opencode/bin:$PATH"
 
-if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+if command -v mole >/dev/null 2>&1; then
+    if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+fi
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[[ -r "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"
 
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+if command -v wt >/dev/null 2>&1; then
+    if output="$(wt config shell init zsh 2>/dev/null)"; then eval "$output"; fi
+fi
 #compdef opencode
 ###-begin-opencode-completions-###
 #
@@ -180,22 +200,23 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 # Installation: opencode completion >> ~/.zshrc
 #    or opencode completion >> ~/.zprofile on OSX.
 #
-_opencode_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" opencode --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  if [[ ${#reply} -gt 0 ]]; then
-    _describe 'values' reply
+if command -v opencode >/dev/null 2>&1 && type compdef &>/dev/null; then
+  _opencode_yargs_completions()
+  {
+    local reply
+    local si=$IFS
+    IFS=$'\n' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" opencode --get-yargs-completions "${words[@]}"))
+    IFS=$si
+    if [[ ${#reply} -gt 0 ]]; then
+      _describe 'values' reply
+    else
+      _default
+    fi
+  }
+  if [[ "'${zsh_eval_context[-1]}" == "loadautofunc" ]]; then
+    _opencode_yargs_completions "$@"
   else
-    _default
+    compdef _opencode_yargs_completions opencode
   fi
-}
-if [[ "'${zsh_eval_context[-1]}" == "loadautofunc" ]]; then
-  _opencode_yargs_completions "$@"
-else
-  compdef _opencode_yargs_completions opencode
 fi
 ###-end-opencode-completions-###

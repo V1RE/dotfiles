@@ -1,6 +1,11 @@
 #!/bin/sh
+set -eu
 
 if [ ! -f "${HOME}/.key.txt" ]; then
+	if ! command -v age >/dev/null 2>&1; then
+		printf '%s\n' "age is required to decrypt ${HOME}/.key.txt" >&2
+		exit 1
+	fi
 	age --decrypt --output "${HOME}/.key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
 	chmod 600 "${HOME}/.key.txt"
 fi

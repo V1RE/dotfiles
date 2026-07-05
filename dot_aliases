@@ -9,11 +9,13 @@ alias cm="chezmoi"
 alias dots="chezmoi edit --watch --apply"
 
 # Listing files
-alias ls="eza --icons --color=always --classify --git --group-directories-first --git-ignore"
-alias l="ls --oneline"
-alias ll="ls --long"
-alias la="ll -a"
-alias tree="ll --tree --level=3"
+if command -v eza >/dev/null 2>&1; then
+	alias ls="eza --icons --color=always --classify --git --group-directories-first --git-ignore"
+	alias l="ls --oneline"
+	alias ll="ls --long"
+	alias la="ll -a"
+	alias tree="ll --tree --level=3"
+fi
 
 alias tlr="taze latest --recursive"
 alias tlri="taze latest --recursive --write --install"
@@ -25,12 +27,21 @@ alias lg="lazygit"
 alias gitroot="git rev-parse --show-toplevel"
 alias cdr='cd $(gitroot)'
 
-alias rm="trash"
-alias cat="bat"
+if command -v trash >/dev/null 2>&1; then
+	alias rm="trash"
+fi
 
-alias ping="gping"
+if command -v bat >/dev/null 2>&1; then
+	alias cat="bat"
+fi
 
-alias zed="zed-preview"
+if command -v gping >/dev/null 2>&1; then
+	alias ping="gping"
+fi
+
+if command -v zed-preview >/dev/null 2>&1; then
+	alias zed="zed-preview"
+fi
 
 alias oc="opencode"
 

@@ -1,0 +1,35 @@
+packages:
+  darwin:
+    brews:
+      - age
+      - atuin
+      - bat
+      - btop
+      - chezmoi
+      - eza
+      - fd
+      - figlet
+      - fzf
+      - gh
+      - git
+      - git-delta
+      - go
+      - gping
+      - gum
+      - jq
+      - lf
+      - lolcat
+      - mise
+      - rbenv
+      - starship
+      - topgrade
+      - zoxide
+    casks:
+      - 1password
+      - 1password-cli
+      - ghostty
+      - hammerspoon
+      - wezterm
+      - font-cascadia-code
+      - font-caskaydia-cove-nerd-font
+      - font-jetbrains-mono

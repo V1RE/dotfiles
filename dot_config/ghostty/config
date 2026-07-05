@@ -31,7 +31,6 @@ shell-integration-features = true
 # Color scheme (using Catppuccin Macchiato)
 theme = "Catppuccin Macchiato"
 
-command = "/opt/zerobrew/bin/zsh"
 
 auto-update-channel = "tip"
 keybind = global:cmd+backquote=toggle_quick_terminal

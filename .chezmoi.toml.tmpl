@@ -1,10 +1,24 @@
+{{- $hasGUI := promptBoolOnce . "hasGUI" "Install GUI app configs" (eq .chezmoi.os "darwin") -}}
+{{- $installSSHKeys := promptBoolOnce . "installSSHKeys" "Install encrypted SSH private keys" true -}}
+{{- $installWorkGit := promptBoolOnce . "installWorkGit" "Install Socialbrothers/EDSN Git identities" false -}}
+{{- $gitAutoPush := promptBoolOnce . "gitAutoPush" "Auto-push chezmoi source changes" true -}}
+{{- $ageIdentity := promptStringOnce . "ageIdentity" "age identity path" "~/.key.txt" -}}
 encryption = "age"
 
+[data]
+  hasGUI = {{ $hasGUI }}
+  installSSHKeys = {{ $installSSHKeys }}
+  installWorkGit = {{ $installWorkGit }}
+  gitAutoPush = {{ $gitAutoPush }}
+  ageIdentity = {{ $ageIdentity | quote }}
+
 [age]
-  identity = "~/.key.txt"
+  identity = {{ $ageIdentity | quote }}
   recipient = "age1eyxxwudpfaxm2cw9cgvvgv8rtn47d9vgq6w3pcnzxj2ct7sqgqaqyh7ej8"
+
 [git]
   autoCommit = true
-  autoPush = true
+  autoPush = {{ $gitAutoPush }}
+
 [edit]
-  command = "nvim -c 'cd ~/.local/share/chezmoi/'"
+  command = "nvim --cmd 'cd {{ .chezmoi.sourceDir }}'"

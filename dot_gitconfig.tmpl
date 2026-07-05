@@ -1,3 +1,11 @@
+{{- $hasGUI := eq .chezmoi.os "darwin" -}}
+{{- if hasKey . "hasGUI" -}}
+{{- $hasGUI = .hasGUI -}}
+{{- end -}}
+{{- $installWorkGit := false -}}
+{{- if hasKey . "installWorkGit" -}}
+{{- $installWorkGit = .installWorkGit -}}
+{{- end }}
 [user]
   name = Niels Mentink
   email = niels@ment.ink
@@ -7,12 +15,14 @@
 [init]
   defaultBranch = main
 [core]
-  excludesfile = /Users/niels/.gitignore
+  excludesfile = {{ joinPath .chezmoi.homeDir ".gitignore" }}
   pager = delta
 [gpg]
   format = ssh
+{{- if and (eq .chezmoi.os "darwin") $hasGUI }}
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- end }}
 [push]
   autoSetupRemote = true
 [rerere]
@@ -20,12 +30,14 @@
 [rebase]
   updateRefs = true
 
-[includeIf "gitdir:/Users/niels/Code/Socialbrothers/"]
+{{- if $installWorkGit }}
+[includeIf "gitdir:{{ .chezmoi.homeDir }}/Code/Socialbrothers/"]
   path = .sb.gitconfig
 
-[includeIf "gitdir:/Users/niels/Code/Socialbrothers/edsn/"]
+[includeIf "gitdir:{{ .chezmoi.homeDir }}/Code/Socialbrothers/edsn/"]
   path = .edsn.gitconfig
 
+{{- end }}
 [diff "lockb"]
   textconv = bun
   binary = true
@@ -39,3 +51,4 @@
   conflictstyle = diff3
 [gitbutler]
   aiModelProvider = openai
+

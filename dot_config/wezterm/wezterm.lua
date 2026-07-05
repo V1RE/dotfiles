@@ -62,9 +62,27 @@ wezterm.plugin.require("https://github.com/nekowinston/wezterm-bar").apply_to_co
 
 wezterm.plugin.require("https://github.com/catppuccin/wezterm").apply_to_config(config)
 
+local function first_existing_zoxide()
+  local home = os.getenv("HOME") or wezterm.home_dir or ""
+  local candidates = {
+    home .. "/.local/bin/zoxide",
+    "/opt/homebrew/bin/zoxide",
+    "/usr/local/bin/zoxide",
+  }
+
+  for _, path in ipairs(candidates) do
+    local executable = wezterm.run_child_process({ "test", "-x", path })
+    if executable then
+      return path
+    end
+  end
+
+  return "zoxide"
+end
+
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
-workspace_switcher.zoxide_path = "/opt/zerobrew/bin/zoxide"
+workspace_switcher.zoxide_path = first_existing_zoxide()
 
 workspace_switcher.apply_to_config(config)
 

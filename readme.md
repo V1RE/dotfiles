@@ -5,28 +5,24 @@
 ## Requirements 📦
 
 - Git
-- Stow
-- 5 minutes of your time
+- macOS or another chezmoi-supported system
 
 ## Installation 🪄
 
-Start by cloning this repository into your `$HOME` directory:
+Bootstrap a new machine with chezmoi:
 
 ```bash
-git clone https://github.com/V1RE/dotfiles.git ~
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply V1RE/dotfiles
 ```
 
-Now you can symlink these dotfiles to your `$HOME` using `stow`.
+Review pending changes later with:
 
 ```bash
-cd ~/dotfiles
-stow */
+chezmoi diff
 ```
 
-If you're having problems with the `.git` directory getting symlinked to your
-`$HOME` directory, try the following command:
+Apply them with:
 
 ```bash
-cd ~/dotfiles
-stow -D .git
+chezmoi apply
 ```

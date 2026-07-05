@@ -1,0 +1,48 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+bundle_cask_skip=()
+
+if brew list --cask ghostty@tip >/dev/null 2>&1; then
+  bundle_cask_skip+=(ghostty)
+fi
+
+if brew list --cask wezterm@nightly >/dev/null 2>&1; then
+  bundle_cask_skip+=(wezterm)
+fi
+
+if [ -e "${HOME}/Library/Fonts/CascadiaCode.ttf" ] && ! brew list --cask font-cascadia-code >/dev/null 2>&1; then
+  bundle_cask_skip+=(font-cascadia-code)
+fi
+
+if [ ${#bundle_cask_skip[@]} -gt 0 ]; then
+  export HOMEBREW_BUNDLE_CASK_SKIP="${HOMEBREW_BUNDLE_CASK_SKIP:-} ${bundle_cask_skip[*]}"
+fi
+
+brew bundle --file=/dev/stdin <<'BREWFILE'
+{{ range .packages.darwin.brews -}}
+brew "{{ . }}"
+{{ end -}}
+{{ if or (not (hasKey . "hasGUI")) (get . "hasGUI") -}}
+{{ range .packages.darwin.casks -}}
+cask "{{ . }}"
+{{ end -}}
+{{ end -}}
+BREWFILE
+
+if command -v mise >/dev/null 2>&1; then
+  mise install --yes
+fi
+{{- end -}}
