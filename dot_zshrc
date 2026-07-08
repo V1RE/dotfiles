@@ -22,6 +22,8 @@ antidote load
 # Extend PATH.
 path=(~/bin "$HOME/.local/bin" $path)
 
+[[ -r "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
+
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':fzf-tab:*' query-string ''
@@ -32,8 +34,6 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 export GPG_TTY=$TTY
 
 function zvm_after_init() {
-    [[ -r "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
-
     if command -v atuin >/dev/null 2>&1; then
         eval "$(atuin init zsh --disable-up-arrow)"
     fi
