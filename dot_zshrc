@@ -119,6 +119,8 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # Sorry @zloirock, I don't want to see your ads.
 export ADBLOCK=true
+# No Shopify I don't want you to spy on me and waste my tokens
+export OPT_OUT_INSTRUMENTATION=true
 # I absolutely despise git hooks.
 export HUSKY=0
 
