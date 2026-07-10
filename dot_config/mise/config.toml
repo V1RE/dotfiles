@@ -4,6 +4,7 @@
 "cargo:worktrunk" = "latest"
 "github:can1357/oh-my-pi" = "latest"
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
+"github:googleworkspace/cli" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:agent-browser" = "latest"
 "npm:codemogger" = "latest"
@@ -27,9 +28,10 @@ bun = "latest"
 codex = "latest"
 graphite = "latest"
 hcloud = "latest"
-java = "26"
+java = "latest"
 lazygit = "latest"
 node = "24"
+nub = "latest"
 pitchfork = "latest"
 pnpm = "latest"
 usage = "latest"
@@ -66,7 +68,10 @@ OPENCODE_EXPERIMENTAL_WORKSPACES = "1"
 OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS = "1"
 OPENCODE_EXPERIMENTAL_NATIVE_LLM = "1"
 OPENCODE_ENABLE_PARALLEL = "1"
+
 CLAUDE_CODE_NO_FLICKER = true
 
 OPENSPEC_NO_AUTO_CONFIG = "1"
 OPENSPEC_NO_COMPLETIONS = "1"
+
+OPT_OUT_INSTRUMENTATION = true
