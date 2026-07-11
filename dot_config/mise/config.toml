@@ -6,6 +6,7 @@
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "github:googleworkspace/cli" = "latest"
 "npm:@fsouza/prettierd" = "latest"
+"npm:@opencode-ai/cli" = "next"
 "npm:agent-browser" = "latest"
 "npm:codemogger" = "latest"
 "npm:eas-cli" = "latest"

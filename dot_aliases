@@ -45,6 +45,10 @@ fi
 
 alias oc="opencode"
 
+if command -v opencode2 >/dev/null 2>&1; then
+	alias oc="opencode2"
+fi
+
 function ocw() {
 	local host="${1:-opencode-worker-01.exe.xyz}"
 	local port="${OPENCODE_WORKER_PORT:-4096}"
