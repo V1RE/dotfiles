@@ -1,59 +1,63 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": "notify",
-  "mcp": {
-    "granola": {
-      "type": "remote",
-      "url": "https://mcp.granola.ai/mcp",
-      "enabled": false
-    },
-    "posthog": {
-      "type": "remote",
-      "url": "https://mcp.posthog.com/mcp",
-      "headers": {
-        "Authorization": "Bearer {env:POSTHOG_MCP_KEY}",
-        "x-posthog-mcp-mode": "cli"
-      },
-      "enabled": false
-    },
-    "slack": {
-      "type": "remote",
-      "url": "https://mcp.slack.com/mcp",
-      "enabled": false,
-      "oauth": {
-        "clientId": "1601185624273.8899143856786",
-        "redirectUri": "http://localhost:3118/callback"
-      }
-    },
-    "gh_grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app",
-      "enabled": false
-    },
-    "context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "type": "remote",
-      "enabled": false,
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
-    "websearch-exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
-      "enabled": true
-    },
-    "codemogger": {
-      "type": "local",
-      "command": ["codemogger", "mcp"],
-      "enabled": true
-    }
-  },
   "experimental": {
     "batch_tool": true,
     "openTelemetry": true
   },
-  "reference": {
+  "formatter": true,
+  "username": "Niels",
+  "mcp": {
+    "servers": {
+      "granola": {
+        "type": "remote",
+        "url": "https://mcp.granola.ai/mcp",
+        "disabled": true
+      },
+      "posthog": {
+        "type": "remote",
+        "url": "https://mcp.posthog.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {env:POSTHOG_MCP_KEY}",
+          "x-posthog-mcp-mode": "cli"
+        },
+        "disabled": true
+      },
+      "slack": {
+        "type": "remote",
+        "url": "https://mcp.slack.com/mcp",
+        "oauth": {
+          "client_id": "1601185624273.8899143856786",
+          "redirect_uri": "http://localhost:3118/callback"
+        },
+        "disabled": true
+      },
+      "gh_grep": {
+        "type": "remote",
+        "url": "https://mcp.grep.app",
+        "disabled": true
+      },
+      "context7": {
+        "url": "https://mcp.context7.com/mcp",
+        "type": "remote",
+        "headers": {
+          "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+        },
+        "disabled": true
+      },
+      "websearch-exa": {
+        "type": "remote",
+        "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
+        "disabled": false
+      },
+      "codemogger": {
+        "type": "local",
+        "command": ["codemogger", "mcp"],
+        "disabled": false
+      }
+    }
+  },
+  "references": {
     "effect": {
       "repository": "Effect-TS/effect-smol"
     },
@@ -64,205 +68,791 @@
       "repository": "anomalyco/opencode"
     }
   },
-  "formatter": true,
-  "agent": {
+  "agents": {
     "plan": {
-      "permission": {
-        "external_directory": "allow"
-      }
+      "permissions": [
+        {
+          "action": "external_directory",
+          "resource": "*",
+          "effect": "allow"
+        }
+      ]
     },
     "explore": {
-      "permission": {
-        "external_directory": "allow",
-        "batch": "deny"
-      }
+      "permissions": [
+        {
+          "action": "external_directory",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "batch",
+          "resource": "*",
+          "effect": "deny"
+        }
+      ]
     },
     "general": {
-      "permission": {
-        "external_directory": "allow"
-      }
+      "permissions": [
+        {
+          "action": "external_directory",
+          "resource": "*",
+          "effect": "allow"
+        }
+      ]
     }
   },
-  "username": "Niels",
-  "plugin": [
-    "opencode-wakatime",
-    "@2digits/opencode-plugin",
-    "@rama_nigg/open-cursor"
-  ],
-  "permission": {
-    "websearch": "allow",
-    "external_directory": {
-      "$HOME/.opensrc/**": "allow",
-      "$HOME/Code/**": "allow",
-      "$HOME/.local/share/opencode/**": "allow",
-      "/tmp/**": "allow"
+  "plugins": ["opencode-wakatime", "@2digits/opencode-plugin"],
+  "permissions": [
+    {
+      "action": "websearch",
+      "resource": "*",
+      "effect": "allow"
     },
-
-    "bash": {
-      "*": "allow",
-
-      "git *": "deny",
-      "git status*": "allow",
-      "git log*": "allow",
-      "git show*": "allow",
-      "git diff*": "allow",
-      "git blame*": "allow",
-      "git annotate*": "allow",
-      "git branch": "allow",
-      "git branch -v*": "allow",
-      "git branch --list*": "allow",
-      "git branch --show-current*": "allow",
-      "git tag -l*": "allow",
-      "git tag --list*": "allow",
-      "git tag -v*": "allow",
-      "git remote -v*": "allow",
-      "git remote show*": "allow",
-      "git remote get-url*": "allow",
-      "git ls-files*": "allow",
-      "git ls-tree*": "allow",
-      "git ls-remote*": "allow",
-      "git rev-parse*": "allow",
-      "git rev-list*": "allow",
-      "git describe*": "allow",
-      "git shortlog*": "allow",
-      "git whatchanged*": "allow",
-      "git grep*": "allow",
-      "git fetch*": "allow",
-      "git archive*": "allow",
-      "git format-patch*": "allow",
-      "git stash list*": "allow",
-      "git stash show*": "allow",
-      "git config --list*": "allow",
-      "git config --get*": "allow",
-      "git config -l*": "allow",
-      "git help*": "allow",
-      "git --help*": "allow",
-      "git version*": "allow",
-      "git --version*": "allow",
-      "git cat-file*": "allow",
-      "git show-ref*": "allow",
-      "git show-branch*": "allow",
-      "git for-each-ref*": "allow",
-      "git name-rev*": "allow",
-      "git merge-base*": "allow",
-      "git verify-commit*": "allow",
-      "git verify-tag*": "allow",
-      "git fsck*": "allow",
-      "git count-objects*": "allow",
-      "git check-ignore*": "allow",
-      "git check-attr*": "allow",
-      "git reflog show*": "allow",
-      "git reflog list*": "allow",
-      "git notes list*": "allow",
-      "git notes show*": "allow",
-      "git worktree list*": "allow",
-      "git submodule status*": "allow",
-      "git submodule summary*": "allow",
-      "git bundle verify*": "allow",
-      "git bundle list-heads*": "allow",
-      "git sparse-checkout list*": "allow",
-      "git cherry*": "allow",
-      "git range-diff*": "allow",
-
-      "gh *": "deny",
-      "gh pr view*": "allow",
-      "gh pr list*": "allow",
-      "gh pr status*": "allow",
-      "gh pr checks*": "allow",
-      "gh pr diff*": "allow",
-      "gh issue view*": "allow",
-      "gh issue list*": "allow",
-      "gh issue status*": "allow",
-      "gh issue create*": "allow",
-      "gh repo view*": "allow",
-      "gh repo list*": "allow",
-      "gh repo clone*": "allow",
-      "gh release view*": "allow",
-      "gh release list*": "allow",
-      "gh release download*": "allow",
-      "gh run view*": "allow",
-      "gh run list*": "allow",
-      "gh run watch*": "allow",
-      "gh run download*": "allow",
-      "gh workflow view*": "allow",
-      "gh workflow list*": "allow",
-      "gh search*": "allow",
-      "gh status*": "allow",
-      "gh api*": "allow",
-      "gh auth status*": "allow",
-      "gh auth token*": "allow",
-      "gh config list*": "allow",
-      "gh config get*": "allow",
-      "gh gist view*": "allow",
-      "gh gist list*": "allow",
-      "gh cache list*": "allow",
-      "gh project view*": "allow",
-      "gh project list*": "allow",
-      "gh org list*": "allow",
-      "gh ruleset*": "allow",
-      "gh label list*": "allow",
-      "gh secret list*": "allow",
-      "gh variable list*": "allow",
-      "gh variable get*": "allow",
-      "gh ssh-key list*": "allow",
-      "gh gpg-key list*": "allow",
-      "gh codespace list*": "allow",
-      "gh codespace view*": "allow",
-      "gh codespace logs*": "allow",
-      "gh codespace ports*": "allow",
-      "gh extension list*": "allow",
-      "gh alias list*": "allow",
-      "gh attestation*": "allow",
-      "gh browse --no-browser*": "allow",
-      "gh browse -n*": "allow",
-      "gh --help*": "allow",
-      "gh help*": "allow",
-
-      "gt *": "deny",
-      "gt log*": "allow",
-      "gt ls*": "allow",
-      "gt ll*": "allow",
-      "gt l *": "allow",
-      "gt info*": "allow",
-      "gt children*": "allow",
-      "gt parent*": "allow",
-      "gt trunk": "allow",
-      "gt docs*": "allow",
-      "gt guide*": "allow",
-      "gt g *": "allow",
-      "gt changelog*": "allow",
-      "gt dash*": "allow",
-      "gt pr*": "allow",
-      "gt completion*": "allow",
-      "gt --help*": "allow",
-      "gt -h*": "allow",
-
-      "lazygit*": "deny",
-      "lg *": "deny",
-      "lg": "deny",
-      "tig*": "deny",
-      "gitui*": "deny",
-      "forgit*": "deny",
-      "hub *": "deny",
-      "hub": "deny",
-      "lab *": "deny",
-      "lab": "deny",
-      "glab*": "deny"
+    {
+      "action": "external_directory",
+      "resource": "$HOME/.opensrc/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "$HOME/Code/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "$HOME/.local/share/opencode/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "/tmp/**",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git log*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git show*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git blame*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git annotate*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git branch",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git branch -v*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git branch --list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git branch --show-current*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git tag -l*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git tag --list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git tag -v*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git remote -v*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git remote show*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git remote get-url*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git ls-files*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git ls-tree*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git ls-remote*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git rev-parse*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git rev-list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git describe*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git shortlog*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git whatchanged*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git grep*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git fetch*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git archive*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git format-patch*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git stash list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git stash show*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git config --list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git config --get*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git config -l*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git help*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git --help*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git version*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git --version*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git cat-file*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git show-ref*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git show-branch*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git for-each-ref*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git name-rev*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git merge-base*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git verify-commit*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git verify-tag*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git fsck*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git count-objects*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git check-ignore*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git check-attr*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git reflog show*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git reflog list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git notes list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git notes show*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git worktree list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git submodule status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git submodule summary*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git bundle verify*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git bundle list-heads*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git sparse-checkout list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git cherry*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git range-diff*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "gh pr view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh pr list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh pr status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh pr checks*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh pr diff*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh issue view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh issue list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh issue status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh issue create*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh repo view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh repo list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh repo clone*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh release view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh release list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh release download*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh run view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh run list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh run watch*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh run download*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh workflow view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh workflow list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh search*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh api*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh auth status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh auth token*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh config list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh config get*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh gist view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh gist list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh cache list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh project view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh project list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh org list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh ruleset*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh label list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh secret list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh variable list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh variable get*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh ssh-key list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh gpg-key list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh codespace list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh codespace view*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh codespace logs*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh codespace ports*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh extension list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh alias list*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh attestation*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh browse --no-browser*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh browse -n*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh --help*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gh help*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "gt log*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt ls*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt ll*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt l *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt info*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt children*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt parent*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt trunk",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt docs*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt guide*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt g *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt changelog*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt dash*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt pr*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt completion*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt --help*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "gt -h*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "lazygit*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "lg *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "lg",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "tig*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "gitui*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "forgit*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "hub *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "hub",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "lab *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "lab",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "glab*",
+      "effect": "deny"
     }
-  },
-  "provider": {
-    "cursor-acp": {
-      "name": "Cursor ACP",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:32124/v1"
-      },
-      "models": {
-        "composer-2": { "name": "Composer 2" },
-        "composer-2-fast": { "name": "Composer 2 Fast" },
-        "composer-2.5": { "name": "Composer 2.5" },
-        "composer-2.5-fast": { "name": "Composer 2.5 Fast" }
-      }
-    }
-  }
+  ]
 }
