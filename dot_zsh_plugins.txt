@@ -1,5 +1,3 @@
-atuinsh/atuin
-
 jeffreytse/zsh-vi-mode
 
 zsh-users/zsh-completions
