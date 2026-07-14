@@ -40,21 +40,26 @@ uv = "latest"
 vercel = "latest"
 
 [settings]
+color_theme = "catppuccin"
 experimental = true
-trusted_config_paths = ["~/Code/"]
-disable_backends = ["vfox"]
-lockfile = true
 idiomatic_version_file_enable_tools = ["node"]
 minimum_release_age = "0"
+trusted_config_paths = ["~/Code/"]
 
 [settings.npm]
-package_manager = "aube"
+package_manager = "auto"
 
 [settings.cargo]
 binstall = true
 
 [settings.pipx]
 uvx = true
+
+[bootstrap.packages]
+"brew-cask:1password" = "latest"
+"brew:herdr" = "latest"
+"brew:mas" = "latest"
+"mas:497799835" = "latest" # Xcode
 
 [env]
 '_'.path = "~/bin"
