@@ -43,7 +43,7 @@ return {
         "lua_ls",
         "yamlls",
         "oxlint",
-        "tsgo",
+        "vtsls",
       },
       automatic_enable = false,
     },
