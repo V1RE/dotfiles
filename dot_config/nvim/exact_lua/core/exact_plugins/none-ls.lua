@@ -92,6 +92,9 @@ local vp = h.make_builtin({
           formatting.stylua,
           vp.with({
             only_local = "node_modules/.bin",
+            condition = function(utils)
+              return utils.root_has_file({ "node_modules/.bin/vp" })
+            end,
           }),
           hover.dictionary,
           linters.zsh,

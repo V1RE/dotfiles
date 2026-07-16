@@ -53,6 +53,12 @@ M.setup = function()
 
   vim.lsp.handlers["textDocument/signatureHelp"] = with_border(vim.lsp.handlers.signature_help)
 
+  if vim.lsp.handlers["workspace/diagnostic/refresh"] == nil then
+    vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, _)
+      return vim.NIL
+    end
+  end
+
   vim.lsp.commands["editor.action.showReferences"] = function(command, ctx)
     local locations = command.arguments[3]
     local client = vim.lsp.get_client_by_id(ctx.client_id)

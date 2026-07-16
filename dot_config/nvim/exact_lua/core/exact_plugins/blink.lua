@@ -227,6 +227,7 @@ return {
     opts = {
       disable_keymaps = true,
       disable_inline_completion = true,
+      log_level = "off",
     },
   },
 
