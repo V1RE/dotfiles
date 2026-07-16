@@ -27,8 +27,13 @@ return {
       {
         "<leader>k",
         function()
-          local current_file = vim.api.nvim_buf_get_name(0)
-          local cwd = current_file ~= "" and vim.fs.dirname(current_file) or vim.uv.cwd()
+          local cwd
+          if vim.bo.filetype == "oil" then
+            cwd = require("oil").get_current_dir() or vim.uv.cwd()
+          else
+            local current_file = vim.api.nvim_buf_get_name(0)
+            cwd = current_file ~= "" and vim.fs.dirname(current_file) or vim.uv.cwd()
+          end
           require("fff").find_files_in_dir(cwd)
         end,
         desc = i.Telescope .. "Find files cwd",
