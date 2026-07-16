@@ -101,7 +101,6 @@ return {
         end,
         desc = "Undo history",
       },
-
       {
         "<leader><leader>",
         function()
@@ -109,6 +108,7 @@ return {
         end,
         desc = i.Watch .. "Resume Picker",
       },
+
       {
         "<leader>nl",
         function()
@@ -129,29 +129,6 @@ return {
           Snacks.notifier.hide()
         end,
         desc = "Dismiss Notifications",
-      },
-      {
-        "<leader>f",
-        function()
-          Snacks.picker.files()
-        end,
-        desc = i.Telescope .. "Find files",
-      },
-      {
-        "<leader>F",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = i.Search .. "Find text",
-      },
-      {
-        "<leader>k",
-        function()
-          local current_file = vim.api.nvim_buf_get_name(0)
-          local cwd = current_file ~= "" and vim.fs.dirname(current_file) or vim.uv.cwd()
-          Snacks.picker.files({ cwd = cwd })
-        end,
-        desc = i.Telescope .. "Find files cwd",
       },
       {
         "<leader>sC",
