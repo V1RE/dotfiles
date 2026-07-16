@@ -4,16 +4,10 @@ local typescript = require("config.lsp.typescript")
 ---@type vim.lsp.Config
 local vtsls = {
   single_file_support = false,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-  },
 
   root_dir = function(bufnr, on_dir)
     inherited_root_dir(bufnr, function(root)
-      if not typescript.is_effect_tsgo_root(root) then
+      if not typescript.is_native_typescript_root(root) then
         on_dir(root)
       end
     end)
@@ -29,9 +23,6 @@ local vtsls = {
         completion = {
           enableServerSideFuzzyMatch = true,
         },
-      },
-      tsserver = {
-        maxTsServerMemory = 8192,
       },
     },
     typescript = {
