@@ -1,7 +1,8 @@
 ---@type LazyPluginSpec[]
 return {
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
+    version = false,
     lazy = true,
 
     opts = {
@@ -19,7 +20,6 @@ return {
         ["eslint.config.mjs"] = { glyph = "", hl = "MiniIconsYellow" },
 
         ["package.json"] = { glyph = "", hl = "MiniIconsGreen" },
-        ["package-lock.json"] = { glyph = "", hl = "MiniIconsRed" },
 
         ["tsconfig.json"] = { glyph = "", hl = "MiniIconsAzure" },
         ["tsconfig.build.json"] = { glyph = "", hl = "MiniIconsAzure" },
@@ -39,7 +39,6 @@ return {
         ["tailwind.config.js"] = { glyph = "󱏿", hl = "MiniIconsBlue" },
         ["tailwind.config.ts"] = { glyph = "󱏿", hl = "MiniIconsBlue" },
 
-        ["metro.config.js"] = { glyph = "", hl = "MiniIconsPurple" },
         ["babel.config.js"] = { glyph = "", hl = "MiniIconsYellow" },
         ["webpack.config.js"] = { glyph = "󰜫", hl = "MiniIconsBlue" },
 

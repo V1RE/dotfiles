@@ -3,6 +3,8 @@ local i = require("config.icons")
 ---@type LazyPluginSpec
 return {
   "ghillb/cybu.nvim",
+  branch = "v1.x",
+  dependencies = { "nvim-lua/plenary.nvim" },
 
   ---@type CybuOptions
   opts = {
@@ -27,19 +29,7 @@ return {
   },
 
   keys = {
-    {
-      "L",
-      function()
-        require("cybu").cycle("next")
-      end,
-      desc = i.ChevronRight .. "Next buffer",
-    },
-    {
-      "H",
-      function()
-        require("cybu").cycle("prev")
-      end,
-      desc = i.ChevronLeft .. "Previous buffer",
-    },
+    { "L", "<Plug>(CybuNext)", desc = i.ChevronRight .. "Next buffer" },
+    { "H", "<Plug>(CybuPrev)", desc = i.ChevronLeft .. "Previous buffer" },
   },
 }

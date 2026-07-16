@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "stevearc/aerial.nvim",
+  branch = "nvim-0.11",
   event = "VeryLazy",
   opts = {
     attach_mode = "global",

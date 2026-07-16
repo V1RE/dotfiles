@@ -2,9 +2,12 @@
 return {
   "L3MON4D3/LuaSnip",
   version = "v2.*",
-  build = vim.fn.has("win32") ~= 0 and "make install_jsregexp" or nil,
+  build = "make install_jsregexp",
   opts = {
-    history = true,
+    keep_roots = true,
+    link_roots = true,
+    link_children = true,
+    exit_roots = false,
     delete_check_events = "TextChanged",
   },
   dependencies = {
@@ -16,9 +19,9 @@ return {
 
     ls.config.setup(opts)
 
-    vim.tbl_map(function(type)
+    for _, type in ipairs({ "vscode", "snipmate", "lua" }) do
       require("luasnip.loaders.from_" .. type).lazy_load()
-    end, { "vscode", "snipmate", "lua" })
+    end
 
     -- friendly-snippets - enable standardized comments snippets
     ls.filetype_extend("typescript", { "tsdoc" })

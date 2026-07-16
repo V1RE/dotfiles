@@ -14,7 +14,6 @@ return {
         end,
         mode = "n",
         desc = "Hop to word",
-        noremap = true,
       },
     },
   },

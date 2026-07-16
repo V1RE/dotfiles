@@ -1,8 +1,7 @@
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
-      -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name == "null-ls" or client.name == "rustfmt"
+      return client.name == "null-ls"
     end,
     bufnr = bufnr,
   })
@@ -27,9 +26,6 @@ end
 return {
   {
     "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
     config = function()
       local null_ls = require("null-ls")
 
@@ -37,39 +33,39 @@ return {
       local linters = null_ls.builtins.diagnostics
       local hover = null_ls.builtins.hover
 
-	local methods = require("null-ls.methods")
+      local methods = require("null-ls.methods")
       local h = require("null-ls.helpers")
 
-	local u = require("null-ls.utils")
+      local u = require("null-ls.utils")
 
-local vp = h.make_builtin({
-		name = "vite+",
-		method = methods.internal.FORMATTING,
-		filetypes = {
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"vue",
-			"svelte",
-			"astro",
-			"html",
-			"css",
-			"scss",
-			"less",
-		},
-		factory = h.formatter_factory,
-		generator_opts = {
-			command = "vp",
-			args = { "fmt", "$FILENAME" },
-			to_temp_file = true,
-			from_temp_file = true,
-			timeout = 10000,
-			cwd = h.cache.by_bufnr(function(params)
-				return u.root_pattern(".oxfmtrc.json", "oxfmt.config.ts", "vite.config.ts")(params.bufname)
-			end),
-		},
-	})
+      local vp = h.make_builtin({
+        name = "vite+",
+        method = methods.internal.FORMATTING,
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte",
+          "astro",
+          "html",
+          "css",
+          "scss",
+          "less",
+        },
+        factory = h.formatter_factory,
+        generator_opts = {
+          command = "vp",
+          args = { "fmt", "$FILENAME" },
+          to_temp_file = true,
+          from_temp_file = true,
+          timeout = 10000,
+          cwd = h.cache.by_bufnr(function(params)
+            return u.root_pattern(".oxfmtrc.json", "oxfmt.config.ts", "vite.config.ts")(params.bufname)
+          end),
+        },
+      })
 
       null_ls.setup({
         debug = false,

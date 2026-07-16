@@ -81,18 +81,18 @@ return {
         desc = "Lazygit (cwd)",
       },
       {
-        "gn",
+        "]]",
         function()
-          Snacks.words.jump(1, true)
+          Snacks.words.jump(vim.v.count1)
         end,
-        desc = "Go to next word",
+        desc = "Next reference",
       },
       {
-        "gp",
+        "[[",
         function()
-          Snacks.words.jump(-1, true)
+          Snacks.words.jump(-vim.v.count1)
         end,
-        desc = "Go to previous word",
+        desc = "Previous reference",
       },
       {
         "<leader>u",
@@ -248,25 +248,11 @@ return {
         desc = "Document Symbols",
       },
       {
-        "<leader>lw",
-        function()
-          Snacks.picker.diagnostics()
-        end,
-        desc = "Workspace Diagnostics",
-      },
-      {
         "<leader>xx",
         function()
           Snacks.picker.diagnostics()
         end,
         desc = "Diagnostics",
-      },
-      {
-        "<leader>xw",
-        function()
-          Snacks.picker.diagnostics()
-        end,
-        desc = "Workspace Diagnostics",
       },
       {
         "<leader>xd",
@@ -310,7 +296,13 @@ return {
           _G.bt = function()
             Snacks.debug.backtrace()
           end
-          vim.print = _G.dd -- Override print to use snacks for `:=` command
+          if vim.fn.has("nvim-0.11") == 1 then
+            vim._print = function(_, ...)
+              _G.dd(...)
+            end
+          else
+            vim.print = _G.dd
+          end
         end,
       })
     end,

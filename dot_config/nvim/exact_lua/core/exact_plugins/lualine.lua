@@ -6,7 +6,6 @@ return {
     opts = function()
       local i = require("config.icons")
 
-
       local hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end
@@ -57,7 +56,7 @@ return {
             SHELL = "",
             TERMINAL = "",
           }
-          return "     " .. modes[str] .. " "
+          return "     " .. (modes[str] or str) .. " "
         end,
       }
 
@@ -96,7 +95,7 @@ return {
       end
 
       local progress_status = function()
-        local status = vim.ui.progress_status()
+        local status = vim.lsp.status()
         return status ~= "" and status or nil
       end
 
@@ -130,9 +129,6 @@ return {
           icons_enabled = true,
           component_separators = "",
           section_separators = "",
-          disabled_filetypes = {
-            winbar = { "neo-tree", "dap-repl" },
-          },
           always_divide_middle = true,
           globalstatus = true,
         },
@@ -161,7 +157,7 @@ return {
           lualine_y = { spaces, location },
           lualine_z = { progress },
         },
-        extensions = { "quickfix", "neo-tree", "aerial" },
+        extensions = { "quickfix", "aerial" },
       }
     end,
   },

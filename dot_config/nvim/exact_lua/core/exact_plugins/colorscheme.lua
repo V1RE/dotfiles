@@ -10,6 +10,8 @@ return {
       flavour = "macchiato",
       transparent_background = true,
       term_colors = false,
+      default_integrations = false,
+      auto_integrations = true,
       styles = {
         comments = { "italic" },
         functions = { "italic" },
@@ -26,19 +28,7 @@ return {
         },
       },
       integrations = {
-        aerial = true,
-        cmp = true,
-        gitsigns = true,
-        indent_blankline = {
-          enabled = true,
-        },
-        mason = true,
         mini = true,
-        neotree = true,
-        snacks = true,
-        telescope = { enabled = true },
-        treesitter_context = true,
-        which_key = true,
       },
       custom_highlights = function(colors)
         return {

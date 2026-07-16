@@ -1,11 +1,10 @@
 ---@type LazyPluginSpec[]
 return {
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     version = false,
     event = "VeryLazy",
-    config = function(_, opts)
-      require("mini.ai").setup(opts)
-    end,
+    main = "mini.ai",
+    opts = {},
   },
 }

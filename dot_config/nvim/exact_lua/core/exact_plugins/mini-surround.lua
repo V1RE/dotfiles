@@ -1,40 +1,40 @@
 ---@type LazyPluginSpec[]
 return {
   {
-    "echasnovski/mini.surround",
-    ---@diagnostic disable-next-line: assign-type-mismatch
-    keys = function(_, keys)
-      -- Populate the keys based on the user's options
-      local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
-      local opts = require("lazy.core.plugin").values(plugin, "opts", false)
-      local mappings = {
-        { opts.mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
-        { opts.mappings.delete, desc = "Delete surrounding" },
-        { opts.mappings.find, desc = "Find right surrounding" },
-        { opts.mappings.find_left, desc = "Find left surrounding" },
-        { opts.mappings.highlight, desc = "Highlight surrounding" },
-        { opts.mappings.replace, desc = "Replace surrounding" },
-        { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
-      }
-      return vim.list_extend(mappings, keys, 1, #keys)
-    end,
-    opts = {
-      mappings = {
-        add = "gza", -- Add surrounding in Normal and Visual modes
-        delete = "gzd", -- Delete surrounding
-        find = "gzf", -- Find surrounding (to the right)
-        find_left = "gzF", -- Find surrounding (to the left)
-        highlight = "gzh", -- Highlight surrounding
-        replace = "gzr", -- Replace surrounding
-        update_n_lines = "gzn", -- Update `n_lines`
+    "nvim-mini/mini.surround",
+    version = false,
+    main = "mini.surround",
+    keys = {
+      { "gza", mode = { "n", "x" }, desc = "Add surrounding" },
+      { "gzd", desc = "Delete surrounding" },
+      { "gzf", desc = "Find right surrounding" },
+      { "gzF", desc = "Find left surrounding" },
+      { "gzh", desc = "Highlight surrounding" },
+      { "gzr", desc = "Replace surrounding" },
+      {
+        "gzn",
+        function()
+          require("mini.surround").update_n_lines()
+        end,
+        desc = "Update surrounding search lines",
       },
     },
-    config = function(_, opts)
-      require("mini.surround").setup(opts)
-    end,
+    opts = {
+      mappings = {
+        add = "gza",
+        delete = "gzd",
+        find = "gzf",
+        find_left = "gzF",
+        highlight = "gzh",
+        replace = "gzr",
+      },
+    },
   },
   {
-    "echasnovski/mini.cursorword",
-    config = true,
+    "nvim-mini/mini.cursorword",
+    version = false,
+    event = "VeryLazy",
+    main = "mini.cursorword",
+    opts = {},
   },
 }

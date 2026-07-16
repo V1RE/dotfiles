@@ -1,8 +1,8 @@
 ---@type LazyPluginSpec
 return {
-  "echasnovski/mini.pairs",
-  event = "VeryLazy",
-  config = function(_, opts)
-    require("mini.pairs").setup(opts)
-  end,
+  "nvim-mini/mini.pairs",
+  version = false,
+  event = "InsertEnter",
+  main = "mini.pairs",
+  opts = {},
 }
