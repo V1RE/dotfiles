@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "gbprod/yanky.nvim",
+  opts = {},
 
   keys = {
     { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put after" },
