@@ -91,6 +91,8 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.atuin/bin:$PATH"
 
+. "$HOME/.vite-plus/env"
+
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
