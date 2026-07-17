@@ -75,11 +75,14 @@ fish = "activate"
 [bootstrap.macos.dock]
 autohide = true
 orientation = "bottom"
-tilesize = 48
 show_recents = false
 magnification = true
-largesize = 65
 mru_spaces = false
+
+# Dock sizes are stored as floats by macOS; the friendly fields only accept integers.
+[bootstrap.macos.defaults."com.apple.dock"]
+tilesize = 48.0
+largesize = 65.0
 
 [bootstrap.macos.keyboard]
 key_repeat = 2
