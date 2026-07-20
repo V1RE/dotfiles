@@ -21,7 +21,6 @@ vim.filetype.add({
     [".*%.env%..+"] = "sh",
     [".*%.ejs%.t"] = "embedded_template",
     [".*%.hbs"] = "html",
-    [".*%.liquid"] = "liquid.html",
     [".*/ghostty/config"] = "ghostty",
   },
 })

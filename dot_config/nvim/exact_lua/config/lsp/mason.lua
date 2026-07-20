@@ -11,6 +11,7 @@ local servers = {
   "vtsls",
   "oxlint",
   "taplo",
+  "shopify_theme_ls",
 }
 
 ---@param server string
