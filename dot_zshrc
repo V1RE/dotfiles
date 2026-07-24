@@ -228,3 +228,26 @@ if command -v opencode >/dev/null 2>&1 && type compdef &>/dev/null; then
   fi
 fi
 ###-end-opencode-completions-###
+
+# ASCII BOX SHELL INTEGRATION START box
+box() {
+  current_file=$(mktemp)
+  old_current_file=${BOX_CURRENT_ID_FILE-}
+  export BOX_CURRENT_ID_FILE="$current_file"
+  command "/Users/niels/.ascii/bin/box" "$@"
+  box_status=$?
+  if [ "$box_status" -eq 0 ]; then
+    case "${1:-}" in
+      new|start|fork)
+        if [ -s "$current_file" ]; then
+          current_id=$(tr -d '[:space:]' < "$current_file")
+          if [ -n "$current_id" ]; then export BOX_CURRENT_ID="$current_id"; fi
+        fi
+        ;;
+    esac
+  fi
+  if [ -n "$old_current_file" ]; then export BOX_CURRENT_ID_FILE="$old_current_file"; else unset BOX_CURRENT_ID_FILE; fi
+  rm -f "$current_file"
+  return "$box_status"
+}
+# ASCII BOX SHELL INTEGRATION END box
