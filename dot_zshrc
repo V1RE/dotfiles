@@ -115,9 +115,6 @@ if command -v redo >/dev/null 2>&1; then
     fi
     unset redo_alias_file
 fi
-if command -v box >/dev/null 2>&1; then
-    eval "$(box completions zsh)"
-fi
 
 [[ -r "$HOME/.config/lf/lficons.zsh" ]] && source "$HOME/.config/lf/lficons.zsh"
 
@@ -251,3 +248,5 @@ box() {
   return "$box_status"
 }
 # ASCII BOX SHELL INTEGRATION END box
+
+eval "$(box completions zsh)"
