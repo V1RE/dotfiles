@@ -6,7 +6,7 @@
 "github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "github:googleworkspace/cli" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:@opencode-ai/cli" = "next"
+"npm:@opencode-ai/cli" = { version = "next", allow_builds = ["@opencode-ai/cli"] }
 "npm:agent-browser" = "latest"
 "npm:codemogger" = "latest"
 "npm:eas-cli" = "latest"
@@ -48,7 +48,7 @@ minimum_release_age = "0"
 trusted_config_paths = ["~/Code/"]
 
 [settings.npm]
-package_manager = "auto"
+package_manager = "aube"
 
 [settings.cargo]
 binstall = true
@@ -91,6 +91,7 @@ press_and_hold = false
 
 [env]
 '_'.path = "~/bin"
+AUBE_PREFER_SYMLINKED_EXECUTABLES = "true"
 OPENCODE_ENABLE_EXA = "1"
 OPENCODE_EXPERIMENTAL = "0"
 OPENCODE_EXPERIMENTAL_MARKDOWN = "1"
