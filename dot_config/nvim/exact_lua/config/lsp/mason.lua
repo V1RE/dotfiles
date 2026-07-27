@@ -12,6 +12,7 @@ local servers = {
   "oxlint",
   "taplo",
   "shopify_theme_ls",
+  "fallow",
 }
 
 ---@param server string
