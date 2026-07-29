@@ -1,5 +1,8 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
+[plugins]
+vite-plus = "https://github.com/markmals/mise-vite-plus"
+
 [tools]
 "cargo:worktrunk" = "latest"
 "github:can1357/oh-my-pi" = "latest"
@@ -39,6 +42,7 @@ pnpm = "latest"
 usage = "latest"
 uv = "latest"
 vercel = "latest"
+vite-plus = "latest"
 
 [settings]
 color_theme = "catppuccin"
