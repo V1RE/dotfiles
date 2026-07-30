@@ -4,12 +4,7 @@ import { chmod as chmodAsync, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { type RenameResult } from "./domain.ts";
 import { beginTabProgress, run, snapshot } from "./herdr.ts";
-import {
-  PI_MODEL,
-  PI_PROVIDER,
-  loadNamingPrompt,
-  loadProviderConfig,
-} from "./provider.ts";
+import { checkModel } from "./provider.ts";
 import { createService } from "./service.ts";
 import {
   acquireLock,
@@ -231,14 +226,12 @@ async function configurePrompt(): Promise<void> {
 
 async function checkAi(): Promise<void> {
   try {
-    const config = await loadProviderConfig(process.env);
-    await loadNamingPrompt(config, process.env);
-    const summary = `${PI_PROVIDER}/${PI_MODEL}`;
-    await notify("AI ready", summary);
-    console.log(summary);
+    const label = await checkModel(process.env);
+    await notify("AI ready", label);
+    console.log(label);
   } catch (error) {
     const message = errorMessage(error);
-    await notify("Config missing", message, "request");
+    await notify("Pi model unavailable", message, "request");
     throw error;
   }
 }

@@ -4,9 +4,10 @@
 
 Smart Rename Pi turns numbered Herdr tabs into short task labels. Known
 processes get instant names such as `Run Tests`, `Dev Server`, and `View Logs`.
-Ambiguous work goes to OpenAI `gpt-5.6-luna` through the
+Ambiguous work goes to **your own Pi installation** through the
 [`@earendil-works/pi-coding-agent`](https://www.npmjs.com/package/@earendil-works/pi-coding-agent)
-SDK. Manual names always win.
+SDK: Pi's stored credentials, Pi's model catalog, Pi's default provider and
+model. There is no API key to configure here. Manual names always win.
 
 This plugin is a fork of [iurysza/herdr-tab-smart-rename](https://github.com/iurysza/herdr-tab-smart-rename).
 Only the model transport changed: the Vercel AI SDK call became an isolated Pi
@@ -21,20 +22,18 @@ Requires Herdr 0.7.0+ and Bun 1.1.34+. The source lives in chezmoi at
 chezmoi apply ~/.config/herdr-plugins
 cd ~/.config/herdr-plugins/tab-smart-rename-pi && bun install
 herdr plugin link ~/.config/herdr-plugins/tab-smart-rename-pi
-herdr plugin action invoke tab-smart-rename-pi.configure-ai
 herdr plugin action invoke tab-smart-rename-pi.check-ai
 herdr plugin action invoke tab-smart-rename-pi.start
 ```
 
-`configure-ai` opens
-`~/.config/herdr/plugins/config/tab-smart-rename-pi/provider.env`. Add:
+`check-ai` prints the model Pi resolved, for example `openai/gpt-5.6-luna`, and
+makes no request. If it fails, fix Pi itself: run `pi`, sign in or switch
+provider, and confirm `pi -p "hi"` answers. Smart Rename uses exactly the
+credentials and default model that `pi` uses, so anything that breaks one
+breaks both.
 
-```dotenv
-OPENAI_API_KEY=...
-```
-
-Without a key, deterministic process names and workspace names still work; only
-model-backed labels fail.
+Deterministic process names and workspace names need no model at all; only
+ambiguous tabs depend on Pi being able to answer.
 
 ## Automatic start
 
@@ -74,9 +73,9 @@ before its label.
 | `rename-all` | Rename every tab |
 | `reset-tab` | Return the current tab to automatic naming |
 | `reset-workspace` | Return the workspace to automatic naming |
-| `configure-ai` | Edit provider settings |
+| `configure-ai` | Edit Smart Rename settings (timeout, prompt path) |
 | `configure-prompt` | Edit naming instructions |
-| `check-ai` | Validate config without calling the model |
+| `check-ai` | Report the resolved Pi model without calling it |
 | `start` / `stop` / `status` | Control the worker |
 
 ```sh
@@ -97,19 +96,21 @@ See the [naming policy](docs/naming-policy.md) for the full contract.
 
 ## Configuration
 
-The provider is always OpenAI and the model is always `gpt-5.6-luna`. Only these
-settings remain, with defaults from
+The model comes from Pi. Whatever `pi` would use — `defaultProvider` and
+`defaultModel` in `~/.pi/agent/settings.json`, else Pi's provider default — is
+what names your tabs, with the credentials in `~/.pi/agent/auth.json`. Change
+the model in Pi, not here.
+
+Only two plugin settings exist, with defaults from
 [`provider.env.example`](provider.env.example):
 
 ```dotenv
-OPENAI_API_KEY=
-SMART_RENAME_REASONING_EFFORT=medium
 SMART_RENAME_TIMEOUT_MS=45000
+# SMART_RENAME_PROMPT_PATH=naming-prompt.md
 ```
 
-`SMART_RENAME_API_KEY` is accepted as an alias for the OpenAI key. Process
-environment wins over `provider.env`, which wins over the bundled defaults.
-Config reloads before every model request.
+Process environment wins over `provider.env`, which wins over the bundled
+defaults. Config reloads before every model request.
 
 ### Custom prompt
 
@@ -136,19 +137,16 @@ built-in JSON and label validation still applies.
 
 ## Pi isolation
 
-Each naming request builds one throwaway `AgentSession` and disposes it:
+Each naming request builds one throwaway `AgentSession` and disposes it. Pi
+supplies credentials and model selection; everything else is stripped:
 
 - `noTools: "all"` — the model cannot read files or run commands.
 - `DefaultResourceLoader` with `noExtensions`, `noSkills`, `noPromptTemplates`,
   `noThemes`, and `noContextFiles` — no local Pi resources leak into the prompt.
 - `systemPromptOverride` — the naming policy replaces Pi's coding-agent prompt.
-- `SessionManager.inMemory()` and `SettingsManager.inMemory()` — no session
-  files, no `~/.pi/agent/settings.json`.
-- `ModelRuntime.create()` against a private, empty auth file plus
-  `setRuntimeApiKey()` — your Pi credentials are never read and the key is never
-  written to disk.
-- `cwd` and `agentDir` point at a private directory under the temp dir, not at
-  any project.
+- `SessionManager.inMemory()` — no session files, no transcript on disk.
+- `cwd` is a private directory under the temp dir, so no repository context
+  files or project-scoped settings are read.
 
 `prompt()` takes no `AbortSignal`, so `SMART_RENAME_TIMEOUT_MS` aborts the
 session, waits for the request to settle, and disposes it.
@@ -160,14 +158,18 @@ panes may contribute short user-request excerpts; sibling panes contribute
 process summaries only. Smart Rename removes terminal formatting, common secret
 shapes, and the local home path before sending context.
 
-Provider keys stay in Herdr's private plugin config and never enter Smart Rename
-state or logs. Model errors are redacted before they reach a notification.
+Credentials stay inside Pi: the embedded `ModelRuntime` loads
+`~/.pi/agent/auth.json` for the request, and Smart Rename never copies, stores,
+or prints it. Provider errors pass through the same secret redaction as pane
+output before reaching a notification or `worker.log`.
 
 ## Troubleshooting
 
 - Worker stopped: `herdr plugin action invoke tab-smart-rename-pi.start`
-- Config invalid: run `configure-ai`, then `check-ai`.
-- Authentication fails: check the OpenAI key; `check-ai` makes no API request.
+- No model / 401 / quota errors: reproduce with `pi -p "hi"`. If that fails too,
+  the fault is in Pi's own login or default model, not in this plugin. Fix it
+  with `pi`, then rerun `check-ai`.
+- `check-ai` never sends a request; it only reports what Pi resolved.
 - Bun is outside Herdr's server `PATH`: runtime actions also check standard Bun
   and Homebrew locations.
 - Manual label stays: use `reset-tab` or an explicit rename.

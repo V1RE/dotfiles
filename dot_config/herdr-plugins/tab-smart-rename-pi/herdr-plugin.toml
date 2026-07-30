@@ -36,8 +36,8 @@ command = ["sh", "src/run-bun.sh", "src/cli.ts", "status"]
 
 [[actions]]
 id = "configure-ai"
-title = "Smart Rename: configure AI"
-description = "Open the private AI provider configuration."
+title = "Smart Rename: configure settings"
+description = "Open the private Smart Rename settings (timeout, prompt path)."
 contexts = ["global", "workspace", "tab", "pane"]
 command = ["sh", "src/run-bun.sh", "src/cli.ts", "configure-ai"]
 
@@ -50,8 +50,8 @@ command = ["sh", "src/run-bun.sh", "src/cli.ts", "configure-prompt"]
 
 [[actions]]
 id = "check-ai"
-title = "Smart Rename: check AI config"
-description = "Validate the provider and naming prompt without making a request."
+title = "Smart Rename: check model"
+description = "Report the Pi model that names tabs, without making a request."
 contexts = ["global", "workspace", "tab", "pane"]
 command = ["sh", "src/run-bun.sh", "src/cli.ts", "check-ai"]
 
@@ -85,8 +85,8 @@ command = ["sh", "src/run-bun.sh", "src/cli.ts", "reset-workspace"]
 
 [[panes]]
 id = "provider-config"
-title = "Smart Rename AI"
-description = "Edit the private OpenAI-compatible provider configuration."
+title = "Smart Rename settings"
+description = "Edit the private Smart Rename settings. Credentials come from Pi."
 placement = "overlay"
 command = ["sh", "src/run-bun.sh", "src/configure.ts"]
 

@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import {
   createAgentSession,
   DefaultResourceLoader,
-  ModelRuntime,
+  getAgentDir,
   SessionManager,
   SettingsManager,
 } from "@earendil-works/pi-coding-agent";
@@ -27,23 +27,18 @@ const BUNDLED_NAMING_PROMPT = fileURLToPath(
 export const PROVIDER_ENV_NAME = "provider.env";
 export const NAMING_PROMPT_NAME = "naming-prompt.md";
 
-/** Pi Coding Agent provider and model. Both are fixed for this plugin. */
-export const PI_PROVIDER = "openai";
-export const PI_MODEL = "gpt-5.6-luna";
-
 /**
- * Private directory for the isolated Pi runtime.
+ * Private working directory for naming sessions.
  *
- * Pi never reads the user's ~/.pi/agent from here: no extensions, skills,
- * prompts, themes, context files, sessions, settings, or stored credentials.
+ * Credentials, the model catalog, and the default model come from the user's
+ * real Pi agent directory. This directory only keeps the session away from any
+ * project: no repository context files, no project-scoped settings.
  */
-const ISOLATED_AGENT_DIR = path.join(os.tmpdir(), "tab-smart-rename-pi-agent");
+const PRIVATE_CWD = path.join(os.tmpdir(), "tab-smart-rename-pi");
 
 const ProviderConfigSchema = z.object({
   timeoutMs: z.number().int().min(1_000).max(300_000),
-  reasoningEffort: z.enum(["low", "medium", "high"]).optional(),
   promptPath: z.string().min(1).optional(),
-  apiKey: z.string().min(1),
 });
 
 const ModelOutputSchema = z.object({
@@ -150,9 +145,7 @@ function configError(error: z.ZodError): Error {
   const field = error.issues[0]?.path[0];
   const messages: Record<PropertyKey, string> = {
     timeoutMs: "SMART_RENAME_TIMEOUT_MS must be 1000-300000",
-    reasoningEffort: "SMART_RENAME_REASONING_EFFORT must be low, medium, or high",
     promptPath: "SMART_RENAME_PROMPT_PATH is invalid",
-    apiKey: `AI key missing. Run configure-ai or set OPENAI_API_KEY in ${PROVIDER_ENV_NAME}`,
   };
   return new Error(messages[field ?? ""] ?? "AI provider configuration is invalid");
 }
@@ -164,22 +157,13 @@ export async function loadProviderConfig(
     readProviderEnv(PROVIDER_EXAMPLE_URL, true),
     readProviderEnv(providerEnvPath(env)),
   ]);
-  const reasoningEffort = pick(env, fileEnv, defaults, "SMART_RENAME_REASONING_EFFORT");
   const configuredPrompt =
     env.SMART_RENAME_PROMPT_PATH || fileEnv.SMART_RENAME_PROMPT_PATH;
   const input = {
     timeoutMs: Number(pick(env, fileEnv, defaults, "SMART_RENAME_TIMEOUT_MS")),
-    ...(reasoningEffort ? { reasoningEffort } : {}),
     ...(configuredPrompt
       ? { promptPath: resolvePromptPath(configuredPrompt, env) }
       : {}),
-    // Process environment wins over provider.env for every key alias.
-    apiKey:
-      env.SMART_RENAME_API_KEY ||
-      env.OPENAI_API_KEY ||
-      fileEnv.SMART_RENAME_API_KEY ||
-      fileEnv.OPENAI_API_KEY ||
-      "",
   };
   const parsed = ProviderConfigSchema.safeParse(input);
   if (!parsed.success) throw configError(parsed.error);
@@ -224,16 +208,20 @@ function parseSuggestion(text: string): NameSuggestion {
   return { tab: sanitizeText(output.tab), reason: sanitizeText(output.reason) };
 }
 
-function safeProviderError(error: unknown, config: ProviderConfig): string {
-  let message = error instanceof Error ? error.message : String(error || "provider request failed");
-  message = message.replaceAll(config.apiKey, "[redacted]");
+function safeProviderError(error: unknown): string {
+  const message =
+    error instanceof Error ? error.message : String(error || "provider request failed");
   return sanitizeText(message).slice(0, 400) || "provider request failed";
 }
 
-export interface CompletionRequest {
+/** Everything a naming session needs before a context exists. */
+export interface SessionRequest {
   config: ProviderConfig;
-  context: NamingContext;
   system: string;
+}
+
+export interface CompletionRequest extends SessionRequest {
+  context: NamingContext;
 }
 
 /**
@@ -247,29 +235,28 @@ export interface PiSession {
   abort(): Promise<void>;
   dispose(): void;
   getLastAssistantText(): string | undefined;
-  readonly state: { readonly errorMessage?: string | undefined };
+  readonly state: {
+    readonly errorMessage?: string | undefined;
+    readonly model?: { readonly provider: string; readonly id: string } | undefined;
+  };
 }
 
-export type CreateSession = (request: CompletionRequest) => Promise<PiSession>;
+/** `provider/model-id` of the model Pi selected, for logs and notifications. */
+export function modelLabel(session: PiSession): string {
+  const model = session.state.model;
+  return model ? `${model.provider}/${model.id}` : "pi";
+}
 
-async function createPiSession(request: CompletionRequest): Promise<PiSession> {
-  await mkdir(ISOLATED_AGENT_DIR, { recursive: true, mode: 0o700 });
-  const agentDir = ISOLATED_AGENT_DIR;
-  const modelRuntime = await ModelRuntime.create({
-    authPath: path.join(agentDir, "auth.json"),
-    modelsPath: null,
-  });
-  // Runtime keys stay in memory; nothing writes the user's key to disk.
-  await modelRuntime.setRuntimeApiKey(PI_PROVIDER, request.config.apiKey);
-  const model = modelRuntime.getModel(PI_PROVIDER, PI_MODEL);
-  if (!model) throw new Error(`${PI_PROVIDER}/${PI_MODEL} is unknown to Pi`);
+export type CreateSession = (request: SessionRequest) => Promise<PiSession>;
 
-  const settingsManager = SettingsManager.inMemory({
-    compaction: { enabled: false },
-    retry: { enabled: false },
-  });
+export async function createPiSession(request: SessionRequest): Promise<PiSession> {
+  await mkdir(PRIVATE_CWD, { recursive: true, mode: 0o700 });
+  const cwd = PRIVATE_CWD;
+  const agentDir = getAgentDir();
+  // Pi's own settings pick the provider, model, and thinking level.
+  const settingsManager = SettingsManager.create(cwd, agentDir);
   const resourceLoader = new DefaultResourceLoader({
-    cwd: agentDir,
+    cwd,
     agentDir,
     settingsManager,
     noExtensions: true,
@@ -282,19 +269,17 @@ async function createPiSession(request: CompletionRequest): Promise<PiSession> {
   });
   await resourceLoader.reload();
 
-  const { session } = await createAgentSession({
-    cwd: agentDir,
-    agentDir,
-    modelRuntime,
-    model,
-    ...(request.config.reasoningEffort
-      ? { thinkingLevel: request.config.reasoningEffort }
-      : {}),
+  const { session, modelFallbackMessage } = await createAgentSession({
+    cwd,
     noTools: "all",
     resourceLoader,
     sessionManager: SessionManager.inMemory(),
     settingsManager,
   });
+  if (!session.state.model) {
+    session.dispose();
+    throw new Error(modelFallbackMessage || "no Pi model is configured");
+  }
   return session;
 }
 
@@ -351,13 +336,33 @@ export class PiNamer implements Namer {
     const config = await loadProviderConfig(this.#env);
     const system = await loadNamingPrompt(config, this.#env);
     const request: CompletionRequest = { config, context, system };
+    let label = "pi";
     try {
       const session = await this.#createSession(request);
+      label = modelLabel(session);
       return parseSuggestion(await completeWithSession(session, request));
     } catch (error) {
-      throw new Error(
-        `AI request failed (${PI_PROVIDER}/${PI_MODEL}): ${safeProviderError(error, config)}`,
-      );
+      throw new Error(`AI request failed (${label}): ${safeProviderError(error)}`);
     }
+  }
+}
+
+/**
+ * Report the model Pi would use, without sending a request.
+ *
+ * Creating the session performs the same auth and model resolution as a real
+ * naming request, so a missing Pi login fails here too.
+ */
+export async function checkModel(
+  env: NodeJS.ProcessEnv = process.env,
+  createSession: CreateSession = createPiSession,
+): Promise<string> {
+  const config = await loadProviderConfig(env);
+  const system = await loadNamingPrompt(config, env);
+  const session = await createSession({ config, system });
+  try {
+    return modelLabel(session);
+  } finally {
+    session.dispose();
   }
 }
