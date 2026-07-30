@@ -1,16 +1,133 @@
-if type brew &>/dev/null
-then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    FPATH="${HOME}/.zsh:${FPATH}"
-    FPATH="${HOME}/.zsh/completions:${FPATH}"
+# `extended_glob` MUST be set before the compinit cache test below. The `(#q...)`
+# glob qualifier is inert without it, so the test degrades to a non-empty literal
+# string and silently forces a full compinit rebuild on every single shell.
+setopt extended_glob
 
-    autoload -Uz compinit
-    if [[ -n ${ZDOTDIR:-~}/.zcompdump(#qN.mh+24) ]]; then
-        compinit -i
+zmodload -F zsh/stat b:zstat
+zmodload -F zsh/datetime p:EPOCHSECONDS
+
+typeset -g ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+[[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
+
+# Rebuild a cache entry after this many days even when its key is unchanged.
+# This bounds staleness from inputs the key cannot see.
+typeset -g ZSH_CACHE_TTL_DAYS=7
+
+# Compile $1 to $1.zwc atomically. Concurrent shells must never observe a
+# half-written .zwc, so compile to a pid-unique temp and rename over the target.
+function zsh-cache-compile() {
+    emulate -L zsh
+    local src=$1 tmp=$1.$$.zwc
+    if zcompile -R -- $tmp $src 2>/dev/null; then
+        mv -f -- $tmp $src.zwc 2>/dev/null || rm -f -- $tmp
     else
-        compinit -C -i
+        rm -f -- $tmp
     fi
-fi
+}
+
+# Compile hot-path scripts, skipping any whose .zwc is already current.
+# An unconditional rebuild would make concurrent shells race over one output.
+function zsh-compile-if-stale() {
+    emulate -L zsh
+    local src
+    for src in $@; do
+        [[ -s $src ]] || continue
+        [[ -s $src.zwc && $src.zwc -nt $src ]] && continue
+        zsh-cache-compile $src
+    done
+}
+
+# Resolve the cache file holding the stdout of a slow shell-init command,
+# regenerating it when stale. The path is returned in $REPLY.
+#
+#   zsh-cache-file [-b <keybin>] [-w <file>]... <name> <cmd> [args...]
+#
+# Callers MUST `source $REPLY` themselves, at the top level of .zshrc. Sourcing
+# inside this function would break two things: `emulate -L` implies
+# LOCAL_OPTIONS, so a `setopt` in the init script (starship needs promptsubst)
+# would be reverted on return; and a bare `typeset` in the init script would
+# become function-local instead of global.
+#
+# The cache key covers, for the *resolved* command path and every -w file: the
+# device and inode, plus mtime and size. Resolution matters because starship,
+# mole, zoxide, wt, pitchfork and vp are all symlinks into versioned
+# directories. Device+inode is what actually pins identity: an upgrade repoints
+# the symlink at a different file, which changes the inode even in the case
+# where the new target happens to preserve both mtime and size. The key is
+# encoded into the cache filename, so one stat decides validity.
+#
+#   -b  key on this command instead of <cmd>, for `env VAR=x tool` forms
+#   -w  add a config file to the key; repeatable
+#
+# Determinism is not assumed forever: ZSH_CACHE_TTL_DAYS forces a periodic
+# rebuild. If generation fails the previous good cache is kept. Returns non-zero
+# when there is nothing to source, so `&& source $REPLY` is always safe.
+function zsh-cache-file() {
+    emulate -L zsh -o extended_glob
+    local keybin= name cache tmp exe f key
+    local -a watch old
+    while true; do
+        case $1 in
+            (-b) keybin=$2; shift 2 ;;
+            (-w) watch+=$2; shift 2 ;;
+            (*) break ;;
+        esac
+    done
+    name=$1; shift
+    exe=${commands[${keybin:-$1}]}
+    [[ -n $exe ]] || return 1
+
+    local -A st
+    for f in ${exe:A} $watch; do
+        zstat -H st -- $f 2>/dev/null || continue
+        key+=.$st[device].$st[inode].$st[mtime].$st[size]
+    done
+    cache=$ZSH_CACHE_DIR/$name$key.zsh
+
+    local stale=0
+    if [[ ! -s $cache ]]; then
+        stale=1
+    elif zstat -H st -- $cache 2>/dev/null; then
+        (( EPOCHSECONDS - st[mtime] > ZSH_CACHE_TTL_DAYS * 86400 )) && stale=1
+    fi
+
+    if (( stale )); then
+        tmp=$cache.$$.tmp
+        if "$@" >| $tmp 2>/dev/null && [[ -s $tmp ]]; then
+            old=($ZSH_CACHE_DIR/$name.*.zsh(#qN) $ZSH_CACHE_DIR/$name.*.zsh.zwc(#qN))
+            (( $#old )) && rm -f -- $old
+            mv -f -- $tmp $cache
+            zsh-cache-compile $cache
+        else
+            rm -f -- $tmp
+        fi
+    fi
+
+    [[ -s $cache ]] || return 1
+    typeset -g REPLY=$cache
+}
+
+# Hardcoded: `brew --prefix` is a 14 ms subprocess that always answers
+# /opt/homebrew on arm64 macOS.
+typeset -g HOMEBREW_PREFIX=/opt/homebrew
+fpath=(
+    $HOME/.zsh/completions
+    $HOME/.zsh
+    $HOMEBREW_PREFIX/share/zsh/site-functions
+    $fpath
+)
+
+autoload -Uz compinit
+() {
+    local dump=${ZDOTDIR:-$HOME}/.zcompdump
+    # Argument list is non-empty only when the dump is over 24 h old, in which
+    # case pay for a full security-checked rebuild. Otherwise trust the cache.
+    if (( $# )); then
+        compinit -i -d $dump
+    else
+        compinit -C -i -d $dump
+    fi
+} ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24)
 
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
@@ -36,9 +153,7 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 export GPG_TTY=$TTY
 
 function zvm_after_init() {
-    if command -v atuin >/dev/null 2>&1; then
-        eval "$(atuin init zsh --disable-up-arrow)"
-    fi
+    zsh-cache-file atuin atuin init zsh --disable-up-arrow && source $REPLY
 }
 
 # Autoload functions.
@@ -53,7 +168,6 @@ alias ls="${aliases[ls]:-ls} -A"
 setopt autocd
 setopt autolist
 setopt correct
-setopt extended_glob
 setopt extended_history
 setopt glob_dots
 setopt hist_ignore_dups
@@ -95,24 +209,31 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.atuin/bin:$PATH"
 
-. "$HOME/.vite-plus/env"
-
-if command -v mise >/dev/null 2>&1; then
-    eval "$(mise activate zsh)"
+# `.zshenv` already sources ~/.vite-plus/env for PATH and the `vp` wrapper, but
+# its completion branch is skipped there: that branch needs `compdef`, which
+# only exists after compinit. Load just the completion here, from cache.
+if [[ -n ${commands[vp]} ]]; then
+    zsh-cache-file -b vp vite-plus env VP_COMPLETE=zsh vp && source $REPLY
+    _vpr_complete() {
+        local -a orig=("${words[@]}")
+        words=("vp" "run" "${orig[@]:1}")
+        CURRENT=$((CURRENT + 1))
+        ${=_comps[vp]}
+    }
+    compdef _vpr_complete vpr
 fi
-if [[ "${TERM:-}" != "dumb" ]] && command -v starship >/dev/null 2>&1; then
-    eval "$(starship init zsh)"
+
+zsh-cache-file mise mise activate zsh && source $REPLY
+if [[ "${TERM:-}" != "dumb" ]]; then
+    zsh-cache-file -w ${STARSHIP_CONFIG:-$HOME/.config/starship.toml} \
+        starship starship init zsh && source $REPLY
     if [[ "${TERM_PROGRAM:-}" == "ghostty" ]]; then
         # Reserve the last cell so that ZLE can redraw a prompt that uses Starship fill.
         PROMPT="${PROMPT/\$COLUMNS/\$(( COLUMNS - 1 ))}"
     fi
 fi
-if command -v pitchfork >/dev/null 2>&1; then
-    eval "$(pitchfork activate zsh)"
-fi
-if command -v zoxide >/dev/null 2>&1; then
-    eval "$(zoxide init --cmd cd zsh)"
-fi
+zsh-cache-file pitchfork pitchfork activate zsh && source $REPLY
+zsh-cache-file zoxide zoxide init --cmd cd zsh && source $REPLY
 if command -v redo >/dev/null 2>&1; then
     if redo_alias_file="$(redo alias-file 2>/dev/null)" && [[ -r "$redo_alias_file" ]]; then
         source "$redo_alias_file"
@@ -191,16 +312,10 @@ fi
 
 # eval $(eas autocomplete:script zsh)
 
-zcompile ~/.zsh_plugins.zsh 2>/dev/null &!
-zcompile ~/.zshrc 2>/dev/null &!
+zsh-compile-if-stale ~/.zsh_plugins.zsh ~/.zshrc ${ZDOTDIR:-$HOME}/.zcompdump &!
 
-if command -v mole >/dev/null 2>&1; then
-    if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
-fi
-
-if command -v wt >/dev/null 2>&1; then
-    if output="$(wt config shell init zsh 2>/dev/null)"; then eval "$output"; fi
-fi
+zsh-cache-file mole mole completion zsh && source $REPLY
+zsh-cache-file wt wt config shell init zsh && source $REPLY
 #compdef opencode
 ###-begin-opencode-completions-###
 #
@@ -253,4 +368,4 @@ box() {
 }
 # ASCII BOX SHELL INTEGRATION END box
 
-eval "$(box completions zsh)"
+zsh-cache-file box box completions zsh && source $REPLY
