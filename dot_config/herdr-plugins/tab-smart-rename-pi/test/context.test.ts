@@ -1,0 +1,102 @@
+import { test } from "bun:test";
+import assert from "node:assert/strict";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import {
+  LIFECYCLE_SUBSCRIPTIONS,
+  normalizeHerdrEvent,
+  tabProgressBase,
+} from "../src/herdr.ts";
+import {
+  recentUserMessages,
+  sampledUserMessages,
+} from "../src/pi-context.ts";
+
+const user = (text: string): string =>
+  JSON.stringify({
+    type: "message",
+    message: { role: "user", content: [{ type: "text", text }] },
+  });
+
+test("Herdr events normalize while subscriptions avoid output spam", () => {
+  assert.deepEqual(
+    normalizeHerdrEvent({
+      event: "tab.renamed",
+      data: { type: "tab_renamed", tab_id: "t1", label: "Build API" },
+    }),
+    {
+      eventName: "tab.renamed",
+      type: "tab_renamed",
+      tab_id: "t1",
+      label: "Build API",
+    },
+  );
+  assert.equal(normalizeHerdrEvent({ id: "response" }), null);
+  const subscriptions: readonly string[] = LIFECYCLE_SUBSCRIPTIONS;
+  assert.ok(subscriptions.includes("tab.renamed"));
+  assert.equal(subscriptions.includes("pane.output_matched"), false);
+  assert.equal(tabProgressBase("\u2063◆ Review Auth"), "Review Auth");
+  assert.equal(tabProgressBase("◆ Review Auth"), null);
+});
+
+test("Pi session sampling weights origin, midpoint, and recent requests", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "tab-smart-rename-samples-"));
+  const agentDir = path.join(root, "agent");
+  const sessions = path.join(agentDir, "sessions", "project");
+  const session = path.join(sessions, "session.jsonl");
+  await mkdir(sessions, { recursive: true });
+  await writeFile(
+    session,
+    [
+      user("Build automatic tab naming"),
+      "x".repeat(400_000),
+      user("Fix manual ownership"),
+      "x".repeat(400_000),
+      ...Array.from({ length: 5 }, (_, index) => user(`Recent request ${index + 1}`)),
+      "",
+    ].join("\n"),
+  );
+  try {
+    assert.deepEqual(
+      await sampledUserMessages(session, {
+        ...process.env,
+        HOME: root,
+        PI_CODING_AGENT_DIR: agentDir,
+      }),
+      {
+        origin: ["Build automatic tab naming"],
+        middle: ["Fix manual ownership"],
+        recent: [
+          "Recent request 2",
+          "Recent request 3",
+          "Recent request 4",
+          "Recent request 5",
+        ],
+      },
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Pi session reads stay bounded to regular files under the sessions root", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "tab-smart-rename-session-"));
+  const agentDir = path.join(root, "agent");
+  const sessions = path.join(agentDir, "sessions", "project");
+  const session = path.join(sessions, "session.jsonl");
+  const outside = path.join(root, "outside.jsonl");
+  await mkdir(sessions, { recursive: true });
+  await writeFile(session, `${"x".repeat(600_000)}\n${user("Fix socket reconnect")}\n`);
+  await writeFile(outside, `${user("Do not read this")}\n`);
+  try {
+    const env = { ...process.env, HOME: root, PI_CODING_AGENT_DIR: agentDir };
+    assert.deepEqual(await recentUserMessages(session, 6, env), [
+      "Fix socket reconnect",
+    ]);
+    assert.deepEqual(await recentUserMessages(outside, 6, env), []);
+    assert.deepEqual(await recentUserMessages(root, 6, env), []);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
