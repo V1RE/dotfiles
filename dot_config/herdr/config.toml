@@ -48,7 +48,7 @@ new_tab = "cmd+t"
 next_workspace = "cmd+j"
 previous_workspace = "cmd+k"
 goto = "cmd+m"
-new_workspace = "cmd+n"
+# new_workspace = "cmd+n"
 close_tab = "cmd+w"
 
 # Prefix-mode actions
@@ -139,6 +139,12 @@ key = "ctrl+l"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
+
+[[keys.command]]
+key = "cmd+n"
+type = "plugin_action"
+command = "fullerzz.sesh.open-picker"
+description = "open Sesh picker"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
