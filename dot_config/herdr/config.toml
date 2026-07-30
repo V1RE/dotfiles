@@ -38,10 +38,10 @@ prefix = "cmd+b"
 # so h/l create a vertical split and j/k create a horizontal split.
 split_vertical = ["prefix+l", "prefix+h"]
 split_horizontal = ["prefix+j", "prefix+k"]
-focus_pane_left = "ctrl+h"
-focus_pane_down = "ctrl+j"
-focus_pane_up = "ctrl+k"
-focus_pane_right = "ctrl+l"
+# focus_pane_left = "ctrl+h"
+# focus_pane_down = "ctrl+j"
+# focus_pane_up = "ctrl+k"
+# focus_pane_right = "ctrl+l"
 previous_tab = "cmd+h"
 next_tab = "cmd+l"
 new_tab = "cmd+t"
@@ -116,6 +116,30 @@ type = "shell"
 command = 'pane="${HERDR_ACTIVE_PANE_ID:-}"; [ -n "$pane" ] || exit 0; herdr_bin="${HERDR_BIN_PATH:-herdr}"; url="$("$herdr_bin" pane read "$pane" --source visible --lines 200 2>/dev/null | grep -Eo "https?://[^[:space:]]+" | tail -n 1)"; [ -n "$url" ] && open "$url"'
 description = "open last visible URL"
 
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]
@@ -165,7 +189,7 @@ description = "open last visible URL"
 prompt_new_tab_name = false
 
 # Show detected/reported agent labels in split pane borders when no manual pane name is set.
-# show_agent_labels_on_pane_borders = false
+show_agent_labels_on_pane_borders = true
 
 # Agent panel scope: "current" or "all". Toggling it in the sidebar saves this setting.
 # agent_panel_scope = "all"
@@ -186,11 +210,11 @@ agent_panel_sort = "priority"
 
 delivery = "herdr"
 [ui.toast.herdr]
-# position = "bottom-right"
+position = "bottom-right"
 
 [ui.toast.clipboard]
-# enabled = true
-# position = "bottom-center"
+enabled = true
+position = "bottom-center"
 
 # Play sounds when agents change state in background workspaces
 [ui.sound]
