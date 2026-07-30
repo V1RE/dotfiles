@@ -105,13 +105,6 @@ if [[ "${TERM:-}" != "dumb" ]] && command -v starship >/dev/null 2>&1; then
     if [[ "${TERM_PROGRAM:-}" == "ghostty" ]]; then
         # Reserve the last cell so that ZLE can redraw a prompt that uses Starship fill.
         PROMPT="${PROMPT/\$COLUMNS/\$(( COLUMNS - 1 ))}"
-    elif [[ "${TERM_PROGRAM:-}" == "WezTerm" ]]; then
-        autoload -Uz add-zsh-hook
-        # Keep this separator out of PROMPT so that ZLE redraws do not repeat it.
-        prompt_wezterm_newline() {
-            print
-        }
-        add-zsh-hook precmd prompt_wezterm_newline
     fi
 fi
 if command -v pitchfork >/dev/null 2>&1; then
