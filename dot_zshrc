@@ -61,10 +61,12 @@ function zsh-compile-if-stale() {
 #
 # Determinism is not assumed forever: ZSH_CACHE_TTL_DAYS forces a periodic
 # rebuild. If generation fails the previous good cache is kept. Returns non-zero
-# when there is nothing to source, so `&& source $REPLY` is always safe.
+# and clears REPLY when there is nothing to source, so `&& source $REPLY` is
+# always safe and a failed call can never leak the previous call's cache path.
 function zsh-cache-file() {
     emulate -L zsh -o extended_glob
-    local keybin= name cache tmp exe f key
+    typeset -g REPLY=
+    local keybin= name cache tmp exe f key cmd
     local -a watch old
     while true; do
         case $1 in
@@ -74,7 +76,21 @@ function zsh-cache-file() {
         esac
     done
     name=$1; shift
-    exe=${commands[${keybin:-$1}]}
+    cmd=${keybin:-$1}
+    # $commands is the fast, fork-free lookup, but it is an ordinary parameter
+    # name that any caller up the stack may shadow: zsh-vi-mode's
+    # zvm_exec_commands does `local commands=...`, which silently broke this
+    # lookup for everything it invokes. Indexing a shadowed scalar is worse than
+    # empty -- the subscript is evaluated arithmetically, so `${commands[3]}`
+    # can return a stray character that is not an executable. Only trust the
+    # parameter when it is still the special association; otherwise pay one
+    # `whence -p`, which reads the real command table and cannot be shadowed.
+    if [[ ${(t)commands} == association*special* ]]; then
+        exe=${commands[$cmd]}
+    else
+        exe=
+    fi
+    [[ -n $exe ]] || exe=$(builtin whence -p -- $cmd 2>/dev/null)
     [[ -n $exe ]] || return 1
 
     local -A st
@@ -152,8 +168,13 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 # Export environment variables.
 export GPG_TTY=$TTY
 
+# NOT cached: atuin's init must run live here. It is only ~30 ms, it runs after
+# the first prompt via zsh-vi-mode's hook, and caching it broke the Ctrl-R
+# binding. Do not "optimise" this without an end-to-end Ctrl-R test.
 function zvm_after_init() {
-    zsh-cache-file atuin atuin init zsh --disable-up-arrow && source $REPLY
+    if command -v atuin >/dev/null 2>&1; then
+        eval "$(atuin init zsh --disable-up-arrow)"
+    fi
 }
 
 # Autoload functions.
