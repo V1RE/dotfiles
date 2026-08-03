@@ -1,0 +1,60 @@
+{
+  "theme": {
+    "name": "ayu",
+    "mode": "dark"
+  },
+  "keybinds": {
+    "input_undo": "ctrl+-,super+z,option+z"
+  },
+  "scroll": {
+    "speed": 6,
+    "acceleration": true
+  },
+  "attention": {
+    "enabled": true,
+    "notifications": true,
+    "volume": 0.9999999999999999
+  },
+  "diffs": {
+    "wrap": "word",
+    "single": true,
+    "view": "auto",
+    "tree": true
+  },
+  "terminal": {
+    "title": true
+  },
+  "prompt": {
+    "paste": "compact"
+  },
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": true,
+    "thinking": "show",
+    "grouping": "auto",
+    "markdown": "rendered"
+  },
+  "hints": {
+    "onboarding": true
+  },
+  "animations": true,
+  "debug": {
+    "devtools": false,
+    "timing": false,
+    "turn_tokens": true
+  },
+  "tabs": {
+    "enabled": true,
+    "scope": "cwd",
+    "vertical": true
+  },
+
+  "plugins": [
+    {
+      "package": "@neriousy/opencode-browser@latest",
+      "options": {
+        "url": "https://example.com"
+      }
+    }
+  ]
+}
