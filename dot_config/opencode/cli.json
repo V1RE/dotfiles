@@ -46,7 +46,7 @@
   "tabs": {
     "enabled": true,
     "scope": "cwd",
-    "vertical": true
+    "vertical": false
   },
   "plugins": ["@neriousy/opencode-browser@latest"]
 }
