@@ -198,7 +198,7 @@ prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = true
 
 # Agent panel scope: "current" or "all". Toggling it in the sidebar saves this setting.
-# agent_panel_scope = "all"
+agent_panel_scope = "all"
 
 # Accent color for highlights, borders, and navigation UI.
 # Accepts: hex (#89b4fa), named colors (cyan, blue, magenta), or rgb(r,g,b)
@@ -206,6 +206,7 @@ show_agent_labels_on_pane_borders = true
 
 # Background notification popup delivery
 agent_panel_sort = "priority"
+
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
@@ -248,7 +249,7 @@ resume_agents_on_restore = true
 # wins) to survive idle network/NAT timeouts. Set false to run plain ssh against
 # your ssh config unchanged — this does not force keepalive off, it only stops
 # herdr from adding its own.
-# manage_ssh_config = true
+manage_ssh_config = true
 
 [experimental]
 # Allow launching herdr from inside a herdr-managed pane.
@@ -258,6 +259,7 @@ resume_agents_on_restore = true
 # kitty_graphics = false
 # Save recent pane screen history across full server restarts.
 pane_history = true
+kitty_graphics = true
 # While prefix mode is active, temporarily switch the macOS host input
 # source to an ASCII-capable keyboard layout so prefix commands register
 # even when a CJK IME is active, then restore the previous input source
