@@ -1,0 +1,332 @@
+name nub
+bin nub
+version "0.7.0"
+about "The all-in-one Node.js toolkit"
+
+flag --cwd help="Run as if started in a directory" global=#true {
+  arg <dir>
+}
+flag "-s --silent" help="Suppress non-error output" global=#true
+flag --verbose help="Increase log verbosity" count=#true global=#true
+flag --color help="Set color mode" global=#true {
+  arg <color> {
+    choices auto always never
+  }
+}
+flag --env-file help="Load environment variables from a file" global=#true {
+  arg <file>
+}
+flag --env-file-if-exists help="Load an optional environment file" global=#true {
+  arg <file>
+}
+flag --no-env-file help="Disable environment-file loading" global=#true
+flag --node help="Disable nub runtime augmentation" global=#true
+flag --watch help="Enable watch mode" global=#true
+flag "-v -V --version" help="Show version" global=#true
+flag "-h --help" help="Show help" global=#true
+
+arg "[file]" required=#false
+arg "[arg]" required=#false var=#true
+
+cmd run help="Run a package.json script" {
+  flag --node help="Disable nub runtime augmentation"
+  flag "-r --recursive --workspaces" help="Run in all workspace packages"
+  flag "-F --filter" help="Filter workspace packages" var=#true {
+    arg <workspace>
+  }
+  flag --workspace help="Select a workspace" var=#true {
+    arg <workspace>
+  }
+  flag "-w --workspace-root" help="Run from the workspace root"
+  flag --include-workspace-root help="Include the workspace root"
+  flag --fail-if-no-match help="Fail when no workspace matches"
+  flag --ignore-scripts help="Skip lifecycle hooks"
+  flag --script-shell help="Override the script shell" {
+    arg <path>
+  }
+  flag --aggregate-output help="Buffer package output"
+  flag --resume-from help="Resume from a package" {
+    arg <workspace>
+  }
+  flag --workspace-concurrency help="Maximum concurrent packages" {
+    arg <count>
+  }
+  flag --parallel help="Run without topological ordering"
+  flag --bail help="Stop on first failure"
+  flag --no-bail help="Collect all failures"
+  flag --reverse help="Use reverse topological order"
+  flag --no-sort help="Disable topological sorting"
+  flag --sequential help="Run packages sequentially"
+  flag --stream help="Stream prefixed package output"
+  flag --reporter help="Select output reporter" {
+    arg <reporter> {
+      choices default silent ndjson
+    }
+  }
+  flag --reporter-hide-prefix help="Hide streamed output prefixes"
+  flag --if-present help="Skip packages without the script"
+  flag "--no-check --no-install" help="Skip dependency freshness checks"
+  arg "[script]" required=#false
+  arg "[arg]" required=#false var=#true double_dash=automatic
+}
+
+cmd exec help="Run a node_modules/.bin binary" {
+  flag --node help="Disable nub runtime augmentation"
+  flag "-r --recursive --workspaces" help="Run in all workspace packages"
+  flag "-F --filter" help="Filter workspace packages" var=#true {
+    arg <workspace>
+  }
+  flag --workspace help="Select a workspace" var=#true {
+    arg <workspace>
+  }
+  flag "-w --workspace-root" help="Run from the workspace root"
+  flag --include-workspace-root help="Include the workspace root"
+  flag --fail-if-no-match help="Fail when no workspace matches"
+  flag --workspace-concurrency help="Maximum concurrent packages" {
+    arg <count>
+  }
+  flag --parallel help="Run without topological ordering"
+  flag --no-check help="Skip dependency freshness checks"
+  arg <bin>
+  arg "[arg]" required=#false var=#true double_dash=automatic
+}
+
+cmd dlx help="Fetch and run a package binary" {
+  alias x
+  flag "-p --package" help="Fetch an explicit package" var=#true {
+    arg <package>
+  }
+  flag "--no-install --no" help="Do not fetch missing packages"
+  flag "-q --quiet" help="Suppress fetch progress"
+  flag "-y --yes" help="Accept registry fetches"
+  flag --ignore-existing help="Accepted for npx compatibility"
+  flag --no-check help="Skip dependency freshness checks"
+  arg <package>
+  arg "[arg]" required=#false var=#true double_dash=automatic
+}
+
+cmd watch help="Run a file in watch mode" {
+  arg <file>
+  arg "[arg]" required=#false var=#true double_dash=automatic
+}
+
+cmd init help="Scaffold a TypeScript-first project" {
+  flag "-y --yes" help="Use defaults without prompting"
+  flag --js help="Create a JavaScript project"
+  flag --name help="Set the project name" {
+    arg <name>
+  }
+  flag --no-git help="Skip repository initialization"
+  flag --no-install help="Skip dependency installation"
+  flag --force help="Overwrite existing files"
+}
+
+cmd upgrade help="Upgrade nub" {
+  flag --version help="Target version" {
+    arg <version>
+  }
+  flag --canary help="Upgrade to canary"
+  flag --stable help="Upgrade to stable"
+  flag --dry-run help="Show actions without changing anything"
+  flag "-y --yes" help="Skip confirmation"
+}
+
+cmd node subcommand_required=#true help="Manage Node versions" {
+  cmd which help="Print the resolved Node binary path"
+  cmd install help="Provision Node versions" {
+    arg "[version]" required=#false var=#true
+  }
+  cmd ls help="List cached Node versions"
+  cmd uninstall help="Remove a cached Node version" {
+    arg <version>
+  }
+  cmd pin help="Write the project Node version pin" {
+    arg <version>
+  }
+  cmd shim help="Route node through nub"
+  cmd unshim help="Remove the node shim"
+}
+
+cmd pm subcommand_required=#true help="Manage the project package manager" {
+  cmd which help="Print the resolved package-manager path"
+  cmd use help="Declare the project package manager" {
+    arg <package-manager>
+  }
+  cmd pin help="Pin nub for this project" {
+    arg "[version]" required=#false
+  }
+  cmd update help="Update the pinned package manager" {
+    alias up
+  }
+  cmd cache help="Manage cached package managers" {
+    arg "[action]" required=#false {
+      choices clear
+    }
+  }
+  cmd shim help="Install package-manager shims"
+  cmd unshim help="Remove package-manager shims"
+}
+
+cmd install help="Install dependencies" {
+  alias i
+  flag --frozen-lockfile help="Fail when the lockfile is stale"
+  flag --no-frozen-lockfile help="Always resolve dependencies"
+  flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
+  flag "-P --prod --production" help="Install production dependencies only"
+  flag "-D --dev" help="Install development dependencies only"
+  flag --ignore-scripts help="Skip lifecycle scripts"
+  flag --no-optional help="Skip optional dependencies"
+  flag --offline help="Disallow network access"
+  flag --prefer-offline help="Prefer cached packages"
+  flag --lockfile-only help="Only update the lockfile"
+  flag --force help="Force resolution and linking"
+  flag --node-linker help="Select node_modules layout" {
+    arg <layout> {
+      choices isolated hoisted
+    }
+  }
+  flag --registry help="Override the registry" {
+    arg <url>
+  }
+  flag "-C --dir" help="Run from a directory" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Filter workspace packages" var=#true {
+    arg <workspace>
+  }
+  flag --filter-prod help="Filter production workspace packages" var=#true {
+    arg <workspace>
+  }
+  flag "-r --recursive" help="Run across workspaces"
+  flag --fail-if-no-match help="Fail when no workspace matches"
+  flag --include-workspace-root help="Include the workspace root"
+  flag --reporter help="Select output format" {
+    arg <reporter> {
+      choices default append-only silent
+    }
+  }
+  flag --loglevel help="Set log level" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="Set minimum package age" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt a package from the age gate" var=#true {
+    arg <package>
+  }
+}
+
+cmd ci help="Perform a clean lockfile install" {
+  flag --ignore-scripts help="Skip lifecycle scripts"
+  flag --no-optional help="Skip optional dependencies"
+  flag --registry help="Override the registry" {
+    arg <url>
+  }
+  flag "-C --dir" help="Run from a directory" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Filter workspace packages" var=#true {
+    arg <workspace>
+  }
+  flag --filter-prod help="Filter production workspace packages" var=#true {
+    arg <workspace>
+  }
+  flag "-r --recursive" help="Run across workspaces"
+  flag --fail-if-no-match help="Fail when no workspace matches"
+  flag --include-workspace-root help="Include the workspace root"
+}
+
+cmd add help="Add dependencies" {
+  alias a
+  flag "-D --save-dev" help="Add as a development dependency"
+  flag "-E --save-exact" help="Save an exact version"
+  flag "-g --global" help="Install globally"
+  flag "-O --save-optional" help="Add as an optional dependency"
+  flag --save-peer help="Add as a peer dependency"
+  flag --no-save help="Do not update package.json"
+  flag --lockfile-only help="Skip linking node_modules"
+  flag "-w --workspace" help="Add to the workspace root"
+  flag "-W --ignore-workspace-root-check" help="Allow adding at workspace root"
+  flag --registry help="Override the registry" {
+    arg <url>
+  }
+  flag "-C --dir" help="Run from a directory" {
+    arg <dir>
+  }
+  arg "[package]" required=#false var=#true
+}
+
+cmd remove help="Remove dependencies" {
+  alias rm
+  arg "[package]" required=#false var=#true
+}
+cmd update help="Update dependencies within range" {
+  alias up
+  arg "[package]" required=#false var=#true
+}
+cmd import help="Generate a lockfile from another package manager"
+cmd dedupe help="Remove duplicate packages"
+cmd prune help="Remove extraneous packages"
+cmd rebuild help="Rebuild native modules" { alias rb }
+cmd link help="Link a local package" { alias ln; arg "[package]" required=#false var=#true }
+cmd unlink help="Unlink a local package" { arg "[package]" required=#false var=#true }
+cmd patch help="Prepare a package patch" { arg "[package]" required=#false }
+cmd patch-commit help="Commit a package patch" { arg "[path]" required=#false }
+cmd patch-remove help="Remove a package patch" { arg "[package]" required=#false }
+cmd approve-builds help="Manage build-script approval"
+cmd ignored-builds help="List ignored build scripts"
+cmd list help="List installed dependencies" { alias ls }
+cmd why help="Explain why a package is installed" { arg <package> }
+cmd outdated help="List outdated dependencies"
+cmd audit help="Audit dependencies"
+cmd licenses help="Inspect dependency licenses"
+cmd view help="Show registry package metadata" { arg "[package]" required=#false }
+cmd search help="Search registry packages" { arg <query> }
+cmd bin help="Show the project binary directory"
+cmd root help="Show the project node_modules directory"
+cmd query help="Query dependencies" { arg <query> }
+cmd check help="Check dependency consistency"
+cmd sbom help="Generate a software bill of materials"
+cmd publish help="Publish a package"
+cmd pack help="Create a package tarball"
+cmd version help="Bump the package version" { arg "[version]" required=#false }
+cmd dist-tag help="Manage distribution tags"
+cmd login help="Log into a package registry"
+cmd logout help="Log out of a package registry"
+cmd whoami help="Show the current registry user"
+cmd owner help="Manage package owners"
+cmd token help="Manage registry tokens"
+
+cmd store subcommand_required=#true help="Manage the content-addressable store" {
+  cmd add help="Add packages to the global store" { arg "[package]" required=#false var=#true }
+  cmd path help="Show the store path"
+  cmd prune help="Remove unreferenced packages"
+  cmd status help="Verify the store"
+}
+cmd cache help="Manage cached package data" { arg "[action]" required=#false }
+cmd config help="Manage configuration" {
+  flag --all help="Include unset settings"
+  flag --json help="Output JSON"
+  flag --local help="Use project configuration"
+  flag --location help="Select configuration location" {
+    arg <location> {
+      choices merged user project global
+    }
+  }
+  cmd delete help="Remove a setting" { alias rm remove unset; arg <key> }
+  cmd get help="Get a setting" { arg <key> }
+  cmd list help="List settings" { alias ls }
+  cmd set help="Set a setting" { arg <key>; arg <value> }
+  cmd path help="Show the global config path"
+}
+cmd get help="Get a configuration value" { arg <key> }
+cmd set help="Set a configuration value" { arg <key>; arg <value> }
+cmd help help="Show help for a command" { arg "[command]" required=#false }
+
+complete "script" run="jq -r '.scripts // {} | keys[]' package.json 2>/dev/null"
+complete "bin" run="node -e \"require('fs').readdirSync('node_modules/.bin').forEach(x => console.log(x))\" 2>/dev/null"
+complete "file" type="file"
+complete "dir" type="dir"
+complete "path" type="path"
