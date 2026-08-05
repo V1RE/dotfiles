@@ -1,0 +1,347 @@
+#compdef nub
+
+_nub_project_root() {
+    local dir=$PWD
+    while [[ $dir != / && ! -f $dir/package.json ]]; do
+        dir=${dir:h}
+    done
+    [[ -f $dir/package.json ]] || return 1
+    REPLY=$dir
+}
+
+_nub_scripts() {
+    local root
+    local -a scripts
+    _nub_project_root || return 1
+    root=$REPLY
+    (( $+commands[jq] )) || return 1
+    scripts=("${(@f)$(command jq -r '.scripts // {} | keys[]' "$root/package.json" 2>/dev/null)}")
+    (( ${#scripts} )) && _describe 'script' scripts
+}
+
+_nub_bins() {
+    local root
+    local -a bins
+    _nub_project_root || return 1
+    root=$REPLY
+    bins=($root/node_modules/.bin/*(N:t))
+    (( ${#bins} )) && _describe 'binary' bins
+}
+
+_nub_commands() {
+    local -a commands=(
+        'run:Run a package.json script'
+        'exec:Run a node_modules/.bin binary'
+        'dlx:Fetch and run a package binary'
+        'x:Alias for dlx'
+        'watch:Run a file in watch mode'
+        'init:Scaffold a TypeScript-first project'
+        'install:Install dependencies'
+        'i:Alias for install'
+        'ci:Perform a clean lockfile install'
+        'add:Add dependencies'
+        'a:Alias for add'
+        'remove:Remove dependencies'
+        'rm:Alias for remove'
+        'update:Update dependencies within range'
+        'up:Alias for update'
+        'import:Generate a lockfile from another package manager'
+        'dedupe:Remove duplicate packages'
+        'prune:Remove extraneous packages'
+        'rebuild:Rebuild native modules'
+        'rb:Alias for rebuild'
+        'link:Link a local package'
+        'ln:Alias for link'
+        'unlink:Unlink a local package'
+        'patch:Prepare a package patch'
+        'patch-commit:Commit a package patch'
+        'patch-remove:Remove a package patch'
+        'approve-builds:Manage build-script approval'
+        'ignored-builds:List ignored build scripts'
+        'list:List installed dependencies'
+        'ls:Alias for list'
+        'why:Explain why a package is installed'
+        'outdated:List outdated dependencies'
+        'audit:Audit dependencies'
+        'licenses:Inspect dependency licenses'
+        'view:Show registry package metadata'
+        'search:Search registry packages'
+        'bin:Show the project binary directory'
+        'root:Show the project node_modules directory'
+        'query:Query dependencies'
+        'check:Check dependency consistency'
+        'sbom:Generate a software bill of materials'
+        'publish:Publish a package'
+        'pack:Create a package tarball'
+        'version:Bump the package version'
+        'dist-tag:Manage distribution tags'
+        'login:Log into a package registry'
+        'logout:Log out of a package registry'
+        'whoami:Show the current registry user'
+        'owner:Manage package owners'
+        'token:Manage registry tokens'
+        'node:Manage Node versions'
+        'pm:Manage the project package manager'
+        'upgrade:Upgrade nub'
+        'store:Manage the content-addressable store'
+        'cache:Manage cached package data'
+        'config:Manage configuration'
+        'get:Get a configuration value'
+        'set:Set a configuration value'
+        'help:Show help for a command'
+    )
+    _describe 'command' commands
+}
+
+_nub_first_argument() {
+    _alternative \
+        'commands:command:_nub_commands' \
+        'files:file:_files'
+}
+
+_nub_node_commands() {
+    local -a commands=(
+        'which:Print the resolved Node binary path'
+        'install:Provision Node versions'
+        'ls:List cached Node versions'
+        'uninstall:Remove a cached Node version'
+        'pin:Write the project Node version pin'
+        'shim:Route node through nub'
+        'unshim:Remove the node shim'
+    )
+    _describe 'node command' commands
+}
+
+_nub_pm_commands() {
+    local -a commands=(
+        'which:Print the resolved package-manager path'
+        'use:Declare the project package manager'
+        'pin:Pin nub for this project'
+        'update:Update the pinned package manager'
+        'up:Alias for update'
+        'cache:Manage cached package managers'
+        'shim:Install package-manager shims'
+        'unshim:Remove package-manager shims'
+    )
+    _describe 'package-manager command' commands
+}
+
+_nub_store_commands() {
+    local -a commands=(
+        'add:Add packages to the global store'
+        'path:Show the store path'
+        'prune:Remove unreferenced packages'
+        'status:Verify the store'
+    )
+    _describe 'store command' commands
+}
+
+_nub_config_commands() {
+    local -a commands=(
+        'delete:Remove a setting'
+        'rm:Alias for delete'
+        'remove:Alias for delete'
+        'unset:Alias for delete'
+        'get:Get a setting'
+        'list:List settings'
+        'ls:Alias for list'
+        'set:Set a setting'
+        'path:Show the global config path'
+    )
+    _describe 'config command' commands
+}
+
+_nub() {
+    local context state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '--cwd[Run as if started in a directory]:directory:_directories' \
+        '(-s --silent)'{-s,--silent}'[Suppress non-error output]' \
+        '*--verbose[Increase log verbosity]' \
+        '--color=-[Set color mode]:mode:(auto always never)' \
+        '--env-file[Load environment variables]:file:_files' \
+        '--env-file-if-exists[Load an optional environment file]:file:_files' \
+        '--no-env-file[Disable environment-file loading]' \
+        '--node[Disable nub runtime augmentation]' \
+        '--watch[Enable watch mode]' \
+        '(-v -V --version)'{-v,-V,--version}'[Show version]' \
+        '(-h --help)'{-h,--help}'[Show help]' \
+        '1:command or file:_nub_first_argument' \
+        '*::argument:->command'
+
+    case $state in
+        command)
+            case $line[1] in
+                run)
+                    _arguments \
+                        '--node[Disable nub runtime augmentation]' \
+                        '(-r --recursive --workspaces)'{-r,--recursive,--workspaces}'[Run in all workspace packages]' \
+                        '*'{-F,--filter}'[Filter workspace packages]:filter:' \
+                        '*--workspace[Select a workspace]:workspace:' \
+                        '(-w --workspace-root)'{-w,--workspace-root}'[Run from the workspace root]' \
+                        '--include-workspace-root[Include the workspace root]' \
+                        '--fail-if-no-match[Fail when no workspace matches]' \
+                        '--ignore-scripts[Skip lifecycle hooks]' \
+                        '--script-shell[Override the script shell]:shell:_command_names -e' \
+                        '--aggregate-output[Buffer package output]' \
+                        '--resume-from[Resume from a package]:package:' \
+                        '--workspace-concurrency[Maximum concurrent packages]:count:' \
+                        '--parallel[Run packages without topological ordering]' \
+                        '--bail[Stop on first failure]' \
+                        '--no-bail[Collect all failures]' \
+                        '--reverse[Use reverse topological order]' \
+                        '--no-sort[Disable topological sorting]' \
+                        '--sequential[Run packages sequentially]' \
+                        '--stream[Stream prefixed package output]' \
+                        '--reporter[Select output reporter]:reporter:(default silent ndjson)' \
+                        '--reporter-hide-prefix[Hide streamed output prefixes]' \
+                        '--if-present[Skip packages without the script]' \
+                        '--no-check[Skip dependency freshness checks]' \
+                        '--cwd[Run as if started in a directory]:directory:_directories' \
+                        '(-s --silent)'{-s,--silent}'[Suppress non-error output]' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:script:_nub_scripts' \
+                        '*:script argument:'
+                    ;;
+                exec)
+                    _arguments \
+                        '--node[Disable nub runtime augmentation]' \
+                        '(-r --recursive --workspaces)'{-r,--recursive,--workspaces}'[Run in all workspace packages]' \
+                        '*'{-F,--filter}'[Filter workspace packages]:filter:' \
+                        '*--workspace[Select a workspace]:workspace:' \
+                        '(-w --workspace-root)'{-w,--workspace-root}'[Run from the workspace root]' \
+                        '--include-workspace-root[Include the workspace root]' \
+                        '--fail-if-no-match[Fail when no workspace matches]' \
+                        '--workspace-concurrency[Maximum concurrent packages]:count:' \
+                        '--parallel[Run packages without topological ordering]' \
+                        '--no-check[Skip dependency freshness checks]' \
+                        '--cwd[Run as if started in a directory]:directory:_directories' \
+                        '(-s --silent)'{-s,--silent}'[Suppress non-error output]' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:binary:_nub_bins' \
+                        '*:binary argument:'
+                    ;;
+                dlx|x)
+                    _arguments \
+                        '*'{-p,--package}'[Fetch an explicit package]:package:' \
+                        '--no-install[Do not fetch missing packages]' \
+                        '--no[Alias for --no-install]' \
+                        '(-q --quiet)'{-q,--quiet}'[Suppress fetch progress]' \
+                        '(-y --yes)'{-y,--yes}'[Accept registry fetches]' \
+                        '--ignore-existing[Accepted for npx compatibility]' \
+                        '--no-check[Skip dependency freshness checks]' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:package:' \
+                        '*:package argument:'
+                    ;;
+                watch)
+                    _arguments \
+                        '--cwd[Run as if started in a directory]:directory:_directories' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:file:_files' \
+                        '*:file argument:'
+                    ;;
+                init)
+                    _arguments \
+                        '(-y --yes)'{-y,--yes}'[Use defaults without prompting]' \
+                        '--js[Create a JavaScript project]' \
+                        '--name[Set the project name]:name:' \
+                        '--no-git[Skip repository initialization]' \
+                        '--no-install[Skip dependency installation]' \
+                        '--force[Overwrite existing files]' \
+                        '(-h --help)'{-h,--help}'[Show help]'
+                    ;;
+                upgrade)
+                    _arguments \
+                        '--version[Target version]:version:' \
+                        '--canary[Upgrade to canary]' \
+                        '--stable[Upgrade to stable]' \
+                        '--dry-run[Show actions without changing anything]' \
+                        '(-y --yes)'{-y,--yes}'[Skip confirmation]' \
+                        '(-h --help)'{-h,--help}'[Show help]'
+                    ;;
+                node)
+                    _arguments \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:node command:_nub_node_commands' \
+                        '*:version:'
+                    ;;
+                pm)
+                    _arguments \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:package-manager command:_nub_pm_commands' \
+                        '*:argument:'
+                    ;;
+                install|i|ci)
+                    _arguments \
+                        '--frozen-lockfile[Fail when the lockfile is stale]' \
+                        '--no-frozen-lockfile[Always resolve dependencies]' \
+                        '--prefer-frozen-lockfile[Reuse a fresh lockfile]' \
+                        '(-P --prod --production)'{-P,--prod,--production}'[Install production dependencies only]' \
+                        '(-D --dev)'{-D,--dev}'[Install development dependencies only]' \
+                        '--ignore-scripts[Skip lifecycle scripts]' \
+                        '--no-optional[Skip optional dependencies]' \
+                        '--offline[Disallow network access]' \
+                        '--prefer-offline[Prefer cached packages]' \
+                        '--lockfile-only[Only update the lockfile]' \
+                        '--force[Force resolution and linking]' \
+                        '--node-linker[Select node_modules layout]:layout:(isolated hoisted)' \
+                        '--registry[Override the registry]:url:' \
+                        '(-C --dir)'{-C,--dir}'[Run from a directory]:directory:_directories' \
+                        '*'{-F,--filter}'[Filter workspace packages]:filter:' \
+                        '(-r --recursive)'{-r,--recursive}'[Run across workspaces]' \
+                        '--reporter[Select output format]:reporter:(default append-only silent)' \
+                        '--loglevel[Set log level]:level:(silent error warn info debug)' \
+                        '(-h --help)'{-h,--help}'[Show help]'
+                    ;;
+                add|a)
+                    _arguments \
+                        '(-D --save-dev)'{-D,--save-dev}'[Add as a development dependency]' \
+                        '(-E --save-exact)'{-E,--save-exact}'[Save an exact version]' \
+                        '(-g --global)'{-g,--global}'[Install globally]' \
+                        '(-O --save-optional)'{-O,--save-optional}'[Add as an optional dependency]' \
+                        '--save-peer[Add as a peer dependency]' \
+                        '--no-save[Do not update package.json]' \
+                        '--lockfile-only[Skip linking node_modules]' \
+                        '(-w --workspace)'{-w,--workspace}'[Add to the workspace root]' \
+                        '(-W --ignore-workspace-root-check)'{-W,--ignore-workspace-root-check}'[Allow adding at workspace root]' \
+                        '--registry[Override the registry]:url:' \
+                        '(-C --dir)'{-C,--dir}'[Run from a directory]:directory:_directories' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '*:package:'
+                    ;;
+                store)
+                    _arguments \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:store command:_nub_store_commands' \
+                        '*:package:'
+                    ;;
+                config)
+                    _arguments \
+                        '--all[Include unset settings]' \
+                        '--json[Output JSON]' \
+                        '--local[Use project configuration]' \
+                        '--location[Select configuration location]:location:(merged user project global)' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '1:config command:_nub_config_commands' \
+                        '*:setting or value:'
+                    ;;
+                help)
+                    _arguments '*:command:_nub_commands'
+                    ;;
+                *)
+                    _arguments \
+                        '--cwd[Run as if started in a directory]:directory:_directories' \
+                        '(-s --silent)'{-s,--silent}'[Suppress non-error output]' \
+                        '*--verbose[Increase log verbosity]' \
+                        '--color=-[Set color mode]:mode:(auto always never)' \
+                        '(-h --help)'{-h,--help}'[Show help]' \
+                        '*:argument:'
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_nub "$@"
