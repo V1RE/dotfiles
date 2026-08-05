@@ -6,10 +6,11 @@ gui:
   expandFocusedSidePanel: false
 git:
   localBranchSortOrder: recency
-  pagers:
+  diffRenderers:
     - colorArg: always
+      type: rawGit
     # - pager: delta --dark --paging=never
-    - pager: critique --stdin
+    - command: critique --stdin
   overrideGpg: true
   log:
     showWholeGraph: true
