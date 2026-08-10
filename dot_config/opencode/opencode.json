@@ -103,6 +103,21 @@
     }
   },
   "plugins": ["opencode-wakatime", "@2digits/opencode-plugin"],
+  "provider": {
+    "callstack.ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "callstack.ai",
+      "options": {
+        "baseURL": "https://api.callstack.ai/v1",
+        "apiKey": "{env:CALLSTACK_AUTH_TOKEN}"
+      },
+      "models": {
+        "callstack/Apex": {
+          "name": "Apex"
+        }
+      }
+    }
+  },
   "permissions": [
     {
       "action": "websearch",
