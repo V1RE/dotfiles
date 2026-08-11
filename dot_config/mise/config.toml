@@ -3,38 +3,48 @@
 [plugins]
 vite-plus = "https://github.com/markmals/mise-vite-plus"
 
+[tools.aube]
+version = "latest"
+postinstall = "aube completion zsh > {{ env.HOME }}/.zsh/_aube"
+
+[tools."npm:@opencode-ai/cli"]
+version = "next"
+allow_builds = ["@opencode-ai/cli"]
+postinstall = "opencode2 --completions zsh > {{ env.HOME }}/.zsh/_opencode2"
+depends = "aube"
+
+[tools.oh-my-pi]
+version = "latest"
+rename_exe = "omp"
+postinstall = "omp completions zsh > {{ env.HOME }}/.zsh/_omp"
+
+[tools.herdr]
+version = "latest"
+postinstall = "herdr completion zsh > {{ env.HOME }}/.zsh/_herdr"
+
 [tools]
 "cargo:worktrunk" = "latest"
-"github:can1357/oh-my-pi" = "latest"
-"github:code-yeongyu/go-claude-code-comment-checker" = "latest"
 "github:googleworkspace/cli" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:@opencode-ai/cli" = { version = "next", allow_builds = ["@opencode-ai/cli"] }
 "npm:agent-browser" = "latest"
-"npm:codemogger" = "latest"
+"npm:calldiff" = "latest"
 "npm:eas-cli" = "latest"
 "npm:fallow" = "latest"
-"npm:kimaki" = "latest"
 "npm:knip" = "latest"
 "npm:neovim" = "latest"
-"npm:ocx" = "latest"
 "npm:opensrc" = "latest"
-"npm:playwriter" = "latest"
-"npm:poke" = "latest"
 "npm:skills" = "latest"
 "npm:taze" = "latest"
 "npm:trash-cli" = "latest"
 "npm:turbo" = "latest"
 "npm:wrangler" = "latest"
 "npm:zele" = "latest"
-aube = "latest"
 bun = "latest"
 codex = "latest"
 graphite = "latest"
 hcloud = "latest"
 java = "latest"
 lazygit = "latest"
-herdr = "latest"
 node = "24"
 nub = "latest"
 pi = "latest"
@@ -51,22 +61,23 @@ color_theme = "catppuccin"
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 minimum_release_age = "0"
-trusted_config_paths = ["~/Code/"]
+trusted_config_paths = ["{{ env.HOME }}/Code/"]
 
 [settings.npm]
 package_manager = "aube"
 
 [settings.cargo]
 binstall = true
+binstall_quickinstall = true
+binstall_native = true
 
 [settings.pipx]
 uvx = true
 
 [bootstrap.packages]
 "brew-cask:1password" = "latest"
-"brew:herdr" = "latest"
 "brew:mas" = "latest"
-"mas:497799835" = "latest" # Xcode
+"mas:497799835" = "latest"       # Xcode
 
 [bootstrap.user]
 login_shell = "/bin/zsh"
@@ -111,8 +122,5 @@ OPENCODE_EXPERIMENTAL_NATIVE_LLM = "1"
 OPENCODE_ENABLE_PARALLEL = "1"
 
 CLAUDE_CODE_NO_FLICKER = true
-
-OPENSPEC_NO_AUTO_CONFIG = "1"
-OPENSPEC_NO_COMPLETIONS = "1"
 
 OPT_OUT_INSTRUMENTATION = true

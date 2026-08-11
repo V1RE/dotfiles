@@ -47,6 +47,5 @@
     "enabled": true,
     "scope": "cwd",
     "vertical": false
-  },
-  "plugins": ["@neriousy/opencode-browser@latest"]
+  }
 }

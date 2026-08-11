@@ -32,27 +32,9 @@
         },
         "disabled": true
       },
-      "gh_grep": {
-        "type": "remote",
-        "url": "https://mcp.grep.app",
-        "disabled": true
-      },
-      "context7": {
-        "url": "https://mcp.context7.com/mcp",
-        "type": "remote",
-        "headers": {
-          "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-        },
-        "disabled": true
-      },
       "websearch-exa": {
         "type": "remote",
         "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
-        "disabled": false
-      },
-      "codemogger": {
-        "type": "local",
-        "command": ["codemogger", "mcp"],
         "disabled": false
       }
     }
