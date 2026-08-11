@@ -39,9 +39,9 @@
   },
   "animations": true,
   "debug": {
-    "devtools": false,
-    "timing": false,
-    "turn_tokens": true
+    "devtools": true,
+    "timing": true,
+    "turn_tokens": "verbose"
   },
   "tabs": {
     "enabled": true,
