@@ -77,7 +77,7 @@ function ocw() {
 	return "$status"
 }
 
-alias npx="bunx"
+alias npx="nubx"
 
 function ctxup() {
 	local ctx_dir="$HOME/.ctx"
