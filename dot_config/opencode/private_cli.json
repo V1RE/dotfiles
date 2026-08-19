@@ -51,5 +51,8 @@
     "scope": "cwd",
     "vertical": false,
     "layout": "horizontal"
+  },
+  "experimental": {
+    "tab_scroll": true
   }
 }
