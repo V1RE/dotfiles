@@ -4,7 +4,7 @@
     "mode": "dark"
   },
   "keybinds": {
-    "input_undo": "ctrl+-,super+z,option+z"
+    "input.undo": "ctrl+-,super+z,option+z"
   },
   "scroll": {
     "speed": 6,
