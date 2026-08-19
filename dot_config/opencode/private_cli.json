@@ -1,7 +1,7 @@
 {
   "theme": {
     "name": "ayu",
-    "mode": "dark"
+    "mode": "system"
   },
   "keybinds": {
     "input.undo": "ctrl+-,super+z,option+z"
@@ -18,21 +18,24 @@
   "diffs": {
     "wrap": "word",
     "single": true,
-    "view": "auto",
+    "view": "unified",
     "tree": true
   },
   "terminal": {
     "title": true
   },
   "prompt": {
-    "paste": "compact"
+    "paste": "compact",
+    "image_preview": true
   },
   "session": {
     "sidebar": "auto",
     "scrollbar": true,
     "thinking": "show",
     "grouping": "auto",
-    "markdown": "rendered"
+    "markdown": "rendered",
+    "new_location": "launch",
+    "image_preview": true
   },
   "hints": {
     "onboarding": true
@@ -46,6 +49,7 @@
   "tabs": {
     "enabled": true,
     "scope": "cwd",
-    "vertical": false
+    "vertical": false,
+    "layout": "horizontal"
   }
 }
