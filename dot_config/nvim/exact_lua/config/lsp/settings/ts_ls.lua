@@ -1,8 +1,8 @@
-local inherited_root_dir = vim.lsp.config.tsgo.root_dir
+local inherited_root_dir = vim.lsp.config.ts_ls.root_dir
 local typescript = require("config.lsp.typescript")
 
 ---@type vim.lsp.Config
-local tsls = {
+local ts_ls = {
   single_file_support = false,
 
   root_dir = function(bufnr, on_dir)
@@ -13,12 +13,7 @@ local tsls = {
     end)
   end,
 
-  cmd = function(dispatchers, config)
-    local root = assert(config and config.root_dir, "tsgo requires a native TypeScript project root")
-    return vim.lsp.rpc.start({ typescript.local_tsc(root), "--lsp", "--stdio" }, dispatchers)
-  end,
-
-  ---@type lspconfig.settings.vtsls
+  ---@type lspconfig.settings.ts_ls
   settings = {
     ["js/ts"] = {
       tsdk = {
@@ -72,11 +67,11 @@ local tsls = {
         showOnAllClassMethods = true,
         showOnInterfaceMethods = true,
       },
-      preferGoToSourceDefinition = true,
-      reportStyleChecksAsWarnings = false,
+      reportStyleChecksAsWarnings = true,
       suggest = {
         classMemberSnippets = { enabled = true },
         objectLiteralMethodSnippets = { enabled = true },
+        jsdoc = { generateReturns = true },
       },
       preferences = {
         useAliasesForRenames = true,
@@ -95,10 +90,24 @@ local tsls = {
         functionLikeReturnTypes = { enabled = true },
         enumMemberValues = { enabled = true },
       },
+      tsdk = "./node_modules/typescript/bin",
+      suggestionActions = {
+        enabled = true,
+      },
+      tsserver = {
+        experimental = {
+          enableProjectDiagnostics = true,
+        },
+      },
+      experimental = {
+        useTsgo = true,
+      },
+      enablePromptUseWorkspaceTsdk = true,
+      validate = { enable = true },
     },
   },
 }
 
-tsls.settings.javascript = vim.tbl_deep_extend("force", {}, tsls.settings.typescript, tsls.settings.javascript or {})
+ts_ls.settings.javascript = vim.tbl_deep_extend("force", {}, ts_ls.settings.typescript, ts_ls.settings.javascript or {})
 
-return tsls
+return ts_ls

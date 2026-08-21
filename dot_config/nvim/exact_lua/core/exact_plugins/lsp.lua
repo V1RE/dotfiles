@@ -36,6 +36,7 @@ return {
         "yamlls",
         "oxlint",
         "vtsls",
+        "typescript-language-server",
         "shopify_theme_ls",
       },
       automatic_enable = false,
