@@ -5,13 +5,13 @@ local typescript = require("config.lsp.typescript")
 local vtsls = {
   single_file_support = false,
 
-  -- root_dir = function(bufnr, on_dir)
-  --   inherited_root_dir(bufnr, function(root)
-  --     if not typescript.is_native_typescript_root(root) then
-  --       on_dir(root)
-  --     end
-  --   end)
-  -- end,
+  root_dir = function(bufnr, on_dir)
+    inherited_root_dir(bufnr, function(root)
+      if not typescript.is_native_typescript_root(root) then
+        on_dir(root)
+      end
+    end)
+  end,
 
   ---@type lspconfig.settings.vtsls
   settings = {

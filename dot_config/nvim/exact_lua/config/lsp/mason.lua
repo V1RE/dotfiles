@@ -7,7 +7,7 @@ local servers = {
   "jsonls",
   "yamlls",
   "eslint",
-  "ts_ls",
+  "tsc",
   "vtsls",
   "oxlint",
   "taplo",
