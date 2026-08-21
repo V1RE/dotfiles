@@ -842,5 +842,8 @@
       "resource": "glab*",
       "effect": "deny"
     }
-  ]
+  ],
+  "websearch": {
+    "provider": "random"
+  }
 }
