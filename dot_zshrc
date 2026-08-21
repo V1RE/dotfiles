@@ -412,3 +412,6 @@ _origin_yargs_completions()
 }
 compdef _origin_yargs_completions origin
 ###-end-origin-completions-###
+
+# opencode
+export PATH=/Users/niels/.opencode/bin:$PATH
