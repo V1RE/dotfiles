@@ -28,6 +28,7 @@ return {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
     },
+    ---@type MasonLspconfigSettings
     opts = {
       ensure_installed = {
         "eslint",
@@ -36,10 +37,10 @@ return {
         "yamlls",
         "oxlint",
         "vtsls",
-        "typescript-language-server",
+        "ts_ls",
         "shopify_theme_ls",
       },
-      automatic_enable = false,
+      automatic_enable = true,
     },
   },
 }
