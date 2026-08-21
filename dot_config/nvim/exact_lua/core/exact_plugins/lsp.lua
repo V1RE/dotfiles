@@ -37,7 +37,7 @@ return {
         "yamlls",
         "oxlint",
         "vtsls",
-        "ts_ls",
+        "tsc",
         "shopify_theme_ls",
       },
       automatic_enable = true,
