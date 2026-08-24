@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+# amp.usage.kdl hash: {{ include "dot_zsh/completions/amp.usage.kdl" | sha256sum }}
+spec="${HOME}/.zsh/completions/amp.usage.kdl"
+completion="${HOME}/.zsh/_amp"
+temp="$(mktemp "${completion}.XXXXXX")"
+trap 'rm -f "${temp}"' EXIT HUP INT TERM
+
+usage generate completion zsh amp --file "${spec}" > "${temp}"
+mv -f "${temp}" "${completion}"
+trap - EXIT HUP INT TERM

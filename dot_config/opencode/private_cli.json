@@ -1,6 +1,6 @@
 {
   "theme": {
-    "name": "ayu",
+    "name": "orng",
     "mode": "system"
   },
   "keybinds": {
@@ -22,7 +22,8 @@
     "tree": true
   },
   "terminal": {
-    "title": true
+    "title": true,
+    "copy": "select"
   },
   "prompt": {
     "paste": "compact",

@@ -8,7 +8,7 @@ version = "latest"
 postinstall = "aube completion zsh > {{ env.HOME }}/.zsh/_aube"
 
 [tools."npm:@opencode-ai/cli"]
-version = "next"
+version = "beta"
 allow_builds = ["@opencode-ai/cli"]
 postinstall = "opencode2 --completions zsh > {{ env.HOME }}/.zsh/_opencode2"
 
@@ -54,6 +54,7 @@ usage = "latest"
 uv = "latest"
 vercel = "latest"
 vite-plus = "latest"
+hunk = "latest"
 
 [settings]
 color_theme = "catppuccin"
