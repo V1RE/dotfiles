@@ -1,0 +1,691 @@
+min_usage_version "6.2.0"
+// Command surface from `amp --help` and nested command help.
+name "Amp CLI"
+bin "amp"
+version "0.0.1787559091-g4e7735"
+about "The frontier agent"
+unknown_flags "error"
+
+flag "--visibility <visibility>" help="Set thread visibility (private, unlisted, workspace, group)" global=#true {
+  choices "private" "unlisted" "workspace" "group"
+}
+flag "-V --version" help="Print the version number and exit" global=#true
+flag "-v" help="Alias for --version" global=#true
+flag "--settings-file <file>" help="Custom settings file path" env="AMP_SETTINGS_FILE" global=#true
+flag "--log-level <value>" help="Set log level" env="AMP_LOG_LEVEL" global=#true
+flag "--log-file <file>" help="Set log file location" env="AMP_LOG_FILE" global=#true
+flag "--mcp-config <value>" help="JSON configuration or file path for MCP servers to merge with existing settings" global=#true
+flag "-m --mode <mode>" help="Set the agent mode (low, medium, high, ultra)" global=#true {
+  choices "low" "medium" "high" "ultra"
+}
+flag "--features <feature>" help="Enable a thread feature (fast or pro)" global=#true {
+  choices "fast" "pro"
+}
+flag "--fast" help="Run new threads in Fast mode; alias for --features fast" global=#true
+flag "--no-tui" help="Run Amp without a TUI and serve remote thread creation requests for the current directory" global=#true
+flag "--title <title>" help="With --execute, set the title of the new thread before starting the agent" global=#true
+flag "--stream-json" help="With --execute, output Claude Code-compatible stream JSON instead of plain text" global=#true
+flag "--stream-json-thinking" help="Include thinking blocks in stream JSON output; implies --stream-json" global=#true
+flag "--stream-json-input" help="Read JSON Lines user messages from stdin; requires --execute and --stream-json" global=#true
+flag "--plugin-ready-timeout [seconds]" help="With --execute, wait for plugins before running the turn; bare flag uses 10 seconds" value_optional=#true default_missing="10" global=#true
+flag "--no-archive-after-execute" help="Leave the thread unarchived after execute mode finishes" global=#true
+flag "-l --label <label>" help="Add a label to the thread created or continued by this command; repeatable" var=#true global=#true
+
+// Interactive and execute-mode options accepted on the root command.
+flag "--notifications" help="Enable notification alerts" negate="--no-notifications"
+flag "--color" help="Enable color output" negate="--no-color"
+flag "--ide" help="Enable IDE connection" negate="--no-ide"
+flag "--remote-control-terminal" help="Enable terminal access from ampcode.com for remote-controlled threads" negate="--no-remote-control-terminal" env="AMP_REMOTE_CONTROL_TERMINAL"
+flag "-x --execute [message]" help="Use execute mode, optionally with a user message" value_optional=#true
+flag "--orb-execute" help="With --execute, execute asynchronously in an Amp-managed orb; -ox is a shorthand for -x --orb-execute"
+flag "--project [project]" help="With --orb-execute, select the Amp project" value_optional=#true
+flag "--orb-size <size>" help="With --orb-execute, select the orb size"
+flag "--runner-id <id>" help="With --no-tui, set a stable runner ID"
+
+cmd "version" help="Print the version number and exit"
+
+cmd "logout" help="Log out by removing stored API key"
+
+cmd "login" help="Log in to Amp"
+
+cmd "orb" help="Commands for Amp-managed orbs" {
+  cmd "system-metrics" help="Print historical orb system metrics for a thread URL or ID" {
+    arg "<thread>" help="Thread URL or ID"
+  }
+  cmd "portal" help="Print the sandbox public portal URL for a local port or loopback URL" {
+    arg "[target]" help="Local port or loopback URL"
+    flag "--thread <thread>" help="Thread URL or ID (defaults to AMP_THREAD_ID)" env="AMP_THREAD_ID"
+    flag "--domain <domain>" help="Portal domain (defaults to AMP_PORTAL_DOMAIN or onamp.dev)" env="AMP_PORTAL_DOMAIN"
+    flag "--name <manifest-name>" help="Portal manifest name; writes .amp/portals/<name>.json (defaults to portal-<port>)"
+    flag "--title <title>" help="Portal tab title; writes the portal manifest .amp/portals/<name>.json (defaults to the manifest name)"
+    flag "--description <description>" help="Portal tab description shown as a note next to the link; written to the portal manifest"
+    flag "--hostname <hostname>" help="Set the portal's public hostname (a full managed hostname like <name>--<namespace>.onamp.dev or a custom domain) before printing the URL; pass 'auto' to restore the auto-generated hostname. The target may be omitted when exactly one portal is running."
+  }
+  cmd "service" help="Manage long-lived services (dev servers, watchers) as supervised systemd units that survive Amp CLI updates and orb pause/resume" {
+    alias "services"
+    cmd "ensure" help="Ensure every service declared in .amp/services.yaml is running and exposed at its portal URLs" {
+      flag "--json" help="Print machine-readable JSON results"
+    }
+    cmd "start" help="Start an undeclared ad-hoc supervised service, e.g.: amp orb service start preview --command 'pnpm dev' --portal" {
+      arg "<name>" help="Name"
+      flag "--command <command>" help="Shell command to run; it runs with $PORT set (and $PUBLIC_URL when --portal) and should listen on $PORT"
+      flag "--cwd <dir>" help="Working directory for the command (defaults to the current directory)"
+      flag "--port <port>" help="Local port for $PORT (defaults to the running service’s current port, else a free port)"
+      flag "--portal" help="Expose $PORT at a public portal URL: waits for it to listen, autodetects HTTP vs HTTPS, writes the portal manifest .amp/portals/<name>.json, and prints the portal URL"
+      flag "--title <title>" help="Portal tab title (defaults to the service name; requires --portal)"
+      flag "--description <description>" help="Portal tab description shown as a note next to the link (requires --portal)"
+    }
+    cmd "restart" help="Restart a declared service from .amp/services.yaml or reload an existing ad-hoc service" {
+      arg "<name>" help="Name"
+    }
+    cmd "stop" help="Stop a service" {
+      arg "<name>" help="Name"
+    }
+    cmd "status" help="Show systemd status for a service" {
+      arg "<name>" help="Name"
+    }
+    cmd "logs" help="Show recent logs for a service" {
+      arg "<name>" help="Name"
+      flag "-n --lines <count>" help="Number of log lines to show"
+    }
+    cmd "list" help="List orb services"
+  }
+  cmd "restart-processes" help="Refresh environment variables and restart all processes in an orb thread" {
+    flag "--thread <thread-url>" help="Thread URL (defaults to AMP_THREAD_ID)" env="AMP_THREAD_ID"
+  }
+  cmd "id-token" help="Mint a short-lived OIDC token with a caller-chosen audience and print it to stdout" {
+    flag "--audience <audience>" help="The aud claim of the minted token"
+    flag "--ttl-seconds <seconds>" help="Token lifetime in seconds (60-3600)"
+  }
+}
+
+cmd "portal" help="Commands for accessing Amp portal URLs" {
+  cmd "login-url" help="Mint a single-use login URL (valid ~60s) that signs a non-browser client into an Amp portal URL; fetching it once sets the portal session cookie and redirects to the portal page" {
+    arg "<portal-url>" help="Amp portal URL"
+  }
+}
+
+cmd "clone" help="Clone an Amp-hosted Project, Personal Plugins or Skills repository, or Workspace Plugins or Skills repository" {
+  arg "<repository>" help="Repository identifier or URL"
+  arg "[target-dir]" help="Clone destination directory"
+  flag "--no-git-setup" help="Do not configure the Git credential helper automatically (or set AMP_NO_GIT_SETUP=1)" env="AMP_NO_GIT_SETUP"
+}
+
+cmd "git-setup" help="Configure the Amp Git credential helper" {
+  flag "--uninstall" help="Remove only the Amp Git credential helper configuration"
+}
+
+cmd "files" help="Download files from Amp" {
+  cmd "get" help="Download a private Amp attachment" {
+    arg "<attachment-url>" help="Private Amp attachment URL"
+    flag "-o --output <file>" help="Write the attachment to this path"
+  }
+}
+
+cmd "top" help="Show a live list of active threads across all repositories." {
+  flag "--stream-jsonl" help="Stream a JSON line whenever the thread list changes (output schema is EXPERIMENTAL)"
+}
+
+cmd "last" help="Continue the last thread directly." {
+  alias "l"
+}
+
+cmd "report" help="Generate and send a diagnostic report for the amp --no-tui runner in this directory. Captures the runner log (no-tui.log), runner state, and settings, and works even after the runner exited. Prints the report ID and copies it to the clipboard."
+
+cmd "threads" help="Thread management commands. When no subcommand is provided, defaults to listing threads." {
+  alias "t"
+  alias "thread"
+  flag "--include-archived" help="Include archived threads in the list"
+  flag "--limit <number>" help="Maximum number of threads to return"
+  flag "--offset <number>" help="Number of threads to skip"
+  cmd "new" help="Create a new thread and print its ID. The thread will be empty. You can set the visibility using the --visibility option." {
+    alias "n"
+    flag "--visibility <visibility>" help="Set thread visibility (private, unlisted, workspace, group)" {
+      choices "private" "unlisted" "workspace" "group"
+    }
+  }
+  cmd "continue" help="Continue an existing thread by resuming the conversation. Each thread can be a thread URL or ID. By default, interactive mode shows a picker. Use --last to continue the last thread for the current mode directly. When multiple threads are given, all are resumed and the first is shown in the foreground." {
+    alias "c"
+    arg "[threads]..." help="Thread URLs or IDs"
+    flag "--last" help="Continue the last thread for the current mode directly"
+    flag "--pick" help="Pick a thread interactively from a list (DEPRECATED: picker is now the default)" deprecated="picker is now the default"
+  }
+  cmd "list" help="List all your threads with their IDs, names, and last modified times." {
+    alias "l"
+    alias "ls"
+    flag "--include-archived" help="Include archived threads in the list"
+    flag "--installation-id <installationID>" help="Only list threads for a specific installation ID"
+    flag "--limit <number>" help="Maximum number of threads to return"
+    flag "--offset <number>" help="Number of threads to skip"
+    flag "--json" help="Output as JSON"
+  }
+  cmd "usage" help="Show display cost information for a thread. Accepts either a thread URL or ID." {
+    arg "<thread>" help="Thread URL or ID"
+    flag "--details" help="Show detailed credit, token, model, and tool usage"
+    flag "--start <timestamp>" help="Start of the usage range as an ISO 8601 timestamp"
+    flag "--end <timestamp>" help="Exclusive end of the usage range as an ISO 8601 timestamp"
+  }
+  cmd "visibility" help="Print the explicit repo visibility override or \"inherited\", or set a new default (private, workspace, group)." {
+    alias "v"
+    arg "[visibility]" help="Visibility level" {
+      choices "private" "workspace" "group"
+    }
+  }
+  cmd "search" help="Search for threads using a query DSL." {
+    alias "find"
+    arg "<query>" help="Thread search query"
+    flag "-n --limit <number>" help="Maximum number of threads to return"
+    flag "--offset <number>" help="Number of results to skip (for pagination)"
+    flag "--json" help="Output as JSON"
+  }
+  cmd "label" help="Add one or more labels to an existing thread without removing the labels it already has." {
+    arg "<thread>" help="Thread URL or ID"
+    arg "<labels>..." help="Labels to add"
+  }
+  cmd "share" help="Change thread visibility (private, unlisted, workspace, group). Use --visibility to change who can access the thread." {
+    alias "s"
+    arg "<thread>" help="Thread URL or ID"
+    flag "--visibility <visibility>" help="Set thread visibility (private, unlisted, workspace, group)" {
+      choices "private" "unlisted" "workspace" "group"
+    }
+    cmd "multiplayer" help="Open the thread so workspace members can contribute, or close it again. Only works on orb threads that are shared (for example --visibility workspace)." {
+      cmd "on" help="Open the thread for contributions for the default duration (1 week)" {
+        arg "<thread>" help="Thread URL or ID"
+      }
+      cmd "off" help="Close the thread for contributions" {
+        arg "<thread>" help="Thread URL or ID"
+      }
+      cmd "ttl" help="Open the thread for contributions for a specific duration between 5 minutes and 7 days. Duration flags can be combined (for example --hours 1 --minutes 30)." {
+        arg "<thread>" help="Thread URL or ID"
+        flag "--minutes <minutes>" help="Duration in minutes"
+        flag "--hours <hours>" help="Duration in hours"
+        flag "--days <days>" help="Duration in days"
+        flag "--weeks <weeks>" help="Duration in weeks"
+      }
+    }
+  }
+  cmd "report" help="Generate and send a diagnostic report (thread state, client logs, settings) for the given thread to provide to Amp support. Equivalent to running \"feedback: generate and send diagnostic report\" from within the CLI on this thread. Prints the report ID and copies it to the clipboard." {
+    arg "<thread>" help="Thread URL or ID"
+  }
+  cmd "rename" help="Change the title of a thread. Quote names with spaces: amp threads rename https://ampcode.com/threads/T-12345678-0000-0000-0000-000000000000 \"New thread name\"" {
+    alias "r"
+    arg "<thread>" help="Thread URL or ID"
+    arg "<newName>" help="New thread title"
+  }
+  cmd "archive" help="Archive a thread to hide it from the thread switcher and navigation. Use --unarchive to restore." {
+    arg "<thread>" help="Thread URL or ID"
+    flag "--unarchive" help="Unarchive the thread instead of archiving"
+  }
+  cmd "delete" help="Permanently delete a thread from both the local client and the server." {
+    arg "<thread>" help="Thread URL or ID"
+  }
+  cmd "markdown" help="Render a thread as markdown. This outputs the entire conversation history in a readable markdown format." {
+    alias "md"
+    arg "<thread>" help="Thread URL or ID"
+  }
+  cmd "export" help="Export a thread as JSON. This outputs the full thread payload." {
+    arg "<thread>" help="Thread URL or ID"
+  }
+  cmd "raw" help="Export raw thread-actor data as JSON. This includes stored messages, subagent messages, and compaction summaries. Access is restricted to internal users." {
+    alias "raw-thread"
+    arg "<thread>" help="Thread URL or ID"
+  }
+}
+
+cmd "tools" help="Tool management commands" {
+  alias "tool"
+  cmd "list" help="List all active tools (including MCP tools)" {
+    alias "ls"
+    flag "--json" help="output as a single JSON array"
+    flag "--mode <mode>" help="filter tools by agent mode (default: medium)" {
+      choices "low" "medium" "high" "ultra"
+    }
+  }
+  cmd "show" help="Show details about an active tool" {
+    arg "<tool>" help="The tool for which to show details"
+    flag "--json" help="output as a single JSON object"
+    flag "--mode <mode>" help="filter tools by agent mode (default: medium)" {
+      choices "low" "medium" "high" "ultra"
+    }
+  }
+}
+
+cmd "plugins" help="Manage project, system, personal, and workspace plugins" {
+  alias "plugin"
+  cmd "add" help="Install a plugin from a URL" {
+    arg "<url>" help="Plugin source URL (or short form @OWNER/NAME is expanded to https://ampcode.com/@OWNER/plugins/NAME.ts)"
+    flag "--auto-update" help="Automatically update this plugin when plugins are loaded"
+    flag "--target <target>" help="Where to put this plugin: system (default, /Users/niels/.config/amp/plugins) or workspace (.amp/plugins)" {
+      choices "system" "workspace"
+    }
+  }
+  cmd "remove" help="Remove an installed plugin" {
+    alias "rm"
+    arg "<plugin>" help="Plugin to remove: short form @OWNER/NAME, a URL, or a plugin file name (e.g. fable-mode.ts)"
+    flag "--target <target>" help="Only remove from this location: system (/Users/niels/.config/amp/plugins) or workspace (.amp/plugins). Defaults to searching both." {
+      choices "system" "workspace"
+    }
+  }
+  cmd "update" help="Update installed plugins or one imported shared plugin" {
+    arg "[plugin]" help="Plugin name or path to update (defaults to all plugins with directives)"
+    flag "--force" help="Replace committed local changes to an imported plugin"
+  }
+  cmd "list" help="List loaded project, system, personal, and workspace plugins" {
+    alias "ls"
+  }
+  cmd "import" help="Import a shared personal plugin into a plugin repository checkout" {
+    arg "<url>" help="Shared personal plugin URL"
+    flag "--repository <dir>" help="Personal or Workspace Plugins repository checkout"
+    flag "--overwrite" help="Replace a plugin with the same file name"
+  }
+  cmd "repositories" help="List available Personal Plugins and Workspace Plugins repositories" {
+    alias "repos"
+    flag "--json" help="Output repositories as JSON"
+  }
+  cmd "show-agent-options" help="Show models and built-in tool names available to plugin agents" {
+    flag "--json" help="Output metadata as JSON"
+  }
+  cmd "exec" help="Execute a plugin with a given event" {
+    arg "<plugin>" help="Plugin file or directory path (e.g., .amp/plugins/foo.ts)"
+    arg "<event>" help="Event name to send (e.g., tool.result)"
+    flag "--data <json>" help="JSON event data"
+  }
+  cmd "show-docs" help="Output the plugin API documentation understood by this version of Amp"
+}
+
+cmd "skill" help="Manage skills from shared references, Git repositories, or local paths" {
+  alias "skills"
+  cmd "add" help="Install skills from a source" {
+    arg "<source>" help="Skill source (owner/repo[/path], Git URL, or local path)"
+    flag "--target <dir>" help="Target directory for skills"
+    flag "--global" help="Install to global skills directory (~/.config/agents/skills/)"
+    flag "--overwrite" help="Overwrite existing skill with the same name"
+    flag "--name <name>" help="Install with a custom local name"
+  }
+  cmd "list" help="List all available skills" {
+    alias "ls"
+    flag "--json" help="Output as JSON"
+  }
+  cmd "remove" help="Remove an installed skill" {
+    alias "rm"
+    arg "<name>" help="Name of the skill to remove (skill-name or @user/skill-name)"
+    flag "--target <dir>" help="Target directory for skills"
+  }
+  cmd "info" help="Show information about a skill" {
+    arg "<name>" help="Name of the skill"
+    flag "--json" help="Output as JSON"
+  }
+  cmd "repositories" help="List available Personal Skills and Workspace Skills repositories" {
+    alias "repos"
+    flag "--json" help="Output repositories as JSON"
+  }
+}
+
+cmd "permissions" help="Configure and test tool permissions to control what actions the AI agent can take." {
+  alias "permission"
+  cmd "list" help="List user-configured permissions." {
+    alias "ls"
+    flag "--json" help="output as JSON"
+    flag "--builtin" help="output only builtin permissions"
+    flag "-w --workspace" help="List workspace permissions instead of global"
+  }
+  cmd "test" help="Test permissions against configured rules without running the tool." {
+    arg "<tool-name>" help="Name of the tool to test"
+    flag "-c --context <context>" help="Execution context (thread or subagent)" {
+      choices "thread" "subagent"
+    }
+    flag "-t --thread-id <thread>" help="Thread URL or ID for evaluation"
+    flag "--json" help="output as JSON"
+    flag "-q --quiet" help="suppress output, only use exit status"
+    flag "-w --workspace" help="Test against workspace permissions instead of global"
+  }
+  cmd "edit" help="Edit permissions interactively in your $EDITOR or from stdin." {
+    flag "-w --workspace" help="Edit workspace permissions instead of global"
+  }
+  cmd "add" help="Add a permission rule to the beginning of the list. Rules are evaluated in order, so newer rules take precedence." {
+    arg "<action>" help="Permission action: allow, reject, ask, or delegate" {
+      choices "allow" "reject" "ask" "delegate"
+    }
+    arg "<tool>" help="Tool name (supports globs like \"mcp__playwright__*\")"
+    flag "--to <program>" help="Program to delegate decision to for delegate action"
+    flag "--context <type>" help="Limit to specific context (thread or subagent)" {
+      choices "thread" "subagent"
+    }
+    flag "-w --workspace" help="Add to workspace permissions instead of global"
+  }
+}
+
+cmd "mcp" help="Add and manage MCP servers" {
+  cmd "add" help="Add an MCP server to amp.mcpServers in the Amp CLI settings file." {
+    arg "<name>" help="Name"
+    arg "[args]..." help="Arguments"
+    flag "--env <kv>" help="Environment variables as KEY=VALUE pairs (repeatable)" var=#true
+    flag "--header <kv>" help="HTTP headers as KEY=VALUE pairs for URL-based MCP servers (repeatable)" var=#true
+    flag "--workspace" help="Target workspace settings instead of global settings"
+  }
+  cmd "list" help="List enabled MCP servers from your Amp account and configured servers from local global and workspace settings." {
+    flag "--json" help="Output as JSON"
+  }
+  cmd "remove" help="Remove an MCP server from amp.mcpServers in the settings file." {
+    arg "<name>" help="Name"
+  }
+  cmd "oauth" help="Manage OAuth authentication for MCP servers" {
+    cmd "login" help="Register OAuth client credentials for an MCP server" {
+      arg "<server-name>" help="MCP server name"
+      flag "--server-url <url>" help="MCP server URL"
+      flag "--client-id <id>" help="OAuth client ID"
+      flag "--client-secret <secret>" help="OAuth client secret; only necessary for clients that don't support PKCE"
+      flag "--scopes <scopes>" help="OAuth scopes (comma-separated)"
+      flag "--auth-url <url>" help="OAuth authorization URL (discovered if not provided)"
+      flag "--token-url <url>" help="OAuth token URL (discovered if not provided)"
+    }
+    cmd "logout" help="Remove OAuth credentials for an MCP server" {
+      arg "<server-name>" help="MCP server name"
+    }
+    cmd "status" help="Show OAuth status for an MCP server" {
+      arg "<server-name>" help="MCP server name"
+    }
+    cmd "help" help="display help for command" {
+      arg "[command]" help="Command"
+    }
+  }
+  cmd "doctor" help="Wait for MCP service initialization and display the status of configured servers." {
+    arg "[name]" help="Name"
+  }
+  cmd "approve" help="Approve a workspace MCP server for execution." {
+    arg "<name>" help="Name"
+  }
+}
+
+cmd "config" help="Manage Amp configuration" {
+  cmd "edit" help="Open the Amp settings file in $EDITOR. By default, this opens user settings. Use --workspace to edit the workspace-specific .amp/settings.json file." {
+    flag "--global" help="Edit user settings (default)"
+    flag "--workspace" help="Edit workspace settings"
+  }
+  cmd "keymap" help="List all command IDs, descriptions, and effective keymap entries"
+  cmd "model-providers" help="Manage model provider keys and subscriptions (bring your own key or subscription)" {
+    flag "--json" help="print the complete non-secret connection data as JSON"
+    flag "--workspace" help="list keys of your current workspace instead of your user"
+    cmd "list" help="List model provider keys and subscriptions" {
+      flag "--json" help="print the complete non-secret connection data as JSON"
+      flag "--workspace" help="list keys of your current workspace instead of your user"
+    }
+    cmd "activate" help="Activate a model provider key (deactivates any other active key of the same provider)" {
+      arg "<connection-id>" help="ID of the model provider key to update, or an alias for your sole subscription of that type (claude_sub, openai_chatgpt, xai_grok)"
+    }
+    cmd "deactivate" help="Deactivate a model provider key" {
+      arg "<connection-id>" help="ID of the model provider key to update, or an alias for your sole subscription of that type (claude_sub, openai_chatgpt, xai_grok)"
+      flag "-y --yes" help="Confirm subscription deactivation"
+    }
+    cmd "show" help="Show complete non-secret model provider connection data as JSON" {
+      arg "<id>" help="ID of the model provider key to show"
+      flag "--workspace" help="read from your current workspace instead of your user"
+    }
+    cmd "delete" help="Delete a model provider key or subscription" {
+      arg "<id>" help="ID of the model provider key to delete"
+    }
+    cmd "test" help="Test a model provider key or subscription" {
+      arg "<id>" help="ID of the model provider key to test"
+    }
+    cmd "add-router" help="Add an AI model router and select the models routed through it" {
+      arg "<router>" help="Provider to add: ollama-cloud, openrouter, vercel, cloudflare, opencode-go, or openai-compatible" {
+        choices "ollama-cloud" "openrouter" "vercel" "cloudflare" "opencode-go" "openai-compatible"
+      }
+      flag "--name <name>" help="custom connection name"
+      flag "--models <models>" help="comma-separated provider/model IDs"
+      flag "--api-key-env <variable>" help="environment variable containing the API key"
+      flag "--active" help="activate the model router after creating it" negate="--no-active"
+      flag "--personal" help="add the model router to your personal account"
+      flag "--workspace" help="add the model router to your current workspace"
+      flag "--base-url <url>" help="OpenAI-compatible API base URL, using HTTPS"
+      flag "--cloudflare-account-id <id>" help="Cloudflare account ID"
+      flag "--cloudflare-gateway-id <id>" help="Cloudflare AI Gateway ID"
+      flag "--headers <json>" help="custom request headers as JSON [name, value] pairs"
+      flag "--query-params <json>" help="OpenAI-compatible API query parameters as a JSON object"
+      flag "--router-options <json>" help="typed request options for the selected dedicated gateway"
+    }
+    cmd "edit-router" help="Edit an AI model router" {
+      arg "<connection-id>" help="ID of the AI model router to edit"
+      flag "--name <name>" help="new connection name"
+      flag "--models <models>" help="new comma-separated provider/model IDs"
+      flag "--base-url <url>" help="new OpenAI-compatible API base URL, using HTTPS"
+      flag "--cloudflare-account-id <id>" help="Cloudflare account ID"
+      flag "--cloudflare-gateway-id <id>" help="Cloudflare AI Gateway ID"
+      flag "--headers <json>" help="custom request headers as JSON [name, value] pairs"
+      flag "--query-params <json>" help="new OpenAI-compatible API query parameters as a JSON object"
+      flag "--router-options <json>" help="new typed request options for the dedicated gateway"
+    }
+    cmd "add-chatgpt-subscription" help="Link your ChatGPT subscription to Amp as a model provider by signing in to OpenAI in your browser"
+  }
+  cmd "vocabulary" help="You can improve the accuracy of AMP's dictation by giving it a list of terms that you use often that it transcribes incorrectly. You can also ask AMP itself to improve by looking through your recent threads where you used voice transcription for words that look like they were mistranscribed and to update it in your vocabulary using this subcommand." {
+    cmd "show" help="Show personal dictation vocabulary (default)"
+    cmd "add" help="Add terms without replacing existing vocabulary" {
+      arg "<terms>..." help="Terms separated by spaces or commas; quote multi-word terms"
+    }
+    cmd "set" help="Replace personal dictation vocabulary; omit terms to clear it" {
+      arg "[terms]..." help="Terms separated by spaces or commas; quote multi-word terms"
+    }
+  }
+}
+
+cmd "domains" help="Manage custom domains for sites" {
+  cmd "list" help="List custom domains, statuses, and required DNS records" {
+    flag "--user" help="Use domains on your personal account"
+    flag "--workspace" help="Use domains on your current workspace"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "add" help="Add a custom domain" {
+    arg "<hostname>" help="Domain hostname"
+    flag "--user" help="Use domains on your personal account"
+    flag "--workspace" help="Use domains on your current workspace"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "check" help="Request an immediate DNS and provisioning status check" {
+    arg "<hostname>" help="Domain hostname"
+    flag "--user" help="Use domains on your personal account"
+    flag "--workspace" help="Use domains on your current workspace"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "remove" help="Remove a custom domain" {
+    alias "rm"
+    arg "<hostname>" help="Domain hostname"
+    flag "--user" help="Use domains on your personal account"
+    flag "--workspace" help="Use domains on your current workspace"
+    flag "-y --yes" help="Confirm removal"
+    flag "--json" help="Print JSON output"
+  }
+}
+
+cmd "projects" help="Manage Amp projects" {
+  flag "--json" help="Print JSON output"
+  cmd "create" help="Create a project for a repository" {
+    arg "<repository>" help="Repository identifier or URL"
+    flag "--orb-size <size>" help="Orb size"
+    flag "--ship-behavior <behavior>" help="Ship behavior" {
+      choices "ship" "push-to-branch" "custom"
+    }
+    flag "--custom-ship-prompt-file <path>" help="Read the Custom Ship prompt from a file, or '-' for stdin"
+    flag "--commit-author <author>" help="Git commit author"
+    flag "--icon <path>" help="Project icon image"
+    flag "--name <name>" help="Project name. Defaults to the repository name."
+    flag "--personal" help="Create the project under your personal account"
+    flag "--workspace" help="Create the project under your current workspace (default when set)"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "update" help="Update project settings by ID, namespace/name, or repository" {
+    arg "<project>" help="Project ID, namespace/name, or repository"
+    flag "--orb-size <size>" help="Orb size"
+    flag "--ship-behavior <behavior>" help="Ship behavior" {
+      choices "ship" "push-to-branch" "custom"
+    }
+    flag "--custom-ship-prompt-file <path>" help="Read the Custom Ship prompt from a file, or '-' for stdin"
+    flag "--commit-author <author>" help="Git commit author"
+    flag "--description <description>" help="Amp Store listing description"
+    flag "--icon <path>" help="Project icon image"
+    flag "--listed-on-amp-store" help="List the project on the Amp Store" negate="--no-listed-on-amp-store"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "list" help="List projects accessible to you" {
+    flag "--json" help="Print JSON output"
+  }
+  cmd "status" help="Show the project matched by this directory's git remotes" {
+    flag "--json" help="Print JSON output"
+  }
+  cmd "get" help="Get a project by ID, namespace/name, or repository" {
+    arg "<project>" help="Project ID, namespace/name, or repository"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "gallery-media" help="Manage a project’s Amp Store gallery media" {
+    cmd "get" help="Print a project’s Amp Store gallery media as JSON" {
+      arg "<project>" help="Project ID, namespace/name, or repository"
+    }
+    cmd "set" help="Set a project’s Amp Store gallery media from a JSON array of {\"type\":\"image\"|\"video\",\"url\":\"<Amp artifact URL>\",\"width\":N,\"height\":N} items" {
+      arg "<project>" help="Project ID, namespace/name, or repository"
+      arg "<json>" help="JSON value"
+    }
+  }
+  cmd "delete" help="Delete a project by ID, namespace/name, or repository" {
+    alias "rm"
+    arg "<project>" help="Project ID, namespace/name, or repository"
+    flag "-y --yes" help="Confirm deletion"
+    flag "--json" help="Print JSON output"
+  }
+}
+
+cmd "apps" help="Manage workspace apps" {
+  cmd "deploy" help="Deploy a directory to a workspace app" {
+    arg "<workspace/app>" help="Workspace and app name"
+    arg "<directory>" help="Directory to deploy"
+    flag "--command <executable>" help="Executable to start inside the bundle"
+    flag "--arg <value>" help="Argument passed to the executable (repeatable)" var=#true
+    flag "--domain <hostname>" help="Custom domain for this app"
+    flag "--default-domain" help="Return this app to its Amp-provided domain"
+    flag "--port <port>" help="Port exposed by the server"
+    flag "--health-path <path>" help="HTTP path used to verify the deployment"
+    flag "--icon <path>" help="App icon image"
+    flag "--size <size>" help="Sandbox size for this deployment"
+  }
+  cmd "create" help="Create a workspace app" {
+    arg "<workspace/app>" help="Workspace and app name"
+    flag "--icon <path>" help="App icon image"
+  }
+  cmd "edit" help="Edit a workspace app" {
+    arg "<workspace/app>" help="Workspace and app name"
+    flag "--icon <path>" help="App icon image"
+  }
+  cmd "list" help="List apps in a workspace" {
+    arg "<workspace>" help="Workspace namespace"
+  }
+  cmd "deployments" help="List deployment history for an app" {
+    arg "<workspace/app>" help="Workspace and app name"
+  }
+  cmd "delete" help="Delete a workspace app" {
+    arg "<workspace/app>" help="Workspace and app name"
+    flag "--yes" help="Confirm deleting the app and its deployment history"
+  }
+}
+
+cmd "oauth-clients" help="Manage workspace External API OAuth clients" {
+  cmd "list" help="List OAuth clients and client IDs" {
+    flag "--workspace <namespace>" help="Workspace namespace that owns the OAuth client"
+  }
+  cmd "create" help="Create a Sign in with Amp OAuth client" {
+    flag "--type <type>" help="OAuth client type"
+    flag "--name <name>" help="OAuth client name"
+    flag "--description <description>" help="OAuth client description"
+    flag "--redirect-uri <uri>" help="Redirect URI (repeatable; first is the default)" var=#true
+    flag "--scope <scope>" help="Delegated OAuth scope (repeatable)" var=#true
+    flag "--workspace <namespace>" help="Workspace namespace that owns the OAuth client"
+  }
+  cmd "edit" help="Edit a Sign in with Amp OAuth client" {
+    arg "<id>" help="Resource ID"
+    flag "--name <name>" help="OAuth client name"
+    flag "--description <description>" help="OAuth client description; pass an empty value to clear"
+    flag "--redirect-uri <uri>" help="Replace redirect URIs (repeatable; first is the default)" var=#true
+    flag "--scope <scope>" help="Replace delegated OAuth scopes (repeatable)" var=#true
+    flag "--clear-scopes" help="Remove all delegated OAuth scopes"
+    flag "--workspace <namespace>" help="Workspace namespace that owns the OAuth client"
+  }
+}
+
+cmd "secrets" help="Manage environment variables and secrets for orbs and Apps" {
+  cmd "list" help="List secret and environment variable names" {
+    flag "--user" help="Use your user-level secrets"
+    flag "--workspace" help="Use workspace secrets and environment variables"
+    flag "--app <app>" help="Use an App (workspace/app)"
+    flag "--project [project]" help="Use a project (ID, namespace/name, or repository); defaults to the current directory's project" value_optional=#true
+    flag "--json" help="Print JSON output"
+  }
+  cmd "history" help="Show the change history of secrets and environment variables, including deletions (values are never shown)" {
+    arg "[name]" help="Name"
+    flag "--user" help="Use your user-level secrets"
+    flag "--workspace" help="Use workspace secrets and environment variables"
+    flag "--app <app>" help="Use an App (workspace/app)"
+    flag "--project [project]" help="Use a project (ID, namespace/name, or repository); defaults to the current directory's project" value_optional=#true
+    flag "--json" help="Print JSON output"
+  }
+  cmd "get" help="Get an environment variable value (secret values are never returned)" {
+    arg "<name>" help="Name"
+    flag "--user" help="Use your user-level environment variables"
+    flag "--workspace" help="Use workspace secrets and environment variables"
+    flag "--app <app>" help="Use an App (workspace/app)"
+    flag "--project [project]" help="Use a project (ID, namespace/name, or repository); defaults to the current directory's project" value_optional=#true
+  }
+  cmd "set" help="Add or update a secret or environment variable" {
+    arg "<name>" help="Name"
+    flag "--user" help="Use your user-level secrets"
+    flag "--workspace" help="Use workspace secrets and environment variables"
+    flag "--app <app>" help="Use an App (workspace/app)"
+    flag "--project [project]" help="Use a project (ID, namespace/name, or repository); defaults to the current directory's project" value_optional=#true
+    flag "--data-file <path>" help="Read the value from a file, or '-' for stdin"
+    flag "--env" help="Store as an environment variable"
+    flag "--secret" help="Store as a secret"
+    flag "--json" help="Print JSON output"
+  }
+  cmd "delete" help="Delete a secret or environment variable" {
+    alias "rm"
+    arg "<name>" help="Name"
+    flag "--user" help="Use your user-level secrets"
+    flag "--workspace" help="Use workspace secrets and environment variables"
+    flag "--app <app>" help="Use an App (workspace/app)"
+    flag "--project [project]" help="Use a project (ID, namespace/name, or repository); defaults to the current directory's project" value_optional=#true
+    flag "-y --yes" help="Confirm deletion"
+    flag "--json" help="Print JSON output"
+  }
+}
+
+cmd "svc" help="Call connected services through Amp" {
+  cmd "gmail" help="Call the connected Gmail account" {
+    cmd "search_messages" help="Search Gmail messages" {
+      flag "--input <json>" help="search_messages input as a JSON object"
+    }
+    cmd "read_message" help="Read one Gmail message" {
+      flag "--input <json>" help="read_message input as a JSON object"
+    }
+    cmd "list_labels" help="List Gmail labels"
+    cmd "create_draft" help="Create a Gmail draft" {
+      flag "--input <json>" help="create_draft input as a JSON object"
+    }
+    cmd "send_message" help="Send a Gmail message" {
+      flag "--input <json>" help="send_message input as a JSON object"
+    }
+    cmd "send_draft" help="Send a Gmail draft" {
+      flag "--input <json>" help="send_draft input as a JSON object"
+    }
+    cmd "modify_labels" help="Modify Gmail message labels" {
+      flag "--input <json>" help="modify_labels input as a JSON object"
+    }
+  }
+}
+
+cmd "usage" help="Show your current Amp usage and credit balance" {
+  flag "--details" help="Show detailed credit, token, and thread usage"
+  flag "--start <timestamp>" help="Start of the usage range as an ISO 8601 timestamp"
+  flag "--end <timestamp>" help="End of the usage range as an ISO 8601 timestamp"
+}
+
+cmd "update" help="Update Amp CLI to the latest version. You can specify a particular version to install, or leave blank to get the latest stable release." {
+  alias "up"
+  flag "--target-version <version>" help="Update to a specific version"
+  flag "--porcelain" help="Print a machine-readable result to stdout: \"updated <version>\" or \"no update needed\""
+}
