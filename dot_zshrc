@@ -136,9 +136,10 @@ fpath=(
 autoload -Uz compinit
 () {
     local dump=${ZDOTDIR:-$HOME}/.zcompdump
-    # Argument list is non-empty only when the dump is over 24 h old, in which
-    # case pay for a full security-checked rebuild. Otherwise trust the cache.
-    if (( $# )); then
+    # Rebuild when the dump is over 24 h old or a local completion directory
+    # changed. `compinit -C` does not scan fpath, so otherwise newly installed
+    # completions remain invisible until the age-based rebuild.
+    if (( $# )) || [[ ! -s $dump || $HOME/.zsh -nt $dump || $HOME/.zsh/completions -nt $dump ]]; then
         compinit -i -d $dump
     else
         compinit -C -i -d $dump
