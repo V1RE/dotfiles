@@ -3,24 +3,6 @@
 [plugins]
 vite-plus = "https://github.com/markmals/mise-vite-plus"
 
-[tools.aube]
-version = "latest"
-postinstall = "aube completion zsh > {{ env.HOME }}/.zsh/_aube"
-
-[tools."npm:@opencode-ai/cli"]
-version = "beta"
-allow_builds = ["@opencode-ai/cli"]
-postinstall = "opencode2 --completions zsh > {{ env.HOME }}/.zsh/_opencode2"
-
-[tools.oh-my-pi]
-version = "latest"
-rename_exe = "omp"
-postinstall = "omp completions zsh > {{ env.HOME }}/.zsh/_omp"
-
-[tools.herdr]
-version = "latest"
-postinstall = "herdr completion zsh > {{ env.HOME }}/.zsh/_herdr"
-
 [tools]
 "cargo:worktrunk" = "latest"
 "github:googleworkspace/cli" = "latest"
@@ -56,12 +38,32 @@ vercel = "latest"
 vite-plus = "latest"
 hunk = "latest"
 
+[tools.aube]
+version = "latest"
+postinstall = "aube completion zsh > {{ env.HOME }}/.zsh/_aube"
+
+[tools."npm:@opencode-ai/cli"]
+version = "beta"
+allow_builds = ["@opencode-ai/cli"]
+postinstall = "opencode2 --completions zsh > {{ env.HOME }}/.zsh/_opencode2"
+
+[tools.oh-my-pi]
+version = "latest"
+rename_exe = "omp"
+postinstall = "omp completions zsh > {{ env.HOME }}/.zsh/_omp"
+
+[tools.herdr]
+version = "latest"
+postinstall = "herdr completion zsh > {{ env.HOME }}/.zsh/_herdr"
+
 [settings]
 color_theme = "catppuccin"
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 minimum_release_age = "0"
 trusted_config_paths = ["{{ env.HOME }}/Code/"]
+auto_update = true
+fetch_remote_versions_cache = "5m"
 
 [settings.npm]
 package_manager = "aube"
@@ -111,7 +113,7 @@ initial_key_repeat = 15
 press_and_hold = false
 
 [env]
-'_'.path = "~/bin"
+"_".path = "~/bin"
 AUBE_PREFER_SYMLINKED_EXECUTABLES = "true"
 OPENCODE_ENABLE_EXA = "1"
 OPENCODE_EXPERIMENTAL = "0"
