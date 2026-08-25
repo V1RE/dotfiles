@@ -61,3 +61,5 @@
 [credential "https://origin.cursor.com"]
   helper =
   helper = !{{ joinPath .chezmoi.homeDir ".local/bin/origin" }} credential-helper
+[credential "https://ampcode.com"]
+  helper = !amp git-credential-helper
