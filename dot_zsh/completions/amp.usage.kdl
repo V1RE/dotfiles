@@ -2,7 +2,7 @@ min_usage_version "6.2.0"
 // Command surface from `amp --help` and nested command help.
 name "Amp CLI"
 bin "amp"
-version "0.0.1787559091-g4e7735"
+version "0.0.1787674203-g8784ca"
 about "The frontier agent"
 unknown_flags "error"
 
@@ -60,8 +60,12 @@ cmd "orb" help="Commands for Amp-managed orbs" {
     flag "--title <title>" help="Portal tab title; writes the portal manifest .amp/portals/<name>.json (defaults to the manifest name)"
     flag "--description <description>" help="Portal tab description shown as a note next to the link; written to the portal manifest"
     flag "--hostname <hostname>" help="Set the portal's public hostname (a full managed hostname like <name>--<namespace>.onamp.dev or a custom domain) before printing the URL; pass 'auto' to restore the auto-generated hostname. The target may be omitted when exactly one portal is running."
+    flag "--take-over" help="Move a hostname from another thread portal; requires --hostname"
+    cmd "access" help="Set portal access" {
+      arg "[value]" help="Access value"
+    }
   }
-  cmd "service" help="Manage long-lived services (dev servers, watchers) as supervised systemd units that survive Amp CLI updates and orb pause/resume" {
+  cmd "service" help="Manage long-lived services (dev servers, watchers) as supervised processes that survive Amp CLI updates and restart on failure" {
     alias "services"
     cmd "ensure" help="Ensure every service declared in .amp/services.yaml is running and exposed at its portal URLs" {
       flag "--json" help="Print machine-readable JSON results"
@@ -81,7 +85,7 @@ cmd "orb" help="Commands for Amp-managed orbs" {
     cmd "stop" help="Stop a service" {
       arg "<name>" help="Name"
     }
-    cmd "status" help="Show systemd status for a service" {
+    cmd "status" help="Show supervisor status for a service" {
       arg "<name>" help="Name"
     }
     cmd "logs" help="Show recent logs for a service" {
@@ -432,7 +436,7 @@ cmd "config" help="Manage Amp configuration" {
         choices "ollama-cloud" "openrouter" "vercel" "cloudflare" "opencode-go" "openai-compatible"
       }
       flag "--name <name>" help="custom connection name"
-      flag "--models <models>" help="comma-separated provider/model IDs"
+      flag "--model-mapping <mapping>" help="newline- or comma-separated provider/model patterns served by this connection, such as */* or openai/gpt-5.6-*; prefix a pattern with - to exclude it, and add \"-> provider-model-id\" after an exact model ID to override the model ID sent to the provider (the default when not given is all supported models)"
       flag "--api-key-env <variable>" help="environment variable containing the API key"
       flag "--active" help="activate the model router after creating it" negate="--no-active"
       flag "--personal" help="add the model router to your personal account"
@@ -447,13 +451,20 @@ cmd "config" help="Manage Amp configuration" {
     cmd "edit-router" help="Edit an AI model router" {
       arg "<connection-id>" help="ID of the AI model router to edit"
       flag "--name <name>" help="new connection name"
-      flag "--models <models>" help="new comma-separated provider/model IDs"
+      flag "--model-mapping <mapping>" help="new newline- or comma-separated provider/model patterns served by this connection; prefix a pattern with - to exclude it, and add \"-> provider-model-id\" after an exact model ID to override the model ID sent to the provider"
+      flag "--clear-model-mapping" help="reset the connection to its default models"
       flag "--base-url <url>" help="new OpenAI-compatible API base URL, using HTTPS"
       flag "--cloudflare-account-id <id>" help="Cloudflare account ID"
       flag "--cloudflare-gateway-id <id>" help="Cloudflare AI Gateway ID"
       flag "--headers <json>" help="custom request headers as JSON [name, value] pairs"
       flag "--query-params <json>" help="new OpenAI-compatible API query parameters as a JSON object"
       flag "--router-options <json>" help="new typed request options for the dedicated gateway"
+    }
+    cmd "edit-key" help="Edit a model provider API key name or model mapping" {
+      arg "<connection-id>" help="ID of the model provider API key to edit"
+      flag "--name <name>" help="new connection name"
+      flag "--model-mapping <mapping>" help="new newline- or comma-separated provider/model patterns served by this connection; prefix a pattern with - to exclude it, and add \"-> provider-model-id\" after an exact model ID to override the model ID sent to the provider"
+      flag "--clear-model-mapping" help="reset the connection to its default models"
     }
     cmd "add-chatgpt-subscription" help="Link your ChatGPT subscription to Amp as a model provider by signing in to OpenAI in your browser"
   }
