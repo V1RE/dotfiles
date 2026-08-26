@@ -4,6 +4,23 @@
     "name": "orng",
     "mode": "system"
   },
+  "mini": {
+    "thinking": "show",
+    "shell_output": "show",
+    "turn_summary": "show",
+    "footer": "show",
+    "splash": "show",
+    "mono": false,
+    "replay": true
+  },
+  "leader": {
+    "timeout": 2000
+  },
+  "mouse": true,
+  "cursor": {
+    "style": "line",
+    "blinking": true
+  },
   "keybinds": {
     "input.undo": "ctrl+-,super+z,alt+z"
   },
@@ -14,7 +31,7 @@
   "attention": {
     "enabled": true,
     "notifications": true,
-    "volume": 0.9999999999999999
+    "volume": 1
   },
   "diffs": {
     "wrap": "word",
@@ -28,7 +45,8 @@
   },
   "prompt": {
     "paste": "compact",
-    "image_preview": true
+    "image_preview": true,
+    "editor": true
   },
   "session": {
     "sidebar": "auto",
