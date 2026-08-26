@@ -1,8 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": "notify",
-  "formatter": true,
-  "username": "Niels",
   "mcp": {
     "servers": {
       "granola": {
@@ -78,7 +76,7 @@
   },
   "providers": {
     "callstack.ai": {
-      "package": "aisdk:@ai-sdk/openai-compatible",
+      "package": "@opencode-ai/ai/providers/openai-compatible",
       "name": "callstack.ai",
       "settings": {
         "baseURL": "https://api.callstack.ai/v1",
@@ -842,8 +840,5 @@
       "resource": "glab*",
       "effect": "deny"
     }
-  ],
-  "websearch": {
-    "provider": "random"
-  }
+  ]
 }
