@@ -2,7 +2,7 @@ min_usage_version "6.2.0"
 // Command surface from `amp --help` and nested command help.
 name "Amp CLI"
 bin "amp"
-version "0.0.1787674203-g8784ca"
+version "0.0.1788163246-g49b3c3"
 about "The frontier agent"
 unknown_flags "error"
 
@@ -126,7 +126,13 @@ cmd "files" help="Download files from Amp" {
   }
 }
 
-cmd "top" help="Show a live list of active threads across all repositories." {
+cmd "inference-test" help="Run a small model inference, optionally through a specific provider key" {
+  flag "--thread <thread-id>" help="Owned actor-backed thread used for billing context"
+  flag "--provider-model <provider/model>" help="Provider/model ID"
+  flag "--provider-key <uuid>" help="Specific model provider key UUID (Amp staff only)"
+}
+
+cmd "top" help="Show live active threads" {
   flag "--stream-jsonl" help="Stream a JSON line whenever the thread list changes (output schema is EXPERIMENTAL)"
 }
 
@@ -134,7 +140,11 @@ cmd "last" help="Continue the last thread directly." {
   alias "l"
 }
 
-cmd "report" help="Generate and send a diagnostic report for the amp --no-tui runner in this directory. Captures the runner log (no-tui.log), runner state, and settings, and works even after the runner exited. Prints the report ID and copies it to the clipboard."
+cmd "report-bug" help="Report a bug with diagnostics from the amp --no-tui runner in this directory. Captures the runner log (no-tui.log), runner state, and settings, and works even after the runner exited." {
+  alias "report"
+  alias "diagnostics"
+  arg "[description]..." help="Bug description"
+}
 
 cmd "threads" help="Thread management commands. When no subcommand is provided, defaults to listing threads." {
   alias "t"
@@ -545,6 +555,18 @@ cmd "projects" help="Manage Amp projects" {
   cmd "get" help="Get a project by ID, namespace/name, or repository" {
     arg "<project>" help="Project ID, namespace/name, or repository"
     flag "--json" help="Print JSON output"
+  }
+  cmd "snapshots" help="Manage a project’s shared orb snapshots" {
+    cmd "list" help="List shared orb snapshots by project and orb size" {
+      arg "<project>" help="Project ID, namespace/name, or repository"
+      flag "--json" help="Print JSON output"
+    }
+    cmd "delete" help="Delete all shared orb snapshots, or one orb size with --resource" {
+      alias "rm"
+      arg "<project>" help="Project ID, namespace/name, or repository"
+      flag "--resource <environmentResource>" help="Delete only this orb size"
+      flag "--json" help="Print JSON output"
+    }
   }
   cmd "gallery-media" help="Manage a project’s Amp Store gallery media" {
     cmd "get" help="Print a project’s Amp Store gallery media as JSON" {
