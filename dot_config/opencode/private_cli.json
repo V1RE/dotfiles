@@ -55,7 +55,9 @@
     "grouping": "auto",
     "markdown": "rendered",
     "new_location": "launch",
-    "image_preview": true
+    "image_preview": true,
+    "terminal": true,
+    "tps": true
   },
   "hints": {
     "onboarding": true
@@ -73,6 +75,7 @@
     "layout": "horizontal"
   },
   "experimental": {
-    "tab_scroll": true
+    "tab_scroll": true,
+    "session-preview-tabs": true
   }
 }

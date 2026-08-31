@@ -37,6 +37,7 @@ uv = "latest"
 vercel = "latest"
 vite-plus = "latest"
 hunk = "latest"
+watchexec = "latest"
 
 [tools.aube]
 version = "latest"

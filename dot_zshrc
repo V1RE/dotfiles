@@ -416,3 +416,7 @@ compdef _origin_yargs_completions origin
 
 # opencode
 export PATH=/Users/niels/.opencode/bin:$PATH
+
+# Added by GitButler installer
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(but completions zsh)"
