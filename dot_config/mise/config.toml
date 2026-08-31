@@ -27,7 +27,7 @@ hcloud = "latest"
 java = "latest"
 lazygit = "latest"
 node = "24"
-nub = "latest"
+nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 pi = "latest"
 pitchfork = "latest"
 pnpm = "latest"
