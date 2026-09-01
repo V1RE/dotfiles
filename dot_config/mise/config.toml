@@ -38,6 +38,7 @@ vercel = "latest"
 vite-plus = "latest"
 hunk = "latest"
 watchexec = "latest"
+amp = { version = "latest", allow_builds = ["@ampcode/cli"] }
 
 [tools.aube]
 version = "latest"
