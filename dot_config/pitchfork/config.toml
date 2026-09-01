@@ -3,3 +3,8 @@
 [settings.general]
 mise = true
 
+[daemons.amp]
+run = 'exec amp --no-tui --runner-id "$(hostname -s)" --remote-control-terminal'
+dir = "~"
+boot_start = true
+retry = true
