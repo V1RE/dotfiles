@@ -73,6 +73,10 @@ binstall_native = true
 [settings.pipx]
 uvx = true
 
+# Resolve GitHub tokens via gh CLI (macOS Keychain) so mise doesn't hit unauthenticated rate limits.
+[settings.github]
+credential_command = 'gh auth token --hostname "$MISE_CREDENTIAL_HOST"'
+
 [bootstrap.packages]
 "brew-cask:1password" = "latest"
 "brew-cask:mos" = "latest"
