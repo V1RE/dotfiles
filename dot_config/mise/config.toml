@@ -44,11 +44,6 @@ amp = { version = "latest", allow_builds = ["@ampcode/cli"] }
 version = "latest"
 postinstall = "aube completion zsh > {{ env.HOME }}/.zsh/_aube"
 
-[tools."npm:@opencode-ai/cli"]
-version = "beta"
-allow_builds = ["@opencode-ai/cli"]
-postinstall = "opencode2 --completions zsh > {{ env.HOME }}/.zsh/_opencode2"
-
 [tools.oh-my-pi]
 version = "latest"
 rename_exe = "omp"

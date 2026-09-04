@@ -43,11 +43,7 @@ if command -v zed-preview >/dev/null 2>&1; then
 	alias zed="zed-preview"
 fi
 
-alias oc="opencode"
-
-if command -v opencode2 >/dev/null 2>&1; then
-	alias oc="opencode2"
-fi
+alias oc="opencode2"
 
 function ocw() {
 	local host="${1:-opencode-worker-01.exe.xyz}"
