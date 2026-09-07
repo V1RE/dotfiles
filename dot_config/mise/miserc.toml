@@ -1,0 +1,1 @@
+ignored_config_paths = ["{{ env.HOME }}/.local/share/chezmoi/"]
