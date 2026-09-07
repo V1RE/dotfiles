@@ -2,7 +2,7 @@ min_usage_version "6.2.0"
 // Command surface from `amp --help` and nested command help.
 name "Amp CLI"
 bin "amp"
-version "0.0.1788163246-g49b3c3"
+version "0.0.1788768055-gf27e57"
 about "The frontier agent"
 unknown_flags "error"
 
@@ -15,7 +15,7 @@ flag "--settings-file <file>" help="Custom settings file path" env="AMP_SETTINGS
 flag "--log-level <value>" help="Set log level" env="AMP_LOG_LEVEL" global=#true
 flag "--log-file <file>" help="Set log file location" env="AMP_LOG_FILE" global=#true
 flag "--mcp-config <value>" help="JSON configuration or file path for MCP servers to merge with existing settings" global=#true
-flag "-m --mode <mode>" help="Set the agent mode (low, medium, high, ultra)" global=#true {
+flag "-m --mode <mode>" help="Set the agent mode (low, medium, high, ultra, or a plugin mode by key or label, case-insensitive)" global=#true {
   choices "low" "medium" "high" "ultra"
 }
 flag "--features <feature>" help="Enable a thread feature (fast or pro)" global=#true {
@@ -52,7 +52,7 @@ cmd "orb" help="Commands for Amp-managed orbs" {
   cmd "system-metrics" help="Print historical orb system metrics for a thread URL or ID" {
     arg "<thread>" help="Thread URL or ID"
   }
-  cmd "portal" help="Print the sandbox public portal URL for a local port or loopback URL" {
+  cmd "portal" help="Register a portal for an existing process and print its URL; use amp orb service start for long-lived servers" {
     arg "[target]" help="Local port or loopback URL"
     flag "--thread <thread>" help="Thread URL or ID (defaults to AMP_THREAD_ID)" env="AMP_THREAD_ID"
     flag "--domain <domain>" help="Portal domain (defaults to AMP_PORTAL_DOMAIN or onamp.dev)" env="AMP_PORTAL_DOMAIN"
@@ -100,6 +100,9 @@ cmd "orb" help="Commands for Amp-managed orbs" {
   cmd "id-token" help="Mint a short-lived OIDC token with a caller-chosen audience and print it to stdout" {
     flag "--audience <audience>" help="The aud claim of the minted token"
     flag "--ttl-seconds <seconds>" help="Token lifetime in seconds (60-3600)"
+    flag "--subject-scope <scope>" help="Subject scope of the minted token (default: thread)" {
+      choices "project" "thread" "user" "workspace"
+    }
   }
 }
 
@@ -124,12 +127,6 @@ cmd "files" help="Download files from Amp" {
     arg "<attachment-url>" help="Private Amp attachment URL"
     flag "-o --output <file>" help="Write the attachment to this path"
   }
-}
-
-cmd "inference-test" help="Run a small model inference, optionally through a specific provider key" {
-  flag "--thread <thread-id>" help="Owned actor-backed thread used for billing context"
-  flag "--provider-model <provider/model>" help="Provider/model ID"
-  flag "--provider-key <uuid>" help="Specific model provider key UUID (Amp staff only)"
 }
 
 cmd "top" help="Show live active threads" {
@@ -192,6 +189,10 @@ cmd "threads" help="Thread management commands. When no subcommand is provided, 
     flag "--offset <number>" help="Number of results to skip (for pagination)"
     flag "--json" help="Output as JSON"
   }
+  cmd "color" help="Set a thread color to a named color or an RGB hex color such as '#3f2d1d'" {
+    arg "<thread>" help="Thread URL or ID"
+    arg "<color>" help="Named color or RGB hex color"
+  }
   cmd "label" help="Add one or more labels to an existing thread without removing the labels it already has." {
     arg "<thread>" help="Thread URL or ID"
     arg "<labels>..." help="Labels to add"
@@ -217,9 +218,6 @@ cmd "threads" help="Thread management commands. When no subcommand is provided, 
         flag "--weeks <weeks>" help="Duration in weeks"
       }
     }
-  }
-  cmd "report" help="Generate and send a diagnostic report (thread state, client logs, settings) for the given thread to provide to Amp support. Equivalent to running \"feedback: generate and send diagnostic report\" from within the CLI on this thread. Prints the report ID and copies it to the clipboard." {
-    arg "<thread>" help="Thread URL or ID"
   }
   cmd "rename" help="Change the title of a thread. Quote names with spaces: amp threads rename https://ampcode.com/threads/T-12345678-0000-0000-0000-000000000000 \"New thread name\"" {
     alias "r"
@@ -383,7 +381,65 @@ cmd "mcp" help="Add and manage MCP servers" {
   cmd "remove" help="Remove an MCP server from amp.mcpServers in the settings file." {
     arg "<name>" help="Name"
   }
-  cmd "oauth" help="Manage OAuth authentication for MCP servers" {
+  cmd "remote" help="Manage MCP servers saved in personal, workspace, or project settings on ampcode.com" {
+    flag "--personal" help="Use remote MCP servers in your personal settings" global=#true
+    flag "--workspace <workspace>" help="Use remote MCP servers for a workspace name or ID" global=#true
+    flag "--project <project>" help="Use remote MCP servers for a project ID or namespace/name" global=#true
+    flag "--current-project" help="Use the current directory's Amp project" global=#true
+    cmd "list" help="List remote MCP servers in one personal, workspace, or project scope" {
+      flag "--json" help="Output as JSON"
+    }
+    cmd "add" help="Add a remote MCP server; authentication is detected automatically when --auth is not set" {
+      arg "<name>" help="Server name"
+      arg "<url>" help="Server URL"
+      flag "--auth <type>" help="Authentication type" {
+        choices "oauth" "bearer" "none"
+      }
+      flag "--bearer-token-file <path>" help="Read a bearer token from a file, or '-' for stdin"
+      flag "--oauth-client-id <id>" help="OAuth client ID"
+      flag "--oauth-client-secret-file <path>" help="Read an OAuth client secret from a file, or '-' for stdin"
+      flag "--json" help="Output as JSON"
+    }
+    cmd "update" help="Update a remote MCP server selected by its name or ID" {
+      arg "<server>" help="Server name or ID"
+      flag "--name <name>" help="New server name"
+      flag "--url <url>" help="New server URL"
+      flag "--auth <type>" help="Authentication type" {
+        choices "oauth" "bearer" "none"
+      }
+      flag "--bearer-token-file <path>" help="Read a bearer token from a file, or '-' for stdin"
+      flag "--oauth-client-id <id>" help="OAuth client ID"
+      flag "--oauth-client-secret-file <path>" help="Read an OAuth client secret from a file, or '-' for stdin"
+      flag "--enabled" help="Enable the server"
+      flag "--disabled" help="Disable the server"
+      flag "--json" help="Output as JSON"
+    }
+    cmd "remove" help="Remove a remote MCP server selected by its name or ID" {
+      arg "<server>" help="Server name or ID"
+      flag "-y --yes" help="Confirm removal"
+      flag "--json" help="Output as JSON"
+    }
+    cmd "check" help="Check a remote MCP server and save its status" {
+      arg "<server>" help="Server name or ID"
+      flag "--json" help="Output as JSON"
+    }
+    cmd "tools" help="List cached tools or refresh tools for a remote MCP server" {
+      arg "<server>" help="Server name or ID"
+      flag "--refresh" help="Force a tool catalog refresh"
+      flag "--query <query>" help="Filter tools by name or description"
+      flag "--page <page>" help="Zero-based result page"
+      flag "--json" help="Output as JSON"
+    }
+    cmd "login" help="Connect to a saved MCP server; prints the OAuth URL and opens it when a local browser is available" {
+      arg "<server>" help="Server name or ID"
+      flag "--json" help="Output as JSON"
+    }
+    cmd "logout" help="Disconnect the current user's OAuth connection from a saved server" {
+      arg "<server>" help="Server name or ID"
+      flag "--json" help="Output as JSON"
+    }
+  }
+  cmd "oauth" help="Manage OAuth credentials for MCP servers in local CLI settings" {
     cmd "login" help="Register OAuth client credentials for an MCP server" {
       arg "<server-name>" help="MCP server name"
       flag "--server-url <url>" help="MCP server URL"
@@ -441,21 +497,36 @@ cmd "config" help="Manage Amp configuration" {
     cmd "test" help="Test a model provider key or subscription" {
       arg "<id>" help="ID of the model provider key to test"
     }
+    cmd "check-access" help="Check which model provider serves a model by running a small inference" {
+      flag "--provider-model <provider/model>" help="Provider/model ID to check"
+      flag "--thread <thread-url-or-id>" help="Owned thread to associate the inference with (defaults to AMP_THREAD_ID)" env="AMP_THREAD_ID"
+      flag "--provider-key <uuid>" help="Specific model provider key UUID (Amp staff only)"
+      flag "--prompt <text>" help="Test prompt (Amp staff only)"
+      flag "--reasoning-effort <effort>" help="Reasoning effort (defaults to the model routing default)"
+    }
     cmd "add-router" help="Add an AI model router and select the models routed through it" {
-      arg "<router>" help="Provider to add: ollama-cloud, openrouter, vercel, cloudflare, opencode-go, or openai-compatible" {
-        choices "ollama-cloud" "openrouter" "vercel" "cloudflare" "opencode-go" "openai-compatible"
+      arg "<router>" help="Provider to add" {
+        choices "ollama-cloud" "openrouter" "vercel" "cloudflare" "google-cloud-agent-platform" "amazon-bedrock" "opencode-go" "custom-url"
       }
       flag "--name <name>" help="custom connection name"
       flag "--model-mapping <mapping>" help="newline- or comma-separated provider/model patterns served by this connection, such as */* or openai/gpt-5.6-*; prefix a pattern with - to exclude it, and add \"-> provider-model-id\" after an exact model ID to override the model ID sent to the provider (the default when not given is all supported models)"
-      flag "--api-key-env <variable>" help="environment variable containing the API key"
+      flag "--api-key-file <path>" help="read the API key from a file, or '-' for stdin"
       flag "--active" help="activate the model router after creating it" negate="--no-active"
       flag "--personal" help="add the model router to your personal account"
       flag "--workspace" help="add the model router to your current workspace"
-      flag "--base-url <url>" help="OpenAI-compatible API base URL, using HTTPS"
+      flag "--api-format <format>" help="custom-url API format" {
+        choices "chat-completions" "responses" "anthropic-messages"
+      }
+      flag "--base-url <url>" help="custom-url base URL, using HTTPS"
       flag "--cloudflare-account-id <id>" help="Cloudflare account ID"
       flag "--cloudflare-gateway-id <id>" help="Cloudflare AI Gateway ID"
+      flag "--workload-identity-provider <resource-name>" help="google-cloud-agent-platform workload identity pool provider that trusts Amp"
+      flag "--google-cloud-project <id>" help="Google Cloud project ID to bill (default: the pool's project)"
+      flag "--google-cloud-location <location>" help="google-cloud-agent-platform location, a region ID or global"
+      flag "--iam-role-arn <arn>" help="amazon-bedrock IAM role that trusts Amp"
+      flag "--aws-region <region>" help="amazon-bedrock AWS region of the Bedrock endpoint"
       flag "--headers <json>" help="custom request headers as JSON [name, value] pairs"
-      flag "--query-params <json>" help="OpenAI-compatible API query parameters as a JSON object"
+      flag "--query-params <json>" help="custom-url query parameters as a JSON object"
       flag "--router-options <json>" help="typed request options for the selected dedicated gateway"
     }
     cmd "edit-router" help="Edit an AI model router" {
@@ -463,12 +534,28 @@ cmd "config" help="Manage Amp configuration" {
       flag "--name <name>" help="new connection name"
       flag "--model-mapping <mapping>" help="new newline- or comma-separated provider/model patterns served by this connection; prefix a pattern with - to exclude it, and add \"-> provider-model-id\" after an exact model ID to override the model ID sent to the provider"
       flag "--clear-model-mapping" help="reset the connection to its default models"
-      flag "--base-url <url>" help="new OpenAI-compatible API base URL, using HTTPS"
+      flag "--api-key-file <path>" help="read a replacement API key from a file, or '-' for stdin"
+      flag "--api-format <format>" help="new custom-url API format" {
+        choices "chat-completions" "responses" "anthropic-messages"
+      }
+      flag "--base-url <url>" help="new custom-url base URL, using HTTPS"
       flag "--cloudflare-account-id <id>" help="Cloudflare account ID"
       flag "--cloudflare-gateway-id <id>" help="Cloudflare AI Gateway ID"
+      flag "--workload-identity-provider <resource-name>" help="new google-cloud-agent-platform workload identity pool provider"
+      flag "--google-cloud-project <id>" help="new Google Cloud project ID; pass an empty value to bill the pool project"
+      flag "--google-cloud-location <location>" help="new google-cloud-agent-platform location"
+      flag "--iam-role-arn <arn>" help="new amazon-bedrock IAM role ARN"
+      flag "--aws-region <region>" help="new amazon-bedrock AWS region"
       flag "--headers <json>" help="custom request headers as JSON [name, value] pairs"
-      flag "--query-params <json>" help="new OpenAI-compatible API query parameters as a JSON object"
+      flag "--query-params <json>" help="new custom-url query parameters as a JSON object"
       flag "--router-options <json>" help="new typed request options for the dedicated gateway"
+    }
+    cmd "setup-guide" help="Explain how to obtain the credential an AI model router needs" {
+      arg "<router>" help="Provider whose credential setup to explain" {
+        choices "ollama-cloud" "openrouter" "vercel" "cloudflare" "google-cloud-agent-platform" "amazon-bedrock" "opencode-go" "custom-url"
+      }
+      flag "--personal" help="show the exact identity values for connections on your personal account"
+      flag "--workspace" help="show the exact identity values for connections on your current workspace"
     }
     cmd "edit-key" help="Edit a model provider API key name or model mapping" {
       arg "<connection-id>" help="ID of the model provider API key to edit"
@@ -519,18 +606,23 @@ cmd "domains" help="Manage custom domains for sites" {
 
 cmd "projects" help="Manage Amp projects" {
   flag "--json" help="Print JSON output"
-  cmd "create" help="Create a project for a repository" {
-    arg "<repository>" help="Repository identifier or URL"
+  cmd "create" help="Create an Amp-hosted project or map an existing Git repository" {
+    arg "[repository]" help="Repository identifier or URL"
     flag "--orb-size <size>" help="Orb size"
     flag "--ship-behavior <behavior>" help="Ship behavior" {
       choices "ship" "push-to-branch" "custom"
     }
     flag "--custom-ship-prompt-file <path>" help="Read the Custom Ship prompt from a file, or '-' for stdin"
+    flag "--desktop-resume-script-file <path>" help="Read the Desktop resume script from a file, or '-' for stdin"
     flag "--commit-author <author>" help="Git commit author"
+    flag "--amp-hosted" help="Create a new empty repository hosted by Amp"
     flag "--icon <path>" help="Project icon image"
-    flag "--name <name>" help="Project name. Defaults to the repository name."
+    flag "--name <name>" help="Project name; defaults to the repository name, required with --amp-hosted unless --push is used"
     flag "--personal" help="Create the project under your personal account"
     flag "--workspace" help="Create the project under your current workspace (default when set)"
+    flag "--push" help="Push the current Git repository into a new Amp-hosted repository (implies --amp-hosted)"
+    flag "--remote <name>" help="Git remote name to add for the Amp-hosted repository with --push"
+    flag "--no-git-setup" help="With --push, do not configure the Git credential helper automatically" env="AMP_NO_GIT_SETUP"
     flag "--json" help="Print JSON output"
   }
   cmd "update" help="Update project settings by ID, namespace/name, or repository" {
@@ -540,10 +632,13 @@ cmd "projects" help="Manage Amp projects" {
       choices "ship" "push-to-branch" "custom"
     }
     flag "--custom-ship-prompt-file <path>" help="Read the Custom Ship prompt from a file, or '-' for stdin"
+    flag "--desktop-resume-script-file <path>" help="Read the Desktop resume script from a file, or '-' for stdin"
     flag "--commit-author <author>" help="Git commit author"
     flag "--description <description>" help="Amp Store listing description"
     flag "--icon <path>" help="Project icon image"
     flag "--listed-on-amp-store" help="List the project on the Amp Store" negate="--no-listed-on-amp-store"
+    flag "--pre-clone-script-file <path>" help="Read the pre-clone script from a file, or '-' for stdin"
+    flag "--pre-setup-script-file <path>" help="Read the pre-setup script from a file, or '-' for stdin"
     flag "--json" help="Print JSON output"
   }
   cmd "list" help="List projects accessible to you" {
@@ -687,7 +782,10 @@ cmd "secrets" help="Manage environment variables and secrets for orbs and Apps" 
   }
 }
 
-cmd "svc" help="Call connected services through Amp" {
+cmd "svc" help="Call connected services and MCP servers through Amp" {
+  arg "<service>" help="MCP server name"
+  arg "<tool>" help="MCP tool name"
+  flag "--input <json>" help="Tool input as a JSON object"
   cmd "gmail" help="Call the connected Gmail account" {
     cmd "search_messages" help="Search Gmail messages" {
       flag "--input <json>" help="search_messages input as a JSON object"
