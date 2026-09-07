@@ -43,7 +43,9 @@ flag --inspect help="Activate the inspector" { arg "[host:port]" }
 flag --inspect-brk help="Break at startup in the inspector" { arg "[host:port]" }
 flag --inspect-wait help="Wait for an inspector connection" { arg "[host:port]" }
 
-arg "[file]" required=#false
+// Keep bare nub completion focused on commands, not files in the current directory.
+arg "[entry]" required=#false
+complete "entry" run="true"
 arg "[arg]" required=#false var=#true
 
 cmd run help="Run a package.json script" {
