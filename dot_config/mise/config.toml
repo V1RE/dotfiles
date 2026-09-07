@@ -59,7 +59,6 @@ experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 minimum_release_age = "0"
 trusted_config_paths = ["{{ env.HOME }}/Code/"]
-auto_update = true
 fetch_remote_versions_cache = "5m"
 
 [settings.npm]
