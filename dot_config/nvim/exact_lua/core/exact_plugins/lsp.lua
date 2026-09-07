@@ -31,6 +31,7 @@ return {
     ---@type MasonLspconfigSettings
     opts = {
       ensure_installed = {
+        "bashls",
         "eslint",
         "jsonls",
         "lua_ls",
