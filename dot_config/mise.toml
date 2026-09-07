@@ -1,7 +1,4 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
-[settings]
-auto_update = true
-
 [settings.cargo]
 binstall = true
