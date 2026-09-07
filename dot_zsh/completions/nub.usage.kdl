@@ -45,7 +45,7 @@ flag --inspect-wait help="Wait for an inspector connection" { arg "[host:port]" 
 
 // Keep bare nub completion focused on commands, not files in the current directory.
 arg "[entry]" required=#false
-complete "entry" run="true"
+complete "entry" type="none"
 arg "[arg]" required=#false var=#true
 
 cmd run help="Run a package.json script" {
