@@ -1,7 +1,9 @@
 name nub
 bin nub
-version "0.7.0"
+version "0.8.1"
 about "The all-in-one Node.js toolkit"
+// Source: nubjs/nub v0.8.1 (cli.rs and the embedded PM command parsers).
+// Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag --cwd help="Run as if started in a directory" global=#true {
   arg <dir>
@@ -9,10 +11,11 @@ flag --cwd help="Run as if started in a directory" global=#true {
 flag "-s --silent" help="Suppress non-error output" global=#true
 flag --verbose help="Increase log verbosity" count=#true global=#true
 flag --color help="Set color mode" global=#true {
-  arg <color> {
+  arg "[color]" {
     choices auto always never
   }
 }
+flag --no-color help="Disable color" global=#true
 flag --env-file help="Load environment variables from a file" global=#true {
   arg <file>
 }
@@ -22,8 +25,23 @@ flag --env-file-if-exists help="Load an optional environment file" global=#true 
 flag --no-env-file help="Disable environment-file loading" global=#true
 flag --node help="Disable nub runtime augmentation" global=#true
 flag --watch help="Enable watch mode" global=#true
-flag "-v -V --version" help="Show version" global=#true
+flag "-v -V --version" help="Show version"
 flag "-h --help" help="Show help" global=#true
+flag "--no-check --no-install" help="Skip dependency freshness checks"
+// Node passthrough flags are root-only: -r and -C mean different things for PM verbs.
+flag "-e --eval" help="Evaluate code" { arg <code> }
+flag "-p --print" help="Evaluate code and print the result" { arg <code> }
+flag "-c --check" help="Syntax-check without executing"
+flag "-r --require" help="Preload a CommonJS module" var=#true { arg <module> }
+flag --import help="Preload an ES module" var=#true { arg <module> }
+flag "-C --conditions" help="Add an export condition" var=#true { arg <name> }
+flag --input-type help="Select the eval or stdin module format" { arg <type> { choices module commonjs } }
+flag --watch-path help="Watch a path" var=#true { arg <path> }
+flag --watch-preserve-output help="Preserve output across restarts"
+flag --enable-source-maps help="Enable source maps in stack traces"
+flag --inspect help="Activate the inspector" { arg "[host:port]" }
+flag --inspect-brk help="Break at startup in the inspector" { arg "[host:port]" }
+flag --inspect-wait help="Wait for an inspector connection" { arg "[host:port]" }
 
 arg "[file]" required=#false
 arg "[arg]" required=#false var=#true
@@ -93,14 +111,34 @@ cmd exec help="Run a node_modules/.bin binary" {
 
 cmd dlx help="Fetch and run a package binary" {
   alias x
+  flag "-c --shell-mode" help="Run the command through sh -c"
   flag "-p --package" help="Fetch an explicit package" var=#true {
     arg <package>
   }
-  flag "--no-install --no" help="Do not fetch missing packages"
-  flag "-q --quiet" help="Suppress fetch progress"
-  flag "-y --yes" help="Accept registry fetches"
-  flag --ignore-existing help="Accepted for npx compatibility"
-  flag --no-check help="Skip dependency freshness checks"
+  flag --allow-build help="Allow lifecycle scripts (use --allow-build=package)" var=#true { arg <package> }
+  flag --frozen-lockfile help="Fail when the lockfile is stale"
+  flag --no-frozen-lockfile help="Always resolve dependencies"
+  flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
+  flag --registry help="Override the registry" { arg <url> }
+  flag --fetch-retries help="Set registry retry attempts" { arg <count> }
+  flag --fetch-retry-factor help="Set the retry backoff factor" { arg <count> }
+  flag --fetch-retry-maxtimeout help="Set maximum retry backoff in milliseconds" { arg <ms> }
+  flag --fetch-retry-mintimeout help="Set minimum retry backoff in milliseconds" { arg <ms> }
+  flag --fetch-timeout help="Set request timeout in milliseconds" { arg <ms> }
+  flag "--disable-global-virtual-store --disable-gvs" help="Disable the shared virtual store"
+  flag "--enable-global-virtual-store --enable-gvs" help="Enable the shared virtual store"
+  flag "-C --dir --cd --prefix" help="Run from a directory" { arg <dir> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <workspace> }
+  flag --filter-prod help="Filter production workspace packages" var=#true { arg <workspace> }
+  flag "-r --recursive" help="Run across workspaces"
+  flag --fail-if-no-match help="Fail when no workspace matches"
+  flag --reporter help="Select output format" { arg <reporter> { choices default append-only silent } }
+  flag --loglevel help="Set log level" { arg <level> { choices silent error warn info debug } }
+  flag --minimum-release-age help="Set minimum package age" { arg <duration> }
+  flag --minimum-release-age-exclude help="Exempt a package from the age gate" var=#true { arg <package> }
+  flag --os help="Select target operating systems" var=#true { arg <os> }
+  flag --cpu help="Select target CPU architectures" var=#true { arg <cpu> }
+  flag --libc help="Select target C libraries" var=#true { arg <libc> { choices glibc musl current "*" } }
   arg <package>
   arg "[arg]" required=#false var=#true double_dash=automatic
 }
@@ -108,6 +146,43 @@ cmd dlx help="Fetch and run a package binary" {
 cmd watch help="Run a file in watch mode" {
   arg <file>
   arg "[arg]" required=#false var=#true double_dash=automatic
+}
+
+cmd compile help="Compile a file to a standalone executable" {
+  arg <file>
+  flag --out help="Set the output executable path" { arg <path> }
+  flag --smol help="Discover or provision Node at runtime instead of embedding it"
+  flag --target help="Select the target Node version or alias" { arg <version> }
+  flag --platform help="Select the target platform" { arg <platform> { choices darwin-arm64 darwin-x64 linux-arm64 linux-arm64-musl linux-x64 linux-x64-musl win32-arm64 win32-x64 } }
+  flag --no-minify help="Disable minification"
+  flag --sourcemap help="Set source map mode (use --sourcemap=mode)" { arg "[mode]" { choices linked inline external none } }
+  flag --define help="Replace an expression" var=#true { arg "<key=value>" }
+  flag --define-file help="Replace an expression with file contents" var=#true { arg "<key=path>" }
+  flag --include help="Embed a file, directory, or glob" var=#true { arg <path> }
+  flag --exclude help="Exclude an embedded path or glob" var=#true { arg <path> }
+  flag --node-options help="Set startup Node options" var=#true { arg <options> }
+  flag --icon help="Set a Windows executable icon" { arg <file> }
+  flag --install-message help="Set the first-run setup message" { arg <text> }
+  flag --no-keep-names help="Allow renaming functions and classes"
+  flag --no-treeshake help="Disable tree shaking"
+  flag --ignore-annotations help="Ignore pure annotations"
+  flag --alias help="Remap a module specifier" var=#true { arg "<from=to>" }
+  flag --loader help="Set the loader for an extension" var=#true { arg "<ext=type>" }
+  flag --conditions help="Add an export condition" var=#true { arg <name> }
+  flag --external help="Resolve a package outside the binary at runtime" var=#true { arg <package> }
+  flag --unbundled help="Embed a package in its installed layout" var=#true { arg <package> }
+  flag --bundled help="Force bundling a package" var=#true { arg <package> }
+  flag --allow-dynamic-import help="Allow computed dynamic imports"
+  flag --tsconfig help="Use a specific TypeScript configuration" { arg <path> }
+  flag --sourcemap-exclude-sources help="Omit original source text from maps"
+}
+
+cmd agent subcommand_required=#true help="Print documentation for coding agents" {
+  cmd docs help="Print the documentation index and content" {
+    flag --page help="Print one documentation page" { arg <path> }
+    flag --list help="Print only the page index"
+  }
+  cmd skill help="Print Nub's agent skill"
 }
 
 cmd init help="Scaffold a TypeScript-first project" {
@@ -180,62 +255,42 @@ cmd install help="Install dependencies" {
   flag --prefer-offline help="Prefer cached packages"
   flag --lockfile-only help="Only update the lockfile"
   flag --force help="Force resolution and linking"
-  flag --node-linker help="Select node_modules layout" {
-    arg <layout> {
-      choices isolated hoisted
-    }
-  }
-  flag --registry help="Override the registry" {
-    arg <url>
-  }
-  flag "-C --dir" help="Run from a directory" {
-    arg <dir>
-  }
-  flag "-F --filter" help="Filter workspace packages" var=#true {
-    arg <workspace>
-  }
-  flag --filter-prod help="Filter production workspace packages" var=#true {
-    arg <workspace>
-  }
+  flag --node-linker help="Select node_modules layout" { arg <layout> { choices isolated hoisted } }
+  flag --cwd help="Run from a directory" { arg <dir> }
+  flag --registry help="Override the registry" { arg <url> }
+  flag "-C --dir" help="Run from a directory" { arg <dir> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag --filter-prod help="Filter production workspace packages" var=#true { arg <pattern> }
   flag "-r --recursive" help="Run across workspaces"
   flag --fail-if-no-match help="Fail when no workspace matches"
   flag --include-workspace-root help="Include the workspace root"
-  flag --reporter help="Select output format" {
-    arg <reporter> {
-      choices default append-only silent
-    }
-  }
-  flag --loglevel help="Set log level" {
-    arg <level> {
-      choices silent error warn info debug
-    }
-  }
-  flag --minimum-release-age help="Set minimum package age" {
-    arg <duration>
-  }
-  flag --minimum-release-age-exclude help="Exempt a package from the age gate" var=#true {
-    arg <package>
-  }
+  flag --reporter help="Select output format" { arg <reporter> { choices default append-only silent } }
+  flag --loglevel help="Set log level" { arg <level> { choices silent error warn info debug } }
+  flag --minimum-release-age help="Set minimum package age" { arg <duration> }
+  flag --minimum-release-age-exclude help="Exempt a package from the age gate" var=#true { arg <package> }
+  flag --os help="Select target operating systems" var=#true { arg <os> }
+  flag --cpu help="Select target CPU architectures" var=#true { arg <cpu> }
+  flag --libc help="Select target C libraries" var=#true { arg <libc> { choices glibc musl current "*" } }
 }
 
-cmd ci help="Perform a clean lockfile install" {
+cmd ci help="Perform a clean frozen-lockfile install" {
   flag --ignore-scripts help="Skip lifecycle scripts"
   flag --no-optional help="Skip optional dependencies"
-  flag --registry help="Override the registry" {
-    arg <url>
-  }
-  flag "-C --dir" help="Run from a directory" {
-    arg <dir>
-  }
-  flag "-F --filter" help="Filter workspace packages" var=#true {
-    arg <workspace>
-  }
-  flag --filter-prod help="Filter production workspace packages" var=#true {
-    arg <workspace>
-  }
+  flag --registry help="Override the registry" { arg <url> }
+  flag --cwd help="Run from a directory" { arg <dir> }
+  flag "-C --dir" help="Run from a directory" { arg <dir> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag --filter-prod help="Filter production workspace packages" var=#true { arg <pattern> }
   flag "-r --recursive" help="Run across workspaces"
   flag --fail-if-no-match help="Fail when no workspace matches"
   flag --include-workspace-root help="Include the workspace root"
+  flag --reporter help="Select output format" { arg <reporter> { choices default append-only silent } }
+  flag --loglevel help="Set log level" { arg <level> { choices silent error warn info debug } }
+  flag --minimum-release-age help="Set minimum package age" { arg <duration> }
+  flag --minimum-release-age-exclude help="Exempt a package from the age gate" var=#true { arg <package> }
+  flag --os help="Select target operating systems" var=#true { arg <os> }
+  flag --cpu help="Select target CPU architectures" var=#true { arg <cpu> }
+  flag --libc help="Select target C libraries" var=#true { arg <libc> { choices glibc musl current "*" } }
 }
 
 cmd add help="Add dependencies" {
@@ -247,82 +302,317 @@ cmd add help="Add dependencies" {
   flag --save-peer help="Add as a peer dependency"
   flag --no-save help="Do not update package.json"
   flag --lockfile-only help="Skip linking node_modules"
-  flag "-w --workspace" help="Add to the workspace root"
+  flag "-w --workspace" help="Add from the workspace"
   flag "-W --ignore-workspace-root-check" help="Allow adding at workspace root"
-  flag --registry help="Override the registry" {
-    arg <url>
-  }
-  flag "-C --dir" help="Run from a directory" {
-    arg <dir>
-  }
-  arg "[package]" required=#false var=#true
+  flag --allow-build help="Allow dependency build scripts" var=#true { arg <package> }
+  flag --deny-build help="Deny dependency build scripts" var=#true { arg <package> }
+  flag --dangerously-allow-all-builds help="Allow all dependency build scripts"
+  flag --allow-low-downloads help="Bypass low-download safety prompts"
+  flag --no-save-workspace-protocol help="Save registry-style workspace specifiers"
+  flag --save-workspace-protocol help="Save workspace: specifiers"
+  flag --save-catalog help="Save into the default workspace catalog"
+  flag --save-catalog-name help="Save into a named workspace catalog" { arg <name> }
+  flag --frozen-lockfile help="Fail when the lockfile is stale"
+  flag --no-frozen-lockfile help="Always resolve dependencies"
+  flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
+  flag --fetch-retries { arg <count> }
+  flag --fetch-retry-factor { arg <count> }
+  flag --fetch-retry-maxtimeout { arg <ms> }
+  flag --fetch-retry-mintimeout { arg <ms> }
+  flag --fetch-timeout { arg <ms> }
+  flag --registry help="Override the registry" { arg <url> }
+  flag "--disable-global-virtual-store --disable-gvs" help="Disable the shared virtual store"
+  flag "--enable-global-virtual-store --enable-gvs" help="Enable the shared virtual store"
+  flag "-C --dir --cd --prefix" help="Run from a directory" { arg <dir> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag --filter-prod help="Filter production workspace packages" var=#true { arg <pattern> }
+  flag "-r --recursive" help="Run across workspaces"
+  arg <package> var=#true
 }
 
 cmd remove help="Remove dependencies" {
-  alias rm
-  arg "[package]" required=#false var=#true
+  alias rm uninstall un uni
+  flag "-g --global" help="Remove from the global installation"
+  flag "-D --save-dev" help="Remove from devDependencies"
+  flag --ignore-scripts help="Skip lifecycle scripts"
+  flag "-w --workspace" help="Remove from the workspace root"
+  flag --frozen-lockfile help="Fail when the lockfile is stale"
+  flag --no-frozen-lockfile help="Always resolve dependencies"
+  flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
+  flag --registry help="Override the registry" { arg <url> }
+  flag "-C --dir" help="Run from a directory" { arg <dir> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag --filter-prod help="Filter production workspace packages" var=#true { arg <pattern> }
+  flag "-r --recursive" help="Run across workspaces"
+  arg <package> var=#true
 }
 cmd update help="Update dependencies within range" {
   alias up
+  flag "-L --latest" help="Update to latest versions, ignoring manifest ranges"
+  flag "-i --interactive" help="Select packages interactively"
+  flag "-E --exact --save-exact" help="Save exact versions"
+  flag --no-save help="Do not update package.json"
+  flag "-D --dev" help="Update development dependencies only"
+  flag "-P --prod --production" help="Update production dependencies only"
+  flag --no-optional help="Skip optional dependencies"
+  flag --workspace help="Prefer workspace packages"
+  flag "-g --global" help="Update globally installed packages"
+  flag --depth help="Set dependency traversal depth" { arg <depth> }
+  flag --lockfile-only help="Only update the lockfile"
+  flag --ignore-pnpmfile help="Skip pnpmfile hooks"
+  flag --pnpmfile help="Set the local pnpmfile" { arg <path> }
+  flag --global-pnpmfile help="Set the global pnpmfile" { arg <path> }
+  flag "-C --dir" help="Run from a directory" { arg <dir> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag "-r --recursive" help="Run across workspaces"
   arg "[package]" required=#false var=#true
 }
-cmd import help="Generate a lockfile from another package manager"
-cmd dedupe help="Remove duplicate packages"
-cmd prune help="Remove extraneous packages"
-cmd rebuild help="Rebuild native modules" { alias rb }
-cmd link help="Link a local package" { alias ln; arg "[package]" required=#false var=#true }
-cmd unlink help="Unlink a local package" { arg "[package]" required=#false var=#true }
-cmd patch help="Prepare a package patch" { arg "[package]" required=#false }
-cmd patch-commit help="Commit a package patch" { arg "[path]" required=#false }
-cmd patch-remove help="Remove a package patch" { arg "[package]" required=#false }
-cmd approve-builds help="Manage build-script approval"
-cmd ignored-builds help="List ignored build scripts"
-cmd list help="List installed dependencies" { alias ls }
-cmd why help="Explain why a package is installed" { arg <package> }
-cmd outdated help="List outdated dependencies"
-cmd audit help="Audit dependencies"
-cmd licenses help="Inspect dependency licenses"
-cmd view help="Show registry package metadata" { arg "[package]" required=#false }
-cmd search help="Search registry packages" { arg <query> }
-cmd bin help="Show the project binary directory"
-cmd root help="Show the project node_modules directory"
-cmd query help="Query dependencies" { arg <query> }
-cmd check help="Check dependency consistency"
-cmd sbom help="Generate a software bill of materials"
-cmd publish help="Publish a package"
-cmd pack help="Create a package tarball"
-cmd version help="Bump the package version" { arg "[version]" required=#false }
-cmd dist-tag help="Manage distribution tags"
-cmd login help="Log into a package registry"
-cmd logout help="Log out of a package registry"
-cmd whoami help="Show the current registry user"
-cmd owner help="Manage package owners"
-cmd token help="Manage registry tokens"
+cmd import help="Generate a nub lockfile from another package manager" {
+  flag --force help="Overwrite an existing lockfile"
+  flag --lockfile-only help="Only write the converted lockfile"
+}
+cmd dedupe help="Remove duplicate packages" {
+  flag --check help="Exit non-zero if dedupe would change the lockfile"
+  flag --registry help="Override the registry" { arg <url> }
+}
+cmd prune help="Remove extraneous packages" {
+  flag "-P --prod --production" help="Remove development dependencies"
+  flag --no-optional help="Also remove optional dependencies"
+}
+cmd rebuild help="Rebuild dependency native modules" {
+  alias rb
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag "-r --recursive" help="Run across workspaces"
+  arg "[package]" required=#false var=#true
+}
+cmd fetch help="Fetch lockfile packages into the store" {
+  flag "-D --dev" help="Fetch development dependencies only"
+  flag "-P --prod" help="Fetch production dependencies only"
+  flag --registry help="Override the registry" { arg <url> }
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+}
+cmd link help="Link a local package" { alias ln; flag "-g --global" help="Use the global link registry"; arg "[package]" required=#false }
+cmd unlink help="Unlink local packages" { alias dislink; flag "-g --global" help="Use the global link registry"; arg "[package]" required=#false }
+cmd patch help="Prepare an installed package for patching" {
+  flag --edit-dir help="Extract the editable copy into a directory" { arg <dir> }
+  flag --ignore-existing help="Ignore an existing patch entry"
+  arg <package>
+}
+cmd patch-commit help="Create and register a package patch" { flag --patches-dir help="Directory for generated patch files" { arg <dir> }; arg <dir> }
+cmd patch-remove help="Remove package patches" { arg "[patch]" required=#false var=#true }
+cmd approve-builds help="Approve dependencies to run build scripts" { flag "-g --global" help="Approve global packages" }
+cmd ignored-builds help="List dependencies whose build scripts were blocked"
+cmd create help="Create a project from a create-* initializer" {
+  flag --registry help="Override the registry" { arg <url> }
+  arg <initializer>
+  arg "[args]" required=#false var=#true
+}
+
+cmd list help="List installed dependencies" {
+  alias ls
+  flag "-D --dev" help="Show development dependencies only"
+  flag "-P --prod --production" help="Show production dependencies only"
+  flag --depth help="Maximum dependency depth" { arg <depth> }
+  flag --format help="Select output format" { arg <format> { choices default json parseable } }
+  flag --json help="Output JSON"
+  flag --lockfile-only help="Read packages only from the lockfile"
+  flag --parseable help="Output parseable paths"
+  flag --long help="Show extended package details"
+  flag "-g --global" help="List global packages"
+  arg "[package]" required=#false var=#true
+}
+cmd la help="List installed dependencies with extended details" { flag --depth { arg <depth> }; arg "[package]" required=#false var=#true }
+cmd ll help="List installed dependencies with extended details" { flag --depth { arg <depth> }; arg "[package]" required=#false var=#true }
+cmd why help="Explain why a package is installed" {
+  alias w
+  flag "-D --dev" help="Search development dependencies only"
+  flag "-P --prod --production" help="Search production dependencies only"
+  flag --json help="Output JSON"
+  flag --long help="Show extended package details"
+  flag --parseable help="Output parseable paths"
+  arg <package>
+}
+cmd outdated help="List outdated dependencies" {
+  flag "-D --dev" help="Check development dependencies only"
+  flag "-P --prod --production" help="Check production dependencies only"
+  flag "-g --global" help="Check globally installed packages"
+  flag "-w --workspace-root --workspace" help="Check the workspace root"
+  flag --long help="Show package details"
+  flag --json help="Output JSON"
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  arg "[package]" required=#false var=#true
+}
+cmd audit help="Audit dependencies for vulnerabilities" {
+  flag --audit-level help="Minimum severity" { arg <level> { choices info low moderate high critical } }
+  flag "-D --dev" help="Audit development dependencies only"
+  flag "-P --prod --production" help="Audit production dependencies only"
+  flag --no-optional help="Skip optional dependencies"
+  flag --fix help="Fix advisories" { arg "[mode]" required=#false { choices update override } }
+  flag "-i --interactive" help="Choose advisories to fix"
+  flag --ignore help="Ignore an advisory ID" var=#true { arg <id> }
+  flag --ignore-unfixable help="Hide advisories with no upgrade"
+  flag --ignore-registry-errors help="Exit successfully on registry errors"
+  flag --json help="Output JSON"
+}
+cmd licenses help="Inspect dependency licenses" {
+  flag "-D --dev" help="Show development dependencies only"
+  flag "-P --prod --production" help="Show production dependencies only"
+  flag --long help="Include resolved paths"
+  flag --json help="Output JSON"
+}
+cmd deprecations help="Find deprecated installed dependencies" {
+  flag --transitive help="Include transitive dependencies"
+  flag --exit-code help="Fail when deprecations are found"
+  flag --json help="Output JSON"
+}
+cmd peers subcommand_required=#true help="Inspect peer dependency issues" {
+  cmd check help="Check for unmet and missing peer dependencies" { flag --json help="Output JSON" }
+}
+cmd query help="Query installed dependencies with a selector" {
+  flag "-D --dev" help="Match development dependency roots"
+  flag "-P --prod --production" help="Match production dependency roots"
+  flag --json help="Output JSON"
+  flag --parseable help="Output tab-separated rows"
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag "-r --recursive" help="Run across workspaces"
+  arg <selector>
+}
+cmd check help="Check dependency link consistency" { flag --json help="Output JSON" }
+cmd bin help="Show the binary directory" { flag "-g --global" help="Show the global bin directory"; flag "-w --workspace-root --workspace" help="Show the workspace-root bin directory" }
+cmd root help="Show the node_modules directory" { flag "-g --global" help="Show the global package directory" }
+cmd view help="Show registry package metadata" {
+  alias info show v
+  flag --json help="Output JSON"
+  arg "[package]" required=#false
+  arg "[field]" required=#false
+}
+cmd search help="Search registry packages" {
+  flag --json help="Output JSON"
+  flag --search-limit help="Maximum result count" { arg <count> }
+  arg <query> var=#true
+}
+
+cmd publish help="Publish a package" {
+  flag --access help="Package access level" { arg <level> { choices public restricted } }
+  flag --tag help="Distribution tag" { arg <tag> }
+  flag --otp help="One-time password" { arg <code> }
+  flag --provenance help="Attach a SLSA provenance attestation"
+  flag --dry-run help="Print without uploading"
+  flag --force help="Attempt to republish an existing version"
+  flag --ignore-scripts help="Skip publish lifecycle scripts"
+  flag --no-git-checks help="Skip git cleanliness checks"
+  flag --json help="Output JSON"
+  flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
+  flag "-r --recursive" help="Publish every workspace package"
+}
+cmd pack help="Create a package tarball" {
+  flag --pack-destination help="Output directory" { arg <dir> }
+  flag --dry-run help="Print without writing a tarball"
+  flag --ignore-scripts help="Skip pack lifecycle scripts"
+  flag --json help="Output JSON"
+}
+cmd version help="Show or bump the package version" {
+  flag --allow-same-version help="Allow retaining the current version"
+  flag --ignore-scripts help="Skip version lifecycle scripts"
+  flag --json help="Output JSON"
+  flag "-m --message" help="Commit message template" { arg <message> }
+  flag --no-commit-hooks help="Skip git commit hooks"
+  flag --no-git-tag-version help="Do not create a commit or tag"
+  flag --preid help="Prerelease identifier" { arg <id> }
+  flag --sign-git-tag help="GPG-sign the tag"
+  arg "[version]" required=#false { choices major minor patch premajor preminor prepatch prerelease from-git }
+}
+cmd deprecate help="Deprecate published package versions" { flag --dry-run help="Print without updating"; flag --otp { arg <code> }; arg <package>; arg <message> }
+cmd undeprecate help="Clear package deprecations" { flag --dry-run help="Print without updating"; flag --otp { arg <code> }; arg <package> }
+cmd dist-tag subcommand_required=#true help="Manage distribution tags" {
+  alias dist-tags
+  cmd add help="Add or update a distribution tag" { flag --otp { arg <code> }; arg <package-version>; arg "[tag]" required=#false }
+  cmd ls help="List distribution tags" { arg "[package]" required=#false }
+  cmd rm help="Remove a distribution tag" { alias remove; flag --otp { arg <code> }; arg <package>; arg <tag> }
+}
+cmd unpublish help="Remove a package or version from the registry" {
+  flag --dry-run help="Print without updating"
+  flag "-f --force" help="Allow whole-package removal"
+  flag --otp { arg <code> }
+  arg "[package]" required=#false
+}
+cmd login help="Log into a package registry" {
+  alias adduser
+  flag --auth-type help="Authentication flow" { arg <type> { choices legacy web } }
+  flag --scope help="Bind a scope to this registry" { arg <scope> }
+  flag --registry { arg <url> }
+}
+cmd logout help="Log out of a package registry" { flag --scope { arg <scope> }; flag --registry { arg <url> } }
+cmd whoami help="Show the current registry user" { flag --registry { arg <url> } }
+cmd owner subcommand_required=#true help="Manage package owners" {
+  alias owners
+  flag --otp { arg <code> }
+  cmd ls help="List package maintainers" { alias list; arg <package> }
+  cmd add help="Add a package maintainer" { arg <package>; arg <user> }
+  cmd rm help="Remove a package maintainer" { alias remove; arg <package>; arg <user> }
+}
+cmd token subcommand_required=#true help="Manage registry tokens" {
+  cmd list help="List account tokens" { alias ls }
+  cmd create help="Create an auth token" { flag "-p --password" { arg <password> }; flag --read-only; flag --cidr var=#true { arg <cidr> } }
+  cmd revoke help="Revoke an auth token" { alias rm; arg <key> }
+}
 
 cmd store subcommand_required=#true help="Manage the content-addressable store" {
-  cmd add help="Add packages to the global store" { arg "[package]" required=#false var=#true }
+  cmd add help="Add packages to the global store" { arg <package> var=#true }
   cmd path help="Show the store path"
   cmd prune help="Remove unreferenced packages"
   cmd status help="Verify the store"
 }
-cmd cache help="Manage cached package data" { arg "[action]" required=#false }
+cmd cache subcommand_required=#true help="Manage cached package data" {
+  cmd delete help="Delete package metadata" { arg <pattern> var=#true }
+  cmd list help="List cached package metadata" { arg "[pattern]" required=#false var=#true }
+  cmd list-registries help="List configured registries"
+  cmd prune help="Remove stale cache primers" { flag --age-days { arg <days> }; flag --dry-run }
+  cmd view help="View cached package metadata" { flag --json; arg <package> }
+}
+cmd cat-file help="Find a store file by content hash" { arg <hash> }
+cmd cat-index help="Show a package's store index" { arg <package-version> }
+cmd find-hash help="Find packages containing a content hash" { flag --json; arg <hash> }
 cmd config help="Manage configuration" {
-  flag --all help="Include unset settings"
+  alias c
+  // Scope selectors are explicit here because config has its own global/user grammar.
+  flag --all help="Include settings with no configured value"
+  flag "-g --global" help="Use user configuration"
   flag --json help="Output JSON"
   flag --local help="Use project configuration"
-  flag --location help="Select configuration location" {
-    arg <location> {
-      choices merged user project global
-    }
-  }
-  cmd delete help="Remove a setting" { alias rm remove unset; arg <key> }
-  cmd get help="Get a setting" { arg <key> }
-  cmd list help="List settings" { alias ls }
-  cmd set help="Set a setting" { arg <key>; arg <value> }
-  cmd path help="Show the global config path"
+  cmd delete help="Remove a setting" { alias rm remove unset; flag "-g --global"; flag --local; arg <key> }
+  cmd get help="Get a setting" { flag "-g --global"; flag --local; flag --json; arg <key> }
+  cmd list help="List settings" { alias ls; flag --all; flag "-g --global"; flag --local; flag --json }
+  cmd set help="Set a setting" { flag "-g --global"; flag --local; arg <key>; arg <value> }
+  cmd init help="Create a commented nub.jsonc" { flag "-g --global"; flag --local }
+  cmd path help="Show the global nub.jsonc path"
 }
-cmd get help="Get a configuration value" { arg <key> }
-cmd set help="Set a configuration value" { arg <key>; arg <value> }
+cmd global subcommand_required=#true help="Manage user-global configuration" {
+  cmd config help="Manage user configuration" {
+    alias c
+    flag --json help="Output JSON"
+    cmd get help="Get a user setting" { flag --json help="Output JSON"; arg <key> }
+    cmd set help="Set a user setting" { arg <key>; arg <value> }
+    cmd delete help="Remove a user setting" { alias rm remove unset; arg <key> }
+    cmd list help="List user settings" { alias ls; flag --json help="Output JSON" }
+    cmd init help="Create the user nub.jsonc"
+    cmd path help="Show the user nub.jsonc path"
+  }
+}
+cmd get help="Get a configuration value" { flag "-g --global"; flag --local; flag --json; arg <key> }
+cmd set help="Set a configuration value" { flag "-g --global"; flag --local; arg <key>; arg <value> }
+cmd pkg help="Read or modify package.json" {
+  flag --json help="Parse set values as JSON"
+  flag "-C --dir" help="Target package directory" { arg <dir> }
+  arg <subcommand> { choices get set delete fix }
+  arg "[args]" required=#false var=#true
+}
+cmd set-script help="Set a package.json script" {
+  alias ss
+  flag "-C --dir" help="Target package directory" { arg <dir> }
+  arg <name>
+  arg <command> var=#true
+}
 cmd help help="Show help for a command" { arg "[command]" required=#false }
 
 complete "script" run="jq -r '.scripts // {} | keys[]' package.json 2>/dev/null"

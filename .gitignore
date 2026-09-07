@@ -6,3 +6,6 @@
 # opensrc - source code for packages
 opensrc/
 /.opencode/package-lock.json
+
+# Generated locally from the tracked Usage spec.
+/dot_zsh/_nub

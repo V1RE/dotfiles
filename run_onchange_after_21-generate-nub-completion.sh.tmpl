@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+# nub.usage.kdl hash: {{ include "dot_zsh/completions/nub.usage.kdl" | sha256sum }}
+spec="${HOME}/.zsh/completions/nub.usage.kdl"
+completion="${HOME}/.zsh/_nub"
+temp="$(mktemp "${completion}.XXXXXX")"
+trap 'rm -f "${temp}"' EXIT HUP INT TERM
+
+usage generate completion zsh nub --file "${spec}" > "${temp}"
+mv -f "${temp}" "${completion}"
+trap - EXIT HUP INT TERM
