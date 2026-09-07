@@ -1,8 +1,8 @@
 name nub
 bin nub
-version "0.8.1"
+version "0.8.3"
 about "The all-in-one Node.js toolkit"
-// Source: nubjs/nub v0.8.1 (cli.rs and the embedded PM command parsers).
+// Source: nubjs/nub v0.8.3 (cli.rs and the embedded PM command parsers).
 // Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag --cwd help="Run as if started in a directory" global=#true {
@@ -274,6 +274,8 @@ cmd install help="Install dependencies" {
 }
 
 cmd ci help="Perform a clean frozen-lockfile install" {
+  flag "-P --prod --production" help="Install production dependencies only"
+  flag "-D --dev" help="Install development dependencies only"
   flag --ignore-scripts help="Skip lifecycle scripts"
   flag --no-optional help="Skip optional dependencies"
   flag --registry help="Override the registry" { arg <url> }
