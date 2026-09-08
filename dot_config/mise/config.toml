@@ -4,6 +4,7 @@
 vite-plus = "https://github.com/markmals/mise-vite-plus"
 
 [tools]
+"aqua:pnpm/pnpm" = "latest"
 "cargo:worktrunk" = "latest"
 "github:googleworkspace/cli" = "latest"
 "npm:@fsouza/prettierd" = "latest"
@@ -20,25 +21,24 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "npm:turbo" = "latest"
 "npm:wrangler" = "latest"
 "npm:zele" = "latest"
+amp = { version = "latest", allow_builds = ["@ampcode/cli"] }
 bun = "latest"
 codex = "latest"
 graphite = "latest"
 hcloud = "latest"
+hunk = "latest"
 java = "latest"
 lazygit = "latest"
 node = "24"
 nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 pi = "latest"
 pitchfork = "latest"
-pnpm = "latest"
 television = "latest"
 usage = "latest"
 uv = "latest"
 vercel = "latest"
 vite-plus = "latest"
-hunk = "latest"
 watchexec = "latest"
-amp = { version = "latest", allow_builds = ["@ampcode/cli"] }
 
 [tools.aube]
 version = "latest"
