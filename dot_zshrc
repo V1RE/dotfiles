@@ -253,8 +253,9 @@ zsh-cache-file mise mise activate zsh && source $REPLY
 if [[ "${TERM:-}" != "dumb" ]]; then
     zsh-cache-file -w ${STARSHIP_CONFIG:-$HOME/.config/starship.toml} \
         starship starship init zsh && source $REPLY
-    if [[ "${TERM_PROGRAM:-}" == "ghostty" ]]; then
+    if [[ "${TERM_PROGRAM:-}" == "ghostty" || "${HERDR_ENV:-}" == "1" ]]; then
         # Reserve the last cell so that ZLE can redraw a prompt that uses Starship fill.
+        # Herdr clears TERM_PROGRAM, so detect its panes independently of the host.
         PROMPT="${PROMPT/\$COLUMNS/\$(( COLUMNS - 1 ))}"
     fi
 fi
