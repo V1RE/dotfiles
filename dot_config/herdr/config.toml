@@ -23,6 +23,7 @@ auto_switch = false
 # Use "stable" for normal releases or "preview" for opt-in preview builds.
 # channel = "stable"
 
+channel = "preview"
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
 # Examples: "ctrl+b", "f12", "esc", "-"
