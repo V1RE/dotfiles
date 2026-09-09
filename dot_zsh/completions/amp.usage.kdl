@@ -2,7 +2,7 @@ min_usage_version "6.2.0"
 // Command surface from `amp --help` and nested command help.
 name "Amp CLI"
 bin "amp"
-version "0.0.1788768055-gf27e57"
+version "0.0.1788940851-g2b0940"
 about "The frontier agent"
 unknown_flags "error"
 
@@ -22,6 +22,9 @@ flag "--features <feature>" help="Enable a thread feature (fast or pro)" global=
   choices "fast" "pro"
 }
 flag "--fast" help="Run new threads in Fast mode; alias for --features fast" global=#true
+flag "--executor <executor>" help="Run a new thread locally, in an orb, or on a runner (local, orb, runner:<id>)" global=#true {
+  choices "local" "orb"
+}
 flag "--no-tui" help="Run Amp without a TUI and serve remote thread creation requests for the current directory" global=#true
 flag "--title <title>" help="With --execute, set the title of the new thread before starting the agent" global=#true
 flag "--stream-json" help="With --execute, output Claude Code-compatible stream JSON instead of plain text" global=#true
@@ -38,8 +41,8 @@ flag "--ide" help="Enable IDE connection" negate="--no-ide"
 flag "--remote-control-terminal" help="Enable terminal access from ampcode.com for remote-controlled threads" negate="--no-remote-control-terminal" env="AMP_REMOTE_CONTROL_TERMINAL"
 flag "-x --execute [message]" help="Use execute mode, optionally with a user message" value_optional=#true
 flag "--orb-execute" help="With --execute, execute asynchronously in an Amp-managed orb; -ox is a shorthand for -x --orb-execute"
-flag "--project [project]" help="With --orb-execute, select the Amp project" value_optional=#true
-flag "--orb-size <size>" help="With --orb-execute, select the orb size"
+flag "--project [project]" help="With the orb executor, select the Amp project" value_optional=#true
+flag "--orb-size <size>" help="With the orb executor, select the orb size"
 flag "--runner-id <id>" help="With --no-tui, set a stable runner ID"
 
 cmd "version" help="Print the version number and exit"
@@ -133,7 +136,7 @@ cmd "top" help="Show live active threads" {
   flag "--stream-jsonl" help="Stream a JSON line whenever the thread list changes (output schema is EXPERIMENTAL)"
 }
 
-cmd "last" help="Continue the last thread directly." {
+cmd "last" help="Continue the last thread for this terminal and mode in this checkout, falling back to the last thread in this checkout." {
   alias "l"
 }
 
@@ -149,16 +152,16 @@ cmd "threads" help="Thread management commands. When no subcommand is provided, 
   flag "--include-archived" help="Include archived threads in the list"
   flag "--limit <number>" help="Maximum number of threads to return"
   flag "--offset <number>" help="Number of threads to skip"
-  cmd "new" help="Create a new thread and print its ID. The thread will be empty. You can set the visibility using the --visibility option." {
+  cmd "new" help="Create a new thread and print its URL. The thread will be empty. You can set the visibility using the --visibility option." {
     alias "n"
     flag "--visibility <visibility>" help="Set thread visibility (private, unlisted, workspace, group)" {
       choices "private" "unlisted" "workspace" "group"
     }
   }
-  cmd "continue" help="Continue an existing thread by resuming the conversation. Each thread can be a thread URL or ID. By default, interactive mode shows a picker. Use --last to continue the last thread for the current mode directly. When multiple threads are given, all are resumed and the first is shown in the foreground." {
+  cmd "continue" help="Continue an existing thread by resuming the conversation. Each thread can be a thread URL or ID. By default, interactive mode shows a picker. Use --last to continue the last thread for this terminal and mode in this checkout, falling back to the last thread in this checkout. When multiple threads are given, all are resumed and the first is shown in the foreground." {
     alias "c"
     arg "[threads]..." help="Thread URLs or IDs"
-    flag "--last" help="Continue the last thread for the current mode directly"
+    flag "--last" help="Continue the last thread in this checkout for the current mode, preferring this terminal"
     flag "--pick" help="Pick a thread interactively from a list (DEPRECATED: picker is now the default)" deprecated="picker is now the default"
   }
   cmd "list" help="List all your threads with their IDs, names, and last modified times." {

@@ -1,8 +1,8 @@
 name nub
 bin nub
-version "0.8.3"
+version "0.9.0"
 about "The all-in-one Node.js toolkit"
-// Source: nubjs/nub v0.8.3 (cli.rs and the embedded PM command parsers).
+// Source: nubjs/nub v0.9.0 (cli.rs and the embedded PM command parsers).
 // Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag --cwd help="Run as if started in a directory" global=#true {
@@ -157,6 +157,7 @@ cmd compile help="Compile a file to a standalone executable" {
   flag --target help="Select the target Node version or alias" { arg <version> }
   flag --platform help="Select the target platform" { arg <platform> { choices darwin-arm64 darwin-x64 linux-arm64 linux-arm64-musl linux-x64 linux-x64-musl win32-arm64 win32-x64 } }
   flag --no-minify help="Disable minification"
+  flag --icu help="Keep selected ICU locales (use --icu=locales)" { arg "[locales]" required=#false }
   flag --sourcemap help="Set source map mode (use --sourcemap=mode)" { arg "[mode]" { choices linked inline external none } }
   flag --define help="Replace an expression" var=#true { arg "<key=value>" }
   flag --define-file help="Replace an expression with file contents" var=#true { arg "<key=path>" }
@@ -164,7 +165,11 @@ cmd compile help="Compile a file to a standalone executable" {
   flag --exclude help="Exclude an embedded path or glob" var=#true { arg <path> }
   flag --node-options help="Set startup Node options" var=#true { arg <options> }
   flag --icon help="Set a Windows executable icon" { arg <file> }
+  flag --metadata help="Set Windows version metadata" var=#true { arg "<key=value>" }
+  flag --hide-console help="Hide the console window for a Windows GUI app"
   flag --install-message help="Set the first-run setup message" { arg <text> }
+  flag --drop help="Remove calls at build time" var=#true { arg <name> { choices console debugger } }
+  flag --metafile help="Write an esbuild-format build report" { arg <path> }
   flag --no-keep-names help="Allow renaming functions and classes"
   flag --no-treeshake help="Disable tree shaking"
   flag --ignore-annotations help="Ignore pure annotations"
@@ -174,7 +179,7 @@ cmd compile help="Compile a file to a standalone executable" {
   flag --external help="Resolve a package outside the binary at runtime" var=#true { arg <package> }
   flag --unbundled help="Embed a package in its installed layout" var=#true { arg <package> }
   flag --bundled help="Force bundling a package" var=#true { arg <package> }
-  flag --allow-dynamic-import help="Allow computed dynamic imports"
+  flag --allow-dynamic-import help="Allow computed dynamic imports, optionally scoped by glob" var=#true { arg "[glob]" required=#false }
   flag --tsconfig help="Use a specific TypeScript configuration" { arg <path> }
   flag --sourcemap-exclude-sources help="Omit original source text from maps"
 }
