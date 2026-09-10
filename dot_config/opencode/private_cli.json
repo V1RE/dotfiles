@@ -52,7 +52,7 @@
     "sidebar": "auto",
     "scrollbar": true,
     "thinking": "show",
-    "grouping": "auto",
+    "grouping": "none",
     "markdown": "rendered",
     "new_location": "launch",
     "image_preview": true,
