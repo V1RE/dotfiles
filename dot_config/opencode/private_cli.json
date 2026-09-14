@@ -69,7 +69,7 @@
     "turn_tokens": "verbose"
   },
   "tabs": {
-    "enabled": true,
+    "enabled": false,
     "scope": "cwd",
     "vertical": false,
     "layout": "horizontal"
