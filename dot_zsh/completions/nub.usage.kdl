@@ -1,8 +1,8 @@
 name nub
 bin nub
-version "0.9.0"
+version "0.9.2"
 about "The all-in-one Node.js toolkit"
-// Source: nubjs/nub v0.9.0 (cli.rs and the embedded PM command parsers).
+// Source: nubjs/nub v0.9.2 (`--help` and command-specific help).
 // Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag --cwd help="Run as if started in a directory" global=#true {
@@ -25,7 +25,7 @@ flag --env-file-if-exists help="Load an optional environment file" global=#true 
 flag --no-env-file help="Disable environment-file loading" global=#true
 flag --node help="Disable nub runtime augmentation" global=#true
 flag --watch help="Enable watch mode" global=#true
-flag "-v -V --version" help="Show version"
+flag "-v --version" help="Show version"
 flag "-h --help" help="Show help" global=#true
 flag "--no-check --no-install" help="Skip dependency freshness checks"
 // Node passthrough flags are root-only: -r and -C mean different things for PM verbs.
@@ -42,6 +42,33 @@ flag --enable-source-maps help="Enable source maps in stack traces"
 flag --inspect help="Activate the inspector" { arg "[host:port]" }
 flag --inspect-brk help="Break at startup in the inspector" { arg "[host:port]" }
 flag --inspect-wait help="Wait for an inspector connection" { arg "[host:port]" }
+flag --cpu-prof help="Write a V8 CPU profile on exit"
+flag --heap-prof help="Write a V8 heap profile on exit"
+flag --prof help="Generate V8 profiler tick data"
+flag --title help="Set process.title on startup" { arg <title> }
+flag --max-old-space-size help="Set V8's old-space size limit" { arg <mb> }
+flag --stack-trace-limit help="Set Error.stackTraceLimit" { arg <n> }
+flag --no-warnings help="Silence all process warnings"
+flag --disable-warning help="Silence a specific warning" var=#true { arg <code-or-type> }
+flag --throw-deprecation help="Throw on use of deprecated APIs"
+flag --pending-deprecation help="Emit pending deprecation warnings"
+flag --no-deprecation help="Silence deprecation warnings"
+flag --redirect-warnings help="Write warnings to a file" { arg <file> }
+flag --trace-warnings help="Show stack traces for process warnings"
+flag --trace-deprecation help="Show stack traces for deprecations"
+flag --trace-exit
+flag --trace-uncaught
+flag --trace-sync-io
+flag --report-on-fatalerror
+flag --report-uncaught-exception
+flag --report-on-signal
+flag --report-dir { arg <dir> }
+flag --report-filename { arg <file> }
+flag --preserve-symlinks
+flag --preserve-symlinks-main
+flag --use-largepages { arg <mode> }
+flag --zero-fill-buffers
+flag --v8-options
 
 // Keep bare nub completion focused on commands, not files in the current directory.
 arg "[entry]" required=#false
@@ -409,12 +436,17 @@ cmd patch help="Prepare an installed package for patching" {
 }
 cmd patch-commit help="Create and register a package patch" { flag --patches-dir help="Directory for generated patch files" { arg <dir> }; arg <dir> }
 cmd patch-remove help="Remove package patches" { arg "[patch]" required=#false var=#true }
-cmd approve-builds help="Approve dependencies to run build scripts" { flag "-g --global" help="Approve global packages" }
-cmd ignored-builds help="List dependencies whose build scripts were blocked"
+cmd approve-builds help="Approve dependencies to run build scripts" {
+  flag --all help="Approve every pending ignored build without prompting"
+  flag "-g --global" help="Approve global packages"
+  arg "[package]" required=#false var=#true
+}
+cmd ignored-builds help="List dependencies whose build scripts were blocked" {
+  flag "-g --global" help="Inspect global packages"
+}
 cmd create help="Create a project from a create-* initializer" {
   flag --registry help="Override the registry" { arg <url> }
-  arg <initializer>
-  arg "[args]" required=#false var=#true
+  arg "[param]" required=#false var=#true
 }
 
 cmd list help="List installed dependencies" {
@@ -513,6 +545,15 @@ cmd publish help="Publish a package" {
   flag --json help="Output JSON"
   flag "-F --filter" help="Filter workspace packages" var=#true { arg <pattern> }
   flag "-r --recursive" help="Publish every workspace package"
+  flag --filter-prod help="Filter production workspace packages" var=#true { arg <pattern> }
+  flag --fail-if-no-match help="Fail when no workspace matches"
+  flag --fetch-retries { arg <count> }
+  flag --fetch-retry-factor { arg <count> }
+  flag --fetch-retry-maxtimeout { arg <ms> }
+  flag --fetch-retry-mintimeout { arg <ms> }
+  flag --fetch-timeout { arg <ms> }
+  flag --registry help="Override the registry" { arg <url> }
+  arg "[tarball-or-folder]" required=#false
 }
 cmd pack help="Create a package tarball" {
   flag --pack-destination help="Output directory" { arg <dir> }
@@ -529,7 +570,7 @@ cmd version help="Show or bump the package version" {
   flag --no-git-tag-version help="Do not create a commit or tag"
   flag --preid help="Prerelease identifier" { arg <id> }
   flag --sign-git-tag help="GPG-sign the tag"
-  arg "[version]" required=#false { choices major minor patch premajor preminor prepatch prerelease from-git }
+  arg "[version]" required=#false
 }
 cmd deprecate help="Deprecate published package versions" { flag --dry-run help="Print without updating"; flag --otp { arg <code> }; arg <package>; arg <message> }
 cmd undeprecate help="Clear package deprecations" { flag --dry-run help="Print without updating"; flag --otp { arg <code> }; arg <package> }
@@ -576,6 +617,7 @@ cmd cache subcommand_required=#true help="Manage cached package data" {
   cmd delete help="Delete package metadata" { arg <pattern> var=#true }
   cmd list help="List cached package metadata" { arg "[pattern]" required=#false var=#true }
   cmd list-registries help="List configured registries"
+  cmd path help="Show the metadata and policy cache directory"
   cmd prune help="Remove stale cache primers" { flag --age-days { arg <days> }; flag --dry-run }
   cmd view help="View cached package metadata" { flag --json; arg <package> }
 }

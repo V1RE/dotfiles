@@ -2,7 +2,7 @@ min_usage_version "6.2.0"
 // Command surface from `amp --help` and nested command help.
 name "Amp CLI"
 bin "amp"
-version "0.0.1788940851-g2b0940"
+version "0.0.1789358550-gfbbd2a"
 about "The frontier agent"
 unknown_flags "error"
 
@@ -115,6 +115,29 @@ cmd "portal" help="Commands for accessing Amp portal URLs" {
   }
 }
 
+cmd "net" help="Send an orb's outbound traffic through an exit node on your own machine" {
+  cmd "exit-node" help="Run this machine as an exit node for your orbs" {
+    flag "--id <id>" help="Exit node ID and name; defaults to this machine's hostname"
+    flag "--thread <thread>" help="Only serve this owned thread URL or ID; repeat to allow several" var=#true
+    flag "--verbose" help="Log every connection the orbs open through this machine"
+    flag "--portal-domain <domain>" help="Amp portal domain" env="AMP_PORTAL_DOMAIN"
+  }
+  cmd "route" help="Route this orb through an exit node; omit the argument to list available exit nodes" {
+    arg "[exit-node]" help="Exit node ID or hostname"
+    flag "--system" help="Stop routing through an exit node and use the orb's own network"
+    flag "--wait <seconds>" help="Wait for the exit node to connect; use 0 to return immediately"
+  }
+  cmd "status" help="Show whether Amp Net is configured and which exit node is connected" {
+    flag "--json" help="Print machine-readable JSON"
+  }
+  cmd "ping" help="Measure the round trip from this orb to the connected exit node" {
+    flag "--count <n>" help="Number of pings to send"
+  }
+  cmd "run" help="Run a command through the exit node without changing orb-wide configuration" {
+    arg "<command>..." help="Command and arguments; use -- before commands that take options" double_dash=automatic
+  }
+}
+
 cmd "clone" help="Clone an Amp-hosted Project, Personal Plugins or Skills repository, or Workspace Plugins or Skills repository" {
   arg "<repository>" help="Repository identifier or URL"
   arg "[target-dir]" help="Clone destination directory"
@@ -178,6 +201,10 @@ cmd "threads" help="Thread management commands. When no subcommand is provided, 
     flag "--details" help="Show detailed credit, token, model, and tool usage"
     flag "--start <timestamp>" help="Start of the usage range as an ISO 8601 timestamp"
     flag "--end <timestamp>" help="Exclusive end of the usage range as an ISO 8601 timestamp"
+  }
+  cmd "context" help="Print the estimated input context for a thread as JSON" {
+    alias "analyze-context"
+    arg "<thread>" help="Thread URL or ID"
   }
   cmd "visibility" help="Print the explicit repo visibility override or \"inherited\", or set a new default (private, workspace, group)." {
     alias "v"
@@ -637,9 +664,15 @@ cmd "projects" help="Manage Amp projects" {
     flag "--custom-ship-prompt-file <path>" help="Read the Custom Ship prompt from a file, or '-' for stdin"
     flag "--desktop-resume-script-file <path>" help="Read the Desktop resume script from a file, or '-' for stdin"
     flag "--commit-author <author>" help="Git commit author"
+    flag "--additional-repository <url>" help="Replace additional repositories (repeatable)" var=#true
+    flag "--clear-additional-repositories" help="Remove all additional repositories"
     flag "--description <description>" help="Amp Store listing description"
     flag "--icon <path>" help="Project icon image"
     flag "--listed-on-amp-store" help="List the project on the Amp Store" negate="--no-listed-on-amp-store"
+    flag "--repository-url <url>" help="Set the primary repository URL"
+    flag "--repository-mode <mode>" help="Link the primary repository to GitHub or treat it as a plain Git URL" {
+      choices "github" "mapped"
+    }
     flag "--pre-clone-script-file <path>" help="Read the pre-clone script from a file, or '-' for stdin"
     flag "--pre-setup-script-file <path>" help="Read the pre-setup script from a file, or '-' for stdin"
     flag "--json" help="Print JSON output"
