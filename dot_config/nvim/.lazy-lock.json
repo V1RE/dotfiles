@@ -38,7 +38,7 @@
   "opencode.nvim": { "branch": "main", "commit": "bf8db37e600bd83f4bec1303b7a41476381e455c" },
   "otter.nvim": { "branch": "main", "commit": "1e43f95639c4317acec587d9329d1b29a0fd786d" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
-  "schemastore.nvim": { "branch": "main", "commit": "05e938c0aa5dfbdbb11972fa4c8a85f27f402ba0" },
+  "schemastore.nvim": { "branch": "main", "commit": "72d144a9e014646963b8a5c67a4fde19b9772528" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "3610dc7dc91f06aa98b11dca5cc30dfa98626b7e" },
