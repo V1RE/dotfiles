@@ -57,31 +57,74 @@ function ocw() {
 		return 1
 	fi
 
-	password="$(ssh "$host" '. ~/.config/opencode/server.env; printf %s "$OPENCODE_SERVER_PASSWORD"')" || return
-	ssh -N -L "${port}:127.0.0.1:4096" "$host" &
+	password="$(ssh "${host}" '. ~/.config/opencode/server.env; printf %s "$OPENCODE_SERVER_PASSWORD"')" || return
+	ssh -N -L "${port}:127.0.0.1:4096" "${host}" &
 	tunnel_pid=$!
 	sleep 1
-	if ! kill -0 "$tunnel_pid" 2>/dev/null; then
-		echo "failed to open SSH tunnel to $host" >&2
+	if ! kill -0 "${tunnel_pid}" 2>/dev/null; then
+		echo "failed to open SSH tunnel to ${host}" >&2
 		return 1
 	fi
 
-	opencode attach "http://127.0.0.1:${port}" --username opencode --password "$password"
+	opencode attach "http://127.0.0.1:${port}" --username opencode --password "${password}"
 	status=$?
-	kill "$tunnel_pid" 2>/dev/null || true
-	wait "$tunnel_pid" 2>/dev/null || true
-	return "$status"
+	kill "${tunnel_pid}" 2>/dev/null || true
+	wait "${tunnel_pid}" 2>/dev/null || true
+	return "${status}"
 }
 
 alias npx="nubx"
 
 function ctxup() {
-	local ctx_dir="$HOME/.ctx"
+	local ctx_dir="${HOME}/.ctx"
 
-	fd -HI -t d -d 2 --glob '.git' "$ctx_dir" --format '{//}' | parallel --bar --tag '
+	fd -HI -t d -d 2 --glob '.git' "${ctx_dir}" --format '{//}' | parallel --bar --tag '
     cd {} &&
     git fetch --all --prune &&
     git reset --hard origin/$(git rev-parse --abbrev-ref origin/HEAD | sed "s|origin/||") &&
     git clean -fd
   ' 2>&1
+}
+
+# Vercel skills CLI guard: never touch Claude.
+# The CLI pre-selects claude-code, auto-detects it via ~/.claude, and always
+# creates ./.claude/skills (createProjectSkillsDirByDefault), so force an
+# explicit -a. Adjust the list to the agents you actually use.
+SKILLS_DEFAULT_AGENTS=(amp opencode codex)
+
+function skills() {
+	local cmd=${1:-}
+
+	case ${cmd} in
+	add | a | install | i | experimental_sync | experimental_install)
+		# `use --agent` means "launch this agent", so never touch `use`.
+		# Everything below means "install here".
+
+		# Refuse the footguns that always include Claude.
+		local arg has_agent=0
+		for arg in "$@"; do
+			if [[ ${arg} == --all || ${arg} == "*" ]]; then
+				echo "skills: refusing all-agent installs (would include claude-code)" >&2
+				return 1
+			fi
+			if [[ ${arg} == *claude-code* ]]; then
+				echo "skills: refusing claude-code (blocked)" >&2
+				return 1
+			fi
+			if [[ ${arg} == -a || ${arg} == --agent ]]; then
+				has_agent=1
+			fi
+		done
+
+		# Inject defaults only when the user did not pick agents.
+		if ((has_agent)); then
+			command nubx -y skills@latest "$@"
+		else
+			command nubx -y skills@latest "$@" -a "${SKILLS_DEFAULT_AGENTS[@]}"
+		fi
+		;;
+	*)
+		command nubx -y skills@latest "$@"
+		;;
+	esac
 }
