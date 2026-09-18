@@ -21,7 +21,7 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "npm:turbo" = "latest"
 "npm:wrangler" = "latest"
 "npm:zele" = "latest"
-amp = { version = "latest", allow_builds = ["@ampcode/cli"] }
+amp = { version = "latest", prerelease = true, allow_builds = ["@ampcode/cli"] }
 bun = "latest"
 codex = "latest"
 graphite = "latest"
