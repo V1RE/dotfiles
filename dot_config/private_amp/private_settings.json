@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ampcode.com/cli-settings.schema.json",
+  "amp.showCosts": true,
+  "amp.git.commit.coauthor.enabled": true,
+  "amp.git.commit.ampThread.enabled": true,
+  "amp.notifications.enabled": true,
+  "amp.skills.disableClaudeCodeSkills": true,
+  "amp.skills.disableGlobalAgentsSkills": false,
+  "amp.terminal.copyOnSelect": true,
+  "amp.terminal.detailsExpandedByDefault": true,
+  "amp.thread.autoArchiveOnQuit": false,
+  "amp.tools.disable": [],
+  "amp.fuzzy.alwaysIncludePaths": [".env", ".env.*"],
+  "amp.defaultVisibility": {},
+  "amp.mcpPermissions": [],
+  "amp.remoteThreadCreation.enabled": true,
+  "amp.runner.autoUpdate.enabled": true,
+  "amp.updates.mode": "auto",
+  "amp.keymap": {
+    "thread.new": "ctrl+t",
+    "thread.switch": "alt+o",
+    "thread.toggleOutline": "<leader>m"
+  },
+  "amp.mcpServers": {
+    "teamleader-orbit": {
+      "url": "https://api.orbit.teamleader.eu/mcp"
+    }
+  }
+}
