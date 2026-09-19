@@ -12,7 +12,7 @@ typeset -g ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 # Janitor: generation tmps are pid-unique, so a shell killed mid-generation
 # leaves its tmp behind (the `rm -f` on failure never runs). Sweep tmps older
 # than an hour; active writers are seconds old, so never touched.
-rm -f -- $ZSH_CACHE_DIR/*.tmp(#qN.mh+1)
+/bin/rm -f -- $ZSH_CACHE_DIR/*.tmp(#qN.mh+1)
 
 # Rebuild a cache entry after this many days even when its key is unchanged.
 # This bounds staleness from inputs the key cannot see.
