@@ -5,6 +5,5 @@ mise = true
 
 [daemons.amp]
 run = "exec amp --no-tui --runner-id MacBook-Pro-5 --remote-control-terminal --discover-dirs"
-dir = "~/Code"
 boot_start = true
 retry = true
