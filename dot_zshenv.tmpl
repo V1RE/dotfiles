@@ -1,4 +1,17 @@
-export PATH="$HOME/.ascii/bin:$PATH"
+typeset -gU path PATH
+path=(
+  $HOME/.ascii/bin
+  $HOME/.local/bin
+  $HOME/bin
+  $HOME/go/bin
+  $HOME/.opencode/bin(N-/)
+  $HOME/.bun/bin(N-/)
+  $path
+)
+
+export BUN_INSTALL="$HOME/.bun" # data dir only; bins via `mise activate`
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+[[ -d $ANDROID_HOME ]] && path+=($ANDROID_HOME/{emulator,platform-tools,cmdline-tools/latest/bin}(N-/))
 
 [ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 

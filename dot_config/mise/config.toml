@@ -4,6 +4,7 @@
 vite-plus = "https://github.com/markmals/mise-vite-plus"
 
 [tools]
+"aqua:atuinsh/atuin" = "latest"
 "aqua:pnpm/pnpm" = "latest"
 "cargo:worktrunk" = "latest"
 "github:googleworkspace/cli" = "latest"
