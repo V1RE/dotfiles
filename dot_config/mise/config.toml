@@ -21,7 +21,6 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "npm:turbo" = "latest"
 "npm:wrangler" = "latest"
 "npm:zele" = "latest"
-amp = { version = "latest", prerelease = true, allow_builds = ["@ampcode/cli"] }
 bun = "latest"
 codex = "latest"
 graphite = "latest"
@@ -30,7 +29,6 @@ hunk = "latest"
 java = "latest"
 lazygit = "latest"
 node = "24"
-nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 pi = "latest"
 pitchfork = "latest"
 television = "latest"
@@ -40,18 +38,29 @@ vercel = "latest"
 vite-plus = "latest"
 watchexec = "latest"
 
-[tools.aube]
+[tools.nub]
+allow_builds = ["@nubjs/nub"]
+prerelease = true
 version = "latest"
+
+[tools.amp]
+allow_builds = ["@ampcode/cli"]
+postinstall = "amp completion zsh > {{ env.HOME }}/.zsh/_amp"
+prerelease = true
+version = "latest"
+
+[tools.aube]
 postinstall = "aube completion zsh > {{ env.HOME }}/.zsh/_aube"
+version = "latest"
 
 [tools.oh-my-pi]
-version = "latest"
-rename_exe = "omp"
 postinstall = "omp completions zsh > {{ env.HOME }}/.zsh/_omp"
+rename_exe = "omp"
+version = "latest"
 
 [tools.herdr]
-version = "latest"
 postinstall = "herdr completion zsh > {{ env.HOME }}/.zsh/_herdr"
+version = "latest"
 
 [settings]
 color_theme = "catppuccin"
