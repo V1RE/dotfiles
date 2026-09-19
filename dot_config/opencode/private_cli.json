@@ -31,7 +31,8 @@
   "attention": {
     "enabled": true,
     "notifications": true,
-    "volume": 1
+    "volume": 1,
+    "sound": true
   },
   "diffs": {
     "wrap": "word",
@@ -70,10 +71,11 @@
     "turn_tokens": "verbose"
   },
   "tabs": {
-    "enabled": false,
+    "enabled": true,
     "scope": "cwd",
     "vertical": false,
-    "layout": "horizontal"
+    "layout": "vertical",
+    "indicators": "status"
   },
   "experimental": {
     "tab_scroll": true,

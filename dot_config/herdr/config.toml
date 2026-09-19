@@ -22,8 +22,8 @@ auto_switch = false
 # Update channel used by background checks and `herdr update`.
 # Use "stable" for normal releases or "preview" for opt-in preview builds.
 # channel = "stable"
+channel = "stable"
 
-channel = "preview"
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
 # Examples: "ctrl+b", "f12", "esc", "-"
@@ -206,6 +206,7 @@ show_agent_labels_on_pane_borders = true
 agent_panel_sort = "priority"
 
 status_indicators = "symbols"
+
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
