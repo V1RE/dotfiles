@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@earendil-works/pi-coding-agent": "0.83.0",
-    "dotenv": "17.4.2",
+    "dotenv": "18.0.1",
     "secret-sniff": "0.2.1",
     "strip-ansi": "7.2.0",
     "zod": "4.4.3"
