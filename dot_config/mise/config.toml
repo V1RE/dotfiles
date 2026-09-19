@@ -46,7 +46,7 @@ version = "latest"
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
-postinstall = "amp completion zsh > {{ env.HOME }}/.zsh/_amp"
+postinstall = "amp completions zsh > {{ env.HOME }}/.zsh/_amp"
 prerelease = true
 version = "latest"
 
