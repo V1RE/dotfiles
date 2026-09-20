@@ -1,8 +1,8 @@
 name nub
 bin nub
-version "0.9.2"
+version "0.9.3"
 about "The all-in-one Node.js toolkit"
-// Source: nubjs/nub v0.9.2 (`--help` and command-specific help).
+// Source: nubjs/nub v0.9.3 (`--help` and command-specific help).
 // Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag --cwd help="Run as if started in a directory" global=#true {
@@ -214,7 +214,7 @@ cmd compile help="Compile a file to a standalone executable" {
 cmd agent subcommand_required=#true help="Print documentation for coding agents" {
   cmd docs help="Print the documentation index and content" {
     flag --page help="Print one documentation page" { arg <path> }
-    flag --list help="Print only the page index"
+    flag "--list --toc" help="Print only the page TOC"
   }
   cmd skill help="Print Nub's agent skill"
 }
@@ -272,7 +272,10 @@ cmd pm subcommand_required=#true help="Manage the project package manager" {
       choices clear
     }
   }
-  cmd shim help="Install package-manager shims"
+  cmd shim help="Install package-manager shims" {
+    flag --route-installs help="Route npm ci/install through nub's engine"
+    flag --no-route-installs help="Stop routing npm installs through nub's engine"
+  }
   cmd unshim help="Remove package-manager shims"
 }
 
@@ -305,6 +308,9 @@ cmd install help="Install dependencies" {
   flag --os help="Select target operating systems" var=#true { arg <os> }
   flag --cpu help="Select target CPU architectures" var=#true { arg <cpu> }
   flag --libc help="Select target C libraries" var=#true { arg <libc> { choices glibc musl current "*" } }
+  flag --pnpmfile help="Set the local pnpmfile" { arg <path> }
+  flag --ignore-pnpmfile help="Skip pnpmfile hooks"
+  flag --global-pnpmfile help="Set the global pnpmfile" { arg <path> }
 }
 
 cmd ci help="Perform a clean frozen-lockfile install" {
@@ -519,6 +525,8 @@ cmd query help="Query installed dependencies with a selector" {
   arg <selector>
 }
 cmd check help="Check dependency link consistency" { flag --json help="Output JSON" }
+// Advertised by nub --help, but nub sbom currently exits with "not yet supported".
+cmd sbom help="Generate a software bill of materials (not yet supported)"
 cmd bin help="Show the binary directory" { flag "-g --global" help="Show the global bin directory"; flag "-w --workspace-root --workspace" help="Show the workspace-root bin directory" }
 cmd root help="Show the node_modules directory" { flag "-g --global" help="Show the global package directory" }
 cmd view help="Show registry package metadata" {
