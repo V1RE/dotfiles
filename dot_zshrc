@@ -350,45 +350,5 @@ if command -v opencode >/dev/null 2>&1 && type compdef &>/dev/null; then
 fi
 ###-end-opencode-completions-###
 
-# ASCII BOX SHELL INTEGRATION START box
-box() {
-  current_file=$(mktemp)
-  old_current_file=${BOX_CURRENT_ID_FILE-}
-  export BOX_CURRENT_ID_FILE="$current_file"
-  command "$HOME/.ascii/bin/box" "$@"
-  box_status=$?
-  if [ "$box_status" -eq 0 ]; then
-    case "${1:-}" in
-      new|start|fork)
-        if [ -s "$current_file" ]; then
-          current_id=$(tr -d '[:space:]' < "$current_file")
-          if [ -n "$current_id" ]; then export BOX_CURRENT_ID="$current_id"; fi
-        fi
-        ;;
-    esac
-  fi
-  if [ -n "$old_current_file" ]; then export BOX_CURRENT_ID_FILE="$old_current_file"; else unset BOX_CURRENT_ID_FILE; fi
-  rm -f "$current_file"
-  return "$box_status"
-}
-# ASCII BOX SHELL INTEGRATION END box
-
-zsh-cache-file box box completions zsh && source $REPLY
-#compdef origin
-###-begin-origin-completions-###
-#
-# yargs command completion script
-#
-# Installation: origin completion >> ~/.zshrc
-#    or origin completion >> ~/.zprofile on OSX.
-#
-_origin_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'\n' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" origin --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _origin_yargs_completions origin
-###-end-origin-completions-###
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
