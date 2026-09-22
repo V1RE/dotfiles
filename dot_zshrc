@@ -225,13 +225,6 @@ export ZVM_VI_EDITOR=$EDITOR
 export ZVM_VI_SURROUND_BINDKEY="s-prefix"
 export ZVM_TERM="xterm-256color"
 
-# `.zshenv` already sources ~/.vite-plus/env for PATH and the `vp` wrapper, but
-# its completion branch is skipped there: that branch needs `compdef`, which
-# only exists after compinit. Load just the completion here, from cache.
-if [[ -n ${commands[vp]} ]]; then
-    zsh-cache-file -b vp vite-plus env VP_COMPLETE=zsh vp && source $REPLY
-fi
-
 zsh-cache-file mise mise activate zsh && source $REPLY
 if [[ "${TERM:-}" != "dumb" ]]; then
     zsh-cache-file -w ${STARSHIP_CONFIG:-$HOME/.config/starship.toml} \
@@ -249,6 +242,13 @@ if command -v redo >/dev/null 2>&1; then
         source "$redo_alias_file"
     fi
     unset redo_alias_file
+fi
+
+# `.zshenv` already sources ~/.vite-plus/env for PATH and the `vp` wrapper, but
+# its completion branch is skipped there: that branch needs `compdef`, which
+# only exists after compinit. Load just the completion here, from cache.
+if [[ -n ${commands[vp]} ]]; then
+    zsh-cache-file -b vp vite-plus env VP_COMPLETE=zsh vp && source $REPLY
 fi
 
 [[ -r "$HOME/.config/lf/lficons.zsh" ]] && source "$HOME/.config/lf/lficons.zsh"
