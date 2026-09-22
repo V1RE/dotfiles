@@ -14,7 +14,7 @@
   "amp.fuzzy.alwaysIncludePaths": [".env", ".env.*"],
   "amp.defaultVisibility": {},
   "amp.mcpPermissions": [],
-  "amp.remoteThreadCreation.enabled": true,
+  "amp.remoteThreadCreation.enabled": false,
   "amp.runner.autoUpdate.enabled": true,
   "amp.updates.mode": "auto",
   "amp.keymap": {
