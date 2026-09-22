@@ -31,6 +31,10 @@
         "type": "remote",
         "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
         "disabled": false
+      },
+      "puck": {
+        "type": "remote",
+        "url": "https://ampcode.com/mcp"
       }
     }
   },
