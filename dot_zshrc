@@ -151,9 +151,10 @@ autoload -Uz compinit
     fi
 } ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24)
 
-autoload -Uz _gs _nub
+autoload -Uz _gs _nub _fallow
 compdef _gs gs
 compdef _nub nub
+compdef _fallow fallow
 
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 

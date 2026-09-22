@@ -1,0 +1,552 @@
+name fallow
+bin fallow
+version "3.28.0"
+about "Codebase analyzer for TypeScript and JavaScript"
+// Source: fallow 3.28.0 (`--help` and subcommand help).
+// Regenerated locally by chezmoi; do not add the generated .zsh/_fallow.
+
+flag "-v --version -V" help="Print version. Accepts `-v`, `-V`, and `--version`; TS/JS tooling (node, npm, pnpm, yarn, bun, tsc) uses `-v`, while `-V` matches knip/oxlint/biome"
+flag "-r --root" help="Project root directory" global=#true { arg "<root>" }
+flag "-c --config" help="Path to config file (.fallowrc.json, .fallowrc.jsonc, fallow.toml, or .fallow.toml)" global=#true { arg "<config>" }
+flag "--allow-remote-extends" help="Allow trusted config files to extend HTTPS URLs" global=#true
+flag "-f --format --output" help="Output format (alias: --output)" global=#true { arg "<format>" { choices "human" "json" "sarif" "compact" "markdown" "codeclimate" "pr-comment-github" "pr-comment-gitlab" "review-github" "review-gitlab" "badge" "github-annotations" "github-summary" } }
+flag "--pretty" help="Indent JSON output for manual inspection. Requires the final output format to be JSON" global=#true
+flag "-q --quiet" help="Suppress progress output" global=#true
+flag "--no-cache" help="Disable incremental caching" global=#true
+flag "--threads" help="Number of parser threads" global=#true { arg "<threads>" }
+flag "--changed-since --base" help="Only report issues in files changed since this git ref (e.g., main, HEAD~5)" global=#true { arg "<changed-since>" }
+flag "--diff-file" help="Unified diff for line-level scoping. Use `-` to read from stdin. Project-level findings still bypass this filter. When both this and `--changed-since` are set, the diff filter wins for finding scope while `--changed-since` still drives file discovery" global=#true { arg "<path>" }
+flag "--diff-stdin" help="Read the unified diff from stdin. Equivalent to `--diff-file -`" global=#true
+flag "--churn-file" help="Import change history from a `fallow-churn/v1` JSON file instead of `git log`, powering hotspots, ownership, and bus-factor on projects with no git repository (Yandex Arc, Mercurial, Perforce). A small wrapper translates your VCS log into the contract. Resolved relative to `--root`. Affects `health --hotspots` / `--ownership` / `--targets` only; `audit`, `impact`, and `--changed-since` still require git" global=#true { arg "<path>" }
+flag "--max-file-size" help="Skip source files larger than this many megabytes (default 5) instead of parsing them, guarding against the out-of-memory blowup a single multi-MB generated/vendored/bundled file causes on large repos. Use `0` for no limit. Declaration files (`.d.ts`) are always analyzed. Skipped files are reported and excluded from every analysis. Also settable via `FALLOW_MAX_FILE_SIZE`" global=#true { arg "<mb>" }
+flag "--baseline" help="Compare against a previously saved baseline file" global=#true { arg "<baseline>" }
+flag "--baseline-mode" help="How `--baseline` matches health findings: per file and category (`count`, the default) or per function identity (`identity`, strict, and only against a baseline that was saved with `--baseline-mode identity`; such a baseline still reads in count mode)." global=#true { arg "<baseline-mode>" { choices "count" "identity" } }
+flag "--save-baseline" help="Save the current results as a baseline file" global=#true { arg "<save-baseline>" }
+flag "--production" help="Production mode: exclude test/story/dev files, only start/build scripts, report type-only dependencies" global=#true
+flag "--no-production" help="Force production mode OFF for every analysis, overriding a project config's `production: true` (and `FALLOW_PRODUCTION`). Conflicts with `--production`" global=#true
+flag "--production-dead-code" help="Run dead-code analysis in production mode when using bare combined mode"
+flag "--production-health" help="Run health analysis in production mode when using bare combined mode"
+flag "--production-dupes" help="Run duplication analysis in production mode when using bare combined mode"
+flag "-w --workspace" help="Scope output to selected workspaces. Accepts exact names, glob patterns, and `!`-prefixed negations. Values can be comma-separated or repeated" global=#true { arg "<workspace>" }
+flag "--changed-workspaces" help="Scope output to workspaces touched since the given git ref. Git is required. Mutually exclusive with `--workspace`" global=#true { arg "<ref>" }
+flag "--group-by" help="Group output by owner or by directory" global=#true { arg "<group-by>" { choices "owner" "directory" "package" "section" } }
+flag "--performance" help="Show pipeline performance timing breakdown" global=#true
+flag "--explain" help="Include metric definitions and rule descriptions in output" global=#true
+flag "--explain-skipped" help="Show per-pattern counts for skipped files: default duplicate ignores on dupes and audit, built-in discovery ignores on check, dead-code, audit and the default run" global=#true
+flag "--summary" help="Show only category counts without individual items" global=#true
+flag "--ci" help="CI mode: equivalent to --format sarif --fail-on-issues --quiet" global=#true
+flag "--fail-on-issues" help="Exit with code 1 if issues are found" global=#true
+flag "--sarif-file" help="Write SARIF output to a file (in addition to the primary --format output)" global=#true { arg "<path>" }
+flag "-o --output-file" help="Write the report to a file instead of stdout, for any --format (no ANSI codes). Useful on large projects where the terminal scrollback truncates the top. Progress and the confirmation stay on stderr" global=#true { arg "<path>" }
+flag "--report-path-prefix --annotations-path-prefix" help="Prefix prepended to every path in the CI-facing formats (`github-annotations`, `github-summary`, `codeclimate`, `pr-comment-github`, `pr-comment-gitlab`, `review-github`, `review-gitlab`). CI platforms address files by repository-root-relative path, so when the analyzed project lives in a subdirectory (e.g. `packages/app/`), paths need that offset. fallow detects the offset via the git toplevel automatically; this flag overrides the detection. Pass an empty string to disable rebasing and emit paths relative to `--root`" global=#true { arg "<prefix>" }
+flag "--fail-on-regression" help="Fail if issue count increased beyond tolerance compared to a regression baseline" global=#true
+flag "--fail-on-stale-baseline" help="Exit with code 1 if a loaded --baseline has entries that match nothing in this run." global=#true
+flag "--tolerance" help="Allowed issue count increase before a regression is flagged" global=#true { arg "<tolerance>" }
+flag "--regression-baseline" help="Path to the regression baseline file" global=#true { arg "<path>" }
+flag "--save-regression-baseline" help="Save the current issue counts as a regression baseline. Omit PATH to update regression.baseline in the discovered fallow config, or create .fallowrc.json when none exists. Provide PATH to write a standalone file" global=#true { arg "[path]" }
+flag "--only" help="Run only specific analyses when no subcommand is given" { arg "<only>" { choices "dead-code" "dupes" "health" } }
+flag "--skip" help="Skip specific analyses when no subcommand is given" { arg "<skip>" { choices "dead-code" "dupes" "health" } }
+flag "--dupes-mode" help="Override duplication detection mode in combined mode" global=#true { arg "<dupes-mode>" { choices "strict" "mild" "weak" "semantic" } }
+flag "--dupes-near" help="Enable function-scoped near-miss clone detection in combined mode" global=#true
+flag "--dupes-threshold" help="Override duplication threshold in combined mode" global=#true { arg "<dupes-threshold>" }
+flag "--dupes-min-tokens" help="Override the minimum token count for clones in combined mode" global=#true { arg "<dupes-min-tokens>" }
+flag "--dupes-min-lines" help="Override the minimum line count for clones in combined mode" global=#true { arg "<dupes-min-lines>" }
+flag "--dupes-min-occurrences" help="Override the minimum clone occurrences in combined mode (must be >= 2)" global=#true { arg "<dupes-min-occurrences>" }
+flag "--dupes-skip-local" help="Only report cross-directory duplicates in combined mode" global=#true
+flag "--dupes-cross-language" help="Enable cross-language duplicate detection in combined mode" global=#true
+flag "--dupes-ignore-imports" help="Exclude module wiring from duplicate detection in combined mode (default). Pass `--dupes-no-ignore-imports` to count it again" global=#true
+flag "--dupes-no-ignore-imports" help="Count module wiring as clone candidates in combined mode (opt out of the default exclusion)" global=#true
+flag "--score" help="Compute health score in combined mode"
+flag "--trend" help="Compare current health metrics against the most recent saved snapshot"
+flag "--save-snapshot" help="Save a vital signs snapshot for trend tracking in combined mode. Provide a path or omit for the default `.fallow/snapshots/` location" { arg "[path]" }
+flag "--coverage" help="Path to Istanbul coverage data for exact CRAP scores in combined mode. Also settable via `FALLOW_COVERAGE` or `health.coverage`" { arg "<path>" }
+flag "--coverage-root" help="Absolute prefix to strip from Istanbul file paths in combined mode. Also settable via `FALLOW_COVERAGE_ROOT` or `health.coverageRoot`" { arg "<path>" }
+flag "--include-entry-exports" help="Report unused exports in entry files instead of auto-marking them as used" global=#true
+flag "--type-aware" help="Opt in to TypeScript semantic analysis for project-wide symbol evidence. This does not emit compiler diagnostics or typed lint findings" global=#true
+flag "--no-type-aware" help="Disable TypeScript semantic analysis even when `typeAware.enabled` or `FALLOW_TYPE_AWARE` opts in, keeping this run fully syntactic" global=#true
+flag "--type-aware-project" help="TypeScript project config to use for type-aware analysis (repeatable)" global=#true { arg "<path>" }
+flag "--type-aware-require" help="Decide whether incomplete type-aware analysis is advisory or gating" global=#true { arg "<type-aware-require>" { choices "best-effort" "complete" } }
+flag "-h --help" help="Print help (see a summary with '-h')" global=#true
+cmd dead-code help="Analyze unused code, dependency hygiene, and architecture cycles" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed"
+  flag "--unused-files" help="Only report unused files"
+  flag "--unused-exports" help="Only report unused exports"
+  flag "--unused-deps" help="Only report unused dependencies"
+  flag "--unused-types" help="Only report unused type exports"
+  flag "--private-type-leaks" help="Opt in to private type leak API hygiene findings and only report that issue type"
+  flag "--unused-enum-members" help="Only report unused enum members"
+  flag "--unused-class-members" help="Only report unused class members"
+  flag "--unused-store-members" help="Only report unused store members"
+  flag "--unprovided-injects" help="Only report unprovided injects"
+  flag "--unrendered-components" help="Only report unrendered components"
+  flag "--unused-component-props" help="Only report unused component props"
+  flag "--unused-component-emits" help="Only report unused component emits"
+  flag "--unused-component-inputs" help="Only report unused component inputs"
+  flag "--unused-component-outputs" help="Only report unused component outputs"
+  flag "--unused-svelte-events" help="Only report unused Svelte dispatched events"
+  flag "--unused-server-actions" help="Only report unused server actions"
+  flag "--unused-load-data-keys" help="Only report unused SvelteKit load() data keys"
+  flag "--unresolved-imports" help="Only report unresolved imports"
+  flag "--unlisted-deps" help="Only report unlisted dependencies"
+  flag "--duplicate-exports" help="Only report duplicate exports"
+  flag "--circular-deps" help="Only report circular dependencies"
+  flag "--re-export-cycles" help="Only report re-export cycles"
+  flag "--boundary-violations" help="Only report boundary violations"
+  flag "--policy-violations" help="Only report rule-pack policy violations"
+  flag "--stale-suppressions" help="Only report stale suppressions"
+  flag "--unused-catalog-entries" help="Only report unused pnpm catalog entries"
+  flag "--empty-catalog-groups" help="Only report empty pnpm catalog groups"
+  flag "--unresolved-catalog-references" help="Only report unresolved pnpm catalog references"
+  flag "--unused-dependency-overrides" help="Only report unused package-manager dependency overrides"
+  flag "--misconfigured-dependency-overrides" help="Only report misconfigured package-manager dependency overrides"
+  flag "--include-dupes" help="Also run duplication analysis and cross-reference with dead code"
+  flag "--trace" help="Trace why an export is used/unused (format: `FILE:EXPORT_NAME`)" { arg "<file:export>" }
+  flag "--trace-file" help="Trace all edges for a file (imports, exports, importers)" { arg "<path>" }
+  flag "--trace-dependency" help="Trace where a dependency is used" { arg "<package>" }
+  flag "--impact-closure" help="Compute the impact closure for a file (the transitive affected-but-not-in-diff set + coordination gap). Walks reverse-deps and re-export chains; powers the `inspect_target` MCP tool" { arg "<path>" }
+  flag "--symbol-impact" help="Compute exact-symbol consumers, affected files, and targeted tests" { arg "<file:export>" }
+  flag "--top" help="Show only the top N items per category. Human output only: the JSON, SARIF, and CodeClimate envelopes drive exit codes and CI baselines, so they always carry every finding and a consumer slices the arrays itself" { arg "<top>" }
+  flag "--file" help="Only report issues in the specified file(s). Accepts multiple values. The full project graph is still built, but only issues in matching files are reported. Useful for lint-staged pre-commit hooks" { arg "<path>" }
+}
+cmd dupes help="Find copy-paste and structural code duplication" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed"
+  flag "--mode" help="Detection mode: strict, mild, weak, or semantic (defaults to the value in `.fallowrc.jsonc`, or `mild` if unset)" { arg "<mode>" { choices "strict" "mild" "weak" "semantic" } }
+  flag "--near" help="Enable function-scoped near-miss clone detection"
+  flag "--min-tokens" help="Minimum token count for a clone (defaults to the value in `.fallowrc.jsonc`, or `50` if unset)" { arg "<min-tokens>" }
+  flag "--min-lines" help="Minimum line count for a clone (defaults to the value in `.fallowrc.jsonc`, or `5` if unset)" { arg "<min-lines>" }
+  flag "--min-occurrences" help="Minimum number of occurrences before a clone group is reported. Raise to focus on widespread copy-paste worth refactoring and skip pair-only clones. (defaults to the value in `.fallowrc.jsonc`, or `2` if unset)" { arg "<min-occurrences>" }
+  flag "--threshold" help="Fail if duplication exceeds this percentage (0 = no limit) (defaults to the value in `.fallowrc.jsonc`, or `0` if unset)" { arg "<threshold>" }
+  flag "--skip-local" help="Only report cross-directory duplicates"
+  flag "--cross-language" help="Enable cross-language detection (strip TS type annotations for TS↔JS matching)"
+  flag "--ignore-imports" help="Exclude module wiring from clone detection (default; covers imports, re-exports, and top-level static require bindings). Pass `--no-ignore-imports` to count it again"
+  flag "--no-ignore-imports" help="Count module wiring as clone candidates (opt out of the default exclusion)"
+  flag "--top" help="Show only the N highest-ranked clone groups. Ranking combines clone size, occurrence count, and capped directory or line spread. `clone_families[]` is rebuilt from the groups that survive, so it narrows too. `stats` keeps describing the whole corpus; `clone_groups_shown` / `clone_groups_omitted` and `clone_families_shown` / `clone_families_omitted` report the split. Refused with exit code 2 alongside `--group-by`: grouped output reports per-bucket stats over every clone group in the bucket, which a global top-N truncation would silently contradict" { arg "<top>" }
+  flag "--no-fragments" help="Omit the verbatim source text from each clone instance in `--format json`. The file and line/column range still address the same code, and this is most of the payload on a duplicated codebase"
+  flag "--trace" help="Trace all clones at a specific location (format: `FILE:LINE`)" { arg "<file:line>" }
+}
+cmd health help="Analyze complexity, maintainability, hotspots, and coverage gaps" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed"
+  flag "--max-cyclomatic" help="Maximum cyclomatic complexity threshold (overrides config)" { arg "<max-cyclomatic>" }
+  flag "--max-cognitive" help="Maximum cognitive complexity threshold (overrides config)" { arg "<max-cognitive>" }
+  flag "--max-crap" help="Maximum CRAP score threshold (overrides config, default 30.0). Functions meeting or exceeding this score are reported alongside complexity findings. Pair with `--coverage` for accurate scoring" { arg "<max-crap>" }
+  flag "--top" help="Show only the N most complex functions" { arg "<top>" }
+  flag "--sort" help="Sort by: cyclomatic (default), cognitive, lines, or severity" { arg "<sort>" { choices "severity" "cyclomatic" "cognitive" "lines" } }
+  flag "--complexity" help="Show only complexity findings (functions exceeding thresholds). By default all sections are shown; use this to select only complexity"
+  flag "--complexity-breakdown" help="Include the per-decision-point complexity breakdown (`contributions[]`) on each complexity finding in `--format json` output. Each entry names the construct (if, else-if, loop, boolean operator, ...) and its cyclomatic/cognitive weight, so a consumer can explain WHY a function scored high. Used by the VS Code inline editor breakdown. Off by default to keep CI/default output lean"
+  flag "--file-scores" help="Show only per-file health scores (fan-in, fan-out, dead code ratio, maintainability index). Requires full analysis pipeline (graph + dead code detection). Sorted by risk-aware triage concern: lower MI and higher CRAP risk first. --sort and --baseline apply to complexity findings only, not file scores"
+  flag "--coverage-gaps" help="Show only static test coverage gaps: runtime files and exports with no dependency path from any discovered test root. Requires full analysis pipeline"
+  flag "--hotspots" help="Show only hotspots: files that are both complex and frequently changing. Combines git churn history with complexity data. Requires a git repository"
+  flag "--ownership" help="Attach ownership signals to hotspot entries: bus factor, contributor count, declared CODEOWNERS owner, and ownership drift. Implies `--hotspots`. Requires a git repository"
+  flag "--ownership-emails" help="Privacy mode for author emails emitted with `--ownership`. Defaults to `handle` (local-part only). Use `raw` for OSS repos where authors are public, or `anonymized` to emit non-reversible pseudonyms in regulated environments. Implies `--ownership`" { arg "<mode>" { choices "raw" "handle" "anonymized" } }
+  flag "--targets" help="Show only refactoring targets: ranked recommendations based on complexity, coupling, churn, and dead code signals. Requires full analysis pipeline"
+  flag "--type-coupling" help="Show advisory project-local public-signature type coupling. Requires type-aware analysis and does not change the health score"
+  flag "--css" help="Add structural CSS analytics: specificity hotspots, !important density, over-complex selectors, deep nesting, and conservative cleanup candidates. Standard CSS is parsed structurally; preprocessor sources are scanned only where fallow can avoid expanding Sass/Less semantics"
+  flag "--effort" help="Filter refactoring targets by effort level (low, medium, high). Implies --targets" { arg "<effort>" { choices "low" "medium" "high" } }
+  flag "--score" help="Show only the project health score (0–100) with letter grade (A/B/C/D/F). The score is included by default when no section flags are set"
+  flag "--min-score" help="Fail if the health score is below this threshold (0-100). Implies --score. The authoritative CI quality gate: when set, complexity findings become informational and the exit code is driven solely by the score (so --min-score 0 always exits 0). Composes with --min-severity (fails if either gate trips). Plain `fallow health` (no gate flag) stays advisory and exits 1 on any finding; for a gate on newly-introduced complexity use `fallow audit --gate new-only`" { arg "<n>" }
+  flag "--min-severity" help="Only exit with error for findings at or above this severity. Use --min-severity critical to ignore moderate/high findings in CI. Composes with --min-score (the run fails if either gate trips)" { arg "<level>" { choices "moderate" "high" "critical" } }
+  flag "--report-only" help="Print the score and findings but never fail CI (always exit 0). Advisory mode for surfacing health in logs without blocking. Mutually exclusive with --min-score and --min-severity"
+  flag "--since" help="Git history window for hotspot analysis (default: 6m). Accepts durations (6m, 90d, 1y, 2w) or ISO dates (2025-06-01)" { arg "<duration>" }
+  flag "--min-commits" help="Minimum number of commits for a file to be included in hotspot ranking (default: 3)" { arg "<n>" }
+  flag "--save-snapshot" help="Save a vital signs snapshot for trend tracking. Defaults to `.fallow/snapshots/{timestamp}.json` if no path is given. Forces file-scores, hotspot, and score computation for complete metrics" { arg "[path]" }
+  flag "--trend" help="Compare current metrics against the most recent saved snapshot. Reads from `.fallow/snapshots/` and shows per-metric deltas with directional indicators. Implies --score"
+  flag "--coverage" help="Path to coverage data (coverage-final.json) for exact per-function CRAP scores. Generate with `jest --coverage`, `vitest run --coverage --provider istanbul`, or any Istanbul-compatible tool. Requires Istanbul format (not v8/c8 native format). Accepts a single Istanbul coverage map JSON file or a directory containing coverage-final.json. Use --coverage-root when the file was generated in a different environment (CI runner, Docker). Affects CRAP scores only, not --coverage-gaps. Also configurable via FALLOW_COVERAGE env var" { arg "<path>" }
+  flag "--coverage-root" help="Absolute prefix to strip from file paths in coverage data before prepending the project root. Use when coverage was generated in a different environment (CI runner, Docker). Example: if coverage paths start with /home/runner/work/myapp and the project root is ./, pass --coverage-root /home/runner/work/myapp" { arg "<path>" }
+  flag "--runtime-coverage" help="File or directory containing runtime coverage input. Accepts a V8 coverage directory, a single V8 JSON file, or a single Istanbul coverage map JSON file (commonly coverage-final.json)" { arg "<path>" }
+  flag "--min-invocations-hot" help="Threshold for hot-path classification" { arg "<min-invocations-hot>" }
+  flag "--min-observation-volume" help="Minimum total trace volume before the sidecar allows high-confidence `safe_to_delete` / `review_required` verdicts. Below this the sidecar caps confidence at `medium` to protect against overconfident verdicts on new or low-traffic services. Omit to use the sidecar's spec default (5000)" { arg "<n>" }
+  flag "--low-traffic-threshold" help="Fraction of total trace count below which an invoked function is classified as `low_traffic` rather than `active`. Expressed as a decimal (e.g. `0.001` for 0.1%). Omit to use the sidecar's spec default (0.001)" { arg "<ratio>" }
+}
+cmd flags help="Detect feature flag usage patterns" {
+  flag "--top" help="Show only the top N flags" { arg "<top>" }
+}
+cmd security help="Surface local security candidates for agent verification (opt-in)" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed"
+  flag "--runtime-coverage" help="Paid runtime-coverage sidecar input. Accepts a V8 directory, a single V8 JSON file, or an Istanbul coverage map JSON. When set, `fallow security` annotates tainted-sink candidates with production runtime state and uses that state as an additive ranking signal" { arg "<path>" }
+  flag "--min-invocations-hot" help="Threshold for hot-path classification, forwarded to the sidecar when `--runtime-coverage` is set" { arg "<min-invocations-hot>" }
+  flag "--file" help="Only report security candidates in or reachable from the specified files. The full project graph is still built, but output is scoped to matching finding anchors or trace hops. Accepts multiple values" { arg "<path>" }
+  flag "--gate" help="Opt-in regression gate: fail (exit 8) only when the change introduces a NEW security-sink candidate in the changed lines, not on the whole candidate backlog. Requires a diff source: `--changed-since <ref>`, `--diff-file <path>`, or `--diff-stdin`. There is deliberately no `all` mode (gating on the full backlog is the anti-feature this gate avoids)" { arg "<mode>" { choices "new" "newly-reachable" } }
+  flag "--surface" help="Include the agent-facing attack-surface inventory in JSON output"
+  cmd survivors help="Render verifier-retained survivor candidates from fallow output plus verifier verdicts" {
+    flag "--candidates" { arg "<path>" }
+    flag "--verdicts" { arg "<path>" }
+    flag "--require-verdict-for-each-candidate"
+  }
+  cmd blind-spots help="Group unresolved security callees into actionable blind-spot output" {
+    flag "--file" { arg "<path>" }
+  }
+}
+cmd similar-code help="Find semantic implementation overlap for verification (opt-in, local)" {
+  flag "--threshold" { arg "<0..1>" }
+  flag "--min-lines" { arg "<n>" }
+  flag "--top" { arg "<n>" }
+  flag "--file" { arg "<path>" }
+  cmd status help="Show exact companion and pinned-model readiness" {
+  }
+  cmd setup help="Download and verify the pinned local model" {
+    flag "--local"
+    flag "--yes"
+  }
+  cmd inspect help="Reproduce and inspect one unverified candidate" {
+    arg "<candidate_id>"
+    flag "--candidates" { arg "<path>" }
+  }
+  cmd review help="Join candidate JSON with a separate verdict document" {
+    flag "--candidates" { arg "<path>" }
+    flag "--verdicts" { arg "<path>" }
+    flag "--require-verdict-for-each-candidate"
+  }
+  cmd cache help="Manage the user-local, project-namespaced vector cache" {
+    cmd clear help="Remove cached vectors after explicit confirmation" {
+      flag "--yes"
+    }
+  }
+}
+cmd audit help="Review changed files for dead code, complexity, duplication, and styling" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed"
+  flag "--production-dead-code" help="Run dead-code analysis in production mode for this audit"
+  flag "--production-health" help="Run health analysis in production mode for this audit"
+  flag "--production-dupes" help="Run duplication analysis in production mode for this audit"
+  flag "--dead-code-baseline" help="Compare dead-code issues against a saved baseline (produced by `fallow dead-code --save-baseline`)" { arg "<dead-code-baseline>" }
+  flag "--health-baseline" help="Compare health findings against a saved baseline (produced by `fallow health --save-baseline`)" { arg "<health-baseline>" }
+  flag "--dupes-baseline" help="Compare duplication clone groups against a saved baseline (produced by `fallow dupes --save-baseline`)" { arg "<dupes-baseline>" }
+  flag "--max-crap" help="Maximum CRAP score threshold (overrides config, default 30.0). Functions meeting or exceeding this score cause audit to fail. Pair with `--coverage` for accurate scoring" { arg "<max-crap>" }
+  flag "--coverage" help="Path to Istanbul-format coverage data (coverage-final.json) for accurate per-function CRAP scores in the health sub-analysis. Also configurable via FALLOW_COVERAGE or health.coverage" { arg "<path>" }
+  flag "--coverage-root" help="Absolute prefix to strip from coverage data paths before CRAP matching. Use when coverage was generated under a different checkout root in CI or Docker. Also configurable via FALLOW_COVERAGE_ROOT or health.coverageRoot" { arg "<path>" }
+  flag "--no-css" help="Disable styling analytics in audit"
+  flag "--css-deep" help="Enable deep CSS analysis for audit explicitly: project-wide styling reachability, narrowed back to changed anchors. Deep CSS is on by default; use this to override `audit.cssDeep = false`"
+  flag "--no-css-deep" help="Disable deep CSS analysis while keeping local styling analytics on"
+  flag "--gate" help="Which findings affect the audit verdict." { arg "<gate>" { choices "new-only" "all" } }
+  flag "--runtime-coverage" help="Paid runtime-coverage sidecar input. Accepts a V8 directory, a single V8 JSON file, or an Istanbul coverage map JSON. Spawns the `fallow-cov` sidecar as part of the audit pipeline so the `hot-path-touched` verdict surfaces alongside dead-code and complexity findings without requiring a second `fallow health` invocation in CI. License-gated; the verdict is informational (no exit code change) until a future `--gate hot-path-touched` knob lands" { arg "<path>" }
+  flag "--min-invocations-hot" help="Threshold for hot-path classification, forwarded to the sidecar when `--runtime-coverage` is set" { arg "<min-invocations-hot>" }
+  flag "--brief" help="Render the deterministic review brief instead of the gating audit report. The brief answers \"where do I look?\" rather than \"will CI block this?\", runs the same analysis, and ALWAYS exits 0 (the verdict is carried informationally). Implied by `fallow review`. Orthogonal to `--format`"
+  flag "--max-decisions" help="Cap on the number of consequential structural decisions surfaced in the review brief's decision surface (the working-memory limit). Default 4; clamped to the 3-5 band (4 plus or minus 1). Only consulted on the brief path" { arg "<n>" }
+  flag "--walkthrough-guide" help="Emit the agent-contract WALKTHROUGH GUIDE: the current digest (brief + decision surface), the review direction, the JSON schema the agent must return, and a deterministic graph-snapshot hash pinned into the digest. The digest is built from the graph only (PR prose is never folded in, so it is injection-resistant). Implies the brief; always exits 0. A thin agent skill calls this to fetch the current guide, produces judgment JSON, then reopens with `--walkthrough-file`"
+  flag "--walkthrough-file" help="Ingest an agent's judgment JSON and POST-VALIDATE it against the LIVE graph. Rejects any judgment whose `signal_id` fallow did not emit (anti-hallucination); refuses the whole payload as stale when the echoed graph-snapshot hash no longer matches (the tree moved); rejects an `action` outside `block`, `address`, `consider`, `fyi` (`invalid-action`). The verifier is the graph, not a second model. Implies the brief; always exits 0. The agent's free-text framing and action label are fenced as non-deterministic and never gate or auto-post" { arg "<path>" }
+  flag "--walkthrough" help="Render the existing walkthrough guide as a staged HUMAN terminal tour (Stage 1 load-bearing / Stage 2 mechanical), or markdown with `--format markdown`. Implies the brief; always exits 0. `--format json --walkthrough` emits the same agent-contract JSON as `--walkthrough-guide`"
+  flag "--mark-viewed" help="Record one or more changed files as VIEWED in the local walkthrough viewed-state ledger (`.fallow/walkthrough-state.json`), then render the tour. Files already viewed (and still current) collapse into the Cleared panel. Repeatable. Stale marks (the tree moved) are ignored on render but never deleted. Only consulted on the `--walkthrough` path" { arg "<path>" }
+  flag "--show-cleared" help="Expand the Cleared panel in the human/markdown walkthrough tour: list each de-prioritized and already-viewed file instead of the collapsed one-line summary. Only consulted on the `--walkthrough` path"
+  flag "--show-deprioritized" help="Expand the de-prioritized units in the review brief's weighted focus map (\"show me what you de-prioritized\"). The `deprioritized` escape-hatch list is ALWAYS present in `--format json` regardless; this flag only re-expands the collapse-by-default human focus render. Only consulted on the `--walkthrough` path"
+}
+cmd watch help="Re-run analysis as files change" {
+  flag "--no-clear" help="Don't clear the screen between re-analyses"
+}
+cmd fix help="Auto-fix safe unused-code findings" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed. Only fixes touching scoped files are planned and applied"
+  flag "--dry-run" help="Dry run, show what would be changed without modifying files"
+  flag "--yes" help="Skip confirmation prompt (required in non-TTY environments like CI or AI agents)"
+  flag "--no-create-config" help="Refuse to create a new fallow config file when none exists. Use this from pre-commit hooks, CI bots, and `fallow watch` where silently materialising a new top-level config file would surprise the user. The duplicate-export config-add path is skipped with an explanatory message; source-file edits proceed normally"
+}
+cmd list help="List discovered files, entry points, plugins, boundaries, and workspaces" {
+  arg "[path]" help="Scope reported findings to this file or directory (default: whole project). The full project graph is still built; only reported items are narrowed"
+  flag "--entry-points" help="Show entry points"
+  flag "--files" help="Show all discovered files"
+  flag "--plugins" help="Show active plugins"
+  flag "--boundaries" help="Show architecture boundary zones, rules, and per-zone file counts"
+  flag "--workspaces" help="Show monorepo workspaces and any workspace-discovery diagnostics (malformed package.json, unreachable glob matches, missing tsconfig references)"
+}
+cmd inspect help="Inspect one file or exported symbol as a bundled evidence query" {
+  flag "--file" help="File to inspect" { arg "<path>" }
+  flag "--symbol" help="Exported symbol to inspect, formatted as FILE:EXPORT" { arg "<file:export>" }
+  flag "--symbol-chain" help="OPT-IN: also attach the best-effort symbol-level call chain (`fallow trace`) as the `symbol_chain` evidence section. Only meaningful for a `--symbol` target. Default off (best-effort, syntactic, OFF the ranked path)"
+  flag "--churn" help="OPT-IN: attach target-level git churn evidence from the health hotspot subsystem. Default off to avoid git-history latency"
+}
+cmd trace help="Trace a symbol's call chain (best-effort, syntactic)" {
+  arg "[file:symbol]" help="Target symbol, formatted as FILE:SYMBOL (e.g. src/utils.ts:formatDate). Omitted when `--path` is used"
+  flag "--path" help="Shortest import path between two modules, as two file paths (e.g. `--path src/app.ts src/db.ts`). Mutually exclusive with the symbol target and the call-chain flags" { arg "<from>" }
+  flag "--callers" help="Walk UP to callers (modules that import the symbol). When neither `--callers` nor `--callees` is set, both directions are walked"
+  flag "--callees" help="Walk DOWN to callees (the symbol's module's import-symbol edges plus unresolved call sites). When neither flag is set, both are walked"
+  flag "--depth" help="Chain depth bound for both directions (default 2). Symbol-level is best-effort, so a shallow bound keeps the trace legible" { arg "<n>" }
+}
+cmd trace-error help="Resolve a runtime stack trace's frames to project definitions" {
+  arg "[file]" help="Stack trace file, or `-` to read stdin. Defaults to stdin. A relative path is resolved against the project root, matching `--diff-file`"
+}
+cmd guard help="Show which architecture rules apply to files before editing" {
+  arg "<files>" var=#true help="Files to report on (root-relative or absolute; may not exist yet)"
+}
+cmd decision-surface help="Surface the structural decisions a change embeds (advisory)" {
+  flag "--max-decisions" help="Cap on the number of surfaced decisions (the working-memory limit). Default 4; clamped to the 3-5 band (4 plus or minus 1)" { arg "<n>" }
+}
+cmd workspaces help="Show monorepo workspace discovery diagnostics" {
+}
+cmd explain help="Explain one issue type without running analysis" {
+  arg "<issue_type>" var=#true help="Issue type, issue label, or rule id to explain"
+}
+cmd suppressions help="List active fallow-ignore suppression markers" {
+  flag "--file" help="Only list suppressions in the specified files. Accepts multiple values" { arg "<path>" }
+}
+cmd impact help="Show what fallow has done for you (opt-in, local-only)" {
+  flag "--all" help="Aggregate every tracked project into one cross-repo roll-up (\"what has fallow done for me across all my repos\"). Reads the user config dir; ignores `--root`. Cannot combine with a subcommand"
+  flag "--sort" help="Row ordering for `--all` (default: most recently recorded first)" { arg "<sort>" { choices "recent" "resolved" "contained" "name" } }
+  flag "--limit" help="Cap the number of `--all` rows printed (grand totals still reflect every tracked project)" { arg "<limit>" }
+  cmd enable help="Enable local Impact tracking for this project" {
+  }
+  cmd disable help="Disable Impact tracking (existing history is retained)" {
+  }
+  cmd default help="Set the user-global default for new projects (on or off). A per-project `enable`/`disable` always wins over this default" {
+    arg "<state>" help="`on` to record in every project by default, `off` to require an explicit per-project `enable`" { choices "on" "off" }
+  }
+  cmd reset help="Delete this project's stored history (or all projects with `--all`)" {
+    flag "--all" help="Delete every project's Impact history, not just this one"
+  }
+  cmd status help="Show whether Impact tracking is enabled and how much history exists" {
+  }
+  cmd statusline help="Print one compact, path-free line for shell and editor status bars" {
+  }
+}
+cmd viz help="Generate an interactive HTML map of the codebase" {
+  flag "--out" help="Output file path (default: fallow-viz.html in project root)" { arg "<path>" }
+  flag "--no-open" help="Don't open the output file in the browser"
+  flag "--viz-format" help="Visualization output format" { arg "<viz-format>" { choices "html" "dot" "mermaid" } }
+}
+cmd doctor help="Diagnose project readiness without changing anything" {
+}
+cmd init help="Create a fallow config, optionally with a Git hook" {
+  flag "--toml" help="Generate TOML instead of JSONC"
+  flag "--agents" help="Scaffold a starter AGENTS.md guidance file for coding agents"
+  flag "--hooks" help="Scaffold a shell-level pre-commit git hook in `.git/hooks/` that runs fallow on changed files. Alias for `fallow hooks install --target git`"
+  flag "--branch" help="Fallback base branch/ref for the pre-commit hook when no upstream is set" { arg "<branch>" }
+  flag "--decline" help="Record that this project deliberately stays unconfigured: persists a decline so the first-contact setup hint and the `setup` next-step stop appearing here. Writes no config file; idempotent"
+}
+cmd agent help="Wire fallow into Claude Code, Codex, or Cursor in one pass" {
+  cmd install help="Wire fallow into the coding-agent harnesses used by this project in one pass: the `AGENTS.md` task map (plus a `CLAUDE.md` import for Claude Code), the fallow skill, the MCP server registration, and the commit/push gate. Every file or block is marked so `status` can report it and `uninstall` removes exactly that content. Re-running is byte-stable. Without `--harness` the harnesses are detected from the project, the home directory, and the session environment; when nothing is detected only harness-neutral files are written" {
+    flag "--harness" help="Harness to wire; repeatable. Defaults to `auto`" { arg "<harness>" { choices "auto" "claude" "codex" "cursor" } }
+    flag "--user" help="Write user-scoped files (skill and MCP config under $HOME) instead of project files. The `AGENTS.md` guide is project-only and is skipped under this flag"
+    flag "--without" help="Skip a step; repeatable" { arg "<without>" { choices "guide" "skill" "mcp" "hooks" } }
+    flag "--dry-run" help="Print the plan without touching the filesystem"
+    flag "--force" help="Replace skills, hook scripts, or config files fallow did not write"
+    flag "--approve" help="Pre-approve the project-scoped MCP server for yourself by listing it in `.claude/settings.local.json` (Claude Code asks otherwise)"
+    flag "--gitignore-claude" help="Append `.claude/` to the project's `.gitignore`"
+  }
+  cmd status help="Show which agent surfaces are installed, stale, absent, or foreign" {
+  }
+  cmd uninstall help="Remove every fallow-managed agent surface. Files fallow authored whole are deleted only while they still match what fallow wrote; otherwise only the managed blocks are removed" {
+    flag "--harness" help="Harness to unwire; repeatable. Defaults to `auto`" { arg "<harness>" { choices "auto" "claude" "codex" "cursor" } }
+    flag "--user" help="Remove user-scoped files under $HOME instead of project files"
+    flag "--dry-run" help="Print what would be removed without touching the filesystem"
+    flag "--force" help="Also remove skills and hook scripts fallow did not write"
+  }
+}
+cmd audit-cache help="Maintain reusable audit base-snapshot caches" {
+  cmd remove help="Remove reusable audit caches owned by an explicit project root" {
+    flag "--dry-run" help="Print what would be removed without touching the filesystem"
+    flag "--yes" help="Confirm removal in non-interactive environments"
+  }
+  cmd prune help="Apply the audit cache GC policy now and report every entry" {
+    flag "--dry-run" help="Preview decisions without touching the filesystem"
+    flag "--max-age-days" help="Age threshold in days for this invocation. Overrides FALLOW_AUDIT_CACHE_MAX_AGE_DAYS and the `audit.cacheMaxAgeDays` config field (default 30). `0` disables age-based reclaim but still reclaims orphaned sidecars and entries whose recorded owner root is gone; unconditional deletion of one project's caches is `fallow audit-cache remove --root <path> --yes`" { arg "<n>" }
+  }
+}
+cmd recommend help="Recommend a project-tailored config for an agent to author" {
+}
+cmd migrate help="Migrate knip, jscpd, or stylelint config to fallow" {
+  flag "--toml" help="Generate `fallow.toml` instead of JSONC"
+  flag "--jsonc" help="Write JSONC content to `.fallowrc.jsonc` instead of `.fallowrc.json`. The generated content is the same JSONC (with `//` comments) either way; the `.jsonc` extension lets editors auto-detect JSON-with-comments syntax highlighting and silences linters that flag comments in `.json`. Without `--jsonc` or `--toml`, fallow auto-mirrors the source extension: a `knip.jsonc` migration writes `.fallowrc.jsonc`, a `knip.json` migration writes `.fallowrc.json`"
+  flag "--dry-run" help="Only preview the generated config without writing"
+  flag "--from" help="Path to source config file (auto-detect if not specified)" { arg "<path>" }
+}
+cmd config help="Show the resolved config and loaded config file" {
+  flag "--path" help="Print only the config file path (one line, no JSON)"
+}
+cmd config-schema help="Print the fallow config JSON Schema" {
+}
+cmd plugin-schema help="Print the external plugin JSON Schema" {
+}
+cmd plugin-check help="Dry-run external plugins and report what they seed" {
+}
+cmd rule-pack help="Manage declarative rule packs (policy-as-code)" {
+  cmd init help="Scaffold a new rule pack file and wire it into the config" {
+    arg "[name]" help="Pack name (default: the template name, or \"team-policy\")"
+    flag "--template" help="Template: starter, ai-safe-repo, side-effect-free-domain, clean-architecture, next-app-router" { arg "<template>" }
+    flag "--dir" help="Directory for the pack file, relative to the project root" { arg "<dir>" }
+    flag "--no-config" help="Only write the pack file; do not modify the config"
+  }
+  cmd list help="List configured rule packs and their rules" {
+  }
+  cmd test help="Evaluate a pack (or all configured packs) against this project and print matches" {
+    arg "[pack]" help="Path to a pack file to test in isolation (default: all configured packs)"
+  }
+  cmd schema help="Print the JSON Schema for rule pack files" {
+  }
+}
+cmd rule-pack-schema help="Print the rule pack JSON Schema" {
+}
+cmd type-aware help="Inspect the optional TypeScript semantic companion" {
+  cmd status help="Report companion availability and version compatibility without analysis" {
+  }
+}
+cmd ci help="Build PR/MR feedback envelopes" {
+  cmd plan-pr-comment help="Compute the provider action for a rendered sticky PR summary comment" {
+    flag "--body" help="Path to the rendered PR comment Markdown body" { arg "<body>" }
+    flag "--marker-id" help="Sticky marker id used in the rendered body" { arg "<marker-id>" }
+    flag "--clean" help="Treat the rendered body as a clean no-findings result"
+    flag "--existing-comment-id" help="Existing provider comment id, when a matching sticky comment exists" { arg "<existing-comment-id>" }
+    flag "--existing-body" help="Path to the existing provider comment body. Enables unchanged-skip planning" { arg "<existing-body>" }
+  }
+  cmd post-pr-comment help="Post, update, or skip a rendered sticky PR summary comment" {
+    flag "--provider" help="Provider whose PR comment is being posted" { arg "<provider>" { choices "github" "gitlab" } }
+    flag "--pr" help="Pull request number (GitHub)" { arg "<pr>" }
+    flag "--mr" help="Merge request IID (GitLab)" { arg "<mr>" }
+    flag "--body" help="Path to the rendered PR comment Markdown body" { arg "<body>" }
+    flag "--envelope" help="Path to the typed PR comment envelope JSON, when available" { arg "<envelope>" }
+    flag "--marker-id" help="Sticky marker id used in the rendered body" { arg "<marker-id>" }
+    flag "--clean" help="Treat the rendered body as a clean no-findings result"
+    flag "--repo" help="GitHub repository in owner/name form. Defaults to GH_REPO or GITHUB_REPOSITORY" { arg "<repo>" }
+    flag "--project-id" help="GitLab project id or path. Defaults to CI_PROJECT_ID" { arg "<project-id>" }
+    flag "--api-url" help="Provider API base URL. Defaults to github.com" { arg "<api-url>" }
+    flag "--dry-run" help="Compute the post plan without creating or updating the provider comment"
+  }
+  cmd post-review help="Post a rendered review envelope as a provider review or summary comment" {
+    flag "--provider" help="Provider whose review envelope is being posted" { arg "<provider>" { choices "github" "gitlab" } }
+    flag "--pr" help="Pull request number (GitHub)" { arg "<pr>" }
+    flag "--mr" help="Merge request IID (GitLab)" { arg "<mr>" }
+    flag "--envelope" help="Path to a review-github or review-gitlab JSON envelope" { arg "<envelope>" }
+    flag "--repo" help="GitHub repository in owner/name form. Defaults to GH_REPO or GITHUB_REPOSITORY" { arg "<repo>" }
+    flag "--project-id" help="GitLab project id or path. Defaults to CI_PROJECT_ID" { arg "<project-id>" }
+    flag "--api-url" help="Provider API base URL. Defaults to github.com or CI_API_V4_URL/gitlab.com" { arg "<api-url>" }
+    flag "--dry-run" help="Compute the post plan without creating provider comments"
+  }
+  cmd post-check-run help="Post a GitHub Check Run from a typed PR decision surface" {
+    flag "--provider" help="Provider whose check run is being posted. Only GitHub is supported" { arg "<provider>" { choices "github" "gitlab" } }
+    flag "--decision" help="Path to a fallow-pr-decision JSON sidecar" { arg "<decision>" }
+    flag "--repo" help="GitHub repository in owner/name form" { arg "<repo>" }
+    flag "--head-sha" help="Head SHA the check run should attach to" { arg "<head-sha>" }
+    flag "--api-url" help="Provider API base URL. Defaults to github.com" { arg "<api-url>" }
+    flag "--split-gates" help="Post one check run per decision gate instead of one aggregate check"
+    flag "--dry-run" help="Print the check run payload without posting it"
+  }
+  cmd reconcile-review help="Validate a rendered review envelope and compute a stable reconcile plan" {
+    flag "--provider" help="Provider whose review envelope is being reconciled" { arg "<provider>" { choices "github" "gitlab" } }
+    flag "--pr" help="Pull request number (GitHub)" { arg "<pr>" }
+    flag "--mr" help="Merge request IID (GitLab)" { arg "<mr>" }
+    flag "--envelope" help="Path to a review-github or review-gitlab JSON envelope" { arg "<envelope>" }
+    flag "--repo" help="GitHub repository in owner/name form. Defaults to GH_REPO or GITHUB_REPOSITORY" { arg "<repo>" }
+    flag "--project-id" help="GitLab project id or path. Defaults to CI_PROJECT_ID" { arg "<project-id>" }
+    flag "--api-url" help="Provider API base URL. Defaults to github.com or CI_API_V4_URL/gitlab.com" { arg "<api-url>" }
+    flag "--dry-run" help="Compute the reconcile plan without posting resolution notes or resolving threads"
+  }
+}
+cmd ci-template help="Print or vendor CI integration templates" {
+  cmd gitlab help="Print or vendor the GitLab CI template and MR integration helpers" {
+    flag "--vendor" help="Write ci/ and action/ helper files under DIR instead of printing the template." { arg "[dir]" }
+    flag "--force" help="Overwrite existing files that differ from the bundled template"
+  }
+}
+cmd report help="Re-render saved JSON as GitHub or CodeClimate output" {
+  flag "--from" help="Path to a fallow JSON results file produced by `--format json` (dead-code, dupes, health, audit, security, or bare combined)" { arg "<path>" }
+}
+cmd hooks help="Install or remove fallow-managed Git and agent hooks" {
+  cmd status help="Show installed hook state for Git, Claude, and Codex surfaces" {
+  }
+  cmd install help="Install a fallow-managed hook" {
+    flag "--target" help="Hook surface to install" { arg "<target>" { choices "git" "agent" } }
+    flag "--branch" help="Fallback base branch/ref for Git pre-commit hooks when no upstream is set" { arg "<branch>" }
+    flag "--agent" help="Target a specific agent surface when --target agent is used" { arg "<agent>" { choices "claude" "codex" } }
+    flag "--dry-run" help="Print what would be written without touching the filesystem"
+    flag "--force" help="Overwrite an existing managed or user-edited hook"
+    flag "--user" help="Write agent hooks to the user's home directory instead of the project root"
+    flag "--gitignore-claude" help="Append `.claude/` to the project's `.gitignore` for Claude agent hooks"
+  }
+  cmd uninstall help="Remove a fallow-managed hook" {
+    flag "--target" help="Hook surface to remove" { arg "<target>" { choices "git" "agent" } }
+    flag "--agent" help="Target a specific agent surface when --target agent is used" { arg "<agent>" { choices "claude" "codex" } }
+    flag "--dry-run" help="Print what would be removed without touching the filesystem"
+    flag "--force" help="Remove a user-edited hook script or Git hook instead of preserving it"
+    flag "--user" help="Remove agent hooks from the user's home directory instead of the project root"
+  }
+}
+cmd setup-hooks help="Deprecated: use `agent install` or `hooks install --target agent`" {
+  flag "--agent" help="Target a specific agent surface (default: auto-detect)" { arg "<agent>" { choices "claude" "codex" } }
+  flag "--dry-run" help="Print what would be written or removed without touching the filesystem"
+  flag "--force" help="Overwrite a user-edited hook script, invalid settings.json, or remove a user-edited script during uninstall"
+  flag "--user" help="Write to the user's home directory instead of the project root"
+  flag "--gitignore-claude" help="Append `.claude/` to the project's `.gitignore`"
+  flag "--uninstall" help="Remove the fallow-gate handler, hook script, and AGENTS.md managed block instead of installing them. Idempotent: reports \"unchanged\" when nothing to remove"
+}
+cmd coverage help="Set up or analyze runtime coverage data" {
+  cmd setup help="Resumable first-run setup: license + sidecar + recipe + analysis" {
+    flag "-y --yes" help="Accept all prompts automatically"
+    flag "--non-interactive" help="Print instructions instead of prompting"
+    flag "--json" help="Emit deterministic setup instructions as JSON. Implies --non-interactive"
+  }
+  cmd analyze help="Analyze runtime coverage from a local artifact or explicit cloud source" {
+    flag "--runtime-coverage" help="File or directory containing local runtime coverage input" { arg "<path>" }
+    flag "--cloud --runtime-coverage-cloud" help="Fetch latest runtime facts from fallow cloud for the selected repo"
+    flag "--api-key" help="Fallow cloud API key. Precedence: this flag > $FALLOW_API_KEY" { arg "<key>" }
+    flag "--api-endpoint" help="Override the fallow cloud base URL" { arg "<url>" }
+    flag "--repo" help="Repository identifier, for example `owner/repo`." { arg "<owner/repo>" }
+    flag "--project-id" help="Optional monorepo/project disambiguator" { arg "<id>" }
+    flag "--coverage-period" help="Runtime observation window to request from cloud (1..=90 days)" { arg "<days>" }
+    flag "--environment" help="Optional runtime environment filter" { arg "<env>" }
+    flag "--commit-sha" help="Optional commit SHA filter for cloud runtime facts" { arg "<sha>" }
+    flag "--min-invocations-hot" help="Threshold for hot-path classification" { arg "<min-invocations-hot>" }
+    flag "--min-observation-volume" help="Minimum total trace volume before high-confidence verdicts" { arg "<n>" }
+    flag "--low-traffic-threshold" help="Fraction of total trace count below which an invoked function is low traffic" { arg "<ratio>" }
+    flag "--top" help="Show only the top N runtime findings and hot paths" { arg "<top>" }
+    flag "--blast-radius" help="Show the first-class blast-radius section in human output"
+    flag "--importance" help="Show the first-class importance section in human output"
+    flag "--debug-unmatched" help="List cloud runtime functions with no local counterpart on stderr"
+  }
+  cmd upload-inventory help="Upload a static function inventory to fallow cloud (Production Coverage, paid). Unlocks the `untracked` filter on the dashboard by pairing runtime coverage data with the AST view of \"every function that exists\". See <https://docs.fallow.tools/analysis/runtime-coverage>" {
+    flag "--api-key" help="Fallow cloud API key (bearer token)." { arg "<key>" }
+    flag "--api-endpoint" help="Override the fallow cloud base URL." { arg "<url>" }
+    flag "--project-id" help="Project identifier, for example `fallow-cloud-api` or `owner/repo`." { arg "<project-id>" }
+    flag "--git-sha" help="Explicit git SHA for this inventory." { arg "<sha>" }
+    flag "--allow-dirty" help="Proceed even when the working tree has uncommitted changes."
+    flag "--exclude-paths" help="Additional glob patterns to exclude from the walk." { arg "[glob]" }
+    flag "--path-prefix" help="Prefix prepended to every emitted filePath so the static inventory joins with the runtime beacon for your deployment. Required for containerized deployments where the deployed WORKDIR rebases paths at runtime. Default: none (paths emit repo-relative, matching local runs and non-container CI)." { arg "<prefix>" }
+    flag "--dry-run" help="Print what would be uploaded and exit. No network call"
+    flag "--with-callers" help="Also upload importer edges (which files import each function) so the cloud can show change-time blast radius. Opt-in: this builds the import graph by running the full static analysis, whereas the default upload is a fast per-file walk. The graph is cached, so a CI step that already ran analysis pays little extra"
+    flag "--ignore-upload-errors" help="Treat transient upload failures as warnings instead of errors (exit 0). Validation and auth errors still fail hard; this only downgrades transport and server errors"
+  }
+  cmd upload-source-maps help="Upload JavaScript source maps to fallow cloud for bundled runtime coverage" {
+    flag "--dir" help="Directory to scan recursively for source maps" { arg "<path>" }
+    flag "--include" help="Glob pattern, relative to --dir, selecting maps to upload" { arg "<glob>" }
+    flag "--exclude" help="Glob pattern, relative to --dir, selecting files to skip." { arg "<glob>" }
+    flag "--repo" help="Repo name used in the API path." { arg "<name>" }
+    flag "--git-sha" help="Commit SHA to key uploads under." { arg "<sha>" }
+    flag "--endpoint" help="Override the fallow cloud base URL" { arg "<url>" }
+    flag "--strip-path" help="Send only the basename as fileName by default." { arg "<bool>" { choices "true" "false" } }
+    flag "--dry-run" help="Print what would be uploaded and exit. No network call"
+    flag "--concurrency" help="Parallel upload fanout" { arg "<n>" }
+    flag "--fail-fast" help="Stop on first upload error"
+  }
+  cmd upload-static-findings help="Upload static dead-code findings to fallow cloud for the source-evidence viewer" {
+    flag "--api-key" help="Fallow cloud API key (bearer token)." { arg "<key>" }
+    flag "--api-endpoint" help="Override the fallow cloud base URL." { arg "<url>" }
+    flag "--project-id" help="Project identifier, for example `fallow-cloud-api` or `owner/repo`." { arg "<project-id>" }
+    flag "--git-sha" help="Explicit git SHA for these findings." { arg "<sha>" }
+    flag "--allow-dirty" help="Proceed even when the working tree has uncommitted changes."
+    flag "--dry-run" help="Print what would be uploaded and exit. No network call"
+    flag "--ignore-upload-errors" help="Treat transient upload failures as warnings instead of errors (exit 0). Validation and auth errors still fail hard; this only downgrades transport and server errors"
+  }
+}
+cmd license help="Manage the paid-feature license" {
+  cmd activate help="Activate a license JWT" {
+    arg "[jwt]" help="JWT as a positional argument"
+    flag "--from-file" help="Path to a file containing the JWT" { arg "<path>" }
+    flag "--stdin" help="Read JWT from stdin"
+    flag "--trial" help="Start a 30-day email-gated trial in one step."
+    flag "--email" help="Email address for the trial flow" { arg "<addr>" }
+  }
+  cmd status help="Show the active license tier, seats, features, and days remaining" {
+  }
+  cmd refresh help="Fetch a fresh JWT from `api.fallow.cloud` (network-only)" {
+    flag "--api-key" help="Fallow cloud API key (bearer token) used when the stored license JWT cannot be refreshed." { arg "<key>" }
+  }
+  cmd deactivate help="Remove the local license file" {
+  }
+}
+cmd telemetry help="Manage opt-in product telemetry" {
+  cmd status help="Show effective telemetry state, precedence, and controls" {
+  }
+  cmd enable help="Enable opt-in telemetry in the user-level fallow config" {
+  }
+  cmd disable help="Disable telemetry in the user-level fallow config" {
+  }
+  cmd inspect help="Explain inspect mode or print example payloads" {
+    flag "--example" help="Print documented example payloads and field purposes"
+  }
+}
+cmd schema help="Dump the CLI interface as machine-readable JSON" {
+}
