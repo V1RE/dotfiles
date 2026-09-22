@@ -14,7 +14,7 @@
   "amp.fuzzy.alwaysIncludePaths": [".env", ".env.*"],
   "amp.defaultVisibility": {},
   "amp.mcpPermissions": [],
-  "amp.remoteThreadCreation.enabled": false,
+  "amp.remoteThreadCreation.enabled": true,
   "amp.runner.autoUpdate.enabled": true,
   "amp.updates.mode": "auto",
   "amp.keymap": {
@@ -22,9 +22,5 @@
     "thread.switch": "alt+o",
     "thread.toggleOutline": "<leader>m"
   },
-  "amp.mcpServers": {
-    "teamleader-orbit": {
-      "url": "https://api.orbit.teamleader.eu/mcp"
-    }
-  }
+  "amp.mcpServers": {}
 }
