@@ -1,5 +1,6 @@
 {
   "$schema": "https://ampcode.com/cli-settings.schema.json",
+  "amp.runner.env.enabled": true,
   "amp.showCosts": true,
   "amp.git.commit.coauthor.enabled": true,
   "amp.git.commit.ampThread.enabled": true,

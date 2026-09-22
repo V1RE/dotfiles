@@ -80,5 +80,6 @@
   "experimental": {
     "tab_scroll": true,
     "session-preview-tabs": true
-  }
+  },
+  "plugins": ["./herdr-opencode"]
 }
