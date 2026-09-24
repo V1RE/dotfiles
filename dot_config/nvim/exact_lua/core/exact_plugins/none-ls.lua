@@ -84,7 +84,6 @@ return {
               })
             end,
           }),
-          formatting.shfmt,
           formatting.stylua,
           vp.with({
             only_local = "node_modules/.bin",
@@ -93,7 +92,6 @@ return {
             end,
           }),
           hover.dictionary,
-          linters.zsh,
           linters.actionlint,
         },
         on_attach = on_attach,

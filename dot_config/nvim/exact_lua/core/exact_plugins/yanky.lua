@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "gbprod/yanky.nvim",
+  lazy = false, -- Capture yanks before the first paste loads the plugin.
   opts = {},
 
   keys = {

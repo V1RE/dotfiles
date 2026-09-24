@@ -31,7 +31,7 @@ return {
     ---@type MasonLspconfigSettings
     opts = {
       ensure_installed = {
-        "bashls",
+        "shuck",
         "eslint",
         "jsonls",
         "lua_ls",
@@ -41,7 +41,7 @@ return {
         "tsc",
         "shopify_theme_ls",
       },
-      automatic_enable = true,
+      automatic_enable = { exclude = { "bashls" } },
     },
   },
 }

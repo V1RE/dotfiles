@@ -3,7 +3,7 @@ local default_options = {
 }
 
 local servers = {
-  "bashls",
+  "shuck",
   "lua_ls",
   "jsonls",
   "yamlls",
