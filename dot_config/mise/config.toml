@@ -8,6 +8,7 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "aqua:pnpm/pnpm" = "latest"
 "cargo:worktrunk" = "latest"
 "github:googleworkspace/cli" = "latest"
+"github:nubjs/nub" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:agent-browser" = "latest"
 "npm:calldiff" = "latest"
@@ -38,11 +39,6 @@ uv = "latest"
 vercel = "latest"
 vite-plus = "latest"
 watchexec = "latest"
-
-[tools.nub]
-allow_builds = ["@nubjs/nub"]
-prerelease = true
-version = "latest"
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
