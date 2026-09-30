@@ -39,6 +39,7 @@ uv = "latest"
 vercel = "latest"
 vite-plus = "latest"
 watchexec = "latest"
+"npm:cf" = "latest"
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
