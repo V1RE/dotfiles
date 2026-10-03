@@ -1,8 +1,8 @@
 name nub
 bin nub
-version "0.9.5"
+version "0.9.6"
 about "The all-in-one Node.js toolkit"
-// Source: nubjs/nub v0.9.5 (`--help` and command-specific help).
+// Source: nubjs/nub v0.9.6 (recursive `--help` and usage_rs declarations).
 // Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag "-c --check" help="Syntax-check without executing"
@@ -21,8 +21,8 @@ flag "-r --require" help="Preload a CommonJS module" var=#true {
   arg <module>
 }
 flag "-s --silent" help="Suppress non-error output" global=#true
-flag "-v --version" help="Show version"
-flag --color help="Set color mode" global=#true {
+flag "-v --version -V" help="Show version"
+flag --color help="Set color mode" global=#true default_missing="always" {
   arg "[color]" {
     choices auto always never
   }
@@ -35,10 +35,10 @@ flag --disable-warning help="Silence a specific warning" var=#true {
   arg <code-or-type>
 }
 flag --enable-source-maps help="Enable source maps in stack traces"
-flag --env-file help="Load environment variables from a file" global=#true {
+flag --env-file help="Load environment variables from a file" var=#true {
   arg <file>
 }
-flag --env-file-if-exists help="Load an optional environment file" global=#true {
+flag --env-file-if-exists help="Load an optional environment file" var=#true {
   arg <file>
 }
 flag --heap-prof help="Write a V8 heap profile on exit"
@@ -65,25 +65,25 @@ flag --max-old-space-size help="Set V8's old-space size limit" {
 flag "--no-check --no-install" help="Skip dependency freshness checks"
 flag --no-color help="Disable color" global=#true
 flag --no-deprecation help="Silence deprecation warnings"
-flag --no-env-file help="Disable environment-file loading" global=#true
+flag --no-env-file help="Disable environment-file loading"
 flag --no-warnings help="Silence all process warnings"
-flag --node help="Disable nub runtime augmentation" global=#true
+flag --node help="Disable nub runtime augmentation"
 flag --pending-deprecation help="Emit pending deprecation warnings"
-flag --preserve-symlinks
-flag --preserve-symlinks-main
+flag --preserve-symlinks help="Preserve symlinks when resolving modules"
+flag --preserve-symlinks-main help="Preserve symlinks for the entry module"
 flag --prof help="Generate V8 profiler tick data"
 flag --redirect-warnings help="Write warnings to a file" {
   arg <file>
 }
-flag --report-dir {
+flag --report-dir help="Set the diagnostic report directory" {
   arg <dir>
 }
-flag --report-filename {
+flag --report-filename help="Set the diagnostic report filename" {
   arg <file>
 }
-flag --report-on-fatalerror
-flag --report-on-signal
-flag --report-uncaught-exception
+flag --report-on-fatalerror help="Write a diagnostic report on fatal errors"
+flag --report-on-signal help="Write a diagnostic report on a signal"
+flag --report-uncaught-exception help="Write a diagnostic report on uncaught exceptions"
 flag --stack-trace-limit help="Set Error.stackTraceLimit" {
   arg <n>
 }
@@ -92,25 +92,27 @@ flag --title help="Set process.title on startup" {
   arg <title>
 }
 flag --trace-deprecation help="Show stack traces for deprecations"
-flag --trace-exit
-flag --trace-sync-io
-flag --trace-uncaught
+flag --trace-exit help="Show a stack trace on process exit"
+flag --trace-sync-io help="Show stack traces for synchronous I/O"
+flag --trace-uncaught help="Show stack traces for uncaught exceptions"
 flag --trace-warnings help="Show stack traces for process warnings"
-flag --use-largepages {
-  arg <mode>
+flag --use-largepages help="Select how to use large memory pages" {
+  arg <mode> {
+    choices off on silent
+  }
 }
-flag --v8-options
+flag --v8-options help="Print V8 command-line options"
 flag --verbose help="Increase log verbosity" count=#true global=#true
-flag --watch help="Enable watch mode" global=#true
+flag --watch help="Enable watch mode"
 flag --watch-path help="Watch a path" var=#true {
   arg <path>
 }
 flag --watch-preserve-output help="Preserve output across restarts"
-flag --zero-fill-buffers
+flag --zero-fill-buffers help="Zero-fill newly allocated buffers"
 // Keep bare nub completion focused on commands, not files in the current directory.
-arg "[entry]" required=#false
+arg "[entry]" required=#false help="File to run, or - for stdin"
 complete "entry" type="none"
-arg "[arg]" required=#false var=#true
+arg "[arg]" required=#false var=#true help="Arguments forwarded to the script"
 
 cmd add help="Add dependencies" {
   alias a
