@@ -5,7 +5,7 @@ set -euo pipefail
 command -v but >/dev/null 2>&1 || exit 1
 command -v jq >/dev/null 2>&1 || exit 1
 
-json=$(but branch list -j --no-check 2>/dev/null) || exit 1
+json=$(but branch list --json --no-check 2>/dev/null) || exit 1
 
 # Parse applied stacks from JSON
 # Schema: { appliedStacks: [{ id, heads: [{ name, commitsAhead }] }] }

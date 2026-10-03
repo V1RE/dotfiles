@@ -158,7 +158,7 @@ compdef _fallow fallow
 
 [[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
-. ~/.antidote/antidote.zsh
+. "$HOME/.antidote/antidote.zsh"
 
 [[ -s ~/.zsh_plugins.zsh ]] || rm -f ~/.zsh_plugins.zsh
 antidote load
@@ -265,7 +265,7 @@ export HUSKY=0
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && command cd -- "$1" }
 compdef _directories md
 
-source ~/.aliases
+source "$HOME/.aliases"
 
 #compdef pnpm
 ###-begin-pnpm-completion-###
@@ -321,34 +321,6 @@ zsh-compile-if-stale ~/.zsh_plugins.zsh ~/.zshrc ${ZDOTDIR:-$HOME}/.zcompdump &!
 
 zsh-cache-file mole mole completion zsh && source $REPLY
 zsh-cache-file wt wt config shell init zsh && source $REPLY
-#compdef opencode
-###-begin-opencode-completions-###
-#
-# yargs command completion script
-#
-# Installation: opencode completion >> ~/.zshrc
-#    or opencode completion >> ~/.zprofile on OSX.
-#
-if command -v opencode >/dev/null 2>&1 && type compdef &>/dev/null; then
-  _opencode_yargs_completions()
-  {
-    local reply
-    local si=$IFS
-    IFS=$'\n' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" opencode --get-yargs-completions "${words[@]}"))
-    IFS=$si
-    if [[ ${#reply} -gt 0 ]]; then
-      _describe 'values' reply
-    else
-      _default
-    fi
-  }
-  if [[ "'${zsh_eval_context[-1]}" == "loadautofunc" ]]; then
-    _opencode_yargs_completions "$@"
-  else
-    compdef _opencode_yargs_completions opencode
-  fi
-fi
-###-end-opencode-completions-###
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
