@@ -127,44 +127,77 @@ cmd add help="Add dependencies" {
   flag "-g --global" help="Install globally"
   flag "-O --save-optional" help="Add as an optional dependency"
   flag "-r --recursive" help="Run across workspaces"
-  flag "-w --workspace" help="Add from the workspace"
   flag "-W --ignore-workspace-root-check" help="Allow adding at workspace root"
+  flag "-w --workspace" help="Add from the workspace"
   flag --allow-build help="Allow dependency build scripts" var=#true {
     arg <package>
   }
   flag --allow-low-downloads help="Bypass low-download safety prompts"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
   flag --dangerously-allow-all-builds help="Allow all dependency build scripts"
   flag --deny-build help="Deny dependency build scripts" var=#true {
     arg <package>
   }
   flag "--disable-global-virtual-store --disable-gvs" help="Disable the shared virtual store"
   flag "--enable-global-virtual-store --enable-gvs" help="Enable the shared virtual store"
-  flag --fetch-retries {
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
     arg <count>
   }
-  flag --fetch-retry-factor {
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
     arg <count>
   }
-  flag --fetch-retry-maxtimeout {
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
     arg <ms>
   }
-  flag --fetch-retry-mintimeout {
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
     arg <ms>
   }
-  flag --fetch-timeout {
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
     arg <ms>
   }
   flag --filter-prod help="Filter production workspace packages" var=#true {
     arg <pattern>
   }
   flag --frozen-lockfile help="Fail when the lockfile is stale"
+  flag --global-pnpmfile help="Add a global pnpmfile that runs before the local one" {
+    arg <path>
+  }
+  flag --ignore-pnpmfile help="Skip running `.pnpmfile.mjs` / `.pnpmfile.cjs` hooks for this add"
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
   flag --lockfile-only help="Skip linking node_modules"
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
   flag --no-frozen-lockfile help="Always resolve dependencies"
   flag --no-save help="Do not update package.json"
   flag --no-save-workspace-protocol help="Save registry-style workspace specifiers"
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --pnpmfile help="Run this pnpmfile instead of the project's own one" {
+    arg <path>
+  }
   flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
   flag --registry help="Override the registry" {
     arg <url>
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
   }
   flag --save-catalog help="Save into the default workspace catalog"
   flag --save-catalog-name help="Save into a named workspace catalog" {
@@ -172,7 +205,7 @@ cmd add help="Add dependencies" {
   }
   flag --save-peer help="Add as a peer dependency"
   flag --save-workspace-protocol help="Save workspace: specifiers"
-  arg <package> var=#true
+  arg "[package]" var=#true help="Package(s) to add"
 }
 
 cmd agent subcommand_required=#true help="Print documentation for coding agents" {
@@ -187,12 +220,51 @@ cmd agent subcommand_required=#true help="Print documentation for coding agents"
 }
 
 cmd approve-builds help="Approve dependencies to run build scripts" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-g --global" help="Approve global packages"
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
   flag --all help="Approve every pending ignored build without prompting"
-  arg "[package]" required=#false var=#true
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[package]" var=#true help="Packages to approve directly, skipping the picker"
 }
 
 cmd audit help="Audit dependencies for vulnerabilities" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-D --dev" help="Audit development dependencies only"
   flag "-i --interactive" help="Choose advisories to fix"
   flag "-P --prod --production" help="Audit production dependencies only"
@@ -201,32 +273,53 @@ cmd audit help="Audit dependencies for vulnerabilities" {
       choices info low moderate high critical
     }
   }
-  flag --fix help="Fix advisories" {
-    arg "[mode]" required=#false {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --fix help="Fix advisories" default_missing="override" {
+    arg "[mode]" {
       choices update override
     }
   }
   flag --ignore help="Ignore an advisory ID" var=#true {
-    arg <id>
+    arg <id> delimiter=","
   }
   flag --ignore-registry-errors help="Exit successfully on registry errors"
   flag --ignore-unfixable help="Hide advisories with no upgrade"
   flag --json help="Output JSON"
   flag --no-optional help="Skip optional dependencies"
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
 }
 
 cmd bin help="Show the binary directory" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-g --global" help="Show the global bin directory"
   flag "-w --workspace-root --workspace" help="Show the workspace-root bin directory"
 }
 
 cmd cache subcommand_required=#true help="Manage cached package data" {
   cmd delete help="Delete package metadata" {
-    arg <pattern> var=#true
+    arg <pattern> var=#true help="One or more package name patterns"
   }
 
   cmd list help="List cached package metadata" {
-    arg "[pattern]" required=#false var=#true
+    arg "[pattern]" var=#true help="Optional glob patterns to filter the listing"
   }
 
   cmd list-registries help="List configured registries"
@@ -234,27 +327,36 @@ cmd cache subcommand_required=#true help="Manage cached package data" {
   cmd path help="Show the metadata and policy cache directory"
 
   cmd prune help="Remove stale cache primers" {
-    flag --age-days {
+    flag --age-days help="Minimum age in days before an old primer file is removed" {
       arg <days>
     }
-    flag --dry-run
+    flag --dry-run help="Do not actually delete anything"
   }
 
   cmd view help="View cached package metadata" {
-    flag --json
-    arg <package>
+    flag --json help="Dump the raw on-disk cache JSON instead of a summary"
+    arg <package> help="Package name (scoped names like `@babel/core` are accepted)"
+  }
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices delete list list-registries path prune view
+    }
   }
 }
 
 cmd cat-file help="Find a store file by content hash" {
-  arg <hash>
+  arg <hash> help="File hash to look up"
 }
 
 cmd cat-index help="Show a package's store index" {
-  arg <package-version>
+  arg <package-version> help="Package to inspect, in `name@version` form (e.g. `lodash@4.17.21`,"
 }
 
 cmd check help="Check dependency link consistency" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag --json help="Output JSON"
 }
 
@@ -269,7 +371,7 @@ cmd ci help="Perform a clean frozen-lockfile install" {
   flag "-P --prod --production" help="Install production dependencies only"
   flag "-r --recursive" help="Run across workspaces"
   flag --cpu help="Select target CPU architectures" var=#true {
-    arg <cpu>
+    arg <cpu> delimiter=","
   }
   flag --cwd help="Run from a directory" {
     arg <dir>
@@ -281,7 +383,7 @@ cmd ci help="Perform a clean frozen-lockfile install" {
   flag --ignore-scripts help="Skip lifecycle scripts"
   flag --include-workspace-root help="Include the workspace root"
   flag --libc help="Select target C libraries" var=#true {
-    arg <libc> {
+    arg <libc> delimiter="," {
       choices glibc musl current "*"
     }
   }
@@ -298,7 +400,7 @@ cmd ci help="Perform a clean frozen-lockfile install" {
   }
   flag --no-optional help="Skip optional dependencies"
   flag --os help="Select target operating systems" var=#true {
-    arg <os>
+    arg <os> delimiter=","
   }
   flag --registry help="Override the registry" {
     arg <url>
@@ -311,12 +413,11 @@ cmd ci help="Perform a clean frozen-lockfile install" {
 }
 
 cmd compile help="Compile a file to a standalone executable" {
-  arg <file>
   flag --alias help="Remap a module specifier" var=#true {
     arg "<from=to>"
   }
-  flag --allow-dynamic-import help="Allow computed dynamic imports, optionally scoped by glob" var=#true {
-    arg "[glob]" required=#false
+  flag --allow-dynamic-import help="Allow computed dynamic imports, optionally scoped by glob" var=#true default_missing="" {
+    arg "[glob]"
   }
   flag --bundled help="Force bundling a package" var=#true {
     arg <package>
@@ -345,8 +446,8 @@ cmd compile help="Compile a file to a standalone executable" {
   flag --icon help="Set a Windows executable icon" {
     arg <file>
   }
-  flag --icu help="Keep selected ICU locales (use --icu=locales)" {
-    arg "[locales]" required=#false
+  flag --icu help="Keep selected ICU locales (use --icu=locales)" default_missing="full" {
+    arg "[locales]"
   }
   flag --ignore-annotations help="Ignore pure annotations"
   flag --include help="Embed a file, directory, or glob" var=#true {
@@ -379,7 +480,7 @@ cmd compile help="Compile a file to a standalone executable" {
     }
   }
   flag --smol help="Discover or provision Node at runtime instead of embedding it"
-  flag --sourcemap help="Set source map mode (use --sourcemap=mode)" {
+  flag --sourcemap help="Set source map mode (use --sourcemap=mode)" default_missing="inline" {
     arg "[mode]" {
       choices linked inline external none
     }
@@ -394,113 +495,291 @@ cmd compile help="Compile a file to a standalone executable" {
   flag --unbundled help="Embed a package in its installed layout" var=#true {
     arg <package>
   }
+  arg <file> help="Entry file (TS/JS) to bundle and compile"
 }
 
 cmd config help="Manage configuration" {
   alias c
   flag "-g --global" help="Use user configuration"
-  // Scope selectors are explicit here because config has its own global/user grammar.
   flag --all help="Include settings with no configured value"
   flag --json help="Output JSON"
   flag --local help="Use project configuration"
 
   cmd delete help="Remove a setting" {
     alias rm remove unset
-    flag "-g --global"
-    flag --local
-    arg <key>
+    flag "-g --global" help="Use the user configuration instead of the project configuration"
+    flag --local help="Use the project configuration (the default)"
+    arg <key> help="The setting key"
   }
 
   cmd get help="Get a setting" {
-    flag "-g --global"
-    flag --json
-    flag --local
-    arg <key>
+    flag "-g --global" help="Read only the user configuration"
+    flag --json help="Emit the value as JSON"
+    flag --local help="Read only the project configuration"
+    arg <key> help="The setting key"
   }
 
   cmd init help="Create a commented nub.jsonc" {
-    flag "-g --global"
-    flag --local
+    flag "-g --global" help="Create the user configuration instead of the project configuration"
+    flag --local help="Create the project file (the default)"
   }
 
   cmd list help="List settings" {
     alias ls
-    flag "-g --global"
-    flag --all
-    flag --json
-    flag --local
+    flag "-g --global" help="List only the user configuration"
+    flag --all help="Also list settings that have no value set"
+    flag --json help="Emit all entries as a JSON object keyed by setting name"
+    flag --local help="List only the project configuration"
   }
 
-  cmd path help="Show the global nub.jsonc path"
+  cmd path help="Show the global nub.jsonc path" {
+    flag "-g --global" help="Print the user configuration path"
+  }
 
   cmd set help="Set a setting" {
-    flag "-g --global"
-    flag --local
-    arg <key>
-    arg <value>
+    flag "-g --global" help="Use the user configuration instead of the project configuration"
+    flag --local help="Use the project configuration (the default)"
+    arg <key> help="Setting key (canonical name or `.npmrc` alias)"
+    arg <value> help="Value to write. Stored verbatim after `key=`"
+  }
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices delete get init list ls path remove rm set unset
+    }
   }
 }
 
 cmd create help="Create a project from a create-* initializer" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
   flag --registry help="Override the registry" {
     arg <url>
   }
-  arg "[param]" required=#false var=#true
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[param]" var=#true help="Template package name followed by any args to pass through to the"
 }
 
 cmd dedupe help="Remove duplicate packages" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
   flag --check help="Exit non-zero if dedupe would change the lockfile"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag "--disable-global-virtual-store --disable-gvs" help="Force the shared global virtual store off for this invocation"
+  flag "--enable-global-virtual-store --enable-gvs" help="Force the shared global virtual store on for this invocation"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --frozen-lockfile help="Error if the lockfile drifts from package.json"
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --no-frozen-lockfile help="Always re-resolve, even if the lockfile is up to date"
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --prefer-frozen-lockfile help="Use the lockfile when fresh, re-resolve when stale"
   flag --registry help="Override the registry" {
     arg <url>
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
   }
 }
 
 cmd deprecate help="Deprecate published package versions" {
   flag --dry-run help="Print without updating"
-  flag --otp {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --otp help="One-time password from a 2FA authenticator; sent as `npm-otp`" {
     arg <code>
   }
-  arg <package>
-  arg <message>
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  arg <package> help="Package spec: `name`, `name@version`, or `name@<range>`"
+  arg <message> help="Deprecation message shown to installers"
 }
 
 cmd deprecations help="Find deprecated installed dependencies" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag --exit-code help="Fail when deprecations are found"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
   flag --json help="Output JSON"
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
   flag --transitive help="Include transitive dependencies"
 }
 
 cmd dist-tag subcommand_required=#true help="Manage distribution tags" {
   alias dist-tags
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
 
   cmd add help="Add or update a distribution tag" {
-    flag --otp {
+    flag --otp help="One-time password from a 2FA authenticator; sent as `npm-otp`" {
       arg <code>
     }
-    arg <package-version>
-    arg "[tag]" required=#false
+    arg <package-version> help="Package spec in `name@version` form (exact version required, ranges"
+    arg "[tag]" help="Tag to create or update. Defaults to `latest`"
   }
 
   cmd ls help="List distribution tags" {
-    arg "[package]" required=#false
+    arg "[package]" help="Package name (no version)"
   }
 
   cmd rm help="Remove a distribution tag" {
     alias remove
-    flag --otp {
+    flag --otp help="One-time password from a 2FA authenticator; sent as `npm-otp`" {
       arg <code>
     }
-    arg <package>
-    arg <tag>
+    arg <package> help="Package name (no version)"
+    arg <tag> help="Tag to remove"
+  }
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices add ls remove rm
+    }
   }
 }
 
 cmd dlx help="Fetch and run a package binary" {
   alias x
-  flag "-c --shell-mode" help="Run the command through sh -c"
   flag "-C --dir --cd --prefix" help="Run from a directory" {
     arg <dir>
   }
+  flag "-c --shell-mode" help="Run the command through sh -c"
   flag "-F --filter" help="Filter workspace packages" var=#true {
     arg <workspace>
   }
@@ -512,7 +791,7 @@ cmd dlx help="Fetch and run a package binary" {
     arg <package>
   }
   flag --cpu help="Select target CPU architectures" var=#true {
-    arg <cpu>
+    arg <cpu> delimiter=","
   }
   flag "--disable-global-virtual-store --disable-gvs" help="Disable the shared virtual store"
   flag "--enable-global-virtual-store --enable-gvs" help="Enable the shared virtual store"
@@ -537,7 +816,7 @@ cmd dlx help="Fetch and run a package binary" {
   }
   flag --frozen-lockfile help="Fail when the lockfile is stale"
   flag --libc help="Select target C libraries" var=#true {
-    arg <libc> {
+    arg <libc> delimiter="," {
       choices glibc musl current "*"
     }
   }
@@ -554,7 +833,7 @@ cmd dlx help="Fetch and run a package binary" {
   }
   flag --no-frozen-lockfile help="Always resolve dependencies"
   flag --os help="Select target operating systems" var=#true {
-    arg <os>
+    arg <os> delimiter=","
   }
   flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
   flag --registry help="Override the registry" {
@@ -565,8 +844,8 @@ cmd dlx help="Fetch and run a package binary" {
       choices default append-only silent
     }
   }
-  arg <package>
-  arg "[arg]" required=#false var=#true double_dash=automatic
+  arg "[package]" help="Package"
+  arg "[arg]" var=#true double_dash=automatic help="Arg"
 }
 
 cmd exec help="Run a node_modules/.bin binary" {
@@ -586,31 +865,102 @@ cmd exec help="Run a node_modules/.bin binary" {
   flag --workspace-concurrency help="Maximum concurrent packages" {
     arg <count>
   }
-  arg <bin>
-  arg "[arg]" required=#false var=#true double_dash=automatic
+  arg <bin> help="Binary name to execute"
+  arg "[arg]" var=#true double_dash=automatic help="Remaining arguments forwarded to the binary"
 }
 
 cmd fetch help="Fetch lockfile packages into the store" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
   flag "-D --dev" help="Fetch development dependencies only"
   flag "-F --filter" help="Filter workspace packages" var=#true {
     arg <pattern>
   }
   flag "-P --prod" help="Fetch production dependencies only"
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag "--disable-global-virtual-store --disable-gvs" help="Force the shared global virtual store off for this invocation"
+  flag "--enable-global-virtual-store --enable-gvs" help="Force the shared global virtual store on for this invocation"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --frozen-lockfile help="Error if the lockfile drifts from package.json"
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --no-frozen-lockfile help="Always re-resolve, even if the lockfile is up to date"
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --prefer-frozen-lockfile help="Use the lockfile when fresh, re-resolve when stale"
   flag --registry help="Override the registry" {
     arg <url>
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
   }
 }
 
 cmd find-hash help="Find packages containing a content hash" {
-  flag --json
-  arg <hash>
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --json help="Emit machine-readable JSON instead of a plain text listing"
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  arg <hash> help="Hash to look up"
 }
 
 cmd get help="Get a configuration value" {
-  flag "-g --global"
-  flag --json
-  flag --local
-  arg <key>
+  flag "-g --global" help="Read only the user configuration"
+  flag --json help="Emit the value as JSON"
+  flag --local help="Read only the project configuration"
+  arg <key> help="The setting key"
 }
 
 cmd global subcommand_required=#true help="Manage user-global configuration" {
@@ -620,12 +970,12 @@ cmd global subcommand_required=#true help="Manage user-global configuration" {
 
     cmd delete help="Remove a user setting" {
       alias rm remove unset
-      arg <key>
+      arg <key> help="Key"
     }
 
     cmd get help="Get a user setting" {
       flag --json help="Output JSON"
-      arg <key>
+      arg <key> help="Key"
     }
 
     cmd init help="Create the user nub.jsonc"
@@ -638,23 +988,97 @@ cmd global subcommand_required=#true help="Manage user-global configuration" {
     cmd path help="Show the user nub.jsonc path"
 
     cmd set help="Set a user setting" {
-      arg <key>
-      arg <value>
+      arg <key> help="Key"
+      arg <value> help="Value"
     }
   }
 }
 
 cmd help help="Show help for a command" {
-  arg "[command]" required=#false
+  arg "[command]" help="Subcommand to show help for" {
+    choices a add adduser agent approve-builds audit bin c cache cat-file cat-index check ci compile config create dedupe deprecate deprecations dislink dist-tag dist-tags dlx exec fetch find-hash get global help i ignored-builds import info init install la licenses link list ll ln login logout ls node outdated owner owners pack patch patch-commit patch-remove peers pkg pm prune publish query rb rebuild remove rm root run sbom search set set-script show ss store token un undeprecate uni uninstall unlink unpublish up update upgrade v version view w watch whoami why x
+  }
 }
 
 cmd ignored-builds help="List dependencies whose build scripts were blocked" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-g --global" help="Inspect global packages"
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
 }
 
 cmd import help="Generate a nub lockfile from another package manager" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
   flag --force help="Overwrite an existing lockfile"
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
   flag --lockfile-only help="Only write the converted lockfile"
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
 }
 
 cmd init help="Scaffold a TypeScript-first project" {
@@ -673,17 +1097,30 @@ cmd install help="Install dependencies" {
   flag "-C --dir" help="Run from a directory" {
     arg <dir>
   }
-  flag "-D --dev" help="Install development dependencies only"
+  flag "-D -d --dev --save-dev" help="Install development dependencies only"
+  flag "-E -e --save-exact" help="Save an exact version"
   flag "-F --filter" help="Filter workspace packages" var=#true {
     arg <pattern>
   }
+  flag "-g --global" help="Install globally"
+  flag "-O -o --save-optional" help="Add as an optional dependency"
   flag "-P --prod --production" help="Install production dependencies only"
   flag "-r --recursive" help="Run across workspaces"
+  flag "-W --ignore-workspace-root-check" help="Allow adding at workspace root"
+  flag "-w --workspace" help="Add from the workspace"
+  flag --allow-build help="Allow dependency build scripts" var=#true {
+    arg <package>
+  }
+  flag --allow-low-downloads help="Bypass low-download safety prompts"
   flag --cpu help="Select target CPU architectures" var=#true {
-    arg <cpu>
+    arg <cpu> delimiter=","
   }
   flag --cwd help="Run from a directory" {
     arg <dir>
+  }
+  flag --dangerously-allow-all-builds help="Allow all dependency build scripts"
+  flag --deny-build help="Deny dependency build scripts" var=#true {
+    arg <package>
   }
   flag --fail-if-no-match help="Fail when no workspace matches"
   flag --filter-prod help="Filter production workspace packages" var=#true {
@@ -698,7 +1135,7 @@ cmd install help="Install dependencies" {
   flag --ignore-scripts help="Skip lifecycle scripts"
   flag --include-workspace-root help="Include the workspace root"
   flag --libc help="Select target C libraries" var=#true {
-    arg <libc> {
+    arg <libc> delimiter="," {
       choices glibc musl current "*"
     }
   }
@@ -716,6 +1153,7 @@ cmd install help="Install dependencies" {
   }
   flag --no-frozen-lockfile help="Always resolve dependencies"
   flag --no-optional help="Skip optional dependencies"
+  flag --no-save-workspace-protocol help="Save registry-style workspace specifiers"
   flag --node-linker help="Select node_modules layout" {
     arg <layout> {
       choices isolated hoisted
@@ -723,7 +1161,7 @@ cmd install help="Install dependencies" {
   }
   flag --offline help="Disallow network access"
   flag --os help="Select target operating systems" var=#true {
-    arg <os>
+    arg <os> delimiter=","
   }
   flag --pnpmfile help="Set the local pnpmfile" {
     arg <path>
@@ -738,53 +1176,177 @@ cmd install help="Install dependencies" {
       choices default append-only silent
     }
   }
+  flag --save-catalog help="Save into the default workspace catalog"
+  flag --save-catalog-name help="Save into a named workspace catalog" {
+    arg <name>
+  }
+  flag --save-peer help="Add as a peer dependency"
+  flag --save-workspace-protocol help="Save workspace: specifiers"
+  arg "[package]" var=#true help="Packages to add; omit to install from package.json"
 }
 
 cmd la help="List installed dependencies with extended details" {
-  flag --depth {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
+  flag "-D --dev" help="Show only devDependencies"
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-g --global" help="List globally-installed packages instead of the project's dependency tree"
+  flag "-P --prod --production" help="Show only production dependencies (skip devDependencies)"
+  flag "-r --recursive" help="Run across every workspace package (same as `--filter=*`)"
+  flag --depth help="How deep to render the transitive tree" {
     arg <depth>
   }
-  arg "[package]" required=#false var=#true
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of `--filter`: graph walks skip devDependencies" var=#true {
+    arg <pattern>
+  }
+  flag --format help="Output format: one of `default`, `json`, or `parseable`" {
+    arg <format> {
+      choices default json parseable
+    }
+  }
+  flag --include-workspace-root help="Include the workspace root alongside the selected packages"
+  flag --json help="Shortcut for `--format json`"
+  flag --lockfile-only help="List packages from the lockfile only, without checking node_modules"
+  flag --long help="Show version and path for each entry"
+  flag --parseable help="Shortcut for `--format parseable`"
+  arg "[package]" help="Optional package name (or glob-like prefix match) to filter the"
 }
 
 cmd licenses help="Inspect dependency licenses" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-D --dev" help="Show development dependencies only"
   flag "-P --prod --production" help="Show production dependencies only"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
   flag --json help="Output JSON"
   flag --long help="Include resolved paths"
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
 }
 
 cmd link help="Link a local package" {
   alias ln
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-g --global" help="Use the global link registry"
-  arg "[package]" required=#false
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[package]" help="Package name, or path to a local directory"
 }
 
 cmd list help="List installed dependencies" {
   alias ls
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-D --dev" help="Show development dependencies only"
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-g --global" help="List global packages"
   flag "-P --prod --production" help="Show production dependencies only"
+  flag "-r --recursive" help="Run across every workspace package (same as `--filter=*`)"
   flag --depth help="Maximum dependency depth" {
     arg <depth>
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of `--filter`: graph walks skip devDependencies" var=#true {
+    arg <pattern>
   }
   flag --format help="Select output format" {
     arg <format> {
       choices default json parseable
     }
   }
+  flag --include-workspace-root help="Include the workspace root alongside the selected packages"
   flag --json help="Output JSON"
   flag --lockfile-only help="Read packages only from the lockfile"
   flag --long help="Show extended package details"
   flag --parseable help="Output parseable paths"
-  arg "[package]" required=#false var=#true
+  arg "[package]" help="Optional package name (or glob-like prefix match) to filter the"
 }
 
 cmd ll help="List installed dependencies with extended details" {
-  flag --depth {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
+  flag "-D --dev" help="Show only devDependencies"
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-g --global" help="List globally-installed packages instead of the project's dependency tree"
+  flag "-P --prod --production" help="Show only production dependencies (skip devDependencies)"
+  flag "-r --recursive" help="Run across every workspace package (same as `--filter=*`)"
+  flag --depth help="How deep to render the transitive tree" {
     arg <depth>
   }
-  arg "[package]" required=#false var=#true
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of `--filter`: graph walks skip devDependencies" var=#true {
+    arg <pattern>
+  }
+  flag --format help="Output format: one of `default`, `json`, or `parseable`" {
+    arg <format> {
+      choices default json parseable
+    }
+  }
+  flag --include-workspace-root help="Include the workspace root alongside the selected packages"
+  flag --json help="Shortcut for `--format json`"
+  flag --lockfile-only help="List packages from the lockfile only, without checking node_modules"
+  flag --long help="Show version and path for each entry"
+  flag --parseable help="Shortcut for `--format parseable`"
+  arg "[package]" help="Optional package name (or glob-like prefix match) to filter the"
 }
 
 cmd login help="Log into a package registry" {
@@ -794,7 +1356,22 @@ cmd login help="Log into a package registry" {
       choices legacy web
     }
   }
-  flag --registry {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --registry help="Override the default registry URL for this invocation" {
     arg <url>
   }
   flag --scope help="Bind a scope to this registry" {
@@ -803,29 +1380,44 @@ cmd login help="Log into a package registry" {
 }
 
 cmd logout help="Log out of a package registry" {
-  flag --registry {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --registry help="Override the default registry URL for this invocation" {
     arg <url>
   }
-  flag --scope {
+  flag --scope help="Scope whose registry mapping should also be removed (e.g" {
     arg <scope>
   }
 }
 
 cmd node subcommand_required=#true help="Manage Node versions" {
   cmd install help="Provision Node versions" {
-    arg "[version]" required=#false var=#true
+    arg "[version]" var=#true help="Version"
   }
 
   cmd ls help="List cached Node versions"
 
   cmd pin help="Write the project Node version pin" {
-    arg <version>
+    arg <version> help="Version"
   }
 
   cmd shim help="Route node through nub"
 
   cmd uninstall help="Remove a cached Node version" {
-    arg <version>
+    arg <version> help="Version"
   }
 
   cmd unshim help="Remove the node shim"
@@ -834,72 +1426,268 @@ cmd node subcommand_required=#true help="Manage Node versions" {
 }
 
 cmd outdated help="List outdated dependencies" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-D --dev" help="Check development dependencies only"
   flag "-F --filter" help="Filter workspace packages" var=#true {
     arg <pattern>
   }
   flag "-g --global" help="Check globally installed packages"
   flag "-P --prod --production" help="Check production dependencies only"
+  flag "-r --recursive" help="Run across every workspace package (same as `--filter=*`)"
   flag "-w --workspace-root --workspace" help="Check the workspace root"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --filter-prod help="Production-only variant of `--filter`: graph walks skip devDependencies" var=#true {
+    arg <pattern>
+  }
+  flag --include-workspace-root help="Include the workspace root alongside the selected packages"
   flag --json help="Output JSON"
   flag --long help="Show package details"
-  arg "[package]" required=#false var=#true
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  arg "[package]" help="Optional package name (prefix match) to filter the report"
 }
 
 cmd owner subcommand_required=#true help="Manage package owners" {
   alias owners
-  flag --otp {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --otp help="One-time password from a 2FA authenticator (for add/rm)" global=#true {
     arg <code>
+  }
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
   }
 
   cmd add help="Add a package maintainer" {
-    arg <package>
-    arg <user>
+    flag --otp help="One-time password from a 2FA authenticator (for add/rm)" {
+      arg <code>
+    }
+    arg <package> help="The package name"
+    arg <user> help="The npm user to add"
   }
 
   cmd ls help="List package maintainers" {
     alias list
-    arg <package>
+    flag --otp help="One-time password from a 2FA authenticator (for add/rm)" {
+      arg <code>
+    }
+    arg <package> help="The package name"
   }
 
   cmd rm help="Remove a package maintainer" {
     alias remove
-    arg <package>
-    arg <user>
+    flag --otp help="One-time password from a 2FA authenticator (for add/rm)" {
+      arg <code>
+    }
+    arg <package> help="The package name"
+    arg <user> help="The npm user to remove"
+  }
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices add list ls remove rm
+    }
   }
 }
 
 cmd pack help="Create a package tarball" {
   flag --dry-run help="Print without writing a tarball"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
   flag --ignore-scripts help="Skip pack lifecycle scripts"
   flag --json help="Output JSON"
   flag --pack-destination help="Output directory" {
     arg <dir>
   }
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
 }
 
 cmd patch help="Prepare an installed package for patching" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
   flag --edit-dir help="Extract the editable copy into a directory" {
     arg <dir>
   }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
   flag --ignore-existing help="Ignore an existing patch entry"
-  arg <package>
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg <package> help="Package spec, `<name>@<version>`"
 }
 
 cmd patch-commit help="Create and register a package patch" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
   flag --patches-dir help="Directory for generated patch files" {
     arg <dir>
   }
-  arg <dir>
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg <dir> help="The edit directory printed by `nub patch`"
 }
 
 cmd patch-remove help="Remove package patches" {
-  arg "[patch]" required=#false var=#true
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[patch]" var=#true help="Patch keys to remove, formatted as `<name>@<version>`"
 }
 
 cmd peers subcommand_required=#true help="Inspect peer dependency issues" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
+
   cmd check help="Check for unmet and missing peer dependencies" {
     flag --json help="Output JSON"
+  }
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices check
+    }
   }
 }
 
@@ -908,21 +1696,21 @@ cmd pkg help="Read or modify package.json" {
     arg <dir>
   }
   flag --json help="Parse set values as JSON"
-  arg <subcommand> {
+  arg <subcommand> help="Subcommand: `get`, `set`, `delete`, or `fix`" {
     choices get set delete fix
   }
-  arg "[args]" required=#false var=#true
+  arg "[args]" var=#true help="Arguments for the subcommand: keys for `get`/`delete`,"
 }
 
 cmd pm subcommand_required=#true help="Manage the project package manager" {
   cmd cache help="Manage cached package managers" {
-    arg "[action]" required=#false {
+    arg "[action]" help="Action" {
       choices clear
     }
   }
 
   cmd pin help="Pin nub for this project" {
-    arg "[version]" required=#false
+    arg "[version]" help="Version"
   }
 
   cmd shim help="Install package-manager shims" {
@@ -937,15 +1725,51 @@ cmd pm subcommand_required=#true help="Manage the project package manager" {
   }
 
   cmd use help="Declare the project package manager" {
-    arg <package-manager>
+    arg <package-manager> help="Package manager"
   }
 
   cmd which help="Print the resolved package-manager path"
 }
 
 cmd prune help="Remove extraneous packages" {
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-P --prod --production" help="Remove development dependencies"
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
   flag --no-optional help="Also remove optional dependencies"
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
 }
 
 cmd publish help="Publish a package" {
@@ -960,19 +1784,19 @@ cmd publish help="Publish a package" {
   }
   flag --dry-run help="Print without uploading"
   flag --fail-if-no-match help="Fail when no workspace matches"
-  flag --fetch-retries {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
     arg <count>
   }
-  flag --fetch-retry-factor {
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
     arg <count>
   }
-  flag --fetch-retry-maxtimeout {
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
     arg <ms>
   }
-  flag --fetch-retry-mintimeout {
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
     arg <ms>
   }
-  flag --fetch-timeout {
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
     arg <ms>
   }
   flag --filter-prod help="Filter production workspace packages" var=#true {
@@ -992,33 +1816,73 @@ cmd publish help="Publish a package" {
   flag --tag help="Distribution tag" {
     arg <tag>
   }
-  arg "[tarball-or-folder]" required=#false
+  arg "[tarball-or-folder]" help="Tarball or package directory to publish (default: current"
 }
 
 cmd query help="Query installed dependencies with a selector" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-D --dev" help="Match development dependency roots"
   flag "-F --filter" help="Filter workspace packages" var=#true {
     arg <pattern>
   }
   flag "-P --prod --production" help="Match production dependency roots"
   flag "-r --recursive" help="Run across workspaces"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of `--filter`: graph walks skip devDependencies" var=#true {
+    arg <pattern>
+  }
+  flag --include-workspace-root help="Include the workspace root alongside the selected packages"
   flag --json help="Output JSON"
   flag --parseable help="Output tab-separated rows"
-  arg <selector>
+  arg <selector> help="Selector expression"
 }
 
 cmd rebuild help="Rebuild dependency native modules" {
   alias rb
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
   flag "-F --filter" help="Filter workspace packages" var=#true {
     arg <pattern>
   }
   flag "-r --recursive" help="Run across workspaces"
-  arg "[package]" required=#false var=#true
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[package]" var=#true help="Optional package names. When supplied, only matching deps' scripts"
 }
 
 cmd remove help="Remove dependencies" {
   alias rm uninstall un uni
-  flag "-C --dir" help="Run from a directory" {
+  flag "-C --dir --cd --prefix" help="Run from a directory" {
     arg <dir>
   }
   flag "-D --save-dev" help="Remove from devDependencies"
@@ -1028,20 +1892,66 @@ cmd remove help="Remove dependencies" {
   flag "-g --global" help="Remove from the global installation"
   flag "-r --recursive" help="Run across workspaces"
   flag "-w --workspace" help="Remove from the workspace root"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag "--disable-global-virtual-store --disable-gvs" help="Force the shared global virtual store off for this invocation"
+  flag "--enable-global-virtual-store --enable-gvs" help="Force the shared global virtual store on for this invocation"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
   flag --filter-prod help="Filter production workspace packages" var=#true {
     arg <pattern>
   }
   flag --frozen-lockfile help="Fail when the lockfile is stale"
   flag --ignore-scripts help="Skip lifecycle scripts"
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
   flag --no-frozen-lockfile help="Always resolve dependencies"
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
   flag --prefer-frozen-lockfile help="Reuse a fresh lockfile"
   flag --registry help="Override the registry" {
     arg <url>
   }
-  arg <package> var=#true
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[package]" var=#true help="Package(s) to remove"
 }
 
 cmd root help="Show the node_modules directory" {
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-g --global" help="Show the global package directory"
 }
 
@@ -1083,26 +1993,43 @@ cmd run help="Run a package.json script" {
   flag --workspace-concurrency help="Maximum concurrent packages" {
     arg <count>
   }
-  arg "[script]" required=#false
-  arg "[arg]" required=#false var=#true double_dash=automatic
+  arg "[script]" help="Script name from package.json#scripts. Omitted → list available"
+  arg "[arg]" var=#true double_dash=automatic help="Remaining arguments forwarded to the script"
 }
 
-// Advertised by nub --help, but nub sbom currently exits with "not yet supported".
 cmd sbom help="Generate a software bill of materials (not yet supported)"
 
 cmd search help="Search registry packages" {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
   flag --json help="Output JSON"
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
   flag --search-limit help="Maximum result count" {
     arg <count>
   }
-  arg <query> var=#true
+  arg <query> var=#true help="Search terms. Joined with spaces into a single query"
 }
 
 cmd set help="Set a configuration value" {
-  flag "-g --global"
-  flag --local
-  arg <key>
-  arg <value>
+  flag "-g --global" help="Use the user configuration instead of the project configuration"
+  flag --local help="Use the project configuration (the default)"
+  arg <key> help="Setting key (canonical name or `.npmrc` alias)"
+  arg <value> help="Value to write. Stored verbatim after `key=`"
 }
 
 cmd set-script help="Set a package.json script" {
@@ -1110,31 +2037,59 @@ cmd set-script help="Set a package.json script" {
   flag "-C --dir" help="Target package directory" {
     arg <dir>
   }
-  arg <name>
-  arg <command> var=#true
+  arg <name> help="Script name (the key under `scripts`)"
+  arg <command> var=#true help="The command the script runs. Remaining args are joined with"
 }
 
 cmd store subcommand_required=#true help="Manage the content-addressable store" {
   cmd add help="Add packages to the global store" {
-    arg <package> var=#true
+    arg <package> var=#true help="Package specs to fetch into the store"
   }
 
   cmd path help="Show the store path"
 
-  cmd prune help="Remove unreferenced packages"
+  cmd prune help="Remove unreferenced packages" {
+    flag --dry-run help="Do not actually delete anything; report what would be pruned"
+    flag --json help="Emit the dry-run plan as one machine-readable JSON document"
+  }
 
   cmd status help="Verify the store"
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices add path prune status
+    }
+  }
 }
 
 cmd token subcommand_required=#true help="Manage registry tokens" {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+
   cmd create help="Create an auth token" {
-    flag "-p --password" {
+    flag "-p --password" help="Account password" {
       arg <password>
     }
-    flag --cidr var=#true {
+    flag --cidr help="Restrict the token to these CIDR ranges" var=#true {
       arg <cidr>
     }
-    flag --read-only
+    flag --read-only help="Create a read-only token"
   }
 
   cmd list help="List account tokens" {
@@ -1143,36 +2098,114 @@ cmd token subcommand_required=#true help="Manage registry tokens" {
 
   cmd revoke help="Revoke an auth token" {
     alias rm
-    arg <key>
+    arg <key> help="The token key, or a prefix of the token value"
+  }
+
+  cmd help help="Show help for a subcommand" {
+    arg "[subcommand]" var=#true help="Subcommand to show help for" {
+      choices create list ls revoke rm
+    }
   }
 }
 
 cmd undeprecate help="Clear package deprecations" {
   flag --dry-run help="Print without updating"
-  flag --otp {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --otp help="One-time password from a 2FA authenticator; sent as `npm-otp`" {
     arg <code>
   }
-  arg <package>
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  arg <package> help="Package spec: `name`, `name@version`, or `name@<range>`"
 }
 
 cmd unlink help="Unlink local packages" {
   alias dislink
+  flag "-C --dir --cd --prefix" help="Change to directory before running (like `make -C`)" {
+    arg <dir>
+  }
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-g --global" help="Use the global link registry"
-  arg "[package]" required=#false
+  flag "-r --recursive" help="Run across every workspace package (same as --filter=*)"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[package]" help="Package name to unlink (omit to unlink all linked dependencies)"
 }
 
 cmd unpublish help="Remove a package or version from the registry" {
   flag "-f --force" help="Allow whole-package removal"
   flag --dry-run help="Print without updating"
-  flag --otp {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --otp help="One-time password for registries that require 2FA" {
     arg <code>
   }
-  arg "[package]" required=#false
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  arg "[package]" help="Package spec: `name`, `name@version`, or omitted to use the current"
 }
 
 cmd update help="Update dependencies within range" {
   alias up
-  flag "-C --dir" help="Run from a directory" {
+  flag "-C --dir --cd --prefix" help="Run from a directory" {
     arg <dir>
   }
   flag "-D --dev" help="Update development dependencies only"
@@ -1185,21 +2218,74 @@ cmd update help="Update dependencies within range" {
   flag "-L --latest" help="Update to latest versions, ignoring manifest ranges"
   flag "-P --prod --production" help="Update production dependencies only"
   flag "-r --recursive" help="Run across workspaces"
+  flag "-w --workspace" help="Prefer workspace packages"
+  flag --cpu help="CPU architecture(s) to install optional dependencies for" var=#true {
+    arg <cpu> delimiter=","
+  }
   flag --depth help="Set dependency traversal depth" {
     arg <depth>
   }
+  flag "--disable-global-virtual-store --disable-gvs" help="Force the shared global virtual store off for this invocation"
+  flag "--enable-global-virtual-store --enable-gvs" help="Force the shared global virtual store on for this invocation"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --filter-prod help="Production-only variant of --filter" var=#true {
+    arg <pattern>
+  }
+  flag --frozen-lockfile help="Error if the lockfile drifts from package.json"
   flag --global-pnpmfile help="Set the global pnpmfile" {
     arg <path>
   }
   flag --ignore-pnpmfile help="Skip pnpmfile hooks"
+  flag --ignore-scripts help="Skip lifecycle scripts"
+  flag --libc help="C library/libraries to install optional dependencies for (`glibc`, `musl`)" var=#true {
+    arg <libc> delimiter=","
+  }
   flag --lockfile-only help="Only update the lockfile"
+  flag --loglevel help="Log level: logs at or above this level are shown" {
+    arg <level> {
+      choices silent error warn info debug
+    }
+  }
+  flag --minimum-release-age help="How old a version must be before it can be installed: a duration with a unit (`30s`, `5m`, `2h`, `3d`, `1w`), or a bare number meaning minutes" {
+    arg <duration>
+  }
+  flag --minimum-release-age-exclude help="Exempt packages from the age gate for this run (repeatable)" var=#true {
+    arg <pkg>
+  }
+  flag --no-frozen-lockfile help="Always re-resolve, even if the lockfile is up to date"
   flag --no-optional help="Skip optional dependencies"
   flag --no-save help="Do not update package.json"
+  flag --os help="Operating system(s) to install optional dependencies for" var=#true {
+    arg <os> delimiter=","
+  }
   flag --pnpmfile help="Set the local pnpmfile" {
     arg <path>
   }
-  flag --workspace help="Prefer workspace packages"
-  arg "[package]" required=#false var=#true
+  flag --prefer-frozen-lockfile help="Use the lockfile when fresh, re-resolve when stale"
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  flag --reporter help="Output format: `default`, `append-only`, or `silent`" {
+    arg <name> {
+      choices default append-only silent
+    }
+  }
+  arg "[package]" var=#true help="Package(s) to update (all if empty)"
 }
 
 cmd upgrade help="Upgrade nub" {
@@ -1225,36 +2311,85 @@ cmd version help="Show or bump the package version" {
     arg <id>
   }
   flag --sign-git-tag help="GPG-sign the tag"
-  arg "[version]" required=#false
+  arg "[version]" help="Bump keyword or an explicit version string"
 }
 
 cmd view help="Show registry package metadata" {
   alias info show v
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
   flag --json help="Output JSON"
-  arg "[package]" required=#false
-  arg "[field]" required=#false
+  flag --registry help="Override the default registry URL for this invocation" {
+    arg <url>
+  }
+  arg "[package]" help="Package to view, optionally with a version or dist-tag"
+  arg "[field]" help="Dotted path into the version metadata to print"
 }
 
 cmd watch help="Run a file in watch mode" {
-  arg <file>
-  arg "[arg]" required=#false var=#true double_dash=automatic
+  arg <file> help="File to watch and execute"
+  arg "[arg]" var=#true double_dash=automatic help="Remaining arguments forwarded to the script"
 }
 
 cmd whoami help="Show the current registry user" {
-  flag --registry {
+  flag --fetch-retries help="Number of retry attempts for failed registry fetches" {
+    arg <n>
+  }
+  flag --fetch-retry-factor help="Exponential backoff factor between retry attempts" {
+    arg <n>
+  }
+  flag --fetch-retry-maxtimeout help="Upper bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-retry-mintimeout help="Lower bound (ms) on the computed retry backoff" {
+    arg <ms>
+  }
+  flag --fetch-timeout help="Per-request HTTP timeout in milliseconds" {
+    arg <ms>
+  }
+  flag --registry help="Override the default registry URL for this invocation" {
     arg <url>
   }
 }
 
 cmd why help="Explain why a package is installed" {
   alias w
+  flag "-C --dir" help="Change to directory before running" {
+    arg <dir>
+  }
   flag "-D --dev" help="Search development dependencies only"
+  flag "-F --filter" help="Scope to workspace packages matching PATTERN (repeatable)" var=#true {
+    arg <pattern>
+  }
   flag "-P --prod --production" help="Search production dependencies only"
+  flag "-r --recursive" help="Run across every workspace package (same as `--filter=*`)"
+  flag --fail-if-no-match help="Error when a workspace selector matches no packages"
+  flag --filter-prod help="Production-only variant of `--filter`: graph walks skip devDependencies" var=#true {
+    arg <pattern>
+  }
+  flag --include-workspace-root help="Include the workspace root alongside the selected packages"
   flag --json help="Output JSON"
   flag --long help="Show extended package details"
   flag --parseable help="Output parseable paths"
-  arg <package>
+  arg <package> help="Package name to search for (exact match against package names)"
 }
+
 complete "script" run="jq -r '.scripts // {} | keys[]' package.json 2>/dev/null"
 complete "bin" run="node -e \"require('fs').readdirSync('node_modules/.bin').forEach(x => console.log(x))\" 2>/dev/null"
 complete "file" type="file"
