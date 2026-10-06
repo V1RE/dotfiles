@@ -1,0 +1,4 @@
+{{- $hasGUI := or (and (hasKey . "hasGUI") (get . "hasGUI")) (and (not (hasKey . "hasGUI")) (eq .chezmoi.os "darwin")) -}}
+auto_env = true
+env = [{{ if $hasGUI }}"desktop"{{ else }}"worker"{{ end }}]
+ignored_config_paths = ["{{ .chezmoi.homeDir }}/.local/share/chezmoi/"]

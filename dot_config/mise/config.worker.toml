@@ -1,0 +1,8 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+# Keep workstation tools available without installing them on every worker.
+[tools]
+"npm:agent-browser" = { version = "latest", lazy = true, lazy_bins = ["agent-browser"] }
+"npm:knip" = { version = "latest", lazy = true, lazy_bins = ["knip"] }
+"npm:taze" = { version = "latest", lazy = true, lazy_bins = ["taze"] }
+"npm:turbo" = { version = "latest", lazy = true, lazy_bins = ["turbo"] }

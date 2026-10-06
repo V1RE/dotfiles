@@ -1,0 +1,27 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[bootstrap.packages]
+"brew-cask:1password" = "latest"
+"brew-cask:mos" = "latest"
+"brew-cask:ghostty@tip" = "latest"
+"brew-cask:whatsapp@beta" = "latest"
+
+# "brew:mas" = "latest"
+# "mas:497799835" = "latest"       # Xcode
+
+[bootstrap.macos.dock]
+autohide = true
+orientation = "bottom"
+show_recents = false
+magnification = true
+mru_spaces = false
+
+# Dock sizes are stored as floats by macOS; the friendly fields only accept integers.
+[bootstrap.macos.defaults."com.apple.dock"]
+tilesize = 48.0
+largesize = 65.0
+
+[bootstrap.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+press_and_hold = false

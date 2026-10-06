@@ -1,0 +1,18 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+# Linux CLI tools; macOS equivalents remain managed by Homebrew.
+[tools]
+age = "latest"
+bat = "latest"
+btop = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+github-cli = "latest"
+delta = "latest"
+gum = "latest"
+jq = "latest"
+"github:gokcehan/lf" = "latest"
+neovim = "latest"
+starship = "latest"
+zoxide = "latest"

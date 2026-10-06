@@ -10,25 +10,21 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "github:googleworkspace/cli" = "latest"
 "github:nubjs/nub" = "latest"
 "npm:@fsouza/prettierd" = "latest"
-"npm:agent-browser" = "latest"
-"npm:calldiff" = "latest"
-"npm:eas-cli" = "latest"
+"npm:calldiff" = { version = "latest", lazy = true, lazy_bins = ["calldiff"] }
+"npm:eas-cli" = { version = "latest", lazy = true, lazy_bins = ["eas"] }
 "npm:fallow" = "latest"
-"npm:knip" = "latest"
 "npm:neovim" = "latest"
 "npm:opensrc" = "latest"
 "npm:skills" = "latest"
-"npm:taze" = "latest"
 "npm:trash-cli" = "latest"
-"npm:turbo" = "latest"
-"npm:wrangler" = "latest"
+"npm:wrangler" = { version = "latest", lazy = true, lazy_bins = ["wrangler", "wrangler2"] }
 "npm:zele" = "latest"
 bun = "latest"
 codex = "latest"
 graphite = "latest"
 hcloud = "latest"
 hunk = "latest"
-java = "latest"
+java = { version = "latest", lazy = true }
 lazygit = "latest"
 node = "24"
 pi = "latest"
@@ -84,15 +80,6 @@ uvx = true
 [settings.github]
 credential_command = 'gh auth token --hostname "$MISE_CREDENTIAL_HOST"'
 
-[bootstrap.packages]
-"brew-cask:1password" = "latest"
-"brew-cask:mos" = "latest"
-"brew-cask:ghostty@tip" = "latest"
-"brew-cask:whatsapp@beta" = "latest"
-
-# "brew:mas" = "latest"
-# "mas:497799835" = "latest"       # Xcode
-
 [bootstrap.user]
 login_shell = "/bin/zsh"
 
@@ -102,23 +89,6 @@ zshrc = "activate"
 bash_profile = "shims"
 bashrc = "activate"
 fish = "activate"
-
-[bootstrap.macos.dock]
-autohide = true
-orientation = "bottom"
-show_recents = false
-magnification = true
-mru_spaces = false
-
-# Dock sizes are stored as floats by macOS; the friendly fields only accept integers.
-[bootstrap.macos.defaults."com.apple.dock"]
-tilesize = 48.0
-largesize = 65.0
-
-[bootstrap.macos.keyboard]
-key_repeat = 2
-initial_key_repeat = 15
-press_and_hold = false
 
 [env]
 "_".path = "~/bin"
