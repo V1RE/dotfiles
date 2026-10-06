@@ -30,6 +30,13 @@
       "puck": {
         "type": "remote",
         "url": "https://ampcode.com/mcp"
+      },
+      "Teamleader": {
+        "type": "remote",
+        "url": "https://api.orbit.teamleader.eu/mcp",
+        "oauth": {
+          "auth_server_metadata_url": "https://api.orbit.teamleader.eu/.well-known/oauth-authorization-server"
+        }
       }
     }
   },
