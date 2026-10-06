@@ -80,7 +80,7 @@
   "experimental": {
     "tab_scroll": true,
     "session-preview-tabs": true,
-    "subagent_depth": 3
+    "subagent_depth": true
   },
   "plugins": ["./herdr-opencode"]
 }
