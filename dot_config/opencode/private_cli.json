@@ -79,7 +79,8 @@
   },
   "experimental": {
     "tab_scroll": true,
-    "session-preview-tabs": true
+    "session-preview-tabs": true,
+    "subagent_depth": 3
   },
   "plugins": ["./herdr-opencode"]
 }
