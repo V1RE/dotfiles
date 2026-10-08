@@ -2,9 +2,15 @@
 
 [settings.general]
 mise = true
+#
+# [daemons.amp]
+# run = "exec ~/.amp/bin/amp --no-tui --runner-id macbook-pro --remote-control-terminal --discover-dirs=/Users/niels/Code --discover-depth 3 --amp-env"
+# dir = "~/"
+# boot_start = true
+# retry = true
 
-[daemons.amp]
-run = "exec ~/.amp/bin/amp --no-tui --runner-id macbook-pro --remote-control-terminal --discover-dirs=/Users/niels/Code --discover-depth 3 --amp-env"
+[daemons.tlo]
+run = "mise exec npm:@2digits/tlo-mcp -- tlo-mcp"
 dir = "~/"
 boot_start = true
 retry = true
