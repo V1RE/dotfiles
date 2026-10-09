@@ -3,6 +3,10 @@
   "autoupdate": "notify",
   "mcp": {
     "servers": {
+      "executor": {
+        "type": "remote",
+        "url": "https://v2.executor.sh/mcp"
+      },
       "posthog": {
         "type": "remote",
         "url": "https://mcp.posthog.com/mcp",
@@ -26,17 +30,6 @@
         "type": "remote",
         "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
         "disabled": false
-      },
-      "puck": {
-        "type": "remote",
-        "url": "https://ampcode.com/mcp"
-      },
-      "Teamleader": {
-        "type": "remote",
-        "url": "https://api.orbit.teamleader.eu/mcp",
-        "oauth": {
-          "auth_server_metadata_url": "https://api.orbit.teamleader.eu/.well-known/oauth-authorization-server"
-        }
       }
     }
   },
@@ -62,6 +55,7 @@
       ]
     },
     "explore": {
+      "model": "github-copilot/claude-haiku-5.5",
       "permissions": [
         {
           "action": "external_directory",
@@ -106,5 +100,8 @@
       "resource": "/tmp/**",
       "effect": "allow"
     }
-  ]
+  ],
+  "experimental": {
+    "portable_shell_scanner": true
+  }
 }
