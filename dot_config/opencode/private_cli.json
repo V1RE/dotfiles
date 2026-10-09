@@ -75,7 +75,8 @@
     "scope": "cwd",
     "vertical": false,
     "layout": "vertical",
-    "indicators": "status"
+    "indicators": "status",
+    "mode": "auto"
   },
   "experimental": {
     "tab_scroll": true,
