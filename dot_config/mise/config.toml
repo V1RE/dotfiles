@@ -36,6 +36,8 @@ vercel = "latest"
 vite-plus = "latest"
 watchexec = "latest"
 "npm:cf" = "latest"
+rust = { version = "latest", mr_boxington = true }
+mr-boxington = { version = "latest", workflow = "release.yml@refs/heads/main" }
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
