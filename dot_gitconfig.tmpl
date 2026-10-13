@@ -53,8 +53,11 @@
 [merge]
   conflictstyle = diff3
 [gitbutler]
-  aiModelProvider = openai
-
+  gitbutlerCommitter = 1
+  aiOpenAIKeyOption = butlerAPI
+  aiModelProvider = anthropic
+  aiAnthropicKeyOption = butlerAPI
+  aiAnthropicModelName = haiku-5.5
 [credential "https://origin.cursor.com/git"]
   helper =
   helper = !{{ joinPath .chezmoi.homeDir ".local/bin/origin" }} credential-helper

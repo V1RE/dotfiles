@@ -99,9 +99,15 @@
       "action": "external_directory",
       "resource": "/tmp/**",
       "effect": "allow"
+    },
+    {
+      "action": "supermemory_recall",
+      "resource": "*",
+      "effect": "allow"
     }
   ],
   "experimental": {
     "portable_shell_scanner": true
-  }
+  },
+  "plugin": ["opencode-supermemory"]
 }
