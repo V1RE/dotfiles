@@ -4,15 +4,15 @@
 [tools]
 "github:gokcehan/lf" = "latest"
 age = "latest"
-bat = "latest"
+bat = { version = "latest", postinstall = "bat --completion zsh > {{ env.HOME }}/.zsh/_bat" }
 btop = "latest"
-delta = "latest"
+delta = { version = "latest", postinstall = "delta --generate-completion zsh > {{ env.HOME }}/.zsh/_delta" }
 eza = "latest"
-fd = "latest"
+fd = { version = "latest", postinstall = "fd --gen-completions zsh > {{ env.HOME }}/.zsh/_fd" }
 fzf = "latest"
-github-cli = "latest"
-gum = "latest"
+github-cli = { version = "latest", postinstall = "gh completion -s zsh > {{ env.HOME }}/.zsh/_gh" }
+gum = { version = "latest", postinstall = "gum completion zsh > {{ env.HOME }}/.zsh/_gum" }
 jq = "latest"
 neovim = "latest"
-starship = "latest"
+starship = { version = "latest", postinstall = "starship completions zsh > {{ env.HOME }}/.zsh/_starship" }
 zoxide = "latest"

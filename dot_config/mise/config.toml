@@ -8,37 +8,37 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "aqua:pnpm/pnpm" = "latest"
 "cargo:worktrunk" = "latest"
 "github:googleworkspace/cli" = "latest"
-"github:nubjs/nub" = "latest"
+"github:nubjs/nub" = { version = "latest", depends = ["usage"], postinstall = "usage generate completion zsh nub --file {{ env.HOME }}/.zsh/completions/nub.usage.kdl > {{ env.HOME }}/.zsh/_nub" }
 "npm:@fsouza/prettierd" = "latest"
-"npm:calldiff" = { version = "latest", lazy = true, lazy_bins = ["calldiff"] }
-"npm:cf" = "latest"
-"npm:eas-cli" = { version = "latest", lazy = true, lazy_bins = ["eas"] }
-"npm:fallow" = "latest"
+"npm:calldiff" = { version = "latest", lazy = true, lazy_bins = ["calldiff"], postinstall = "calldiff completions zsh > {{ env.HOME }}/.zsh/_calldiff" }
+"npm:cf" = { version = "latest", postinstall = "cf complete zsh > {{ env.HOME }}/.zsh/_cf" }
+"npm:eas-cli" = { version = "latest", lazy = true, lazy_bins = ["eas"], postinstall = "eas autocomplete zsh --refresh-cache && eas autocomplete:script zsh > {{ env.HOME }}/.zsh/eas.zsh" }
+"npm:fallow" = { version = "latest", depends = ["usage"], postinstall = "usage generate completion zsh fallow --file {{ env.HOME }}/.zsh/completions/fallow.usage.kdl > {{ env.HOME }}/.zsh/_fallow" }
 "npm:neovim" = "latest"
 "npm:opensrc" = "latest"
 "npm:skills" = "latest"
 "npm:trash-cli" = "latest"
-"npm:wrangler" = { version = "latest", lazy = true, lazy_bins = ["wrangler", "wrangler2"] }
-"npm:zele" = "latest"
+"npm:wrangler" = { version = "latest", lazy = true, lazy_bins = ["wrangler", "wrangler2"], postinstall = "wrangler complete zsh > {{ env.HOME }}/.zsh/_wrangler" }
+"npm:zele" = { version = "latest", postinstall = "zele completions script --shell zsh > {{ env.HOME }}/.zsh/_zele" }
 bun = "latest"
 claude = "latest"
-codex = "latest"
+codex = { version = "latest", postinstall = "codex completion zsh > {{ env.HOME }}/.zsh/_codex" }
 graphite = "latest"
-hcloud = "latest"
-hunk = "latest"
+hcloud = { version = "latest", postinstall = "hcloud completion zsh > {{ env.HOME }}/.zsh/_hcloud" }
+hunk = { version = "latest", postinstall = "hunk completion zsh > {{ env.HOME }}/.zsh/_hunk" }
 java = { version = "latest", lazy = true }
 lazygit = "latest"
 mr-boxington = { version = "latest", workflow = "release.yml@refs/heads/main" }
 node = "24"
 pi = "latest"
-pitchfork = "latest"
-rust = { version = "latest", mr_boxington = true }
-television = "latest"
-usage = "latest"
-uv = "latest"
+pitchfork = { version = "latest", postinstall = "pitchfork completion zsh > {{ env.HOME }}/.zsh/_pitchfork" }
+rust = { version = "latest", mr_boxington = true, postinstall = "rustup completions zsh > {{ env.HOME }}/.zsh/_rustup && rustup completions zsh cargo > {{ env.HOME }}/.zsh/_cargo" }
+television = { version = "latest", postinstall = "tv completions zsh > {{ env.HOME }}/.zsh/_tv" }
+usage = { version = "latest", postinstall = "usage --completions zsh > {{ env.HOME }}/.zsh/_usage" }
+uv = { version = "latest", postinstall = "uv generate-shell-completion zsh > {{ env.HOME }}/.zsh/_uv && uvx --generate-shell-completion zsh > {{ env.HOME }}/.zsh/_uvx" }
 vercel = "latest"
 vite-plus = "latest"
-watchexec = "latest"
+watchexec = { version = "latest", postinstall = "watchexec --completions zsh > {{ env.HOME }}/.zsh/_watchexec" }
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]

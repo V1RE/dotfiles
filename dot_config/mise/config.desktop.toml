@@ -5,7 +5,7 @@
 "npm:agent-browser" = "latest"
 "npm:knip" = "latest"
 "npm:taze" = "latest"
-"npm:turbo" = "latest"
+"npm:turbo" = { version = "latest", postinstall = "turbo completion zsh > {{ env.HOME }}/.zsh/_turbo" }
 
 [tools."npm:2password"]
 postinstall = "2password --completions zsh > {{ env.HOME }}/.zsh/_2password"

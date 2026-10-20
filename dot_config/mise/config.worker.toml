@@ -5,4 +5,4 @@
 "npm:agent-browser" = { version = "latest", lazy = true, lazy_bins = ["agent-browser"] }
 "npm:knip" = { version = "latest", lazy = true, lazy_bins = ["knip"] }
 "npm:taze" = { version = "latest", lazy = true, lazy_bins = ["taze"] }
-"npm:turbo" = { version = "latest", lazy = true, lazy_bins = ["turbo"] }
+"npm:turbo" = { version = "latest", lazy = true, lazy_bins = ["turbo"], postinstall = "turbo completion zsh > {{ env.HOME }}/.zsh/_turbo" }
