@@ -2,8 +2,11 @@
 
 # Frequently used development tools on interactive workstations.
 [tools]
-"npm:2password" = "latest"
 "npm:agent-browser" = "latest"
 "npm:knip" = "latest"
 "npm:taze" = "latest"
 "npm:turbo" = "latest"
+
+[tools."npm:2password"]
+postinstall = "2password --completions zsh > {{ env.HOME }}/.zsh/_2password"
+version = "latest"
