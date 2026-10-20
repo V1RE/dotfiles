@@ -30,6 +30,12 @@
         "type": "remote",
         "url": "https://mcp.exa.ai/mcp?tools=web_search_exa",
         "disabled": false
+      },
+      "1password": {
+        "type": "local",
+        "command": [
+          "1password-mcp"
+        ]
       }
     }
   },
