@@ -39,6 +39,7 @@ uv = { version = "latest", postinstall = "uv generate-shell-completion zsh > {{ 
 vercel = "latest"
 vite-plus = "latest"
 watchexec = { version = "latest", postinstall = "watchexec --completions zsh > {{ env.HOME }}/.zsh/_watchexec" }
+opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
