@@ -4,8 +4,8 @@
 vite-plus = "https://github.com/markmals/mise-vite-plus"
 
 [tools]
-"aqua:atuinsh/atuin" = "latest"
-"aqua:pnpm/pnpm" = "latest"
+"aqua:atuinsh/atuin" = { version = "latest", postinstall = "atuin gen-completions --shell zsh > {{ env.HOME }}/.zsh/_atuin" }
+"aqua:pnpm/pnpm" = { version = "latest", postinstall = "pnpm completion zsh > {{ env.HOME }}/.zsh/_pnpm" }
 "cargo:worktrunk" = "latest"
 "github:googleworkspace/cli" = "latest"
 "github:nubjs/nub" = { version = "latest", depends = ["usage"], postinstall = "usage generate completion zsh nub --file {{ env.HOME }}/.zsh/completions/nub.usage.kdl > {{ env.HOME }}/.zsh/_nub" }
@@ -23,12 +23,12 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 bun = "latest"
 claude = "latest"
 codex = { version = "latest", postinstall = "codex completion zsh > {{ env.HOME }}/.zsh/_codex" }
-graphite = "latest"
+graphite = { version = "latest", postinstall = "gt completion > {{ env.HOME }}/.zsh/_gt" }
 hcloud = { version = "latest", postinstall = "hcloud completion zsh > {{ env.HOME }}/.zsh/_hcloud" }
 hunk = { version = "latest", postinstall = "hunk completion zsh > {{ env.HOME }}/.zsh/_hunk" }
 java = { version = "latest", lazy = true }
 lazygit = "latest"
-mr-boxington = { version = "latest", workflow = "release.yml@refs/heads/main" }
+mr-boxington = { version = "latest", workflow = "release.yml@refs/heads/main", postinstall = "mbx completion zsh > {{ env.HOME }}/.zsh/_mbx" }
 node = "24"
 pi = "latest"
 pitchfork = { version = "latest", postinstall = "pitchfork completion zsh > {{ env.HOME }}/.zsh/_pitchfork" }
