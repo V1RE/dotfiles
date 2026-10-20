@@ -2,8 +2,8 @@
 
 [bootstrap.packages]
 "brew-cask:1password" = "latest"
-"brew-cask:mos" = "latest"
 "brew-cask:ghostty@tip" = "latest"
+"brew-cask:mos" = "latest"
 "brew-cask:whatsapp@beta" = "latest"
 
 # "brew:mas" = "latest"

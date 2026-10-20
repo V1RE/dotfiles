@@ -11,6 +11,7 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "github:nubjs/nub" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 "npm:calldiff" = { version = "latest", lazy = true, lazy_bins = ["calldiff"] }
+"npm:cf" = "latest"
 "npm:eas-cli" = { version = "latest", lazy = true, lazy_bins = ["eas"] }
 "npm:fallow" = "latest"
 "npm:neovim" = "latest"
@@ -20,25 +21,24 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 "npm:wrangler" = { version = "latest", lazy = true, lazy_bins = ["wrangler", "wrangler2"] }
 "npm:zele" = "latest"
 bun = "latest"
+claude = "latest"
 codex = "latest"
 graphite = "latest"
 hcloud = "latest"
 hunk = "latest"
 java = { version = "latest", lazy = true }
 lazygit = "latest"
+mr-boxington = { version = "latest", workflow = "release.yml@refs/heads/main" }
 node = "24"
 pi = "latest"
 pitchfork = "latest"
+rust = { version = "latest", mr_boxington = true }
 television = "latest"
 usage = "latest"
 uv = "latest"
 vercel = "latest"
 vite-plus = "latest"
 watchexec = "latest"
-"npm:cf" = "latest"
-rust = { version = "latest", mr_boxington = true }
-mr-boxington = { version = "latest", workflow = "release.yml@refs/heads/main" }
-claude = "latest"
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
@@ -65,8 +65,8 @@ experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 minimum_release_age = "0s"
 trusted_config_paths = ["{{ env.HOME }}/Code/"]
-auto_update = true
 fetch_remote_versions_cache = "5m"
+self_update = { auto = true, check_duration = "8h" }
 
 [settings.npm]
 package_manager = "aube"

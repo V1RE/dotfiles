@@ -2,17 +2,17 @@
 
 # Linux CLI tools; macOS equivalents remain managed by Homebrew.
 [tools]
+"github:gokcehan/lf" = "latest"
 age = "latest"
 bat = "latest"
 btop = "latest"
+delta = "latest"
 eza = "latest"
 fd = "latest"
 fzf = "latest"
 github-cli = "latest"
-delta = "latest"
 gum = "latest"
 jq = "latest"
-"github:gokcehan/lf" = "latest"
 neovim = "latest"
 starship = "latest"
 zoxide = "latest"
