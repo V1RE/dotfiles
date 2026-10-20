@@ -33,9 +33,7 @@
       },
       "1password": {
         "type": "local",
-        "command": [
-          "1password-mcp"
-        ]
+        "command": ["1password-mcp"]
       }
     }
   },

@@ -85,8 +85,6 @@
     "subagent_depth": true,
     "new-designs": true
   },
-  "plugins": [
-    "./herdr-opencode"
-  ],
+  "plugins": ["./herdr-opencode"],
   "highlights": true
 }
