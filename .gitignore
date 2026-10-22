@@ -9,3 +9,5 @@ opensrc/
 
 # Generated locally from the tracked Usage spec.
 /dot_zsh/_nub
+/.vercel/
+/.env.local

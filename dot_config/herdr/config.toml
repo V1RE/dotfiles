@@ -147,6 +147,18 @@ type = "plugin_action"
 command = "fullerzz.sesh.open-picker"
 description = "open Sesh picker"
 
+[[keys.command]]
+key = "prefix+shift+s"
+type = "plugin_action"
+command = "vercel.sandbox.start-agent"
+description = "start OpenCode in a new Vercel Sandbox"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "vercel.sandbox.apply-changes"
+description = "apply Sandbox changes locally"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]

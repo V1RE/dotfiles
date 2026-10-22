@@ -1,0 +1,5 @@
+{
+  "agentKind": "opencode",
+  "image": "vercel/sandbox/universal:latest",
+  "timeout": "45m"
+}
