@@ -1,8 +1,8 @@
 name nub
 bin nub
-version "0.9.6"
+version "0.9.7"
 about "The all-in-one Node.js toolkit"
-// Source: nubjs/nub v0.9.6 (recursive `--help` and usage_rs declarations).
+// Source: nubjs/nub v0.9.7 (recursive `--help` and usage_rs declarations).
 // Regenerated locally by chezmoi; do not add the generated .zsh/_nub.
 
 flag "-c --check" help="Syntax-check without executing"
