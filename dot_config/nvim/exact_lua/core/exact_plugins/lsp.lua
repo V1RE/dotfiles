@@ -37,11 +37,9 @@ return {
         "lua_ls",
         "yamlls",
         "oxlint",
-        "vtsls",
-        "tsc",
         "shopify_theme_ls",
       },
-      automatic_enable = { exclude = { "bashls" } },
+      automatic_enable = { exclude = { "bashls", "ts_ls", "tsc", "vtsls" } },
     },
   },
 }

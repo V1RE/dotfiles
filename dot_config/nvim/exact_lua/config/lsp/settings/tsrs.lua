@@ -1,28 +1,18 @@
-local inherited_root_dir = vim.lsp.config.ts_ls.root_dir
-local typescript = require("mason-lspconfig.lsp")
-
+-- https://github.com/oxc-project/tsrs/blob/main/docs/LSP.md
 ---@type vim.lsp.Config
-local tsc = {
-  single_file_support = false,
-
-  root_dir = function(bufnr, on_dir)
-    inherited_root_dir(bufnr, function(root)
-      if typescript.is_native_typescript_root(root) then
-        on_dir(root)
-      end
-    end)
+local tsrs = {
+  -- Prefer the project's pinned tsrs, fall back to the global one from mise.
+  cmd = function(dispatchers, config)
+    local local_bin = vim.fs.joinpath((config or {}).root_dir or "", "node_modules", ".bin", "tsrs")
+    local bin = vim.fn.executable(local_bin) == 1 and local_bin or "tsrs"
+    return vim.lsp.rpc.start({ bin, "--lsp", "--stdio" }, dispatchers)
   end,
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  -- Same project-root and Deno detection as vtsls.
+  root_dir = vim.lsp.config.vtsls.root_dir,
 
-  ---@type lspconfig.settings.ts_ls
   settings = {
     ["js/ts"] = {
-      tsdk = {
-        path = "./node_modules/typescript/bin",
-        promptToUseWorkspaceVersion = true,
-      },
-      experimental = {
-        useTsgo = true,
-      },
       implementationsCodeLens = {
         enabled = true,
         showOnAllClassMethods = true,
@@ -90,7 +80,6 @@ local tsc = {
         functionLikeReturnTypes = { enabled = true },
         enumMemberValues = { enabled = true },
       },
-      tsdk = "./node_modules/typescript/bin",
       suggestionActions = {
         enabled = true,
       },
@@ -99,15 +88,11 @@ local tsc = {
           enableProjectDiagnostics = true,
         },
       },
-      experimental = {
-        useTsgo = true,
-      },
-      enablePromptUseWorkspaceTsdk = true,
       validate = { enable = true },
     },
   },
 }
 
-tsc.settings.javascript = vim.tbl_deep_extend("force", {}, tsc.settings.typescript, tsc.settings.javascript or {})
+tsrs.settings.javascript = vim.tbl_deep_extend("force", {}, tsrs.settings.typescript, tsrs.settings.javascript or {})
 
-return tsc
+return tsrs
