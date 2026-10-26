@@ -83,7 +83,8 @@
     "tab_scroll": true,
     "session-preview-tabs": true,
     "subagent_depth": true,
-    "new-designs": true
+    "new-designs": true,
+    "client-mcp": true
   },
   "plugins": ["./herdr-opencode"],
   "highlights": true
