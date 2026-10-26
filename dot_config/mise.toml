@@ -1,4 +1,8 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
+[settings]
+# Keep tools managed from ~/.config floating; projects pin exact versions by default.
+pin = false
+
 [settings.cargo]
 binstall = true

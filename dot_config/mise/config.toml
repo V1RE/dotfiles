@@ -167,6 +167,7 @@ postinstall.when = "always"
 version = "latest"
 
 [settings]
+pin = true
 color_theme = "catppuccin"
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
