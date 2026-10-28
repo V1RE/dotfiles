@@ -79,12 +79,44 @@ local function runs_vim()
   return false
 end
 
+local function shell_here()
+  return rex.layout.block({
+    flavor = "com.superlogical.terminal.shell",
+    options = { cwd = focused_cwd() },
+  })
+end
+
 -- Prefix ----------------------------------------------------------------------
--- cmd+b, then hjkl splits in that direction (WezTerm parity).
-rex.bind("cmd+b>h", "pane.split", { direction = "left" })
-rex.bind("cmd+b>j", "pane.split", { direction = "down" })
-rex.bind("cmd+b>k", "pane.split", { direction = "up" })
-rex.bind("cmd+b>l", "pane.split", { direction = "right" })
+-- cmd+b, then hjkl splits in that direction (WezTerm parity). New panes open in
+-- the focused pane's directory.
+local splits = {
+  left = { direction = "horizontal", side = "before" },
+  right = { direction = "horizontal", side = "after" },
+  up = { direction = "vertical", side = "before" },
+  down = { direction = "vertical", side = "after" },
+}
+
+rex.action({
+  name = "split_here",
+  title = "Split Pane in Current Directory",
+  category = "Panes",
+  args = { direction = "string" },
+  run = function(ctx, args)
+    local split = assert(splits[args.direction], "direction must be left, right, up or down")
+    rex.session.new_split({
+      anchor_id = ctx.block_id,
+      direction = split.direction,
+      side = split.side,
+      focus = true,
+      layout = shell_here(),
+    })
+  end,
+})
+
+rex.bind("cmd+b>h", "split_here", { direction = "left" })
+rex.bind("cmd+b>j", "split_here", { direction = "down" })
+rex.bind("cmd+b>k", "split_here", { direction = "up" })
+rex.bind("cmd+b>l", "split_here", { direction = "right" })
 rex.bind("cmd+b>x", "pane.close")
 rex.bind("cmd+b>z", "pane.zoom")
 rex.bind("cmd+b>r", "client.mode.enter", { name = "resize" })
@@ -111,12 +143,7 @@ rex.action({
   title = "New Tab in Current Directory",
   category = "Tabs",
   run = function()
-    rex.session.new_window({
-      layout = rex.layout.block({
-        flavor = "com.superlogical.terminal.shell",
-        options = { cwd = focused_cwd() },
-      }),
-    })
+    rex.session.new_window({ layout = shell_here() })
   end,
 })
 
