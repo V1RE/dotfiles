@@ -46,3 +46,17 @@ columns = ["time", "directory", "command"]
 
 [ai]
 enabled = true
+
+[threads]
+# Opt in per machine via chezmoi data; captured threads use the existing sync.
+capture = {{ and (hasKey . "atuinThreadsCapture") (get . "atuinThreadsCapture") }}
+capture_tools = true
+
+[pty_proxy]
+enabled = {{ and (hasKey . "atuinOutputCapture") (get . "atuinOutputCapture") }}
+
+[output]
+enabled = {{ and (hasKey . "atuinOutputCapture") (get . "atuinOutputCapture") }}
+# Bound local storage instead of upstream's default 10% of the disk.
+max_disk_usage = "1GB"
+max_output_size = "1MB"

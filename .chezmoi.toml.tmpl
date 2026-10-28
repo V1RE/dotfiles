@@ -2,6 +2,8 @@
 {{- $installSSHKeys := promptBoolOnce . "installSSHKeys" "Install encrypted SSH private keys" true -}}
 {{- $installWorkGit := promptBoolOnce . "installWorkGit" "Install Socialbrothers/EDSN Git identities" false -}}
 {{- $gitAutoPush := promptBoolOnce . "gitAutoPush" "Auto-push chezmoi source changes" true -}}
+{{- $atuinThreadsCapture := promptBoolOnce . "atuinThreadsCapture" "Capture agent conversations and tool contents with Atuin (uses existing sync; resumed old sessions are captured whole)" false -}}
+{{- $atuinOutputCapture := promptBoolOnce . "atuinOutputCapture" "Capture terminal output with Atuin (local 1GB disk budget; readable by connected agents)" false -}}
 {{- $ageIdentity := promptStringOnce . "ageIdentity" "age identity path" "~/.key.txt" -}}
 encryption = "age"
 
@@ -10,6 +12,8 @@ encryption = "age"
   installSSHKeys = {{ $installSSHKeys }}
   installWorkGit = {{ $installWorkGit }}
   gitAutoPush = {{ $gitAutoPush }}
+  atuinThreadsCapture = {{ $atuinThreadsCapture }}
+  atuinOutputCapture = {{ $atuinOutputCapture }}
   ageIdentity = {{ $ageIdentity | quote }}
 
 [age]

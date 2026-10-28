@@ -1,0 +1,16 @@
+{{- if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux") -}}
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Run after mise installs the shared agent tools and Atuin >=18.24.
+# mise hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+export PATH="${HOME}/.local/share/mise/shims:${HOME}/.local/bin:/opt/homebrew/bin:/usr/local/bin:${PATH}"
+
+# Upstream installers merge only the atuin MCP entry into user configuration.
+# OpenCode is declared in its chezmoi-managed config instead.
+# Do not enable capture, log in, sync, or import historical sessions here.
+for agent in claude codex pi omp; do
+  atuin mcp install "${agent}"
+done
+{{- end -}}

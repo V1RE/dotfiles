@@ -2,6 +2,11 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": "notify",
   "mcp": {
+    "atuin": {
+      "type": "local",
+      "command": ["atuin", "mcp"],
+      "enabled": true
+    },
     "servers": {
       "executor": {
         "type": "remote",
