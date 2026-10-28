@@ -380,3 +380,5 @@ if [ -n "${REX_BIN_DIR-}" ]; then
 elif [ -x "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex" ]; then
   export PATH="$PATH:$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS"
 fi
+
+zsh-cache-file rex rex completion zsh && source $REPLY
