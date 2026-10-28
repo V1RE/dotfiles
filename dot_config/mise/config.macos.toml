@@ -21,6 +21,27 @@ mru_spaces = false
 tilesize = 48.0
 largesize = 65.0
 
+# Rex keeps its appearance in app defaults, not in ~/.config/rex/init.lua.
+# Mirrors the font settings in ~/.config/ghostty/config. Rex reads these at
+# launch, so a running app picks them up after its next restart.
+# Rex has no font-codepoint-map, so nielsicon (icons only, U+E5FE-U+FC16) must
+# come before any Nerd Font. The primary is plain Cascadia Code, which has no
+# glyphs in that range, as in the WezTerm config.
+[bootstrap.macos.defaults."com.superlogical.rex"]
+"Workspace.terminalFontName" = "Cascadia Code"
+"Workspace.terminalFontPointSize" = 14.0
+"Workspace.terminalCellHeightPercent" = 40 # Ghostty adjust-cell-height = 40%
+"Workspace.terminalFallbackFontNames" = [
+  "nielsicon",
+  "CaskaydiaCove Nerd Font Mono",
+  "PragmataPro Liga",
+  "PragmataPro Mono Liga",
+  "CaskaydiaCove Nerd Font",
+  "Noto Color Emoji",
+  "JetBrains Mono",
+  "Apple Color Emoji", # Rex appends this itself
+]
+
 [bootstrap.macos.keyboard]
 key_repeat = 2
 initial_key_repeat = 15
