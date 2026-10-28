@@ -8,7 +8,79 @@
 
 local terminal = "com.superlogical.terminal"
 
--- Prefix: cmd+b, then hjkl splits in that direction (WezTerm parity).
+-- Process tree of the focused pane --------------------------------------------
+-- Rex only sees the pane's direct child (/usr/bin/login, which runs as root), and
+-- the shell runs one level deeper under `atuin pty-proxy` on its own tty. So walk
+-- the descendants with ps instead of trusting the terminal's `process` result.
+
+local function basename(path)
+  return (path:match("([^/]+)$") or path):gsub("^%-", ""):lower()
+end
+
+-- Returns the descendants of the focused pane's child process, outermost first,
+-- each as { pid, comm, foreground }.
+local function pane_processes()
+  local info = rex.block.call(terminal, "process", {})
+  local root = info and info.child and info.child.pid
+  if not root then
+    return {}
+  end
+  local ps = rex.exec({ "ps", "-A", "-o", "pid=,ppid=,pgid=,tpgid=,comm=" })
+  if not ps or not ps.ok then
+    return {}
+  end
+  local children = {}
+  for line in ps.stdout:gmatch("[^\n]+") do
+    local pid, ppid, pgid, tpgid, comm = line:match("^%s*(%d+)%s+(%d+)%s+(%d+)%s+(%-?%d+)%s+(.+)$")
+    if pid then
+      children[ppid] = children[ppid] or {}
+      table.insert(children[ppid], {
+        pid = pid,
+        comm = basename(comm),
+        foreground = pgid == tpgid,
+      })
+    end
+  end
+  local out, queue = {}, { tostring(root) }
+  while #queue > 0 do
+    local pid = table.remove(queue, 1)
+    for _, child in ipairs(children[pid] or {}) do
+      table.insert(out, child)
+      table.insert(queue, child.pid)
+    end
+  end
+  return out
+end
+
+local shells = { zsh = true, bash = true, fish = true, sh = true, nu = true }
+local vims = { vi = true, vim = true, nvim = true, view = true, gvim = true, vimdiff = true, nvimdiff = true }
+
+-- Directory of the innermost shell in the focused pane.
+local function focused_cwd()
+  local shell
+  for _, p in ipairs(pane_processes()) do
+    if shells[p.comm] then
+      shell = p.pid
+    end
+  end
+  if not shell then
+    return nil
+  end
+  local r = rex.exec({ "lsof", "-a", "-p", shell, "-d", "cwd", "-Fn" })
+  return r and r.ok and r.stdout:match("\nn([^\n]+)") or nil
+end
+
+local function runs_vim()
+  for _, p in ipairs(pane_processes()) do
+    if p.foreground and vims[p.comm] then
+      return true
+    end
+  end
+  return false
+end
+
+-- Prefix ----------------------------------------------------------------------
+-- cmd+b, then hjkl splits in that direction (WezTerm parity).
 rex.bind("cmd+b>h", "pane.split", { direction = "left" })
 rex.bind("cmd+b>j", "pane.split", { direction = "down" })
 rex.bind("cmd+b>k", "pane.split", { direction = "up" })
@@ -32,13 +104,28 @@ end
 rex.bind("resize/escape", "client.mode.exit")
 rex.bind("resize/enter", "client.mode.exit")
 
--- Tabs.
-rex.bind("cmd+t", "client.tab.new")
+-- Tabs ------------------------------------------------------------------------
+-- New tabs open in the focused pane's directory (Herdr new_cwd = "follow").
+rex.action({
+  name = "tab_new_here",
+  title = "New Tab in Current Directory",
+  category = "Tabs",
+  run = function()
+    rex.session.new_window({
+      layout = rex.layout.block({
+        flavor = "com.superlogical.terminal.shell",
+        options = { cwd = focused_cwd() },
+      }),
+    })
+  end,
+})
+
+rex.bind("cmd+t", "tab_new_here")
 rex.bind("cmd+w", "client.tab.close")
 rex.bind("cmd+h", "client.tab.previous")
 rex.bind("cmd+l", "client.tab.next")
 
--- Sessions (Herdr workspaces).
+-- Sessions (Herdr workspaces) -------------------------------------------------
 rex.bind("cmd+j", "session.next")
 rex.bind("cmd+k", "session.previous")
 rex.bind("cmd+m", "session.switch")
@@ -47,20 +134,9 @@ rex.bind("cmd+n", "session.new")
 -- cmd+k is taken above, so keep the palette reachable.
 rex.bind("cmd+shift+p", "client.palette.toggle")
 
--- ctrl+hjkl: move between panes, unless Vim/Neovim runs in the focused pane,
--- in which case the key goes to Vim (same as vim-herdr-navigation).
-local vim_names = { vi = true, vim = true, nvim = true, view = true, gvim = true, vimdiff = true, nvimdiff = true }
-
-local function runs_vim()
-  local info = rex.block.call(terminal, "process", {})
-  local fg = info and info.foreground
-  if not fg then
-    return false
-  end
-  local name = (fg.name or ""):lower()
-  return vim_names[name] == true
-end
-
+-- Pane navigation -------------------------------------------------------------
+-- ctrl+hjkl moves between panes, unless Vim/Neovim runs in the focused pane, in
+-- which case the key goes to Vim (same as vim-herdr-navigation).
 for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
   rex.bind("ctrl+" .. key, function()
     if runs_vim() then
