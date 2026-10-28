@@ -95,8 +95,10 @@ changes to these features are overwritten by apply; use the chezmoi data values.
 After mise installation, the upstream `atuin mcp install` commands merge the
 `atuin` entry into Claude Code, Codex, Pi and Omp's local user configuration,
 preserving other entries. OpenCode's entry lives directly under `mcp.atuin` in
-its managed config (not `mcp.servers`). Reapplying is safe; unrelated credentials
-and agent settings are not replaced. To reinstall these four registrations after
+its managed config. OpenCode 2.2 normalizes this supported legacy shape to
+`mcp.servers.atuin` internally; its other existing servers need no migration.
+Reapplying is safe; unrelated credentials and agent settings are not replaced.
+To reinstall these four registrations after
 local config changes, run `atuin mcp install <agent>` individually
 (`claude`, `codex`, `pi`, `omp`).
 
@@ -105,6 +107,8 @@ access to existing **shell history**, and any captured output and threads.
 The agent's model/provider may receive retrieved content. MCP registration does
 not itself enable thread or shell-output capture. Check with `claude mcp list`,
 `codex mcp list`, `pi mcp list`, `opencode mcp list`, or `/mcp` in Omp.
+OpenCode 2.2 initializes MCP plugins asynchronously: a first status check just
+after starting a private server can be empty; check again on the same server.
 OpenCode inherits `atuin` from the mise-enabled shell's PATH; for a GUI launcher
 without that PATH, use the absolute path reported by `which atuin`.
 
