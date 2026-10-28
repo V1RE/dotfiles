@@ -17,3 +17,11 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # Vite+ bin (https://viteplus.dev)
 [ -r "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"
+
+# ASCII BOAT SHELL INTEGRATION START boat
+case ":$PATH:" in
+  *":{{ .chezmoi.homeDir }}/.ascii/bin:"*) ;;
+  *) PATH="{{ .chezmoi.homeDir }}/.ascii/bin:$PATH" ;;
+esac
+export PATH
+# ASCII BOAT SHELL INTEGRATION END boat
