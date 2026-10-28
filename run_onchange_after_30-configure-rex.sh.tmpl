@@ -1,0 +1,22 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Rex keeps its appearance in app defaults, not in ~/.config/rex/init.lua.
+# Mirror the terminal font settings from .config/ghostty/config.
+# Rex reads these at launch; a running app keeps its current values until restarted.
+domain=com.superlogical.rex
+
+defaults write "${domain}" Workspace.terminalFontName -string "CaskaydiaCove Nerd Font Mono"
+defaults write "${domain}" Workspace.terminalFontPointSize -float 14
+# Ghostty adjust-cell-height = 40%.
+defaults write "${domain}" Workspace.terminalCellHeightPercent -int 40
+defaults write "${domain}" Workspace.terminalFallbackFontNames -array \
+  "PragmataPro Liga" \
+  "PragmataPro Mono Liga" \
+  "Cascadia Code" \
+  "CaskaydiaCove Nerd Font" \
+  "Noto Color Emoji" \
+  "JetBrains Mono"
+{{- end -}}
