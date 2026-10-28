@@ -372,3 +372,11 @@ boat() {
   return "$boat_status"
 }
 # ASCII BOAT SHELL INTEGRATION END boat
+
+# Rex: put the server's own `rex` first (mise and the PATH edits above push it
+# back). Outside Rex, fall back to the installed server's current CLI.
+if [ -n "${REX_BIN_DIR-}" ]; then
+  export PATH="$REX_BIN_DIR:$PATH"
+elif [ -x "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex" ]; then
+  export PATH="$PATH:$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS"
+fi
