@@ -22,6 +22,7 @@ vite-plus = "latest"
 [tools."github:googleworkspace/cli"]
 version = "latest"
 lazy = true
+lazy_bins = ["gws"]
 
 [tools."aqua:atuinsh/atuin"]
 version = "latest"
