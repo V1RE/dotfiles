@@ -11,3 +11,7 @@ opensrc/
 /dot_zsh/_nub
 /.vercel/
 /.env.local
+
+# Herdr's validation command generates these beside each mod.
+/dot_config/herdr-app/mods/*/gpui-kit.d.ts
+/dot_config/herdr-app/mods/*/jsconfig.json
