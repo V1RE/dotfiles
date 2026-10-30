@@ -1,46 +1,29 @@
-{{- $hasGUI := eq .chezmoi.os "darwin" -}}
-{{- if hasKey . "hasGUI" -}}
-{{- $hasGUI = .hasGUI -}}
-{{- end -}}
-{{- $installWorkGit := false -}}
-{{- if hasKey . "installWorkGit" -}}
-{{- $installWorkGit = .installWorkGit -}}
-{{- end }}
-{{- $enableSigning := and (eq .chezmoi.os "darwin") $hasGUI -}}
 [user]
   name = Niels Mentink
   email = niels@ment.ink
   signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDzX9rLb0fMRUrupT12D87fwwbEF928zgR3M3e5ImU1IbehhIbWG6uq5EOt9IaQhOtn9SsrUgSTZPqbrrHq2RPyomHi8fwR1pZtu/9x9EKbx4x9LMVSRaVxHIaVZE1irRsWbe3K8wX+aEzehrtJeTGrk7aeda7n9rIoQVdjrDpnIYc2vzcEHMycBjyocUj8N8ywTy+oH4uNix08LPmW+Yw6LQsPaOAeqBej1kKPFnYOz8PP7QaK9xK17erkk5CVoQ1PV4G9aLcBROon6hF0Wp22YJuTawN1zRZkxa080Xeczf7fOdmerxHt6U4d37cDg8S0pnT8rvHFkX4jDUubUOugIi8hS69e9AMTQ2BY7iUZ8rDhzA4MskEsVbiXvT90BEYz4FC0N836dLKpx03xJKkxymocykEVG7ewcN3yz1zjXpX6IpcA1plo2wpwJUaTqPolsTzgPkqZPph5BJDajxBwu7/3ZO6D4lGShqjxlqnBJiKwsgh2ZrOywMpTyMsk1pU=
-{{- if $enableSigning }}
 [commit]
   gpgsign = true
-{{- end }}
 [init]
   defaultBranch = main
 [core]
-  excludesfile = {{ joinPath .chezmoi.homeDir ".gitignore" }}
+  excludesfile = /Users/niels/.gitignore
   pager = delta
 [gpg]
   format = ssh
-{{- if $enableSigning }}
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-{{- end }}
 [push]
   autoSetupRemote = true
 [rerere]
   enabled = true
 [rebase]
   updateRefs = true
-
-{{- if $installWorkGit }}
-[includeIf "gitdir:{{ .chezmoi.homeDir }}/Code/Socialbrothers/"]
+[includeIf "gitdir:/Users/niels/Code/Socialbrothers/"]
   path = .sb.gitconfig
 
-[includeIf "gitdir:{{ .chezmoi.homeDir }}/Code/Socialbrothers/edsn/"]
+[includeIf "gitdir:/Users/niels/Code/Socialbrothers/edsn/"]
   path = .edsn.gitconfig
-
-{{- end }}
 [diff "lockb"]
   textconv = bun
   binary = true
@@ -54,15 +37,20 @@
   conflictstyle = diff3
 [gitbutler]
   gitbutlerCommitter = 1
+  aiModelProvider = openai
   aiOpenAIKeyOption = butlerAPI
-  aiModelProvider = anthropic
+  aiOpenAIModelName = gpt-5.4-nano
   aiAnthropicKeyOption = butlerAPI
   aiAnthropicModelName = haiku-5.5
+  aiOllamaEndpoint = 127.0.0.1:11434
+  aiOllamaModelName = llama3
+  aiLMStudioEndpoint = http://127.0.0.1:1234/v1
+  aiLMStudioModelName = default
 [credential "https://origin.cursor.com/git"]
   helper =
-  helper = !{{ joinPath .chezmoi.homeDir ".local/bin/origin" }} credential-helper
+  helper = !/Users/niels/.local/bin/origin credential-helper
 [credential "https://origin.cursor.com"]
   helper =
-  helper = !{{ joinPath .chezmoi.homeDir ".local/bin/origin" }} credential-helper
+  helper = !/Users/niels/.local/bin/origin credential-helper
 [credential "https://ampcode.com"]
   helper = !amp git-credential-helper
