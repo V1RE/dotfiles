@@ -133,7 +133,7 @@ version = "0.0.1793363705-g5c9ae5"
 
 [tools.aube]
 postinstall = { run = "aube completion zsh > {{ env.HOME }}/.zsh/_aube", when = "always" }
-version = "2.8.4"
+version = "2.8.5"
 workflow = ["release-plz.yml@refs/heads/main", "release.yml@refs/heads/main"]
 
 [tools.oh-my-pi]
