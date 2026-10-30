@@ -18,8 +18,8 @@
     "cmd-]": "agent.next",
     "cmd-[": "agent.prev",
     "cmd-shift-l": "layout.switch",
-    "cmd-n": "terminal",
-    "cmd-p": "terminal",
+    "cmd-n": "mod.open:sesh",
+    "cmd-p": "mod.open:termscope",
     "cmd-shift-p": "app.palette",
     "cmd-,": "app.settings",
     "cmd-d": "pane.split:right",
@@ -63,6 +63,10 @@
     "ctrl-9": "space.select:9"
   },
   "terminal": {
+    "ctrl-h": "mod.open:vim-left",
+    "ctrl-j": "mod.open:vim-down",
+    "ctrl-k": "mod.open:vim-up",
+    "ctrl-l": "mod.open:vim-right",
     "cmd-c": "terminal.copy",
     "cmd-v": "terminal.paste",
     "ctrl-v": "terminal.paste_image",
