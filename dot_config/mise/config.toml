@@ -14,7 +14,7 @@ vite-plus = "https://github.com/markmals/mise-vite-plus"
 bun = "1.4.4"
 claude = "2.1.314"
 lazygit = "0.66.2"
-node = "24"
+node = "26"
 pi = "1.4.0"
 vercel = { version = "65.8.0", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
 vite-plus = "1.4.0"
