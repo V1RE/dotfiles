@@ -1,0 +1,12 @@
+{
+  "zoom": 1.0,
+  "sounds": {
+    "enabled": true
+  },
+  "minimum_contrast": 1.0,
+  "font": "CaskaydiaCove Nerd Font Mono",
+  "font_size": 14,
+  "theme": "catppuccin-macchiato",
+  "appearance": "dark",
+  "option_as_alt": "on"
+}
