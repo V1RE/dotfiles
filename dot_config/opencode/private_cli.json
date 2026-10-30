@@ -36,7 +36,7 @@
   },
   "diffs": {
     "wrap": "word",
-    "single": true,
+    "single": false,
     "view": "unified",
     "tree": true
   },
@@ -77,7 +77,7 @@
     "vertical": false,
     "layout": "vertical",
     "indicators": "status",
-    "mode": "auto"
+    "mode": "off"
   },
   "experimental": {
     "tab_scroll": true,
