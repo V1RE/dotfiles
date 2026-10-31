@@ -382,3 +382,6 @@ elif [ -x "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Vers
 fi
 
 zsh-cache-file rex rex completion zsh && source $REPLY
+
+# Boat's generated script registers itself with compdef rather than #compdef.
+[[ -r $HOME/.zsh/_boat ]] && source $HOME/.zsh/_boat
