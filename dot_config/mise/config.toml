@@ -123,7 +123,7 @@ postinstall = { run = "watchexec --completions zsh > {{ env.HOME }}/.zsh/_watche
 [tools.opencode]
 allow_builds = ["@opencode/cli"]
 postinstall = { run = "opencode --completions zsh > {{ env.HOME }}/.zsh/_opencode", when = "always" }
-version = "2.2.3"
+version = "2.2.5"
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
