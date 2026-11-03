@@ -52,7 +52,9 @@ postinstall = { run = "cf complete zsh > {{ env.HOME }}/.zsh/_cf", when = "alway
 version = "27.2.0"
 lazy = true
 lazy_bins = ["eas"]
-postinstall = { run = "eas autocomplete zsh --refresh-cache && eas autocomplete:script zsh > {{ env.HOME }}/.zsh/eas.zsh", when = "always" }
+# Only refresh the completion cache; .zshrc adds its functions dir to fpath.
+# `eas autocomplete:script` would emit a setup that runs a second compinit.
+postinstall = { run = "eas autocomplete zsh --refresh-cache", when = "always" }
 
 [tools."npm:fallow"]
 version = "3.37.0"
