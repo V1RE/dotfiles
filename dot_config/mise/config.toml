@@ -4,28 +4,28 @@
 vite-plus = "https://github.com/markmals/mise-vite-plus"
 
 [tools]
-"cargo:worktrunk" = "0.81.0"
-"npm:@fsouza/prettierd" = "0.29.0"
-"npm:neovim" = "5.5.0"
-"npm:opensrc" = "0.7.3"
-"npm:skills" = "1.7.4"
-"npm:trash-cli" = "7.2.0"
-"npm:tsrs" = "0.20.1-ts7.1.0-beta"
-bun = "1.4.4"
-claude = "2.1.314"
-lazygit = "0.66.2"
-node = "24"
-pi = "1.4.0"
-vercel = { version = "65.8.0", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
-vite-plus = "1.4.0"
+"cargo:worktrunk" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+"npm:neovim" = "latest"
+"npm:opensrc" = "latest"
+"npm:skills" = "latest"
+"npm:trash-cli" = "latest"
+"npm:tsrs" = "latest"
+bun = "latest"
+claude = "latest"
+lazygit = "latest"
+node = "latest"
+pi = "latest"
+vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
+vite-plus = "latest"
 
 [tools."github:googleworkspace/cli"]
-version = "0.22.5"
+version = "latest"
 lazy = true
 lazy_bins = ["gws"]
 
 [tools."aqua:atuinsh/atuin"]
-version = "18.24.4"
+version = "latest"
 postinstall = { run = "atuin gen-completions --shell zsh > {{ env.HOME }}/.zsh/_atuin", when = "always" }
 
 [tools."aqua:pnpm/pnpm"]
@@ -34,22 +34,22 @@ postinstall.run = "pnpm completion zsh > {{ env.HOME }}/.zsh/_pnpm"
 postinstall.when = "always"
 
 [tools."github:nubjs/nub"]
-version = "0.9.7"
+version = "latest"
 depends = ["usage"]
 postinstall = { run = "usage generate completion zsh nub --file {{ env.HOME }}/.zsh/completions/nub.usage.kdl > {{ env.HOME }}/.zsh/_nub", when = "always" }
 
 [tools."npm:calldiff"]
-version = "0.5.0"
+version = "latest"
 lazy = true
 lazy_bins = ["calldiff"]
 postinstall = { run = "calldiff completions zsh > {{ env.HOME }}/.zsh/_calldiff", when = "always" }
 
 [tools."npm:cf"]
-version = "1.0.0-beta.26"
+version = "latest"
 postinstall = { run = "cf complete zsh > {{ env.HOME }}/.zsh/_cf", when = "always" }
 
 [tools."npm:eas-cli"]
-version = "27.2.0"
+version = "latest"
 lazy = true
 lazy_bins = ["eas"]
 # Only refresh the completion cache; .zshrc adds its functions dir to fpath.
@@ -57,98 +57,98 @@ lazy_bins = ["eas"]
 postinstall = { run = "eas autocomplete zsh --refresh-cache", when = "always" }
 
 [tools."npm:fallow"]
-version = "3.37.0"
+version = "latest"
 depends = ["usage"]
 postinstall = { run = "usage generate completion zsh fallow --file {{ env.HOME }}/.zsh/completions/fallow.usage.kdl > {{ env.HOME }}/.zsh/_fallow", when = "always" }
 
 [tools."npm:wrangler"]
-version = "4.156.0"
+version = "latest"
 lazy = true
 lazy_bins = ["wrangler", "wrangler2"]
 postinstall = { run = "wrangler complete zsh > {{ env.HOME }}/.zsh/_wrangler", when = "always" }
 
 [tools."npm:zele"]
-version = "0.10.0"
+version = "latest"
 postinstall = { run = "zele completions script --shell zsh > {{ env.HOME }}/.zsh/_zele", when = "always" }
 
 [tools.codex]
-version = "0.166.0"
+version = "latest"
 postinstall = { run = "codex completion zsh > {{ env.HOME }}/.zsh/_codex", when = "always" }
 
 [tools.graphite]
-version = "1.8.6"
+version = "latest"
 postinstall = { run = "gt completion > {{ env.HOME }}/.zsh/_gt", when = "always" }
 
 [tools.hcloud]
-version = "1.70.2"
+version = "latest"
 postinstall = { run = "hcloud completion zsh > {{ env.HOME }}/.zsh/_hcloud", when = "always" }
 
 [tools.hunk]
-version = "0.24.1"
+version = "latest"
 postinstall = { run = "hunk completion zsh > {{ env.HOME }}/.zsh/_hunk", when = "always" }
 
 [tools.java]
-version = "27.0.1+0"
+version = "latest"
 lazy = true
 
 [tools.mr-boxington]
-version = "1.29.0"
+version = "latest"
 workflow = "release.yml@refs/heads/main"
 postinstall = { run = "mbx completion zsh > {{ env.HOME }}/.zsh/_mbx", when = "always" }
 
 [tools.pitchfork]
-version = "2.32.4"
+version = "latest"
 postinstall = { run = "pitchfork completion zsh > {{ env.HOME }}/.zsh/_pitchfork", when = "always" }
 workflow = "release.yml@refs/heads/main"
 
 [tools.rust]
-version = "1.99.1"
+version = "latest"
 mr_boxington = true
 postinstall = { run = "rustup completions zsh > {{ env.HOME }}/.zsh/_rustup && rustup completions zsh cargo > {{ env.HOME }}/.zsh/_cargo", when = "always" }
 
 [tools.television]
-version = "0.15.9"
+version = "latest"
 postinstall = { run = "tv completions zsh > {{ env.HOME }}/.zsh/_tv", when = "always" }
 
 [tools.usage]
-version = "7.1.4"
+version = "latest"
 postinstall = { run = "usage --completions zsh > {{ env.HOME }}/.zsh/_usage", when = "always" }
 
 [tools.uv]
-version = "0.13.6"
+version = "latest"
 postinstall = { run = "uv generate-shell-completion zsh > {{ env.HOME }}/.zsh/_uv && uvx --generate-shell-completion zsh > {{ env.HOME }}/.zsh/_uvx", when = "always" }
 
 [tools.watchexec]
-version = "2.8.0"
+version = "latest"
 postinstall = { run = "watchexec --completions zsh > {{ env.HOME }}/.zsh/_watchexec", when = "always" }
 
 [tools.opencode]
 allow_builds = ["@opencode/cli"]
 postinstall = { run = "opencode --completions zsh > {{ env.HOME }}/.zsh/_opencode", when = "always" }
-version = "2.2.3"
+version = "latest"
 
 [tools.amp]
 allow_builds = ["@ampcode/cli"]
 postinstall = { run = "amp completions zsh > {{ env.HOME }}/.zsh/_amp", when = "always" }
 prerelease = "true"
-version = "0.0.1793363705-g5c9ae5"
+version = "latest"
 
 [tools.aube]
 postinstall = { run = "aube completion zsh > {{ env.HOME }}/.zsh/_aube", when = "always" }
-version = "2.8.4"
+version = "latest"
 workflow = ["release-plz.yml@refs/heads/main", "release.yml@refs/heads/main"]
 
 [tools.oh-my-pi]
 postinstall = { run = "omp completions zsh > {{ env.HOME }}/.zsh/_omp", when = "always" }
 rename_exe = "omp"
-version = "18.14.0"
+version = "latest"
 
 [tools.herdr]
 postinstall = { run = "herdr completion zsh > {{ env.HOME }}/.zsh/_herdr", when = "always" }
-version = "0.9.5"
+version = "latest"
 
 [settings]
-pin = true
+pin = false
 color_theme = "catppuccin"
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
