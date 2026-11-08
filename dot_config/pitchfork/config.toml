@@ -8,7 +8,7 @@ mise_bin = "/Users/niels/.local/bin/mise"
 [daemons.tlo]
 run = "exec ~/.local/bin/mise exec npm:@2digits/tlo-mcp -- tlo-mcp --port 4790"
 dir = "~/"
-boot_start = true
+boot_start = false
 # Restart forever: tlo-mcp exits with an error when the OpenTunnel connection drops.
 retry = true
 # Only "ready" once the tunnel is up (first certificate can take a few minutes).
