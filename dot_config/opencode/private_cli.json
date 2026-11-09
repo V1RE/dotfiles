@@ -36,7 +36,7 @@
   },
   "diffs": {
     "wrap": "word",
-    "single": false,
+    "single": true,
     "view": "unified",
     "tree": true
   },
