@@ -356,6 +356,12 @@ zsh-cache-file wt wt config shell init zsh && source $REPLY
 # keep that out: `.zshenv` already has ~/.local/bin, and mise moves it back anyway.
 zsh-cache-file but but completions zsh && source $REPLY
 
+# boxd. Its script registers itself with compdef and asks the binary for
+# candidates at completion time, so caching it per binary is safe. Don't run
+# `boxd completions --install`: it appends a marker block that forks boxd on
+# every shell start and can run a second compinit.
+zsh-cache-file boxd boxd completions zsh && source $REPLY
+
 # ASCII BOAT SHELL INTEGRATION START boat
 boat() {
   current_file=$(mktemp)
