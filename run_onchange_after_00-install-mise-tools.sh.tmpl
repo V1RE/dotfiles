@@ -4,11 +4,11 @@
 set -euo pipefail
 
 # Install only after chezmoi has deployed the platform and role profiles.
-# config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
-# macos hash: {{ include "dot_config/mise/config.macos.toml" | sha256sum }}
-# linux hash: {{ include "dot_config/mise/config.linux.toml" | sha256sum }}
-# desktop hash: {{ include "dot_config/mise/config.desktop.toml" | sha256sum }}
-# worker hash: {{ include "dot_config/mise/config.worker.toml" | sha256sum }}
+# config hash: {{ include "mise-global/config.toml" | sha256sum }}
+# macos hash: {{ include "mise-global/config.macos.toml" | sha256sum }}
+# linux hash: {{ include "mise-global/config.linux.toml" | sha256sum }}
+# desktop hash: {{ include "mise-global/config.desktop.toml" | sha256sum }}
+# worker hash: {{ include "mise-global/config.worker.toml" | sha256sum }}
 # miserc hash: {{ include "dot_config/mise/miserc.toml.tmpl" | sha256sum }}
 # role: {{ if or (and (hasKey . "hasGUI") (get . "hasGUI")) (and (not (hasKey . "hasGUI")) (eq .chezmoi.os "darwin")) }}desktop{{ else }}worker{{ end }}
 

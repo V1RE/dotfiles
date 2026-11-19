@@ -18,6 +18,7 @@ node = "latest"
 pi = "latest"
 vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
 vite-plus = "latest"
+turso = "latest"
 
 [tools."github:googleworkspace/cli"]
 version = "latest"

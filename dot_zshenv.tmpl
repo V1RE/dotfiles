@@ -10,6 +10,11 @@ path=(
 )
 
 export BUN_INSTALL="$HOME/.bun" # data dir only; bins via `mise activate`
+# The 2digits repos set `pin = true`, and a project setting also applies to the
+# global configs: `mise up --bump` there would pin every `latest` in the dotfiles.
+# The env var outranks every config file. Exact versions still bump exactly;
+# use `mise use --pin` for a new exact pin in such a repo.
+export MISE_PIN=0
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 [[ -d $ANDROID_HOME ]] && path+=($ANDROID_HOME/{emulator,platform-tools,cmdline-tools/latest/bin}(N-/))
 

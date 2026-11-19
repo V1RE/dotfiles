@@ -253,20 +253,6 @@ path=($HOME/.local/bin $HOME/.vite-plus/bin $path)
 # generated inside an active shell), so a cached copy resets every new shell to
 # a stale PATH. Running it live costs ~18 ms.
 eval "$(mise activate zsh)"
-# A project with `pin = true` (configs-2digits) makes a plain `mise up --bump`
-# write exact versions over every `latest` in the global configs, which then
-# shows up in `cm diff`. Split such a run: bump the project's config with its own
-# settings, then the global tools as if outside any project, where pin is off.
-functions -c mise _mise_activated
-function mise() {
-    emulate -L zsh -o extended_glob
-    if [[ $1 == (up|upgrade) ]] && (( $@[(I)(--bump|-[[:alpha:]]#b[[:alpha:]]#)] )) \
-        && ! (( $@[(I)(--global|--no-global|--local)] )); then
-        _mise_activated "$@" --no-global && _mise_activated "$@" --global
-    else
-        _mise_activated "$@"
-    fi
-}
 if [[ "${TERM:-}" != "dumb" ]]; then
     zsh-cache-file -w ${STARSHIP_CONFIG:-$HOME/.config/starship.toml} \
         starship starship init zsh && source $REPLY

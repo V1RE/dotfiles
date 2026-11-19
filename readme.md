@@ -29,8 +29,11 @@ chezmoi apply
 
 ## mise profiles
 
-Shared tools live in `dot_config/mise/config.toml`. Platform profiles
+Shared tools live in `mise-global/config.toml`. Platform profiles
 (`config.macos.toml` / `config.linux.toml`) load automatically via `auto_env`.
+`~/.config/mise/config*.toml` are symlinks to `mise-global/`, so `mise use -g`
+edits the chezmoi source directly. `.zshenv` sets `MISE_PIN=0`: a project with
+`pin = true` would otherwise make `mise up --bump` pin every `latest` here too.
 The default role is `desktop` when chezmoi's `hasGUI` is true, otherwise `worker`.
 Workers keep additional development tools lazy; Java, EAS, Wrangler and calldiff
 are lazy on both roles. Installed lazy tools are not uninstalled.
