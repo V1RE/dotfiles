@@ -1,3 +1,37 @@
+{{- if and (hasKey . "atuinOutputCapture") (get . "atuinOutputCapture") -}}
+# Atuin output capture (`pty_proxy.enabled`) re-execs every interactive shell
+# inside `atuin pty-proxy`, which starts a fresh login zsh. `atuin init` does
+# that exec itself, but only from zvm_after_init at the first prompt, so this
+# whole file ran twice. Run just its proxy preamble (the first top-level
+# `if ... fi`) here instead, so the outer shell execs before loading anything.
+# The full init still runs in zvm_after_init.
+#
+# Skip the atuin calls in the proxied shell itself: the proxy exports the path
+# of its socket, named `pty-proxy-<dev>-<rdev>.sock` after the tty it created.
+# All ttys share one devfs, so matching rdev is enough. Shells in tmux or other
+# panes inherit that variable but sit on another tty, so they still check.
+#
+# mise is not active yet, so `atuin` would resolve to its shim, which costs
+# ~45 ms per call. Use the real binary that the end of this file records, via
+# the command hash table, which `exec atuin` in the preamble also consults.
+# Without that record (first shell, or atuin moved) the late exec still works.
+if [[ -o interactive && -t 0 && -t 1 ]]; then
+    () {
+        local f=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/atuin-bin bin init
+        local -a rdev
+        zmodload -F zsh/stat b:zstat
+        zstat -A rdev +rdev -- $TTY 2>/dev/null &&
+            [[ ${ATUIN_PTY_PROXY_SOCKET:t} == *-$rdev.sock ]] && return
+        [[ -r $f ]] && bin=$(<$f) && [[ -x $bin ]] || return
+        hash atuin=$bin
+        init=$(atuin init zsh --disable-up-arrow 2>/dev/null)
+        init=${init%%$'\nfi\n'*}$'\nfi'
+        [[ $init == 'if '* && $init == *'exec atuin pty-proxy'* ]] && eval $init
+        unhash atuin
+    }
+fi
+{{- end }}
+
 # ASCII BOAT SHELL INTEGRATION START boat
 case ":$PATH:" in
   *":{{ .chezmoi.homeDir }}/.ascii/bin:"*) ;;
@@ -154,12 +188,23 @@ fpath=(
 
 . "$HOME/.antidote/antidote.zsh"
 
-[[ -s ~/.zsh_plugins.zsh ]] || rm -f ~/.zsh_plugins.zsh
 # Load plugins before compinit: zsh-completions only adds to fpath, and the
 # single compinit below must see that, or its functions (_node, ...) are missing
 # from the dump. Every completion-dependent plugin is deferred, so it still runs
 # after compinit.
-antidote load
+#
+# zsh-defer runs every hook and redraws the prompt after each deferred plugin by
+# default: chpwd and precmd (two `mise hook-env` runs, starship, pitchfork) plus
+# `zle reset-prompt`, ~50 ms per plugin while typing is blocked. These plugins
+# change neither the directory nor the prompt, so skip those three actions.
+zstyle ':antidote:bundle:*' defer-options '-dmp'
+# Source the static bundle directly: `antidote load` does the same staleness
+# check but costs ~25 ms more per shell. Rebundle when the list or this file
+# (which holds the zstyles above) changed.
+if [[ ! -s ~/.zsh_plugins.zsh || ~/.zsh_plugins.txt -nt ~/.zsh_plugins.zsh || ~/.zshrc -nt ~/.zsh_plugins.zsh ]]; then
+    antidote bundle <~/.zsh_plugins.txt >|~/.zsh_plugins.zsh
+fi
+source ~/.zsh_plugins.zsh
 
 autoload -Uz compinit
 () {
@@ -253,6 +298,13 @@ path=($HOME/.local/bin $HOME/.vite-plus/bin $path)
 # generated inside an active shell), so a cached copy resets every new shell to
 # a stale PATH. Running it live costs ~18 ms.
 eval "$(mise activate zsh)"
+{{- if and (hasKey . "atuinOutputCapture") (get . "atuinOutputCapture") }}
+# Record atuin's real binary for the pty-proxy preamble at the top of this file.
+() {
+    local f=$ZSH_CACHE_DIR/atuin-bin bin=${commands[atuin]}
+    [[ -n $bin && ( ! -r $f || $(<$f) != $bin ) ]] && print -r -- $bin >| $f
+}
+{{- end }}
 if [[ "${TERM:-}" != "dumb" ]]; then
     zsh-cache-file -w ${STARSHIP_CONFIG:-$HOME/.config/starship.toml} \
         starship starship init zsh && source $REPLY
