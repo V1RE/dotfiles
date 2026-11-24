@@ -9,7 +9,7 @@
 # "brew:mas" = "latest"
 # "mas:497799835" = "latest"       # Xcode
 
-[bootstrap.macos.dock]
+[bootstrap.settings.macos.dock]
 autohide = true
 orientation = "bottom"
 show_recents = false
@@ -17,7 +17,7 @@ magnification = true
 mru_spaces = false
 
 # Dock sizes are stored as floats by macOS; the friendly fields only accept integers.
-[bootstrap.macos.defaults."com.apple.dock"]
+[bootstrap.settings.macos.defaults."com.apple.dock"]
 tilesize = 48.0
 largesize = 65.0
 
@@ -27,10 +27,10 @@ largesize = 65.0
 # Rex has no font-codepoint-map, so nielsicon (icons only, U+E5FE-U+FC16) must
 # come before any Nerd Font. The primary is plain Cascadia Code, which has no
 # glyphs in that range, as in the WezTerm config.
-[bootstrap.macos.defaults."com.superlogical.rex"]
+[bootstrap.settings.macos.defaults."com.superlogical.rex"]
 "Workspace.terminalFontName" = "Cascadia Code"
 "Workspace.terminalFontPointSize" = 14.0
-"Workspace.terminalCellHeightPercent" = 40 # Ghostty adjust-cell-height = 40%
+"Workspace.terminalCellHeightPercent" = 40  # Ghostty adjust-cell-height = 40%
 "Workspace.terminalFallbackFontNames" = [
   "nielsicon",
   "CaskaydiaCove Nerd Font Mono",
@@ -39,10 +39,10 @@ largesize = 65.0
   "CaskaydiaCove Nerd Font",
   "Noto Color Emoji",
   "JetBrains Mono",
-  "Apple Color Emoji", # Rex appends this itself
+  "Apple Color Emoji",  # Rex appends this itself
 ]
 
-[bootstrap.macos.keyboard]
+[bootstrap.settings.macos.keyboard]
 key_repeat = 2
 initial_key_repeat = 15
 press_and_hold = false
