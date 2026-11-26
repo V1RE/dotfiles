@@ -1,8 +1,3 @@
-{{- /* Raycast gives every device and app its own MCP token, so it lives in this
-     machine's Keychain, not in the repo. Store it once per Mac with:
-     security add-generic-password -U -s raycast-mcp -a amp -w
-     Without it, the raycast server is left out. */ -}}
-{{- $raycastToken := output "sh" "-c" "security find-generic-password -s raycast-mcp -a amp -w 2>/dev/null || true" | trim -}}
 {
   "$schema": "https://ampcode.com/cli-settings.schema.json",
   "amp.runner.env.enabled": true,
@@ -31,14 +26,11 @@
     "thread.toggleOutline": "<leader>m"
   },
   "amp.mcpServers": {
-{{- if $raycastToken }}
     "raycast": {
       "url": "http://127.0.0.1:8267/mcp",
       "headers": {
-        "Authorization": {{ printf "Bearer %s" $raycastToken | toJson }}
+        "Authorization": "Bearer ${RAYCAST_MCP_TOKEN}"
       }
     }
   }
-{{- else }}}
-{{- end }}
 }
